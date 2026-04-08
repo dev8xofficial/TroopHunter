@@ -1,0 +1,221 @@
+app_shell:
+  type: flex_column
+  height: 100vh
+  overflow: hidden
+  children:
+    - top_nav
+    - app_body
+
+top_nav:
+  type: header
+  height: 68px
+  position: sticky
+  z_index: '{tokens.z_index.nav}'
+  background: white
+  border_bottom: '1px solid {color.neutral.n200}'
+  shadow: '{tokens.shadow.sm}'
+  padding: '0 28px'
+  layout: flex_row
+  align: center
+  gap: 16px
+  children:
+    - logo_block
+    - search_bar
+    - spacer
+    - nav_actions
+    - notification_bell
+    - user_chip
+
+  logo_block:
+    type: flex_row
+    gap: 12px
+    children:
+      - logo_icon:
+          size: 42px
+          radius: 10px
+          background: '{color.brand.navy}'
+          text: 'B'
+          text_color: '{color.brand.gold}'
+          font: heading/800/20px
+      - logo_text_group:
+          primary: 'Burkes Group'
+          primary_style: 'heading/700/18px/navy'
+          secondary: 'CRM Platform'
+          secondary_style: 'body/600/10px/n400/uppercase/0.07em'
+
+  search_bar:
+    type: input
+    icon: crm-search
+    placeholder: 'Search contacts, policies, transactions…'
+    width: 280px
+    max_width: 320px
+    flex: '1 1 160px'
+    padding: '9px 14px 9px 36px'
+    radius: 10px
+    border: '1.5px solid {n200}'
+    focus_border: navy
+    focus_shadow: '0 0 0 3px rgba(26,58,82,0.1)'
+
+  nav_actions:
+    type: flex_row
+    gap: 8px
+    flex_wrap: wrap
+    children:
+      - btn_new_lead:
+          variant: gold
+          label: 'New Lead'
+          icon: plus
+      - btn_dial:
+          variant: secondary
+          label: 'Dial'
+          icon: crm-phone
+      - btn_sms:
+          variant: secondary
+          label: 'SMS'
+          icon: crm-chat
+      - btn_email:
+          variant: secondary
+          label: 'Email'
+          icon: crm-mail
+      - btn_meet:
+          variant: secondary
+          label: 'Meet'
+          icon: crm-video
+
+  notification_bell:
+    type: icon_button
+    size: 40px
+    radius: 10px
+    icon: crm-bell
+    icon_size: 18px
+    badge: { dot: true, color: danger }
+
+  user_chip:
+    type: flex_row
+    gap: 10px
+    padding: '6px 14px 6px 8px'
+    radius: 10px
+    hover_bg: n100
+    children:
+      - avatar: { size: 36px, radius: 8px, text: 'JB', bg: navy }
+      - name: { primary: 'Jaquarian Bonilla', secondary: 'Insurance Agent' }
+
+app_body:
+  type: flex_row
+  flex: 1
+  overflow: hidden
+
+sidebar:
+  width: 236px
+  flex_shrink: 0
+  background: white
+  border_right: '1px solid {n200}'
+  shadow: '{shadow.sm}'
+  overflow_y: auto
+  layout: flex_column
+  height: 100%
+
+  top_cta:
+    type: button
+    variant: primary
+    label: 'New Lead'
+    icon: plus
+    width: 100%
+    margin: '14px 10px 4px'
+
+  nav_sections:
+    - section_label: 'Main'
+      items:
+        - { id: dashboard, label: Dashboard, icon: crm-chart, route: /dashboard }
+        - { id: contacts, label: Contacts, icon: crm-users, route: /contacts, badge: { value: '1,284', variant: blue } }
+        - { id: pipeline, label: Pipeline, icon: crm-refresh, route: /pipeline }
+        - { id: activities, label: Activities, icon: crm-clipboard, route: /activities, badge: { value: '6', variant: red } }
+        - { id: calendar, label: Calendar, icon: crm-calendar, route: /calendar }
+
+    - section_label: 'Communications'
+      items:
+        - { id: calls, label: 'Calls (VOIP)', icon: crm-phone, route: /calls, badge: { value: '4', variant: gold } }
+        - { id: sms, label: 'SMS / Text', icon: crm-chat, route: /sms, badge: { value: '2', variant: purple } }
+        - { id: email, label: Email, icon: crm-mail, route: /email, badge: { value: '14', variant: blue } }
+        - { id: email_blast, label: 'Email Blast', icon: crm-megaphone, route: /email-blast }
+        - { id: video, label: 'Video Meetings', icon: crm-video, route: /video-meetings }
+
+    - section_label: 'Departments'
+      items:
+        - { id: insurance, label: Insurance, icon: crm-shield, route: /insurance }
+        - { id: mortgage, label: Mortgage, icon: crm-bank, route: /mortgage }
+        - { id: real_estate, label: 'Real Estate', icon: crm-buildings, route: /real-estate }
+
+    - section_label: 'Tools & Admin'
+      items:
+        - { id: integrations, label: Integrations, icon: crm-link, route: /integrations }
+        - { id: reports, label: Reports, icon: crm-trend, route: /reports }
+        - { id: admin, label: Settings, icon: crm-cog, route: /admin }
+
+  nav_item_styles:
+    default: { padding: '9px 14px', radius: 8px, color: n600, hover_bg: n100, hover_color: navy }
+    active: { bg: navy, color: white, icon_bg: 'rgba(255,255,255,0.15)' }
+
+  sidebar_footer:
+    type: flex_row
+    gap: 10px
+    padding: '12px 12px 14px'
+    border_top: '1px solid {n200}'
+    margin_top: auto
+    children:
+      - avatar: { size: 34px, radius: 8px }
+      - name_block: {}
+      - settings_icon: {}
+
+main_content:
+  type: flex_column
+  flex: 1
+  overflow: hidden
+  children:
+    - voip_status_bar
+    - content_scroll
+
+voip_status_bar:
+  type: flex_row
+  height: 36px
+  padding: '6px 28px'
+  background: 'linear-gradient(90deg, #ecfdf5, #f0fdf4)'
+  border_bottom: '1px solid #a7f3d0'
+  align: center
+  gap: 10px
+  color: '{success_text}'
+  font: 'body/600/12px'
+  children:
+    - pulse_dot: { size: 8px, color: green, animation: pulse }
+    - status_text: {}
+    - spacer: {}
+    - compliance_note: { color: n500, weight: 400 }
+    - view_log_btn: {}
+
+content_scroll:
+  type: scroll
+  flex: 1
+  overflow_y: auto
+  padding: '28px 32px'
+
+grids:
+  kpi_5: { display: grid, columns: 'repeat(5, 1fr)', gap: 16px }
+  kpi_6: { display: grid, columns: 'repeat(6, 1fr)', gap: 14px }
+  kpi_4: { display: grid, columns: 'repeat(4, 1fr)', gap: 16px }
+  kpi_3: { display: grid, columns: 'repeat(3, 1fr)', gap: 12px }
+  two_col_sidebar: { display: grid, columns: '1fr 340px', gap: 20px }
+  three_col: { display: grid, columns: '1.4fr 1fr 1fr', gap: 18px }
+
+  responsive:
+    breakpoint_1200:
+      kpi_5: 'repeat(3, 1fr)'
+      kpi_6: 'repeat(3, 1fr)'
+      kpi_4: 'repeat(2, 1fr)'
+    breakpoint_992:
+      app_body: flex_column
+      sidebar: { width: 100%, max_height: 260px }
+      kpi_5: 'repeat(2, 1fr)'
+    breakpoint_768:
+      content: { padding: '18px 16px' }
+      kpi_any: '1fr'
+      sms_shell: flex_column

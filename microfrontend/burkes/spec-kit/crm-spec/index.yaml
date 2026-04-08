@@ -1,0 +1,123 @@
+meta:
+  name: Burkes Group CRM
+  version: '1.0.0'
+  description: >
+    Multi-department CRM platform covering Insurance, Mortgage, and Real Estate
+    with integrated VOIP, SMS, email blasts, calendar, pipeline management,
+    compliance recording, and third-party integrations.
+  owner: Burkes Group Marketing LLC
+  tenant_model: multi_department # single-tenant, multi-department
+  saas_ready: true
+
+design_system:
+  $ref: './design.tokens.yaml'
+
+layout:
+  $ref: './layout.yaml'
+
+screens:
+  dashboard: { $ref: './screens/dashboard.yaml' }
+  contacts: { $ref: './screens/contacts.yaml' }
+  pipeline: { $ref: './screens/pipeline.yaml' }
+  activities: { $ref: './screens/activities.yaml' }
+  calendar: { $ref: './screens/calendar.yaml' }
+  calls: { $ref: './screens/calls.yaml' }
+  sms: { $ref: './screens/sms.yaml' }
+  email: { $ref: './screens/email.yaml' }
+  email_blast: { $ref: './screens/email_blast.yaml' }
+  video_meetings: { $ref: './screens/video_meetings.yaml' }
+  insurance: { $ref: './screens/insurance.yaml' }
+  mortgage: { $ref: './screens/mortgage.yaml' }
+  real_estate: { $ref: './screens/real_estate.yaml' }
+  integrations: { $ref: './screens/integrations.yaml' }
+  reports: { $ref: './screens/reports.yaml' }
+  admin: { $ref: './screens/admin.yaml' }
+
+components:
+  stat_card: { $ref: './components/stat_card.yaml' }
+  data_table: { $ref: './components/data_table.yaml' }
+  modals: { $ref: './components/modals.yaml' }
+  nav: { $ref: './components/nav.yaml' }
+  pipeline_board: { $ref: './components/pipeline_board.yaml' }
+
+interactions: { $ref: './interactions.yaml' }
+events: { $ref: './events.yaml' }
+api: { $ref: './api.yaml' }
+
+schemas:
+  contact: { $ref: './schemas/contact.schema.json' }
+  lead: { $ref: './schemas/lead.schema.json' }
+  policy: { $ref: './schemas/policy.schema.json' }
+  transaction: { $ref: './schemas/transaction.schema.json' }
+  activity: { $ref: './schemas/activity.schema.json' }
+  user: { $ref: './schemas/user.schema.json' }
+
+departments:
+  - id: insurance
+    name: Insurance
+    color_token: gold
+    icon: crm-shield
+    compliance:
+      call_retention_months: 18
+      doc_retention_years: 2.5
+      requires_voip_recording: true
+      e_and_o_required: true
+  - id: mortgage
+    name: Mortgage
+    color_token: blue
+    icon: crm-bank
+    compliance:
+      call_retention_months: 24
+      doc_retention_years: 2
+      requires_arive: true
+  - id: real_estate
+    name: Real Estate
+    color_token: green
+    icon: crm-buildings
+    compliance:
+      call_retention_years: 4
+      doc_retention_years: 4
+      requires_har_verification: true
+      dotloop_required: true
+
+integrations:
+  - id: outlook
+    label: Microsoft Outlook
+    status: active
+    capabilities: [email, calendar, contacts_sync, blast_sending, auto_log]
+  - id: teams
+    label: Microsoft Teams
+    status: active
+    capabilities: [video_meetings, internal_comms, calendar]
+  - id: google_meet
+    label: Google Meet
+    status: active
+    capabilities: [video_meetings, screen_share, calendar_sync]
+  - id: google_calendar
+    label: Google Calendar
+    status: active
+    capabilities: [two_way_calendar_sync]
+  - id: voip
+    label: VOIP Call Center
+    status: active
+    capabilities: [calling, sms, recording, compliance_storage, auto_log]
+  - id: vertafore
+    label: Vertafore / Agency Zoom
+    status: syncing
+    capabilities: [insurance_quoting, policy_management, quote_sync]
+  - id: arive
+    label: Arive
+    status: active
+    capabilities: [mortgage_applications, pre_approvals, loan_pipeline]
+  - id: follow_up_boss
+    label: Follow Up Boss
+    status: replacing
+    capabilities: [legacy_crm, contact_import]
+  - id: dotloop
+    label: DotLoop
+    status: active
+    capabilities: [real_estate_contracts, e_sign]
+  - id: har
+    label: HAR (Houston MLS)
+    status: active
+    capabilities: [agent_license_verification, listing_data]

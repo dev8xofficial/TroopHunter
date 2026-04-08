@@ -1,0 +1,239 @@
+id: dashboard
+route: /dashboard
+title: Dashboard
+description: Executive overview of all leads, activity, pipeline, integrations, and tasks
+
+data_bindings:
+  - key: date_range
+    type: enum
+    values: [daily, weekly, monthly]
+    default: daily
+  - key: kpi_stats
+    source: GET /api/dashboard/kpis?range={date_range}
+  - key: pipeline_summary
+    source: GET /api/pipeline/summary
+  - key: recent_leads
+    source: GET /api/leads?limit=6&sort=created_desc
+  - key: activity_feed
+    source: GET /api/activities?limit=6&sort=created_desc
+  - key: todays_schedule
+    source: GET /api/calendar/today
+  - key: integrations_status
+    source: GET /api/integrations/status
+  - key: tasks_today
+    source: GET /api/tasks?due=today&assignee=me
+
+sections:
+
+  # ── Page Header ─────────────────────────────────────────────────────────────
+  page_header:
+    type: flex_row
+    justify: space_between
+    margin_bottom: 24px
+    children:
+      - heading:
+          text: Dashboard
+          sub: "{today_date} · Good morning, {user.first_name}"
+          sub_icon: crm-wave
+      - controls:
+          type: flex_row
+          gap: 8px
+          children:
+            - time_range_tabs:
+                component: mini_tabs
+                options: [Daily, Weekly, Monthly]
+                binding: date_range
+            - export_btn:
+                component: button
+                variant: secondary
+                size: sm
+                label: Export
+                icon: download
+
+  # ── KPI Cards ────────────────────────────────────────────────────────────────
+  kpi_cards:
+    component: kpi_grid
+    grid: kpi_5
+    cards:
+      - id: active_leads
+        label: Active Leads
+        value_binding: kpi_stats.active_leads
+        delta_binding: kpi_stats.active_leads_delta
+        delta_direction: up
+        accent: navy
+        icon: crm-users
+
+      - id: calls_today
+        label: Calls Today
+        value_binding: kpi_stats.calls_today
+        delta_binding: kpi_stats.calls_delta
+        accent: gold
+        icon: crm-phone
+
+      - id: policies_quoted
+        label: Policies Quoted
+        value_binding: kpi_stats.policies_quoted
+        accent: blue
+        icon: crm-shield
+
+      - id: transactions
+        label: Transactions
+        value_binding: kpi_stats.transactions
+        delta_direction: down
+        accent: orange
+        icon: crm-refresh
+
+      - id: revenue_mtd
+        label: Revenue (MTD)
+        value_binding: kpi_stats.revenue_mtd
+        format: currency_compact
+        delta_binding: kpi_stats.revenue_delta
+        accent: green
+        icon: crm-money
+
+  # ── Pipeline Funnel ──────────────────────────────────────────────────────────
+  pipeline_funnel:
+    component: card
+    title: "Lead Pipeline — All Departments"
+    subtitle: "Live view across Insurance, Mortgage & Real Estate"
+    header_actions:
+      - dept_badges: [Insurance, Mortgage, Real Estate]
+      - button: { label: "Full Pipeline", variant: secondary, size: sm, action: navigate(/pipeline) }
+    body:
+      - stages:
+          component: pipeline_stage_row
+          binding: pipeline_summary.stages
+          stages:
+            - { id: inquiry,   label: "New Inquiry",   count_binding: pipeline_summary.inquiry }
+            - { id: contacted, label: Contacted,        count_binding: pipeline_summary.contacted }
+            - { id: quoted,    label: "Quoted / Offer", count_binding: pipeline_summary.quoted,    active: true }
+            - { id: contract,  label: "Under Contract", count_binding: pipeline_summary.contract }
+            - { id: pending,   label: "Pending Close",  count_binding: pipeline_summary.pending }
+            - { id: closed,    label: Closed,           count_binding: pipeline_summary.closed,    variant: closed }
+
+      - dept_breakdown:
+          component: kpi_grid
+          grid: kpi_3
+          margin_top: 16px
+          cards:
+            - { dept: insurance,   binding: pipeline_summary.insurance_leads,   bar_color: gold }
+            - { dept: mortgage,    binding: pipeline_summary.mortgage_leads,     bar_color: blue }
+            - { dept: real_estate, binding: pipeline_summary.real_estate_leads,  bar_color: green }
+
+  # ── Bottom 3-column ──────────────────────────────────────────────────────────
+  bottom_grid:
+    type: grid
+    columns: "1.4fr 1fr 1fr"
+    gap: 18px
+    children:
+
+      col_left:
+        children:
+          - recent_leads_card:
+              component: card
+              title: Recent Leads
+              header_tabs: [All, Ins, Mort, RE]
+              header_actions:
+                - button: { label: "View All", variant: secondary, size: xs, action: navigate(/contacts) }
+              body:
+                component: list_rows
+                binding: recent_leads
+                item_schema:
+                  - avatar: { initials: true }
+                  - name: { binding: full_name, weight: bold }
+                  - detail: { binding: product_type }
+                  - badge_dept: { binding: department }
+                  - badge_stage: { binding: stage }
+
+          - activity_feed_card:
+              component: card
+              title: Activity Feed
+              icon: crm-bolt
+              header_actions:
+                - button: { label: "View All", size: xs, action: navigate(/activities) }
+              body:
+                component: activity_list
+                binding: activity_feed
+                max_height: 230px
+                item_schema:
+                  - icon: { binding: activity_type }
+                  - title: { binding: title }
+                  - meta: { binding: department, timestamp, recorded_flag }
+
+      col_center:
+        children:
+          - schedule_card:
+              component: card
+              title: "Today's Schedule"
+              subtitle: "MS Calendar + Google synced"
+              header_actions:
+                - button: { label: "+ Event", size: xs, action: open_modal(add_event) }
+              body:
+                component: schedule_list
+                binding: todays_schedule
+                item_schema:
+                  - time: {}
+                  - dot: { color: binding:event_color }
+                  - name: {}
+                  - meta: {}
+
+          - calls_compliance_card:
+              component: card
+              title: "Calls & Compliance"
+              header_badge: { label: Compliant, variant: green }
+              body:
+                - storage_bar:
+                    label: "Storage (90-day window)"
+                    value_binding: compliance.storage_used
+                    max_binding: compliance.storage_max
+                    format: "X GB / Y GB"
+                - retention_grid:
+                    grid: kpi_2
+                    items:
+                      - { dept: insurance, label: "18 mo", sub: "call retention" }
+                      - { dept: real_estate, label: "4 yr", sub: "call retention" }
+                - recent_calls:
+                    component: mini_call_list
+                    binding: recent_calls
+                    actions: [play_recording]
+                - purge_warning:
+                    type: alert
+                    variant: warning
+                    text: "Videos auto-purge after 90 days — export to Outlook / OneDrive before purge."
+
+      col_right:
+        children:
+          - integrations_card:
+              component: card
+              title: Connected Integrations
+              subtitle: "7 services · 5 active"
+              header_actions:
+                - button: { label: Manage, size: xs, action: navigate(/integrations) }
+              body:
+                component: integration_chips
+                binding: integrations_status
+                fields: [logo, name, description, status_dot]
+
+          - tasks_card:
+              component: card
+              title: "Today's Tasks"
+              header_badge: { label: "6 due", variant: red }
+              body:
+                component: task_list
+                binding: tasks_today
+                max_height: 230px
+                item_schema:
+                  - checkbox: {}
+                  - title: {}
+                  - meta: { binding: department, due_time }
+              footer:
+                - button: { label: "Add Task", variant: secondary, width: full, action: create_task }
+
+states:
+  loading:
+    kpi_cards: skeleton_shimmer
+    pipeline_funnel: skeleton_shimmer
+  empty:
+    activity_feed: { icon: crm-bolt, message: "No activity yet today." }
+  error:
+    kpi_cards: { alert: "Failed to load dashboard data.", action: retry }

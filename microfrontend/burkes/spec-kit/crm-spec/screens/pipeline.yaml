@@ -1,0 +1,204 @@
+id: pipeline
+route: /pipeline
+title: Lead Pipeline
+description: Kanban, list, and forecast views for leads across all departments
+
+views:
+  - { id: kanban,   label: Kanban,   icon: crm-kanban }
+  - { id: list,     label: List,     icon: crm-clipboard }
+  - { id: forecast, label: Forecast, icon: crm-trend }
+default_view: kanban
+
+data_bindings:
+  - key: pipeline_leads
+    source: GET /api/leads
+    params: { department: filter, agent: filter, priority: filter, search: filter }
+  - key: pipeline_stats
+    source: GET /api/pipeline/stats
+  - key: forecast_data
+    source: GET /api/pipeline/forecast
+
+stages:
+  - { id: inquiry,   label: "New Inquiry",   column_variant: col_new,      count_binding: pipeline_stats.inquiry }
+  - { id: contacted, label: Contacted,        column_variant: col_contact,   count_binding: pipeline_stats.contacted }
+  - { id: quoted,    label: "Quoted / Offer", column_variant: col_quote,     count_binding: pipeline_stats.quoted }
+  - { id: contract,  label: "Under Contract", column_variant: col_contract,  count_binding: pipeline_stats.contract }
+  - { id: closing,   label: "Pending Close",  column_variant: col_closing,   count_binding: pipeline_stats.closing }
+  - { id: closed,    label: Closed,           column_variant: col_closed,    count_binding: pipeline_stats.closed }
+
+sections:
+
+  page_header:
+    type: flex_row
+    justify: space_between
+    children:
+      - heading:
+          text: "Lead Pipeline"
+          sub: "Track and manage leads across all three departments"
+      - controls:
+          - view_tabs:
+              component: mini_tabs
+              binding: current_view
+              options_ref: views
+          - export_btn: { variant: secondary, size: sm }
+
+  kpi_cards:
+    component: kpi_grid
+    grid: kpi_5
+    cards:
+      - { label: "Total Leads",     binding: pipeline_stats.total,     delta: up,   accent: navy,   icon: crm-users }
+      - { label: "In Negotiation",  binding: pipeline_stats.quoted,    delta: up,   accent: gold,   icon: crm-handshake }
+      - { label: "Under Contract",  binding: pipeline_stats.contract,  delta: up,   accent: blue,   icon: crm-document }
+      - { label: "Pending Close",   binding: pipeline_stats.closing,   delta: down, accent: orange, icon: crm-clock }
+      - { label: "Closed (MTD)",    binding: pipeline_stats.closed,    delta: up,   accent: green,  icon: crm-check }
+
+  filter_bar:
+    component: card
+    body:
+      - filters:
+          type: flex_row
+          gap: 10px
+          children:
+            - search:    { binding: filters.search,     placeholder: "Search leads by name…" }
+            - dept:      { binding: filters.department, type: select, options_ref: departments }
+            - agent:     { binding: filters.agent,      type: select, options_ref: agents }
+            - priority:  { binding: filters.priority,   type: select, options: [All Priority, Hot, Warm, Cool] }
+            - spacer: {}
+            - count:     { binding: pipeline_leads.total, format: "{n} leads" }
+            - clear_btn: { action: clear_pipeline_filters }
+      - quick_filters:
+          type: flex_row
+          gap: 10px
+          border_top: default
+          children:
+            - { label: "All (148)",        action: quick_filter(""),          variant: neutral }
+            - { label: "Insurance (61)",   action: quick_filter(Insurance),   variant: gold,  icon: crm-shield }
+            - { label: "Mortgage (47)",    action: quick_filter(Mortgage),    variant: blue,  icon: crm-bank }
+            - { label: "Real Estate (40)", action: quick_filter(Real Estate), variant: green, icon: crm-buildings }
+            - spacer: {}
+            - { label: "Hot Leads (18)",   action: quick_filter_priority(hot), variant: red }
+
+  # ── Kanban View ──────────────────────────────────────────────────────────────
+  kanban_view:
+    visible_when: current_view == kanban
+    component: pipeline_board
+    layout: flex_row
+    gap: 14px
+    overflow_x: auto
+    min_height: 520px
+    columns_ref: stages
+    lead_card:
+      component: lead_card
+      props:
+        - name:     { binding: full_name, weight: bold }
+        - detail:   { binding: product_description }
+        - badges:
+            - dept_badge:  { binding: department }
+            - temp_badge:  { binding: priority }
+        - footer:
+            - timestamp: { binding: last_activity_at, format: relative }
+            - agent_avatar: { binding: agent.initials, bg: binding:agent.color }
+      variants:
+        hot:  { border_left: "3px solid {danger}" }
+        warm: { border_left: "3px solid {warning}" }
+        cool: { border_left: "3px solid {info}" }
+      hover: { border_color: navy, shadow: md, translate_y: -1px }
+      on_click: open_lead_drawer
+
+  # ── List View ────────────────────────────────────────────────────────────────
+  list_view:
+    visible_when: current_view == list
+    component: card
+    body:
+      - data_table:
+          binding: pipeline_leads.items
+          columns:
+            - { id: contact,    label: Contact,    type: contact_cell }
+            - { id: department, label: Department, type: dept_badge }
+            - { id: stage,      label: Stage,      type: status_pill }
+            - { id: agent,      label: Assigned,   type: text }
+            - { id: priority,   label: Priority,   type: priority_badge }
+            - { id: activity,   label: "Last Activity", type: datetime }
+            - { id: actions,    type: action_group,
+                actions:
+                  - { label: View,     action: open_lead_drawer }
+                  - { label: Transfer, icon: crm-arrow-uturn, action: open_modal(transfer_lead) } }
+      - pagination: {}
+
+  # ── Forecast View ────────────────────────────────────────────────────────────
+  forecast_view:
+    visible_when: current_view == forecast
+    type: grid
+    columns: "1.4fr 1fr"
+    gap: 18px
+    children:
+      - revenue_forecast_card:
+          component: card
+          title: "Revenue Forecast — Q1 2026"
+          subtitle: "Projected close values by department"
+          header_tabs: [Monthly, Quarterly]
+          body:
+            - dept_bars:
+                component: bar_list
+                items:
+                  - { dept: insurance,   value_binding: forecast.insurance,   color: gold }
+                  - { dept: mortgage,    value_binding: forecast.mortgage,    color: blue }
+                  - { dept: real_estate, value_binding: forecast.real_estate, color: green }
+            - totals_grid:
+                grid: kpi_3
+                items:
+                  - { label: "Total Pipeline",    binding: forecast.total_pipeline, color: navy }
+                  - { label: "Likely to Close",   binding: forecast.likely_close,   color: green }
+                  - { label: "At Risk",            binding: forecast.at_risk,         color: orange }
+
+      - right_col:
+          children:
+            - conversion_card:
+                component: card
+                title: "Conversion Rates"
+                icon: crm-target
+                body:
+                  component: metric_list
+                  items:
+                    - { label: "New → Contacted",     value: "73%", color: navy }
+                    - { label: "Contacted → Quoted",  value: "54%", color: navy }
+                    - { label: "Quoted → Contract",   value: "41%", color: orange }
+                    - { label: "Contract → Closed",   value: "88%", color: green }
+                    - { label: "Overall Conversion",  value: "14.2%", weight: bold }
+
+            - avg_days_card:
+                component: card
+                title: "Avg Days per Stage"
+                icon: crm-clock
+                body:
+                  component: metric_list
+                  items:
+                    - { label: "New Inquiry",    value: "1.4 days" }
+                    - { label: Contacted,         value: "3.2 days" }
+                    - { label: "Quoted / Offer",  value: "5.8 days" }
+                    - { label: "Under Contract",  value: "22.1 days" }
+                    - { label: "Pending Close",   value: "7.4 days" }
+                    - { label: "Total Avg Cycle", value: "40 days", weight: bold }
+
+drawers:
+  lead_detail:
+    component: detail_drawer
+    width: 420px
+    sections:
+      - badges: { dept_badge, priority_badge }
+      - contact_info:
+          fields: [phone, email, assigned_to, source, created_at]
+      - update_stage:
+          component: select
+          options_ref: pipeline_stages
+          action: PATCH /api/leads/{id}/stage
+      - notes:
+          component: textarea
+          action: POST /api/leads/{id}/notes
+      - activity_timeline:
+          binding: lead.activities
+    footer_actions:
+      - { label: Transfer, icon: crm-arrow-uturn, action: open_modal(transfer_lead), variant: secondary }
+      - { label: Call,     icon: crm-phone,       action: voip_call,                 variant: primary }
+      - { icon: crm-chat,  action: open_sms,       variant: secondary }
+      - { icon: crm-mail,  action: compose_email,  variant: secondary }
