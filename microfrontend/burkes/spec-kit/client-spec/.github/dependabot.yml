@@ -1,0 +1,45 @@
+version: 2
+updates:
+  # Check for Markdown and documentation updates weekly
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '02:00'
+    allow:
+      - dependency-type: 'direct'
+    commit-message:
+      prefix: 'chore(deps)'
+      include: 'scope'
+    pull-request-branch-name:
+      separator: '/'
+    reviewers:
+      - 'tech-lead'
+    assignees:
+      - 'tech-lead'
+    labels:
+      - 'dependencies'
+      - 'ci'
+
+  # Optional: Monitor spec-kit dependencies if not using monorepo root package.json
+  # This would check for any JSON dependencies or external references
+  # Uncomment if your spec-kit has its own package.json
+  #- package-ecosystem: "npm"
+  #  directory: ".specify/"
+  #  schedule:
+  #    interval: "weekly"
+  #  allow:
+  #    - dependency-type: "direct"
+  #  labels:
+  #    - "dependencies"
+  #  reviewers:
+  #    - "tech-lead"
+# Note: The spec-kit is primarily documentation (Markdown + JSON), so Dependabot
+# has limited utility here. This configuration is included for:
+# 1. Future-proofing if spec-kit gains automated tools (e.g., spec validation CLI)
+# 2. Monitoring GitHub Actions workflows for security updates
+# 3. Reference for the monorepo's main Dependabot config
+
+# For actual security/dependency scanning of your implementation code,
+# see the repo root's .github/dependabot.yml

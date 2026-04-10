@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Services Data Model",
+  "type": "object",
+  "required": ["service_id", "service_type", "provider", "status"],
+  "properties": {
+    "service_id": { "type": "string", "pattern": "^SVC-[0-9]{10}$" },
+    "service_type": {
+      "type": "string",
+      "enum": ["home_inspection", "appraisal", "title_search", "moving", "insurance"]
+    },
+    "provider": { "type": "string" },
+    "rating": { "type": "number", "minimum": 1, "maximum": 5 },
+    "status": {
+      "type": "string",
+      "enum": ["recommended", "booked", "in_progress", "completed", "reviewed"]
+    },
+    "scheduled_date": { "type": "string", "format": "date" },
+    "cost": { "type": "number", "minimum": 0 }
+  }
+}

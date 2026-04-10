@@ -1,0 +1,92 @@
+name: Version & Changelog Check
+
+on:
+  pull_request:
+    paths:
+      - '.specify/specs/**/*.md'
+      - '.specify/specs/**/changelog.md'
+
+jobs:
+  check-versions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Fetch PR changes
+        run: |
+          echo "Fetching changed files in this PR..."
+          git fetch origin pull/${{ github.event.pull_request.number }}/head:pr-branch
+          changed_files=$(git diff --name-only origin/main..pr-branch)
+          echo "Changed files: $changed_files"
+
+      - name: Check changelog updates
+        run: |
+          echo "Verifying changelog entries reflect spec changes..."
+          
+          # Get changed spec files
+          changed_specs=$(git diff --name-only origin/main..pr-branch | grep '.specify/specs/.*/spec.md')
+          
+          for spec_file in $changed_specs; do
+            spec_dir=$(dirname "$spec_file")
+            changelog_file="$spec_dir/changelog.md"
+            
+            # Check if corresponding changelog.md was updated
+            if git diff --name-only origin/main..pr-branch | grep -q "$changelog_file"; then
+              echo "✅ Changelog updated for $(basename $spec_dir)"
+              
+              # Verify changelog entry has date and version
+              if ! grep -E '(v[0-9]+\.[0-9]+|[0-9]{4}-[0-9]{2}-[0-9]{2})' "$changelog_file" | head -1 | grep -q "."; then
+                echo "⚠️ Warning: Changelog entry missing version or date"
+              fi
+            else
+              echo "❌ Spec changed but changelog not updated: $spec_file"
+              echo "   Please update $(basename $spec_dir)/changelog.md"
+              exit 1
+            fi
+          done
+
+      - name: Validate version format
+        run: |
+          echo "Validating semantic version format..."
+          
+          for changelog_file in $(find .specify/specs -name "changelog.md"); do
+            # Extract version entries
+            versions=$(grep -oE 'v[0-9]+\.[0-9]+(\.[0-9]+)?' "$changelog_file" | sort -u)
+            
+            for version in $versions; do
+              if ! [[ $version =~ ^v[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
+                echo "❌ Invalid version format in $(basename $(dirname $changelog_file)): $version"
+                exit 1
+              fi
+              echo "✅ Valid version: $version"
+            done
+          done
+
+      - name: Check changelog template compliance
+        run: |
+          echo "Verifying changelog uses standard format..."
+          
+          for changelog_file in $(find .specify/specs -name "changelog.md" 2>/dev/null); do
+            if [ -f "$changelog_file" ]; then
+              # Check for standard sections
+              if ! grep -q "^## " "$changelog_file"; then
+                echo "⚠️ Warning: $(basename $(dirname $changelog_file))/changelog.md missing version headers"
+              fi
+              
+              # Check that entries have descriptions
+              if grep -E '^- ' "$changelog_file" | while read line; do
+                if [ $(echo "$line" | wc -c) -lt 20 ]; then
+                  echo "⚠️ Warning: Changelog entry too brief: $line"
+                fi
+              done; then
+                echo "✅ Changelog entries have sufficient detail"
+              fi
+            fi
+          done
+
+      - name: Report version compliance
+        if: always()
+        run: |
+          echo "Version and changelog validation complete."
+          echo "Template: .specify/templates/changelog-template.md"

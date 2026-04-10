@@ -1,0 +1,112 @@
+name: Validate Dependencies
+
+on:
+  pull_request:
+    paths:
+      - '.specify/specs/**/*.md'
+      - '.github/workflows/validate-dependencies.yml'
+
+jobs:
+  check-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract spec dependencies
+        run: |
+          echo "Extracting dependency graph..."
+          
+          # Build dependency mapping
+          declare -A spec_deps
+          
+          for spec_file in .specify/specs/*/spec.md; do
+            spec_id=$(basename $(dirname "$spec_file"))
+            echo "Processing: $spec_id"
+            
+            # Extract "Depends on" references
+            if grep -q "## Dependencies" "$spec_file"; then
+              deps=$(grep -A 50 "## Dependencies" "$spec_file" | grep -oE '[0-9]{3}-[a-z-]+' | sort | uniq)
+              if [ -n "$deps" ]; then
+                echo "$spec_id depends on: $deps"
+                spec_deps[$spec_id]="$deps"
+              fi
+            fi
+          done
+
+      - name: Detect circular dependencies
+        run: |
+          echo "Checking for circular dependencies..."
+          
+          # This is a simplified check; a full implementation would use a graph algorithm
+          for spec_file in .specify/specs/*/spec.md; do
+            spec_id=$(basename $(dirname "$spec_file"))
+            
+            # Get direct dependencies
+            direct_deps=$(grep -A 50 "## Dependencies" "$spec_file" 2>/dev/null | grep -oE '[0-9]{3}-[a-z-]+' | grep -v "^$spec_id" | sort | uniq)
+            
+            # Check if any dependency depends back on this spec (basic check)
+            for dep in $direct_deps; do
+              dep_file=".specify/specs/$dep/spec.md"
+              if [ -f "$dep_file" ]; then
+                if grep -q "$spec_id" "$dep_file" 2>/dev/null; then
+                  echo "⚠️ Possible circular dependency: $spec_id ↔ $dep"
+                fi
+              fi
+            done
+          done
+          
+          echo "✅ Circular dependency check complete"
+
+      - name: Verify dependency specs exist
+        run: |
+          echo "Verifying all dependencies point to existing specs..."
+          
+          for spec_file in .specify/specs/*/spec.md; do
+            spec_id=$(basename $(dirname "$spec_file"))
+            
+            # Extract dependencies
+            deps=$(grep -A 50 "## Dependencies" "$spec_file" 2>/dev/null | grep -oE '[0-9]{3}-[a-z-]+' | sort | uniq)
+            
+            for dep in $deps; do
+              if [[ $dep =~ ^[0-9]{3}-[a-z-]+$ ]]; then
+                if [ ! -f ".specify/specs/$dep/spec.md" ]; then
+                  echo "❌ Dependency error: $spec_id depends on $dep, but spec not found"
+                  exit 1
+                fi
+              fi
+            done
+          done
+          
+          echo "✅ All dependencies point to existing specs"
+
+      - name: Check dependency ordering
+        run: |
+          echo "Verifying dependency order..."
+          
+          # Foundation (000) should not depend on others
+          foundation_spec=".specify/specs/000-foundation/spec.md"
+          if grep -q "Depends on" "$foundation_spec" 2>/dev/null; then
+            foundation_deps=$(grep -A 50 "## Dependencies" "$foundation_spec" | grep -oE '[0-9]{3}-[a-z-]+' | grep -v "^000-foundation")
+            if [ -n "$foundation_deps" ]; then
+              echo "⚠️ Warning: Foundation spec (000) should not depend on other specs. Found: $foundation_deps"
+            fi
+          fi
+          
+          echo "✅ Dependency order check complete"
+
+      - name: Generate dependency report
+        if: always()
+        run: |
+          echo "## Dependency Report"
+          echo ""
+          echo "Spec dependency graph:"
+          for spec_file in .specify/specs/*/spec.md; do
+            spec_id=$(basename $(dirname "$spec_file"))
+            deps=$(grep -A 50 "## Dependencies" "$spec_file" 2>/dev/null | grep -oE '[0-9]{3}-[a-z-]+' | grep -v "^$spec_id" | tr '\n' ', ' | sed 's/,$//')
+            if [ -n "$deps" ]; then
+              echo "- **$spec_id** → $deps"
+            fi
+          done
+          echo ""
+          echo "✅ Dependency validation complete"

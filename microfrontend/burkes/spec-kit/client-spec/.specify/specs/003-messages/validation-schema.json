@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Message Data Model",
+  "type": "object",
+  "required": ["message_id", "thread_id", "sender_role", "recipient_roles", "content"],
+  "properties": {
+    "message_id": { "type": "string", "pattern": "^MSG-[0-9]{10}$" },
+    "thread_id": { "type": "string", "pattern": "^THD-[0-9]{10}$" },
+    "sender_role": { "type": "string", "enum": ["CL", "AG", "LN", "AT", "CP", "TC"] },
+    "recipient_roles": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["CL", "AG", "LN", "AT", "CP", "TC"] }
+    },
+    "content": { "type": "string", "minLength": 1, "maxLength": 5000 },
+    "created_date": { "type": "string", "format": "date-time" },
+    "read_by": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["CL", "AG", "LN", "AT", "CP", "TC"] }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["sent", "delivered", "read", "deleted"]
+    }
+  }
+}

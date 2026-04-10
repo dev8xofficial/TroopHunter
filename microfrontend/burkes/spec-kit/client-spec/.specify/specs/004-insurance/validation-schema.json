@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Insurance Data Model",
+  "type": "object",
+  "required": ["insurance_type", "status", "provider"],
+  "properties": {
+    "insurance_type": { "type": "string", "enum": ["homeowners", "title"] },
+    "status": {
+      "type": "string",
+      "enum": ["not_started", "quote_requested", "quote_received", "bound", "active", "expired"]
+    },
+    "provider": { "type": "string" },
+    "premium": { "type": "number", "minimum": 0 },
+    "coverage_amount": { "type": "number", "minimum": 0 },
+    "effective_date": { "type": "string", "format": "date" },
+    "expiry_date": { "type": "string", "format": "date" },
+    "policy_number": { "type": "string" },
+    "lender_satisfied": { "type": "boolean" }
+  }
+}
