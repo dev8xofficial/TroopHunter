@@ -1,7 +1,7 @@
 # Feature Specification: Mortgage Application
 
 **Feature ID**: 005-mortgage
-**Status**: Ready
+**Status**: review
 **Created**: 2026-04-09
 **Parent Spec**: [000-foundation](../000-foundation/spec.md)
 **Screen / Module**: Mortgage screen

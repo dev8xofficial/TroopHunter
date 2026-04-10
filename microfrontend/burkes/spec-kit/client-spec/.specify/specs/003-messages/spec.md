@@ -1,7 +1,7 @@
 # Feature Specification: Messages
 
 **Feature ID**: 003-messages
-**Status**: Ready
+**Status**: review
 **Created**: 2026-04-09
 **Parent Spec**: [000-foundation](../000-foundation/spec.md)
 **Screen / Module**: Messages screen

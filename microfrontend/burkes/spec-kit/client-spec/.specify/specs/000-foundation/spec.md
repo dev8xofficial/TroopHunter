@@ -1,7 +1,7 @@
 # Feature Specification: Portal Foundation
 
 **Feature ID**: 000-foundation
-**Status**: Approved
+**Status**: approved
 **Created**: 2026-04-09
 **Screen / Module**: Global — applies to all screens
 

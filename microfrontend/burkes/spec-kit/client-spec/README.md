@@ -67,7 +67,7 @@ Every feature in this portal is governed by:
 ├── GOVERNANCE.md                       Approval process and decision-making
 ├── CODE_OF_CONDUCT.md                  Community standards
 │
-├── spec-driven.md                      SDD philosophy and methodology
+├── SPEC-DRIVEN.md                      SDD philosophy and methodology
 │
 ├── .specify/
 │   ├── memory/
@@ -77,7 +77,6 @@ Every feature in this portal is governed by:
 │   │   ├── 000-foundation/
 │   │   │   ├── spec.md                 Global nav, design tokens, session context
 │   │   │   ├── changelog.md            Version history
-│   │   │   ├── decisions.md            Architectural decisions (ADRs)
 │   │   │   ├── validation-schema.json  Data structures and validation rules
 │   │   │   ├── test-scenarios.md       Test matrix and edge cases
 │   │   │   ├── rollout.md              Feature flag and phased release plan
@@ -92,19 +91,20 @@ Every feature in this portal is governed by:
 │   │
 │   ├── templates/
 │   │   ├── spec-template.md            Feature specification template
-│   │   ├── plan-template.md            Implementation plan template
-│   │   ├── tasks-template.md           Developer tasks template
-│   │   ├── changelog-template.md       Version history template
+│   │   ├── plan-template.md            Implementation plan template (used with /speckit.plan)
+│   │   ├── tasks-template.md           Developer tasks template (used with /speckit.tasks)
 │   │   ├── adr-template.md             Architecture Decision Record template
+│   │   ├── changelog-template.md       Version history template
 │   │   ├── validation-schema-template.json  JSON Schema template
 │   │   ├── test-scenarios-template.md  Test matrix and edge cases template
 │   │   ├── rollout-template.md         Feature flag and release plan template
-│   │   └── metrics-template.md         KPI definition template
+│   │   ├── metrics-template.md         KPI definition template
+│   │   └── risks-template.md           Risk register template
 │   │
 │   ├── schemas/
-│   │   ├── feature-spec-schema.json    Validates spec.md structure
-│   │   ├── plan-schema.json            Validates plan.md structure
-│   │   └── tasks-schema.json           Validates tasks.md structure
+│   │   ├── spec-structure.json         Validates spec.md required fields and types
+│   │   ├── activity-log-event.json     Validates activity log event structure
+│   │   └── transaction-model.json      Validates transaction core data model
 │   │
 │   ├── decisions/                      Architecture Decision Records
 │   │   ├── adr-001-role-model.md       Why 6 roles? Why hierarchical?
@@ -123,7 +123,7 @@ Every feature in this portal is governed by:
     ├── workflows/
     │   ├── validate-specs.yml          Lint specs for format and completeness
     │   ├── validate-schema.yml         Validate JSON schemas
-    │   ├── dependency-check.yml        Detect circular dependencies
+    │   ├── validate-dependencies.yml   Detect circular dependencies
     │   ├── version-check.yml           Ensure changelog updated
     │   └── pr-checks.yml               Composite validation on every PR
     ├── ISSUE_TEMPLATE/
@@ -276,7 +276,7 @@ Every spec in this kit adheres to these principles (from constitution):
 
 ## 🔗 Cross-References
 
-- **Spec-Driven Development Philosophy**: [spec-driven.md](spec-driven.md)
+- **Spec-Driven Development Philosophy**: [SPEC-DRIVEN.md](SPEC-DRIVEN.md)
 - **Global Project Constitution**: [.specify/memory/constitution.md](/.specify/memory/constitution.md)
 - **Implementation Standards**: [STANDARDS.md](STANDARDS.md)
 - **Portal Architecture**: [ARCHITECTURE.md](ARCHITECTURE.md)

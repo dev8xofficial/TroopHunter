@@ -1,7 +1,7 @@
 # Feature Specification: Dashboard
 
 **Feature ID**: 001-dashboard
-**Status**: Ready
+**Status**: review
 **Created**: 2026-04-09
 **Parent Spec**: [000-foundation](../000-foundation/spec.md)
 **Screen / Module**: Dashboard — default landing screen

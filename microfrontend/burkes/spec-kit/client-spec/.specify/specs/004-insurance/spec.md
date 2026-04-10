@@ -1,7 +1,7 @@
 # Feature Specification: Insurance
 
 **Feature ID**: 004-insurance
-**Status**: Ready
+**Status**: review
 **Created**: 2026-04-09
 **Parent Spec**: [000-foundation](../000-foundation/spec.md)
 **Screen / Module**: Insurance screen

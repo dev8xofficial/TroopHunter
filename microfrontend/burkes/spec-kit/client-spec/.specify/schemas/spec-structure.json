@@ -3,7 +3,25 @@
   "title": "Feature Specification Structure",
   "description": "Validates the structure of feature spec.md files. Use with markdown-to-json parser to extract frontmatter.",
   "type": "object",
-  "required": ["title", "feature_id", "status", "version", "overview", "problem", "goals", "non_goals", "actors", "user_scenarios", "functional_requirements", "data_and_state", "edge_cases", "success_criteria", "dependencies", "created_date", "last_updated"],
+  "required": [
+    "title",
+    "feature_id",
+    "status",
+    "version",
+    "overview",
+    "problem",
+    "goals",
+    "non_goals",
+    "actors",
+    "user_scenarios",
+    "functional_requirements",
+    "data_and_state",
+    "edge_cases",
+    "success_criteria",
+    "dependencies",
+    "created_date",
+    "last_updated"
+  ],
   "properties": {
     "title": {
       "type": "string",
@@ -15,12 +33,22 @@
       "type": "string",
       "description": "Zero-padded feature ID",
       "pattern": "^[0-9]{3}-[a-z-]+$",
-      "examples": ["000-foundation", "001-dashboard", "006-services"]
+      "examples": [
+        "000-foundation",
+        "001-dashboard",
+        "006-services"
+      ]
     },
     "status": {
       "type": "string",
-      "enum": ["draft", "review", "approved", "implemented", "deprecated"],
-      "description": "Current lifecycle status"
+      "enum": [
+        "draft",
+        "review",
+        "approved",
+        "implemented",
+        "deprecated"
+      ],
+      "description": "Current lifecycle status. Use 'draft' while authoring, 'review' when ready for approval (formerly 'Ready'), 'approved' after sign-off, 'implemented' when live, 'deprecated' when retired."
     },
     "version": {
       "type": "string",
@@ -39,24 +67,40 @@
     },
     "goals": {
       "type": "array",
-      "items": { "type": "string", "minLength": 20 },
+      "items": {
+        "type": "string",
+        "minLength": 20
+      },
       "minItems": 1,
       "description": "What this spec accomplishes"
     },
     "non_goals": {
       "type": "array",
-      "items": { "type": "string", "minLength": 20 },
+      "items": {
+        "type": "string",
+        "minLength": 20
+      },
       "description": "What is explicitly OUT of scope"
     },
     "actors": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["role", "responsibility"],
+        "required": [
+          "role",
+          "responsibility"
+        ],
         "properties": {
           "role": {
             "type": "string",
-            "enum": ["CL", "AG", "LN", "AT", "CP", "TC"],
+            "enum": [
+              "CL",
+              "AG",
+              "LN",
+              "AT",
+              "CP",
+              "TC"
+            ],
             "description": "Canonical role code"
           },
           "responsibility": {
@@ -72,19 +116,39 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["actor", "goal", "steps", "expected_outcome"],
+        "required": [
+          "actor",
+          "goal",
+          "steps",
+          "expected_outcome"
+        ],
         "properties": {
           "actor": {
             "type": "string",
-            "enum": ["CL", "AG", "LN", "AT", "CP", "TC"]
+            "enum": [
+              "CL",
+              "AG",
+              "LN",
+              "AT",
+              "CP",
+              "TC"
+            ]
           },
-          "goal": { "type": "string", "minLength": 20 },
+          "goal": {
+            "type": "string",
+            "minLength": 20
+          },
           "steps": {
             "type": "array",
-            "items": { "type": "string" },
+            "items": {
+              "type": "string"
+            },
             "minItems": 2
           },
-          "expected_outcome": { "type": "string", "minLength": 20 }
+          "expected_outcome": {
+            "type": "string",
+            "minLength": 20
+          }
         }
       },
       "minItems": 1,
@@ -94,23 +158,42 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "title", "description", "acceptance_criteria"],
+        "required": [
+          "id",
+          "title",
+          "description",
+          "acceptance_criteria"
+        ],
         "properties": {
           "id": {
             "type": "string",
             "pattern": "^FR-\\d{3}-\\d{2}$",
             "description": "Requirement ID (e.g., FR-001-03)"
           },
-          "title": { "type": "string", "minLength": 10 },
-          "description": { "type": "string", "minLength": 30 },
+          "title": {
+            "type": "string",
+            "minLength": 10
+          },
+          "description": {
+            "type": "string",
+            "minLength": 30
+          },
           "acceptance_criteria": {
             "type": "array",
-            "items": { "type": "string", "minLength": 15 },
+            "items": {
+              "type": "string",
+              "minLength": 15
+            },
             "minItems": 1
           },
           "priority": {
             "type": "string",
-            "enum": ["P0", "P1", "P2", "P3"],
+            "enum": [
+              "P0",
+              "P1",
+              "P2",
+              "P3"
+            ],
             "description": "Priority level"
           }
         }
@@ -120,19 +203,44 @@
     },
     "data_and_state": {
       "type": "object",
-      "required": ["data_model", "state_transitions"],
+      "required": [
+        "data_model",
+        "state_transitions"
+      ],
       "properties": {
         "data_model": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["field", "type", "required"],
+            "required": [
+              "field",
+              "type",
+              "required"
+            ],
             "properties": {
-              "field": { "type": "string" },
-              "type": { "type": "string", "enum": ["string", "number", "boolean", "date", "array", "object"] },
-              "required": { "type": "boolean" },
-              "constraints": { "type": "string" },
-              "examples": { "type": "array" }
+              "field": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "date",
+                  "array",
+                  "object"
+                ]
+              },
+              "required": {
+                "type": "boolean"
+              },
+              "constraints": {
+                "type": "string"
+              },
+              "examples": {
+                "type": "array"
+              }
             }
           },
           "minItems": 1,
@@ -142,13 +250,27 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["from_state", "to_state", "trigger"],
+            "required": [
+              "from_state",
+              "to_state",
+              "trigger"
+            ],
             "properties": {
-              "from_state": { "type": "string" },
-              "to_state": { "type": "string" },
-              "trigger": { "type": "string" },
-              "conditions": { "type": "string" },
-              "actor": { "type": "string" }
+              "from_state": {
+                "type": "string"
+              },
+              "to_state": {
+                "type": "string"
+              },
+              "trigger": {
+                "type": "string"
+              },
+              "conditions": {
+                "type": "string"
+              },
+              "actor": {
+                "type": "string"
+              }
             }
           },
           "description": "State machine transitions"
@@ -160,10 +282,19 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["scenario", "handling"],
+        "required": [
+          "scenario",
+          "handling"
+        ],
         "properties": {
-          "scenario": { "type": "string", "minLength": 20 },
-          "handling": { "type": "string", "minLength": 20 }
+          "scenario": {
+            "type": "string",
+            "minLength": 20
+          },
+          "handling": {
+            "type": "string",
+            "minLength": 20
+          }
         }
       },
       "minItems": 1,
@@ -171,7 +302,10 @@
     },
     "success_criteria": {
       "type": "array",
-      "items": { "type": "string", "minLength": 20 },
+      "items": {
+        "type": "string",
+        "minLength": 20
+      },
       "minItems": 1,
       "description": "How to measure successful implementation"
     },
@@ -180,17 +314,24 @@
       "properties": {
         "depends_on_specs": {
           "type": "array",
-          "items": { "type": "string", "pattern": "^[0-9]{3}-[a-z-]+$" },
+          "items": {
+            "type": "string",
+            "pattern": "^[0-9]{3}-[a-z-]+$"
+          },
           "description": "Other specs that must be complete first"
         },
         "external_integrations": {
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "Third-party services (auth, PDF, email)"
         },
         "design_system_components": {
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "Components from @repo/components or tokens.md"
         }
       },
@@ -212,7 +353,9 @@
     },
     "reviewed_by": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "description": "Reviewers who approved this spec"
     }
   },

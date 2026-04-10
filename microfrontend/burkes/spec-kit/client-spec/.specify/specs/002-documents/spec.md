@@ -1,7 +1,7 @@
 # Feature Specification: Documents
 
 **Feature ID**: 002-documents
-**Status**: Ready
+**Status**: review
 **Created**: 2026-04-09
 **Parent Spec**: [000-foundation](../000-foundation/spec.md)
 **Screen / Module**: Documents screen

@@ -10,7 +10,7 @@ All feature specifications must follow the structure defined in `.specify/templa
 
 1. **Metadata** (top of file)
    - Feature ID (e.g., `001-dashboard`)
-   - Status (`Draft`, `Ready`, `Approved`)
+   - Status (`draft`, `review`, `approved`, `implemented`, `deprecated`)
    - Created date (YYYY-MM-DD)
    - Parent Spec (if applicable)
    - Screen / Module name
@@ -126,7 +126,7 @@ Specifications should be written in **clear, precise, professional language**:
 - Feature spec: `spec.md` (per feature directory, never `spec-001.md`)
 - Implementation plan: `plan.md`
 - Developer tasks: `tasks.md`
-- Supporting artifacts: `changelog.md`, `decisions.md`, `validation-schema.json`, `test-scenarios.md`, `rollout.md`, `metrics.md`, `risks.md`
+- Supporting artifacts: `changelog.md`, `validation-schema.json`, `test-scenarios.md`, `rollout.md`, `metrics.md`, `risks.md`
 
 ### Data Field Names
 
@@ -226,17 +226,13 @@ Before marking a spec as `Ready` or `Approved`:
 
 ## 🗂️ Supporting Artifacts
 
-Each feature spec should have 7 supporting files (in the same directory as `spec.md`):
+Each feature spec should have **6 supporting files** (in the same directory as `spec.md`). Feature-level architectural decisions are captured as global ADRs in `.specify/decisions/` using `adr-template.md` rather than per-spec `decisions.md` files:
 
 1. **changelog.md** — Version history of this spec
    - Format: [v1.0] Created → [v1.1] Added FR-XX → [v1.2] Refined acceptance criteria
    - Use semantic versioning per-feature
 
-2. **decisions.md** (or `adr/` subdirectory) — Architecture Decision Records
-   - Format: Title | Context | Decision | Consequences | Alternatives
-   - 1–3 key decisions specific to this feature
-
-3. **validation-schema.json** — Data structures and validation rules
+2. **validation-schema.json** — Data structures and validation rules
    - JSON Schema format
    - Define all data objects used by this feature
    - Include constraints (required fields, string length, enum values)

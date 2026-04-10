@@ -1,7 +1,7 @@
 # Feature Specification: [FEATURE NAME]
 
 **Feature ID**: [NNN-short-name]
-**Status**: Draft | Ready | Approved
+**Status**: draft | review | approved | implemented | deprecated
 **Created**: [YYYY-MM-DD]
 **Parent Spec**: [Link to foundation or parent spec, if applicable]
 **Screen / Module**: [Which portal screen this covers]
