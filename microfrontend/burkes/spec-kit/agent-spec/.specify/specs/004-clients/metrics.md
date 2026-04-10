@@ -1,0 +1,28 @@
+﻿# Success Metrics: Clients (04)
+
+## Overview
+
+Client profile cards with contact info, transaction links, Add Client modal.
+
+---
+
+## Key Performance Indicators
+
+| KPI | Target | Alert Threshold |
+|-----|--------|-----------------|
+| Page load time (p50) | < 2s | > 4s |
+| Page load time (p99) | < 4s | > 8s |
+| Primary action latency | < 1s | > 3s |
+| Filter/search response | < 500ms | > 1.5s |
+| Error rate | < 0.1% | > 1% |
+
+## Operational Metrics
+
+| Metric | Target |
+|--------|--------|
+| MTTD | < 2 minutes |
+| MTTR | < 15 minutes |
+
+## Success Definition
+
+Clients is successful when for 30 days post-GA all KPIs sustained within target ranges and support tickets < 1% of total.

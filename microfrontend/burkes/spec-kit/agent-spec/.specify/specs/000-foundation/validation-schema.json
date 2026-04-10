@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Foundation Validation Schema — Agent Portal",
+  "description": "Validates design tokens, navigation structure, session context, and activity log contract for the Foundation layer (000).",
+  "type": "object",
+  "properties": {
+    "design_tokens": {
+      "type": "object",
+      "required": ["colours", "typography", "shadows", "spacing", "breakpoints"],
+      "properties": {
+        "colours": {
+          "type": "object",
+          "required": ["primary_navy", "primary_gold", "accent_blue", "success_green", "warning_orange", "error_red"],
+          "properties": {
+            "primary_navy": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$", "const": "#1a3a52" },
+            "primary_gold": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$", "const": "#fdb913" },
+            "accent_blue": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$", "const": "#2d5a7b" },
+            "success_green": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$", "const": "#10b981" },
+            "warning_orange": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$", "const": "#f59e0b" },
+            "error_red": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$", "const": "#ef4444" }
+          }
+        },
+        "typography": {
+          "type": "object",
+          "required": ["font_display", "font_body"],
+          "properties": {
+            "font_display": { "type": "string", "const": "Archivo" },
+            "font_body": { "type": "string", "const": "Manrope" }
+          }
+        },
+        "shadows": {
+          "type": "object",
+          "required": ["sm", "md", "lg", "xl"],
+          "properties": {
+            "sm": { "type": "string" },
+            "md": { "type": "string" },
+            "lg": { "type": "string" },
+            "xl": { "type": "string" }
+          }
+        },
+        "spacing": {
+          "type": "object",
+          "properties": {
+            "container_max_width": { "type": "string", "const": "1600px" },
+            "page_padding": { "type": "string", "const": "32px" },
+            "card_border_radius": { "type": "string", "const": "16px" },
+            "button_border_radius": { "type": "string", "const": "10px" },
+            "badge_border_radius": { "type": "string", "const": "6px" },
+            "input_border_radius": { "type": "string", "const": "8px" }
+          }
+        },
+        "breakpoints": {
+          "type": "object",
+          "properties": {
+            "full": { "type": "integer", "const": 1200 },
+            "tablet": { "type": "integer", "const": 768 }
+          }
+        }
+      }
+    },
+    "navigation": {
+      "type": "object",
+      "required": ["items"],
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "route_id"],
+            "properties": {
+              "label": { "type": "string" },
+              "route_id": { "type": "string" },
+              "icon": { "type": "string" }
+            }
+          },
+          "minItems": 8,
+          "maxItems": 8
+        }
+      }
+    },
+    "session_context": {
+      "type": "object",
+      "required": ["agent_name", "agent_initials", "role", "brokerage"],
+      "properties": {
+        "agent_name": { "type": "string", "minLength": 2 },
+        "agent_initials": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "role": { "type": "string", "const": "AG" },
+        "brokerage": { "type": "string" },
+        "active_transaction_ids": { "type": "array", "items": { "type": "string", "pattern": "^TRX-[0-9]{5}$" } },
+        "unread_notification_count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "badge_variants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["class_name", "usage"],
+        "properties": {
+          "class_name": { "type": "string", "enum": ["active", "pending", "completed"] },
+          "usage": { "type": "string" }
+        }
+      },
+      "minItems": 3,
+      "maxItems": 3
+    }
+  }
+}

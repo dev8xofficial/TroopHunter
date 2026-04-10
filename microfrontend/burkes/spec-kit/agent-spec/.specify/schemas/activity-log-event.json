@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Activity Log Event Schema — Agent Portal",
+  "description": "Canonical audit trail structure for the Agent Portal. Every state change must produce an activity_event entry (append-only, immutable).",
+  "type": "object",
+  "required": ["event_id", "transaction_id", "actor_role", "actor_id", "event_type", "timestamp", "visibility"],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "pattern": "^EV-[0-9]{10}$",
+      "description": "Unique event identifier (immutable)"
+    },
+    "transaction_id": {
+      "type": "string",
+      "pattern": "^TRX-[0-9]{5}$",
+      "description": "Reference to parent transaction (Agent Portal format: TRX-NNNNN)"
+    },
+    "actor_role": {
+      "type": "string",
+      "enum": ["AG", "TC", "CL", "LN", "AT", "CP"],
+      "description": "Role that triggered the event"
+    },
+    "actor_id": {
+      "type": "string",
+      "description": "User/system identifier"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "transaction_created",
+        "stage_update_submitted",
+        "stage_update_approved",
+        "stage_update_rejected",
+        "document_uploaded",
+        "document_reviewed",
+        "document_rejected",
+        "client_created",
+        "client_updated",
+        "message_sent",
+        "message_read",
+        "appointment_scheduled",
+        "appointment_cancelled",
+        "appointment_completed",
+        "referral_sent",
+        "referral_accepted",
+        "report_generated",
+        "status_changed",
+        "milestone_reached",
+        "system_notification"
+      ],
+      "description": "Category of state change"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Human-readable summary of what changed"
+    },
+    "affected_field": {
+      "type": "string",
+      "description": "Which field was modified (e.g., 'transaction_stage', 'document_status')"
+    },
+    "before_value": {
+      "description": "Previous value (can be any JSON type)"
+    },
+    "after_value": {
+      "description": "New value (can be any JSON type)"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "ip_address": { "type": "string" },
+        "user_agent": { "type": "string" },
+        "source_system": { "type": "string", "enum": ["agent_portal", "client_portal", "api", "admin", "automation"] },
+        "request_id": { "type": "string" }
+      },
+      "description": "Technical context"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When event occurred (UTC, server-generated, immutable)"
+    },
+    "visibility": {
+      "type": "object",
+      "properties": {
+        "visible_to_roles": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["AG", "TC", "CL", "LN", "AT", "CP"] },
+          "minItems": 1,
+          "description": "Which roles can see this event"
+        },
+        "is_public": {
+          "type": "boolean",
+          "description": "Visible on dashboard feed or internal only"
+        },
+        "requires_acknowledgment": {
+          "type": "boolean",
+          "description": "Does event require a user action?"
+        }
+      },
+      "required": ["visible_to_roles"]
+    },
+    "notification": {
+      "type": "object",
+      "properties": {
+        "should_notify": { "type": "boolean" },
+        "notify_roles": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["AG", "TC", "CL", "LN", "AT", "CP"] }
+        },
+        "notification_type": { "type": "string", "enum": ["email", "sms", "push", "portal_banner"] },
+        "template_key": { "type": "string" }
+      }
+    },
+    "related_documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "document_id": { "type": "string" },
+          "document_name": { "type": "string" },
+          "document_type": { "type": "string" }
+        }
+      }
+    },
+    "parent_event_id": {
+      "type": "string",
+      "description": "If this event is a response to another event"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Arbitrary tags for filtering"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Transaction Data Model — Agent Portal",
+  "description": "Canonical data structure for real estate transactions in the Agent Portal. All specs must use these field names and types.",
+  "type": "object",
+  "required": ["transaction_id", "client_name", "property_address", "transaction_type", "transaction_stage", "transaction_status", "created_date", "updated_date"],
+  "properties": {
+    "transaction_id": {
+      "type": "string",
+      "pattern": "^TRX-[0-9]{5}$",
+      "description": "Unique transaction identifier (format: TRX-NNNNN, immutable)",
+      "examples": ["TRX-10247", "TRX-10198", "TRX-10156"]
+    },
+    "client_name": {
+      "type": "string",
+      "minLength": 2,
+      "description": "Full name of the buyer or seller"
+    },
+    "client_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Client contact email"
+    },
+    "client_phone": {
+      "type": "string",
+      "pattern": "^\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$",
+      "description": "Client phone number"
+    },
+    "property_address": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Full street address including city, state, and ZIP",
+      "examples": ["123 Main Street, The Woodlands, TX 77380"]
+    },
+    "transaction_type": {
+      "type": "string",
+      "enum": ["purchase", "sale", "refinance", "divorce-asset-split"],
+      "description": "Type of real estate transaction"
+    },
+    "contract_amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Contract/purchase price in USD"
+    },
+    "transaction_stage": {
+      "type": "string",
+      "enum": [
+        "initial-consultation",
+        "property-search-listing",
+        "offer-negotiation",
+        "under-contract",
+        "mortgage-application-pre-approval",
+        "insurance-information-documentation",
+        "attorney-title-company-review",
+        "inspection-appraisal",
+        "closing-preparation",
+        "mortgage-underwriting-final-approval",
+        "final-walkthrough-document-signing",
+        "completed"
+      ],
+      "description": "Current stage in the 12-step transaction lifecycle"
+    },
+    "transaction_status": {
+      "type": "string",
+      "enum": ["on-track", "closing-soon", "delayed", "at-risk", "pending", "completed"],
+      "description": "Overall health indicator for the transaction"
+    },
+    "closing_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Expected or actual closing date"
+    },
+    "agent_id": {
+      "type": "string",
+      "description": "Owning agent identifier"
+    },
+    "professionals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["role", "name"],
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": ["LN", "AT", "CP", "TC"],
+            "description": "Professional role code"
+          },
+          "name": { "type": "string" },
+          "email": { "type": "string", "format": "email" },
+          "phone": { "type": "string" },
+          "company": { "type": "string" }
+        }
+      },
+      "description": "Transaction team members (lender, attorney, CPA, coordinator)"
+    },
+    "document_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of documents associated with this transaction"
+    },
+    "stage_update_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["from_stage", "to_stage", "submitted_by", "submitted_date", "status"],
+        "properties": {
+          "from_stage": { "type": "string" },
+          "to_stage": { "type": "string" },
+          "submitted_by": { "type": "string" },
+          "submitted_date": { "type": "string", "format": "date-time" },
+          "reason": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["pending-approval", "approved", "rejected"]
+          },
+          "reviewed_by": { "type": "string" },
+          "reviewed_date": { "type": "string", "format": "date-time" }
+        }
+      },
+      "description": "Audit trail of stage update requests and approvals"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Internal agent notes (not visible to clients)"
+    },
+    "created_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Transaction creation timestamp (UTC, immutable)"
+    },
+    "updated_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp (UTC)"
+    },
+    "created_by": {
+      "type": "string",
+      "enum": ["AG", "TC"],
+      "description": "Role that created this transaction"
+    }
+  },
+  "additionalProperties": false
+}

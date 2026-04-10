@@ -1,0 +1,18 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Clients Validation Schema",
+  "description": "Validates data model for the Clients screen (04).",
+  "type": "object",
+  "properties": {
+    "feature_id": { "type": "string", "const": "004-clients" },
+    "depends_on": { "type": "array", "contains": { "const": "000-foundation" } },
+    "design_tokens_required": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["primary-navy","primary-gold","accent-blue","success-green","warning-orange","error-red","font-display","font-body"]
+      }
+    }
+  },
+  "required": ["feature_id", "depends_on"]
+}
