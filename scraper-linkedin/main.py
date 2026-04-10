@@ -78,6 +78,7 @@ def run_scraper(
     try:
         print(f"[info] Navigating to: {url}")
         driver.get(url)
+        navigation.focus_live_window(driver)
         navigation.wait_for_page_ready(driver)
         
         # Trigger lazy-loaded posts

@@ -37,11 +37,14 @@ def create_driver(headless: bool = True) -> WebDriver:
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument(f"--window-size={config.WINDOW_SIZE}")
     else:
-        # Headed mode: make the window visible and prominent.
+        # Headed: only maximize — combining --window-size with --start-maximized can confuse Chrome.
         chrome_options.add_argument("--start-maximized")
 
-    chrome_options.add_argument(f"--window-size={config.WINDOW_SIZE}")
+    chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    chrome_options.add_experimental_option("useAutomationExtension", False)
 
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=chrome_options)
