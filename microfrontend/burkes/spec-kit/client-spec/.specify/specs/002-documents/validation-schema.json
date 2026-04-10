@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Document Data Model",
+  "type": "object",
+  "required": ["document_id", "category", "status"],
+  "properties": {
+    "document_id": { "type": "string", "pattern": "^DOC-[0-9]{10}$" },
+    "category": {
+      "type": "string",
+      "enum": ["identification", "financial", "property", "closing"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["not_started", "uploaded", "pending_review", "approved", "rejected"]
+    },
+    "file_url": { "type": "string", "format": "uri" },
+    "uploaded_by": { "type": "string", "enum": ["CL", "AG", "LN", "AT", "CP", "TC"] },
+    "uploaded_date": { "type": "string", "format": "date-time" }
+  }
+}

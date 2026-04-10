@@ -1,0 +1,220 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Feature Specification Structure",
+  "description": "Validates the structure of feature spec.md files. Use with markdown-to-json parser to extract frontmatter.",
+  "type": "object",
+  "required": ["title", "feature_id", "status", "version", "overview", "problem", "goals", "non_goals", "actors", "user_scenarios", "functional_requirements", "data_and_state", "edge_cases", "success_criteria", "dependencies", "created_date", "last_updated"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Feature name (e.g., 'Dashboard')",
+      "minLength": 3,
+      "maxLength": 100
+    },
+    "feature_id": {
+      "type": "string",
+      "description": "Zero-padded feature ID",
+      "pattern": "^[0-9]{3}-[a-z-]+$",
+      "examples": ["000-foundation", "001-dashboard", "006-services"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "review", "approved", "implemented", "deprecated"],
+      "description": "Current lifecycle status"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+(\\.\\d+)?$",
+      "description": "Semantic version (e.g., '1.0', '1.2.1')"
+    },
+    "overview": {
+      "type": "string",
+      "minLength": 50,
+      "description": "One-paragraph business context"
+    },
+    "problem": {
+      "type": "string",
+      "minLength": 100,
+      "description": "Pain point this spec addresses"
+    },
+    "goals": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 20 },
+      "minItems": 1,
+      "description": "What this spec accomplishes"
+    },
+    "non_goals": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 20 },
+      "description": "What is explicitly OUT of scope"
+    },
+    "actors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["role", "responsibility"],
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": ["CL", "AG", "LN", "AT", "CP", "TC"],
+            "description": "Canonical role code"
+          },
+          "responsibility": {
+            "type": "string",
+            "minLength": 20
+          }
+        }
+      },
+      "minItems": 1,
+      "description": "Roles involved + their responsibilities"
+    },
+    "user_scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["actor", "goal", "steps", "expected_outcome"],
+        "properties": {
+          "actor": {
+            "type": "string",
+            "enum": ["CL", "AG", "LN", "AT", "CP", "TC"]
+          },
+          "goal": { "type": "string", "minLength": 20 },
+          "steps": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 2
+          },
+          "expected_outcome": { "type": "string", "minLength": 20 }
+        }
+      },
+      "minItems": 1,
+      "description": "User stories (actor, goal, steps, outcome)"
+    },
+    "functional_requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "description", "acceptance_criteria"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^FR-\\d{3}-\\d{2}$",
+            "description": "Requirement ID (e.g., FR-001-03)"
+          },
+          "title": { "type": "string", "minLength": 10 },
+          "description": { "type": "string", "minLength": 30 },
+          "acceptance_criteria": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 15 },
+            "minItems": 1
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["P0", "P1", "P2", "P3"],
+            "description": "Priority level"
+          }
+        }
+      },
+      "minItems": 1,
+      "description": "Numbered feature requirements (FR-NNN-NN)"
+    },
+    "data_and_state": {
+      "type": "object",
+      "required": ["data_model", "state_transitions"],
+      "properties": {
+        "data_model": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["field", "type", "required"],
+            "properties": {
+              "field": { "type": "string" },
+              "type": { "type": "string", "enum": ["string", "number", "boolean", "date", "array", "object"] },
+              "required": { "type": "boolean" },
+              "constraints": { "type": "string" },
+              "examples": { "type": "array" }
+            }
+          },
+          "minItems": 1,
+          "description": "Entity definitions with types and constraints"
+        },
+        "state_transitions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["from_state", "to_state", "trigger"],
+            "properties": {
+              "from_state": { "type": "string" },
+              "to_state": { "type": "string" },
+              "trigger": { "type": "string" },
+              "conditions": { "type": "string" },
+              "actor": { "type": "string" }
+            }
+          },
+          "description": "State machine transitions"
+        }
+      },
+      "description": "Data structure and state management"
+    },
+    "edge_cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["scenario", "handling"],
+        "properties": {
+          "scenario": { "type": "string", "minLength": 20 },
+          "handling": { "type": "string", "minLength": 20 }
+        }
+      },
+      "minItems": 1,
+      "description": "Exception cases and error paths"
+    },
+    "success_criteria": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 20 },
+      "minItems": 1,
+      "description": "How to measure successful implementation"
+    },
+    "dependencies": {
+      "type": "object",
+      "properties": {
+        "depends_on_specs": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[0-9]{3}-[a-z-]+$" },
+          "description": "Other specs that must be complete first"
+        },
+        "external_integrations": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Third-party services (auth, PDF, email)"
+        },
+        "design_system_components": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Components from @repo/components or tokens.md"
+        }
+      },
+      "description": "Spec interdependencies"
+    },
+    "created_date": {
+      "type": "string",
+      "format": "date",
+      "description": "When spec was created"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "When spec was last revised"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "Author name or GitHub handle"
+    },
+    "reviewed_by": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Reviewers who approved this spec"
+    }
+  },
+  "additionalProperties": false
+}

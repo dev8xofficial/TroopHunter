@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Dashboard Data Model",
+  "description": "Validates dashboard widget data structures. All widgets must conform to these schemas.",
+  "type": "object",
+  "required": ["transaction_context", "activity_feed", "progress_widget", "stats_summary"],
+  "properties": {
+    "transaction_context": {
+      "type": "object",
+      "required": ["transaction_id", "property_address", "status"],
+      "properties": {
+        "transaction_id": { "type": "string", "pattern": "^TXN-[0-9]{10}$" },
+        "property_address": { "type": "string" },
+        "client_name": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["initial_consultation", "offer_prepared", "offer_submitted", "offer_accepted", "inspection_scheduled", "inspection_completed", "appraisal_ordered", "appraisal_completed", "underwriting", "clear_to_close", "closing_day", "completed"]
+        }
+      }
+    },
+    "activity_feed": {
+      "type": "object",
+      "required": ["events", "total_count", "pagination"],
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["event_id", "event_type", "timestamp", "description"],
+            "properties": {
+              "event_id": { "type": "string" },
+              "event_type": { "type": "string" },
+              "timestamp": { "type": "string", "format": "date-time" },
+              "description": { "type": "string" },
+              "actor_role": { "type": "string", "enum": ["CL", "AG", "LN", "AT", "CP", "TC"] },
+              "icon": { "type": "string" },
+              "badge_variant": { "type": "string" }
+            }
+          },
+          "maxItems": 20
+        },
+        "total_count": { "type": "integer", "minimum": 0 },
+        "pagination": {
+          "type": "object",
+          "properties": {
+            "page": { "type": "integer", "minimum": 1 },
+            "limit": { "type": "integer", "enum": [10, 20, 50] },
+            "has_more": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "progress_widget": {
+      "type": "object",
+      "required": ["current_stage", "stages"],
+      "properties": {
+        "current_stage": { "type": "string", "minLength": 3 },
+        "current_stage_number": { "type": "integer", "minimum": 0, "maximum": 11 },
+        "stages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["number", "name", "status"],
+            "properties": {
+              "number": { "type": "integer", "minimum": 0, "maximum": 11 },
+              "name": { "type": "string" },
+              "status": { "type": "string", "enum": ["completed", "current", "pending"] },
+              "completed_date": { "type": "string", "format": "date" },
+              "responsible_party": { "type": "string", "enum": ["CL", "AG", "LN", "AT", "CP", "TC"] }
+            }
+          },
+          "minItems": 11,
+          "maxItems": 11
+        }
+      }
+    },
+    "stats_summary": {
+      "type": "object",
+      "properties": {
+        "documents_uploaded": { "type": "integer", "minimum": 0 },
+        "documents_total_required": { "type": "integer", "minimum": 0 },
+        "messages_unread": { "type": "integer", "minimum": 0 },
+        "milestones_reached": { "type": "integer", "minimum": 0 },
+        "milestones_total": { "type": "integer", "minimum": 0 },
+        "days_to_closing": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "quick_actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "icon", "action"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "icon": { "type": "string" },
+          "action": { "type": "string", "enum": ["navigate", "open_modal", "trigger_workflow"] },
+          "target": { "type": "string" },
+          "enabled": { "type": "boolean" }
+        }
+      }
+    },
+    "role_specific_content": {
+      "type": "object",
+      "properties": {
+        "client_view": {
+          "type": "object",
+          "description": "Simplified content for clients (no internal notes)"
+        },
+        "professional_view": {
+          "type": "object",
+          "description": "Full dashboard with internal notes and team info"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

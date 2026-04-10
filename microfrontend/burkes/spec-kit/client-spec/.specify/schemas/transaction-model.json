@@ -1,0 +1,159 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Transaction Data Model",
+  "description": "Canonical data structure for real estate transactions. All specs must use these field names and types.",
+  "type": "object",
+  "required": ["transaction_id", "property_address", "transaction_status", "client_id", "created_date", "updated_date"],
+  "properties": {
+    "transaction_id": {
+      "type": "string",
+      "pattern": "^TXN-[0-9]{10}$",
+      "description": "Unique transaction identifier (immutable)"
+    },
+    "property_address": {
+      "type": "object",
+      "required": ["street", "city", "state", "postal_code"],
+      "properties": {
+        "street": { "type": "string", "minLength": 5 },
+        "city": { "type": "string", "minLength": 2 },
+        "state": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "postal_code": { "type": "string", "pattern": "^[0-9]{5}(-[0-9]{4})?$" },
+        "country": { "type": "string", "default": "US" }
+      },
+      "description": "Property location"
+    },
+    "transaction_status": {
+      "type": "string",
+      "enum": ["initial_consultation", "offer_prepared", "offer_submitted", "offer_accepted", "inspection_scheduled", "inspection_completed", "appraisal_ordered", "appraisal_completed", "underwriting", "clear_to_close", "closing_day", "completed"],
+      "description": "11-stage transaction lifecycle"
+    },
+    "client_id": {
+      "type": "string",
+      "pattern": "^CL-[0-9]{6}$",
+      "description": "Client unique identifier"
+    },
+    "client_name": {
+      "type": "string",
+      "minLength": 2,
+      "description": "Client display name"
+    },
+    "client_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Client contact email"
+    },
+    "client_phone": {
+      "type": "string",
+      "pattern": "^\\+?1?\\d{10}$",
+      "description": "Client phone number (E.164 format preferred)"
+    },
+    "purchase_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Offered/agreed purchase price in USD"
+    },
+    "offer_date": {
+      "type": "string",
+      "format": "date",
+      "description": "When offer was made"
+    },
+    "closing_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Scheduled closing date"
+    },
+    "professionals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["role", "name", "email"],
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": ["AG", "LN", "AT", "CP", "TC"],
+            "description": "Professional role code"
+          },
+          "name": { "type": "string" },
+          "email": { "type": "string", "format": "email" },
+          "phone": { "type": "string", "pattern": "^\\+?1?\\d{10}$" },
+          "company": { "type": "string" }
+        }
+      },
+      "description": "Transaction team members"
+    },
+    "document_status": {
+      "type": "object",
+      "properties": {
+        "identification": {
+          "enum": ["not_started", "in_progress", "pending_review", "completed", "rejected"],
+          "description": "ID verification status"
+        },
+        "financial": {
+          "enum": ["not_started", "in_progress", "pending_review", "completed", "rejected"]
+        },
+        "property": {
+          "enum": ["not_started", "in_progress", "pending_review", "completed", "rejected"]
+        },
+        "closing": {
+          "enum": ["not_started", "in_progress", "pending_review", "completed", "rejected"]
+        }
+      },
+      "description": "Document collection status by category"
+    },
+    "insurance_status": {
+      "type": "object",
+      "properties": {
+        "homeowners": {
+          "type": "object",
+          "properties": {
+            "status": { "enum": ["not_started", "quote_requested", "quote_received", "policy_bound", "policy_active"] },
+            "provider": { "type": "string" },
+            "premium": { "type": "number", "minimum": 0 },
+            "effective_date": { "type": "string", "format": "date" }
+          }
+        },
+        "title": {
+          "type": "object",
+          "properties": {
+            "status": { "enum": ["not_started", "search_ordered", "search_completed", "ready", "issued"] },
+            "policy_number": { "type": "string" }
+          }
+        }
+      },
+      "description": "Insurance tracking by type"
+    },
+    "mortgage_info": {
+      "type": "object",
+      "properties": {
+        "lender_name": { "type": "string" },
+        "loan_amount": { "type": "number", "minimum": 0 },
+        "interest_rate": { "type": "number", "minimum": 0 },
+        "loan_term_months": { "type": "integer", "minimum": 60, "maximum": 480 },
+        "pre_approval_status": { "enum": ["not_requested", "pending", "approved", "conditional", "declined"] },
+        "underwriting_status": { "enum": ["not_started", "in_progress", "pending_conditions", "approved", "denied"] }
+      },
+      "description": "Mortgage application and approval status"
+    },
+    "created_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Transaction creation timestamp (UTC, immutable)"
+    },
+    "updated_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp (UTC)"
+    },
+    "created_by": {
+      "type": "string",
+      "enum": ["CL", "AG", "LN", "AT", "CP", "TC"],
+      "description": "Role that initiated this transaction"
+    },
+    "last_modified_by": {
+      "type": "string",
+      "enum": ["CL", "AG", "LN", "AT", "CP", "TC"],
+      "description": "Role that last modified this transaction"
+    }
+  },
+  "additionalProperties": false
+}

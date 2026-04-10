@@ -1,0 +1,150 @@
+name: PR Validation Checks
+
+on:
+  pull_request:
+    paths:
+      - '.specify/**'
+      - '.github/**'
+
+jobs:
+  pr-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for broken links in Markdown
+        run: |
+          echo "Validating Markdown links..."
+          
+          find .specify -name "*.md" -type f | while read md_file; do
+            echo "Checking links in: $md_file"
+            
+            # Extract markdown links [text](path)
+            grep -oP '\[([^\]]+)\]\(([^)]+)\)' "$md_file" | sed 's/.*(\(.*\))/\1/' | while read link; do
+              # Skip external URLs
+              if [[ ! $link =~ ^http ]]; then
+                # Check if file exists (relative to repo root)
+                if [[ ! $link =~ ^# ]] && [[ ! -f "$link" ]]; then
+                  echo "⚠️ Warning: Broken link in $md_file: $link"
+                fi
+              fi
+            done
+          done
+          
+          echo "✅ Link validation complete"
+
+      - name: Spell check Markdown files
+        run: |
+          echo "Running basic spell check (common misspellings)..."
+          
+          # Check for common typos
+          common_typos=(
+            "teh=the"
+            "recieve=receive"
+            "seperate=separate"
+            "occured=occurred"
+            "prefered=preferred"
+            "commited=committed"
+            "untill=until"
+            "wich=which"
+            "becuase=because"
+          )
+          
+          find .specify -name "*.md" -type f | while read md_file; do
+            for typo in "${common_typos[@]}"; do
+              wrong=$(echo $typo | cut -d= -f1)
+              correct=$(echo $typo | cut -d= -f2)
+              
+              if grep -i "$wrong" "$md_file" >/dev/null; then
+                echo "⚠️ Possible typo in $md_file: '$wrong' should be '$correct'"
+              fi
+            done
+          done
+          
+          echo "✅ Spell check complete"
+
+      - name: Verify PR references an issue
+        run: |
+          echo "Checking PR/Issue linking..."
+          pr_body="${{ github.event.pull_request.body }}"
+          
+          if [[ ! $pr_body =~ (Closes|Fixes|Resolves) ]]; then
+            echo "⚠️ Warning: PR should reference an issue with 'Closes', 'Fixes', or 'Resolves'"
+          else
+            echo "✅ PR properly linked to issue"
+          fi
+
+      - name: Check review requirements
+        run: |
+          echo "Validating approval requirements..."
+          
+          changed_files="${{ github.event.pull_request.changed_files }}"
+          
+          echo "Files changed: $changed_files"
+          
+          # Specs require PM + Tech lead approval (handled via GitHub branch protection)
+          # This is informational
+          echo "ℹ️  This PR requires approvals from:"
+          echo "   - Product/PM team (specs, requirements)"
+          echo "   - Technical Architecture team (implementation impact)"
+          
+          echo "✅ Review requirements documented"
+
+      - name: Validate file naming conventions
+        run: |
+          echo "Checking file naming conventions..."
+          
+          find .specify -type f -name "*.md" | while read file; do
+            basename=$(basename "$file")
+            dirname=$(basename $(dirname "$file"))
+            
+            # Check for spaces in filenames
+            if [[ $basename =~ ' ' ]]; then
+              echo "❌ Error: Filename contains spaces: $file (use hyphens)"
+              exit 1
+            fi
+            
+            # Check for invalid characters
+            if [[ $basename =~ '[^a-z0-9._-]' ]]; then
+              echo "⚠️ Warning: Unusual characters in filename: $file"
+            fi
+          done
+          
+          echo "✅ Naming conventions validated"
+
+      - name: Check no sensitive data in PR
+        run: |
+          echo "Scanning for potential sensitive data..."
+          
+          # Check for common sensitive patterns
+          sensitive_patterns=(
+            "password[ ]*="
+            "secret[ ]*="
+            "api[-_]?key"
+            "private[-_]?key"
+            "token="
+            "credential"
+          )
+          
+          for pattern in "${sensitive_patterns[@]}"; do
+            if git diff origin/main HEAD | grep -i "$pattern" >/dev/null; then
+              echo "⚠️ Warning: Possible sensitive data detected: $pattern"
+            fi
+          done
+          
+          echo "✅ Sensitive data check complete"
+
+      - name: Report PR validation
+        if: always()
+        run: |
+          echo "PR validation complete."
+          echo ""
+          echo "Before merge, ensure:"
+          echo "- [ ] Spec structure validated (see STANDARDS.md)"
+          echo "- [ ] All required sections present"
+          echo "- [ ] Changelog.md updated with version"
+          echo "- [ ] Dependencies verified"
+          echo "- [ ] Approval gates met (PM + Tech)"

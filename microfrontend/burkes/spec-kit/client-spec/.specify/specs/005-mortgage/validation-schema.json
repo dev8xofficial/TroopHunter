@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Mortgage Data Model",
+  "type": "object",
+  "required": ["lender_name", "loan_amount", "status"],
+  "properties": {
+    "lender_name": { "type": "string" },
+    "loan_amount": { "type": "number", "minimum": 0 },
+    "interest_rate": { "type": "number", "minimum": 0 },
+    "loan_term_months": { "type": "integer", "minimum": 60, "maximum": 480 },
+    "pre_approval_status": {
+      "type": "string",
+      "enum": ["not_requested", "pending", "approved", "conditional", "declined"]
+    },
+    "underwriting_status": {
+      "type": "string",
+      "enum": ["not_started", "in_progress", "pending_conditions", "approved", "denied"]
+    },
+    "clear_to_close_status": {
+      "type": "string",
+      "enum": ["not_ready", "conditions_pending", "ready"]
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "condition": { "type": "string" },
+          "resolved": { "type": "boolean" },
+          "resolved_date": { "type": "string", "format": "date" }
+        }
+      }
+    }
+  }
+}
