@@ -1,55 +1,22 @@
-# Scrape Results — adfelt
+---
+platform: LinkedIn
+profile_type: company
+name: Adfelt
+url: https://www.linkedin.com/company/adfelt/
+tagline: "Your Home Care Growth Partner"
+location: Miami, US
+followers: 156
+scraped_at: 2026-03-31 19:21:28 UTC
+linkedin_footer: [About, Accessibility, User Agreement, Privacy Policy, Cookie Policy, Copyright Policy, Brand Policy, Guest Controls, Community Guidelines]
+---
 
-- **Start URL**: https://www.linkedin.com/company/adfelt/
-- **Scraped at**: 2026-03-31 19:21:28 UTC
-- **Total pages**: 1
+# Adfelt — LinkedIn Profile
 
-## Page 1 — Adfelt | LinkedIn
+## About
+Adfelt helps home care agencies grow through increased referral sources, more clients, and increased revenue through online marketing.
 
-**🔗 URL:** https://www.linkedin.com/company/adfelt/
-
-> Adfelt | 156 followers on LinkedIn. Your Home Care Growth Partner | Adfelt: Your Home Care Growth Partner. 
-
-We help home care agencies grow through increase referral sources, more clients, and increase revenue through online marketing.
-
-#### Locations
-
-- Primary
-Miami, US
-Get directions
-
-Miami, US
-
-#### Employees at Adfelt
-
+## Employees
 - Mazhar Abbas
 - Clarice Almirante
 - Elias Benedith
 - Elijah Benedith
-
-- LinkedIn
-© 2026
-- About
-- Accessibility
-- User Agreement
-- Privacy Policy
-- Cookie Policy
-- Copyright Policy
-- Brand Policy
-- Guest Controls
-- Community Guidelines
-- Language
-
-LINKEDIN
-
-LinkedIn is better on the app
-
-Don’t have the app? Get it in the Microsoft Store.
-
-#### Sign in to see who you already know at Adfelt
-
-or
-
-New to LinkedIn? Join now
-
-By clicking Continue to join or sign in, you agree to LinkedIn’s User Agreement, Privacy Policy, and Cookie Policy.

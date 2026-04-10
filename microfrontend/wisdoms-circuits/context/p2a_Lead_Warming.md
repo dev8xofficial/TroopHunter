@@ -47,12 +47,11 @@ Both Abdul and Peter are CEOs who have made a deliberate bet that AI should augm
 #### Post 2
 **Post excerpt:** "Personalized learning is the right goal. The delivery mechanism is the debate… The question isn't whether AI belongs in education. It's whether the AI knows anything about the kid sitting in front of it."
 **Why selected:** Peter draws a sharp line between engagement metrics and real learning — exactly the territory Abdul can speak to from a builder's perspective, with a natural Dev8X reference woven in.
-**Comment timing:** Day 3
+**Why selected:**Day 3
 
-#### Post 3
-**Post excerpt:** "Excited to be part of this!"
-**Why selected:** Short posts with no detail are routinely ignored — a substantive comment here stands out immediately and signals that Abdul has been paying attention to the full feed, not just the high-engagement posts. That earns credibility before the connection ask.
-**Comment timing:** Day 5
+**Post excerpt:** "The policy wave is here. The question now is whether the tools will be worthy of it."
+**Why selected:** Peter ends on a builder's challenge rather than a policy observation — gives Abdul a clean, credible entry point to close the sequence and make the connection ask feel earned rather than scripted.
+**Why selected:** Day 5
 
 ---
 
@@ -77,10 +76,9 @@ Engagement metrics were always the wrong scoreboard. The signal that matters is 
 
 #### Comment 3 — Day 5
 
-Catching up on your feed — the through-line across your last few posts is the same problem most EdTech gets wrong: building for the output, not the process. Worth a proper conversation. Sending a connection request.
-
+Whether the tools will be worthy of it — that's the right question. Been reading your last few posts. Sending a connection request — worth having this conversation properly.
 **Stage:** The Ask
-**What this does:** Shows Abdul has been reading the full feed over time, not just reacting to individual posts — and frames the connection as a natural next step between two people circling the same problem, not a funnel entry.
+**What this does:** Quotes Peter's own closing line back at him to show genuine attention, signals the full-feed pattern of engagement without spelling it out, then makes the ask feel like a peer reaching out — not a vendor closing a sequence.
 
 ---
 

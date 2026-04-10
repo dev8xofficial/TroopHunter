@@ -51,10 +51,9 @@ Both are building platforms that depend on community trust — Maximilian throug
 **Comment timing:** Day 3
 
 #### Post 3
-**Post excerpt:** "Community Spaces are launching next on INSPIRED — digital homes for innovation ecosystems, built for accelerators, universities, VCs, events, and innovation-driven networks."
-**Why selected:** This is a product launch post about a feature with real UX complexity; it is the strongest natural bridge to a connection ask from someone who builds exactly these kinds of products.
+**Post excerpt:** "We are excited to announce our partnership with ChangeNOW as their Official Digital Community Partner. ChangeNOW Connect is officially live: a dedicated space where the ecosystem stays connected, visible, and active within a broader global innovation network, year-round"
+**Why selected:** The "permanent home" and "year-round" framing opens a direct, natural bridge for Abdul to comment on what makes that permanence actually work at the product level — the strongest setup for a connection ask from someone who builds exactly these kinds of platforms.
 **Comment timing:** Day 5
-
 ---
 
 ### Comments
@@ -70,8 +69,7 @@ The hardest part of being a "digital layer" is that the seams show the moment th
 
 #### Comment 2 — Day 3
 
-Student communities are the hardest to retain — high enthusiasm, low habit. At Dev8X we learned the product has to remove every possible reason to leave before the first week is over.Student communities are the hardest to retain — high enthusiasm, low habit. At Dev8X we learned the product has to remove every possible reason to leave before the first week is over.
-
+Student communities are the hardest to retain — high enthusiasm, low habit. At Dev8X we learned the product has to remove every possible reason to leave before the first week is over.
 
 **Stage:** Deepen the Thread
 **What this does:** Introduces Dev8X naturally through a specific, earned observation about the exact problem INSPIRED faces with new communities like ACG — not a pitch, just a peer sharing a hard-won lesson.
@@ -80,10 +78,10 @@ Student communities are the hardest to retain — high enthusiasm, low habit. At
 
 #### Comment 3 — Day 5
 
-The "digital home" framing is the right one — but it puts enormous pressure on the product to feel like home from day one, not day thirty. Six years building SaaS platforms taught me that first-session experience determines everything that follows. Sending a connection request — seems like a conversation worth having.
+Permanent community infrastructure is what most event partnerships miss — the event gets the energy, then it evaporates. At Dev8X we saw the same pattern with SaaS onboarding: the real test is what happens after the launch moment.
 
-**Stage:** The Ask
-**What this does:** Opens with a genuine product insight that validates Maximilian's own framing, adds a credentialled observation that signals relevant depth, then closes with a low-pressure ask that feels like a natural continuation rather than a gear-shift.
+**Stage:** Deepen the Thread
+**What this does:** Connects Maximilian's exact strategic bet (year-round community vs. one-time event) to a parallel Abdul has lived — introducing Dev8X naturally without pitching, and showing he understands the problem at an operational level.
 
 ---
 
