@@ -10,13 +10,31 @@ from __future__ import annotations
 import random
 import time
 
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, WebDriverException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 import config
+
+
+def focus_live_window(driver: WebDriver) -> None:
+    """
+    If navigation opened a new tab/window or closed the previous one, the session
+    can still point at a dead handle — next commands then raise 'no such window'.
+    """
+    handles = driver.window_handles
+    if not handles:
+        raise WebDriverException(
+            "Browser has no open windows; the page may have closed or crashed."
+        )
+    try:
+        current = driver.current_window_handle
+    except WebDriverException:
+        current = None
+    if current is None or current not in handles:
+        driver.switch_to.window(handles[-1])
 
 
 def wait_for_page_ready(driver: WebDriver) -> None:
