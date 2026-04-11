@@ -1,87 +1,56 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Validation Schema — 002-users",
-  "description": "Data structures and validation rules for feature NNN-short-name. All objects used by this feature must conform to these schemas.",
-  "version": "1.0",
-  "definitions": {
-    "example_object": {
+  "title": "Users Management Validation Schema",
+  "description": "Validates data model for the Users Management screen (002).",
+  "type": "object",
+  "properties": {
+    "feature_id": { "type": "string", "const": "002-users" },
+    "depends_on": { "type": "array", "contains": { "const": "000-foundation" } },
+    "user": {
       "type": "object",
-      "description": "Example data structure used by this feature",
+      "required": ["id", "first_name", "last_name", "email", "role", "status"],
       "properties": {
-        "id": {
-          "type": "string",
-          "pattern": "^[a-zA-Z0-9-]+$",
-          "description": "Unique identifier (alphanumeric + hyphens)"
-        },
-        "name": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 100,
-          "description": "Display name of the entity"
-        },
-        "status": {
-          "type": "string",
-          "enum": ["not-started", "in-progress", "completed"],
-          "description": "Current status (must be one of these values)"
-        },
-        "timestamp": {
-          "type": "string",
-          "format": "date-time",
-          "description": "ISO 8601 datetime (e.g., 2026-04-10T14:30:00Z)"
-        },
-        "amount": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 10000000,
-          "description": "Monetary amount in USD (0 to 10M)"
-        },
-        "is_verified": {
-          "type": "boolean",
-          "description": "True if verified by professional, false otherwise"
-        },
-        "tags": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 50
-          },
-          "minItems": 0,
-          "maxItems": 10,
-          "uniqueItems": true,
-          "description": "List of tags (0–10 items, each 1–50 chars, no duplicates)"
-        },
-        "metadata": {
-          "type": "object",
-          "additionalProperties": {
-            "oneOf": [{ "type": "string" }, { "type": "number" }, { "type": "boolean" }]
-          },
-          "description": "Key-value pairs for additional context (values must be string, number, or boolean)"
-        }
-      },
-      "required": ["id", "name", "status", "timestamp"],
-      "additionalProperties": false
+        "id": { "type": "string", "pattern": "^USR-[A-Z]{3}-[0-9]{3}$" },
+        "first_name": { "type": "string", "minLength": 1, "maxLength": 50 },
+        "last_name": { "type": "string", "minLength": 1, "maxLength": 50 },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "role": { "type": "string", "enum": ["client", "agent", "attorney", "cpa", "lender", "admin"] },
+        "status": { "type": "string", "enum": ["active", "pending-approval", "suspended", "inactive"] },
+        "joined_date": { "type": "string", "format": "date" },
+        "avatar_initials": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "avatar_bg": { "type": "string" }
+      }
     },
-    "error_response": {
+    "role_permissions": {
       "type": "object",
-      "description": "Standard error response structure",
+      "description": "Maps each role to its auto-configured permission set",
       "properties": {
-        "error_code": {
-          "type": "string",
-          "pattern": "^[A-Z_]+$",
-          "description": "Machine-readable error code (e.g., INVALID_INPUT, NOT_FOUND)"
-        },
-        "message": {
-          "type": "string",
-          "description": "Human-readable error message"
-        },
-        "details": {
-          "type": "object",
-          "description": "Additional context (field names with specific errors, etc.)"
-        }
-      },
-      "required": ["error_code", "message"]
+        "admin": { "type": "array", "items": { "type": "string" }, "minItems": 12 },
+        "agent": { "type": "array", "items": { "type": "string" }, "minItems": 4 },
+        "client": { "type": "array", "items": { "type": "string" }, "minItems": 3 },
+        "attorney": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
+        "cpa": { "type": "array", "items": { "type": "string" }, "minItems": 3 },
+        "lender": { "type": "array", "items": { "type": "string" }, "minItems": 5 }
+      }
+    },
+    "filters": {
+      "type": "object",
+      "properties": {
+        "role": { "type": "string" },
+        "status": { "type": "string" },
+        "search": { "type": "string" }
+      }
+    },
+    "pagination": {
+      "type": "object",
+      "required": ["total", "page", "per_page"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "page": { "type": "integer", "minimum": 1 },
+        "per_page": { "type": "integer", "const": 6 }
+      }
     }
-  }
+  },
+  "required": ["feature_id", "depends_on"]
 }
-

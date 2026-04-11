@@ -1,87 +1,130 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Validation Schema — 000-foundation",
-  "description": "Data structures and validation rules for feature NNN-short-name. All objects used by this feature must conform to these schemas.",
-  "version": "1.0",
-  "definitions": {
-    "example_object": {
+  "title": "Foundation Validation Schema — Admin Portal",
+  "description": "Validates design tokens, navigation structure, session context, audit log contract, and badge system for the Foundation layer (000).",
+  "type": "object",
+  "properties": {
+    "design_tokens": {
       "type": "object",
-      "description": "Example data structure used by this feature",
+      "required": ["colours", "typography", "shadows", "spacing", "breakpoints"],
       "properties": {
-        "id": {
-          "type": "string",
-          "pattern": "^[a-zA-Z0-9-]+$",
-          "description": "Unique identifier (alphanumeric + hyphens)"
+        "colours": {
+          "type": "object",
+          "required": ["primary_navy", "primary_gold", "accent_blue", "success_green", "warning_orange", "error_red"],
+          "properties": {
+            "primary_navy": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$", "const": "#1a3a52" },
+            "primary_gold": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$", "const": "#fdb913" },
+            "accent_blue": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$", "const": "#2d5a7b" },
+            "success_green": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$", "const": "#10b981" },
+            "warning_orange": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$", "const": "#f59e0b" },
+            "error_red": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$", "const": "#ef4444" }
+          }
         },
-        "name": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 100,
-          "description": "Display name of the entity"
+        "typography": {
+          "type": "object",
+          "required": ["font_display", "font_body"],
+          "properties": {
+            "font_display": { "type": "string", "const": "Archivo" },
+            "font_body": { "type": "string", "const": "Manrope" }
+          }
         },
-        "status": {
-          "type": "string",
-          "enum": ["not-started", "in-progress", "completed"],
-          "description": "Current status (must be one of these values)"
+        "shadows": {
+          "type": "object",
+          "required": ["sm", "md", "lg", "xl"],
+          "properties": {
+            "sm": { "type": "string" },
+            "md": { "type": "string" },
+            "lg": { "type": "string" },
+            "xl": { "type": "string" }
+          }
         },
-        "timestamp": {
-          "type": "string",
-          "format": "date-time",
-          "description": "ISO 8601 datetime (e.g., 2026-04-10T14:30:00Z)"
+        "spacing": {
+          "type": "object",
+          "properties": {
+            "container_max_width": { "type": "string", "const": "1600px" },
+            "page_padding": { "type": "string", "const": "32px" },
+            "card_border_radius": { "type": "string", "const": "16px" },
+            "button_border_radius": { "type": "string", "const": "10px" },
+            "badge_border_radius": { "type": "string", "const": "6px" },
+            "input_border_radius": { "type": "string", "const": "8px" }
+          }
         },
-        "amount": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 10000000,
-          "description": "Monetary amount in USD (0 to 10M)"
-        },
-        "is_verified": {
-          "type": "boolean",
-          "description": "True if verified by professional, false otherwise"
-        },
-        "tags": {
+        "breakpoints": {
+          "type": "object",
+          "properties": {
+            "full": { "type": "integer", "const": 1200 },
+            "tablet": { "type": "integer", "const": 768 }
+          }
+        }
+      }
+    },
+    "navigation": {
+      "type": "object",
+      "required": ["items"],
+      "properties": {
+        "items": {
           "type": "array",
           "items": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 50
+            "type": "object",
+            "required": ["label", "route_id"],
+            "properties": {
+              "label": { "type": "string" },
+              "route_id": { "type": "string" },
+              "icon": { "type": "string" }
+            }
           },
-          "minItems": 0,
-          "maxItems": 10,
-          "uniqueItems": true,
-          "description": "List of tags (0–10 items, each 1–50 chars, no duplicates)"
-        },
-        "metadata": {
-          "type": "object",
-          "additionalProperties": {
-            "oneOf": [{ "type": "string" }, { "type": "number" }, { "type": "boolean" }]
-          },
-          "description": "Key-value pairs for additional context (values must be string, number, or boolean)"
+          "minItems": 6,
+          "maxItems": 6
         }
-      },
-      "required": ["id", "name", "status", "timestamp"],
-      "additionalProperties": false
+      }
     },
-    "error_response": {
+    "session_context": {
       "type": "object",
-      "description": "Standard error response structure",
+      "required": ["admin_name", "admin_initials", "role", "organisation"],
       "properties": {
-        "error_code": {
-          "type": "string",
-          "pattern": "^[A-Z_]+$",
-          "description": "Machine-readable error code (e.g., INVALID_INPUT, NOT_FOUND)"
-        },
-        "message": {
-          "type": "string",
-          "description": "Human-readable error message"
-        },
-        "details": {
-          "type": "object",
-          "description": "Additional context (field names with specific errors, etc.)"
+        "admin_name": { "type": "string", "minLength": 2 },
+        "admin_initials": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "role": { "type": "string", "enum": ["ADMIN", "TC"] },
+        "organisation": { "type": "string" },
+        "pending_documents": { "type": "integer", "minimum": 0 },
+        "pending_partners": { "type": "integer", "minimum": 0 },
+        "pending_users": { "type": "integer", "minimum": 0 },
+        "unread_notification_count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "badge_variants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["class_name", "usage"],
+        "properties": {
+          "class_name": { "type": "string", "enum": ["active", "pending", "completed", "error"] },
+          "usage": { "type": "string" }
         }
       },
-      "required": ["error_code", "message"]
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "audit_log_event": {
+      "type": "object",
+      "required": ["log_id", "action_type", "actor_id", "target_entity_id", "timestamp"],
+      "properties": {
+        "log_id": { "type": "string" },
+        "action_type": {
+          "type": "string",
+          "enum": [
+            "USER_CREATED", "USER_SUSPENDED", "USER_APPROVED",
+            "PARTNER_APPROVED", "PARTNER_SUSPENDED", "PARTNER_ACTIVATED",
+            "DOCUMENT_APPROVED", "DOCUMENT_REJECTED",
+            "STAGE_UPDATE_APPROVED", "STAGE_UPDATE_OVERRIDE",
+            "TRANSACTION_CREATED", "TRANSACTION_EDITED"
+          ]
+        },
+        "actor_id": { "type": "string" },
+        "target_entity_id": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "reason_text": { "type": "string" }
+      }
     }
   }
 }
-

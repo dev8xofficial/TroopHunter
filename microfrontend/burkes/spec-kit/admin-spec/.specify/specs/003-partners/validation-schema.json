@@ -1,87 +1,50 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Validation Schema — 003-partners",
-  "description": "Data structures and validation rules for feature NNN-short-name. All objects used by this feature must conform to these schemas.",
-  "version": "1.0",
-  "definitions": {
-    "example_object": {
+  "title": "Partners Management Validation Schema",
+  "description": "Validates data model for the Service Partners Management screen (003).",
+  "type": "object",
+  "properties": {
+    "feature_id": { "type": "string", "const": "003-partners" },
+    "depends_on": { "type": "array", "contains": { "const": "000-foundation" } },
+    "partner": {
       "type": "object",
-      "description": "Example data structure used by this feature",
+      "required": ["company_name", "category", "contact_name", "phone", "email", "license_number", "service_zips", "status"],
       "properties": {
-        "id": {
-          "type": "string",
-          "pattern": "^[a-zA-Z0-9-]+$",
-          "description": "Unique identifier (alphanumeric + hyphens)"
-        },
-        "name": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 100,
-          "description": "Display name of the entity"
-        },
-        "status": {
-          "type": "string",
-          "enum": ["not-started", "in-progress", "completed"],
-          "description": "Current status (must be one of these values)"
-        },
-        "timestamp": {
-          "type": "string",
-          "format": "date-time",
-          "description": "ISO 8601 datetime (e.g., 2026-04-10T14:30:00Z)"
-        },
-        "amount": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 10000000,
-          "description": "Monetary amount in USD (0 to 10M)"
-        },
-        "is_verified": {
-          "type": "boolean",
-          "description": "True if verified by professional, false otherwise"
-        },
-        "tags": {
+        "company_name": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "category": { "type": "string", "enum": ["plumbing", "roofing", "electrical", "credit-repair", "hvac", "painting", "landscaping", "flooring", "other"] },
+        "contact_name": { "type": "string", "minLength": 1 },
+        "phone": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "license_number": { "type": "string", "minLength": 1 },
+        "service_zips": {
           "type": "array",
-          "items": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 50
-          },
-          "minItems": 0,
-          "maxItems": 10,
-          "uniqueItems": true,
-          "description": "List of tags (0–10 items, each 1–50 chars, no duplicates)"
+          "items": { "type": "string", "pattern": "^[0-9]{5}$" },
+          "minItems": 1,
+          "uniqueItems": true
         },
-        "metadata": {
-          "type": "object",
-          "additionalProperties": {
-            "oneOf": [{ "type": "string" }, { "type": "number" }, { "type": "boolean" }]
-          },
-          "description": "Key-value pairs for additional context (values must be string, number, or boolean)"
-        }
-      },
-      "required": ["id", "name", "status", "timestamp"],
-      "additionalProperties": false
+        "rating": { "type": ["number", "null"], "minimum": 1, "maximum": 5 },
+        "status": { "type": "string", "enum": ["active", "pending-approval", "suspended", "inactive"] },
+        "insurance_verified": { "type": "string", "enum": ["pending", "yes", "no"] }
+      }
     },
-    "error_response": {
+    "filters": {
       "type": "object",
-      "description": "Standard error response structure",
       "properties": {
-        "error_code": {
-          "type": "string",
-          "pattern": "^[A-Z_]+$",
-          "description": "Machine-readable error code (e.g., INVALID_INPUT, NOT_FOUND)"
-        },
-        "message": {
-          "type": "string",
-          "description": "Human-readable error message"
-        },
-        "details": {
-          "type": "object",
-          "description": "Additional context (field names with specific errors, etc.)"
-        }
-      },
-      "required": ["error_code", "message"]
+        "category": { "type": "string" },
+        "zip_code": { "type": "string", "pattern": "^[0-9]{5}$" },
+        "status": { "type": "string" },
+        "search": { "type": "string" }
+      }
+    },
+    "pagination": {
+      "type": "object",
+      "required": ["total", "page", "per_page"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "page": { "type": "integer", "minimum": 1 },
+        "per_page": { "type": "integer", "const": 6 }
+      }
     }
-  }
+  },
+  "required": ["feature_id", "depends_on"]
 }
-

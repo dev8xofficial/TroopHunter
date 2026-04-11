@@ -1,108 +1,19 @@
-# Changelog — 006-analytics
+# Changelog: Analytics (006)
 
-**Feature ID**: [NNN-short-name]  
-**Version**: 1.0  
-**Last Updated**: [YYYY-MM-DD]
+All notable changes to the Analytics & Reports spec.
 
 ---
 
-This file tracks the version history of the feature specification. Each entry documents what changed, when, and why.
-
----
-
-## [1.0] — 2026-04-XX
+## [1.0.0] — 2026-04-11
 
 ### Added
 
-- Initial specification created
-- Feature ID: NNN-short-name
-- Core user scenarios (Scenario 1, Scenario 2, etc.)
-- Functional requirements (FR-NNN-01 through FR-NNN-XX)
-- Data fields and state model
-- Edge cases and error states
-- Success criteria defined
-
-### Changed
-
-- N/A (initial release)
-
-### Fixed
-
-- N/A (initial release)
-
-### Deprecated
-
-- N/A
-
----
-
-## [1.1] — [Future Date if Updated]
-
-### Added
-
-- [New FR added, new scenario, new data field, etc.]
-- Example: "Added FR-NNN-05: Multi-document upload support"
-
-### Changed
-
-- [Requirement modified, clarification provided]
-- Example: "Refined FR-NNN-03: document_status now includes 'requires-revision' state"
-
-### Fixed
-
-- [Typos, clarifications, link fixes]
-- Example: "Clarified Scenario 2 success criteria"
-
-### Deprecated
-
-- [Feature or requirement marked for removal]
-- Example: "Deprecated single-role message threads; all threads now include TC"
-
----
-
-## [2.0] — [Future Date if Breaking Changes]
-
-### Added
-
-- [Major new feature added]
-
-### Changed
-
-- [Breaking change to existing requirements]
-
-### Removed
-
-- [Feature or requirement removed after deprecation period]
-
-### Migration Guide
-
-- [Instructions for updating dependent specs or implementations]
-
----
-
-## Versioning Policy
-
-- **Major (X.0)**: Breaking changes to requirements, data structures, or scope
-- **Minor (1.Y)**: New features added (backward compatible)
-- **Patch (1.0.Z)**: Clarifications, typo fixes, no new requirements
-
----
-
-## How to Update This Changelog
-
-1. When spec changes are approved (via PR review), add a new version section at the top
-2. List what changed under Added / Changed / Fixed / Deprecated
-3. Update "Last Updated" date
-4. Update spec.md version field to match
-
-## Format Notes
-
-- Use present tense ("Added", "Changed", not "will add")
-- Link to related specs if relevant (e.g., "Coordinate with 001-dashboard for activity log integration")
-- If a change affects tests or data model, mention it (e.g., "validation-schema.json updated")
-- If a change is minor (typo), use Patch version; if adding feature, use Minor; if breaking, use Major
-
----
-
-See also: [STANDARDS.md](../../STANDARDS.md) (writing standards), [spec.md](./spec.md) (current spec version)
-
+- Page header with Time Period Selector (7d, 30d, 90d, 1y, All Time)
+- KPI stat cards: Total Revenue ($3.2M), Closed Transactions (147), Avg Transaction Value ($412K), New Users (284), Avg Close Time (42 days), Partner Referrals (523)
+- Transaction Volume Chart card (v1 placeholder with chart visualization icon)
+- Revenue Breakdown by Transaction Type: Purchase (56.2%), Sale (34.4%), Refinance (9.4%) with gradient progress bars
+- User Growth by Role grid: 6 role cells with new-user counts and growth percentages
+- Top Performing Partners sidebar: Premium Roofing (4.9), Elite Plumbing (4.8), Credit Solutions (5.0)
+- Platform Activity (24h) sidebar: Active Users (847), Documents Uploaded (142), New Transactions (8), Partner Referrals (23)
+- Generate Reports sidebar: 6 report buttons (Monthly Summary, Revenue, User Growth, Transaction, Partner Performance, Custom)
+- Full supporting artifacts (validation schema, test scenarios, rollout, metrics, risks)

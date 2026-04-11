@@ -1,87 +1,53 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Validation Schema — 005-documents",
-  "description": "Data structures and validation rules for feature NNN-short-name. All objects used by this feature must conform to these schemas.",
-  "version": "1.0",
-  "definitions": {
-    "example_object": {
+  "title": "Documents Validation Schema",
+  "description": "Validates data model for the Documents screen (005).",
+  "type": "object",
+  "properties": {
+    "feature_id": { "type": "string", "const": "005-documents" },
+    "depends_on": { "type": "array", "contains": { "const": "000-foundation" } },
+    "document": {
       "type": "object",
-      "description": "Example data structure used by this feature",
+      "required": ["name", "category", "transaction_id", "uploaded_by", "date", "status"],
       "properties": {
-        "id": {
+        "name": { "type": "string", "minLength": 1 },
+        "category": {
           "type": "string",
-          "pattern": "^[a-zA-Z0-9-]+$",
-          "description": "Unique identifier (alphanumeric + hyphens)"
+          "enum": ["purchase-sales-agreement", "closing-disclosure", "mortgage-documents", "insurance", "title", "divorce", "inspection-report"]
         },
-        "name": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 100,
-          "description": "Display name of the entity"
-        },
-        "status": {
-          "type": "string",
-          "enum": ["not-started", "in-progress", "completed"],
-          "description": "Current status (must be one of these values)"
-        },
-        "timestamp": {
-          "type": "string",
-          "format": "date-time",
-          "description": "ISO 8601 datetime (e.g., 2026-04-10T14:30:00Z)"
-        },
-        "amount": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 10000000,
-          "description": "Monetary amount in USD (0 to 10M)"
-        },
-        "is_verified": {
-          "type": "boolean",
-          "description": "True if verified by professional, false otherwise"
-        },
-        "tags": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 50
-          },
-          "minItems": 0,
-          "maxItems": 10,
-          "uniqueItems": true,
-          "description": "List of tags (0–10 items, each 1–50 chars, no duplicates)"
-        },
-        "metadata": {
-          "type": "object",
-          "additionalProperties": {
-            "oneOf": [{ "type": "string" }, { "type": "number" }, { "type": "boolean" }]
-          },
-          "description": "Key-value pairs for additional context (values must be string, number, or boolean)"
-        }
-      },
-      "required": ["id", "name", "status", "timestamp"],
-      "additionalProperties": false
+        "transaction_id": { "type": "string", "pattern": "^TRX-[0-9]{5}$" },
+        "uploaded_by": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "status": { "type": "string", "enum": ["needs-review", "under-review", "approved", "rejected"] }
+      }
     },
-    "error_response": {
+    "rejection": {
       "type": "object",
-      "description": "Standard error response structure",
+      "required": ["document_id", "reason", "rejected_by", "timestamp"],
       "properties": {
-        "error_code": {
-          "type": "string",
-          "pattern": "^[A-Z_]+$",
-          "description": "Machine-readable error code (e.g., INVALID_INPUT, NOT_FOUND)"
-        },
-        "message": {
-          "type": "string",
-          "description": "Human-readable error message"
-        },
-        "details": {
-          "type": "object",
-          "description": "Additional context (field names with specific errors, etc.)"
-        }
-      },
-      "required": ["error_code", "message"]
+        "document_id": { "type": "string" },
+        "reason": { "type": "string", "minLength": 10 },
+        "rejected_by": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      }
+    },
+    "filters": {
+      "type": "object",
+      "properties": {
+        "category": { "type": "string" },
+        "status": { "type": "string" },
+        "search": { "type": "string" }
+      }
+    },
+    "pagination": {
+      "type": "object",
+      "required": ["total", "page", "per_page"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 },
+        "page": { "type": "integer", "minimum": 1 },
+        "per_page": { "type": "integer" }
+      }
     }
-  }
+  },
+  "required": ["feature_id", "depends_on"]
 }
-
