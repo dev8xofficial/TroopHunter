@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Transactions Validation Schema",
+  "description": "Validates data model for the Transactions screen (002).",
+  "type": "object",
+  "properties": {
+    "feature_id": { "type": "string", "const": "002-transactions" },
+    "depends_on": { "type": "array", "contains": { "const": "000-foundation" } },
+    "tabs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "count"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "count": { "type": "integer" }
+        }
+      },
+      "minItems": 4, "maxItems": 4
+    },
+    "filters": {
+      "type": "object",
+      "properties": {
+        "search_query": { "type": "string" },
+        "type_filter": { "type": "string" },
+        "status_filter": { "type": "string" }
+      }
+    },
+    "transactions_table": {
+      "type": "object",
+      "required": ["columns"],
+      "properties": {
+        "columns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "const": ["Transaction ID", "Client", "Property Address", "Transaction Type", "Contract Amount", "Closing Date", "Status", "Action"]
+        }
+      }
+    }
+  },
+  "required": ["feature_id", "depends_on"]
+}

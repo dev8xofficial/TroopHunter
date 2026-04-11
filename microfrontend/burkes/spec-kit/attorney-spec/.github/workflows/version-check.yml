@@ -1,0 +1,64 @@
+name: Version Check
+
+on:
+  pull_request:
+    paths:
+      - '.specify/specs/**/spec.md'
+      - '.specify/specs/**/changelog.md'
+      - '.github/workflows/version-check.yml'
+
+jobs:
+  version-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check changelog updated for modified specs
+        run: |
+          echo "Checking that changelog is updated for modified specs..."
+
+          # Get list of modified spec files
+          changed_specs=$(git diff --name-only origin/main...HEAD -- '.specify/specs/*/spec.md' 2>/dev/null || echo "")
+
+          if [ -z "$changed_specs" ]; then
+            echo "No spec.md files modified — skipping changelog check"
+            exit 0
+          fi
+
+          for spec_file in $changed_specs; do
+            spec_dir=$(dirname "$spec_file")
+            changelog="$spec_dir/changelog.md"
+
+            if [ ! -f "$changelog" ]; then
+              echo "❌ Spec modified but no changelog found: $changelog"
+              exit 1
+            fi
+
+            # Check if changelog was also modified
+            if ! git diff --name-only origin/main...HEAD -- "$changelog" | grep -q .; then
+              echo "⚠️ Warning: $spec_file was modified but $changelog was not updated"
+              echo "   Please update the changelog with a version bump and date."
+            else
+              echo "✅ $changelog updated alongside $spec_file"
+            fi
+          done
+
+      - name: Validate version format in changelogs
+        run: |
+          for changelog in .specify/specs/*/changelog.md; do
+            if [ -f "$changelog" ]; then
+              # Check for semantic version pattern
+              if grep -qP '^\#\#\s+\[?\d+\.\d+' "$changelog"; then
+                echo "✅ $changelog has valid version format"
+              else
+                echo "⚠️ $changelog may not follow semantic versioning (expected ## [x.y.z])"
+              fi
+            fi
+          done
+
+      - name: Report results
+        if: always()
+        run: echo "Version check complete."

@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Spec File Structure",
+  "description": "Validates that a feature specification directory contains all required files.",
+  "type": "object",
+  "properties": {
+    "feature_id": {
+      "type": "string",
+      "pattern": "^[0-9]{3}-[a-z][a-z0-9-]+$",
+      "description": "Zero-padded feature identifier in kebab-case."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "review", "approved", "implemented", "deprecated"]
+    },
+    "required_files": {
+      "type": "array",
+      "items": { "type": "string" },
+      "const": [
+        "spec.md",
+        "changelog.md",
+        "validation-schema.json",
+        "test-scenarios.md",
+        "rollout.md",
+        "metrics.md",
+        "risks.md"
+      ]
+    },
+    "parent_spec": {
+      "type": "string",
+      "description": "Feature ID of the parent specification (e.g., '000-foundation')."
+    },
+    "created": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date when the spec was created."
+    },
+    "screen_module": {
+      "type": "string",
+      "description": "Human-readable screen or module name."
+    }
+  },
+  "required": ["feature_id", "status", "required_files"]
+}

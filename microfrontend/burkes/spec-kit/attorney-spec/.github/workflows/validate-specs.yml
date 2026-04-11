@@ -1,0 +1,119 @@
+name: Validate Spec Structure
+
+on:
+  pull_request:
+    paths:
+      - '.specify/specs/**/*.md'
+      - '.github/workflows/validate-specs.yml'
+
+jobs:
+  validate-spec-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Validate spec.md structure
+        run: |
+          for spec_file in .specify/specs/*/spec.md; do
+            echo "Validating: $spec_file"
+
+            if ! grep -q "^# " "$spec_file"; then
+              echo "❌ Missing title header in $spec_file"
+              exit 1
+            fi
+
+            if ! grep -q "## Overview" "$spec_file"; then
+              echo "❌ Missing ## Overview section in $spec_file"
+              exit 1
+            fi
+
+            if ! grep -q "## Problem" "$spec_file"; then
+              echo "❌ Missing ## Problem section in $spec_file"
+              exit 1
+            fi
+
+            if ! grep -q "## Goals" "$spec_file"; then
+              echo "❌ Missing ## Goals section in $spec_file"
+              exit 1
+            fi
+
+            if ! grep -q "## Non-Goals" "$spec_file"; then
+              echo "❌ Missing ## Non-Goals section in $spec_file"
+              exit 1
+            fi
+
+            if ! grep -q "## Actors" "$spec_file"; then
+              echo "❌ Missing ## Actors section in $spec_file"
+              exit 1
+            fi
+
+            if ! grep -q "## User Scenarios" "$spec_file"; then
+              echo "❌ Missing ## User Scenarios section in $spec_file"
+              exit 1
+            fi
+
+            if ! grep -q "## Functional Requirements" "$spec_file"; then
+              echo "❌ Missing ## Functional Requirements section in $spec_file"
+              exit 1
+            fi
+
+            if ! grep -q "## Data \& State" "$spec_file"; then
+              echo "❌ Missing ## Data & State section in $spec_file"
+              exit 1
+            fi
+
+            if ! grep -q "## Edge Cases" "$spec_file"; then
+              echo "❌ Missing ## Edge Cases section in $spec_file"
+              exit 1
+            fi
+
+            if ! grep -q "## Success Criteria" "$spec_file"; then
+              echo "❌ Missing ## Success Criteria section in $spec_file"
+              exit 1
+            fi
+
+            echo "✅ $spec_file structure valid"
+          done
+
+      - name: Validate requirement ID format
+        run: |
+          for spec_file in .specify/specs/*/spec.md; do
+            echo "Checking FR IDs in: $spec_file"
+
+            if grep -o 'FR-[0-9]*-[0-9]*' "$spec_file" | sort | uniq | while read fr_id; do
+              if ! [[ $fr_id =~ ^FR-[0-9]{2}-[0-9]{2}$ ]]; then
+                echo "❌ Invalid FR ID format: $fr_id (expected FR-NN-XX)"
+                exit 1
+              fi
+            done; then
+              echo "✅ All FR IDs in $spec_file have valid format"
+            fi
+          done
+
+      - name: Check for required links
+        run: |
+          for spec_file in .specify/specs/*/spec.md; do
+            if ! grep -q "constitution.md" "$spec_file"; then
+              echo "⚠️ Warning: $spec_file should reference constitution.md"
+            fi
+          done
+
+      - name: Validate spec uses approved sections only
+        run: |
+          for spec_file in .specify/specs/*/spec.md; do
+            if grep -E '^## (Implementation Details|Code Examples|API Reference)' "$spec_file"; then
+              echo "⚠️ Warning: $spec_file contains implementation-specific sections (use spec-template.md)"
+            fi
+          done
+
+      - name: Report validation results
+        if: always()
+        run: |
+          echo "Spec structure validation complete."
+          echo "Review the template at: .specify/templates/spec-template.md"

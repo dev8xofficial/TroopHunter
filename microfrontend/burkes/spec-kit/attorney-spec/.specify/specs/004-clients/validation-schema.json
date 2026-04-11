@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Clients Validation Schema",
+  "description": "Validates data model for the Clients screen (004).",
+  "type": "object",
+  "properties": {
+    "feature_id": { "type": "string", "const": "004-clients" },
+    "depends_on": { "type": "array", "contains": { "const": "000-foundation" } },
+    "client": {
+      "type": "object",
+      "required": ["first_name", "last_name", "email", "case_type"],
+      "properties": {
+        "first_name": { "type": "string" },
+        "last_name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "case_type": {
+          "type": "string",
+          "enum": ["purchase-closing", "sale-closing", "divorce-asset-split"]
+        },
+        "property_address": { "type": "string" },
+        "transaction_id": { "type": "string" }
+      }
+    },
+    "client_table": {
+      "type": "object",
+      "required": ["columns"],
+      "properties": {
+        "columns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "const": ["Client", "Case Type", "Property", "Transaction ID", "Attorney Status", "Action"]
+        }
+      }
+    }
+  },
+  "required": ["feature_id", "depends_on"]
+}

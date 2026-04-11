@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Activity Log Event",
+  "description": "Schema for a single activity log event in the Attorney Portal.",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Unique identifier for the event."
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "document_uploaded",
+        "document_approved",
+        "document_rejected",
+        "review_started",
+        "client_added",
+        "message_received",
+        "transaction_verified",
+        "discrepancy_flagged",
+        "report_generated",
+        "split_approved",
+        "split_modified"
+      ],
+      "description": "Canonical event type from constitution Section 11."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp."
+    },
+    "actor_role": {
+      "type": "string",
+      "enum": ["AG", "TC", "CL", "LN", "AT", "CP"],
+      "description": "Role abbreviation of the actor who triggered the event."
+    },
+    "icon": {
+      "type": "string",
+      "description": "Emoji icon for display (e.g., ✅, 📄, 🚩)."
+    },
+    "label": {
+      "type": "string",
+      "description": "Short human-readable event name."
+    },
+    "description": {
+      "type": "string",
+      "description": "Full description text visible to the attorney."
+    },
+    "transaction_id": {
+      "type": "string",
+      "pattern": "^TRX-[0-9]{5}$",
+      "description": "Associated transaction ID, if applicable."
+    }
+  },
+  "required": ["event_id", "event_type", "timestamp", "actor_role", "icon", "label", "description"]
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Dashboard Validation Schema",
+  "description": "Validates data model for the Dashboard screen (001).",
+  "type": "object",
+  "properties": {
+    "feature_id": { "type": "string", "const": "001-dashboard" },
+    "depends_on": { "type": "array", "contains": { "const": "000-foundation" } },
+    "kpi_cards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "value", "description", "icon"],
+        "properties": {
+          "label": { "type": "string" },
+          "value": { "type": "string" },
+          "description": { "type": "string" },
+          "icon": { "type": "string" }
+        }
+      },
+      "minItems": 4, "maxItems": 4
+    },
+    "urgent_alert": {
+      "type": "object",
+      "properties": {
+        "visible": { "type": "boolean" },
+        "transaction_id": { "type": "string" },
+        "days_remaining": { "type": "integer" }
+      }
+    },
+    "asset_splits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["transaction_id", "client_name", "sale_price"],
+        "properties": {
+          "transaction_id": { "type": "string" },
+          "client_name": { "type": "string" },
+          "sale_price": { "type": "number" },
+          "loan_amount": { "type": "number" }
+        }
+      }
+    },
+    "quick_actions": {
+      "type": "array",
+      "items": { "type": "object", "required": ["label", "icon", "action"] },
+      "minItems": 4
+    }
+  },
+  "required": ["feature_id", "depends_on"]
+}

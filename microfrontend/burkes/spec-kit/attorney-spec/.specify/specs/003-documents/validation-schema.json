@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Documents Validation Schema",
+  "description": "Validates data model for the Documents screen (003).",
+  "type": "object",
+  "properties": {
+    "feature_id": { "type": "string", "const": "003-documents" },
+    "depends_on": { "type": "array", "contains": { "const": "000-foundation" } },
+    "tabs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "count"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "count": { "type": ["integer", "null"] }
+        }
+      },
+      "minItems": 4
+    },
+    "document_item": {
+      "type": "object",
+      "required": ["document_name", "document_category", "transaction_id", "status"],
+      "properties": {
+        "document_name": { "type": "string" },
+        "document_category": { "type": "string" },
+        "transaction_id": { "type": "string" },
+        "status": { "type": "string", "enum": ["approved", "under-review", "needs-review", "urgent"] },
+        "uploaded_by": { "type": "string" },
+        "upload_date": { "type": "string", "format": "date" }
+      }
+    },
+    "upload": {
+      "type": "object",
+      "required": ["max_size_mb", "accepted_formats"],
+      "properties": {
+        "max_size_mb": { "type": "integer", "const": 25 },
+        "accepted_formats": {
+          "type": "array",
+          "items": { "type": "string" },
+          "const": ["PDF", "DOCX", "JPG", "PNG"]
+        }
+      }
+    }
+  },
+  "required": ["feature_id", "depends_on"]
+}

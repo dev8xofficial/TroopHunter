@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Attorney Transaction Model",
+  "description": "Schema for a transaction as viewed in the Attorney Portal.",
+  "type": "object",
+  "properties": {
+    "transaction_id": {
+      "type": "string",
+      "pattern": "^TRX-[0-9]{5}$"
+    },
+    "client_name": { "type": "string" },
+    "client_email": { "type": "string", "format": "email" },
+    "property_address": { "type": "string" },
+    "transaction_type": {
+      "type": "string",
+      "enum": ["purchase", "sale", "divorce-asset-split"]
+    },
+    "contract_amount": {
+      "type": "number",
+      "minimum": 0
+    },
+    "sale_price": { "type": "number", "minimum": 0 },
+    "loan_amount": { "type": "number", "minimum": 0 },
+    "down_payment": { "type": "number", "minimum": 0 },
+    "closing_costs": { "type": "number", "minimum": 0 },
+    "cash_to_close": { "type": "number", "minimum": 0 },
+    "closing_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "attorney_status": {
+      "type": "string",
+      "enum": ["needs-verification", "in-progress", "verified", "flagged", "completed", "split-pending"]
+    },
+    "verification_step": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Current step in the 5-step verification pipeline."
+    },
+    "agent_name": { "type": "string" },
+    "lender_name": { "type": "string" },
+    "lender_contact": { "type": "string" },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "document_name": { "type": "string" },
+          "document_category": { "type": "string" },
+          "status": { "type": "string" },
+          "uploaded_by": { "type": "string" },
+          "upload_date": { "type": "string", "format": "date" }
+        },
+        "required": ["document_name", "document_category", "status"]
+      }
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "discrepancy_type": { "type": "string" },
+          "description": { "type": "string" },
+          "flagged_by": { "type": "string" },
+          "flagged_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  },
+  "required": ["transaction_id", "client_name", "property_address", "transaction_type", "closing_date", "attorney_status"]
+}
