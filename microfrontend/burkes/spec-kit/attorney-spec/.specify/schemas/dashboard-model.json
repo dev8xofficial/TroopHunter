@@ -1,0 +1,361 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://burkesgroup.com/schemas/dashboard-model.json",
+  "title": "DashboardModel",
+  "description": "Schema for the dashboard data payload returned to the attorney on portal load. Aggregates KPI stats, active transactions, asset splits, recent activity, and upcoming deadlines scoped to the authenticated attorney's assigned cases.",
+  "type": "object",
+  "required": ["attorneyId", "stats", "activeTransactions", "assetSplits", "recentActivity", "upcomingDeadlines", "generatedAt"],
+  "additionalProperties": false,
+  "properties": {
+    "attorneyId": {
+      "type": "string",
+      "description": "Identifier of the attorney this dashboard payload belongs to.",
+      "examples": ["AT-SM-001"]
+    },
+    "stats": {
+      "type": "object",
+      "description": "KPI aggregate values displayed in the four stat cards.",
+      "required": ["activeTransactions", "pendingVerification", "assetSplits", "totalValueManaged"],
+      "additionalProperties": false,
+      "properties": {
+        "activeTransactions": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count of non-completed transactions assigned to this attorney.",
+          "examples": [12]
+        },
+        "activeTransactionsDelta": {
+          "type": ["string", "null"],
+          "description": "Human-readable description of change from last period. Displayed below the value.",
+          "examples": ["↑ 2 from last month"]
+        },
+        "pendingVerification": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count of transactions awaiting attorney verification.",
+          "examples": [3]
+        },
+        "pendingVerificationDelta": {
+          "type": ["string", "null"],
+          "description": "Human-readable description of pending verification state.",
+          "examples": ["Requires attention"]
+        },
+        "assetSplits": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count of asset splits awaiting attorney approval (divorce cases only).",
+          "examples": [2]
+        },
+        "assetSplitsDelta": {
+          "type": ["string", "null"],
+          "description": "Human-readable description of asset split state.",
+          "examples": ["2 awaiting approval"]
+        },
+        "totalValueManaged": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Sum of all active transaction amounts in USD managed by this attorney.",
+          "examples": [2100000]
+        },
+        "totalValueManagedDelta": {
+          "type": ["string", "null"],
+          "description": "Human-readable description of total value context.",
+          "examples": ["Across all cases"]
+        }
+      }
+    },
+    "urgentAlert": {
+      "type": ["object", "null"],
+      "description": "Alert data shown in the urgent closing alert banner. Null when no closing is within 7 days.",
+      "required": ["transactionId", "clientName", "propertyAddress", "closingDate", "daysRemaining"],
+      "additionalProperties": false,
+      "properties": {
+        "transactionId": {
+          "type": "string",
+          "pattern": "^TRX-[0-9]{5}$"
+        },
+        "clientName": {
+          "type": "string",
+          "examples": ["John Smith"]
+        },
+        "propertyAddress": {
+          "type": "string",
+          "examples": ["123 Main Street, The Woodlands, TX 77380"]
+        },
+        "closingDate": {
+          "type": "string",
+          "format": "date",
+          "examples": ["2026-02-15"]
+        },
+        "daysRemaining": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 7,
+          "description": "Number of calendar days until closing. Alert only appears when this value is ≤ 7.",
+          "examples": [4]
+        }
+      }
+    },
+    "activeTransactions": {
+      "type": "array",
+      "description": "List of active transactions shown in the client transactions table on the dashboard. Subset of all transactions (non-completed, most recent).",
+      "items": {
+        "type": "object",
+        "required": ["transactionId", "clientName", "propertyAddress", "transactionType", "amount", "status", "closingDate"],
+        "additionalProperties": false,
+        "properties": {
+          "transactionId": {
+            "type": "string",
+            "pattern": "^TRX-[0-9]{5}$"
+          },
+          "clientName": { "type": "string" },
+          "clientInitials": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Two or three-letter initials for the avatar display."
+          },
+          "propertyAddress": { "type": "string" },
+          "transactionType": {
+            "type": "string",
+            "enum": ["Purchase", "Sale", "Divorce"]
+          },
+          "amount": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Contract amount in USD."
+          },
+          "status": {
+            "type": "string",
+            "enum": ["Needs Verification", "In Progress", "Verified", "Flagged", "Completed", "Split Pending"]
+          },
+          "closingDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "examples": [
+        [
+          {
+            "transactionId": "TRX-10247",
+            "clientName": "John Smith",
+            "clientInitials": "JS",
+            "propertyAddress": "123 Main Street, The Woodlands, TX 77380",
+            "transactionType": "Purchase",
+            "amount": 485000,
+            "status": "Needs Verification",
+            "closingDate": "2026-02-15"
+          }
+        ]
+      ]
+    },
+    "assetSplits": {
+      "type": "array",
+      "description": "List of pending asset split review items from divorce case transactions.",
+      "items": {
+        "type": "object",
+        "required": ["transactionId", "clientName", "propertyAddress", "salePrice", "loanAmount", "closingDate", "status"],
+        "additionalProperties": false,
+        "properties": {
+          "transactionId": { "type": "string", "pattern": "^TRX-[0-9]{5}$" },
+          "clientName": { "type": "string" },
+          "propertyAddress": { "type": "string" },
+          "salePrice": { "type": "number", "minimum": 0 },
+          "loanAmount": { "type": "number", "minimum": 0 },
+          "closingDate": { "type": "string", "format": "date" },
+          "status": {
+            "type": "string",
+            "enum": ["Split Pending", "Verified", "Flagged"]
+          }
+        }
+      }
+    },
+    "recentActivity": {
+      "type": "array",
+      "description": "The 4 most recent activity log events for this attorney. Displayed in the Recent Activity sidebar feed.",
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["eventId", "eventType", "description", "timestamp"],
+        "additionalProperties": false,
+        "properties": {
+          "eventId": { "type": "string" },
+          "eventType": {
+            "type": "string",
+            "enum": [
+              "document_reviewed",
+              "document_approved",
+              "document_rejected",
+              "transaction_verified",
+              "discrepancy_flagged",
+              "client_created",
+              "report_generated"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable description of the event shown in the feed."
+          },
+          "relativeTime": {
+            "type": "string",
+            "description": "Human-readable relative time string computed server-side or client-side.",
+            "examples": ["2 hours ago", "Yesterday", "3 days ago"]
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "upcomingDeadlines": {
+      "type": "array",
+      "description": "Up to 3 upcoming closing deadlines, sorted by date ascending. Displayed in the Upcoming Deadlines sidebar widget.",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["transactionId", "label", "propertyAddress", "closingDate", "urgency"],
+        "additionalProperties": false,
+        "properties": {
+          "transactionId": { "type": "string", "pattern": "^TRX-[0-9]{5}$" },
+          "label": {
+            "type": "string",
+            "description": "Short label displayed as the deadline title, typically the client name or transaction name.",
+            "examples": ["Smith Closing", "Williams Sale"]
+          },
+          "propertyAddress": { "type": "string" },
+          "closingDate": { "type": "string", "format": "date" },
+          "urgency": {
+            "type": "string",
+            "enum": ["urgent", "soon", "comfortable"],
+            "description": "Urgency level determines the left border colour: urgent=error-red (<4 days), soon=warning-orange (4–10 days), comfortable=success-green (>10 days)."
+          }
+        }
+      }
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when this dashboard payload was generated by the server."
+    }
+  },
+  "examples": [
+    {
+      "attorneyId": "AT-SM-001",
+      "stats": {
+        "activeTransactions": 12,
+        "activeTransactionsDelta": "↑ 2 from last month",
+        "pendingVerification": 3,
+        "pendingVerificationDelta": "Requires attention",
+        "assetSplits": 2,
+        "assetSplitsDelta": "2 awaiting approval",
+        "totalValueManaged": 2100000,
+        "totalValueManagedDelta": "Across all cases"
+      },
+      "urgentAlert": {
+        "transactionId": "TRX-10247",
+        "clientName": "John Smith",
+        "propertyAddress": "123 Main Street, The Woodlands, TX 77380",
+        "closingDate": "2026-02-15",
+        "daysRemaining": 4
+      },
+      "activeTransactions": [
+        {
+          "transactionId": "TRX-10247",
+          "clientName": "John Smith",
+          "clientInitials": "JS",
+          "propertyAddress": "123 Main Street, The Woodlands, TX 77380",
+          "transactionType": "Purchase",
+          "amount": 485000,
+          "status": "Needs Verification",
+          "closingDate": "2026-02-15"
+        },
+        {
+          "transactionId": "TRX-10198",
+          "clientName": "Sarah Williams",
+          "clientInitials": "SW",
+          "propertyAddress": "789 Pine Road, The Woodlands, TX 77381",
+          "transactionType": "Sale",
+          "amount": 389500,
+          "status": "In Progress",
+          "closingDate": "2026-03-01"
+        },
+        {
+          "transactionId": "TRX-10156",
+          "clientName": "Michael Brown",
+          "clientInitials": "MB",
+          "propertyAddress": "321 Elm Street, Spring, TX 77382",
+          "transactionType": "Purchase",
+          "amount": 512000,
+          "status": "In Progress",
+          "closingDate": "2026-03-08"
+        }
+      ],
+      "assetSplits": [
+        {
+          "transactionId": "TRX-10247",
+          "clientName": "John Smith",
+          "propertyAddress": "123 Main Street, The Woodlands, TX 77380",
+          "salePrice": 485000,
+          "loanAmount": 388000,
+          "closingDate": "2026-02-15",
+          "status": "Split Pending"
+        }
+      ],
+      "recentActivity": [
+        {
+          "eventId": "EVT-00004",
+          "eventType": "document_reviewed",
+          "description": "Document uploaded: Purchase & Sales Agreement – Smith (TRX-10247)",
+          "relativeTime": "2 hours ago",
+          "timestamp": "2026-04-12T08:00:00Z"
+        },
+        {
+          "eventId": "EVT-00003",
+          "eventType": "transaction_verified",
+          "description": "Review started on TRX-10198 – Williams",
+          "relativeTime": "Yesterday",
+          "timestamp": "2026-04-11T14:00:00Z"
+        },
+        {
+          "eventId": "EVT-00002",
+          "eventType": "client_created",
+          "description": "Client added: John Smith (TRX-10247)",
+          "relativeTime": "3 days ago",
+          "timestamp": "2026-04-09T10:00:00Z"
+        },
+        {
+          "eventId": "EVT-00001",
+          "eventType": "document_reviewed",
+          "description": "Message received from lender re: TRX-10156",
+          "relativeTime": "5 days ago",
+          "timestamp": "2026-04-07T09:00:00Z"
+        }
+      ],
+      "upcomingDeadlines": [
+        {
+          "transactionId": "TRX-10247",
+          "label": "Smith Closing",
+          "propertyAddress": "123 Main Street, The Woodlands, TX 77380",
+          "closingDate": "2026-02-15",
+          "urgency": "urgent"
+        },
+        {
+          "transactionId": "TRX-10198",
+          "label": "Williams Sale",
+          "propertyAddress": "789 Pine Road, The Woodlands, TX 77381",
+          "closingDate": "2026-03-01",
+          "urgency": "soon"
+        },
+        {
+          "transactionId": "TRX-10156",
+          "label": "Brown Purchase",
+          "propertyAddress": "321 Elm Street, Spring, TX 77382",
+          "closingDate": "2026-03-08",
+          "urgency": "comfortable"
+        }
+      ],
+      "generatedAt": "2026-04-12T10:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://burkesgroup.com/schemas/verification-model.json",
+  "title": "VerificationModel",
+  "description": "Schema for a closing amount verification record created by the attorney. Captures the full financial breakdown, attorney signature, checklist state, and outcome (verified or flagged).",
+  "type": "object",
+  "required": [
+    "verificationId",
+    "transactionId",
+    "attorneyId",
+    "outcome",
+    "financials",
+    "progressStep",
+    "createdAt"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "verificationId": {
+      "type": "string",
+      "description": "Unique verification record identifier. Format: VER-XXXXX.",
+      "pattern": "^VER-[0-9]{5}$",
+      "examples": ["VER-00001"]
+    },
+    "transactionId": {
+      "type": "string",
+      "pattern": "^TRX-[0-9]{5}$",
+      "description": "The transaction this verification record belongs to.",
+      "examples": ["TRX-10247"]
+    },
+    "attorneyId": {
+      "type": "string",
+      "description": "Identifier of the closing attorney (AT) who performed this verification.",
+      "examples": ["AT-SM-001"]
+    },
+    "attorneySignature": {
+      "type": ["string", "null"],
+      "minLength": 2,
+      "maxLength": 200,
+      "description": "Full name typed by the attorney as their electronic signature. Required when outcome is 'verified'. Null for flagged outcomes.",
+      "examples": ["Sarah Mitchell"]
+    },
+    "outcome": {
+      "type": "string",
+      "enum": ["verified", "flagged", "in_progress"],
+      "description": "Result of the attorney's review. 'in_progress' is a transient state while the attorney is working."
+    },
+    "financials": {
+      "type": "object",
+      "description": "Financial breakdown verified by the attorney. All amounts in USD.",
+      "required": ["salePrice", "loanAmount", "downPayment", "closingCosts", "cashToClose", "closingDate"],
+      "additionalProperties": false,
+      "properties": {
+        "salePrice": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Contract sale price of the property.",
+          "examples": [485000]
+        },
+        "loanAmount": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Approved mortgage loan amount.",
+          "examples": [388000]
+        },
+        "downPayment": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Down payment amount. Must equal salePrice minus loanAmount.",
+          "examples": [97000]
+        },
+        "closingCosts": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Total closing costs (title fees, attorney fees, taxes, etc.).",
+          "examples": [14200]
+        },
+        "cashToClose": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Total cash the buyer must bring to closing. Equals downPayment plus closingCosts.",
+          "examples": [111200]
+        },
+        "closingDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Scheduled closing date in YYYY-MM-DD format.",
+          "examples": ["2026-02-15"]
+        },
+        "lenderName": {
+          "type": ["string", "null"],
+          "description": "Name of the mortgage lender.",
+          "examples": ["First National Bank"]
+        },
+        "lenderContact": {
+          "type": ["string", "null"],
+          "description": "Name of the lender's representative.",
+          "examples": ["James Carter"]
+        },
+        "agentName": {
+          "type": ["string", "null"],
+          "description": "Name of the real estate agent.",
+          "examples": ["Sarah Anderson"]
+        }
+      }
+    },
+    "progressStep": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Current step in the 5-step verification pipeline at the time this record was created or last updated. Step 3 = Attorney Review (active when verification is submitted).",
+      "examples": [3]
+    },
+    "checklist": {
+      "type": "object",
+      "description": "Attorney's verification checklist state at time of submission.",
+      "additionalProperties": false,
+      "properties": {
+        "salePriceVerified": { "type": "boolean", "default": false },
+        "loanAmountConfirmed": { "type": "boolean", "default": false },
+        "downPaymentAccurate": { "type": "boolean", "default": false },
+        "closingCostsReviewed": { "type": "boolean", "default": false },
+        "titleCommitmentReceived": { "type": "boolean", "default": false },
+        "allDocumentsSigned": { "type": "boolean", "default": false }
+      }
+    },
+    "attorneyNotes": {
+      "type": ["string", "null"],
+      "maxLength": 5000,
+      "description": "Optional notes entered by the attorney during the verification review."
+    },
+    "discrepancy": {
+      "type": ["object", "null"],
+      "description": "Populated only when outcome is 'flagged'. Null for verified outcomes.",
+      "required": ["type", "description", "notifiedParties"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "Incorrect Sale Price",
+            "Loan Amount Mismatch",
+            "Missing Document",
+            "Closing Cost Error",
+            "Other"
+          ],
+          "description": "Classification of the discrepancy identified by the attorney."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 3000,
+          "description": "Detailed description of the discrepancy written by the attorney."
+        },
+        "notifiedParties": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Roles notified of this discrepancy flag.",
+          "items": {
+            "type": "string",
+            "enum": ["AG", "LN", "CL", "TC"]
+          },
+          "examples": [["AG", "LN", "TC"]]
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when this verification record was created (attorney clicked Verify All Amounts or Flag Discrepancy)."
+    },
+    "updatedAt": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the last update to this record."
+    }
+  },
+  "if": {
+    "properties": { "outcome": { "const": "verified" } }
+  },
+  "then": {
+    "required": ["attorneySignature"],
+    "properties": {
+      "attorneySignature": { "type": "string", "minLength": 2 },
+      "discrepancy": { "type": "null" }
+    }
+  },
+  "examples": [
+    {
+      "verificationId": "VER-00001",
+      "transactionId": "TRX-10247",
+      "attorneyId": "AT-SM-001",
+      "attorneySignature": "Sarah Mitchell",
+      "outcome": "verified",
+      "financials": {
+        "salePrice": 485000,
+        "loanAmount": 388000,
+        "downPayment": 97000,
+        "closingCosts": 14200,
+        "cashToClose": 111200,
+        "closingDate": "2026-02-15",
+        "lenderName": "First National Bank",
+        "lenderContact": "James Carter",
+        "agentName": "Sarah Anderson"
+      },
+      "progressStep": 3,
+      "checklist": {
+        "salePriceVerified": true,
+        "loanAmountConfirmed": true,
+        "downPaymentAccurate": true,
+        "closingCostsReviewed": true,
+        "titleCommitmentReceived": true,
+        "allDocumentsSigned": false
+      },
+      "attorneyNotes": "All amounts confirmed against submitted closing disclosure. Awaiting final signature page.",
+      "discrepancy": null,
+      "createdAt": "2026-02-10T14:22:00Z",
+      "updatedAt": null
+    }
+  ]
+}

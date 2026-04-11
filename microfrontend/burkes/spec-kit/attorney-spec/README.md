@@ -45,10 +45,10 @@ This specification kit implements **Spec-Driven Development (SDD)** for the Atto
 
 Every feature in this portal is governed by:
 
-1. A **Feature Specification** (what the attorney experiences, what the system does)
-2. An **Implementation Plan** (technical architecture, phases, integration points)
-3. **Developer Tasks** (granular, assignable work with acceptance criteria)
-4. **Supporting Artifacts** (decisions, validation schemas, test scenarios, rollout plans)
+1. A **Feature Specification** (`spec.md`) — what the attorney experiences, what the system does
+2. An **Implementation Plan** (`plan.md`) — technical architecture, phases, components, integration points
+3. **Developer Tasks** (`tasks.md`) — granular, assignable work with acceptance criteria and dependency ordering
+4. **Supporting Artifacts** — decisions, validation schemas, test scenarios, rollout plans, metrics, risks, changelog
 
 ---
 
@@ -70,32 +70,86 @@ Every feature in this portal is governed by:
 │
 ├── .specify/
 │   ├── memory/
-│   │   └── constitution.md             Project charter (principles, roles, stages, vocab)
+│   │   └── constitution.md             Project charter (principles, roles, stages, vocab, reference data)
 │   │
 │   ├── specs/
-│   │   ├── 000-foundation/             Global nav, design tokens, session context
-│   │   │   ├── spec.md
-│   │   │   ├── changelog.md
-│   │   │   ├── validation-schema.json
-│   │   │   ├── test-scenarios.md
-│   │   │   ├── rollout.md
-│   │   │   ├── metrics.md
-│   │   │   └── risks.md
-│   │   ├── 001-dashboard/              Attorney dashboard overview
-│   │   ├── 002-transactions/           Transaction management
-│   │   ├── 003-documents/              Document review and management
-│   │   ├── 004-clients/                Client profile management
+│   │   ├── 000-foundation/             Global nav, design tokens, session context, activity log
+│   │   │   ├── spec.md                 Feature specification
+│   │   │   ├── plan.md                 Implementation plan (phases, components, data design)
+│   │   │   ├── tasks.md                Developer tasks with acceptance criteria
+│   │   │   ├── changelog.md            Version history for this spec
+│   │   │   ├── validation-schema.json  JSON Schema for this spec's data
+│   │   │   ├── test-scenarios.md       Acceptance test scenarios
+│   │   │   ├── rollout.md              Deployment and rollout strategy
+│   │   │   ├── metrics.md              Success metrics and KPIs
+│   │   │   └── risks.md                Risk register for this feature
+│   │   │
+│   │   ├── 001-dashboard/              Attorney dashboard (KPIs, splits, table, activity)
+│   │   │   └── [same 9 files as above]
+│   │   │
+│   │   ├── 002-transactions/           Full transaction list, filtering, tabbed views
+│   │   │   └── [same 9 files as above]
+│   │   │
+│   │   ├── 003-documents/              Document review, approval, rejection, upload
+│   │   │   └── [same 9 files as above]
+│   │   │
+│   │   ├── 004-clients/                Client profile management and messaging
+│   │   │   └── [same 9 files as above]
+│   │   │
 │   │   └── 005-verification/           Closing verification workflow
+│   │       └── [same 9 files as above]
 │   │
 │   ├── templates/                      Reusable spec templates
+│   │   ├── spec-template.md
+│   │   ├── plan-template.md
+│   │   ├── tasks-template.md
+│   │   ├── changelog-template.md
+│   │   ├── metrics-template.md
+│   │   ├── risks-template.md
+│   │   ├── rollout-template.md
+│   │   ├── test-scenarios-template.md
+│   │   ├── adr-template.md
+│   │   └── validation-schema-template.json
+│   │
 │   ├── schemas/                        JSON Schema validation files
+│   │   ├── spec-structure.json         Schema for spec.md metadata
+│   │   ├── activity-log-event.json     Schema for activity log events (all screens write to this)
+│   │   ├── transaction-model.json      Schema for transaction records
+│   │   ├── client-model.json           Schema for client records
+│   │   ├── document-model.json         Schema for document records
+│   │   ├── verification-model.json     Schema for verification records (attorney sign-off)
+│   │   └── dashboard-model.json        Schema for dashboard data payload
+│   │
 │   ├── decisions/                      Architecture Decision Records
+│   │   ├── adr-001-role-model.md                   Attorney (AT) as primary portal role
+│   │   ├── adr-002-verification-workflow.md         5-step pipeline design
+│   │   ├── adr-003-progressive-disclosure.md        Stepped modal pattern for complex flows
+│   │   ├── adr-004-document-review-authority.md     Attorney as document approver
+│   │   ├── adr-005-tech-agnostic-specs.md           No framework references in specs
+│   │   ├── adr-006-design-token-system.md           Two-tier token architecture
+│   │   ├── adr-007-activity-log-contract.md         Append-only audit event stream
+│   │   └── adr-008-cross-portal-data-sharing.md     Shared backend, no direct portal coupling
+│   │
 │   └── research/                       User research and competitive analysis
+│       ├── user-personas.md            Attorney persona (Sarah Mitchell reference user)
+│       └── competitive-analysis.md     Survey of SoftPro, Qualia, ResWare, RamQuest
 │
 └── .github/
     ├── workflows/                      CI/CD validation pipelines
-    ├── ISSUE_TEMPLATE/                 Structured issue templates
+    │   ├── validate-specs.yml
+    │   ├── validate-schema.yml
+    │   ├── validate-dependencies.yml
+    │   ├── pr-checks.yml
+    │   └── version-check.yml
+    ├── ISSUE_TEMPLATE/
+    │   ├── bug-report.md
+    │   ├── question.md
+    │   ├── spec-new.md
+    │   └── spec-update.md
     ├── pull_request_template.md
+    ├── plan.prompt.md
+    ├── specify.prompt.md
+    ├── tasks.prompt.md
     ├── CODEOWNERS
     └── dependabot.yml
 ```
@@ -106,22 +160,69 @@ Every feature in this portal is governed by:
 
 The portal consists of **5 screens** serving the full attorney closing workflow:
 
-| Screen                      | Purpose                                                        | Primary Focus               |
-| --------------------------- | -------------------------------------------------------------- | --------------------------- |
-| **Dashboard** (001)         | KPI overview, asset split reviews, transaction table, deadlines | Daily attorney command centre |
-| **Transactions** (002)      | Full transaction list, filtering, status tracking              | All transaction types        |
-| **Documents** (003)         | Document review, approval, rejection, upload                   | Legal document management    |
-| **Clients** (004)           | Client profiles, case management, messaging                    | Relationship management      |
-| **Verification** (005)      | Closing amount verification, progress steps, flagging          | Compliance & accuracy        |
+| Screen | Purpose | Primary Focus |
+|--------|---------|---------------|
+| **Dashboard** (001) | KPI overview, asset split reviews, transaction table, deadlines | Daily attorney command centre |
+| **Transactions** (002) | Full transaction list, filtering, tabbed views, status tracking | All transaction types |
+| **Documents** (003) | Document review, approval, rejection, upload | Legal document management |
+| **Clients** (004) | Client profiles, case management, messaging | Relationship management |
+| **Verification** (005) | Closing amount verification, progress steps, flagging | Compliance & accuracy |
 
 All built on a shared **Foundation** (000) providing:
 
 - Authenticated attorney session context
-- Sticky top navigation
-- Design token system (colours, typography, spacing)
-- Badge and alert systems
-- Activity logging
-- Modal / overlay system
+- Sticky top navigation (72px, 5 screens)
+- Design token system (16 colour tokens, Archivo + Manrope, 4 shadow levels)
+- Badge and alert systems (5 badge variants, 4 alert types)
+- Activity logging (7 canonical event types, append-only)
+- Modal / overlay system (8 named modals across all screens)
+
+---
+
+## 📐 Per-Spec File Reference
+
+Every spec folder contains exactly **9 files**:
+
+| File | Purpose | Who Reads It |
+|------|---------|-------------|
+| `spec.md` | Feature specification: what, why, scenarios, functional requirements, success criteria | Everyone |
+| `plan.md` | Implementation plan: architecture, phases, data design, integration points | Engineers, Architects |
+| `tasks.md` | Developer task list with acceptance criteria and dependency order | Engineers |
+| `changelog.md` | Version history for this spec's changes | Product, Engineers |
+| `validation-schema.json` | JSON Schema validating this feature's primary data shape | CI/CD, Engineers |
+| `test-scenarios.md` | Acceptance test scenarios mapped to functional requirements | QA, Engineers |
+| `rollout.md` | Deployment strategy, feature flags, phasing | DevOps, Product |
+| `metrics.md` | Success metrics and KPIs to measure post-launch | Product, Analytics |
+| `risks.md` | Risk register with likelihood, impact, and mitigations | Product, Engineering Lead |
+
+---
+
+## 🗂 Schema Index
+
+| Schema | Used By | Validates |
+|--------|---------|----------|
+| `spec-structure.json` | CI validate-specs workflow | spec.md frontmatter |
+| `activity-log-event.json` | All screens, Foundation service | Every activity log event |
+| `transaction-model.json` | 001-dashboard, 002-transactions, 005-verification | Transaction records |
+| `client-model.json` | 004-clients | Client records |
+| `document-model.json` | 003-documents | Document records |
+| `verification-model.json` | 005-verification | Verification sign-off records |
+| `dashboard-model.json` | 001-dashboard | Dashboard API payload |
+
+---
+
+## 🏛 Architecture Decision Record Index
+
+| ADR | Decision | Status |
+|-----|---------|--------|
+| ADR-001 | Attorney (AT) as the primary portal user role | Accepted |
+| ADR-002 | 5-step verification pipeline as the canonical workflow | Accepted |
+| ADR-003 | Progressive disclosure via stepped modals for complex flows | Accepted |
+| ADR-004 | Attorney as the exclusive document approver/rejector | Accepted |
+| ADR-005 | Technology-agnostic spec language (no framework names in specs) | Accepted |
+| ADR-006 | Two-tier design token system (primitives + semantic tokens) | Accepted |
+| ADR-007 | Activity log as an append-only, schema-validated audit contract | Accepted |
+| ADR-008 | Cross-portal data sharing via shared backend (no direct portal coupling) | Accepted |
 
 ---
 
@@ -158,7 +259,7 @@ Every spec in this kit adheres to these principles (from the constitution):
 
 ---
 
-**Version**: 1.0
+**Version**: 1.1
 **Last Updated**: April 12, 2026
 **Maintained by**: [See CODEOWNERS](.github/CODEOWNERS)
 

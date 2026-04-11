@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://burkesgroup.com/schemas/document-model.json",
+  "title": "DocumentModel",
+  "description": "Schema for a legal document record managed within the Attorney Portal. Covers all document types: submitted by agents/lenders and uploaded by the attorney.",
+  "type": "object",
+  "required": ["documentId", "name", "category", "transactionId", "uploadedBy", "uploaderRole", "uploadedAt", "status"],
+  "additionalProperties": false,
+  "properties": {
+    "documentId": {
+      "type": "string",
+      "description": "Unique document identifier. Format: DOC-XXXXX.",
+      "pattern": "^DOC-[0-9]{5}$",
+      "examples": ["DOC-00001"]
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 255,
+      "description": "Human-readable document name displayed in the portal.",
+      "examples": ["Purchase & Sales Agreement – Smith", "Closing Disclosure – Smith"]
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Purchase Agreement",
+        "Closing Disclosure",
+        "Mortgage Documents",
+        "Title Documents",
+        "Court Order",
+        "Settlement Agreement",
+        "Closing Verification"
+      ],
+      "description": "Document category. Determines which roles may upload and review. Court Order, Settlement Agreement, and Closing Verification are attorney-only upload categories."
+    },
+    "transactionId": {
+      "type": "string",
+      "pattern": "^TRX-[0-9]{5}$",
+      "description": "The transaction this document belongs to.",
+      "examples": ["TRX-10247"]
+    },
+    "uploadedBy": {
+      "type": "string",
+      "description": "Actor ID of the person who uploaded this document.",
+      "examples": ["AG-SA-001", "AT-SM-001", "LN-JC-001"]
+    },
+    "uploaderRole": {
+      "type": "string",
+      "enum": ["AG", "AT", "LN", "TC", "CL"],
+      "description": "Role of the person who uploaded this document. AG=Agent, AT=Attorney, LN=Lender, TC=Transaction Coordinator, CL=Client."
+    },
+    "uploadedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the document was uploaded."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Needs Review", "Under Review", "Approved", "Rejected"],
+      "description": "Current review status of the document. Only the attorney (AT) can move a document to Approved or Rejected."
+    },
+    "reviewedBy": {
+      "type": ["string", "null"],
+      "description": "Actor ID of the attorney who reviewed this document. Null if not yet reviewed."
+    },
+    "reviewedAt": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the attorney completed review. Null if not yet reviewed."
+    },
+    "rejectionReason": {
+      "type": ["string", "null"],
+      "maxLength": 2000,
+      "description": "Required reason provided by the attorney when rejecting a document. Null for all non-rejected documents."
+    },
+    "fileType": {
+      "type": ["string", "null"],
+      "enum": ["PDF", "DOCX", null],
+      "description": "MIME type category of the uploaded file. Only PDF and DOCX are accepted."
+    },
+    "fileSizeBytes": {
+      "type": ["integer", "null"],
+      "minimum": 1,
+      "maximum": 52428800,
+      "description": "File size in bytes. Maximum accepted size is 52,428,800 bytes (50MB)."
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 1,
+      "description": "Document version number. Increments when a new version of the same document is uploaded to replace a rejected one."
+    }
+  },
+  "if": {
+    "properties": { "status": { "const": "Rejected" } }
+  },
+  "then": {
+    "required": ["rejectionReason"],
+    "properties": {
+      "rejectionReason": { "type": "string", "minLength": 10 }
+    }
+  },
+  "examples": [
+    {
+      "documentId": "DOC-00001",
+      "name": "Purchase & Sales Agreement – Smith",
+      "category": "Purchase Agreement",
+      "transactionId": "TRX-10247",
+      "uploadedBy": "AG-SA-001",
+      "uploaderRole": "AG",
+      "uploadedAt": "2026-02-01T10:00:00Z",
+      "status": "Needs Review",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "rejectionReason": null,
+      "fileType": "PDF",
+      "fileSizeBytes": 1024000,
+      "version": 1
+    },
+    {
+      "documentId": "DOC-00004",
+      "name": "Title Commitment – Smith",
+      "category": "Title Documents",
+      "transactionId": "TRX-10247",
+      "uploadedBy": "AT-SM-001",
+      "uploaderRole": "AT",
+      "uploadedAt": "2026-02-06T09:30:00Z",
+      "status": "Approved",
+      "reviewedBy": "AT-SM-001",
+      "reviewedAt": "2026-02-07T11:00:00Z",
+      "rejectionReason": null,
+      "fileType": "PDF",
+      "fileSizeBytes": 512000,
+      "version": 1
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://burkesgroup.com/schemas/client-model.json",
+  "title": "ClientModel",
+  "description": "Schema for a client record managed by the closing attorney in the Attorney Portal.",
+  "type": "object",
+  "required": ["clientId", "firstName", "lastName", "email", "caseType", "propertyAddress", "transactionId", "createdAt", "createdBy"],
+  "additionalProperties": false,
+  "properties": {
+    "clientId": {
+      "type": "string",
+      "description": "Unique client identifier. Format: CLT-XXXXX.",
+      "pattern": "^CLT-[0-9]{5}$",
+      "examples": ["CLT-00001", "CLT-00002"]
+    },
+    "firstName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Client's legal first name."
+    },
+    "lastName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Client's legal last name."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 254,
+      "description": "Client's primary email address. Used for portal notifications and secure messaging.",
+      "examples": ["john.smith@gmail.com"]
+    },
+    "phone": {
+      "type": ["string", "null"],
+      "pattern": "^[+]?[(]?[0-9]{3}[)]?[-\\s.]?[0-9]{3}[-\\s.]?[0-9]{4,6}$",
+      "description": "Client's primary phone number. Optional.",
+      "examples": ["+1-713-555-0124"]
+    },
+    "caseType": {
+      "type": "string",
+      "enum": ["Purchase", "Sale", "Divorce"],
+      "description": "The type of real estate transaction for this client."
+    },
+    "propertyAddress": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 300,
+      "description": "Full property address associated with this client's case.",
+      "examples": ["123 Main Street, The Woodlands, TX 77380"]
+    },
+    "transactionId": {
+      "type": "string",
+      "pattern": "^TRX-[0-9]{5}$",
+      "description": "The transaction ID this client is linked to. Foreign key into transaction records.",
+      "examples": ["TRX-10247"]
+    },
+    "propertyValue": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "description": "Assessed or contract value of the property in USD.",
+      "examples": [485000]
+    },
+    "transactionStatus": {
+      "type": "string",
+      "enum": ["Needs Verification", "In Progress", "Verified", "Flagged", "Completed", "Split Pending"],
+      "description": "Current status of the linked transaction. Derived from the transaction record, not stored on the client."
+    },
+    "assignedAttorneyId": {
+      "type": "string",
+      "description": "Identifier of the closing attorney (AT) assigned to this client's case.",
+      "examples": ["AT-SM-001"]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when this client record was created."
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "Actor ID of the attorney who created this client record."
+    },
+    "updatedAt": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the last update to this record. Null if never updated."
+    },
+    "notes": {
+      "type": ["string", "null"],
+      "maxLength": 2000,
+      "description": "Optional attorney notes about this client. Not visible to the client."
+    }
+  },
+  "examples": [
+    {
+      "clientId": "CLT-00001",
+      "firstName": "John",
+      "lastName": "Smith",
+      "email": "john.smith@gmail.com",
+      "phone": "+1-713-555-0147",
+      "caseType": "Purchase",
+      "propertyAddress": "123 Main Street, The Woodlands, TX 77380",
+      "transactionId": "TRX-10247",
+      "propertyValue": 485000,
+      "transactionStatus": "Needs Verification",
+      "assignedAttorneyId": "AT-SM-001",
+      "createdAt": "2026-02-01T09:00:00Z",
+      "createdBy": "AT-SM-001",
+      "updatedAt": null,
+      "notes": null
+    },
+    {
+      "clientId": "CLT-00002",
+      "firstName": "Sarah",
+      "lastName": "Williams",
+      "email": "sarah.williams@gmail.com",
+      "phone": null,
+      "caseType": "Sale",
+      "propertyAddress": "789 Pine Road, The Woodlands, TX 77381",
+      "transactionId": "TRX-10198",
+      "propertyValue": 389500,
+      "transactionStatus": "In Progress",
+      "assignedAttorneyId": "AT-SM-001",
+      "createdAt": "2026-02-03T14:30:00Z",
+      "createdBy": "AT-SM-001",
+      "updatedAt": null,
+      "notes": null
+    }
+  ]
+}
