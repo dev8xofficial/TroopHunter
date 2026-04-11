@@ -1,0 +1,65 @@
+name: Validate JSON Schemas
+
+on:
+  pull_request:
+    paths:
+      - '.specify/schemas/**/*.json'
+      - '.specify/specs/**/*.json'
+      - '.github/workflows/validate-schema.yml'
+
+jobs:
+  validate-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install JSON schema validator
+        run: npm install -g ajv-cli ajv-formats
+
+      - name: Validate global schemas are valid JSON
+        run: |
+          echo "Validating global schemas..."
+          for schema_file in .specify/schemas/*.json; do
+            echo "Checking: $schema_file"
+            if ! python3 -m json.tool "$schema_file" > /dev/null 2>&1; then
+              echo "❌ Invalid JSON in $schema_file"
+              exit 1
+            fi
+            echo "✅ $schema_file is valid JSON"
+          done
+
+      - name: Validate per-feature schemas are valid JSON
+        run: |
+          echo "Validating per-feature schemas..."
+          for schema_file in .specify/specs/*/validation-schema.json; do
+            if [ -f "$schema_file" ]; then
+              echo "Checking: $schema_file"
+              if ! python3 -m json.tool "$schema_file" > /dev/null 2>&1; then
+                echo "❌ Invalid JSON in $schema_file"
+                exit 1
+              fi
+              echo "✅ $schema_file is valid JSON"
+            fi
+          done
+
+      - name: Validate schema references
+        run: |
+          echo "Checking schema $ref references..."
+          for schema_file in .specify/schemas/*.json .specify/specs/*/validation-schema.json; do
+            if [ -f "$schema_file" ]; then
+              if grep -q '"\$ref"' "$schema_file"; then
+                echo "⚠️ $schema_file contains \$ref — verify references resolve"
+              fi
+            fi
+          done
+
+      - name: Report results
+        if: always()
+        run: echo "Schema validation complete."
+

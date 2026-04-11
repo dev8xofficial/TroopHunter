@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Approval Queue Item",
+  "description": "Represents an aggregated actionable item requiring TC or Admin consideration. Sourced dynamically from underlying Document or Transaction state.",
+  "type": "object",
+  "properties": {
+    "queue_item_id": {
+      "type": "string",
+      "description": "Unique ephemeral identifier for the queue item"
+    },
+    "item_type": {
+      "type": "string",
+      "enum": ["DOCUMENT_REVIEW", "STAGE_UPDATE_REQUEST", "PARTNER_ONBOARDING"],
+      "description": "The category of the pending item"
+    },
+    "submitted_by_user_id": {
+      "type": "string",
+      "description": "Agent or Partner ID who submitted the item"
+    },
+    "related_transaction_id": {
+      "type": "string",
+      "description": "Optional TRX ID if this relates to a specific transaction"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["PENDING", "PROCESSING"],
+      "description": "Current status in the queue"
+    }
+  },
+  "required": ["queue_item_id", "item_type", "submitted_by_user_id", "submitted_at", "status"]
+}

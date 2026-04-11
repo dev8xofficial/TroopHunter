@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Admin Action Event",
+  "description": "Represents an immutable log entry of a destructive or approval action performed by an Admin or TC in the platform.",
+  "type": "object",
+  "properties": {
+    "log_id": {
+      "type": "string",
+      "description": "Unique identifier for the action log"
+    },
+    "action_type": {
+      "type": "string",
+      "enum": [
+        "USER_CREATED", "USER_SUSPENDED", "PARTNER_APPROVED", 
+        "DOCUMENT_APPROVED", "DOCUMENT_REJECTED", "STAGE_UPDATE_APPROVED", "STAGE_UPDATE_OVERRIDE"
+      ],
+      "description": "The category of the admin action"
+    },
+    "actor_id": {
+      "type": "string",
+      "description": "User ID of the Admin/TC performing the action"
+    },
+    "target_entity_id": {
+      "type": "string",
+      "description": "ID of the User, Partner, Document, or Transaction affected"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "reason_text": {
+      "type": "string",
+      "description": "Mandatory explanation provided by the admin for rejections or overrides"
+    }
+  },
+  "required": ["log_id", "action_type", "actor_id", "target_entity_id", "timestamp"]
+}

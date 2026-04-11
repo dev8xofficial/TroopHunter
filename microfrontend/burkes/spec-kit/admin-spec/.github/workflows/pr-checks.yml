@@ -1,0 +1,57 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  pr-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check PR title format
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          echo "PR Title: $PR_TITLE"
+
+          # Warn if PR title doesn't follow convention
+          if ! echo "$PR_TITLE" | grep -qE '^(spec|fix|chore|docs)\('; then
+            echo "⚠️ PR title should follow conventional format: spec(NNN): description"
+            echo "   Examples: spec(001): update dashboard upload zone"
+            echo "             fix(002): correct transaction status enum"
+            echo "             docs: update GLOSSARY.md with new terms"
+          else
+            echo "✅ PR title follows convention"
+          fi
+
+      - name: Check for sensitive data
+        run: |
+          echo "Scanning for sensitive data..."
+          sensitive_patterns="password|api_key|secret|token|private_key|AWS_|AZURE_"
+
+          for file in $(find .specify -name '*.md' -o -name '*.json'); do
+            if grep -iE "$sensitive_patterns" "$file" | grep -vE '(placeholder|example|template|description|"type"|validation|password_reset|auth_token)' > /dev/null 2>&1; then
+              echo "⚠️ Possible sensitive data in $file — please review"
+            fi
+          done
+          echo "✅ Sensitive data scan complete"
+
+      - name: Markdown lint check
+        run: |
+          echo "Checking Markdown formatting..."
+          for md_file in $(find . -name '*.md' -not -path './.git/*' -not -path './node_modules/*'); do
+            # Check for trailing whitespace
+            if grep -n ' $' "$md_file" | head -5; then
+              echo "⚠️ Trailing whitespace in $md_file"
+            fi
+          done
+          echo "✅ Markdown check complete"
+
+      - name: Report results
+        if: always()
+        run: |
+          echo "PR checks complete."
+          echo "Remember to complete the PR template checklist!"
+
