@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Feature Specification Structure — Service Partner Portal",
+  "description": "Validates the structure of feature spec.md files for the Service Partner Portal.",
+  "type": "object",
+  "required": ["title", "feature_id", "status", "version", "overview", "problem", "goals", "non_goals", "actors", "user_scenarios", "functional_requirements", "data_and_state", "edge_cases", "success_criteria", "dependencies", "created_date", "last_updated"],
+  "properties": {
+    "title": { "type": "string", "minLength": 3, "maxLength": 100 },
+    "feature_id": { "type": "string", "pattern": "^[0-9]{3}-[a-z-]+$", "examples": ["000-foundation", "001-dashboard", "002-referrals", "003-active-jobs", "004-quotes", "005-reviews", "006-service-areas", "007-earnings", "008-profile"] },
+    "status": { "type": "string", "enum": ["draft", "review", "approved", "implemented", "deprecated"] },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+(\\.\\d+)?$" },
+    "overview": { "type": "string", "minLength": 50 },
+    "problem": { "type": "string", "minLength": 100 },
+    "goals": { "type": "array", "items": { "type": "string", "minLength": 20 }, "minItems": 1 },
+    "non_goals": { "type": "array", "items": { "type": "string", "minLength": 20 } },
+    "actors": { "type": "array", "items": { "type": "object", "required": ["role", "responsibility"], "properties": { "role": { "type": "string", "enum": ["SP", "AD", "AG", "CL"] }, "responsibility": { "type": "string", "minLength": 20 } } }, "minItems": 1 },
+    "user_scenarios": { "type": "array", "items": { "type": "object", "required": ["actor", "goal", "steps", "expected_outcome"], "properties": { "actor": { "type": "string", "enum": ["SP", "AD", "AG", "CL"] }, "goal": { "type": "string", "minLength": 20 }, "steps": { "type": "array", "items": { "type": "string" }, "minItems": 2 }, "expected_outcome": { "type": "string", "minLength": 20 } } }, "minItems": 1 },
+    "functional_requirements": { "type": "array", "items": { "type": "object", "required": ["id", "title", "description", "acceptance_criteria"], "properties": { "id": { "type": "string", "pattern": "^FR-\\d{2}-\\d{2}$" }, "title": { "type": "string", "minLength": 10 }, "description": { "type": "string", "minLength": 30 }, "acceptance_criteria": { "type": "array", "items": { "type": "string", "minLength": 15 }, "minItems": 1 }, "priority": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] } } }, "minItems": 1 },
+    "data_and_state": { "type": "object", "required": ["data_model"], "properties": { "data_model": { "type": "array", "items": { "type": "object", "required": ["field", "type", "required"], "properties": { "field": { "type": "string" }, "type": { "type": "string", "enum": ["string", "number", "boolean", "date", "array", "object"] }, "required": { "type": "boolean" }, "constraints": { "type": "string" }, "examples": { "type": "array" } } }, "minItems": 1 } } },
+    "edge_cases": { "type": "array", "items": { "type": "object", "required": ["scenario", "handling"], "properties": { "scenario": { "type": "string", "minLength": 20 }, "handling": { "type": "string", "minLength": 20 } } }, "minItems": 1 },
+    "success_criteria": { "type": "array", "items": { "type": "string", "minLength": 20 }, "minItems": 1 },
+    "dependencies": { "type": "object", "properties": { "depends_on_specs": { "type": "array", "items": { "type": "string", "pattern": "^[0-9]{3}-[a-z-]+$" } }, "external_integrations": { "type": "array", "items": { "type": "string" } }, "design_system_components": { "type": "array", "items": { "type": "string" } } } },
+    "created_date": { "type": "string", "format": "date" },
+    "last_updated": { "type": "string", "format": "date" },
+    "created_by": { "type": "string" },
+    "reviewed_by": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

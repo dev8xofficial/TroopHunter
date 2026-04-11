@@ -1,0 +1,51 @@
+# Code Owners for Service Partner Portal Spec-Kit
+
+# These users/teams own specific areas of the spec-kit.
+# They will be automatically requested for code review on PRs affecting these paths.
+
+# Spec ownership by feature
+
+.specify/specs/000-foundation/ @pm-team @tech-lead
+.specify/specs/001-dashboard/ @pm-team @dashboard-team @tech-lead
+.specify/specs/002-referrals/ @pm-team @referrals-team @tech-lead
+.specify/specs/003-active-jobs/ @pm-team @jobs-team @tech-lead
+.specify/specs/004-quotes/ @pm-team @quotes-team @tech-lead
+.specify/specs/005-reviews/ @pm-team @frontend-team @tech-lead
+.specify/specs/006-service-areas/ @pm-team @frontend-team @tech-lead
+.specify/specs/007-earnings/ @pm-team @finance-team @tech-lead
+.specify/specs/008-profile/ @pm-team @frontend-team @tech-lead
+
+# Constitutional governance
+
+.specify/memory/constitution.md @pm-team @product-lead
+
+# Templates (changes affect all specs)
+
+.specify/templates/ @pm-team @tech-lead
+
+# Governance and process
+
+.github/ @pm-team @tech-lead
+CONTRIBUTING.md @pm-team
+GOVERNANCE.md @pm-team @product-lead
+STANDARDS.md @pm-team @tech-lead
+CODE_OF_CONDUCT.md @pm-team
+
+# Core documentation
+
+README.md @pm-team @tech-lead
+ARCHITECTURE.md @tech-lead
+GLOSSARY.md @pm-team
+FAQ.md @pm-team
+ROADMAP.md @pm-team @product-lead
+
+# Schemas and validation
+
+.specify/schemas/ @tech-lead @data-architect
+.github/workflows/ @tech-lead @data-ops
+
+# Default owner for everything else
+
+* @pm-team
+
+# Note: Teams/handles should match your GitHub organization structure.

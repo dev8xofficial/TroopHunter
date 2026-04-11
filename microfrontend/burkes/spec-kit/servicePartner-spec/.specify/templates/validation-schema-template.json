@@ -1,0 +1,8 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Validation Schema Template",
+  "description": "Replace this template with feature-specific validation rules.",
+  "type": "object",
+  "required": [],
+  "properties": {}
+}

@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Referral Data Model — Service Partner Portal",
+  "description": "Canonical data model for referrals, jobs, and quotes in the Service Partner Portal.",
+  "type": "object",
+  "required": ["referral_id", "client_name", "property_address", "service_type", "referral_status", "created_at"],
+  "properties": {
+    "referral_id": { "type": "string", "pattern": "^TRX-[0-9]{5}$", "description": "Unique referral identifier" },
+    "client_name": { "type": "string", "minLength": 2, "description": "Homeowner full name" },
+    "property_address": { "type": "string", "minLength": 10, "description": "Full street address of the property" },
+    "service_type": { "type": "string", "description": "Type of service requested (e.g., Plumbing Inspection)" },
+    "service_category": { "type": "string", "enum": ["emergency-repairs", "installations", "inspections", "maintenance", "water-treatment-systems"], "description": "Canonical service category" },
+    "referral_status": { "type": "string", "enum": ["new-lead", "contacted", "quoted", "scheduled", "completed", "declined", "processing", "paid"], "description": "Current referral status" },
+    "budget": { "type": "string", "description": "Client's stated budget range (e.g., '$200-$400', 'Open to quote')" },
+    "timeline": { "type": "string", "description": "Client's requested timeline (e.g., 'Within 1 week', 'ASAP')" },
+    "referring_agent": {
+      "type": "object",
+      "properties": {
+        "agent_id": { "type": "string" },
+        "agent_name": { "type": "string" },
+        "brokerage": { "type": "string", "default": "The Burkes Group" }
+      }
+    },
+    "quote": {
+      "type": "object",
+      "properties": {
+        "labor_cost": { "type": "number", "minimum": 0, "description": "Labor cost in USD" },
+        "materials_cost": { "type": "number", "minimum": 0, "description": "Materials cost in USD" },
+        "total_amount": { "type": "number", "minimum": 0, "description": "Total quote amount (labor + materials)" },
+        "estimated_completion": { "type": "string", "enum": ["same-day", "1-2-days", "3-5-days", "1-2-weeks", "2-4-weeks"] },
+        "quote_status": { "type": "string", "enum": ["pending", "accepted", "declined"] },
+        "notes": { "type": "string" },
+        "sent_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "job": {
+      "type": "object",
+      "properties": {
+        "scheduled_date": { "type": "string", "format": "date" },
+        "completed_date": { "type": "string", "format": "date" },
+        "job_value": { "type": "number", "minimum": 0 },
+        "scope_description": { "type": "string" },
+        "job_status": { "type": "string", "enum": ["scheduled", "in-progress", "completed", "cancelled"] }
+      }
+    },
+    "payment": {
+      "type": "object",
+      "properties": {
+        "job_value": { "type": "number", "minimum": 0 },
+        "platform_fee": { "type": "number", "minimum": 0 },
+        "partner_earnings": { "type": "number", "minimum": 0 },
+        "payment_status": { "type": "string", "enum": ["pending", "processing", "paid"] },
+        "paid_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "review": {
+      "type": "object",
+      "properties": {
+        "rating": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "review_text": { "type": "string" },
+        "response_text": { "type": "string" },
+        "reviewed_at": { "type": "string", "format": "date-time" },
+        "responded_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "service_area_zip": { "type": "string", "pattern": "^[0-9]{5}$", "description": "Zip code of the service area" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

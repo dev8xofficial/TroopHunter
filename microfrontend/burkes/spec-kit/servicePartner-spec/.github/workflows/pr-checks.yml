@@ -1,0 +1,39 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  pr-title:
+    name: Validate PR Title
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR title format
+        run: |
+          TITLE="${{ github.event.pull_request.title }}"
+          if [[ ! "$TITLE" =~ ^(spec|fix|chore|docs)\(.* ]]; then
+            echo "❌ PR title must follow: type(scope): description"
+            echo "   Types: spec, fix, chore, docs"
+            echo "   Example: spec(001): add referral cards requirement"
+            exit 1
+          fi
+          echo "✅ PR title format valid"
+
+  sensitive-data:
+    name: Check for Sensitive Data
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan for sensitive patterns
+        run: |
+          FOUND=0
+          # Check for API keys, tokens, passwords
+          if grep -rIl 'api[_-]key\|secret\|password\|token.*=\|Bearer ' --include='*.md' --include='*.json' .specify/ 2>/dev/null; then
+            echo "❌ Potential sensitive data found"
+            FOUND=1
+          fi
+          if [ $FOUND -eq 1 ]; then
+            exit 1
+          fi
+          echo "✅ No sensitive data detected"

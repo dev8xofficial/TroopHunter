@@ -1,0 +1,89 @@
+name: Validate Spec Structure
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.specify/specs/**'
+  push:
+    branches: [main]
+    paths:
+      - '.specify/specs/**'
+
+jobs:
+  validate-structure:
+    name: Check Required Artifacts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate spec directory structure
+        run: |
+          ERRORS=0
+          REQUIRED_FILES="spec.md changelog.md validation-schema.json test-scenarios.md rollout.md metrics.md risks.md"
+
+          for dir in .specify/specs/*/; do
+            SPEC_NAME=$(basename "$dir")
+            echo "Checking $SPEC_NAME..."
+
+            for file in $REQUIRED_FILES; do
+              if [ ! -f "$dir$file" ]; then
+                echo "  ❌ MISSING: $dir$file"
+                ERRORS=$((ERRORS + 1))
+              else
+                echo "  ✅ $file"
+              fi
+            done
+          done
+
+          if [ $ERRORS -gt 0 ]; then
+            echo ""
+            echo "❌ Found $ERRORS missing artifacts"
+            exit 1
+          fi
+          echo ""
+          echo "✅ All spec directories have required artifacts"
+
+      - name: Validate spec.md required sections
+        run: |
+          ERRORS=0
+          REQUIRED_SECTIONS="Overview|Problem Statement|Goals|Non-Goals|Actors|User Scenarios|Functional Requirements|Data & State|Edge Cases|Success Criteria|Dependencies"
+
+          for spec in .specify/specs/*/spec.md; do
+            SPEC_NAME=$(dirname "$spec" | xargs basename)
+            echo "Checking sections in $SPEC_NAME..."
+
+            IFS='|' read -ra SECTIONS <<< "$REQUIRED_SECTIONS"
+            for section in "${SECTIONS[@]}"; do
+              if ! grep -q "## $section" "$spec" 2>/dev/null; then
+                echo "  ❌ MISSING section: ## $section in $spec"
+                ERRORS=$((ERRORS + 1))
+              fi
+            done
+          done
+
+          if [ $ERRORS -gt 0 ]; then
+            echo ""
+            echo "❌ Found $ERRORS missing sections"
+            exit 1
+          fi
+          echo ""
+          echo "✅ All spec.md files have required sections"
+
+      - name: Validate FR ID format
+        run: |
+          ERRORS=0
+          for spec in .specify/specs/*/spec.md; do
+            SPEC_NAME=$(dirname "$spec" | xargs basename)
+            BAD_IDS=$(grep -nE "^### FR-" "$spec" | grep -vE "FR-[0-9]{2}-[0-9]{2}" || true)
+            if [ -n "$BAD_IDS" ]; then
+              echo "❌ Invalid FR IDs in $SPEC_NAME:"
+              echo "$BAD_IDS"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+
+          if [ $ERRORS -gt 0 ]; then
+            exit 1
+          fi
+          echo "✅ All FR IDs follow FR-NN-NN format"

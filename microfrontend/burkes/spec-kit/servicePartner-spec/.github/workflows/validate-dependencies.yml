@@ -1,0 +1,41 @@
+name: Validate Dependencies
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.specify/specs/**'
+
+jobs:
+  validate-deps:
+    name: Check Spec Dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate dependency references
+        run: |
+          ERRORS=0
+
+          for spec in .specify/specs/*/spec.md; do
+            SPEC_NAME=$(dirname "$spec" | xargs basename)
+
+            # Extract depends-on specs
+            DEPS=$(grep -oE '[0-9]{3}-[a-z-]+' "$spec" | sort -u || true)
+
+            for dep in $DEPS; do
+              if [ "$dep" != "$SPEC_NAME" ]; then
+                if [ ! -d ".specify/specs/$dep" ]; then
+                  echo "❌ $SPEC_NAME references non-existent spec: $dep"
+                  ERRORS=$((ERRORS + 1))
+                fi
+              fi
+            done
+          done
+
+          if [ $ERRORS -gt 0 ]; then
+            echo ""
+            echo "❌ Found $ERRORS broken dependency references"
+            exit 1
+          fi
+          echo "✅ All dependency references resolve to existing specs"

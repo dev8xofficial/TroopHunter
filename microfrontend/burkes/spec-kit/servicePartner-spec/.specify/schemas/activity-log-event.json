@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Activity Log Event Schema — Service Partner Portal",
+  "description": "Canonical audit trail structure for the Service Partner Portal. Every state change must produce an activity_event entry (append-only, immutable).",
+  "type": "object",
+  "required": ["event_id", "referral_id", "actor_role", "actor_id", "event_type", "timestamp", "visibility"],
+  "properties": {
+    "event_id": { "type": "string", "pattern": "^EV-[0-9]{10}$", "description": "Unique event identifier (immutable)" },
+    "referral_id": { "type": "string", "pattern": "^TRX-[0-9]{5}$", "description": "Reference to parent referral (format: TRX-NNNNN)" },
+    "actor_role": { "type": "string", "enum": ["SP", "AD", "AG", "CL"], "description": "Role that triggered the event" },
+    "actor_id": { "type": "string", "description": "User/system identifier" },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "referral_received",
+        "referral_responded",
+        "referral_declined",
+        "quote_sent",
+        "quote_accepted",
+        "quote_declined",
+        "job_scheduled",
+        "job_started",
+        "job_completed",
+        "job_cancelled",
+        "review_received",
+        "review_responded",
+        "service_area_added",
+        "service_area_paused",
+        "service_area_removed",
+        "profile_updated",
+        "payment_received",
+        "payment_pending",
+        "status_changed",
+        "system_notification"
+      ],
+      "description": "Category of state change"
+    },
+    "description": { "type": "string", "minLength": 10, "description": "Human-readable summary of what changed" },
+    "affected_field": { "type": "string", "description": "Which field was modified" },
+    "before_value": { "description": "Previous value (can be any JSON type)" },
+    "after_value": { "description": "New value (can be any JSON type)" },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "ip_address": { "type": "string" },
+        "user_agent": { "type": "string" },
+        "source_system": { "type": "string", "enum": ["service_partner_portal", "agent_portal", "admin_portal", "api", "automation"] },
+        "request_id": { "type": "string" }
+      },
+      "description": "Technical context"
+    },
+    "timestamp": { "type": "string", "format": "date-time", "description": "When event occurred (UTC, server-generated, immutable)" },
+    "visibility": {
+      "type": "object",
+      "properties": {
+        "visible_to_roles": { "type": "array", "items": { "type": "string", "enum": ["SP", "AD", "AG", "CL"] }, "minItems": 1 },
+        "is_public": { "type": "boolean" },
+        "requires_acknowledgment": { "type": "boolean" }
+      },
+      "required": ["visible_to_roles"]
+    },
+    "notification": {
+      "type": "object",
+      "properties": {
+        "should_notify": { "type": "boolean" },
+        "notify_roles": { "type": "array", "items": { "type": "string", "enum": ["SP", "AD", "AG", "CL"] } },
+        "notification_type": { "type": "string", "enum": ["email", "sms", "push", "portal_banner"] },
+        "template_key": { "type": "string" }
+      }
+    },
+    "tags": { "type": "array", "items": { "type": "string" }, "description": "Arbitrary tags for filtering" }
+  },
+  "additionalProperties": false
+}

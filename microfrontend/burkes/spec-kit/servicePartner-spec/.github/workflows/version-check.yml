@@ -1,0 +1,57 @@
+name: Version Check
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.specify/specs/**'
+
+jobs:
+  version-check:
+    name: Verify Changelog Updates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check changelog updated for modified specs
+        run: |
+          ERRORS=0
+          CHANGED_SPECS=$(git diff --name-only origin/main...HEAD -- '.specify/specs/*/spec.md' 2>/dev/null || true)
+
+          for spec_file in $CHANGED_SPECS; do
+            SPEC_DIR=$(dirname "$spec_file")
+            CHANGELOG="$SPEC_DIR/changelog.md"
+
+            if ! git diff --name-only origin/main...HEAD | grep -q "$CHANGELOG"; then
+              echo "❌ $spec_file was modified but $CHANGELOG was NOT updated"
+              ERRORS=$((ERRORS + 1))
+            else
+              echo "✅ $CHANGELOG updated alongside $spec_file"
+            fi
+          done
+
+          if [ $ERRORS -gt 0 ]; then
+            echo ""
+            echo "❌ Found $ERRORS specs modified without changelog updates"
+            exit 1
+          fi
+          echo ""
+          echo "✅ All modified specs have updated changelogs"
+
+      - name: Validate version format
+        run: |
+          ERRORS=0
+          for changelog in .specify/specs/*/changelog.md; do
+            VERSIONS=$(grep -oE '\[[0-9]+\.[0-9]+(\.[0-9]+)?\]' "$changelog" || true)
+            if [ -z "$VERSIONS" ]; then
+              echo "❌ No version found in $changelog"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+
+          if [ $ERRORS -gt 0 ]; then
+            exit 1
+          fi
+          echo "✅ All changelogs have valid version entries"

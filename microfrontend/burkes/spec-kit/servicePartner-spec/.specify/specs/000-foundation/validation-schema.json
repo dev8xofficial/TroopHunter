@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Foundation Validation Schema",
+  "description": "Validates the session context and navigation state for the Service Partner Portal foundation layer.",
+  "type": "object",
+  "required": ["session_context", "navigation", "design_tokens"],
+  "properties": {
+    "session_context": {
+      "type": "object",
+      "required": ["company_name", "contact_name", "initials", "role", "service_categories", "unread_notification_count"],
+      "properties": {
+        "company_name": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "contact_name": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "initials": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "role": { "type": "string", "enum": ["SP"] },
+        "service_categories": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "active_service_areas": { "type": "array", "items": { "type": "string", "pattern": "^[0-9]{5}$" } },
+        "unread_notification_count": { "type": "integer", "minimum": 0 },
+        "membership_type": { "type": "string", "enum": ["standard", "premium", "enterprise"] }
+      }
+    },
+    "navigation": {
+      "type": "object",
+      "required": ["screens", "active_screen"],
+      "properties": {
+        "screens": { "type": "array", "items": { "type": "string" }, "minItems": 8, "maxItems": 8 },
+        "active_screen": { "type": "string" }
+      }
+    },
+    "design_tokens": {
+      "type": "object",
+      "required": ["colours", "typography", "shadows"],
+      "properties": {
+        "colours": { "type": "object" },
+        "typography": { "type": "object" },
+        "shadows": { "type": "object" }
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+name: Validate JSON Schemas
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.specify/**/*.json'
+  push:
+    branches: [main]
+    paths:
+      - '.specify/**/*.json'
+
+jobs:
+  validate-json:
+    name: Check JSON Validity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JSON files
+        run: |
+          ERRORS=0
+
+          for json_file in $(find .specify -name "*.json" -type f); do
+            if python3 -m json.tool "$json_file" > /dev/null 2>&1; then
+              echo "✅ Valid JSON: $json_file"
+            else
+              echo "❌ Invalid JSON: $json_file"
+              python3 -m json.tool "$json_file" 2>&1 || true
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+
+          if [ $ERRORS -gt 0 ]; then
+            echo ""
+            echo "❌ Found $ERRORS invalid JSON files"
+            exit 1
+          fi
+          echo ""
+          echo "✅ All JSON files are valid"
