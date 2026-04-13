@@ -1,0 +1,18 @@
+route: /reports
+title: Reports
+phase: 2
+data_sources:
+  - /api/crm/reports/overview
+sections:
+  - report_filter_bar
+  - kpi_summary
+  - department_comparison
+  - funnel_analysis
+  - communication_metrics
+actions:
+  - apply_filters
+  - compare_departments
+  - drill_into_metric
+states:
+  empty: No report data available for the selected filters
+  error: Failed to load reports

@@ -1,0 +1,185 @@
+meta:
+  style: restful_manifest
+  auth: shared_burkes_session
+
+endpoints:
+  dashboard:
+    - method: GET
+      path: /api/crm/dashboard/summary
+      purpose: Return KPI, pipeline, activity, schedule, and task summaries
+
+  contacts:
+    - method: GET
+      path: /api/crm/contacts
+      purpose: Search and filter contacts
+    - method: POST
+      path: /api/crm/contacts
+      purpose: Create a contact
+    - method: PATCH
+      path: /api/crm/contacts/{contact_id}
+      purpose: Update contact details
+    - method: POST
+      path: /api/crm/contacts/import
+      purpose: Import legacy contacts
+
+  intake:
+    - method: POST
+      path: /api/crm/intake/portal-contact
+      purpose: Receive portal-created contact intake
+
+  leads:
+    - method: GET
+      path: /api/crm/leads
+      purpose: Return pipeline leads with filters
+    - method: PATCH
+      path: /api/crm/leads/{lead_id}/stage
+      purpose: Update a lead stage
+    - method: POST
+      path: /api/crm/leads/{lead_id}/transfer
+      purpose: Transfer lead ownership
+
+  calls:
+    - method: GET
+      path: /api/crm/calls
+      purpose: Return call log entries
+    - method: POST
+      path: /api/crm/calls/dial
+      purpose: Initiate an outbound call
+    - method: POST
+      path: /api/crm/calls/{call_id}/disposition
+      purpose: Save post-call notes and disposition
+
+  sms:
+    - method: GET
+      path: /api/crm/sms/threads
+      purpose: Return SMS thread list
+    - method: POST
+      path: /api/crm/sms/send
+      purpose: Send outbound SMS
+    - method: POST
+      path: /api/crm/sms/resolve
+      purpose: Resolve unknown number to a contact
+
+  email:
+    - method: GET
+      path: /api/crm/email/inbox
+      purpose: Return CRM-linked inbox summaries
+    - method: POST
+      path: /api/crm/email/send
+      purpose: Send CRM-linked email
+    - method: POST
+      path: /api/crm/email/resolve
+      purpose: Resolve unknown sender to a contact
+
+  activities:
+    - method: GET
+      path: /api/crm/activities
+      purpose: Return append-only activity history with filters
+
+  calendar:
+    - method: GET
+      path: /api/crm/calendar/events
+      purpose: Return provider-linked calendar events
+    - method: POST
+      path: /api/crm/calendar/events
+      purpose: Create a CRM-linked calendar event
+    - method: POST
+      path: /api/crm/calendar/sync
+      purpose: Trigger or review a calendar sync operation
+
+  email_blast:
+    - method: GET
+      path: /api/crm/email-blast/campaigns
+      purpose: Return campaign list and summary metrics
+    - method: POST
+      path: /api/crm/email-blast/campaigns
+      purpose: Create or update a campaign draft
+    - method: POST
+      path: /api/crm/email-blast/{campaign_id}/send
+      purpose: Send a reviewed campaign through the approved provider
+
+  video_meetings:
+    - method: GET
+      path: /api/crm/video-meetings
+      purpose: Return CRM-linked meeting list and status
+    - method: POST
+      path: /api/crm/video-meetings/launch
+      purpose: Launch a provider meeting from CRM context
+    - method: POST
+      path: /api/crm/video-meetings/{meeting_id}/notes
+      purpose: Save post-meeting notes and outcome metadata
+
+  insurance:
+    - method: GET
+      path: /api/crm/insurance
+      purpose: Return insurance workspace records and renewal context
+    - method: PATCH
+      path: /api/crm/insurance/{record_id}
+      purpose: Update insurance record status or enrichment fields
+    - method: POST
+      path: /api/crm/insurance/{record_id}/quote-readiness
+      purpose: Validate quote-readiness and missing-field state
+
+  mortgage:
+    - method: GET
+      path: /api/crm/mortgage
+      purpose: Return mortgage workspace records and milestone context
+    - method: PATCH
+      path: /api/crm/mortgage/{record_id}
+      purpose: Update mortgage record status or owner context
+    - method: POST
+      path: /api/crm/mortgage/{record_id}/sync
+      purpose: Refresh or review Arive-linked mortgage state
+
+  real_estate:
+    - method: GET
+      path: /api/crm/real-estate
+      purpose: Return real estate records with property and closing context
+    - method: PATCH
+      path: /api/crm/real-estate/{record_id}
+      purpose: Update transaction stage, dates, or workflow metadata
+    - method: POST
+      path: /api/crm/real-estate/{record_id}/external-link
+      purpose: Attach or refresh external transaction linkage state
+
+  integrations:
+    - method: GET
+      path: /api/crm/integrations
+      purpose: Return integration inventory with owner and impact context
+    - method: GET
+      path: /api/crm/integrations/status
+      purpose: Return current integration health
+    - method: POST
+      path: /api/crm/integrations/{connector_id}/test
+      purpose: Trigger a supported connector health test
+    - method: POST
+      path: /api/crm/integrations/{connector_id}/retry
+      purpose: Retry a supported connector sync or recovery action
+
+  reports:
+    - method: GET
+      path: /api/crm/reports/overview
+      purpose: Return default KPI summaries and freshness metadata
+    - method: POST
+      path: /api/crm/reports/query
+      purpose: Run a scoped report query with filters
+
+  admin:
+    - method: GET
+      path: /api/crm/admin/users
+      purpose: Return CRM operator roster and assignments
+    - method: POST
+      path: /api/crm/admin/users/invite
+      purpose: Invite or provision a CRM operator
+    - method: PATCH
+      path: /api/crm/admin/users/{user_id}
+      purpose: Update operator role, scope, or status
+    - method: GET
+      path: /api/crm/admin/retention
+      purpose: Return retention policy settings by data type and department
+    - method: PATCH
+      path: /api/crm/admin/retention/{policy_id}
+      purpose: Update retention policy settings with audit visibility
+    - method: GET
+      path: /api/crm/admin/entitlements
+      purpose: Return feature entitlement and tenant-readiness state

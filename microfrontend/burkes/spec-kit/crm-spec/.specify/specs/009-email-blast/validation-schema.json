@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Email Blast Validation Schema",
+  "type": "object",
+  "required": ["feature_id", "campaign", "audience"],
+  "properties": {
+    "feature_id": { "type": "string", "const": "009-email-blast" },
+    "campaign": { "type": "object" },
+    "audience": { "type": "array" },
+    "metrics": { "type": "object" }
+  }
+}

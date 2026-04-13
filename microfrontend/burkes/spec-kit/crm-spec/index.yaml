@@ -1,123 +1,161 @@
 meta:
-  name: Burkes Group CRM
-  version: '1.0.0'
-  description: >
-    Multi-department CRM platform covering Insurance, Mortgage, and Real Estate
-    with integrated VOIP, SMS, email blasts, calendar, pipeline management,
-    compliance recording, and third-party integrations.
+  name: Burkes Group CRM Platform
+  version: "1.1.0"
   owner: Burkes Group Marketing LLC
-  tenant_model: multi_department # single-tenant, multi-department
+  delivery_phase: phase_2
   saas_ready: true
+  pwa_ready: true
+  summary: >
+    Internal operational CRM for insurance, mortgage, and real estate with
+    shared contacts, pipeline management, calls, SMS, email, calendar,
+    activities, department workspaces, reporting, and admin governance.
 
-design_system:
-  $ref: './design.tokens.yaml'
-
-layout:
-  $ref: './layout.yaml'
-
-screens:
-  dashboard: { $ref: './screens/dashboard.yaml' }
-  contacts: { $ref: './screens/contacts.yaml' }
-  pipeline: { $ref: './screens/pipeline.yaml' }
-  activities: { $ref: './screens/activities.yaml' }
-  calendar: { $ref: './screens/calendar.yaml' }
-  calls: { $ref: './screens/calls.yaml' }
-  sms: { $ref: './screens/sms.yaml' }
-  email: { $ref: './screens/email.yaml' }
-  email_blast: { $ref: './screens/email_blast.yaml' }
-  video_meetings: { $ref: './screens/video_meetings.yaml' }
-  insurance: { $ref: './screens/insurance.yaml' }
-  mortgage: { $ref: './screens/mortgage.yaml' }
-  real_estate: { $ref: './screens/real_estate.yaml' }
-  integrations: { $ref: './screens/integrations.yaml' }
-  reports: { $ref: './screens/reports.yaml' }
-  admin: { $ref: './screens/admin.yaml' }
-
-components:
-  stat_card: { $ref: './components/stat_card.yaml' }
-  data_table: { $ref: './components/data_table.yaml' }
-  modals: { $ref: './components/modals.yaml' }
-  nav: { $ref: './components/nav.yaml' }
-  pipeline_board: { $ref: './components/pipeline_board.yaml' }
-
-interactions: { $ref: './interactions.yaml' }
-events: { $ref: './events.yaml' }
-api: { $ref: './api.yaml' }
-
-schemas:
-  contact: { $ref: './schemas/contact.schema.json' }
-  lead: { $ref: './schemas/lead.schema.json' }
-  policy: { $ref: './schemas/policy.schema.json' }
-  transaction: { $ref: './schemas/transaction.schema.json' }
-  activity: { $ref: './schemas/activity.schema.json' }
-  user: { $ref: './schemas/user.schema.json' }
+references:
+  design_tokens: ./design.tokens.yaml
+  layout: ./layout.yaml
+  access_control: ./access_control.yaml
+  api: ./api.yaml
+  interactions: ./interactions.yaml
+  events: ./events.yaml
 
 departments:
   - id: insurance
-    name: Insurance
-    color_token: gold
-    icon: crm-shield
-    compliance:
-      call_retention_months: 18
-      doc_retention_years: 2.5
-      requires_voip_recording: true
-      e_and_o_required: true
+    label: Insurance
+    color_token: department.insurance
+    phase_1: true
   - id: mortgage
-    name: Mortgage
-    color_token: blue
-    icon: crm-bank
-    compliance:
-      call_retention_months: 24
-      doc_retention_years: 2
-      requires_arive: true
+    label: Mortgage
+    color_token: department.mortgage
+    phase_1: true
   - id: real_estate
-    name: Real Estate
-    color_token: green
-    icon: crm-buildings
-    compliance:
-      call_retention_years: 4
-      doc_retention_years: 4
-      requires_har_verification: true
-      dotloop_required: true
+    label: Real Estate
+    color_token: department.real_estate
+    phase_1: true
+
+screens:
+  dashboard:
+    route: /dashboard
+    phase: 1
+    status: ready
+    file: ./screens/dashboard.yaml
+  contacts:
+    route: /contacts
+    phase: 1
+    status: ready
+    file: ./screens/contacts.yaml
+  pipeline:
+    route: /pipeline
+    phase: 1
+    status: ready
+    file: ./screens/pipeline.yaml
+  calls:
+    route: /calls
+    phase: 1
+    status: ready
+    file: ./screens/calls.yaml
+  sms:
+    route: /sms
+    phase: 1
+    status: ready
+    file: ./screens/sms.yaml
+  email:
+    route: /email
+    phase: 1
+    status: ready
+    file: ./screens/email.yaml
+  activities:
+    route: /activities
+    phase: 2
+    status: ready
+    file: ./screens/activities.yaml
+  calendar:
+    route: /calendar
+    phase: 2
+    status: ready
+    file: ./screens/calendar.yaml
+  email_blast:
+    route: /email-blast
+    phase: 2
+    status: ready
+    file: ./screens/email-blast.yaml
+  video_meetings:
+    route: /video-meetings
+    phase: 2
+    status: ready
+    file: ./screens/video-meetings.yaml
+  insurance:
+    route: /insurance
+    phase: 2
+    status: ready
+    file: ./screens/insurance.yaml
+  mortgage:
+    route: /mortgage
+    phase: 2
+    status: ready
+    file: ./screens/mortgage.yaml
+  real_estate:
+    route: /real-estate
+    phase: 2
+    status: ready
+    file: ./screens/real-estate.yaml
+  integrations:
+    route: /integrations
+    phase: 2
+    status: ready
+    file: ./screens/integrations.yaml
+  reports:
+    route: /reports
+    phase: 2
+    status: ready
+    file: ./screens/reports.yaml
+  admin:
+    route: /admin
+    phase: 2
+    status: ready
+    file: ./screens/admin.yaml
+
+future_capabilities:
+  - native_mobile_shell
+  - white_label_branding
+  - ai_assist_workflows
+  - deeper_docusign_or_dotloop_automation
+
+components:
+  stat_card: ./components/stat_card.yaml
+  data_table: ./components/data_table.yaml
+  modals: ./components/modals.yaml
+  nav: ./components/nav.yaml
+  pipeline_board: ./components/pipeline_board.yaml
+
+schemas:
+  contact: ./schemas/contact.schema.json
+  lead: ./schemas/lead.schema.json
+  activity: ./schemas/activity.schema.json
+  user: ./schemas/user.schema.json
+  policy: ./schemas/policy.schema.json
+  transaction: ./schemas/transaction.schema.json
+  mortgage: ./schemas/mortgage.schema.json
+  call_recording: ./schemas/call-recording.schema.json
+  calendar_event: ./schemas/calendar-event.schema.json
+  campaign: ./schemas/campaign.schema.json
+  meeting: ./schemas/meeting.schema.json
+  integration_connector: ./schemas/integration-connector.schema.json
+  report_request: ./schemas/report-request.schema.json
+  admin_settings: ./schemas/admin-settings.schema.json
 
 integrations:
-  - id: outlook
-    label: Microsoft Outlook
-    status: active
-    capabilities: [email, calendar, contacts_sync, blast_sending, auto_log]
-  - id: teams
-    label: Microsoft Teams
-    status: active
-    capabilities: [video_meetings, internal_comms, calendar]
-  - id: google_meet
-    label: Google Meet
-    status: active
-    capabilities: [video_meetings, screen_share, calendar_sync]
-  - id: google_calendar
-    label: Google Calendar
-    status: active
-    capabilities: [two_way_calendar_sync]
-  - id: voip
-    label: VOIP Call Center
-    status: active
-    capabilities: [calling, sms, recording, compliance_storage, auto_log]
-  - id: vertafore
-    label: Vertafore / Agency Zoom
-    status: syncing
-    capabilities: [insurance_quoting, policy_management, quote_sync]
-  - id: arive
-    label: Arive
-    status: active
-    capabilities: [mortgage_applications, pre_approvals, loan_pipeline]
-  - id: follow_up_boss
-    label: Follow Up Boss
-    status: replacing
-    capabilities: [legacy_crm, contact_import]
-  - id: dotloop
-    label: DotLoop
-    status: active
-    capabilities: [real_estate_contracts, e_sign]
-  - id: har
-    label: HAR (Houston MLS)
-    status: active
-    capabilities: [agent_license_verification, listing_data]
+  priority_1:
+    - outlook
+    - voip_provider
+    - arive
+    - follow_up_boss_import
+  priority_2:
+    - agency_zoom
+    - har
+    - vertafore
+    - dotloop
+    - google_calendar
+  priority_3:
+    - teams
+    - google_meet
+    - docusign

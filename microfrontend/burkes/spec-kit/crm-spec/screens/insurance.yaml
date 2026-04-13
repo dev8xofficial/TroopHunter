@@ -1,0 +1,18 @@
+route: /insurance
+title: Insurance
+phase: 2
+data_sources:
+  - /api/crm/insurance
+sections:
+  - insurance_filters
+  - insurance_pipeline
+  - policy_summary_panel
+  - missing_data_checklist
+  - renewal_watchlist
+actions:
+  - update_insurance_status
+  - open_contact
+  - open_activity_timeline
+  - start_call
+states:
+  empty: No insurance records match the current filters

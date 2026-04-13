@@ -1,0 +1,12 @@
+component: stat_card
+purpose: Display one operational KPI with optional delta and badge context
+props:
+  - label
+  - value
+  - delta
+  - accent
+  - icon
+  - supporting_text
+states:
+  loading: skeleton
+  error: inline_alert

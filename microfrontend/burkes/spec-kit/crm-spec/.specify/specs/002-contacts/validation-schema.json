@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Contacts Validation Schema",
+  "type": "object",
+  "required": ["feature_id", "contact", "directory_columns"],
+  "properties": {
+    "feature_id": { "type": "string", "const": "002-contacts" },
+    "contact": { "type": "object" },
+    "directory_columns": { "type": "array" },
+    "filters": { "type": "array" },
+    "import_sources": { "type": "array" }
+  }
+}

@@ -1,0 +1,73 @@
+events:
+  - name: portal.contact.received
+    producer: client_portal
+    consumers: [contacts, dashboard, notifications]
+    payload: contact_intake
+  - name: contact.created
+    producer: contacts
+    consumers: [pipeline, dashboard, activity_log]
+    payload: contact_summary
+  - name: lead.transferred
+    producer: contacts_or_pipeline
+    consumers: [notifications, activity_log]
+    payload: transfer_summary
+  - name: call.completed
+    producer: calls
+    consumers: [activity_log, contacts, dashboard]
+    payload: call_summary
+  - name: sms.received
+    producer: sms
+    consumers: [notifications, activity_log, contacts]
+    payload: sms_summary
+  - name: email.received
+    producer: email
+    consumers: [notifications, activity_log, contacts]
+    payload: email_summary
+  - name: activity.logged
+    producer: foundation_or_feature
+    consumers: [activities, reports]
+    payload: activity_entry
+  - name: calendar.event.created
+    producer: calendar
+    consumers: [activities, notifications]
+    payload: calendar_event
+  - name: calendar.sync.failed
+    producer: calendar
+    consumers: [integrations, notifications, dashboard]
+    payload: calendar_sync_status
+  - name: campaign.sent
+    producer: email_blast
+    consumers: [reports, activities, notifications]
+    payload: campaign_summary
+  - name: meeting.completed
+    producer: video_meetings
+    consumers: [activities, contacts, reports]
+    payload: meeting_summary
+  - name: insurance.policy.updated
+    producer: insurance
+    consumers: [activities, reports]
+    payload: policy_summary
+  - name: mortgage.loan.synced
+    producer: mortgage
+    consumers: [activities, reports, integrations]
+    payload: mortgage_sync_summary
+  - name: real_estate.transaction.updated
+    producer: real_estate
+    consumers: [activities, reports]
+    payload: transaction_summary
+  - name: integration.degraded
+    producer: integrations
+    consumers: [dashboard, notifications, admin]
+    payload: integration_status
+  - name: integration.recovered
+    producer: integrations
+    consumers: [dashboard, notifications, admin]
+    payload: integration_status
+  - name: report.generated
+    producer: reports
+    consumers: [admin]
+    payload: report_audit
+  - name: admin.settings.updated
+    producer: admin
+    consumers: [activity_log, notifications]
+    payload: admin_change_summary

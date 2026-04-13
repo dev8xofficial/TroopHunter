@@ -1,0 +1,19 @@
+route: /email-blast
+title: Email Blast
+phase: 2
+data_sources:
+  - /api/crm/email-blast/campaigns
+sections:
+  - campaign_list
+  - audience_builder
+  - content_editor
+  - send_review_panel
+  - campaign_metrics
+actions:
+  - create_campaign
+  - preview_recipients
+  - send_campaign
+  - open_contact
+states:
+  empty: No campaigns created yet
+  degraded: Campaign delivery provider unavailable

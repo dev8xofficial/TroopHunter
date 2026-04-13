@@ -1,0 +1,13 @@
+top_nav:
+  items:
+    - global_search
+    - quick_actions
+    - notifications
+    - user_context
+
+sidebar:
+  groups:
+    Main: [Dashboard, Contacts, Pipeline, Activities, Calendar]
+    Communications: [Calls, SMS, Email, Email Blast, Video Meetings]
+    Departments: [Insurance, Mortgage, Real Estate]
+    Tools_Admin: [Integrations, Reports, Admin Settings]

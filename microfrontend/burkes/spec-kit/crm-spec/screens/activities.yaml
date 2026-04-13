@@ -1,0 +1,17 @@
+route: /activities
+title: Activities
+phase: 2
+data_sources:
+  - /api/crm/activities
+sections:
+  - filter_bar
+  - activity_timeline
+  - activity_detail_drawer
+  - compliance_metadata_panel
+actions:
+  - filter_activities
+  - open_contact
+  - open_source_workflow
+states:
+  empty: No activities match the current filters
+  error: Failed to load activity history

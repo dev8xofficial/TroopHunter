@@ -1,0 +1,16 @@
+route: /sms
+title: SMS
+phase: 1
+data_sources:
+  - /api/crm/sms/threads
+sections:
+  - thread_list
+  - conversation_panel
+  - compose_bar
+  - unresolved_threads
+actions:
+  - send_message
+  - resolve_unknown_number
+  - open_contact
+states:
+  degraded: SMS provider unavailable

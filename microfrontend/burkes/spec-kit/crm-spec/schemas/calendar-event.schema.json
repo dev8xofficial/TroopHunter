@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Calendar Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "provider", "starts_at", "ends_at", "title", "status"],
+  "properties": {
+    "id": { "type": "string" },
+    "provider": { "type": "string", "enum": ["outlook", "google_calendar", "manual"] },
+    "title": { "type": "string", "minLength": 1 },
+    "status": { "type": "string", "enum": ["scheduled", "cancelled", "completed", "tentative"] },
+    "starts_at": { "type": "string", "format": "date-time" },
+    "ends_at": { "type": "string", "format": "date-time" },
+    "contact_id": { "type": ["string", "null"] },
+    "lead_id": { "type": ["string", "null"] },
+    "provider_event_id": { "type": ["string", "null"] },
+    "sync_state": { "type": ["string", "null"], "enum": ["healthy", "stale", "failed", null] }
+  }
+}

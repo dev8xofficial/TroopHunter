@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Lead",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "contact_id",
+    "department",
+    "stage",
+    "priority",
+    "assigned_agent_id",
+    "created_at"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^LED-[0-9]{5}$" },
+    "contact_id": { "type": "string", "pattern": "^CNT-[0-9]{5}$" },
+    "department": { "type": "string", "enum": ["insurance", "mortgage", "real_estate"] },
+    "stage": {
+      "type": "string",
+      "enum": ["New Inquiry", "Contacted", "Quoted / Offer", "Under Contract", "Pending Close", "Closed"]
+    },
+    "priority": { "type": "string", "enum": ["hot", "warm", "cool"] },
+    "assigned_agent_id": { "type": "string" },
+    "source": {
+      "type": "string",
+      "enum": ["portal", "manual", "import", "partner", "referral", "unknown"]
+    },
+    "last_activity_at": { "type": ["string", "null"], "format": "date-time" },
+    "notes_summary": { "type": ["string", "null"] },
+    "created_at": { "type": "string", "format": "date-time" }
+  }
+}

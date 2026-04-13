@@ -1,0 +1,8 @@
+component: data_table
+purpose: Render searchable, filterable, paginated operational lists
+capabilities:
+  - sorting
+  - filtering
+  - row_actions
+  - pagination
+  - empty_state

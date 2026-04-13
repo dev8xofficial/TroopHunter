@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Video Meetings Validation Schema",
+  "type": "object",
+  "required": ["feature_id", "meeting", "provider"],
+  "properties": {
+    "feature_id": { "type": "string", "const": "010-video-meetings" },
+    "meeting": { "type": "object" },
+    "provider": { "type": "string" },
+    "note": { "type": "object" }
+  }
+}

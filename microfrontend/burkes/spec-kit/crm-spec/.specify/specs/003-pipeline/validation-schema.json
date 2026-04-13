@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Pipeline Validation Schema",
+  "type": "object",
+  "required": ["feature_id", "lead", "stages", "views"],
+  "properties": {
+    "feature_id": { "type": "string", "const": "003-pipeline" },
+    "lead": { "type": "object" },
+    "stages": { "type": "array", "minItems": 6, "maxItems": 6 },
+    "views": { "type": "array", "minItems": 3 },
+    "forecast_summary": { "type": "object" }
+  }
+}

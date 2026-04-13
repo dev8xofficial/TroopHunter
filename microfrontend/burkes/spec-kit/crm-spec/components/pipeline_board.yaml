@@ -1,0 +1,21 @@
+component: pipeline_board
+purpose: Display leads in the six shared stages with drag or action-based movement
+columns:
+  - New Inquiry
+  - Contacted
+  - Quoted / Offer
+  - Under Contract
+  - Pending Close
+  - Closed
+card_fields:
+  - contact_name
+  - department
+  - owner
+  - priority
+  - last_activity_at
+actions:
+  - open_lead_drawer
+  - transfer_lead
+  - call_contact
+  - sms_contact
+  - email_contact

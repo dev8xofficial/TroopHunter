@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Real Estate Transaction Sub-Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["transaction_type", "status"],
+  "properties": {
+    "transaction_type": { "type": "string", "enum": ["purchase", "sale", "refinance", "other"] },
+    "status": {
+      "type": "string",
+      "enum": ["lead", "under_contract", "pending_close", "closed", "cancelled"]
+    },
+    "property_address": { "type": ["string", "null"] },
+    "dotloop_id": { "type": ["string", "null"] },
+    "closing_date": { "type": ["string", "null"], "format": "date" },
+    "commission_amount": { "type": ["number", "null"] }
+  }
+}

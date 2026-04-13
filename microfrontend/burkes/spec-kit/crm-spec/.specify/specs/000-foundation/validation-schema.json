@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Foundation Validation Schema",
+  "type": "object",
+  "required": ["feature_id", "navigation_groups", "quick_actions", "session_fields"],
+  "properties": {
+    "feature_id": { "type": "string", "const": "000-foundation" },
+    "navigation_groups": {
+      "type": "array",
+      "minItems": 4,
+      "items": { "type": "string" }
+    },
+    "quick_actions": {
+      "type": "array",
+      "minItems": 4,
+      "items": { "type": "string" }
+    },
+    "session_fields": {
+      "type": "array",
+      "minItems": 5,
+      "items": { "type": "string" }
+    },
+    "activity_fields": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "pwa_capabilities": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

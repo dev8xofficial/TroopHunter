@@ -1,0 +1,19 @@
+route: /mortgage
+title: Mortgage
+phase: 2
+data_sources:
+  - /api/crm/mortgage
+sections:
+  - mortgage_filters
+  - mortgage_pipeline
+  - loan_milestone_panel
+  - missing_items_checklist
+  - sync_status_banner
+actions:
+  - update_mortgage_stage
+  - open_contact
+  - open_activity_timeline
+  - request_missing_items
+states:
+  empty: No mortgage records match the current filters
+  degraded: Arive synchronization unavailable

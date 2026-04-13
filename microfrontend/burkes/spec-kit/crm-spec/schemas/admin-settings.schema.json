@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Admin Settings",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["users", "retention_policies", "entitlements"],
+  "properties": {
+    "users": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["user_id", "role", "status"],
+        "properties": {
+          "user_id": { "type": "string" },
+          "role": { "type": "string", "enum": ["OW", "IA", "ML", "RA", "PA"] },
+          "status": { "type": "string", "enum": ["active", "invited", "suspended"] },
+          "department_scope": {
+            "type": "array",
+            "items": { "type": "string", "enum": ["insurance", "mortgage", "real_estate"] }
+          }
+        }
+      }
+    },
+    "retention_policies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["data_type", "department", "retention_window"],
+        "properties": {
+          "data_type": { "type": "string" },
+          "department": { "type": "string", "enum": ["insurance", "mortgage", "real_estate", "platform"] },
+          "retention_window": { "type": "string" }
+        }
+      }
+    },
+    "entitlements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "state"],
+        "properties": {
+          "code": { "type": "string" },
+          "state": { "type": "string", "enum": ["enabled", "limited", "future_gated", "disabled"] }
+        }
+      }
+    }
+  }
+}

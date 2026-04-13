@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM SMS Validation Schema",
+  "type": "object",
+  "required": ["feature_id", "thread", "message"],
+  "properties": {
+    "feature_id": { "type": "string", "const": "007-sms" },
+    "thread": { "type": "object" },
+    "message": { "type": "object" },
+    "thread_list": { "type": "array" }
+  }
+}

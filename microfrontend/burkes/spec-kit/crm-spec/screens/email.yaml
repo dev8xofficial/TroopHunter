@@ -1,0 +1,18 @@
+route: /email
+title: Email
+phase: 1
+data_sources:
+  - /api/crm/email/inbox
+sections:
+  - inbox_list
+  - message_preview
+  - compose_drawer
+  - unresolved_senders
+actions:
+  - compose_email
+  - reply_email
+  - forward_email
+  - resolve_unknown_sender
+  - open_contact
+states:
+  degraded: Outlook provider unavailable

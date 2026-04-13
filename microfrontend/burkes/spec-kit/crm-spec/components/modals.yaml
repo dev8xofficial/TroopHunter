@@ -1,0 +1,10 @@
+modals:
+  new_contact:
+    type: stepped_modal
+    steps: [identity, department_context, optional_enrichment]
+  transfer_lead:
+    type: compact_modal
+    steps: [select_department, select_recipient, confirm]
+  import_contacts:
+    type: compact_modal
+    steps: [select_source, upload_or_map, review_summary]

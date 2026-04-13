@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Dashboard Validation Schema",
+  "type": "object",
+  "required": ["feature_id", "kpi_stats", "pipeline_summary", "activity_feed"],
+  "properties": {
+    "feature_id": { "type": "string", "const": "001-dashboard" },
+    "kpi_stats": { "type": "object" },
+    "pipeline_summary": { "type": "object" },
+    "recent_leads": { "type": "array" },
+    "activity_feed": { "type": "array" },
+    "todays_schedule": { "type": "array" },
+    "integrations_status": { "type": "array" },
+    "tasks_today": { "type": "array" }
+  }
+}

@@ -1,0 +1,19 @@
+route: /calls
+title: Calls
+phase: 1
+data_sources:
+  - /api/crm/calls
+sections:
+  - dialer
+  - active_call_panel
+  - call_log
+  - recording_filters
+  - post_call_drawer
+  - unmatched_calls_queue
+actions:
+  - place_call
+  - save_disposition
+  - resolve_unknown_number
+  - play_recording
+states:
+  degraded: Telephony provider unavailable

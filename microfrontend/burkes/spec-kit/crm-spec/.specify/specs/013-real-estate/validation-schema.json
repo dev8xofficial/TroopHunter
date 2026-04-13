@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Real Estate Validation Schema",
+  "type": "object",
+  "required": ["feature_id", "transaction_record", "milestones", "property"],
+  "properties": {
+    "feature_id": { "type": "string", "const": "013-real-estate" },
+    "transaction_record": { "type": "object" },
+    "milestones": { "type": "array" },
+    "property": { "type": "object" },
+    "external_link_state": { "type": "object" }
+  }
+}

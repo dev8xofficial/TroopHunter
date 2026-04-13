@@ -1,0 +1,17 @@
+route: /video-meetings
+title: Video Meetings
+phase: 2
+data_sources:
+  - /api/crm/video-meetings
+sections:
+  - upcoming_meetings
+  - provider_launcher
+  - meeting_notes_panel
+  - recording_retention_notice
+actions:
+  - launch_meeting
+  - add_meeting_note
+  - open_calendar_event
+  - open_contact
+states:
+  degraded: Meeting provider unavailable

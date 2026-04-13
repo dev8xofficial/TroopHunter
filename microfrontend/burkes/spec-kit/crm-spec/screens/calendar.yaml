@@ -1,0 +1,17 @@
+route: /calendar
+title: Calendar
+phase: 2
+data_sources:
+  - /api/crm/calendar/events
+sections:
+  - provider_status_bar
+  - calendar_filters
+  - calendar_grid
+  - event_detail_drawer
+actions:
+  - change_view
+  - create_event
+  - open_contact
+  - open_lead
+states:
+  degraded: Calendar provider sync is unavailable

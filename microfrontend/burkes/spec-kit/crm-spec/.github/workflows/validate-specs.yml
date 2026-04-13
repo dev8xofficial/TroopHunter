@@ -1,0 +1,23 @@
+name: Validate CRM Specs
+
+on:
+  pull_request:
+    paths:
+      - ".specify/specs/**/*.md"
+      - "schemas/**/*.json"
+      - "*.yaml"
+
+jobs:
+  structure-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure required Phase 1 specs exist
+        run: |
+          test -f .specify/specs/000-foundation/spec.md
+          test -f .specify/specs/001-dashboard/spec.md
+          test -f .specify/specs/002-contacts/spec.md
+          test -f .specify/specs/003-pipeline/spec.md
+          test -f .specify/specs/006-calls/spec.md
+          test -f .specify/specs/007-sms/spec.md
+          test -f .specify/specs/008-email/spec.md

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Email Campaign",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "department", "status", "subject", "audience_count"],
+  "properties": {
+    "id": { "type": "string" },
+    "department": { "type": "string", "enum": ["insurance", "mortgage", "real_estate", "platform"] },
+    "status": { "type": "string", "enum": ["draft", "scheduled", "sending", "sent", "cancelled", "failed"] },
+    "subject": { "type": "string", "minLength": 1 },
+    "audience_count": { "type": "integer", "minimum": 0 },
+    "excluded_count": { "type": "integer", "minimum": 0 },
+    "created_by": { "type": "string" },
+    "scheduled_at": { "type": ["string", "null"], "format": "date-time" },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sent": { "type": ["integer", "null"], "minimum": 0 },
+        "delivered": { "type": ["integer", "null"], "minimum": 0 },
+        "opened": { "type": ["integer", "null"], "minimum": 0 },
+        "clicked": { "type": ["integer", "null"], "minimum": 0 }
+      }
+    }
+  }
+}

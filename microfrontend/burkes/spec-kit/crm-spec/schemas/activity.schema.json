@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Activity",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "type", "department", "actor_id", "occurred_at"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^ACT-[0-9]{6}$" },
+    "type": {
+      "type": "string",
+      "enum": [
+        "call_outbound",
+        "call_inbound",
+        "sms_sent",
+        "sms_received",
+        "email_sent",
+        "email_received",
+        "lead_transferred",
+        "stage_changed",
+        "note_added",
+        "document_uploaded",
+        "portal_intake"
+      ]
+    },
+    "contact_id": { "type": ["string", "null"] },
+    "lead_id": { "type": ["string", "null"] },
+    "department": { "type": "string", "enum": ["insurance", "mortgage", "real_estate"] },
+    "actor_id": { "type": "string" },
+    "occurred_at": { "type": "string", "format": "date-time" },
+    "recorded": { "type": "boolean", "default": false },
+    "recording_reference_id": { "type": ["string", "null"] },
+    "notes": { "type": ["string", "null"] },
+    "metadata": { "type": "object" }
+  }
+}

@@ -1,0 +1,19 @@
+route: /admin
+title: Admin Settings
+phase: 2
+data_sources:
+  - /api/crm/admin/users
+  - /api/crm/admin/retention
+sections:
+  - user_directory
+  - role_scope_matrix
+  - retention_policies
+  - feature_entitlements
+  - audit_log
+actions:
+  - invite_user
+  - update_role_scope
+  - update_retention_policy
+  - review_entitlements
+states:
+  error: Failed to load administrative settings

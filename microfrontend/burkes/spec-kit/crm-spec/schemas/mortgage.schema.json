@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Mortgage Sub-Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status"],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["inquiry", "pre_approval", "processing", "clear_to_close", "funded", "declined"]
+    },
+    "arive_loan_id": { "type": ["string", "null"] },
+    "loan_type": { "type": ["string", "null"] },
+    "pre_approval_amount": { "type": ["number", "null"] },
+    "lender_name": { "type": ["string", "null"] }
+  }
+}

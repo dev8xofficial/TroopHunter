@@ -1,0 +1,18 @@
+route: /real-estate
+title: Real Estate
+phase: 2
+data_sources:
+  - /api/crm/real-estate
+sections:
+  - real_estate_filters
+  - transaction_pipeline
+  - property_summary_panel
+  - closing_milestone_panel
+  - external_link_status
+actions:
+  - update_transaction_stage
+  - open_contact
+  - open_calendar_event
+  - open_activity_timeline
+states:
+  empty: No real estate records match the current filters

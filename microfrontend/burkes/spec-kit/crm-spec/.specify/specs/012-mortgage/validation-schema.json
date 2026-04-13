@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Mortgage Validation Schema",
+  "type": "object",
+  "required": ["feature_id", "mortgage_record", "milestones", "sync_state"],
+  "properties": {
+    "feature_id": { "type": "string", "const": "012-mortgage" },
+    "mortgage_record": { "type": "object" },
+    "milestones": { "type": "array" },
+    "sync_state": { "type": "object" },
+    "missing_items": { "type": "array" }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Insurance Policy Sub-Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy_type", "carrier", "status"],
+  "properties": {
+    "policy_type": { "type": "string" },
+    "carrier": { "type": "string" },
+    "status": { "type": "string", "enum": ["prospect", "quoted", "bound", "issued", "expired"] },
+    "premium": { "type": ["number", "null"] },
+    "effective_date": { "type": ["string", "null"], "format": "date" },
+    "expiration_date": { "type": ["string", "null"], "format": "date" },
+    "vehicle_vin": { "type": ["string", "null"] }
+  }
+}

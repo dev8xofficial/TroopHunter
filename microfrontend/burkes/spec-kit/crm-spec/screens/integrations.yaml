@@ -1,0 +1,18 @@
+route: /integrations
+title: Integrations
+phase: 2
+data_sources:
+  - /api/crm/integrations
+sections:
+  - connector_summary
+  - connector_inventory
+  - connector_detail_drawer
+  - dependency_map
+  - audit_timeline
+actions:
+  - filter_connectors
+  - test_connection
+  - retry_sync
+  - open_connector_detail
+states:
+  empty: No connectors configured

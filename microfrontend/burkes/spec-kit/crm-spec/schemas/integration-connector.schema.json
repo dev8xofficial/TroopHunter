@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Integration Connector",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "provider", "status", "priority"],
+  "properties": {
+    "id": { "type": "string" },
+    "provider": { "type": "string" },
+    "status": { "type": "string", "enum": ["healthy", "degraded", "disconnected", "pending", "planned"] },
+    "priority": { "type": "string", "enum": ["priority_1", "priority_2", "priority_3"] },
+    "owner": { "type": ["string", "null"] },
+    "last_synced_at": { "type": ["string", "null"], "format": "date-time" },
+    "affected_features": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "actions": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["test", "retry", "reconnect", "view_only"] }
+    }
+  }
+}

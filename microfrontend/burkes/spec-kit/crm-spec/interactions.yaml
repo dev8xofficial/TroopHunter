@@ -1,0 +1,90 @@
+flows:
+  new_contact:
+    type: modal
+    steps:
+      - identity
+      - department_context
+      - optional_enrichment
+    outcome: contact_created
+
+  transfer_lead:
+    type: modal
+    steps:
+      - select_department
+      - select_recipient
+      - confirm_notification
+    outcome: lead_transferred
+
+  resolve_unknown_number:
+    type: drawer
+    steps:
+      - search_existing_contact
+      - create_minimal_contact_if_needed
+      - link_thread_or_call
+    outcome: communication_resolved
+
+  resolve_unknown_sender:
+    type: drawer
+    steps:
+      - search_existing_contact
+      - create_minimal_contact_if_needed
+      - link_email_history
+    outcome: email_resolved
+
+  post_call_wrap_up:
+    type: drawer
+    steps:
+      - disposition
+      - note
+      - follow_up_flag
+    outcome: call_logged
+
+  create_calendar_event:
+    type: modal
+    steps:
+      - provider_selection
+      - schedule_details
+      - link_contact_or_lead
+      - confirm_event
+    outcome: calendar_event_created
+
+  campaign_send_review:
+    type: modal
+    steps:
+      - audience_preview
+      - exclusion_review
+      - content_preview
+      - confirm_send
+    outcome: campaign_sent
+
+  launch_video_meeting:
+    type: modal
+    steps:
+      - provider_selection
+      - participant_context
+      - confirm_launch
+    outcome: meeting_launched
+
+  reconnect_integration:
+    type: modal
+    steps:
+      - review_impact
+      - verify_permissions
+      - confirm_retry
+    outcome: integration_action_logged
+
+  invite_or_assign_user:
+    type: modal
+    steps:
+      - identity
+      - role_and_scope
+      - confirm_assignment
+    outcome: user_assignment_saved
+
+  update_retention_policy:
+    type: modal
+    steps:
+      - review_current_policy
+      - impact_summary
+      - confirm_change
+    outcome: retention_policy_updated

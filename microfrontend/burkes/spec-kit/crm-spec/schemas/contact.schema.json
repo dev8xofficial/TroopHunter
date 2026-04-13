@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Contact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "first_name",
+    "last_name",
+    "source",
+    "departments",
+    "assigned_agents",
+    "pipeline_stage",
+    "created_at",
+    "created_by"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^CNT-[0-9]{5}$" },
+    "first_name": { "type": "string", "minLength": 1 },
+    "last_name": { "type": "string", "minLength": 1 },
+    "email": { "type": ["string", "null"], "format": "email" },
+    "phone": { "type": ["string", "null"] },
+    "source": {
+      "type": "string",
+      "enum": ["portal", "manual", "import", "partner", "referral", "unknown"]
+    },
+    "portal_origin": { "type": "boolean", "default": false },
+    "date_of_birth": { "type": ["string", "null"], "format": "date" },
+    "address": { "type": ["string", "null"] },
+    "city": { "type": ["string", "null"] },
+    "state": { "type": ["string", "null"] },
+    "postal_code": { "type": ["string", "null"] },
+    "family_members": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "relationship"],
+        "properties": {
+          "name": { "type": "string" },
+          "relationship": { "type": "string" },
+          "date_of_birth": { "type": ["string", "null"], "format": "date" }
+        }
+      }
+    },
+    "vehicles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["vin"],
+        "properties": {
+          "vin": { "type": "string" },
+          "make": { "type": ["string", "null"] },
+          "model": { "type": ["string", "null"] },
+          "year": { "type": ["integer", "null"] }
+        }
+      }
+    },
+    "departments": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["insurance", "mortgage", "real_estate"] },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "assigned_agents": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "insurance": { "type": ["string", "null"] },
+        "mortgage": { "type": ["string", "null"] },
+        "real_estate": { "type": ["string", "null"] }
+      }
+    },
+    "pipeline_stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "insurance": {
+          "type": ["string", "null"],
+          "enum": ["New Inquiry", "Contacted", "Quoted / Offer", "Under Contract", "Pending Close", "Closed", null]
+        },
+        "mortgage": {
+          "type": ["string", "null"],
+          "enum": ["New Inquiry", "Contacted", "Quoted / Offer", "Under Contract", "Pending Close", "Closed", null]
+        },
+        "real_estate": {
+          "type": ["string", "null"],
+          "enum": ["New Inquiry", "Contacted", "Quoted / Offer", "Under Contract", "Pending Close", "Closed", null]
+        }
+      }
+    },
+    "consent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "consented_at": { "type": ["string", "null"], "format": "date-time" },
+        "consent_document_id": { "type": ["string", "null"] },
+        "source": { "type": ["string", "null"] }
+      }
+    },
+    "missing_data": { "type": "boolean", "default": false },
+    "insurance_record": { "type": ["object", "null"] },
+    "mortgage_record": { "type": ["object", "null"] },
+    "real_estate_record": { "type": ["object", "null"] },
+    "created_at": { "type": "string", "format": "date-time" },
+    "created_by": { "type": "string" }
+  }
+}

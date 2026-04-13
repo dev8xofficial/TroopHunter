@@ -1,0 +1,96 @@
+platform_owner: Burkes Group Marketing LLC
+
+roles:
+  OW:
+    label: Department Owner
+    read_scope: all_departments
+    write_scope:
+      - own_department
+    admin: limited
+  IA:
+    label: Insurance Agent
+    read_scope: all_departments
+    write_scope:
+      - insurance
+  ML:
+    label: Mortgage Liaison
+    read_scope: all_departments
+    write_scope:
+      - mortgage
+  RA:
+    label: Real Estate Agent
+    read_scope: all_departments
+    write_scope:
+      - real_estate
+  PA:
+    label: Platform Administrator
+    read_scope: all_departments
+    write_scope:
+      - insurance
+      - mortgage
+      - real_estate
+    admin: full
+
+actions:
+  contact.create:
+    allowed: [OW, IA, RA, PA]
+  contact.edit:
+    allowed: [OW, IA, ML, RA, PA]
+    rule: users may edit only departments within write_scope
+  contact.transfer:
+    allowed: [OW, IA, RA, PA]
+  lead.stage_update:
+    allowed: [OW, IA, ML, RA, PA]
+    rule: department-scoped
+  call.place:
+    allowed: [OW, IA, ML, RA, PA]
+  call.play_recording:
+    allowed: [OW, PA]
+    rule: department-scoped unless platform admin
+  sms.send:
+    allowed: [OW, IA, ML, RA, PA]
+    rule: blocked if opt_out is true
+  email.send:
+    allowed: [OW, IA, ML, RA, PA]
+  activity.view:
+    allowed: [OW, IA, ML, RA, PA]
+  calendar.view:
+    allowed: [OW, IA, ML, RA, PA]
+  calendar.manage:
+    allowed: [OW, IA, ML, RA, PA]
+  campaign.create:
+    allowed: [OW, IA, ML, RA, PA]
+  campaign.send:
+    allowed: [OW, PA]
+  meeting.launch:
+    allowed: [OW, IA, ML, RA, PA]
+  insurance.record_edit:
+    allowed: [OW, IA, PA]
+  mortgage.record_edit:
+    allowed: [OW, ML, PA]
+  real_estate.record_edit:
+    allowed: [OW, RA, PA]
+  integrations.view:
+    allowed: [OW, IA, ML, RA, PA]
+  integrations.manage:
+    allowed: [PA]
+  reports.view_scoped:
+    allowed: [OW, IA, ML, RA, PA]
+  reports.view_cross_department:
+    allowed: [OW, PA]
+  admin.settings.view_limited:
+    allowed: [OW, PA]
+  admin.settings.manage:
+    allowed: [PA]
+  retention_policy.edit:
+    allowed: [PA]
+  user.assign_role:
+    allowed: [PA]
+  import.contacts:
+    allowed: [PA, OW]
+
+defaults:
+  read_across_departments: true
+  write_requires_department_scope: true
+  activity_log_is_immutable: true
+  pwa_install_available: true
