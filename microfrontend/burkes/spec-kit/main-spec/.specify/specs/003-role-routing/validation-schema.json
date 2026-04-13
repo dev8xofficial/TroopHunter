@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RoleRoutingResponse",
+  "type": "object",
+  "required": ["identityToken", "capabilities", "portalDestinationUrl"],
+  "properties": {
+    "identityToken": {
+      "type": "string"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "portalDestinationUrl": {
+      "type": "string",
+      "format": "uri-reference"
+    }
+  }
+}

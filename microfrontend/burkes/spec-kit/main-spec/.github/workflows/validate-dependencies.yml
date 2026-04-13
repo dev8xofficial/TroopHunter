@@ -1,0 +1,60 @@
+name: Validate Spec Dependencies
+
+on:
+  pull_request:
+    paths:
+      - '.specify/specs/**/*.md'
+      - '.github/workflows/validate-dependencies.yml'
+
+jobs:
+  validate-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for circular dependencies
+        run: |
+          echo "Checking for circular dependencies..."
+
+          # Foundation (000) must not depend on any other spec
+          if grep -i "depends on.*00[1-8]" .specify/specs/000-foundation/spec.md; then
+            echo "❌ Foundation (000) must not depend on other specs"
+            exit 1
+          fi
+          echo "✅ Foundation has no downstream dependencies"
+
+      - name: Verify referenced specs exist
+        run: |
+          echo "Verifying spec cross-references..."
+          for spec_file in .specify/specs/*/spec.md; do
+            dir=$(dirname "$spec_file")
+            feature=$(basename "$dir")
+
+            # Find references to other specs
+            grep -oP '\d{3}-[a-z-]+' "$spec_file" | sort | uniq | while read ref; do
+              if [ "$ref" != "$feature" ] && [ ! -d ".specify/specs/$ref" ]; then
+                echo "❌ $spec_file references '$ref' but directory .specify/specs/$ref/ does not exist"
+                exit 1
+              fi
+            done
+          done
+          echo "✅ All spec cross-references resolve"
+
+      - name: Check supporting artifacts exist
+        run: |
+          echo "Checking supporting artifacts..."
+          required_files="changelog.md validation-schema.json test-scenarios.md rollout.md metrics.md risks.md"
+
+          for spec_dir in .specify/specs/*/; do
+            feature=$(basename "$spec_dir")
+            for required in $required_files; do
+              if [ ! -f "$spec_dir$required" ]; then
+                echo "⚠️ Missing: $spec_dir$required"
+              fi
+            done
+          done
+
+      - name: Report results
+        if: always()
+        run: echo "Dependency validation complete."

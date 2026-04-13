@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PasswordResetRequest",
+  "description": "Payload submitted when a user requests a password reset link",
+  "type": "object",
+  "required": ["email"],
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The registered email address for the account. The response must be identical regardless of whether this address is registered."
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "PasswordResetConfirmation": {
+      "title": "PasswordResetConfirmation",
+      "description": "Payload submitted when a user sets a new password after clicking the reset link",
+      "type": "object",
+      "required": ["token", "newPassword"],
+      "properties": {
+        "token": {
+          "type": "string",
+          "minLength": 32,
+          "description": "Single-use, cryptographically random reset token delivered via email link"
+        },
+        "newPassword": {
+          "type": "string",
+          "minLength": 8,
+          "description": "The replacement password chosen by the user"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
