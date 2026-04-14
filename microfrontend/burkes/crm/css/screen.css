@@ -606,3 +606,256 @@
   .sms-layout, .email-layout { grid-template-columns: 1fr; height: auto; }
   .sms-thread-list, .email-sidebar { height: 300px; border-right: none; border-bottom: 1px solid var(--neutral-200); }
 }
+
+/**
+ * Burkes Group CRM — Batch 5 Screen Styles
+ * Source: screens/activities.yaml, screens/calendar.yaml, screens/email-blast.yaml
+ * Batch: 5 of 7 — Activities + Calendar + Email Blast (Phase 2)
+ * Status: COMPLETE
+ */
+
+/* ── Activity Timeline ───────────────────────────────── */
+
+/* Enhanced activity item hover in timeline */
+.act-timeline-group { margin-bottom: var(--space-6); }
+
+/* Compliance highlight for recorded activities */
+.act-compliance-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+  border-radius: var(--radius-full);
+  font-size: 10px;
+  font-weight: var(--weight-semibold);
+}
+
+/* Activity type colour dots */
+.act-type-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Calendar Grid ────────────────────────────────────── */
+
+/* Calendar toolbar view toggle matches pipeline-view-toggle */
+.cal-view-toggle {
+  display: flex;
+  gap: var(--space-1);
+  background: var(--neutral-100);
+  padding: 3px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--neutral-200);
+}
+
+/* Calendar event block */
+.cal-event {
+  border-radius: var(--radius-sm);
+  padding: 2px 5px;
+  font-size: 10px;
+  font-weight: var(--weight-semibold);
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: filter 0.1s;
+}
+
+.cal-event:hover { filter: brightness(1.15); }
+
+.cal-event.outlook       { background: var(--color-primary-navy); }
+.cal-event.google        { background: var(--color-accent-blue); }
+.cal-event.tentative     { opacity: 0.7; }
+.cal-event.completed     { opacity: 0.5; }
+.cal-event.stale-sync    { border-top: 3px solid var(--color-warning); }
+
+/* Calendar month cell */
+.cal-month-cell {
+  min-height: 100px;
+  padding: var(--space-2);
+  border-right: 1px solid var(--neutral-100);
+  border-bottom: 1px solid var(--neutral-100);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.cal-month-cell:hover { background: var(--neutral-50); }
+.cal-month-cell.today { background: rgba(26,58,82,0.04); }
+.cal-month-cell.empty { background: var(--neutral-50); pointer-events: none; }
+
+/* Day number badge */
+.cal-day-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
+  color: var(--neutral-700);
+}
+
+.cal-day-num.today {
+  background: var(--color-primary-navy);
+  color: white;
+  font-weight: var(--weight-bold);
+}
+
+/* Current time indicator */
+.cal-now-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.cal-now-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-danger);
+  flex-shrink: 0;
+}
+
+.cal-now-bar {
+  flex: 1;
+  height: 2px;
+  background: var(--color-danger);
+}
+
+/* Sync status badges (extends existing sync-badge from screen.css) */
+.sync-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+}
+
+.sync-badge.healthy { background: var(--color-success-bg); color: var(--color-success-text); }
+.sync-badge.stale   { background: var(--color-warning-bg); color: var(--color-warning-text); }
+.sync-badge.failed  { background: var(--color-danger-bg);  color: var(--color-danger-text);  }
+
+/* Calendar provider chip */
+.cal-provider-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: white;
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-xs);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+/* ── Email Blast / Campaigns ──────────────────────────── */
+
+/* Campaign status pill colours (supplement status badges) */
+.campaign-status-sent      { background: var(--color-success-bg);  color: var(--color-success-text); }
+.campaign-status-draft     { background: var(--neutral-100);        color: var(--neutral-600); }
+.campaign-status-scheduled { background: var(--color-info-bg);      color: var(--color-info-text); }
+.campaign-status-sending   { background: var(--color-warning-bg);   color: var(--color-warning-text); }
+.campaign-status-failed    { background: var(--color-danger-bg);    color: var(--color-danger-text); }
+.campaign-status-cancelled { background: var(--neutral-100);        color: var(--neutral-400); }
+
+/* Campaign funnel bar */
+.camp-funnel-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.camp-funnel-bar-bg {
+  flex: 1;
+  height: 8px;
+  background: var(--neutral-100);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.camp-funnel-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+/* Campaign metrics mini card */
+.camp-metric-card {
+  padding: var(--space-3);
+  border: 1.5px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.camp-metric-value {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* Audience preview panel */
+.audience-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  text-align: center;
+  padding: var(--space-4);
+  background: var(--neutral-50);
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--neutral-200);
+}
+
+/* Exclusion list item */
+.exclusion-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-warning-bg);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+/* ── Responsive Overrides ─────────────────────────────── */
+
+@media (max-width: 900px) {
+  /* Stack calendar provider chips */
+  .cal-provider-chips {
+    flex-wrap: wrap;
+  }
+
+  /* Simplify week view on mobile */
+  .cal-week-grid { overflow-x: auto; }
+
+  /* Stack campaign two-panel to single */
+  .camp-two-panel { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 768px) {
+  /* Hide calendar time labels on small screens */
+  .cal-time-labels { display: none; }
+}
+
+/* ── Print / Export hints ─────────────────────────────── */
+
+@media print {
+  .screen-actions, .filter-bar, .btn, #sidebar, #top-nav, #voip-bar { display: none !important; }
+  .card { box-shadow: none !important; border: 1px solid var(--neutral-300) !important; }
+}
