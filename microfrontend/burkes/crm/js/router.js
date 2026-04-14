@@ -17,7 +17,7 @@ window.Router = (() => {
     'calls':         'calls',
     'sms':           'sms',
     'email':         'email',
-    'email-blast':   'emailBlast',
+    // 'email-blast':   'emailBlast',
     'video-meetings':'videoMeetings',
     'insurance':     'insurance',
     'mortgage':      'mortgage',
@@ -40,7 +40,7 @@ window.Router = (() => {
       { key: 'calls',       label: 'Calls',        hash: 'calls',        icon: 'phone' },
       { key: 'sms',         label: 'SMS',          hash: 'sms',          icon: 'message' },
       { key: 'email',       label: 'Email',        hash: 'email',        icon: 'mail' },
-      { key: 'email-blast', label: 'Email Blast',  hash: 'email-blast',  icon: 'send' },
+      // { key: 'email-blast', label: 'Email Blast',  hash: 'email-blast',  icon: 'send' },
       { key: 'video-meetings', label: 'Video Meetings', hash: 'video-meetings', icon: 'video' },
     ],
     Departments: [
