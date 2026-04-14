@@ -471,6 +471,14 @@
                     </div>
                     <p class="role-description">System administration and platform management</p>
                   </div>
+                  
+                  <div class="role-card" onclick="selectRole('crm', this)">
+                    <div class="role-card-header">
+                      <span class="role-icon">📈</span>
+                      <span class="role-name">CRM</span>
+                    </div>
+                    <p class="role-description">Manage customer relationships and leads</p>
+                  </div>
                 </div>
               </div>
               
@@ -876,6 +884,46 @@
       </div>
     </div>
 
+    <!-- PAGE 11: CRM PERMISSIONS -->
+    <div id="page-11-crm" class="auth-screen">
+      <div class="login-container">
+        <div class="login-brand">
+          <div class="brand-icon">📈</div>
+          <h1 class="brand-title">CRM</h1>
+          <p class="brand-subtitle">Manage leads, track communications, and build customer relationships through our integrated CRM platform.</p>
+        </div>
+        <div class="login-form-container">
+          <div class="login-form-box">
+            <div class="form-header">
+              <h2>CRM Access</h2>
+              <p>Customer Relationship Management</p>
+            </div>
+            
+            <div class="alert-banner">
+              <span class="alert-icon">📈</span>
+              <div class="alert-content">
+                <div class="alert-title">CRM User Access</div>
+                <div class="alert-text">Manage leads, contacts, and track customer engagement metrics.</div>
+              </div>
+            </div>
+            
+            <div class="role-permissions">
+              <div class="permission-title">What You Can Do:</div>
+              <div class="permission-list">
+                <div class="permission-item"><span class="permission-icon">✓</span> Lead tracking and management</div>
+                <div class="permission-item"><span class="permission-icon">✓</span> Communication history logging</div>
+                <div class="permission-item"><span class="permission-icon">✓</span> Deal pipeline visualization</div>
+                <div class="permission-item"><span class="permission-icon">✓</span> Task and appointment scheduling</div>
+                <div class="permission-item"><span class="permission-icon">✓</span> Performance analytics and reporting</div>
+              </div>
+            </div>
+            
+            <a href="crm/main.html" class="btn btn-primary" style="margin-top: 24px; text-decoration: none;">Access CRM</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script>
       let selectedRole = null;
 
@@ -894,7 +942,7 @@
         }
 
         // Simulate MFA for certain roles
-        const mfaRoles = ['attorney', 'cpa', 'admin'];
+        const mfaRoles = ['attorney', 'cpa', 'admin', 'crm'];
         
         if (mfaRoles.includes(selectedRole)) {
           showScreen('page-2-mfa');
@@ -916,7 +964,8 @@
           'agent': 'page-6-agent',
           'lender': 'page-6-agent',
           'service': 'page-7-service',
-          'admin': 'page-8-admin'
+          'admin': 'page-8-admin',
+          'crm': 'page-11-crm'
         };
 
         if (role === 'lender') {
