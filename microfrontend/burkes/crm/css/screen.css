@@ -859,3 +859,152 @@
   .screen-actions, .filter-bar, .btn, #sidebar, #top-nav, #voip-bar { display: none !important; }
   .card { box-shadow: none !important; border: 1px solid var(--neutral-300) !important; }
 }
+/**
+ * Burkes Group CRM — Batch 6 Screen Styles
+ * Source: screens/insurance.yaml, screens/mortgage.yaml, screens/real-estate.yaml, screens/video-meetings.yaml
+ * Batch: 6 of 7 — Department Workspaces + Video Meetings (Phase 2)
+ * Status: COMPLETE
+ */
+
+/* ── Video Meetings ───────────────────────────────────── */
+
+.vm-provider-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: white;
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-xs);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+.vm-provider-chip.vm-teams {
+  border-color: rgba(26,58,82,0.2);
+}
+
+.vm-provider-chip.vm-meet {
+  border-color: rgba(59,130,246,0.25);
+}
+
+.vm-card {
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.vm-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+/* ── Department Workspace Shared ─────────────────────────── */
+
+/* Override for real_estate department dot in header */
+.dept-workspace-header.real_estate .dept-workspace-icon { background: var(--dept-real-estate-bg); }
+.dept-workspace-header.mortgage .dept-workspace-icon    { background: var(--dept-mortgage-bg); }
+.dept-workspace-header.insurance .dept-workspace-icon   { background: var(--dept-insurance-bg); }
+
+/* ── Insurance Screen ────────────────────────────────────── */
+
+/* Insurance board column colors */
+.ins-board-col-prospect { border-top: 3px solid var(--neutral-400); }
+.ins-board-col-quoted   { border-top: 3px solid var(--dept-insurance); }
+.ins-board-col-bound    { border-top: 3px solid var(--color-primary-navy); }
+.ins-board-col-issued   { border-top: 3px solid var(--color-success); }
+.ins-board-col-expired  { border-top: 3px solid var(--color-danger); }
+
+/* ── Mortgage Screen ─────────────────────────────────────── */
+
+/* Arive sync banner color variants */
+.arive-banner-healthy {
+  border-color: var(--color-success);
+  background: var(--color-success-bg);
+}
+.arive-banner-degraded {
+  border-color: var(--color-danger);
+  background: var(--color-danger-bg);
+}
+
+/* ── Real Estate Screen ──────────────────────────────────── */
+
+/* DotLoop status indicators */
+.dl-linked  { color: var(--color-success-text); }
+.dl-pending { color: var(--color-warning-text); }
+.dl-missing { color: var(--color-danger-text); }
+
+/* Risk-flagged rows in RE table */
+.re-row-risk {
+  background: rgba(239, 68, 68, 0.03);
+  border-left: 3px solid var(--color-danger);
+}
+
+/* Milestone list overrides for Mortgage/RE */
+.milestone-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.milestone-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+}
+
+.milestone-item.done {
+  background: var(--color-success-bg);
+}
+
+.milestone-item.pending {
+  background: var(--neutral-50);
+}
+
+.milestone-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.milestone-item.done .milestone-check {
+  background: var(--color-success);
+  color: white;
+}
+
+.milestone-item.pending .milestone-check {
+  border: 2px solid var(--neutral-300);
+  color: transparent;
+}
+
+/* Missing items list */
+.missing-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.missing-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-warning-bg);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: var(--color-warning-text);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .vm-provider-chip { flex-wrap: wrap; }
+}
