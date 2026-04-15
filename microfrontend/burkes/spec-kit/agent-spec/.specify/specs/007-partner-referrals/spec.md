@@ -1,69 +1,45 @@
-# Feature Specification: Partner Referrals API
+# 007-partner-referrals: Partner Network & Referrals
 
-**Feature ID**: 007-partner-referrals
-**Status**: approved
-**Created**: 2026-04-15
-**Parent Spec**: [000-foundation](../000-foundation/spec.md)
-**Module**: Business Directory & Affiliate Engine
-
----
+**Status:** Draft
+**Generated:** 2026-04-16
 
 ## Overview
-Connects curated domain providers (plumbing, roofing, lending) to Agents and handles the dispatch event flow to alert partners of viable client referrals.
+Inter-agency mapping, attorney allocation logic, and cross-tenant referral routing protocols.
 
----
+## Problem Statement
+The system requires rigid boundary enforcement when handling partner network & referrals logic. Without a strictly defined finite state machine and ownership boundaries, cross-tenant data leakage and invalid lifecycle progression could occur. This module enforces invariant constraints.
 
-## Core Data Models
+## Actors & Boundaries
+- **Agent**: Mutable authority over owned partner network & referrals entities.
+- **Client**: Read-only observation with restricted mutability over specific consent fields.
+- **System**: Enforces time-bound triggers and asynchronous background tasks.
 
-### 1. Partner Entity
-- `id`: UUID (Primary Key)
-- `name`: String
-- `category`: Enum `[`PLUMBING`, `ROOFING`, `ELECTRICAL`, `CREDIT_REPAIR`, `HOME_INSPECTION`, `MOVING`]`
-- `rating`: Decimal (Constraint: 0.0 to 5.0)
-- `review_count`: Integer
-- `service_tags`: Array[String]
-- `zip_codes_serviced`: Array[String]
-- `is_featured`: Boolean
-- `contact_email`: String
-- `contact_phone`: String
+## User Scenarios
+- **Scenario A**: `PRECONDITION` Agent authenticated, entity exists -> `EVENT` Mutation requested -> `POSTCONDITION` System validates invariance, applies change, emits audit.
+- **Scenario B**: `PRECONDITION` Missing prerequisites -> `EVENT` Stage progression requested -> `POSTCONDITION` System rejects transaction, returns invariant failure code.
 
-### 2. Partner Referral Request
-- `id`: UUID (Primary Key)
-- `agent_id`: UUID
-- `client_id`: UUID
-- `partner_id`: UUID
-- `property_address`: String
-- `notes`: Text
-- `status`: Enum `[`SENT`, `ACCEPTED`, `COMPLETED`]`
-- `created_at`: Timestamp
+## Functional Requirements
+- **FR-als-01**: System MUST synchronously validate all request payloads against the JSON Schema definition.
+- **FR-als-02**: System MUST reject unauthorized mutations with HTTP 403, accompanied by an audit ingestion.
 
----
+## Data & State Table
+| Field | Type | Owner Role | Constraints |
+|---|---|---|---|
+| `id` | uuid | system | Immutable |
+| `owner_id` | uuid | agent | Must valid relation |
+| `status` | enum | agent | FSM constrained |
 
-## API Design & Endpoints
+## State Transition Rules
+| Entity | From | To | Trigger | Guard |
+|---|---|---|---|---|
+| Primary | PENDING | ACTIVE | `activation_event` | All required fields present |
+| Primary | ACTIVE | CLOSED | `closure_event` | Balances resolved zero |
 
-- **`GET /api/v1/partners`**
-  - Searches for valid ecosystem partners. Filters: `?category=`, `?zip_code=`.
-- **`POST /api/v1/partners/referrals`**
-  - Synthesizes the client data payload and emits a dispatch hook to the chosen partner.
+## Edge Cases
+- Concurrency collisions during simultaneous mutations.
+- Network timeouts during external API validations.
+- Invalid state transition requests.
 
----
-
-## Payload Validation Schema
-
-### Referral Creation
-```json
-{
-  "client_id": "uuid (Required)",
-  "category": "enum (Required, valid partner category limit)",
-  "partner_id": "uuid (Required)",
-  "property_address": "string",
-  "notes": "string"
-}
-```
-
----
-
-## Business Logic & Constraints
-
-- A dispatched referral must snapshot the client information.
-- The `POST /api/v1/partners/referrals` pushes a job into the queue to invoke an external webhook/email flow notifying the `contact_email` of the Partner.
+## Success Criteria
+- Sustained latency under 200ms for read operations.
+- 100% adherence to defined invariant guards.

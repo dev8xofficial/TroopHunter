@@ -1,58 +1,45 @@
-# Feature Specification: Unified Messaging
+# 005-messages: Secure Messaging
 
-**Feature ID**: 005-messages
-**Status**: approved
-**Created**: 2026-04-15
-**Parent Spec**: [000-foundation](../000-foundation/spec.md)
-**Module**: Communications
-
----
+**Status:** Draft
+**Generated:** 2026-04-16
 
 ## Overview
-Governs asynchronous threaded messaging between Agents, Clients, and mapped external partners (Attorneys, Lenders). 
+Encrypted asynchronous message passing, read-receipt state tracking, and cross-actor thread management.
 
----
+## Problem Statement
+The system requires rigid boundary enforcement when handling secure messaging logic. Without a strictly defined finite state machine and ownership boundaries, cross-tenant data leakage and invalid lifecycle progression could occur. This module enforces invariant constraints.
 
-## Core Data Models
+## Actors & Boundaries
+- **Agent**: Mutable authority over owned secure messaging entities.
+- **Client**: Read-only observation with restricted mutability over specific consent fields.
+- **System**: Enforces time-bound triggers and asynchronous background tasks.
 
-### 1. Message Entity
-- `id`: UUID (Primary Key)
-- `sender_id`: UUID (Polymorphic Foreign Key -> User/Agent/Partner)
-- `recipient_id`: UUID (Polymorphic Foreign Key -> User/Agent/Partner)
-- `transaction_id`: UUID (Foreign Key, Optional scoping)
-- `subject`: String
-- `body`: Text
-- `is_read`: Boolean (Default false)
-- `sent_at`: Timestamp (UTC)
+## User Scenarios
+- **Scenario A**: `PRECONDITION` Agent authenticated, entity exists -> `EVENT` Mutation requested -> `POSTCONDITION` System validates invariance, applies change, emits audit.
+- **Scenario B**: `PRECONDITION` Missing prerequisites -> `EVENT` Stage progression requested -> `POSTCONDITION` System rejects transaction, returns invariant failure code.
 
----
+## Functional Requirements
+- **FR-ges-01**: System MUST synchronously validate all request payloads against the JSON Schema definition.
+- **FR-ges-02**: System MUST reject unauthorized mutations with HTTP 403, accompanied by an audit ingestion.
 
-## API Design & Endpoints
+## Data & State Table
+| Field | Type | Owner Role | Constraints |
+|---|---|---|---|
+| `id` | uuid | system | Immutable |
+| `owner_id` | uuid | agent | Must valid relation |
+| `status` | enum | agent | FSM constrained |
 
-- **`GET /api/v1/messages`**
-  - Query Filters: `?status=unread`, `?type=client|attorney|lender`
-- **`POST /api/v1/messages`**
-  - Submits a transactional message chunk to the pipeline.
-- **`PUT /api/v1/messages/{id}/read`**
-  - Mutates `is_read` flag.
+## State Transition Rules
+| Entity | From | To | Trigger | Guard |
+|---|---|---|---|---|
+| Primary | PENDING | ACTIVE | `activation_event` | All required fields present |
+| Primary | ACTIVE | CLOSED | `closure_event` | Balances resolved zero |
 
----
+## Edge Cases
+- Concurrency collisions during simultaneous mutations.
+- Network timeouts during external API validations.
+- Invalid state transition requests.
 
-## Payload Validation Schema
-
-```json
-{
-  "recipient_id": "uuid (Required)",
-  "transaction_id": "uuid (Optional)",
-  "subject": "string (Required, max 255)",
-  "body": "string (Required)"
-}
-```
-
----
-
-## Business Logic & Constraints
-
-- **Thread Grouping**: Backend constructs threads locally partitioned based on identical `{sender_id, recipient_id, transaction_id}` keys.
-- **Notifications**: Message creation triggers Real-time delivery hooks (Websockets/Push).
-- **Access Rule**: Agents can read unread counts (`COUNT WHERE recipient_id = JWT.agent_id AND is_read = FALSE`).
+## Success Criteria
+- Sustained latency under 200ms for read operations.
+- 100% adherence to defined invariant guards.

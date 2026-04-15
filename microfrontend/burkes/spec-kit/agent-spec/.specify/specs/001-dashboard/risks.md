@@ -1,25 +1,16 @@
-# Risk Register: Dashboard (001)
+# Risk Assessment - 001-dashboard
 
-### R-01-01: KPI Data Staleness
-| Property | Value |
-|----------|-------|
-| **Probability** | Medium | **Impact** | High |
-| **Mitigation** | Polling with 30s refresh; cache invalidation on state change |
-| **Status** | OPEN |
+## 1. Concurrency Collisions
+- **Probability**: Medium
+- **Impact**: High (Data corruption, orphaned states)
+- **Mitigation**: Implement `version_id` optimistic locking on all `PATCH` endpoints. Reject mutations with HTTP 409 if version mismatch occurs.
 
-### R-01-02: Upload Zone File Validation Bypass
-| Property | Value |
-|----------|-------|
-| **Probability** | Low | **Impact** | High |
-| **Mitigation** | Server-side validation; client-side is convenience only |
-| **Status** | OPEN |
+## 2. Unauthorized Traversal
+- **Probability**: Low
+- **Impact**: Critical (Privacy violation)
+- **Mitigation**: Hardcode tenant isolation clauses into the ORM base queries, completely bypassing application logic filtering.
 
-### R-01-03: Activity Feed Performance with Large Datasets
-| Property | Value |
-|----------|-------|
-| **Probability** | Medium | **Impact** | Medium |
-| **Mitigation** | Paginated feed (10 events); lazy load older events |
-| **Status** | OPEN |
-
-## Success Criterion
-All risks mitigated before GA; zero critical incidents in first 30 days.
+## 3. External API Latency
+- **Probability**: High
+- **Impact**: Medium (Degraded performance)
+- **Mitigation**: Move operations off main thread to background queues, utilizing webhook patterns for eventual consistency.

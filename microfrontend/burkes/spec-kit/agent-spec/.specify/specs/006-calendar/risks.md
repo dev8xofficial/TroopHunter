@@ -1,45 +1,16 @@
-﻿# Risk Register: Calendar (06)
+# Risk Assessment - 006-calendar
 
-## Overview
+## 1. Concurrency Collisions
+- **Probability**: Medium
+- **Impact**: High (Data corruption, orphaned states)
+- **Mitigation**: Implement `version_id` optimistic locking on all `PATCH` endpoints. Reject mutations with HTTP 409 if version mismatch occurs.
 
-Calendar view with today/upcoming appointments and Schedule Appointment form.
+## 2. Unauthorized Traversal
+- **Probability**: Low
+- **Impact**: Critical (Privacy violation)
+- **Mitigation**: Hardcode tenant isolation clauses into the ORM base queries, completely bypassing application logic filtering.
 
----
-
-## Identified Risks
-
-### R-06-01: Appointment scheduling conflicts
-
-| Property | Value |
-|----------|-------|
-| **Probability** | Medium |
-| **Impact** | High |
-| **Mitigation** | To be determined during implementation planning |
-| **Owner** | Feature Team Lead |
-| **Status** | OPEN |
-
-### R-06-02: Timezone handling errors
-
-| Property | Value |
-|----------|-------|
-| **Probability** | Medium |
-| **Impact** | High |
-| **Mitigation** | To be determined during implementation planning |
-| **Owner** | Feature Team Lead |
-| **Status** | OPEN |
-
-### R-06-03: Calendar sync issues
-
-| Property | Value |
-|----------|-------|
-| **Probability** | Medium |
-| **Impact** | High |
-| **Mitigation** | To be determined during implementation planning |
-| **Owner** | Feature Team Lead |
-| **Status** | OPEN |
-
----
-
-## Success Criterion
-
-All identified risks mitigated before GA; zero critical incidents in first 30 days.
+## 3. External API Latency
+- **Probability**: High
+- **Impact**: Medium (Degraded performance)
+- **Mitigation**: Move operations off main thread to background queues, utilizing webhook patterns for eventual consistency.

@@ -1,59 +1,45 @@
-# Feature Specification: Scheduling API
+# 006-calendar: Temporal Event Management
 
-**Feature ID**: 006-calendar
-**Status**: approved
-**Created**: 2026-04-15
-**Parent Spec**: [000-foundation](../000-foundation/spec.md)
-**Module**: Appointments
-
----
+**Status:** Draft
+**Generated:** 2026-04-16
 
 ## Overview
-Manages point-in-time and duration-based scheduling events assigned to transactions, partners, or general agent activities bounds.
+Deadline enforcement mapping to transaction states, milestone tracking, and chronological aggregations.
 
----
+## Problem Statement
+The system requires rigid boundary enforcement when handling temporal event management logic. Without a strictly defined finite state machine and ownership boundaries, cross-tenant data leakage and invalid lifecycle progression could occur. This module enforces invariant constraints.
 
-## Core Data Models
+## Actors & Boundaries
+- **Agent**: Mutable authority over owned temporal event management entities.
+- **Client**: Read-only observation with restricted mutability over specific consent fields.
+- **System**: Enforces time-bound triggers and asynchronous background tasks.
 
-### 1. Appointment Entity
-- `id`: UUID (Primary Key)
-- `agent_id`: UUID (Indexed)
-- `client_id`: UUID (Indexed, Optional)
-- `transaction_id`: UUID (Indexed, Optional)
-- `type`: Enum `[`PROPERTY_SHOWING`, `CLIENT_CONSULTATION`, `CLOSING_MEETING`, `HOME_INSPECTION`, `FINAL_WALKTHROUGH`, `OTHER`]`
-- `start_time`: Timestamp
-- `end_time`: Timestamp
-- `location`: String
-- `notes`: Text
+## User Scenarios
+- **Scenario A**: `PRECONDITION` Agent authenticated, entity exists -> `EVENT` Mutation requested -> `POSTCONDITION` System validates invariance, applies change, emits audit.
+- **Scenario B**: `PRECONDITION` Missing prerequisites -> `EVENT` Stage progression requested -> `POSTCONDITION` System rejects transaction, returns invariant failure code.
 
----
+## Functional Requirements
+- **FR-dar-01**: System MUST synchronously validate all request payloads against the JSON Schema definition.
+- **FR-dar-02**: System MUST reject unauthorized mutations with HTTP 403, accompanied by an audit ingestion.
 
-## API Design & Endpoints
+## Data & State Table
+| Field | Type | Owner Role | Constraints |
+|---|---|---|---|
+| `id` | uuid | system | Immutable |
+| `owner_id` | uuid | agent | Must valid relation |
+| `status` | enum | agent | FSM constrained |
 
-- **`GET /api/v1/appointments`**
-  - Crucial Query Filters: `?start_date=ISO_DATE`, `?end_date=ISO_DATE`
-- **`POST /api/v1/appointments`**
-  - Ingests new scheduled blocks.
-- **`DELETE /api/v1/appointments/{id}`**
+## State Transition Rules
+| Entity | From | To | Trigger | Guard |
+|---|---|---|---|---|
+| Primary | PENDING | ACTIVE | `activation_event` | All required fields present |
+| Primary | ACTIVE | CLOSED | `closure_event` | Balances resolved zero |
 
----
+## Edge Cases
+- Concurrency collisions during simultaneous mutations.
+- Network timeouts during external API validations.
+- Invalid state transition requests.
 
-## Payload Validation Schema
-
-```json
-{
-  "type": "enum (Required)",
-  "client_id": "uuid (Optional)",
-  "transaction_id": "uuid (Optional)",
-  "start_time": "date-time (Required)",
-  "end_time": "date-time (Required, must be > start_time)",
-  "location": "string",
-  "notes": "string"
-}
-```
-
----
-
-## Business Logic & Contraints
-
-- **Logical Integrity**: The API strictly enforces that `end_time` mathematically succeeds `start_time`. Timezones MUST natively transmit and store in UTC to prevent drift across localized client reads.
+## Success Criteria
+- Sustained latency under 200ms for read operations.
+- 100% adherence to defined invariant guards.

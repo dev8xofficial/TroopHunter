@@ -1,63 +1,45 @@
-# Feature Specification: Client Management
+# 004-clients: Client Domain
 
-**Feature ID**: 004-clients
-**Status**: approved
-**Created**: 2026-04-15
-**Parent Spec**: [000-foundation](../000-foundation/spec.md)
-**Module**: Accounts & Customers
-
----
+**Status:** Draft
+**Generated:** 2026-04-16
 
 ## Overview
-Houses the data models, API endpoints, and onboarding flows for clients managed by agents.
+Management of client principals, relational ownership to assets, and cross-party communication preferences.
 
----
+## Problem Statement
+The system requires rigid boundary enforcement when handling client domain logic. Without a strictly defined finite state machine and ownership boundaries, cross-tenant data leakage and invalid lifecycle progression could occur. This module enforces invariant constraints.
 
-## Core Data Models
+## Actors & Boundaries
+- **Agent**: Mutable authority over owned client domain entities.
+- **Client**: Read-only observation with restricted mutability over specific consent fields.
+- **System**: Enforces time-bound triggers and asynchronous background tasks.
 
-### 1. Client Entity
-- `id`: UUID (Primary Key)
-- `agent_id`: UUID (Foreign Key -> Agent.id)
-- `first_name`: String
-- `last_name`: String
-- `email`: String (Unique constraint)
-- `phone`: String
-- `status`: Enum `[`ACTIVE`, `INACTIVE`]`
-- `transaction_type`: Enum `[`PURCHASE`, `SALE`, `REFINANCE`, `BOTH`]`
-- `preferred_comm_method`: Enum `[`EMAIL`, `PHONE`, `SMS`, `ANY`]`
-- `password_hash`: String
+## User Scenarios
+- **Scenario A**: `PRECONDITION` Agent authenticated, entity exists -> `EVENT` Mutation requested -> `POSTCONDITION` System validates invariance, applies change, emits audit.
+- **Scenario B**: `PRECONDITION` Missing prerequisites -> `EVENT` Stage progression requested -> `POSTCONDITION` System rejects transaction, returns invariant failure code.
 
----
+## Functional Requirements
+- **FR-nts-01**: System MUST synchronously validate all request payloads against the JSON Schema definition.
+- **FR-nts-02**: System MUST reject unauthorized mutations with HTTP 403, accompanied by an audit ingestion.
 
-## API Design & Endpoints
+## Data & State Table
+| Field | Type | Owner Role | Constraints |
+|---|---|---|---|
+| `id` | uuid | system | Immutable |
+| `owner_id` | uuid | agent | Must valid relation |
+| `status` | enum | agent | FSM constrained |
 
-- **`GET /api/v1/clients`**: List all agent-specific clients.
-- **`POST /api/v1/clients`**: Provision new client and trigger invite workflows.
-- **`GET /api/v1/clients/{id}`**: Fetch client details.
-- **`PUT /api/v1/clients/{id}`**: Mutate client metadata.
+## State Transition Rules
+| Entity | From | To | Trigger | Guard |
+|---|---|---|---|---|
+| Primary | PENDING | ACTIVE | `activation_event` | All required fields present |
+| Primary | ACTIVE | CLOSED | `closure_event` | Balances resolved zero |
 
----
+## Edge Cases
+- Concurrency collisions during simultaneous mutations.
+- Network timeouts during external API validations.
+- Invalid state transition requests.
 
-## Payload Validation Schema
-
-```json
-{
-  "first_name": "string (Required, max 100)",
-  "last_name": "string (Required, max 100)",
-  "email": "string (Required, email)",
-  "phone": "string (Required)",
-  "password": "string (Required, min 16 chars)",
-  "status": "enum: [ACTIVE, INACTIVE]",
-  "transaction_type": "enum",
-  "preferred_comm_method": "enum"
-}
-```
-
----
-
-## Business Logic & Background Jobs
-
-- **Password Generation Rules**: Minimum 16 characters, must enforce strict entropy for initial client invites (complex permutations of alnum and specials). 
-- **Email Triggers**: 
-  - `POST /api/v1/clients` successful completion MUST fire an async queue message to the Mailer service to dispatch the client welcome email with portal coordinates.
-- **Partitioning**: Clients are strictly horizontally partitioned to their owning `agent_id`; queries crossing this boundary are hard-rejected with 403 Forbidden.
+## Success Criteria
+- Sustained latency under 200ms for read operations.
+- 100% adherence to defined invariant guards.

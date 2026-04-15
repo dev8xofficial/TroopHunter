@@ -1,45 +1,16 @@
-﻿# Risk Register: Messages (05)
+# Risk Assessment - 005-messages
 
-## Overview
+## 1. Concurrency Collisions
+- **Probability**: Medium
+- **Impact**: High (Data corruption, orphaned states)
+- **Mitigation**: Implement `version_id` optimistic locking on all `PATCH` endpoints. Reject mutations with HTTP 409 if version mismatch occurs.
 
-Inbox with threads, compose form, multi-party messaging across roles.
+## 2. Unauthorized Traversal
+- **Probability**: Low
+- **Impact**: Critical (Privacy violation)
+- **Mitigation**: Hardcode tenant isolation clauses into the ORM base queries, completely bypassing application logic filtering.
 
----
-
-## Identified Risks
-
-### R-05-01: Message delivery failure
-
-| Property | Value |
-|----------|-------|
-| **Probability** | Medium |
-| **Impact** | High |
-| **Mitigation** | To be determined during implementation planning |
-| **Owner** | Feature Team Lead |
-| **Status** | OPEN |
-
-### R-05-02: Unread count desync
-
-| Property | Value |
-|----------|-------|
-| **Probability** | Medium |
-| **Impact** | High |
-| **Mitigation** | To be determined during implementation planning |
-| **Owner** | Feature Team Lead |
-| **Status** | OPEN |
-
-### R-05-03: Cross-role visibility leakage
-
-| Property | Value |
-|----------|-------|
-| **Probability** | Medium |
-| **Impact** | High |
-| **Mitigation** | To be determined during implementation planning |
-| **Owner** | Feature Team Lead |
-| **Status** | OPEN |
-
----
-
-## Success Criterion
-
-All identified risks mitigated before GA; zero critical incidents in first 30 days.
+## 3. External API Latency
+- **Probability**: High
+- **Impact**: Medium (Degraded performance)
+- **Mitigation**: Move operations off main thread to background queues, utilizing webhook patterns for eventual consistency.

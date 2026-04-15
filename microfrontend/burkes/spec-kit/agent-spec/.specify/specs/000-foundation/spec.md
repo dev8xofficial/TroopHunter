@@ -1,68 +1,45 @@
-# Feature Specification: Foundation & Identity
+# 000-foundation: Foundation & Global Constraints
 
-**Feature ID**: 000-foundation
-**Status**: approved
-**Created**: 2026-04-15
-**Module**: Core API & Identity
-
----
+**Status:** Draft
+**Generated:** 2026-04-16
 
 ## Overview
-The Foundation module establishes the core data structures, shared primitives, and identity management rules for the Agent component. It defines the base `Agent` entity, cross-cutting RBAC constraints, and the system authentication schema required to securely serve all subsequent endpoints.
+Establishes core domain vocabulary, session lifecycles, global invariants, and foundational telemetry models.
 
----
+## Problem Statement
+The system requires rigid boundary enforcement when handling foundation & global constraints logic. Without a strictly defined finite state machine and ownership boundaries, cross-tenant data leakage and invalid lifecycle progression could occur. This module enforces invariant constraints.
 
-## Core Data Models
+## Actors & Boundaries
+- **Agent**: Mutable authority over owned foundation & global constraints entities.
+- **Client**: Read-only observation with restricted mutability over specific consent fields.
+- **System**: Enforces time-bound triggers and asynchronous background tasks.
 
-### 1. Agent Form
-The primary authenticated user in the system.
-- `id`: UUID (Primary Key)
-- `first_name`: String (Required, max: 100)
-- `last_name`: String (Required, max: 100)
-- `email`: String (Required, unique, valid email constraint)
-- `phone`: String (Optional, pattern context)
-- `role`: Enum `[`AGENT`, `ADMIN`]`
-- `status`: Enum `[`ACTIVE`, `INACTIVE`]`
-- `password_hash`: String (Argon2id default)
-- `created_at`: Timestamp (UTC)
-- `updated_at`: Timestamp (UTC)
+## User Scenarios
+- **Scenario A**: `PRECONDITION` Agent authenticated, entity exists -> `EVENT` Mutation requested -> `POSTCONDITION` System validates invariance, applies change, emits audit.
+- **Scenario B**: `PRECONDITION` Missing prerequisites -> `EVENT` Stage progression requested -> `POSTCONDITION` System rejects transaction, returns invariant failure code.
 
-### 2. Base API Context Constraints
-Every authenticated API request must inject the following into its context:
-- `user_id`: UUID
-- `role`: Enum
-- `tenant_id` / `org_id`: UUID (Implicit scoping based on agency)
+## Functional Requirements
+- **FR-ion-01**: System MUST synchronously validate all request payloads against the JSON Schema definition.
+- **FR-ion-02**: System MUST reject unauthorized mutations with HTTP 403, accompanied by an audit ingestion.
 
----
+## Data & State Table
+| Field | Type | Owner Role | Constraints |
+|---|---|---|---|
+| `id` | uuid | system | Immutable |
+| `owner_id` | uuid | agent | Must valid relation |
+| `status` | enum | agent | FSM constrained |
 
-## API Design & Endpoints
+## State Transition Rules
+| Entity | From | To | Trigger | Guard |
+|---|---|---|---|---|
+| Primary | PENDING | ACTIVE | `activation_event` | All required fields present |
+| Primary | ACTIVE | CLOSED | `closure_event` | Balances resolved zero |
 
-### Identity Management
-- **`POST /api/v1/auth/login`**: Authenticates an Agent and issues a short-lived access JWT and a HttpOnly refresh cookie.
-- **`POST /api/v1/auth/logout`**: Invalidates the current session.
-- **`GET /api/v1/auth/me`**: Returns the current agent profile information securely.
+## Edge Cases
+- Concurrency collisions during simultaneous mutations.
+- Network timeouts during external API validations.
+- Invalid state transition requests.
 
-### Global Constraints
-- All subsequent `/api/v1/*` endpoints MUST require a valid JWT.
-- Responses conform strictly to standard data wrappers:
-```json
-{
-  "data": { ... },
-  "meta": {
-    "timestamp": "ISO-8601",
-    "request_id": "UUID"
-  }
-}
-```
-
----
-
-## Authentication & RBAC
-
-| Entity Access | Agent Role | Admin Role |
-|---------------|------------|------------|
-| Auth Login    | Execute    | Execute    |
-| Override Data | Deny       | Execute    |
-| Other Agent Data| Deny      | Execute    |
-
-- **Data Partitioning**: By default, Agents can only SELECT, UPDATE, or DELETE records where `agent_id == JWT.agent_id`. Admin role circumvents partitioned checks.
+## Success Criteria
+- Sustained latency under 200ms for read operations.
+- 100% adherence to defined invariant guards.

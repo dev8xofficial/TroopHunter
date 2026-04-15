@@ -1,66 +1,45 @@
-# Feature Specification: Dashboard API & Analytics
+# 001-dashboard: Agent Dashboard Aggregation
 
-**Feature ID**: 001-dashboard
-**Status**: approved
-**Created**: 2026-04-15
-**Parent Spec**: [000-foundation](../000-foundation/spec.md)
-**Module**: Analytics Aggregation & Activity Feeds
-
----
+**Status:** Draft
+**Generated:** 2026-04-16
 
 ## Overview
-This module handles the aggregation of high-level Key Performance Indicators (KPIs) and the dispatch mechanisms for real-time activity event feeds for an Agent's dashboard.
+Multi-domain aggregation providing system state summaries, pending invariant checks, and cross-domain operational telemetry.
 
----
+## Problem Statement
+The system requires rigid boundary enforcement when handling agent dashboard aggregation logic. Without a strictly defined finite state machine and ownership boundaries, cross-tenant data leakage and invalid lifecycle progression could occur. This module enforces invariant constraints.
 
-## Core Data Models
+## Actors & Boundaries
+- **Agent**: Mutable authority over owned agent dashboard aggregation entities.
+- **Client**: Read-only observation with restricted mutability over specific consent fields.
+- **System**: Enforces time-bound triggers and asynchronous background tasks.
 
-### 1. Activity Log Event
-An immutable read-model generated via domain events.
-- `id`: UUID (Primary Key)
-- `agent_id`: UUID (Indexed)
-- `transaction_id`: UUID (Optional)
-- `event_type`: Enum `[`OFFER_ACCEPTED`, `AGREEMENT_UPLOADED`, `NEW_LISTING`, `MESSAGE_RECEIVED`]`
-- `title`: String
-- `description`: Text
-- `timestamp`: Timestamp (Indexed descending)
+## User Scenarios
+- **Scenario A**: `PRECONDITION` Agent authenticated, entity exists -> `EVENT` Mutation requested -> `POSTCONDITION` System validates invariance, applies change, emits audit.
+- **Scenario B**: `PRECONDITION` Missing prerequisites -> `EVENT` Stage progression requested -> `POSTCONDITION` System rejects transaction, returns invariant failure code.
 
----
+## Functional Requirements
+- **FR-ard-01**: System MUST synchronously validate all request payloads against the JSON Schema definition.
+- **FR-ard-02**: System MUST reject unauthorized mutations with HTTP 403, accompanied by an audit ingestion.
 
-## API Design & Endpoints
+## Data & State Table
+| Field | Type | Owner Role | Constraints |
+|---|---|---|---|
+| `id` | uuid | system | Immutable |
+| `owner_id` | uuid | agent | Must valid relation |
+| `status` | enum | agent | FSM constrained |
 
-### KPIs & Aggregation
-- **`GET /api/v1/reports/dashboard-kpis`**
-  - **Logic**: Aggregates data for the calling `agent_id`.
-  - **Calculations**:
-    - `activeTransactions`: COUNT of transactions where `status` IN `[`ON_TRACK`, `CLOSING_SOON`, `DELAYED`, `AT_RISK`]`
-    - `pendingOffers`: COUNT of transactions where `stage` EQUALS `OFFER_NEGOTIATION`
-    - `thisMonthSales`: SUM of `contract_amount` where `status` EQUALS `COMPLETED` AND `closing_date` > Start of Current Month
-    - `commissionEarned`: Derived calculated percentage of `thisMonthSales` (business rules apply).
-  - **Output Schema**:
-```json
-{
-  "active_transactions": "integer",
-  "pending_offers": "integer",
-  "month_sales_volume": "number",
-  "month_commission": "number"
-}
-```
+## State Transition Rules
+| Entity | From | To | Trigger | Guard |
+|---|---|---|---|---|
+| Primary | PENDING | ACTIVE | `activation_event` | All required fields present |
+| Primary | ACTIVE | CLOSED | `closure_event` | Balances resolved zero |
 
-### Activity Feed
-- **`GET /api/v1/activity-log`**
-  - **Params**: `?limit=10&offset=0`
-  - **Logic**: Returns chronological events ordered by `timestamp DESC` strictly partitioned by `agent_id`.
-  - **Return Type**: Array of `Activity Log Event`.
+## Edge Cases
+- Concurrency collisions during simultaneous mutations.
+- Network timeouts during external API validations.
+- Invalid state transition requests.
 
----
-
-## Payload Validation
-
-- No explicit POST schemas required directly for Dashboard; driven entirely by internal aggregates and domain event generation.
-
----
-
-## Business Logic & Constraints
-- KPI numbers must be guaranteed to eventually reflect true record states (Soft real-time).
-- Caching layer (e.g., Redis) may be placed in front of `dashboard-kpis`, expiring/invalidating systematically on dependent transaction update events.
+## Success Criteria
+- Sustained latency under 200ms for read operations.
+- 100% adherence to defined invariant guards.

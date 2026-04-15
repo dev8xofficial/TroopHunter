@@ -1,45 +1,16 @@
-﻿# Risk Register: Reports and Analytics (08)
+# Risk Assessment - 008-reports
 
-## Overview
+## 1. Concurrency Collisions
+- **Probability**: Medium
+- **Impact**: High (Data corruption, orphaned states)
+- **Mitigation**: Implement `version_id` optimistic locking on all `PATCH` endpoints. Reject mutations with HTTP 409 if version mismatch occurs.
 
-Sales KPIs, charts, transaction pipeline, quick reports, area analytics.
+## 2. Unauthorized Traversal
+- **Probability**: Low
+- **Impact**: Critical (Privacy violation)
+- **Mitigation**: Hardcode tenant isolation clauses into the ORM base queries, completely bypassing application logic filtering.
 
----
-
-## Identified Risks
-
-### R-08-01: Report data accuracy
-
-| Property | Value |
-|----------|-------|
-| **Probability** | Medium |
-| **Impact** | High |
-| **Mitigation** | To be determined during implementation planning |
-| **Owner** | Feature Team Lead |
-| **Status** | OPEN |
-
-### R-08-02: Chart rendering performance
-
-| Property | Value |
-|----------|-------|
-| **Probability** | Medium |
-| **Impact** | High |
-| **Mitigation** | To be determined during implementation planning |
-| **Owner** | Feature Team Lead |
-| **Status** | OPEN |
-
-### R-08-03: Commission calculation errors
-
-| Property | Value |
-|----------|-------|
-| **Probability** | Medium |
-| **Impact** | High |
-| **Mitigation** | To be determined during implementation planning |
-| **Owner** | Feature Team Lead |
-| **Status** | OPEN |
-
----
-
-## Success Criterion
-
-All identified risks mitigated before GA; zero critical incidents in first 30 days.
+## 3. External API Latency
+- **Probability**: High
+- **Impact**: Medium (Degraded performance)
+- **Mitigation**: Move operations off main thread to background queues, utilizing webhook patterns for eventual consistency.

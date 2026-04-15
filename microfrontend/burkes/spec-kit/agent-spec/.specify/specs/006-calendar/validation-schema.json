@@ -1,18 +1,24 @@
-﻿{
+{
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Calendar Validation Schema",
-  "description": "Validates data model for the Calendar screen (06).",
+  "title": "006-calendar Data Models",
   "type": "object",
+  "additionalProperties": false,
   "properties": {
-    "feature_id": { "type": "string", "const": "006-calendar" },
-    "depends_on": { "type": "array", "contains": { "const": "000-foundation" } },
-    "design_tokens_required": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "enum": ["primary-navy","primary-gold","accent-blue","success-green","warning-orange","error-red","font-display","font-body"]
-      }
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
     }
   },
-  "required": ["feature_id", "depends_on"]
+  "required": [
+    "id",
+    "created_at"
+  ]
 }
