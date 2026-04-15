@@ -1,25 +1,19 @@
-﻿# Risk Register: Dashboard (001)
+# Risks: Dashboard
 
-### R-01-01: KPI Data Staleness
-| Property | Value |
-|----------|-------|
-| **Probability** | Medium | **Impact** | High |
-| **Mitigation** | Polling with 30s refresh; cache invalidation on state change |
-| **Status** | OPEN |
+## Data Integrity Risks
+* **Probability:** Low
+* **Impact:** High
+* **Risk:** Computing `total_value_managed` across currencies or out-of-sync replicas.
+* **Mitigation Strategy:** Force all value aggregations to execute against read-replicas with bounded staleness (<1s) and standardise all DB monetary values dynamically to USD.
 
-### R-01-02: Missed Deadline Alert
-| Property | Value |
-|----------|-------|
-| **Probability** | Low | **Impact** | Critical |
-| **Mitigation** | Alert banner threshold at 7 days; push notifications |
-| **Status** | OPEN |
+## Access Control Risks
+* **Probability:** Low
+* **Impact:** Critical
+* **Risk:** Insecure Direct Object Reference (IDOR) on `/api/v1/attorneys/{attorney_id}/dashboard-aggregates`.
+* **Mitigation Strategy:** Extract `attorney_id` directly from the validated JWT token rather than the URL path, or enforce strict matching middleware.
 
-### R-01-03: Asset Split Display Errors
-| Property | Value |
-|----------|-------|
-| **Probability** | Low | **Impact** | High |
-| **Mitigation** | Server-side validation of split amounts; display validation |
-| **Status** | OPEN |
-
-## Success Criterion
-All risks mitigated before GA; zero critical incidents in first 30 days.
+## Integration Failure Risks
+* **Probability:** Medium
+* **Impact:** Medium
+* **Risk:** Database degradation under heavy aggregation queries.
+* **Mitigation Strategy:** Utilise materialized views or Redis caching refreshed incrementally on related mutation events rather than performing dynamic SUM() queries.

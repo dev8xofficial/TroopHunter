@@ -1,38 +1,78 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Foundation Validation Schema",
-  "description": "Validates data model for the Foundation layer (000).",
+  "title": "Foundation Schema",
   "type": "object",
-  "properties": {
-    "feature_id": { "type": "string", "const": "000-foundation" },
-    "attorney": {
+  "definitions": {
+    "session_context": {
       "type": "object",
-      "required": ["name", "initials", "role", "firm"],
       "properties": {
-        "name": { "type": "string" },
-        "initials": { "type": "string", "pattern": "^[A-Z]{2}$" },
-        "role": { "type": "string", "const": "AT" },
-        "firm": { "type": "string" }
-      }
-    },
-    "navigation": {
-      "type": "object",
-      "required": ["items", "active_screen"],
-      "properties": {
-        "items": {
+        "session_token": { "type": "string" },
+        "user_id": { "type": "string", "format": "uuid" },
+        "role": { "$ref": "#/definitions/role_enum" },
+        "expires_at": { "type": "integer" },
+        "assigned_transaction_ids": {
           "type": "array",
-          "items": { "type": "string" },
-          "const": ["Dashboard", "Transactions", "Documents", "Clients", "Verification"]
-        },
-        "active_screen": { "type": "string" }
-      }
+          "items": { "type": "string", "format": "uuid" }
+        }
+      },
+      "required": ["session_token", "user_id", "role", "expires_at"],
+      "additionalProperties": false
     },
-    "notifications": {
+    "role_enum": {
+      "type": "string",
+      "enum": [
+        "closing_attorney",
+        "real_estate_agent",
+        "mortgage_lender",
+        "client",
+        "title_company",
+        "admin"
+      ]
+    },
+    "activity_log_event": {
       "type": "object",
       "properties": {
-        "unread_count": { "type": "integer", "minimum": 0 }
-      }
+        "event_id": { "type": "string", "format": "uuid" },
+        "actor_id": { "type": "string", "format": "uuid" },
+        "actor_role": { "$ref": "#/definitions/role_enum" },
+        "event_type": { "type": "string" },
+        "payload": { "type": "object" },
+        "created_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["event_id", "actor_id", "actor_role", "event_type", "created_at"],
+      "additionalProperties": false
+    },
+    "transaction_base": {
+      "type": "object",
+      "properties": {
+        "transaction_id": { "type": "string", "format": "uuid" },
+        "client_id": { "type": "string", "format": "uuid" },
+        "case_type": {
+          "type": "string",
+          "enum": ["purchase", "sale", "divorce"]
+        },
+        "transaction_status": {
+          "type": "string",
+          "enum": [
+            "needs_verification",
+            "in_progress",
+            "split_pending",
+            "verified",
+            "completed",
+            "flagged"
+          ]
+        },
+        "contract_amount": { "type": "number", "minimum": 0 },
+        "closing_date": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "transaction_id",
+        "client_id",
+        "case_type",
+        "transaction_status",
+        "contract_amount"
+      ],
+      "additionalProperties": false
     }
-  },
-  "required": ["feature_id", "attorney", "navigation"]
+  }
 }

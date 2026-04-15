@@ -1,145 +1,52 @@
-# Feature Specification: Transactions
+# 002-Transactions
 
-**Feature ID**: 002-transactions
-**Status**: approved
-**Created**: 2026-04-12
-**Parent Spec**: [000-foundation](../000-foundation/spec.md)
-**Screen / Module**: Transactions — full transaction management
-
----
+**Feature ID:** 002-transactions
+**Status:** Draft
+**Created Date:** 2026-04-15
 
 ## Overview
-
-The Transactions screen provides the attorney with a comprehensive view of all real estate transactions assigned to them. It features a searchable, filterable transaction table with tabbed views (All, Pending Review, Divorce Cases, Completed), allowing the attorney to quickly locate and act on specific transactions. Each row provides direct verify and flag actions.
-
----
+The Transactions module owns the core `transaction` entity. It handles lifecycle transition rules, fetching filtered sets based on case type or status, and tracking the property contract amount across its multi-month closing period.
 
 ## Problem Statement
+Real estate closings are stateful and multi-party processes. The system must enforce that a transaction cannot close until the attorney completely verifies the financial aspects, preventing liability in multi-million dollar deals.
 
-Attorneys managing multiple closings simultaneously need a single view to see all their assigned transactions, filter by status or type, and take action. Without a dedicated transactions screen, attorneys rely on scattered emails and paper files to track their caseload, leading to missed deadlines and verification gaps.
-
----
-
-## Goals
-
-- Display all attorney-assigned transactions in a sortable, filterable table.
-- Provide tabbed views for different transaction categories.
-- Enable search by client name, property address, or transaction ID.
-- Allow direct verify and flag actions from the table.
-- Show transaction counts per tab.
-
----
-
-## Non-Goals
-
-- This screen does not display verification details (spec 005).
-- It does not host document review (spec 003).
-- It does not manage client profiles (spec 004).
-
----
-
-## Actors
-
-| Actor | Role in This Feature |
-|-------|---------------------|
-| Attorney (AT) | Views all transactions, verifies, flags |
-| Agent (AG) | Submits transactions visible here |
-
----
+## Actors and Permissions
+* **closing_attorney**: Full ownership over transactions they are assigned to.
+* **real_estate_agent**: Creates `purchase` and `sale` transactions.
+* **title_company**: Only reads after transaction reaches `title_review` or `verified`.
 
 ## User Scenarios
-
-### Scenario 1 — Attorney Searches for a Transaction
-
-**Actor**: Attorney
-**Flow**:
-1. Attorney navigates to Transactions.
-2. Types "Smith" in search bar.
-3. Table filters to show only Smith-related transactions.
-4. Attorney clicks "Verify" to begin verification.
-
-**Success**: Transaction found and action initiated within 10 seconds.
-
-### Scenario 2 — Attorney Filters by Pending Status
-
-**Actor**: Attorney
-**Flow**:
-1. Attorney clicks "Pending Review (3)" tab.
-2. An info alert says "3 transactions require your attention."
-3. Table shows only pending transactions with closing dates highlighted.
-4. Attorney reviews each and takes appropriate action.
-
-**Success**: All pending transactions visible with clear urgency indicators.
-
----
+* **Precondition:** Transaction is in `needs_verification`.
+  * **System Event Sequence:** Attorney calls verification API. System checks if `closing_date` is valid. System transitions state to `verified`.
+  * **Postcondition:** Transaction is locked from further document modifications.
 
 ## Functional Requirements
+* **FR-TRX-01:** System MUST store the canonical `contract_amount` and `closing_date` for every transaction.
+* **FR-TRX-02:** System MUST allow filtering transactions by `case_type` (purchase, sale, divorce) and `transaction_status`.
+* **FR-TRX-03:** System MUST reject transitions from `needs_verification` to `verified` if any documents are in `needs_review` state (checked synchronously).
 
-### FR-02-01 — Search and Filter Bar
+## Data & State Table
+| Field | Type | Owner Role | Constraints |
+|---|---|---|---|
+| `transaction_id` | string | System | UUID |
+| `client_id` | string | agent/attorney | Valid foreign key to client |
+| `property_address` | string | agent | Max 255 chars |
+| `case_type` | enum | agent | `purchase_closing`, `sale_closing`, `divorce_asset_split` |
+| `contract_amount` | number | agent | `> 0` |
+| `closing_date` | string | agent | Future date upon creation |
+| `transaction_status` | enum | attorney | Starts at `document_gathering` |
 
-- Search input with icon: "Search by client name, property, or case ID…"
-- Transaction type filter dropdown: All Types, Purchase – Closing, Sale – Closing, Divorce – Asset Split.
-- Status filter dropdown: All Statuses, Needs Verification, In Progress, Split Pending, Verified, Completed.
+## State Transition Table
+See `state-machines.md`.
 
-### FR-02-02 — Tab Navigation
-
-- Tab bar with: All (12), Pending Review (3), Divorce Cases (2), Completed (5).
-- Active tab: `primary-navy` text with bottom border.
-- Tab content switches without page reload.
-
-### FR-02-03 — All Transactions Table
-
-- Columns: Transaction ID, Client, Property Address, Transaction Type, Contract Amount, Closing Date, Status, Action.
-- Transaction IDs rendered in `accent-blue` font-weight: 700.
-- Client column uses avatar + name + role pattern.
-- Action column: Verify (btn-primary) and Flag (btn-secondary with error styling) for active transactions; View for completed.
-
-### FR-02-04 — Pending Review View
-
-- Info alert banner: "3 transactions require your attention."
-- Same table structure with closing date badges showing urgency.
-
-### FR-02-05 — Divorce Cases View
-
-- Card header "Active Closing Cases" with subtitle.
-- Table filtered to show only attorney/title review transactions.
-
-### FR-02-06 — Completed View
-
-- Table showing completed transactions (status badge-success "Completed").
-- No action buttons except "View."
-
----
-
-## Data & State
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `transactions[]` | array | All transaction objects assigned to attorney |
-| `search_query` | string | Current search filter text |
-| `active_tab` | string | Currently selected tab ID |
-| `type_filter` | string | Transaction type filter value |
-| `status_filter` | string | Status filter value |
-
----
-
-## Edge Cases & Error States
-
-- **No matching results**: "No transactions match your search criteria."
-- **Empty completed tab**: "No completed transactions yet."
-
----
+## Edge Cases
+* **Divorce Case Without Split:** A `divorce` transaction without an associated asset split should block verification.
+* **Closing Date Lapses:** If a transaction exceeds the closing date without being `completed`, it should automatically be `flagged`.
 
 ## Success Criteria
-
-1. All 4 reference transactions render in the All tab.
-2. Search filters correctly by client name, property, and transaction ID.
-3. Tab counts are accurate and update when filters change.
-4. Verify and Flag buttons open correct modals.
-
----
+* 100% of state transitions are recorded in the Activity Log.
+* Transaction status acts as a strict write-barrier for document upload API endpoints.
 
 ## Dependencies
-
-- **Depends on**: 000-foundation
-- **Cross-links**: 001-dashboard (View All button), 005-verification (Verify modal)
+* Depends on 004-clients.
+* Blocking dependency for 003-documents and 005-verification.

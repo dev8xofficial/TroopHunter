@@ -1,18 +1,13 @@
-﻿# Risk Register: Clients (004)
+# Risks: Clients
 
-### R-04-01: Client Data Privacy
-| Property | Value |
-|----------|-------|
-| **Probability** | Low | **Impact** | Critical |
-| **Mitigation** | Role-scoped access; encrypted PII; audit logging |
-| **Status** | OPEN |
+## Data Integrity Risks
+* **Probability:** Low
+* **Impact:** Low
+* **Risk:** Phone numbers formatted incorrectly failing SMS dispatch.
+* **Mitigation Strategy:** Backend schema enforces E.164 string format regex verification upon write.
 
-### R-04-02: Duplicate Client Records
-| Property | Value |
-|----------|-------|
-| **Probability** | Medium | **Impact** | Medium |
-| **Mitigation** | Email-based dedup check; merge capability |
-| **Status** | OPEN |
-
-## Success Criterion
-All risks mitigated before GA; zero critical incidents in first 30 days.
+## Access Control Risks
+* **Probability:** Low
+* **Impact:** High
+* **Risk:** Data leakage via sequential sweeping of `/api/v1/clients/{client_id}`.
+* **Mitigation Strategy:** Utilize UUIDv4 for `client_id` and strict SQL JOIN evaluation verifying the calling user shares an active transaction record with the requested UUID.

@@ -1,25 +1,19 @@
-﻿# Risk Register: Verification (005)
+# Risks: Verification
 
-### R-05-01: Incorrect Verification (Legal Risk)
-| Property | Value |
-|----------|-------|
-| **Probability** | Low | **Impact** | Critical |
-| **Mitigation** | Double-confirm modal with signature; checklist enforcement; audit trail |
-| **Status** | OPEN |
+## Data Integrity Risks
+* **Probability:** Low
+* **Impact:** Critical
+* **Risk:** Floating point arithmetic leading to `99.999%` sum validation failures on asset splits.
+* **Mitigation Strategy:** Backend schema stores all monetary values in integer cents and handles percentage fractions using exact decimal types (e.g. `NUMERIC(5,2)` in Postgres) rather than floats.
 
-### R-05-02: Flag Notification Failure
-| Property | Value |
-|----------|-------|
-| **Probability** | Low | **Impact** | Critical |
-| **Mitigation** | Multi-channel notification (portal + email); delivery confirmation |
-| **Status** | OPEN |
+## Access Control Risks
+* **Probability:** Low
+* **Impact:** High
+* **Risk:** Attorney verifies a case they are not actively assigned to via replay attack.
+* **Mitigation Strategy:** Ensure verification API routes enforce standard transaction ownership checks.
 
-### R-05-03: Report Generation Timeout
-| Property | Value |
-|----------|-------|
-| **Probability** | Medium | **Impact** | Medium |
-| **Mitigation** | Async generation; progress indicator; background processing |
-| **Status** | OPEN |
-
-## Success Criterion
-All risks mitigated before GA; zero legal compliance incidents in first 30 days.
+## Integration Risks
+* **Probability:** High
+* **Impact:** Medium
+* **Risk:** Discrepancy webhooks (emails/notifications) flooding external agents.
+* **Mitigation Strategy:** Debounce or batch notification dispatches for `DiscrepancyFlagged` events to avoid email spam if an attorney clicks repeatedly.

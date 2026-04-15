@@ -1,43 +1,23 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Transactions Validation Schema",
-  "description": "Validates data model for the Transactions screen (002).",
-  "type": "object",
-  "properties": {
-    "feature_id": { "type": "string", "const": "002-transactions" },
-    "depends_on": { "type": "array", "contains": { "const": "000-foundation" } },
-    "tabs": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["id", "label", "count"],
-        "properties": {
-          "id": { "type": "string" },
-          "label": { "type": "string" },
-          "count": { "type": "integer" }
+  "title": "Transaction Module Schemas",
+  "definitions": {
+    "transaction_base": {
+      "type": "object",
+      "properties": {
+        "transaction_id": { "type": "string", "format": "uuid" },
+        "client_id": { "type": "string", "format": "uuid" },
+        "property_address": { "type": "string", "maxLength": 255 },
+        "case_type": { "type": "string", "enum": ["purchase_closing", "sale_closing", "divorce_asset_split"] },
+        "contract_amount": { "type": "number", "minimum": 0 },
+        "closing_date": { "type": "string", "format": "date-time" },
+        "transaction_status": {
+          "type": "string",
+          "enum": ["document_gathering", "agent_review", "under_attorney_review", "split_pending", "flagged", "title_review", "verified", "completed"]
         }
       },
-      "minItems": 4, "maxItems": 4
-    },
-    "filters": {
-      "type": "object",
-      "properties": {
-        "search_query": { "type": "string" },
-        "type_filter": { "type": "string" },
-        "status_filter": { "type": "string" }
-      }
-    },
-    "transactions_table": {
-      "type": "object",
-      "required": ["columns"],
-      "properties": {
-        "columns": {
-          "type": "array",
-          "items": { "type": "string" },
-          "const": ["Transaction ID", "Client", "Property Address", "Transaction Type", "Contract Amount", "Closing Date", "Status", "Action"]
-        }
-      }
+      "required": ["transaction_id", "client_id", "property_address", "case_type", "contract_amount", "closing_date", "transaction_status"],
+      "additionalProperties": false
     }
-  },
-  "required": ["feature_id", "depends_on"]
+  }
 }
