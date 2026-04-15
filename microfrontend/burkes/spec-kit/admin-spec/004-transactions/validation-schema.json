@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://burkesgroup.com/schema/admin-transactions.json",
+  "title": "Admin Transactions Schema",
+  "definitions": {
+    "TransactionEntity": {
+      "type": "object",
+      "properties": {
+        "transaction_id": { "type": "string", "pattern": "^TRX-[0-9]{5,}$" },
+        "client_id": { "type": "string", "format": "uuid" },
+        "property_address": { "type": "string", "minLength": 10, "maxLength": 255 },
+        "transaction_type": {
+          "type": "string",
+          "enum": ["purchase", "sale", "refinance", "divorce"]
+        },
+        "contract_amount": { "type": ["number", "null"], "minimum": 0 },
+        "stage": {
+          "type": "string",
+          "enum": [
+            "consultation",
+            "search",
+            "negotiation",
+            "contract",
+            "mortgage_app",
+            "insurance",
+            "attorney_review",
+            "inspection",
+            "closing_prep",
+            "mortgage_underwriting",
+            "final_walkthrough",
+            "completed"
+          ]
+        },
+        "health_status": {
+          "type": "string",
+          "enum": ["on_track", "closing_soon", "delayed", "at_risk"]
+        },
+        "closing_date": { "type": ["string", "null"], "format": "date" }
+      },
+      "required": ["transaction_id", "client_id", "property_address", "transaction_type", "stage", "health_status"],
+      "additionalProperties": false
+    },
+    "TransactionUpdatePayload": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "contract_amount": { "type": ["number", "null"] },
+        "closing_date": { "type": ["string", "null"], "format": "date" }
+      },
+      "minProperties": 1,
+      "additionalProperties": false
+    },
+    "TransactionStageOverridePayload": {
+      "type": "object",
+      "properties": {
+        "target_stage": { "type": "string" },
+        "override_reason": { "type": "string", "minLength": 10 }
+      },
+      "required": ["target_stage", "override_reason"],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://burkesgroup.com/schema/admin-foundation.json",
+  "title": "Admin Foundation Schema",
+  "definitions": {
+    "SessionContext": {
+      "type": "object",
+      "properties": {
+        "session_token": { "type": "string" },
+        "actor_id": { "type": "string", "format": "uuid" },
+        "role": { "$ref": "#/definitions/RoleEnum" },
+        "expires_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["session_token", "actor_id", "role", "expires_at"],
+      "additionalProperties": false
+    },
+    "RoleEnum": {
+      "type": "string",
+      "enum": ["admin", "client", "agent", "attorney", "lender", "cpa"]
+    },
+    "ActivityLogEvent": {
+      "type": "object",
+      "properties": {
+        "event_id": { "type": "string", "format": "uuid" },
+        "actor_id": { "type": "string", "format": "uuid" },
+        "action_type": { "type": "string" },
+        "target_entity": { "type": "string" },
+        "target_id": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "payload": { "type": "object" }
+      },
+      "required": ["event_id", "actor_id", "action_type", "target_entity", "timestamp"],
+      "additionalProperties": false
+    }
+  }
+}

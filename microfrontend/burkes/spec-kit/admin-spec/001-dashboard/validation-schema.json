@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://burkesgroup.com/schema/admin-dashboard.json",
+  "title": "Admin Dashboard Schema",
+  "definitions": {
+    "DashboardMetrics": {
+      "type": "object",
+      "properties": {
+        "stat_total_users": { "type": "integer" },
+        "stat_active_tx": { "type": "integer" },
+        "stat_partners": { "type": "integer" },
+        "stat_pending_docs": { "type": "integer" }
+      },
+      "required": ["stat_total_users", "stat_active_tx", "stat_partners", "stat_pending_docs"],
+      "additionalProperties": false
+    },
+    "RecentActivityItem": {
+      "type": "object",
+      "properties": {
+        "activity_id": { "type": "string", "format": "uuid" },
+        "domain": { "type": "string" },
+        "title": { "type": "string" },
+        "status": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["activity_id", "domain", "title", "status", "timestamp"],
+      "additionalProperties": false
+    }
+  }
+}

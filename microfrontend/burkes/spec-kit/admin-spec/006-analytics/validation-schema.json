@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://burkesgroup.com/schema/admin-analytics.json",
+  "title": "Admin Analytics Schema",
+  "definitions": {
+    "AnalyticsMetrics": {
+      "type": "object",
+      "properties": {
+        "total_revenue": { "type": "number", "minimum": 0 },
+        "total_revenue_delta": { "type": ["number", "null"] },
+        "closed_transactions": { "type": "integer", "minimum": 0 },
+        "closed_transactions_delta": { "type": ["number", "null"] },
+        "avg_transaction_value": { "type": "number", "minimum": 0 },
+        "avg_transaction_value_delta": { "type": ["number", "null"] },
+        "new_users": { "type": "integer", "minimum": 0 },
+        "new_users_delta": { "type": ["number", "null"] },
+        "avg_close_time_days": { "type": "integer", "minimum": 0 },
+        "avg_close_time_delta": { "type": ["number", "null"] },
+        "partner_referrals": { "type": "integer", "minimum": 0 },
+        "partner_referrals_delta": { "type": ["number", "null"] }
+      },
+      "required": [
+        "total_revenue", "closed_transactions", "avg_transaction_value",
+        "new_users", "avg_close_time_days", "partner_referrals"
+      ],
+      "additionalProperties": false
+    },
+    "TimeSeriesData": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": { "type": "string", "format": "date" },
+          "value": { "type": "number" }
+        },
+        "required": ["timestamp", "value"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

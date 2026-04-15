@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://burkesgroup.com/schema/admin-documents.json",
+  "title": "Admin Documents Schema",
+  "definitions": {
+    "DocumentEntity": {
+      "type": "object",
+      "properties": {
+        "document_id": { "type": "string", "format": "uuid" },
+        "filename": { "type": "string", "minLength": 1, "maxLength": 255 },
+        "category": {
+          "type": "string",
+          "enum": [
+            "purchase_agreement",
+            "closing_disclosure",
+            "mortgage_docs",
+            "insurance_docs",
+            "title_docs",
+            "divorce_agreement",
+            "inspection_report"
+          ]
+        },
+        "transaction_id": { "type": ["string", "null"], "pattern": "^TRX-[0-9]{5,}$" },
+        "uploaded_by": { "type": "string", "format": "uuid" },
+        "status": {
+          "type": "string",
+          "enum": ["needs_review", "under_review", "approved", "rejected"]
+        },
+        "rejection_reason": { "type": ["string", "null"] },
+        "created_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["document_id", "filename", "category", "uploaded_by", "status", "created_at"],
+      "additionalProperties": false
+    },
+    "DocumentStatusUpdatePayload": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["approved", "rejected", "under_review"]
+        },
+        "rejection_reason": { "type": "string", "minLength": 1 }
+      },
+      "required": ["status"],
+      "additionalProperties": false
+    }
+  }
+}

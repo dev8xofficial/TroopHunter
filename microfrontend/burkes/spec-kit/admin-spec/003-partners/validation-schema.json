@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://burkesgroup.com/schema/admin-partners.json",
+  "title": "Admin Partners Schema",
+  "definitions": {
+    "PartnerEntity": {
+      "type": "object",
+      "properties": {
+        "partner_id": { "type": "string", "format": "uuid" },
+        "company_name": { "type": "string", "minLength": 2, "maxLength": 100 },
+        "primary_contact": { "type": "string", "maxLength": 255 },
+        "category": {
+          "type": "string",
+          "enum": ["plumbing", "roofing", "electrical", "credit_repair", "hvac", "other"]
+        },
+        "service_areas": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[0-9]{5}$" },
+          "uniqueItems": true
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "pending_approval", "suspended"]
+        },
+        "rating": { "type": "number", "minimum": 0.0, "maximum": 5.0 }
+      },
+      "required": ["partner_id", "company_name", "primary_contact", "category", "service_areas", "status", "rating"],
+      "additionalProperties": false
+    },
+    "PartnerUpdatePayload": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["active", "suspended"]
+        },
+        "service_areas": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[0-9]{5}$" }
+        }
+      },
+      "minProperties": 1,
+      "additionalProperties": false
+    }
+  }
+}

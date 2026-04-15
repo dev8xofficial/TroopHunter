@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://burkesgroup.com/schema/admin-users.json",
+  "title": "Admin Users Schema",
+  "definitions": {
+    "UserEntity": {
+      "type": "object",
+      "properties": {
+        "user_id": { "type": "string", "format": "uuid" },
+        "display_id": { "type": "string", "pattern": "^USR-[A-Z]{3}-[0-9]{3,}$" },
+        "full_name": { "type": "string", "minLength": 2, "maxLength": 100 },
+        "email": { "type": "string", "format": "email" },
+        "role": { "$ref": "https://burkesgroup.com/schema/admin-foundation.json#/definitions/RoleEnum" },
+        "status": {
+          "type": "string",
+          "enum": ["active", "pending_approval", "suspended", "inactive"]
+        },
+        "joined_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["user_id", "display_id", "full_name", "email", "role", "status", "joined_at"],
+      "additionalProperties": false
+    },
+    "UserCreatePayload": {
+      "type": "object",
+      "properties": {
+        "full_name": { "type": "string", "minLength": 2, "maxLength": 100 },
+        "email": { "type": "string", "format": "email" },
+        "role": { "$ref": "https://burkesgroup.com/schema/admin-foundation.json#/definitions/RoleEnum" }
+      },
+      "required": ["full_name", "email", "role"],
+      "additionalProperties": false
+    },
+    "UserStatusUpdatePayload": {
+      "type": "object",
+      "properties": {
+        "target_status": {
+          "type": "string",
+          "enum": ["active", "suspended", "inactive"]
+        },
+        "reason": { "type": "string", "maxLength": 255 }
+      },
+      "required": ["target_status"],
+      "additionalProperties": false
+    }
+  }
+}
