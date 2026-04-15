@@ -1,208 +1,168 @@
-# Feature Specification: Foundation
-
-> **Feature ID**: `000-foundation`
-> **Status**: `approved`
-> **Version**: `1.0`
-> **Created**: 2026-04-12
-> **Last Updated**: 2026-04-12
-> **Parent Spec**: None (root)
-> **Screen / Module**: Global Infrastructure
+# Spec — 000 Foundation
+**Feature ID**: 000-foundation
+**Portal**: Service Partner Portal
+**Status**: draft | **Created**: 2026-04-16
 
 ---
 
 ## Overview
 
-The Foundation specification defines the shared infrastructure layer consumed by all eight screens of The Burkes Group Service Partner Portal. It establishes the authenticated session context, the sticky top navigation bar with partner badge, the design token system for colours, typography, shadows, and spacing, the canonical status badge system used throughout the portal, and the append-only activity log contract that enforces audit-visible state changes across every screen.
+The foundation module defines the session context contract, authentication
+requirements, role model, global data vocabulary, activity log schema, and the
+referral-to-job transaction lifecycle that all other feature modules depend upon.
+It has no API surface of its own; it provides the shared contracts that all other
+modules reference.
 
 ---
 
 ## Problem Statement
 
-Without a centralised foundation layer, each screen would independently define its navigation, colour system, typography, status badges, and session handling. This leads to inconsistent user experiences, duplicated design decisions, and maintenance overhead when design tokens change. Partners would encounter different button styles, badge colours, and navigation patterns across screens, eroding trust and increasing cognitive load. The foundation ensures a single, authoritative source for all shared infrastructure.
+Without a shared, authoritative contract for session, role, and event schemas,
+individual feature modules define their own assumptions, leading to drift in field
+names, permission logic, and audit behaviour. The foundation module closes this
+gap by establishing canonical definitions across the platform.
 
 ---
 
-## Goals
+## Actors and Permissions
 
-- Define the global design token system (colours, typography, shadows, spacing) that all screens inherit
-- Establish the sticky top navigation bar with 8 screen links, notification bell, partner badge, and user chip
-- Define the authenticated session context (partner company name, contact name, role, service categories)
-- Create the canonical badge system for referral/job/payment statuses
-- Establish the append-only activity log event contract
-- Define the button system (primary, secondary, gold, success, table-action variants)
-- Set responsive breakpoint rules for all screen layouts
-
-## Non-Goals
-
-- Screen-specific content (handled by specs 001–008)
-- Implementation details for authentication provider
-- Backend API contract definitions
-- Mobile native app considerations
+| Actor | Permission Scope |
+|---|---|
+| `service_partner` | Read own session context; cannot modify roles or lifecycle states |
+| `admin` | Transition account status; write verification fields |
+| `system` | Assign `routing_priority_score`; generate activity log events; dispatch notifications |
 
 ---
 
-## Actors
+## Session Context Contract
 
-| Actor | Role | Responsibility in This Feature |
-|-------|------|-------------------------------|
-| Service Partner | SP | Authenticates, navigates between screens, views notifications |
-| Admin | AD | Not directly visible; manages session tokens and partner verification status |
+| Field | Type | Required | Constraint |
+|---|---|---|---|
+| `partner_id` | UUID | yes | immutable after assignment |
+| `company_name` | string | yes | max 150 chars |
+| `membership_type` | enum | yes | `standard`, `premium` |
+| `account_status` | enum | yes | see lifecycle below |
+| `service_area_zip_codes` | string[] | yes | 1–50 entries; each 5-digit numeric |
+| `service_categories` | enum[] | yes | min 1 entry |
+| `session_issued_at` | ISO 8601 | yes | UTC |
+| `session_expires_at` | ISO 8601 | yes | UTC; max 8h from issued |
+| `routing_priority_score` | integer | yes | 0–100; system-assigned |
+
+Session tokens must be refreshed before expiry. Expired sessions return HTTP 401.
+The session context is re-evaluated on each refresh to pick up account status
+changes.
 
 ---
 
-## User Scenarios
+## Role Model
 
-### Scenario 1: Partner Navigates Between Screens
+| Role | Scope | Description |
+|---|---|---|
+| `service_partner` | Own records | Licensed trade vendor receiving platform referrals |
+| `admin` | Platform-wide | Verifies credentials, manages partner accounts |
+| `system` | Internal | Automated routing, payout, notification engine |
+| `client` | Own transactions | Homeowner submitting referral requests |
+| `agent` | Own client portfolio | Real-estate agent routing client referrals |
 
-- **Actor**: SP
-- **Goal**: Switch from Dashboard to Referrals screen
-- **Flow**:
-  1. Partner views the Dashboard screen
-  2. Partner clicks "Referrals" in the top navigation bar
-  3. Dashboard content hides; Referrals content displays
-  4. "Referrals" nav item shows active state (gold background)
-- **Success**: Partner sees the Referrals screen with the nav bar indicating the active screen
+---
 
-### Scenario 2: Partner Views Notification Indicator
+## Account Status Lifecycle
 
-- **Actor**: SP
-- **Goal**: Check if there are unread notifications
-- **Flow**:
-  1. Partner views any screen
-  2. Partner looks at the notification bell icon in the nav bar
-  3. If unread notifications exist, a red dot appears on the bell
-- **Success**: Partner can see at a glance whether action is required
+| From | To | Trigger | Guard |
+|---|---|---|---|
+| — | `pending_verification` | Partner self-registers | Registration form complete |
+| `pending_verification` | `active_verified` | Admin approves credentials | License + insurance both verified |
+| `active_verified` | `suspended` | Admin suspends OR partner self-suspends | Account must be `active_verified` |
+| `suspended` | `active_verified` | Admin reinstates | Admin confirms reinstatement |
+| `active_verified` | `deactivated` | Admin permanently removes | Irreversible |
+| `suspended` | `deactivated` | Admin permanently removes | Irreversible |
+
+---
+
+## Activity Log Contract
+
+| Field | Type | Required | Constraint |
+|---|---|---|---|
+| `event_id` | UUID | yes | system-generated; immutable |
+| `event_name` | string | yes | snake_case; see event catalogue |
+| `actor_role` | enum | yes | role enum |
+| `actor_id` | UUID | yes | partner_id, admin_id, or system |
+| `entity_type` | string | yes | e.g. `referral`, `job`, `quote` |
+| `entity_id` | UUID | yes | FK to the affected entity |
+| `payload` | object | yes | event-specific fields |
+| `occurred_at` | ISO 8601 | yes | UTC; server-assigned |
+
+**Immutability rule**: No UPDATE or DELETE is permitted on activity log rows.
+Insert-only via append. Visible to: `service_partner` (own events), `admin` (all events).
+
+---
+
+## Notification Event Contract
+
+| Field | Type | Required |
+|---|---|---|
+| `notification_id` | UUID | yes |
+| `trigger_event` | string | yes |
+| `recipient_partner_id` | UUID | yes |
+| `channel` | enum | yes | `email`, `sms`, `in_app` |
+| `payload` | object | yes |
+| `sent_at` | ISO 8601 | yes |
+| `delivery_status` | enum | yes | `pending`, `sent`, `failed` |
+
+Transactional notifications (new referral, payment disbursed) are always sent
+regardless of preference settings. Preference settings apply to digest and
+marketing-type notifications only.
+
+---
+
+## Referral-to-Job Transaction Lifecycle (11 Stages)
+
+| Stage | State | Description |
+|---|---|---|
+| 1 | `new_lead` | Referral routed; awaiting partner response |
+| 2 | `contacted` | Partner contacted homeowner |
+| 3 | `quoted` | Formal quote submitted |
+| 4 | `quote_accepted` | Homeowner accepted quote |
+| 5 | `scheduled` | Appointment confirmed |
+| 6 | `in_progress` | Work underway |
+| 7 | `completed` | Partner marks job done |
+| 8 | `awaiting_payment` | Payment initiated by platform |
+| 9 | `paid` | Partner net earnings disbursed |
+| 10 | `declined` | Terminal — partner or client declined |
+| 11 | `cancelled` | Terminal — cancelled before start |
 
 ---
 
 ## Functional Requirements
 
-### FR-00-01 — Navigation Bar Structure
-
-The portal displays a sticky top navigation bar containing: (1) the Burkes Group logo with gold "SERVICE PARTNER" badge, (2) eight navigation buttons (Dashboard, Referrals, Active Jobs, Quotes, Reviews, Service Areas, Earnings, Profile), (3) a notification bell icon, and (4) a user chip showing the partner's initials and company name.
-
-**Acceptance Criteria**:
-- Nav bar remains fixed at the top during scrolling
-- Exactly 8 navigation items are displayed
-- Gold "SERVICE PARTNER" badge appears next to the logo
-- Active screen's nav button has `primary-gold` background with `primary-navy` text
-- Inactive nav buttons have white text on `primary-navy` background
-
-### FR-00-02 — Design Token System
-
-The portal uses a canonical set of design tokens for colours, typography, shadows, and spacing. All components reference tokens by name, never by raw hex/pixel values.
-
-**Acceptance Criteria**:
-- Colour tokens defined: `primary-navy`, `primary-gold`, `accent-blue`, `success-green`, `warning-orange`, `error-red`, plus neutral scale
-- Typography: Archivo for headings/display, Manrope for body/UI
-- Shadow tokens: `shadow-sm`, `shadow-md`, `shadow-lg`, `shadow-xl`
-- Spacing: Container max-width 1600px, 32px padding, 16px card border-radius
-
-### FR-00-03 — Session Context
-
-The portal maintains an authenticated session providing partner identity data to all screens.
-
-**Acceptance Criteria**:
-- Session provides: company_name, contact_name, initials, role (SP), service_categories, active_service_areas, unread_notification_count
-- Session persists across screen switches (SPA model)
-- No per-screen re-authentication required
-
-### FR-00-04 — Badge System
-
-The portal uses a canonical set of status badges across all screens. Badges have consistent colours and rounded styling.
-
-**Acceptance Criteria**:
-- Badge variants: `new` (blue), `contacted` (orange), `quoted` (blue), `scheduled` (blue), `completed` (green), `declined` (red), `processing` (orange), `paid` (green), `active` (green), `pending` (orange)
-- All badges use `font-body`, 12px font size, 6px border-radius, bold weight
-
-### FR-00-05 — Button System
-
-The portal uses a canonical set of button variants with consistent styling.
-
-**Acceptance Criteria**:
-- Primary button: `primary-navy` background, white text, 10px border-radius
-- Secondary button: white background, `primary-navy` text, `primary-navy` border
-- Gold button: `primary-gold` background, `primary-navy` text
-- Success button: `success-green` background, white text
-- Table action button: Compact, `accent-blue` text, no background
-
-### FR-00-06 — Responsive Layout Rules
-
-The portal adapts its layout based on viewport width.
-
-**Acceptance Criteria**:
-- ≥ 1200px: Full multi-column layouts (4-column stat grids, 2-column content areas)
-- 768px – 1199px: Reduced columns (2-column stat grids, single-column content)
-- < 768px: Single-column stack, reduced padding, mobile-optimised navigation
-
-### FR-00-07 — Activity Log Contract
-
-Every meaningful state change across all screens produces an immutable activity log event.
-
-**Acceptance Criteria**:
-- Events follow the schema defined in `.specify/schemas/activity-log-event.json`
-- Events are append-only (no updates, no deletes)
-- Each event includes: event_id, referral_id, actor_role, event_type, timestamp, description, visibility
-- Dashboard activity feed consumes events for display
+| ID | Requirement |
+|---|---|
+| FR-00-01 | Session context MUST include `account_status`; any request from a `suspended` or `deactivated` account MUST return HTTP 403 |
+| FR-00-02 | Token refresh MUST re-evaluate `account_status` at the time of refresh |
+| FR-00-03 | Activity log events MUST be persisted before the triggering API call returns HTTP 2xx |
+| FR-00-04 | `routing_priority_score` MUST be recomputed by the system after every referral response, review submission, or status change |
+| FR-00-05 | Session lifetime MUST NOT exceed 8 hours; clients MUST refresh before expiry |
 
 ---
 
-## Data & State
+## Edge Cases
 
-| Field | Type | Required | Constraints | Example |
-|-------|------|----------|-------------|---------|
-| company_name | string | Yes | max 100 chars | "Woodlands Plumbing Pro" |
-| contact_name | string | Yes | max 100 chars | "Marcus Rivera" |
-| initials | string | Yes | 2 uppercase letters | "MR" |
-| role | string | Yes | enum: SP | "SP" |
-| service_categories | array | Yes | min 1 item | ["Emergency Repairs", "Installations"] |
-| active_service_areas | array | No | list of 5-digit zip codes | ["77380", "77381", "77382"] |
-| unread_notification_count | number | Yes | min 0 | 3 |
-| membership_type | string | Yes | enum: standard, premium, enterprise | "Premium Partner" |
-
----
-
-## Edge Cases & Error States
-
-| Scenario | Handling |
-|----------|---------|
-| Session expires during navigation | Display re-authentication prompt; preserve current screen state |
-| No service categories configured | Show banner on Dashboard: "Complete your profile to start receiving referrals" |
-| Zero unread notifications | Notification bell displays without red dot indicator |
-| Browser width below 320px | Minimum supported width; horizontal scrollbar permitted |
-
----
-
-## Assumptions
-
-1. The authentication provider is external and out of scope for this spec.
-2. All portals (Agent, Service Partner, Client, Admin) share the same design token values.
-3. The partner's session is established before any screen renders.
+- A partner whose account is suspended mid-session: next request returns 403;
+  session is invalidated server-side regardless of client-held token.
+- A partner with zero active service areas remains `active_verified` but receives
+  no referral routing until at least one area is re-activated.
 
 ---
 
 ## Success Criteria
 
-1. Navigation bar is visible and functional on all 8 screens with correct active state highlighting
-2. Design tokens are referenced consistently — no raw hex values in any screen spec
-3. Badge system renders correctly for all referral/job/payment status values
-4. Activity log events follow the canonical schema on every state change
-5. Session context provides all required fields to every screen
+- Zero API calls succeed from `suspended` or `deactivated` accounts.
+- Activity log has ≥1 event per every state-changing API call within the same
+  database transaction.
+- `routing_priority_score` recomputed within 30 seconds of triggering event.
 
 ---
 
 ## Dependencies
 
-**Depends on**:
-- None (this is the root spec)
-
-**Required by**:
-- All specs (001–008)
-
-**Cross-links**:
-- [constitution.md](../../memory/constitution.md)
-
----
-
-**Version**: 1.0
-**Last Updated**: 2026-04-12
+All feature modules (001–008) depend on this foundation.

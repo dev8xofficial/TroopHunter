@@ -1,1 +1,123 @@
-{"$schema":"http://json-schema.org/draft-07/schema#","title":"Profile Validation Schema","type":"object","required":["business_info","service_categories","notification_preferences","account_status"],"properties":{"business_info":{"type":"object","required":["company_name","contact_name","phone_number","email_address","business_address","license_number","years_in_business"],"properties":{"company_name":{"type":"string","maxLength":100},"contact_name":{"type":"string","maxLength":100},"phone_number":{"type":"string"},"email_address":{"type":"string","format":"email"},"business_address":{"type":"string"},"license_number":{"type":"string"},"years_in_business":{"type":"integer","minimum":0},"insurance_policy_type":{"type":"string"},"coverage_amount":{"type":"number","minimum":0},"policy_number":{"type":"string"}}},"service_categories":{"type":"array","items":{"type":"string","enum":["emergency-repairs","installations","inspections","maintenance","water-treatment-systems"]},"minItems":1},"notification_preferences":{"type":"object","properties":{"email_new_referrals":{"type":"boolean"},"sms_urgent_requests":{"type":"boolean"},"weekly_performance_reports":{"type":"boolean"}}},"account_status":{"type":"object","required":["membership_type","member_since","status"],"properties":{"membership_type":{"type":"string","enum":["standard","premium","enterprise"]},"member_since":{"type":"string"},"status":{"type":"string","enum":["active-verified","pending-verification","suspended"]}}}}}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ProfileSchemas",
+  "definitions": {
+    "InsurancePolicyType": {
+      "type": "string",
+      "enum": [
+        "general_liability_and_workers_comp",
+        "general_liability_only",
+        "workers_comp_only"
+      ]
+    },
+    "VerificationStatus": {
+      "type": "string",
+      "enum": ["pending_verification", "verified", "rejected"]
+    },
+    "ServiceCategory": {
+      "type": "string",
+      "enum": [
+        "emergency_repairs",
+        "installations",
+        "inspections",
+        "maintenance",
+        "water_treatment_systems"
+      ]
+    },
+    "NotificationPreferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "email_new_referrals",
+        "sms_urgent_requests",
+        "weekly_performance_reports"
+      ],
+      "properties": {
+        "email_new_referrals": { "type": "boolean" },
+        "sms_urgent_requests": { "type": "boolean" },
+        "weekly_performance_reports": { "type": "boolean" }
+      }
+    },
+    "PartnerProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "partner_id",
+        "company_name",
+        "contact_name",
+        "phone_number",
+        "email_address",
+        "business_address",
+        "license_number",
+        "license_verification_status",
+        "years_in_business",
+        "insurance_policy_type",
+        "coverage_amount",
+        "policy_number",
+        "insurance_verification_status",
+        "service_categories",
+        "membership_type",
+        "member_since",
+        "account_status",
+        "notification_preferences"
+      ],
+      "properties": {
+        "partner_id": { "type": "string", "format": "uuid" },
+        "company_name": { "type": "string", "minLength": 1, "maxLength": 150 },
+        "contact_name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "phone_number": { "type": "string", "maxLength": 20 },
+        "email_address": { "type": "string", "format": "email" },
+        "business_address": { "type": "string", "maxLength": 300 },
+        "license_number": { "type": "string", "maxLength": 50 },
+        "license_verification_status": { "$ref": "#/definitions/VerificationStatus" },
+        "years_in_business": { "type": "integer", "minimum": 1, "maximum": 100 },
+        "insurance_policy_type": { "$ref": "#/definitions/InsurancePolicyType" },
+        "coverage_amount": { "type": "string", "maxLength": 20 },
+        "policy_number": { "type": "string", "maxLength": 50 },
+        "insurance_verification_status": { "$ref": "#/definitions/VerificationStatus" },
+        "service_categories": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/ServiceCategory" },
+          "minItems": 1,
+          "maxItems": 10
+        },
+        "membership_type": { "type": "string", "enum": ["standard", "premium"] },
+        "member_since": { "type": "string", "format": "date-time" },
+        "account_status": {
+          "type": "string",
+          "enum": ["pending_verification", "active_verified", "suspended", "deactivated"]
+        },
+        "notification_preferences": { "$ref": "#/definitions/NotificationPreferences" }
+      }
+    },
+    "UpdateBusinessInfoRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "company_name": { "type": "string", "minLength": 1, "maxLength": 150 },
+        "contact_name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "phone_number": { "type": "string", "maxLength": 20 },
+        "email_address": { "type": "string", "format": "email" },
+        "business_address": { "type": "string", "maxLength": 300 },
+        "license_number": { "type": "string", "maxLength": 50 },
+        "years_in_business": { "type": "integer", "minimum": 1, "maximum": 100 },
+        "insurance_policy_type": { "$ref": "#/definitions/InsurancePolicyType" },
+        "coverage_amount": { "type": "string", "maxLength": 20 },
+        "policy_number": { "type": "string", "maxLength": 50 }
+      }
+    },
+    "UpdateServiceCategoriesRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["service_categories"],
+      "properties": {
+        "service_categories": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/ServiceCategory" },
+          "minItems": 1,
+          "maxItems": 10
+        }
+      }
+    }
+  }
+}

@@ -1,1 +1,72 @@
-{"$schema":"http://json-schema.org/draft-07/schema#","title":"Reviews Validation Schema","type":"object","required":["statistics","reviews"],"properties":{"statistics":{"type":"object","required":["overall_rating","total_reviews","response_rate"],"properties":{"overall_rating":{"type":"number","minimum":0,"maximum":5},"total_reviews":{"type":"integer","minimum":0},"response_rate":{"type":"number","minimum":0,"maximum":100}}},"reviews":{"type":"array","items":{"type":"object","required":["reviewer_name","rating","review_date","review_text"],"properties":{"reviewer_name":{"type":"string"},"rating":{"type":"integer","minimum":1,"maximum":5},"review_date":{"type":"string"},"review_text":{"type":"string","minLength":10},"response_text":{"type":"string"}}}}}}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ReviewSchemas",
+  "definitions": {
+    "Review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "review_id",
+        "job_id",
+        "partner_id",
+        "client_name",
+        "rating",
+        "review_text",
+        "review_date"
+      ],
+      "properties": {
+        "review_id": { "type": "string", "format": "uuid" },
+        "job_id": { "type": "string", "format": "uuid" },
+        "transaction_ref": { "type": "string", "pattern": "^TRX-[0-9]+$" },
+        "partner_id": { "type": "string", "format": "uuid" },
+        "client_name": { "type": "string", "maxLength": 200 },
+        "rating": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "review_text": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "review_date": { "type": "string", "format": "date-time" },
+        "partner_response": { "type": ["string", "null"], "maxLength": 1000 },
+        "partner_responded_at": { "type": ["string", "null"], "format": "date-time" }
+      }
+    },
+    "ReviewResponseRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["response_text"],
+      "properties": {
+        "response_text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      }
+    },
+    "ReviewAggregate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "partner_id",
+        "overall_rating",
+        "total_reviews",
+        "response_rate",
+        "rating_distribution"
+      ],
+      "properties": {
+        "partner_id": { "type": "string", "format": "uuid" },
+        "overall_rating": { "type": "number", "minimum": 1.0, "maximum": 5.0 },
+        "total_reviews": { "type": "integer", "minimum": 0 },
+        "response_rate": { "type": "number", "minimum": 0, "maximum": 1 },
+        "rating_distribution": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["5", "4", "3", "2", "1"],
+          "properties": {
+            "5": { "type": "integer", "minimum": 0 },
+            "4": { "type": "integer", "minimum": 0 },
+            "3": { "type": "integer", "minimum": 0 },
+            "2": { "type": "integer", "minimum": 0 },
+            "1": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    }
+  }
+}

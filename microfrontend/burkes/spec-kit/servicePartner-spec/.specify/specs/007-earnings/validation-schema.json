@@ -1,1 +1,70 @@
-{"$schema":"http://json-schema.org/draft-07/schema#","title":"Earnings Validation Schema","type":"object","required":["hero","kpi_cards","payment_history"],"properties":{"hero":{"type":"object","required":["total_earnings"],"properties":{"total_earnings":{"type":"number","minimum":0}}},"kpi_cards":{"type":"object","required":["ytd_earnings","avg_job_value","pending_payment"],"properties":{"ytd_earnings":{"type":"number","minimum":0},"avg_job_value":{"type":"number","minimum":0},"pending_payment":{"type":"number","minimum":0},"completed_jobs_count":{"type":"integer","minimum":0},"pending_jobs_count":{"type":"integer","minimum":0}}},"payment_history":{"type":"array","items":{"type":"object","required":["payment_date","client_name","service_type","job_value","platform_fee","net_earnings","payment_status"],"properties":{"payment_date":{"type":"string"},"client_name":{"type":"string"},"service_type":{"type":"string"},"job_value":{"type":"number","minimum":0},"platform_fee":{"type":"number","minimum":0},"net_earnings":{"type":"number","minimum":0},"payment_status":{"type":"string","enum":["paid","awaiting-payment","processing"]}}}}}}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EarningsSchemas",
+  "definitions": {
+    "PaymentStatus": {
+      "type": "string",
+      "enum": ["awaiting_payment", "paid", "failed"]
+    },
+    "EarningsRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "earnings_record_id",
+        "job_id",
+        "transaction_ref",
+        "partner_id",
+        "service_type",
+        "completed_date",
+        "job_value",
+        "platform_fee_amount",
+        "partner_net_earnings",
+        "payment_status"
+      ],
+      "properties": {
+        "earnings_record_id": { "type": "string", "format": "uuid" },
+        "job_id": { "type": "string", "format": "uuid" },
+        "transaction_ref": { "type": "string", "pattern": "^TRX-[0-9]+$" },
+        "partner_id": { "type": "string", "format": "uuid" },
+        "client_name": { "type": "string", "maxLength": 200 },
+        "service_type": {
+          "type": "string",
+          "enum": [
+            "emergency_repairs", "installations",
+            "inspections", "maintenance", "water_treatment_systems"
+          ]
+        },
+        "scope_of_work": { "type": "string", "maxLength": 3000 },
+        "completed_date": { "type": "string", "format": "date-time" },
+        "job_value": { "type": "number", "minimum": 0, "exclusiveMinimum": true },
+        "platform_fee_amount": { "type": "number", "minimum": 0 },
+        "partner_net_earnings": { "type": "number", "minimum": 0 },
+        "payment_status": { "$ref": "#/definitions/PaymentStatus" },
+        "paid_at": { "type": ["string", "null"], "format": "date-time" }
+      }
+    },
+    "EarningsSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "partner_id",
+        "period",
+        "total_earnings",
+        "average_job_value",
+        "pending_payment_amount",
+        "completed_job_count",
+        "pending_job_count"
+      ],
+      "properties": {
+        "partner_id": { "type": "string", "format": "uuid" },
+        "period": { "type": "string", "enum": ["current_month", "ytd", "last_30_days"] },
+        "total_earnings": { "type": "number", "minimum": 0 },
+        "average_job_value": { "type": "number", "minimum": 0 },
+        "pending_payment_amount": { "type": "number", "minimum": 0 },
+        "completed_job_count": { "type": "integer", "minimum": 0 },
+        "pending_job_count": { "type": "integer", "minimum": 0 },
+        "next_payout_date": { "type": ["string", "null"], "format": "date-time" }
+      }
+    }
+  }
+}

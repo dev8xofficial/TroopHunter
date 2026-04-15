@@ -1,1 +1,81 @@
-{"$schema":"http://json-schema.org/draft-07/schema#","title":"Active Jobs Validation Schema","type":"object","required":["jobs"],"properties":{"jobs":{"type":"array","items":{"type":"object","required":["referral_id","client_name","property_address","service_type","job_value","scheduled_date","job_status"],"properties":{"referral_id":{"type":"string","pattern":"^TRX-[0-9]{5}$"},"client_name":{"type":"string"},"property_address":{"type":"string"},"service_type":{"type":"string"},"job_value":{"type":"number","minimum":0},"scheduled_date":{"type":"string"},"scope_description":{"type":"string"},"job_status":{"type":"string","enum":["scheduled","in-progress","completed","awaiting-payment"]}}}}}}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ActiveJobSchemas",
+  "definitions": {
+    "JobStatus": {
+      "type": "string",
+      "enum": [
+        "scheduled",
+        "in_progress",
+        "completed",
+        "awaiting_payment",
+        "paid",
+        "cancelled"
+      ]
+    },
+    "Job": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "job_id",
+        "referral_id",
+        "transaction_ref",
+        "partner_id",
+        "client_name",
+        "property_address",
+        "service_type",
+        "scope_of_work",
+        "job_value",
+        "job_status"
+      ],
+      "properties": {
+        "job_id": { "type": "string", "format": "uuid" },
+        "referral_id": { "type": "string", "format": "uuid" },
+        "transaction_ref": { "type": "string", "pattern": "^TRX-[0-9]+$" },
+        "partner_id": { "type": "string", "format": "uuid" },
+        "client_name": { "type": "string", "maxLength": 200 },
+        "client_phone": { "type": ["string", "null"], "maxLength": 20 },
+        "property_address": { "type": "string", "maxLength": 500 },
+        "service_type": {
+          "type": "string",
+          "enum": [
+            "emergency_repairs", "installations",
+            "inspections", "maintenance", "water_treatment_systems"
+          ]
+        },
+        "scope_of_work": { "type": "string", "maxLength": 3000 },
+        "scheduled_date": { "type": ["string", "null"], "format": "date-time" },
+        "job_value": { "type": "number", "minimum": 0, "exclusiveMinimum": true },
+        "job_status": { "$ref": "#/definitions/JobStatus" },
+        "completed_at": { "type": ["string", "null"], "format": "date-time" },
+        "completion_notes": { "type": ["string", "null"], "maxLength": 500 },
+        "referred_by_agent_id": { "type": ["string", "null"], "format": "uuid" },
+        "referred_by_agent_name": { "type": ["string", "null"], "maxLength": 200 }
+      }
+    },
+    "RescheduleRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["new_scheduled_date"],
+      "properties": {
+        "new_scheduled_date": { "type": "string", "format": "date-time" },
+        "reschedule_reason": { "type": "string", "maxLength": 300 }
+      }
+    },
+    "CompleteRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "completion_notes": { "type": "string", "maxLength": 500 }
+      }
+    },
+    "CancelRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cancellation_reason"],
+      "properties": {
+        "cancellation_reason": { "type": "string", "minLength": 1, "maxLength": 300 }
+      }
+    }
+  }
+}

@@ -1,1 +1,103 @@
-{"$schema":"http://json-schema.org/draft-07/schema#","title":"Referrals Validation Schema","type":"object","required":["referrals"],"properties":{"referrals":{"type":"array","items":{"type":"object","required":["referral_id","client_name","property_address","service_type","referral_status"],"properties":{"referral_id":{"type":"string","pattern":"^TRX-[0-9]{5}$"},"client_name":{"type":"string","minLength":2},"property_address":{"type":"string","minLength":10},"service_type":{"type":"string"},"budget":{"type":"string"},"timeline":{"type":"string"},"referral_status":{"type":"string","enum":["new-lead","contacted","quoted","scheduled","completed","declined"]}}}},"filters":{"type":"object","properties":{"status_filter":{"type":"string"},"service_type_filter":{"type":"string"},"search_query":{"type":"string"}}}}}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ReferralSchemas",
+  "definitions": {
+    "ServiceType": {
+      "type": "string",
+      "enum": [
+        "emergency_repairs",
+        "installations",
+        "inspections",
+        "maintenance",
+        "water_treatment_systems"
+      ]
+    },
+    "TimelineUrgency": {
+      "type": "string",
+      "enum": ["asap", "within_1_week", "within_2_weeks", "flexible", "specific_date"]
+    },
+    "ReferralStatus": {
+      "type": "string",
+      "enum": [
+        "new_lead", "contacted", "quoted", "quote_accepted",
+        "scheduled", "in_progress", "completed",
+        "awaiting_payment", "paid", "declined", "cancelled"
+      ]
+    },
+    "ContactMethod": {
+      "type": "string",
+      "enum": ["phone", "email", "platform_message"]
+    },
+    "AreaStatus": {
+      "type": "string",
+      "enum": ["active", "paused"]
+    },
+    "Referral": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "referral_id",
+        "transaction_ref",
+        "partner_id",
+        "client_name",
+        "property_address",
+        "property_zip_code",
+        "service_type",
+        "service_description",
+        "budget_is_open",
+        "timeline_urgency",
+        "referral_status",
+        "posted_at"
+      ],
+      "properties": {
+        "referral_id": { "type": "string", "format": "uuid" },
+        "transaction_ref": { "type": "string", "pattern": "^TRX-[0-9]+$" },
+        "partner_id": { "type": "string", "format": "uuid" },
+        "client_name": { "type": "string", "maxLength": 200 },
+        "property_address": { "type": "string", "maxLength": 500 },
+        "property_zip_code": { "type": "string", "pattern": "^[0-9]{5}$" },
+        "service_type": { "$ref": "#/definitions/ServiceType" },
+        "service_description": { "type": "string", "maxLength": 2000 },
+        "budget_min": { "type": ["number", "null"], "minimum": 0 },
+        "budget_max": { "type": ["number", "null"], "minimum": 0 },
+        "budget_is_open": { "type": "boolean" },
+        "timeline_urgency": { "$ref": "#/definitions/TimelineUrgency" },
+        "referral_status": { "$ref": "#/definitions/ReferralStatus" },
+        "posted_at": { "type": "string", "format": "date-time" },
+        "referred_by_agent_id": { "type": ["string", "null"], "format": "uuid" }
+      }
+    },
+    "ContactRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contact_method"],
+      "properties": {
+        "contact_method": { "$ref": "#/definitions/ContactMethod" },
+        "contact_note": { "type": "string", "maxLength": 500 }
+      }
+    },
+    "DeclineRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "decline_reason": { "type": "string", "maxLength": 300 }
+      }
+    },
+    "ServiceArea": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["service_area_id", "partner_id", "zip_code", "city", "area_status"],
+      "properties": {
+        "service_area_id": { "type": "string", "format": "uuid" },
+        "partner_id": { "type": "string", "format": "uuid" },
+        "zip_code": { "type": "string", "pattern": "^[0-9]{5}$" },
+        "city": { "type": "string", "maxLength": 100 },
+        "area_status": { "$ref": "#/definitions/AreaStatus" },
+        "referral_count_this_month": { "type": "integer", "minimum": 0 },
+        "earned_this_month": { "type": "number", "minimum": 0 },
+        "added_at": { "type": "string", "format": "date-time" },
+        "deleted_at": { "type": ["string", "null"], "format": "date-time" }
+      }
+    }
+  }
+}

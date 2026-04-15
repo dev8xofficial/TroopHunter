@@ -1,39 +1,204 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Foundation Validation Schema",
-  "description": "Validates the session context and navigation state for the Service Partner Portal foundation layer.",
-  "type": "object",
-  "required": ["session_context", "navigation", "design_tokens"],
-  "properties": {
-    "session_context": {
+  "title": "ServicePartnerFoundationSchemas",
+  "definitions": {
+    "AccountStatus": {
+      "type": "string",
+      "enum": [
+        "pending_verification",
+        "active_verified",
+        "suspended",
+        "deactivated"
+      ]
+    },
+    "MembershipType": {
+      "type": "string",
+      "enum": ["standard", "premium"]
+    },
+    "ActorRole": {
+      "type": "string",
+      "enum": ["service_partner", "admin", "system", "client", "agent"]
+    },
+    "ServiceCategory": {
+      "type": "string",
+      "enum": [
+        "emergency_repairs",
+        "installations",
+        "inspections",
+        "maintenance",
+        "water_treatment_systems"
+      ]
+    },
+    "NotificationChannel": {
+      "type": "string",
+      "enum": ["email", "sms", "in_app"]
+    },
+    "NotificationDeliveryStatus": {
+      "type": "string",
+      "enum": ["pending", "sent", "failed"]
+    },
+    "ReferralStatus": {
+      "type": "string",
+      "enum": [
+        "new_lead",
+        "contacted",
+        "quoted",
+        "quote_accepted",
+        "scheduled",
+        "in_progress",
+        "completed",
+        "awaiting_payment",
+        "paid",
+        "declined",
+        "cancelled"
+      ]
+    },
+    "SessionContext": {
       "type": "object",
-      "required": ["company_name", "contact_name", "initials", "role", "service_categories", "unread_notification_count"],
+      "additionalProperties": false,
+      "required": [
+        "partner_id",
+        "company_name",
+        "membership_type",
+        "account_status",
+        "service_area_zip_codes",
+        "service_categories",
+        "session_issued_at",
+        "session_expires_at",
+        "routing_priority_score"
+      ],
       "properties": {
-        "company_name": { "type": "string", "minLength": 1, "maxLength": 100 },
-        "contact_name": { "type": "string", "minLength": 1, "maxLength": 100 },
-        "initials": { "type": "string", "pattern": "^[A-Z]{2}$" },
-        "role": { "type": "string", "enum": ["SP"] },
-        "service_categories": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
-        "active_service_areas": { "type": "array", "items": { "type": "string", "pattern": "^[0-9]{5}$" } },
-        "unread_notification_count": { "type": "integer", "minimum": 0 },
-        "membership_type": { "type": "string", "enum": ["standard", "premium", "enterprise"] }
+        "partner_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "company_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 150
+        },
+        "membership_type": {
+          "$ref": "#/definitions/MembershipType"
+        },
+        "account_status": {
+          "$ref": "#/definitions/AccountStatus"
+        },
+        "service_area_zip_codes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[0-9]{5}$"
+          },
+          "minItems": 0,
+          "maxItems": 50
+        },
+        "service_categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceCategory"
+          },
+          "minItems": 0
+        },
+        "session_issued_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "session_expires_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "routing_priority_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        }
       }
     },
-    "navigation": {
+    "ActivityLogEvent": {
       "type": "object",
-      "required": ["screens", "active_screen"],
+      "additionalProperties": false,
+      "required": [
+        "event_id",
+        "event_name",
+        "actor_role",
+        "actor_id",
+        "entity_type",
+        "entity_id",
+        "payload",
+        "occurred_at"
+      ],
       "properties": {
-        "screens": { "type": "array", "items": { "type": "string" }, "minItems": 8, "maxItems": 8 },
-        "active_screen": { "type": "string" }
+        "event_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "event_name": {
+          "type": "string",
+          "pattern": "^[a-z_]+$"
+        },
+        "actor_role": {
+          "$ref": "#/definitions/ActorRole"
+        },
+        "actor_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "entity_type": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "entity_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "payload": {
+          "type": "object"
+        },
+        "occurred_at": {
+          "type": "string",
+          "format": "date-time"
+        }
       }
     },
-    "design_tokens": {
+    "NotificationEvent": {
       "type": "object",
-      "required": ["colours", "typography", "shadows"],
+      "additionalProperties": false,
+      "required": [
+        "notification_id",
+        "trigger_event",
+        "recipient_partner_id",
+        "channel",
+        "payload",
+        "sent_at",
+        "delivery_status"
+      ],
       "properties": {
-        "colours": { "type": "object" },
-        "typography": { "type": "object" },
-        "shadows": { "type": "object" }
+        "notification_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "trigger_event": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recipient_partner_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "channel": {
+          "$ref": "#/definitions/NotificationChannel"
+        },
+        "payload": {
+          "type": "object"
+        },
+        "sent_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "delivery_status": {
+          "$ref": "#/definitions/NotificationDeliveryStatus"
+        }
       }
     }
   }

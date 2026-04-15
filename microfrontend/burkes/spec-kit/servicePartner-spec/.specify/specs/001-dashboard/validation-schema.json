@@ -1,32 +1,65 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Dashboard Validation Schema",
-  "description": "Validates the dashboard data model for the Service Partner Portal.",
+  "title": "DashboardSummaryResponse",
   "type": "object",
-  "required": ["kpi_cards", "pending_referrals"],
+  "additionalProperties": false,
+  "required": [
+    "partner_id",
+    "new_referral_count",
+    "active_job_count",
+    "average_rating",
+    "review_count",
+    "current_month_revenue",
+    "recent_referrals",
+    "active_service_areas",
+    "recent_reviews",
+    "computed_at"
+  ],
   "properties": {
-    "kpi_cards": {
-      "type": "object",
-      "required": ["new_referral_count", "active_job_count", "average_rating", "monthly_revenue"],
-      "properties": {
-        "new_referral_count": { "type": "integer", "minimum": 0 },
-        "active_job_count": { "type": "integer", "minimum": 0 },
-        "average_rating": { "type": "number", "minimum": 0, "maximum": 5 },
-        "monthly_revenue": { "type": "number", "minimum": 0 }
-      }
-    },
-    "pending_referrals": {
+    "partner_id": { "type": "string", "format": "uuid" },
+    "new_referral_count": { "type": "integer", "minimum": 0 },
+    "active_job_count": { "type": "integer", "minimum": 0 },
+    "average_rating": { "type": "number", "minimum": 1.0, "maximum": 5.0 },
+    "review_count": { "type": "integer", "minimum": 0 },
+    "current_month_revenue": { "type": "number", "minimum": 0 },
+    "recent_referrals": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["referral_id", "client_name", "property_address", "service_type"],
+        "additionalProperties": false,
+        "required": [
+          "referral_id",
+          "transaction_ref",
+          "client_name",
+          "property_address",
+          "service_type",
+          "referral_status",
+          "posted_at"
+        ],
         "properties": {
-          "referral_id": { "type": "string", "pattern": "^TRX-[0-9]{5}$" },
-          "client_name": { "type": "string" },
-          "property_address": { "type": "string" },
-          "service_type": { "type": "string" },
-          "budget": { "type": "string" },
-          "timeline": { "type": "string" }
+          "referral_id": { "type": "string", "format": "uuid" },
+          "transaction_ref": { "type": "string", "pattern": "^TRX-[0-9]+$" },
+          "client_name": { "type": "string", "maxLength": 200 },
+          "property_address": { "type": "string", "maxLength": 500 },
+          "service_type": {
+            "type": "string",
+            "enum": [
+              "emergency_repairs",
+              "installations",
+              "inspections",
+              "maintenance",
+              "water_treatment_systems"
+            ]
+          },
+          "referral_status": {
+            "type": "string",
+            "enum": [
+              "new_lead", "contacted", "quoted", "quote_accepted",
+              "scheduled", "in_progress", "completed",
+              "awaiting_payment", "paid", "declined", "cancelled"
+            ]
+          },
+          "posted_at": { "type": "string", "format": "date-time" }
         }
       }
     },
@@ -34,12 +67,13 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["zip_code", "city", "referrals_per_month", "total_earned"],
+        "additionalProperties": false,
+        "required": ["service_area_id", "zip_code", "city", "area_status"],
         "properties": {
+          "service_area_id": { "type": "string", "format": "uuid" },
           "zip_code": { "type": "string", "pattern": "^[0-9]{5}$" },
-          "city": { "type": "string" },
-          "referrals_per_month": { "type": "integer", "minimum": 0 },
-          "total_earned": { "type": "number", "minimum": 0 }
+          "city": { "type": "string", "maxLength": 100 },
+          "area_status": { "type": "string", "enum": ["active", "paused"] }
         }
       }
     },
@@ -47,14 +81,16 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["reviewer_name", "rating", "date"],
+        "additionalProperties": false,
+        "required": ["review_id", "client_name", "rating", "review_date"],
         "properties": {
-          "reviewer_name": { "type": "string" },
+          "review_id": { "type": "string", "format": "uuid" },
+          "client_name": { "type": "string", "maxLength": 200 },
           "rating": { "type": "integer", "minimum": 1, "maximum": 5 },
-          "date": { "type": "string" },
-          "excerpt": { "type": "string" }
+          "review_date": { "type": "string", "format": "date-time" }
         }
       }
-    }
+    },
+    "computed_at": { "type": "string", "format": "date-time" }
   }
 }
