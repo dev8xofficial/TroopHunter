@@ -1,40 +1,38 @@
-# Feature Specification: Documents
+# Feature Specification: Documents Service
 
-**Feature ID**: 002-documents
-**Status**: review
+**Feature ID**: 002-documents-service
+**Status**: approved
 **Created**: 2026-04-09
 **Parent Spec**: [000-foundation](../000-foundation/spec.md)
-**Screen / Module**: Documents screen
+**API Boundary**: Documents Storage & Signature Orchestration
 
 ---
 
 ## Overview
 
-The Documents screen is the authoritative file repository for the entire real estate transaction. It organises all documents into role-sourced categories, allows the client to view, download, sign, and upload files, and provides filtering and search tools to locate any document instantly. Every professional involved in the transaction can contribute to their designated category, and the client can see who uploaded what and when.
+The Documents Service manages the metadata indexing, cloud blob storage provisioning, and third-party e-signature orchestration for all transaction files. It operates on a strict metadata-only DB architecture, relying on Cloud Object Storage (e.g. AWS S3) for actual file bytes. The API handles pre-signed upload/download URLs, ensuring the Node.js application layer is never bottlenecked by heavy binary transfers.
 
 ---
 
 ## Problem Statement
 
-Documents in a real estate transaction arrive from multiple sources (agent, lender, attorney) across weeks. Without a central, organised repository, clients lose track of what has been received, what still needs their signature, and what remains pending from professionals. This screen eliminates document scatter and missed deadlines.
+Handling binary file streaming directly through a standard API web server consumes massive RAM and I/O capacity, leading to server crashes during large PDF uploads. Additionally, document signature workflows require secure webhook ingestion. This service abstracts storage logic and integrates asynchronously with signature providers.
 
 ---
 
 ## Goals
 
-- Provide a single place to find, review, sign, and download every transaction document.
-- Make the upload source (role) and current status visible at a glance for every document.
-- Enable the client to upload their own supporting documents (financial, insurance).
-- Allow fast location of documents via search and status-based filtering.
-- Surface a clear signature-required alert so deadlines are never missed.
+- Define a highly scalable File Upload architecture via Pre-Signed Cloud Storage URLs.
+- Define a secure File Download architecture via temporal, short-lived URLs.
+- Manage document metadata (categories, sizes, status) linked to the `transaction_id`.
+- Ingest and process webhooks from e-signature vendors to transition document states.
 
 ---
 
 ## Non-Goals
 
-- The Documents screen does not host the e-signature experience itself — it initiates navigation to the third-party signing provider.
-- It does not provide document editing or annotation tools.
-- It does not manage document version history in this version (see Open Questions).
+- This service does not store file binary data in the relational database.
+- It does not handle creating or rendering the e-signature PDF interface (delegated to third-party providers like DocuSign or PandaDoc).
 
 ---
 
@@ -42,215 +40,134 @@ Documents in a real estate transaction arrive from multiple sources (agent, lend
 
 | Actor | Role in This Feature |
 |-------|---------------------|
-| Client | Views, downloads, signs, and uploads personal documents |
-| Real Estate Agent | Uploads Purchase & Sale documents |
-| Mortgage Lender | Uploads Mortgage & Financial documents |
-| Closing Attorney | Uploads Legal & Closing documents |
-| CPA | Read-only access to all documents |
+| Client | Requests read access. Requests upload URLs for `mortgage` & `insurance` file categories. |
+| Agent/Lender/Attorney | Requests upload URLs for their protected namespaces (`purchase-sale`, `financial`, `legal`). |
+| Third-Party Vendor | (via Webhook) Transmits signature-completed events. |
 
 ---
 
-## User Scenarios
+## API Scenarios
 
-### Scenario 1 — Client Finds and Signs a Document
+### Scenario 1 — Securing an Upload Stream
 
-**Actor**: Client
-**Precondition**: Agent has uploaded "Purchase Agreement" with status `needs-signature`.
+**Actor**: Any valid authenticated role
+**Precondition**: Role intends to upload `w2_form.pdf`.
 **Flow**:
-1. Client opens the Documents screen.
-2. A signature-required banner appears at the top listing documents needing signature and the deadline.
-3. Client clicks "Sign Documents" in the banner — or locates the document in the "Purchase & Sale Documents" table and clicks "Sign Now".
-4. Portal navigates to the e-signature provider with the document pre-loaded.
-5. Client completes signing and returns to the portal.
-6. Document status updates to `approved`; the banner disappears if no other documents need signature.
-7. An activity log entry is written: "✍️ Document Signed — Purchase Agreement signed by client".
+1. Client POSTs to `/api/v1/documents/upload-url` with `{ "filename": "w2_form.pdf", "file_size": 1500000, "category": "mortgage" }`.
+2. Service validates that the Role has permission to upload to the `mortgage` category.
+3. Service generates a UUID (`object_key`).
+4. Service requests an S3 Pre-Signed PUT URL constrained to 1.5MB and AWS KMS encryption.
+5. API Returns HTTP 200 containing the `uploadUrl` and `document_id`.
 
-**Success**: Document status transitions to Approved; signature deadline is met; activity log is updated.
+**Success**: Client receives a secure direct-to-cloud PUT URL bypassing our backend network bandwidth entirely.
 
 ---
 
-### Scenario 2 — Client Filters Documents by Status
+### Scenario 2 — Finalizing an Upload
 
-**Actor**: Client
-**Precondition**: Eight documents exist across categories with mixed statuses.
+**Actor**: Any valid authenticated role
+**Precondition**: Cloud upload (Scenario 1) completed successfully via PUT.
 **Flow**:
-1. Client clicks the "Needs Signature" filter tab.
-2. The document tables update to show only rows where status is `needs-signature`.
-3. The count in the tab badge matches the number of visible rows.
-4. Client clicks "All" to restore the unfiltered view.
+1. Client POSTs to `/api/v1/documents/finalize` with `{ "document_id": "<uuid>" }`.
+2. Service queries the S3 API to verify the file actually exists at the expected key.
+3. Service writes the Document Metadata record to the PostgreSQL database with status `under-review`.
+4. Service calls Foundation `publishEvent()` to broadcast the `document.uploaded` audit log.
 
-**Success**: Filter transitions are immediate; counts are always accurate.
+**Success**: Document is fully indexed and available in the transaction scope.
 
 ---
 
-### Scenario 3 — Client Uploads a Personal Document
+### Scenario 3 — E-Signature Provider Webhook Callback
 
-**Actor**: Client
-**Precondition**: Client has a bank statement PDF to upload.
+**Actor**: External Signature Vendor
+**Precondition**: A document was dispatched for signature. The client just signed it on the vendor's platform.
 **Flow**:
-1. Client clicks "Upload Document" in the toolbar.
-2. An upload zone (drag-and-drop + file picker) expands below the toolbar.
-3. Client drags their file onto the zone (or clicks to browse).
-4. File type and size are validated (PDF/Word/JPEG/PNG, max 25 MB).
-5. Upload completes; the new document appears in the relevant category table (Mortgage & Financial) with the "You (Client)" role indicator and a `under-review` status badge.
-6. Client can click "Cancel" to dismiss the upload zone without uploading.
+1. Vendor POSTs to `/api/v1/documents/webhooks/signature-status`.
+2. Request skips user JWT auth, but validates a shared HMAC vendor secret signature.
+3. Payload indicates `document_id` is newly signed.
+4. Service updates the document DB row status to `approved`.
+5. Service emits `document.signed` to the Activity Event Bus.
 
-**Success**: Uploaded document appears in the correct category table immediately, attributed to the client role.
-
----
-
-### Scenario 4 — Client Searches for a Specific Document
-
-**Actor**: Client
-**Precondition**: Multiple documents exist.
-**Flow**:
-1. Client types part of a document name (e.g., "Closing") in the search input.
-2. All category tables update in real time to show only rows whose names match the query.
-3. Category headers remain visible even if they have zero matching rows (or optionally collapse — see Open Questions).
-4. Clearing the input restores all rows.
-
-**Success**: Matching document(s) are visible within one second of typing.
+**Success**: Asynchronous integration automatically advances document status securely.
 
 ---
 
 ## Functional Requirements
 
-### FR-02-01 — Permissions Legend
+### FR-02-01 — Document Querying (`GET /api/v1/documents`)
 
-- A persistent colour-coded legend must appear above the document tables on every visit.
-- It must display all five uploader roles with their role colour dot and label: Real Estate Agent, Mortgage Lender, Attorney, Client (You), CPA.
-- The legend must be static (no interaction required).
+- MUST support querying by `transaction_id`.
+- MUST support filter query parameters: `?status=needs-signature` or `?category=legal`.
+- MUST NOT return the binary blob. MUST only return metadata.
 
-### FR-02-02 — Filter Tabs
+### FR-02-02 — Category Restrictions Middleware
 
-- Four tabs must be displayed: All, Needs Signature, Under Review, Approved.
-- Each tab must show a count badge of documents in that status.
-- The "All" tab is active by default.
-- Switching tabs filters all category tables simultaneously.
-- Tab counts must reflect the actual current document statuses (not static values).
+- The endpoint `/upload-url` MUST halt with HTTP 403 if the `SessionContext.role` attempts an unauthorized category.
+- **Rule**: `ROLE_CLIENT` cannot request URLs for `purchase-sale` or `legal`.
+- **Rule**: `ROLE_AGENT` cannot request URLs for `financial`.
 
-### FR-02-03 — Search Input
+### FR-02-03 — Short-Lived Download Links (`GET /api/v1/documents/{id}/download`)
 
-- A text search input must filter document rows in real time by document name (case-insensitive, partial match).
-- The search icon must be visible inside the input field.
-- Filtering applies across all category sections simultaneously.
-- The current active filter tab and search input must work together (AND logic).
+- MUST verify user context has permission to view the transaction.
+- MUST query the Cloud Storage provider to generate an HTTP GET Pre-Signed URL.
+- The URL MUST expire strictly in 60 seconds.
+- Endpoint responds with a 302 Redirect to the generated link OR a JSON wrapper `{ "url": "..." }`.
 
-### FR-02-04 — Upload Zone
+### FR-02-04 — Virus Scanning Async Workflow
 
-- A toggle button labelled "📤 Upload Document" must show/hide the upload zone.
-- The upload zone must support drag-and-drop and click-to-browse file selection.
-- Accepted formats: PDF, Word (.docx), JPEG, PNG.
-- Maximum file size: 25 MB per file.
-- If a file fails validation, an inline error must display the specific reason (invalid type / file too large).
-- "Cancel" dismisses the upload zone without any upload occurring.
-
-### FR-02-05 — Signature-Required Alert Banner
-
-- Must appear when one or more documents have status `needs-signature`.
-- Must name the documents and include a deadline date.
-- Must include a "Sign Documents" CTA button.
-- The banner must disappear automatically when no `needs-signature` documents remain.
-
-### FR-02-06 — Document Category Sections
-
-Documents are organised into three permanent categories. Each category renders as a separate card with its own table:
-
-1. **🏠 Purchase & Sale Documents** — uploaded by Real Estate Agent
-2. **🏦 Mortgage & Financial Documents** — uploaded by Mortgage Lender or Client
-3. **⚖️ Legal & Closing Documents** — uploaded by Closing Attorney
-
-Each category card header must display: category emoji, category name, and file count (e.g., "3 files").
-
-### FR-02-07 — Document Table Row
-
-Each row in a category table must display the following columns:
-
-| Column | Content |
-|--------|---------|
-| Document | File type icon (colour-coded by type: PDF=red bg, Word=blue bg) + document name (bold) + file size |
-| Uploaded By | Role colour dot + role label |
-| Date | Upload date (formatted) |
-| Status | Status badge (see FR-00-06 for colours) |
-| Actions | Contextual buttons based on status (see FR-02-08) |
-
-### FR-02-08 — Contextual Action Buttons
-
-Action buttons in the table must be contextual based on document status:
-
-| Status | Primary Button | Secondary Buttons |
-|--------|---------------|------------------|
-| `needs-signature` | Sign Now (navy) | View (ghost) |
-| `under-review` | View (ghost) | — |
-| `approved` | View (ghost) | Download (ghost) |
-
-Client-uploaded documents in any status must always show a Download button.
-
-### FR-02-09 — Role-Based Upload Categories
-
-Client may only upload to: Mortgage & Financial, and Insurance (Insurance screen, spec 004). The client may not add documents to the Purchase & Sale or Legal & Closing categories — those are restricted to their respective professional roles.
-
-### FR-02-10 — Activity Log on Upload
-
-Every document upload by any role must produce an activity log entry (format: "📄 New Document — [document name] uploaded by [role]").
+- When a document is finalized (`FR-02-02`), it MUST be placed in an isolation bucket path.
+- A cloud lambda/function scans the blob upon PUT.
+- If safe, the lambda moves it to the main path. If infected, it deletes the blob and publishes an `infected` webhook back to the API.
 
 ---
 
-## Data & State
+## Data & State (Contract Schemas)
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `document.document_id` | string | Unique identifier |
-| `document.name` | string | Display file name |
-| `document.category` | enum | purchase-sale / mortgage-financial / legal-closing |
-| `document.file_type` | enum | PDF / DOCX / JPEG / PNG |
-| `document.file_size_bytes` | number | Used for display (converted to KB/MB) |
-| `document.uploaded_by_role` | enum | agent / lender / attorney / client / cpa |
-| `document.upload_date` | date | Display date |
-| `document.status` | enum | needs-signature / under-review / approved |
-| `active_filter_tab` | string | all / needs-signature / under-review / approved |
-| `search_query` | string | Current search input value |
-| `upload_zone_visible` | boolean | Whether the upload zone is expanded |
+### Document Metadata Schema
+```json
+{
+  "document_id": "uuid",
+  "transaction_id": "uuid",
+  "filename": "string",
+  "mime_type": "enum(application/pdf, image/jpeg, image/png, application/msword)",
+  "category": "enum(purchase-sale, mortgage, legal, insurance, other)",
+  "size_bytes": "number",
+  "status": "enum(needs-signature, under-review, approved)",
+  "uploaded_by_role": "string",
+  "created_at": "iso8601",
+  "signature_deadline_at": "iso8601 | null"
+}
+```
+
+### Upload Initialization Request
+```json
+{
+  "filename": "tax_return_2025.pdf",
+  "content_type": "application/pdf",
+  "size_bytes": 4500000,
+  "category": "mortgage"
+}
+```
 
 ---
 
 ## Edge Cases & Error States
 
-- **No documents in a category**: The category card still renders with its header and an empty-state message ("No documents yet in this category").
-- **All documents signed**: Signature-required banner disappears; "Needs Signature" tab shows count "0".
-- **File exceeds 25 MB**: Upload zone shows an inline error; file is not uploaded.
-- **Unsupported file type**: Upload zone shows an inline error; file is not uploaded.
-- **Search with no matches**: Tables show empty-state rows; filter tab counts show "0" for affected tabs.
+- **Orphaned Uploads**: Client requests an `upload-url` but never calls `finalize`. The database is never dirtied with incomplete metadata; an S3 lifecycle rule auto-deletes unlinked blobs after 24 hours.
+- **Mismatched Content-Types**: If a client claims PDF but S3 detects a binary EXE, the cloud verification step fails the finalize process.
+- **Signature Webhook Replay Attack**: The webhook sink must verify HMAC signatures and ensure idempotency (processing the same `document_id` approval twice changes nothing).
 
 ---
 
 ## Assumptions
 
-1. Document versioning (replacing an existing document) is not in scope for this release. Documents are append-only.
-2. E-signature is handled by a third-party provider. The portal's "Sign Now" action initiates navigation to that provider and handles the return callback to update document status.
-3. CPA access to documents is granted by the Transaction Coordinator at transaction setup; the client does not manage CPA access from the Documents screen.
+1. The AWS/GCP SDKs are configured securely with IAM roles mapped to this microservice, not hardcoded access keys.
+2. The third-party signature provider has an accessible, documented Webhook standard supporting HMAC request signing.
 
 ---
 
 ## Success Criteria
 
-1. A client can locate any specific document by name using search in under 10 seconds.
-2. The filter tabs accurately reflect real-time document counts with zero lag.
-3. A successfully signed document transitions from `needs-signature` to `approved` status and removes itself from the "Needs Signature" tab count within the same session.
-4. A client-uploaded file appears in the correct category table within 5 seconds of upload completion.
-5. The signature-required banner disappears immediately when the last `needs-signature` document is signed.
-
----
-
-## Open Questions
-
-1. Should category sections collapse (hide their table) when a search or filter produces zero matching documents in that category, or remain visible with an empty-state message?
-2. Should there be a document version history — i.e., can a professional replace an existing document and have the client see both old and new versions?
-3. Should the client receive a notification (bell indicator) when a new document is added by a professional?
-
----
-
-## Dependencies
-
-- **Depends on**: 000-foundation (tokens, badge system, alert banners, activity log)
-- **Required by**: 001-dashboard (recent documents widget consumes document data)
+1. API server memory consumption remains completely flat even when 100 concurrent clients are uploading 50MB files (because bandwidth is offloaded to S3).
+2. Unauthorized category upload requests are predictably squashed at the gateway level.
+3. E-signature webhooks reliably update the database state within 500ms of vendor dispatch.

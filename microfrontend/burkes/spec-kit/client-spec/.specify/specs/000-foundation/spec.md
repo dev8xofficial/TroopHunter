@@ -1,260 +1,172 @@
-# Feature Specification: Portal Foundation
+# Feature Specification: Portal Foundation API & Global Middleware
 
 **Feature ID**: 000-foundation
 **Status**: approved
 **Created**: 2026-04-09
-**Screen / Module**: Global — applies to all screens
+**API Boundary**: Global Gateway — applies to all service routes
 
 ---
 
 ## Overview
 
-The Foundation spec defines the shared infrastructure that every screen in The Burkes Group Client Portal depends on: authentication context, top navigation, design system tokens, role model, activity logging, notification system, and the global layout shell. All feature specs (001–006) inherit and must not contradict the constraints defined here.
+The Foundation spec defines the shared backend infrastructure that every service in The Burkes Group Client Portal depends on: authentication middleware, identity context extraction, Role-Based Access Control (RBAC), global error handling, and the centralized event-bus activity logger. All specialized domain services (001–006) inherit these constraints and must register routes through this foundation gateway.
 
 ---
 
 ## Problem Statement
 
-Without a well-defined foundation layer, individual screen specs risk defining conflicting navigation patterns, inconsistent role models, duplicated design decisions, and incompatible data vocabularies. The Foundation spec eliminates this drift by establishing one canonical reference.
+Without a centralized foundation layer, individual microservices risk implementing conflicting token validations, erratic error payload shapes, and scattered audit logging, resulting in a fragmented and insecure system. The Foundation establishes the definitive API contract for identifying users and tracking mutations securely.
 
 ---
 
 ## Goals
 
-- Define the authenticated user session model and how identity flows through every screen.
-- Establish the canonical top navigation bar and screen routing contract.
-- Document all design tokens (colours, typography, spacing, shadows, badges) so each screen spec can reference them by name.
-- Define the global activity log contract that all screens write to.
-- Define the notification system interface that all screens trigger.
+- Define how JWT session tokens are issued, verified, and mapped to a User Context.
+- Establish the RBAC matrix that evaluates if an `actor` can execute a `method` on an `endpoint`.
+- Standardize the JSON error response schema across all APIs.
+- Define the global Activity Event Bus contract that records all state mutations.
 
 ---
 
 ## Non-Goals
 
-- This spec does not define the authentication mechanism (sign-in, password reset, SSO) — that is a separate infrastructure concern.
-- It does not define any per-screen content or business logic.
+- This spec does not define the external Identity Provider (e.g., Auth0/Okta) login screens or configurations. It only covers token verification within our gateway.
+- It does not define domain-specific business logic (e.g., how a mortgage gets underwritten).
 
 ---
 
-## Actors
+## Actors (System Roles)
 
-| Actor | Role in Foundation |
-|-------|-------------------|
-| All roles | Consume navigation, session context, design system, and activity log |
-| Transaction Coordinator | Only role that can modify portal-wide settings and user access |
+| Role Code | Privileges in Foundation |
+|-----------|---------------------------|
+| `ROLE_CLIENT` | Scoped identity. Can only query/mutate transactions explicitly assigned to their `client_id`. |
+| `ROLE_AGENT`, `ROLE_LENDER`, `ROLE_ATTORNEY` | Professional scope. Can read transaction data and mutate their respective category domains. |
+| `ROLE_CPA` | Read-only scope across the transaction. |
+| `ROLE_ADMIN_TC` | Global overwrite privileges. System bypass overrides. |
 
 ---
 
-## User Scenarios
+## API Scenarios
 
-### Scenario 1 — Client Lands on the Portal After Sign-In
+### Scenario 1 — Gateway Authenticates a Request
 
-**Actor**: Client
-**Precondition**: Client has authenticated via the external auth provider.
+**Actor**: Any API Client
+**Precondition**: Client transmits a request with an `Authorization: Bearer <Token>` header.
 **Flow**:
-1. Portal resolves the client's identity and active transaction from the session context.
-2. Top navigation renders with all six screen links visible.
-3. The Dashboard screen is shown as the default landing screen.
-4. The user chip in the top-right shows the client's initials and first name.
-5. The notification bell shows a red dot if there are unread notifications.
+1. API Gateway intercepts the request.
+2. Foundation Auth Middleware validates the JWT signature using the public JWKS URI.
+3. Middleware extracts `user_id`, `role`, and `transaction_ids`.
+4. The resolved User Context object is attached to the request `ctx` and passed to the downstream service.
 
-**Success**: Client sees a personalised dashboard within 2 seconds of successful authentication, with their name and correct notification state.
-
----
-
-### Scenario 2 — Client Navigates Between Screens
-
-**Actor**: Client
-**Precondition**: Client is on any screen.
-**Flow**:
-1. Client clicks a navigation button in the top bar.
-2. The active nav button updates its visual state.
-3. The target screen becomes visible; all other screens are hidden.
-4. The viewport scrolls to the top of the new screen.
-
-**Success**: Screen transition is instantaneous; active state and scroll position are always correct.
+**Success**: Downstream controller receives a trusted User Context object in <10ms.
 
 ---
 
-### Scenario 3 — Activity Event Is Written
+### Scenario 2 — RBAC Denies Unauthorized Mutation
 
-**Actor**: Any role (system-triggered)
-**Precondition**: A meaningful state change has occurred (document uploaded, data saved, message sent, etc.).
+**Actor**: Client (`ROLE_CLIENT`)
+**Precondition**: Client attempts a `POST /api/v1/documents/legal` request.
 **Flow**:
-1. The originating feature writes an activity event with: label, icon, timestamp, description, and actor role.
-2. The activity feed on the Dashboard reflects the new event within the same session.
-3. The event persists across sessions.
+1. Request passes authentication.
+2. RBAC Middleware checks the target endpoint `POST /api/v1/documents/legal` against the `ROLE_CLIENT` matrix.
+3. The matrix specifies that clients cannot mutate the `legal` document namespace.
+4. Middleware terminates the request.
 
-**Success**: Every meaningful action in the portal produces a visible, timestamped activity entry that the client can read.
+**Success**: API returns HTTP 403 Forbidden with a standardized error schema. Downstream service is never invoked.
+
+---
+
+### Scenario 3 — Service Publishes to the Activity Log
+
+**Actor**: Domain Service Application
+**Precondition**: A meaningful mutation completes (e.g. `documents` service saves a file).
+**Flow**:
+1. Service commits the record to its primary database.
+2. Service publishes an `ActivityEvent` to the central Redis/Kafka Event Bus.
+3. The Foundation Activity Worker consumes the event.
+4. The Worker writes an immutable row to the Global Activity Log database table.
+
+**Success**: The event is permanently recorded for audit and client-dashboard consumption.
 
 ---
 
 ## Functional Requirements
 
-### FR-00-01 — Authenticated Session Context
+### FR-00-01 — Authentication Middleware
 
-The portal must make the following identity context available to every screen without requiring re-authentication per screen:
+- All routes prefixed with `/api/v1/*` (except `/webhooks/*`) MUST require a valid JWT via the HTTP `Authorization` header.
+- Tokens MUST be signed using RS256.
+- The middleware MUST reject expired tokens (`exp` claim) with HTTP 401 Unauthorized.
+- The middleware MUST construct a readonly `SessionContext` object containing `user_id`, `email`, `role`, and `active_transaction_id` (if submitted via `X-Transaction-ID` header) to pass to controllers.
 
-- Client full name and initials
-- Active transaction ID
-- Client's role (`client`)
-- List of assigned professional contacts (name, role, avatar colour)
+### FR-00-02 — RBAC Enforcement Engine
 
-### FR-00-02 — Top Navigation Bar
+- A declarative permission matrix MUST be defined, mapping `(Role, HTTP Method, Route Pattern)` to a boolean authorization result.
+- If a route is not explicitly allowed for a role, it MUST default to denied (HTTP 403).
+- Contextual validation (e.g. "Does this client own this transaction?") MUST run in the controller layer using the `SessionContext`, not in the global RBAC middleware.
 
-- The nav bar must be sticky (always visible at the top of the viewport while scrolling).
-- It must contain: logo icon + wordmark on the left; six navigation buttons (Dashboard, Documents, Messages, Insurance, Mortgage, Services) in the centre; notification bell + user chip on the right.
-- Exactly one navigation button must be in the active state at all times.
-- Clicking an active nav button has no effect (no reload or flicker).
-- On viewports below 768 px, the wordmark may be hidden but all six nav buttons must remain accessible (e.g., via overflow or icon-only mode).
+### FR-00-03 — Canonical Error Responses
 
-### FR-00-03 — Notification Bell
+- All foundation layers and downstream services MUST format API errors using the following schema:
+  ```json
+  {
+    "error": {
+      "code": "string (e.g., UNAUTHORIZED, PAYLOAD_INVALID)",
+      "message": "string (human readable)",
+      "details": "object (optional, array of schema validation failures)"
+    },
+    "request_id": "uuid"
+  }
+  ```
+- Unhandled server exceptions MUST be caught by the global error handler, logged internally, and returned as HTTP 500 with a generic `"INTERNAL_ERROR"` message to prevent stack-trace leakage.
 
-- A red indicator dot must be shown on the bell when one or more unread notifications exist.
-- Clicking the bell must surface a notification panel (design details deferred to a future notification spec).
-- The dot must be removed once all notifications are marked read.
+### FR-00-04 — Central Activity Event Bus
 
-### FR-00-04 — User Chip
+- The Foundation MUST expose an async `publishEvent()` utility to all services.
+- Events MUST be formatted to the `ActivityEvent` schema.
+- The Event Publisher MUST NOT block the HTTP response cycle of the originating request.
+- A background consumer MUST process these events with at least once delivery guarantees, writing them to a centralized append-only `activity_logs` table.
 
-- Displays the logged-in client's initials in a styled avatar and their first name.
-- Clicking the chip must surface account/session options (sign out, profile — deferred to auth spec).
+### FR-00-05 — Global Request Tracing
 
-### FR-00-05 — Design Token System
-
-The following tokens are canonical. All screens must use these names, not raw hex values.
-
-**Colour Tokens**
-
-| Token Name | Value | Usage |
-|-----------|-------|-------|
-| `primary-navy` | `#1a3a52` | Primary actions, headings, active states |
-| `primary-gold` | `#fdb913` | Accent highlights, in-progress indicators |
-| `accent-blue` | `#2d5a7b` | Hover states, secondary links |
-| `success-green` | `#10b981` | Completed status, positive indicators |
-| `warning-orange` | `#f59e0b` | Pending/in-progress status |
-| `error-red` | `#ef4444` | Errors, overdue items, notification dot |
-| `neutral-50` through `neutral-800` | `#fafafa`–`#262626` | Surface, border, text hierarchy |
-
-**Typography Tokens**
-
-| Token | Font | Usage |
-|-------|------|-------|
-| `font-display` | Archivo | Page headings (h1–h3), card titles, stat values |
-| `font-body` | Manrope | Body text, labels, buttons, inputs, all UI copy |
-
-**Shadow Tokens**
-
-| Token | Usage |
-|-------|-------|
-| `shadow-sm` | Subtle elevation (nav bar, quiet cards) |
-| `shadow-md` | Standard card elevation |
-| `shadow-lg` | Hovered / focused cards |
-| `shadow-xl` | Modals, overlays |
-
-### FR-00-06 — Badge System
-
-All status badges across all screens must use the following canonical colour mappings:
-
-| Badge Variant | Background | Text | Semantic Meaning |
-|--------------|------------|------|-----------------|
-| `bdg-green` | `#d1fae5` | `#065f46` | Complete / Approved |
-| `bdg-yellow` | `#fef3c7` | `#92400e` | Pending / In Progress / Needs Review |
-| `bdg-blue` | `#dbeafe` | `#1e40af` | Action Required (signature, input needed) |
-| `bdg-red` | `#fee2e2` | `#991b1b` | Error / Overdue |
-| `bdg-gray` | `neutral-100` | `neutral-600` | Not Started / Inactive |
-| `bdg-navy` | `#e0eaf1` | `primary-navy` | Informational / Count |
-
-### FR-00-07 — Alert Banner System
-
-- **Warning variant** (amber left border): Used when client action is required. Must include a heading, description, and at least one navigation CTA button.
-- **Info variant** (blue left border): Used for informational messages requiring no immediate action.
-- Alert banners must appear at the top of screen content, below the nav bar.
-- Multiple simultaneous alerts on one screen are allowed; they stack vertically.
-
-### FR-00-08 — Card Component
-
-All content panels must use the standard card:
-- White background
-- `12px` border-radius
-- `shadow-md` by default; `shadow-lg` on hover where the card is interactive
-- `1px` solid `neutral-200` border
-- Optional card header (title + subtitle + right-aligned actions)
-- Card body with `22px` padding (or `14px` for compact/sidebar cards)
-
-### FR-00-09 — Role Colour System
-
-Professional avatars and role indicators must consistently use:
-
-| Role | Colour | Abbreviation |
-|------|--------|-------------|
-| Real Estate Agent | `#6366f1` (indigo) | SA (example) |
-| Mortgage Lender | `#3b82f6` (blue) | JC (example) |
-| Closing Attorney | `#7c3aed` (purple) | SM (example) |
-| CPA / Tax Advisor | `#059669` (emerald) | DT (example) |
-| Transaction Coordinator | `primary-gold` with `primary-navy` text | BG |
-| Client | `success-green` | JS (example) |
-
-### FR-00-10 — Activity Log Contract
-
-Every screen that produces a state change must write an activity event containing:
-
-- **label**: Short display label (e.g., "📄 New Document", "🛡️ Insurance Updated")
-- **description**: Human-readable sentence describing the event
-- **actor_role**: The role that triggered the event
-- **timestamp**: ISO 8601 datetime
-- **screen_source**: Which screen originated the event (dashboard / documents / messages / insurance / mortgage / services)
-
-The activity feed on the Dashboard (spec 001) consumes these events and displays the six most recent.
-
-### FR-00-11 — Responsive Layout Breakpoints
-
-| Breakpoint | Behaviour |
-|-----------|-----------|
-| ≥ 1100 px | Full multi-column layouts (4-column stats, 2-column dash grid) |
-| 768 px – 1099 px | Reduced columns (2-column stats, single-column dash grid) |
-| < 768 px | Single-column stack; reduced horizontal padding (14 px); logo wordmark hidden |
-
-### FR-00-12 — Screen Routing
-
-The portal uses a single-page screen-switching model. Only one screen is active at a time. The active screen is determined by the navigation state. Routing must:
-
-- Support direct navigation via in-screen CTA buttons (e.g., "Continue Mortgage" from Dashboard navigates to Mortgage screen).
-- Preserve the correct active nav button state regardless of how navigation was triggered.
-- Reset scroll position to top on every screen switch.
+- The Gateway MUST assign a UUID `X-Request-Id` to every incoming request.
+- This UUID MUST be included in all standard HTTP responses and attached to all internal system logs and Activity Events generated during that request cycle to allow cross-service tracing.
 
 ---
 
 ## Data & State
 
-| Field | Type | Description |
+| Model | Type | Description |
 |-------|------|-------------|
-| `session.client_name` | string | Full name of the logged-in client |
-| `session.client_initials` | string | Two-letter initials |
-| `session.transaction_id` | string | Active transaction identifier |
-| `session.unread_notification_count` | number | Drives the notification bell dot |
-| `activity_log[]` | array | Ordered list of activity events (newest first) |
-| `active_screen` | string | Current screen ID: dashboard / documents / messages / insurance / mortgage / services |
+| `SessionContext` | Object (In-Memory) | `{ user_id, role, transaction_id_context }` |
+| `ActivityEvent` | Payload Schema | Strict structure for the event bus containing: `event_id`, `timestamp`, `actor_role`, `label`, `description`, `context_metadata`. |
+
+---
+
+## Edge Cases & Error States
+
+- **Missing/Malformed Auth Header**: Immediately reject with HTTP 401.
+- **Valid JWT, but deleted User in DB**: Middleware should cache revoked/deleted statuses or check against a fast Redis blocklist to reject ghost sessions.
+- **Event Bus Unreachable**: If the activity broker is down, `publishEvent()` must fall back to local disk logging or a robust dead-letter queue so audit trails are never lost.
 
 ---
 
 ## Assumptions
 
-1. Authentication is handled before the portal loads; the portal receives a valid session token and does not manage sign-in flows.
-2. All six screens are always available in the nav; there is no permission-based hiding of nav items for the client role.
-3. The activity log is an append-only feed; events are never edited or deleted.
+1. An external Identity Provider (e.g. Auth0) is managing the actual passwords, MFA, and JWT generation. The foundation only validates the claims.
+2. The Activity Log persistence layer can handle the high write throughput of every mutation across the platform.
 
 ---
 
 ## Success Criteria
 
-1. Top navigation renders correctly on all supported breakpoints; no nav item is ever inaccessible.
-2. Screen transitions complete without visible flicker or scroll-position residue.
-3. Every state-change action in specs 001–006 produces a correctly formed activity log entry within the same user session.
-4. All badge, colour, and typography tokens are applied consistently — zero visual divergence between screens when inspected side-by-side.
+1. An unauthenticated request to ANY protected route reliably receives a canonical 401 response in <10ms.
+2. A single request trace ID successfully correlates logs from the Gateway, Auth Middleware, and a Domain Controller.
+3. Every mutating endpoint in modules 001-006 successfully triggers an asynchronous record in the `activity_logs` table without adding more than 5ms overhead to the request latency.
 
 ---
 
 ## Dependencies
 
-- **Depends on**: External authentication system (out of scope)
-- **Required by**: 001-dashboard, 002-documents, 003-messages, 004-insurance, 005-mortgage, 006-services
+- **Depends on**: External JWKS Endpoint (Identity Provider). Redis/Kafka for Event Bus.
+- **Required by**: Every domain service (001–006) runs behind this foundation logic.
