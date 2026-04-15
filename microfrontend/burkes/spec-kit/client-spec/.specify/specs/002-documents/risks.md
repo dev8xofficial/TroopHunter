@@ -1,19 +1,19 @@
-# Risk Register: Documents Spec
+# Documents Risks
 
-## Critical Risks
+## Data Integrity Risks
+- **Duplicate Signatures**: A client quickly rapid-fires the sign endpoint.
+  - **Probability**: Low
+  - **Impact**: Medium (Audit log spam).
+  - **Mitigation Strategy**: Implement idempotency keys per signature transaction, and ensure DB state check `status != APPROVED` before applying signature.
 
-| Risk      | Title                        | Probability  | Impact   | Mitigation                         |
-| --------- | ---------------------------- | ------------ | -------- | ---------------------------------- |
-| D-DOC-001 | Document loss during upload  | Low (5%)     | Critical | Backup storage + WAL               |
-| D-DOC-002 | Unauthorized document access | Medium (20%) | Critical | Role-based access control          |
-| D-DOC-003 | Malformed/corrupted files    | Low (10%)    | High     | Virus scanning + format validation |
-| D-DOC-004 | Upload quota exceeded        | Medium (40%) | Medium   | Clear quota UI warnings            |
+## Access Control Risks
+- **Direct Object Reference (IDOR)**: A client accesses `GET /documents/{document_id}/download` for a financial document belonging to another transaction entirely.
+  - **Probability**: Critical
+  - **Impact**: High (Data breach).
+  - **Mitigation Strategy**: Middleware must always fetch the document metadata first and verify `document.transaction_id == auth_user.transaction_id` and check category RBAC.
 
----
-
-## Success Criteria
-
-✅ Zero document loss incidents
-✅ Zero unauthorized access attempts
-✅ 100% virus scanning pass rate
-✅ Document integrity verified on download
+## Integration Risks
+- **Malware Uploads**: Users uploading malicious payloads via file upload.
+  - **Probability**: Medium
+  - **Impact**: Critical
+  - **Mitigation Strategy**: Strictly enforce MIME type verification and pass blobs through a malware scanning service before persisting.

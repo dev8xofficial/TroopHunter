@@ -1,21 +1,31 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Services Data Model",
+  "title": "Services Schema",
   "type": "object",
-  "required": ["service_id", "service_type", "provider", "status"],
-  "properties": {
-    "service_id": { "type": "string", "pattern": "^SVC-[0-9]{10}$" },
-    "service_type": {
+  "definitions": {
+    "service_category_enum": {
       "type": "string",
-      "enum": ["home_inspection", "appraisal", "title_search", "moving", "insurance"]
+      "enum": ["PLUMBING", "ROOFING", "ELECTRICAL", "CREDIT_REPAIR", "PAINTING", "CLEANING", "LANDSCAPING", "HVAC", "MOVING", "LOCKSMITH", "WINDOWS", "HANDYMAN"]
     },
-    "provider": { "type": "string" },
-    "rating": { "type": "number", "minimum": 1, "maximum": 5 },
-    "status": {
-      "type": "string",
-      "enum": ["recommended", "booked", "in_progress", "completed", "reviewed"]
-    },
-    "scheduled_date": { "type": "string", "format": "date" },
-    "cost": { "type": "number", "minimum": 0 }
+    "service_provider": {
+      "type": "object",
+      "properties": {
+        "provider_id": { "type": "string", "format": "uuid" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "category": { "$ref": "#/definitions/service_category_enum" },
+        "is_recommended": { "type": "boolean" },
+        "rating": { "type": "number", "minimum": 0, "maximum": 5 },
+        "review_count": { "type": "integer", "minimum": 0 },
+        "contact_phone": { "type": "string" },
+        "contact_name": { "type": ["string", "null"] },
+        "services_offered": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["provider_id", "name", "category", "rating", "review_count", "contact_phone"],
+      "additionalProperties": false
+    }
   }
 }

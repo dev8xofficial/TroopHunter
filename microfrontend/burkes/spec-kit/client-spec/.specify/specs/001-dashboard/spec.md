@@ -1,159 +1,42 @@
-# Feature Specification: Dashboard Aggregator Service
+# Dashboard Module Spec
 
-**Feature ID**: 001-dashboard-aggregator
-**Status**: approved
-**Created**: 2026-04-09
-**Parent Spec**: [000-foundation](../000-foundation/spec.md)
-**API Boundary**: Aggregator Service
-
----
+**Feature ID**: 001-dashboard  
+**Status**: Draft  
+**Created**: 2026-04-15  
 
 ## Overview
-
-The Dashboard Aggregator Service acts as the API Composition layer for client frontends. Instead of requiring the client device to make 10+ sequential or parallel HTTP calls to gather transaction, document, mortgage, and insurance status telemetry, this backend service queries the underlying domain databases concurrently, applies logic to extract the most pressing "Action Items," and delivers a single, highly optimized JSON payload.
-
----
+The Dashboard module aggregates cross-domain transaction data, presenting key metrics, system notifications, recent documents, activity logs, and the 11-stage transaction sequence to the Client.
 
 ## Problem Statement
+The Client requires unified visibility into their multi-stage property purchase to understand current responsibilities, assess progress, and quickly intercept critical updates (like missing insurance or unsigned documents).
 
-Direct client-to-microservice querying causes over-fetching, N+1 request problems, and pushes complex aggregation logic (like determining what constitutes an "Action Required") into the frontend codebase. This degrades mobile performance and scatters business rules. The Aggregator Service centralizes these rules into a single backend domain.
+## Actors and Permissions
+- `ROLE_CLIENT`: Can read `DashboardMetrics`, `ActivityFeed`, and their assigned `Notification`s. Can update `Notification` status (e.g. read, dismiss).
 
----
+## User Scenarios
+1. **Scenario**: Missing requirements trigger action required alert.
+   - Precondition: `MortgageApplication.is_complete` == `false`.
+   - System Event: Client retrieves metrics payload.
+   - Postcondition: Notification payload includes `ACTION_REQUIRED` for Mortgage Application.
 
-## Goals
-
-- Provide a single `GET` endpoint returning a unified transaction summary.
-- Compute global "completion percentages" based on domain sub-states.
-- Structurally define "Action Required" items dynamically (e.g., assessing if `documents` pending signature takes precedence over `insurance` forms).
-- Fetch the exact number of recent `ActivityEvents` needed for initial client hydration without querying the full log.
-
----
-
-## Non-Goals
-
-- This service is entirely read-only. It exposes no `POST/PUT/PATCH` routes. Mutations to transaction states must be made against their respective domain APIs (`002` through `006`).
-- It does not persist any durable state of its own; it orchestrates data from other databases/caches.
-
----
-
-## Actors
-
-| Actor | Role in This Feature |
-|-------|---------------------|
-| Any Role | Can query the aggregator; however, the response payload is dynamically filtered based on the `SessionContext` role (e.g. Clients see their outstanding actions; Lenders see lender-specific aggregate blockers). |
-
----
-
-## API Scenarios
-
-### Scenario 1 — Fetch Core Aggregation Payload
-
-**Actor**: Client Frontend
-**Precondition**: Client transmits a valid GET request.
-**Flow**:
-1. Request hits `GET /api/v1/dashboard/summary`.
-2. Aggregator issues parallel internal queries (via gRPC or fast internal HTTP) to: `DocumentsDB`, `MortgageDB`, `InsuranceDB`, and `TransactionsDB`.
-3. The internal calls block until complete (with an aggressive 200ms timeout per call).
-4. Aggregator maps the results into the standard Summary Schema.
-5. Service inspects the results to append dynamic `action_items` (e.g., if `requires_signature_count > 0`, append an action item flag).
-
-**Success**: API returns HTTP 200 with the fully hydrated JSON object.
-
----
-
-### Scenario 2 — Fetching Activity Log Feed
-
-**Actor**: Any Role
-**Precondition**: Role transmits a request to see recent events.
-**Flow**:
-1. Request hits `GET /api/v1/dashboard/feed?limit=6`.
-2. Service queries the global `activity_logs` table filtering by the `SessionContext.transaction_id`.
-3. Service returns the ordered JSON array.
-
-**Success**: API returns HTTP 200 with exactly the requested limit of structured activity events.
-
----
+2. **Scenario**: Transaction stage progress.
+   - Precondition: Real estate agent uploads signed Purchase Agreement.
+   - System Event: Backend transitions `Transaction` state to `UNDER_CONTRACT`.
+   - Postcondition: Dashboard Timeline payloads reflect updated `UNDER_CONTRACT` completion timestamp.
 
 ## Functional Requirements
+- **FR-001-01**: The system MUST return an aggregated metrics object encompassing transaction completion percentage, pending signature count, insurance completion ratio, and next appointment date.
+- **FR-001-02**: The system MUST return the 11-stage timeline mapping each stage to its current status (`COMPLETED`, `IN_PROGRESS`, `PENDING`).
+- **FR-001-03**: The system MUST return a chronological feed of recent `activity_log_event` items visible to `ROLE_CLIENT`.
 
-### FR-01-01 — Central Aggregation Endpoint (`GET /api/v1/dashboard/summary`)
-
-- The endpoint MUST execute domain queries concurrently to minimize total latency.
-- The response MUST contain a computed `global_completion_percentage`. This metric is determined by a hardcoded backend formula weighing stage completion against document counts.
-- The response MUST contain a canonical array of `action_items`. An action item is generated if:
-  - Document domain has `needs-signature` count > 0.
-  - Mortgage domain reports `status === 'pending_client'`.
-  - Insurance domain reports `home_status === 'not-started'`.
-
-### FR-01-02 — Stage Timeline Construction
-
-- The API MUST return a `timeline` block containing all 11 stages and their computed state (`complete`, `in_progress`, `pending`).
-- Logic for determining an `in_progress` stage relies on the underlying domain state (e.g., Stage 5 is "in progress" if `Mortgage` is `under_underwriting`).
-
-### FR-01-03 — Professional Team Directory Fetch
-
-- The response MUST include a `team_members` array mapping the `UUID` of assigned professionals to their `Name`, `RoleCode`, and `Direct_Contact` info, shielding the frontend from having to resolve User UUIDs.
-
----
-
-## Data & State (Contract Schemas)
-
-### Dashboard Summary Response Schema
-```json
-{
-  "transaction_id": "uuid",
-  "global_progress": {
-    "percentage": 65,
-    "current_stage": 5,
-    "label": "Under Contract"
-  },
-  "metrics": {
-    "documents_total": 45,
-    "documents_awaiting_signature": 2,
-    "insurance_policies_pending": 1
-  },
-  "action_items": [
-    {
-      "priority": 1,
-      "type": "SIGNATURE_REQUIRED",
-      "message": "2 documents await your signature",
-      "target_domain": "documents"
-    }
-  ],
-  "domain_summaries": {
-    "mortgage": {
-      "status": "in_progress",
-      "estimated_rate": 6.5,
-      "loan_amount": 400000
-    },
-    "insurance": {
-      "home_status": "completed",
-      "auto_status": "pending"
-    }
-  },
-  "team_members": [
-    { "role": "ROLE_AGENT", "name": "Sarah Smith", "id": "uuid" }
-  ]
-}
-```
-
----
-
-## Edge Cases & Error States
-
-- **Internal Service Timeout**: If `InsuranceDB` is unreachable during the parallel fetch, the API MUST NOT fail the entire request. It must return the aggregator payload with `insurance: { status: "unavailable" }` and HTTP 206 Partial Content or HTTP 200 with an internal flag.
-- **Empty State**: If no actions are outstanding, the `action_items` array must be empty (`[]`), not null or omitted.
-
----
-
-## Assumptions
-
-1. The data fetched by the aggregator is eventual-consistent. Given the low-velocity nature of real-estate transactions, a caching layer (Redis) TTL of 15 seconds for this payload is perfectly acceptable.
-
----
+## Data & State Table
+| Field | Type | Owner Role | Constraints |
+|-------|------|------------|-------------|
+| `transaction_progress` | integer | SYSTEM | 0-100 |
+| `transaction_stage_id` | string | SYSTEM | Enum [1-11] |
+| `docs_needing_signature` | integer | SYSTEM | >= 0 |
+| `insurance_completed` | integer | SYSTEM | 0-3 |
 
 ## Success Criteria
-
-1. Endpoint latency must reliably fall below 250ms at p95 under standard load.
-2. If any underlying service crashes, the aggregator degrades gracefully, still serving the available domains.
-3. The computed `action_items` array perfectly matches the business logic triggers across domain boundaries.
+- Time-to-retrieval for the aggregate dashboard endpoint `< 300ms`.
+- Client engagement with 'Action Required' notifications resolves dependencies correctly.

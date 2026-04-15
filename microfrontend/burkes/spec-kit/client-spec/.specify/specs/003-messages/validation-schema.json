@@ -1,25 +1,49 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Message Data Model",
+  "title": "Messages Schema",
   "type": "object",
-  "required": ["message_id", "thread_id", "sender_role", "recipient_roles", "content"],
-  "properties": {
-    "message_id": { "type": "string", "pattern": "^MSG-[0-9]{10}$" },
-    "thread_id": { "type": "string", "pattern": "^THD-[0-9]{10}$" },
-    "sender_role": { "type": "string", "enum": ["CL", "AG", "LN", "AT", "CP", "TC"] },
-    "recipient_roles": {
-      "type": "array",
-      "items": { "type": "string", "enum": ["CL", "AG", "LN", "AT", "CP", "TC"] }
+  "definitions": {
+    "conversation": {
+      "type": "object",
+      "properties": {
+        "conversation_id": { "type": "string", "format": "uuid" },
+        "transaction_id": { "type": "string", "format": "uuid" },
+        "participants": {
+          "type": "array",
+          "items": { "type": "string", "format": "uuid" },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "last_message_preview": { "type": ["string", "null"] },
+        "last_message_at": { "type": ["string", "null"], "format": "date-time" },
+        "unread_count": { "type": "integer", "minimum": 0 }
+      },
+      "required": ["conversation_id", "transaction_id", "participants", "unread_count"],
+      "additionalProperties": false
     },
-    "content": { "type": "string", "minLength": 1, "maxLength": 5000 },
-    "created_date": { "type": "string", "format": "date-time" },
-    "read_by": {
-      "type": "array",
-      "items": { "type": "string", "enum": ["CL", "AG", "LN", "AT", "CP", "TC"] }
+    "message": {
+      "type": "object",
+      "properties": {
+        "message_id": { "type": "string", "format": "uuid" },
+        "conversation_id": { "type": "string", "format": "uuid" },
+        "sender_id": { "type": "string", "format": "uuid" },
+        "bodytext": { "type": "string", "maxLength": 2000 },
+        "attachment_document_id": { "type": ["string", "null"], "format": "uuid" },
+        "is_system_announcement": { "type": "boolean", "default": false },
+        "created_at": { "type": "string", "format": "date-time" },
+        "read_at": { "type": ["string", "null"], "format": "date-time" }
+      },
+      "required": ["message_id", "conversation_id", "sender_id", "bodytext", "created_at"],
+      "additionalProperties": false
     },
-    "status": {
-      "type": "string",
-      "enum": ["sent", "delivered", "read", "deleted"]
+    "send_message_req": {
+      "type": "object",
+      "properties": {
+        "bodytext": { "type": "string", "maxLength": 2000 },
+        "attachment_document_id": { "type": "string", "format": "uuid" }
+      },
+      "required": ["bodytext"],
+      "additionalProperties": false
     }
   }
 }

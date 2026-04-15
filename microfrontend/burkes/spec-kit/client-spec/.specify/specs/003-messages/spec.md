@@ -1,152 +1,50 @@
-# Feature Specification: Messages Service
+# Messages Module Spec
 
-**Feature ID**: 003-messages
-**Status**: approved
-**Created**: 2026-04-09
-**Parent Spec**: [000-foundation](../000-foundation/spec.md)
-**API Boundary**: Messaging Service
-
----
+**Feature ID**: 003-messages  
+**Status**: Draft  
+**Created**: 2026-04-15  
 
 ## Overview
-
-The Messages Service provides backend coordination for real-time, threaded communication between transaction participants. It exposes REST endpoints for fetching message histories and creating new threads, while maintaining a bidirectional WebSocket (or Server-Sent Events) channel for real-time dispatch.
-
----
+The Messages module enables secure, in-platform communication between the `ROLE_CLIENT` and associated transaction professionals (Agent, Lender, Attorney, CPA). It supports text-based chatting, document attachments referencing existing `Document` entities, and system announcements.
 
 ## Problem Statement
+Third-party texting or emailing leaks transaction context and compromises secure document transmission. A centralized messaging hub is required to confine all property discussions within the authenticated boundaries of the transaction.
 
-Stateless HTTP polling for message updates incurs massive unneeded load on the database. A dedicated pub/sub messaging microservice is required to push events statefully to connected clients, index message search efficiently, and manage attachment storage links without bloating the main `transactions` table.
+## Actors and Permissions
+- `ROLE_CLIENT`: Can initiate and respond to conversations with any assigned professional.
+- Professional Roles (`ROLE_AGENT`, `ROLE_LENDER`, `ROLE_ATTORNEY`, `ROLE_CPA`): Can communicate with the client.
+- Note: Peer-to-peer professional communication (e.g., Agent to Lender) is NOT a functional requirement derived from the Client portal HTML; the client HTML only shows Client-to-Professional threads.
 
----
+## User Scenarios
+1. **Scenario**: Receiving a critical document via message.
+   - Precondition: Agent sends a message containing a `document_id`.
+   - System Event: Client views message payload containing document metadata.
+   - Postcondition: Client can read message and transition the thread to `READ`.
 
-## Goals
-
-- Establish real-time JSON push mechanisms over WebSockets.
-- Persist an immutable ledger of messages into a dedicated table/store.
-- Maintain a highly efficient "unread count" aggregator per thread and user.
-- Handle document attachment arrays (linking to `document_id` references from spec 002).
-
----
-
-## Non-Goals
-
-- The service does not process or transcode attachments directly; it only stores UUID references to the Documents Service blobs.
-- It does not define frontend chat UI bubbles or typing animations natively, it only emits the events (`USER_TYPING`).
-
----
-
-## Actors
-
-| Actor | Role in This Feature |
-|-------|---------------------|
-| Client | Sends `POST /messages`; receives via WS |
-| Professionals | Sends `POST /messages`; receives via WS |
-| Admin / System | Broadcasts read-only announcement cards |
-
----
-
-## API Scenarios
-
-### Scenario 1 — Establishing a Real-Time Session
-
-**Actor**: Client App
-**Precondition**: Client has a valid JWT.
-**Flow**:
-1. Client initiates a WebSocket connection to `wss://api.burkes.com/v1/messages/stream?token=<jwt>`.
-2. Connection upgrade request hits the Gateway.
-3. Gateway strips token and proxies connection to the message node.
-4. Message node verifies identity and adds connection ID to the in-memory Pub/Sub channel for `transaction_id:<uuid>`.
-
-**Success**: The socket remains open with a heartbeat interval (30s) and is ready to push events.
-
----
-
-### Scenario 2 — Emitting a New Message
-
-**Actor**: Real Estate Agent
-**Precondition**: Socket connection active.
-**Flow**:
-1. Agent POSTs JSON payload to `/api/v1/messages/emit`.
-2. Controller sanitizes content (XSS protection) and writes the row to the database.
-3. Controller updates the `thread` record `last_message_at`.
-4. Controller drops an event onto the Redis Pub/Sub bus.
-5. All websocket nodes serving active clients subbed to `transaction_id:<uuid>` push the serialized JSON message to the connections.
-
-**Success**: The database is persisted, and connected clients receive the update in <100ms.
-
----
+2. **Scenario**: Active conversation polling.
+   - Precondition: Client has thread open.
+   - System Event: Client periodically polls and retrieves new messages in thread.
+   - Postcondition: New messages appended to thread.
 
 ## Functional Requirements
+- **FR-003-01**: The system MUST store `Conversation` threads representing a 1-to-1 mapping between the Client and a specific professional role.
+- **FR-003-02**: The system MUST store `Message` entities linked to a `Conversation`, preserving order and timestamp.
+- **FR-003-03**: The system MUST allow a document reference (`document_id`) to be embedded within a message, while continuing to respect document-level RBAC matrices.
+- **FR-003-04**: The system MUST track `read_at` timestamps for messages to support unread indicators.
 
-### FR-03-01 — Thread Queries (`GET /api/v1/messages/threads`)
-
-- Returns all threads associated with the authenticated context.
-- Payload MUST list participants and the `last_message_preview`.
-- MUST compute the `unread_count` for the requesting actor based on their `last_read_timestamp`.
-
-### FR-03-02 — Message History (`GET /api/v1/messages/threads/{id}/history`)
-
-- MUST implement cursor-based pagination (e.g. `?before=<uuid>&limit=50`).
-- Returns full message bodies and attachment metadata arrays.
-
-### FR-03-03 — Mutation Endpoint (`POST /api/v1/messages/emit`)
-
-- Accepts the `thread_id`, `body`, and optional `attachment_ids`.
-- Validates the user has permission to post to the `thread_id`.
-- Validates that `attachment_ids` referenced are actually authorized and exist in the Documents DB.
-
-### FR-03-04 — Typing Indicators (Ephemeral Events)
-
-- An endpoint `POST /api/v1/messages/typing` accepts a `thread_id` and boolean.
-- This endpoint DOES NOT interact with the database. It purely publishes a short-lived transient event (`sys.typing`) over the WebSocket channel.
-
----
-
-## Data & State (Contract Schemas)
-
-### Thread Payload Schema
-```json
-{
-  "thread_id": "uuid",
-  "transaction_id": "uuid",
-  "topic": "string",
-  "participants": [
-    { "user_id": "uuid", "role": "ROLE_AGENT" },
-    { "user_id": "uuid", "role": "ROLE_CLIENT" }
-  ],
-  "last_message_preview": "string",
-  "last_message_at": "iso8601",
-  "unread_count": "integer"
-}
-```
-
-### Message Emission Event (Pushed over WS)
-```json
-{
-  "event_type": "MESSAGE_CREATED",
-  "data": {
-    "message_id": "uuid",
-    "thread_id": "uuid",
-    "sender_id": "uuid",
-    "sender_role": "string",
-    "body": "Hi there, please review this.",
-    "attachments": [ "uuid" ],
-    "created_at": "iso8601"
-  }
-}
-```
-
----
-
-## Edge Cases & Error States
-
-- **WebSocket Drops**: Clients MUST gracefully detect disconnected sockets and perform a rest-level `GET /history` catchup before re-subscribing.
-- **Cross-Site Scripting**: The `POST /emit` endpoint must strict-clean HTML inputs prior to database write to prevent XSS.
-
----
+## Data & State Table
+| Field | Type | Owner Role | Constraints |
+|-------|------|------------|-------------|
+| `conversation_id` | string(uuid) | SYSTEM | PK |
+| `transaction_id` | string(uuid) | SYSTEM | FK |
+| `participant_1_id` | string(uuid) | SYSTEM | Typically the Client |
+| `participant_2_id` | string(uuid) | SYSTEM | Typically the Professional |
+| `message_id` | string(uuid) | SYSTEM | PK |
+| `sender_id` | string(uuid) | SYSTEM | -> User |
+| `bodytext` | string | Actor | Max 2000 chars |
+| `attachment_document_id`| string | SYSTEM | Nullable FK to Documents |
+| `read_at` | timestamp | SYSTEM | Nullable |
 
 ## Success Criteria
-
-1. WebSockets can scale horizontally (via Redis pub/sub backplane) supporting 10,000 concurrent sockets without dropping messages.
-2. `unread_count` aggregations remain accurate even if messages are consumed out-of-order over unreliable networks.
+- Messages are transmitted and persisted reliably.
+- Embedded documents correctly resolve metadata without violating RBAC.

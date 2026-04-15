@@ -1,17 +1,7 @@
-# Risk Register: Services Spec
+# Services Risks
 
-## Critical Risks
-
-| Risk      | Title                                  | Probability  | Impact | Mitigation                        |
-| --------- | -------------------------------------- | ------------ | ------ | --------------------------------- |
-| D-SVC-001 | Provider no-show                       | Medium (40%) | High   | Reminders + backup provider list  |
-| D-SVC-002 | Double booking (same slot)             | Low (5%)     | Medium | Calendar locking + real-time sync |
-| D-SVC-003 | Service scheduled too close to closing | Medium (30%) | High   | Schedule conflict checking        |
-
----
-
-## Success Criteria
-
-✅ Provider no-show rate < 5%
-✅ Zero double-booking incidents
-✅ Schedule conflicts detected 100%
+## Integration Risks
+- **Underpopulated Zip Codes**: Querying a rural zip code returns 0 providers, reducing user trust in the portal.
+  - **Probability**: High
+  - **Impact**: Low
+  - **Mitigation Strategy**: The backend service must compute a radial geographic search (e.g., 25-mile radius) rather than performing an exact string match on postal codes.

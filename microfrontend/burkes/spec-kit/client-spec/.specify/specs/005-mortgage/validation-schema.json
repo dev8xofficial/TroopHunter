@@ -1,35 +1,66 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Mortgage Data Model",
+  "title": "Mortgage Schema",
   "type": "object",
-  "required": ["lender_name", "loan_amount", "status"],
-  "properties": {
-    "lender_name": { "type": "string" },
-    "loan_amount": { "type": "number", "minimum": 0 },
-    "interest_rate": { "type": "number", "minimum": 0 },
-    "loan_term_months": { "type": "integer", "minimum": 60, "maximum": 480 },
-    "pre_approval_status": {
+  "definitions": {
+    "app_status_enum": {
       "type": "string",
-      "enum": ["not_requested", "pending", "approved", "conditional", "declined"]
+      "enum": ["INCOMPLETE", "IN_PROGRESS", "SUBMITTED"]
     },
-    "underwriting_status": {
-      "type": "string",
-      "enum": ["not_started", "in_progress", "pending_conditions", "approved", "denied"]
+    "personal_info_schema": {
+      "type": "object",
+      "properties": {
+        "first_name": { "type": "string" },
+        "last_name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "dob": { "type": "string", "format": "date" },
+        "ssn_last_four": { "type": "string", "pattern": "^\\d{4}$" },
+        "is_complete": { "type": "boolean" }
+      },
+      "additionalProperties": false
     },
-    "clear_to_close_status": {
-      "type": "string",
-      "enum": ["not_ready", "conditions_pending", "ready"]
+    "property_details_schema": {
+      "type": "object",
+      "properties": {
+        "property_address": { "type": "string" },
+        "purchase_price": { "type": "number" },
+        "down_payment": { "type": "number" },
+        "loan_amount_requested": { "type": "number" },
+        "property_type": { "type": "string", "enum": ["Single Family Home", "Condominium", "Townhouse", "Multi-Family"] },
+        "is_complete": { "type": "boolean" }
+      },
+      "additionalProperties": false
     },
-    "conditions": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "condition": { "type": "string" },
-          "resolved": { "type": "boolean" },
-          "resolved_date": { "type": "string", "format": "date" }
-        }
-      }
+    "employer_schema": {
+      "type": "object",
+      "properties": {
+        "employer_name": { "type": "string" },
+        "position_title": { "type": "string" },
+        "start_date": { "type": "string", "format": "date" },
+        "end_date": { "type": ["string", "null"], "format": "date" },
+        "annual_income": { "type": "number" }
+      },
+      "required": ["employer_name", "position_title", "start_date", "annual_income"],
+      "additionalProperties": false
+    },
+    "mortgage_application": {
+      "type": "object",
+      "properties": {
+        "application_id": { "type": "string", "format": "uuid" },
+        "transaction_id": { "type": "string", "format": "uuid" },
+        "status": { "$ref": "#/definitions/app_status_enum" },
+        "progress_percent": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "personal_info": { "$ref": "#/definitions/personal_info_schema" },
+        "property_details": { "$ref": "#/definitions/property_details_schema" },
+        "employment_history": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/employer_schema" }
+        },
+        "employment_is_complete": { "type": "boolean" }
+      },
+      "required": ["application_id", "transaction_id", "status", "progress_percent"],
+      "additionalProperties": false
     }
   }
 }

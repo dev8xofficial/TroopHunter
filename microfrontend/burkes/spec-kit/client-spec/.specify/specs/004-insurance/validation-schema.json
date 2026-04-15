@@ -1,20 +1,56 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Insurance Data Model",
+  "title": "Insurance Schema",
   "type": "object",
-  "required": ["insurance_type", "status", "provider"],
-  "properties": {
-    "insurance_type": { "type": "string", "enum": ["homeowners", "title"] },
-    "status": {
+  "definitions": {
+    "policy_type_enum": {
       "type": "string",
-      "enum": ["not_started", "quote_requested", "quote_received", "bound", "active", "expired"]
+      "enum": ["HOME", "AUTO", "WARRANTY"]
     },
-    "provider": { "type": "string" },
-    "premium": { "type": "number", "minimum": 0 },
-    "coverage_amount": { "type": "number", "minimum": 0 },
-    "effective_date": { "type": "string", "format": "date" },
-    "expiry_date": { "type": "string", "format": "date" },
-    "policy_number": { "type": "string" },
-    "lender_satisfied": { "type": "boolean" }
+    "policy_status_enum": {
+      "type": "string",
+      "enum": ["NOT_STARTED", "PENDING", "COMPLETED"]
+    },
+    "insurance_policy": {
+      "type": "object",
+      "properties": {
+        "policy_id": { "type": "string", "format": "uuid" },
+        "transaction_id": { "type": "string", "format": "uuid" },
+        "policy_type": { "$ref": "#/definitions/policy_type_enum" },
+        "status": { "$ref": "#/definitions/policy_status_enum" },
+        "policyholder_name": { "type": "string", "maxLength": 255 },
+        "dob": { "type": "string", "format": "date" },
+        "property_address": { "type": ["string", "null"] },
+        "vin_number": { "type": ["string", "null"], "minLength": 17, "maxLength": 17 },
+        "additional_info": { "type": ["string", "null"], "maxLength": 1000 },
+        "document_ids": {
+          "type": "array",
+          "items": { "type": "string", "format": "uuid" }
+        }
+      },
+      "required": ["policy_id", "transaction_id", "policy_type", "status"],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": { "properties": { "policy_type": { "const": "AUTO" } } },
+          "then": { "required": ["vin_number"] }
+        },
+        {
+          "if": { "properties": { "policy_type": { "enum": ["HOME", "WARRANTY"] } } },
+          "then": { "required": ["property_address"] }
+        }
+      ]
+    },
+    "insurance_update_req": {
+      "type": "object",
+      "properties": {
+        "policyholder_name": { "type": "string", "maxLength": 255 },
+        "dob": { "type": "string", "format": "date" },
+        "property_address": { "type": "string" },
+        "vin_number": { "type": "string", "minLength": 17, "maxLength": 17 },
+        "additional_info": { "type": "string", "maxLength": 1000 }
+      },
+      "additionalProperties": false
+    }
   }
 }

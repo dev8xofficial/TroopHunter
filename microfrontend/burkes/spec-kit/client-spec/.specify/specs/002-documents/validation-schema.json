@@ -1,20 +1,50 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Document Data Model",
+  "title": "Documents Schema",
   "type": "object",
-  "required": ["document_id", "category", "status"],
-  "properties": {
-    "document_id": { "type": "string", "pattern": "^DOC-[0-9]{10}$" },
-    "category": {
+  "definitions": {
+    "document_category_enum": {
       "type": "string",
-      "enum": ["identification", "financial", "property", "closing"]
+      "enum": ["PURCHASE", "FINANCIAL", "LEGAL", "OTHER"]
     },
-    "status": {
+    "document_status_enum": {
       "type": "string",
-      "enum": ["not_started", "uploaded", "pending_review", "approved", "rejected"]
+      "enum": ["NEEDS_SIGNATURE", "UNDER_REVIEW", "APPROVED"]
     },
-    "file_url": { "type": "string", "format": "uri" },
-    "uploaded_by": { "type": "string", "enum": ["CL", "AG", "LN", "AT", "CP", "TC"] },
-    "uploaded_date": { "type": "string", "format": "date-time" }
+    "document": {
+      "type": "object",
+      "properties": {
+        "document_id": { "type": "string", "format": "uuid" },
+        "transaction_id": { "type": "string", "format": "uuid" },
+        "filename": { "type": "string", "maxLength": 255 },
+        "mime_type": { "type": "string" },
+        "size_bytes": { "type": "integer", "maximum": 26214400 },
+        "category": { "$ref": "#/definitions/document_category_enum" },
+        "status": { "$ref": "#/definitions/document_status_enum" },
+        "uploaded_by_id": { "type": "string", "format": "uuid" },
+        "uploaded_by_role": { "$ref": "../000-foundation/validation-schema.json#/definitions/role_enum" },
+        "created_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["document_id", "transaction_id", "filename", "size_bytes", "category", "status", "uploaded_by_role", "created_at"],
+      "additionalProperties": false
+    },
+    "document_upload_req": {
+      "type": "object",
+      "properties": {
+        "filename": { "type": "string" },
+        "category": { "$ref": "#/definitions/document_category_enum" }
+      },
+      "required": ["filename", "category"],
+      "additionalProperties": false
+    },
+    "document_sign_req": {
+      "type": "object",
+      "properties": {
+        "signature_token": { "type": "string" },
+        "ip_address": { "type": "string" }
+      },
+      "required": ["signature_token"],
+      "additionalProperties": false
+    }
   }
 }

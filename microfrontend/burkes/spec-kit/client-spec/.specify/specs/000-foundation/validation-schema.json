@@ -1,316 +1,60 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Foundation Design System & Global Components",
-  "description": "Validates design tokens, component definitions, and session context for the Foundation spec (000). All UIs must conform to these definitions.",
+  "title": "Foundation Schema",
   "type": "object",
-  "required": ["design_tokens", "components", "badge_system", "session_context", "navigation", "activity_log_contract"],
-  "properties": {
-    "design_tokens": {
-      "type": "object",
-      "required": ["colours", "typography", "spacing", "shadows"],
-      "properties": {
-        "colours": {
-          "type": "object",
-          "required": ["primary", "secondary", "neutral", "semantic", "role_mapping"],
-          "properties": {
-            "primary": {
-              "type": "object",
-              "properties": {
-                "navy": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
-                "gold": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" }
-              }
-            },
-            "secondary": {
-              "type": "object",
-              "properties": {
-                "accent_blue": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" }
-              }
-            },
-            "neutral": {
-              "type": "object",
-              "properties": {
-                "gray_50": { "type": "string" },
-                "gray_100": { "type": "string" },
-                "gray_200": { "type": "string" },
-                "gray_500": { "type": "string" },
-                "gray_900": { "type": "string" }
-              }
-            },
-            "semantic": {
-              "type": "object",
-              "properties": {
-                "success": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
-                "warning": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
-                "error": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
-                "info": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" }
-              }
-            },
-            "role_mapping": {
-              "type": "object",
-              "properties": {
-                "CL": { "type": "string", "description": "Client (teal)", "enum": ["#1a5f5f"] },
-                "AG": { "type": "string", "description": "Agent (blue)", "enum": ["#1a3a8a"] },
-                "LN": { "type": "string", "description": "Lender (gold)", "enum": ["#fdb913"] },
-                "AT": { "type": "string", "description": "Attorney (purple)", "enum": ["#7c3aed"] },
-                "CP": { "type": "string", "description": "CPA (navy)", "enum": ["#1e3a8a"] },
-                "TC": { "type": "string", "description": "Coordinator (orange)", "enum": ["#ea580c"] }
-              }
-            }
-          }
-        },
-        "typography": {
-          "type": "object",
-          "required": ["headings", "body"],
-          "properties": {
-            "headings": {
-              "type": "object",
-              "properties": {
-                "font_family": { "type": "string", "enum": ["Archivo"] },
-                "weights": { "type": "array", "items": { "type": "integer", "enum": [600, 700] } }
-              }
-            },
-            "body": {
-              "type": "object",
-              "properties": {
-                "font_family": { "type": "string", "enum": ["Manrope"] },
-                "weights": { "type": "array", "items": { "type": "integer", "enum": [400, 500, 600] } }
-              }
-            }
-          }
-        },
-        "spacing": {
-          "type": "object",
-          "properties": {
-            "base_unit": { "type": "integer", "enum": [8] },
-            "scale": {
-              "type": "object",
-              "properties": {
-                "xs": { "type": "integer", "enum": [4] },
-                "sm": { "type": "integer", "enum": [8] },
-                "md": { "type": "integer", "enum": [16] },
-                "lg": { "type": "integer", "enum": [24] },
-                "xl": { "type": "integer", "enum": [32] }
-              }
-            }
-          }
-        },
-        "shadows": {
-          "type": "object",
-          "properties": {
-            "sm": { "type": "string", "description": "Subtle shadow for cards" },
-            "md": { "type": "string", "description": "Medium shadow for elevated content" },
-            "lg": { "type": "string", "description": "Large shadow for modals" }
-          }
-        }
-      }
+  "definitions": {
+    "role_enum": {
+      "type": "string",
+      "enum": ["ROLE_CLIENT", "ROLE_AGENT", "ROLE_LENDER", "ROLE_ATTORNEY", "ROLE_CPA", "ROLE_ADMIN"]
     },
-    "components": {
-      "type": "object",
-      "properties": {
-        "global_nav_bar": {
-          "type": "object",
-          "required": ["position", "layout", "navigation_items"],
-          "properties": {
-            "position": { "type": "string", "enum": ["sticky_top"] },
-            "layout": { "type": "string", "enum": ["horizontal"] },
-            "navigation_items": {
-              "type": "array",
-              "minItems": 6,
-              "items": {
-                "type": "object",
-                "properties": {
-                  "icon": { "type": "string" },
-                  "label": { "type": "string" },
-                  "route": { "type": "string" }
-                }
-              }
-            },
-            "right_section": {
-              "type": "object",
-              "properties": {
-                "notification_bell": { "type": "boolean" },
-                "user_avatar_dropdown": { "type": "boolean" }
-              }
-            }
-          }
-        },
-        "alert_banner": {
-          "type": "object",
-          "required": ["variants"],
-          "properties": {
-            "variants": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": ["info", "warning", "error", "success"]
-              }
-            },
-            "dismissible": { "type": "boolean" }
-          }
-        },
-        "card": {
-          "type": "object",
-          "properties": {
-            "layout_options": {
-              "type": "array",
-              "items": { "type": "string", "enum": ["horizontal", "vertical", "with_icon"] }
-            },
-            "padding": { "type": "string" },
-            "border_radius": { "type": "string" },
-            "shadow": { "type": "string" }
-          }
-        },
-        "badge": {
-          "type": "object",
-          "description": "See badge_system property for full spec"
-        }
-      }
-    },
-    "badge_system": {
-      "type": "object",
-      "required": ["variants"],
-      "properties": {
-        "variants": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "required": ["name", "colour", "use_case"],
-            "properties": {
-              "name": { "type": "string" },
-              "colour": { "type": "string" },
-              "use_case": { "type": "string" },
-              "icon": { "type": "string" }
-            }
-          },
-          "minItems": 6,
-          "example": [
-            {
-              "name": "green",
-              "colour": "#10b981",
-              "use_case": "Completed, approved, uploaded successfully",
-              "icon": "checkmark"
-            },
-            {
-              "name": "yellow",
-              "colour": "#f59e0b",
-              "use_case": "Pending, awaiting action, in progress",
-              "icon": "clock"
-            },
-            {
-              "name": "blue",
-              "colour": "#3b82f6",
-              "use_case": "Action required, new item, review requested",
-              "icon": "exclamation"
-            },
-            {
-              "name": "red",
-              "colour": "#ef4444",
-              "use_case": "Error, rejected, failed, critical issue",
-              "icon": "x"
-            },
-            {
-              "name": "gray",
-              "colour": "#6b7280",
-              "use_case": "Not started, unavailable, disabled",
-              "icon": "minus"
-            },
-            {
-              "name": "navy",
-              "colour": "#1e3a8a",
-              "use_case": "Info, hint, metadata",
-              "icon": "info"
-            }
-          ]
-        }
-      }
+    "transaction_state_enum": {
+      "type": "string",
+      "enum": [
+        "INITIAL_CONSULTATION",
+        "PROPERTY_SEARCH",
+        "OFFER_NEGOTIATION",
+        "UNDER_CONTRACT",
+        "MORTGAGE_APPLICATION",
+        "INSURANCE_SETUP",
+        "ATTORNEY_TITLE_REVIEW",
+        "INSPECTION_APPRAISAL",
+        "MORTGAGE_UNDERWRITING",
+        "FINAL_WALKTHROUGH",
+        "CLOSING_DAY",
+        "CLOSED"
+      ]
     },
     "session_context": {
       "type": "object",
-      "required": ["required_fields"],
       "properties": {
-        "required_fields": {
-          "type": "object",
-          "properties": {
-            "transaction_id": {
-              "type": "string",
-              "description": "Current transaction (TXN-XXXXXXXXXX)"
-            },
-            "user_role": {
-              "type": "string",
-              "enum": ["CL", "AG", "LN", "AT", "CP", "TC"],
-              "description": "User's role in current transaction"
-            },
-            "user_id": {
-              "type": "string",
-              "description": "Authenticated user identifier"
-            },
-            "user_name": {
-              "type": "string",
-              "description": "User display name"
-            },
-            "auth_token": {
-              "type": "string",
-              "description": "Session auth token (from identity provider)"
-            }
-          }
-        },
-        "expected_lifetime": {
-          "type": "string",
-          "description": "Browser session or JWT expiry (typically 8 hours)"
-        }
-      }
-    },
-    "navigation": {
-      "type": "object",
-      "properties": {
-        "structure": {
-          "type": "string",
-          "description": "Single-page app with hash/path routing"
-        },
-        "accessibility": {
-          "type": "object",
-          "properties": {
-            "keyboard_navigation": { "type": "boolean", "enum": [true] },
-            "wcag_level": { "type": "string", "enum": ["AA"] },
-            "screen_reader_support": { "type": "boolean", "enum": [true] }
-          }
-        }
-      }
-    },
-    "activity_log_contract": {
-      "type": "object",
-      "required": ["immutability", "append_only", "event_types"],
-      "properties": {
-        "immutability": {
-          "type": "boolean",
-          "description": "Activity events cannot be edited or deleted"
-        },
-        "append_only": {
-          "type": "boolean",
-          "description": "New events are appended; history never rewritten"
-        },
-        "visibility_rules": {
-          "type": "object",
-          "properties": {
-            "client_sees": {
-              "type": "array",
-              "items": { "type": "string" },
-              "description": "Client-visible events only"
-            },
-            "professionals_see": {
-              "type": "array",
-              "items": { "type": "string" },
-              "description": "Professional team can see internal notes + audit trail"
-            }
-          }
-        },
-        "event_types": {
+        "user_id": { "type": "string", "format": "uuid" },
+        "roles": {
           "type": "array",
-          "minItems": 5,
-          "items": { "type": "string" }
+          "items": { "$ref": "#/definitions/role_enum" }
+        },
+        "transaction_id": { "type": "string", "format": "uuid" },
+        "expires_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["user_id", "roles", "expires_at"],
+      "additionalProperties": false
+    },
+    "activity_log_event": {
+      "type": "object",
+      "properties": {
+        "event_id": { "type": "string", "format": "uuid" },
+        "transaction_id": { "type": "string", "format": "uuid" },
+        "event_type": { "type": "string" },
+        "actor_id": { "type": "string", "format": "uuid" },
+        "actor_role": { "$ref": "#/definitions/role_enum" },
+        "payload": { "type": "object" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "visible_to": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/role_enum" }
         }
-      }
+      },
+      "required": ["event_id", "transaction_id", "event_type", "actor_id", "actor_role", "timestamp", "visible_to"],
+      "additionalProperties": false
     }
-  },
-  "additionalProperties": false
+  }
 }
