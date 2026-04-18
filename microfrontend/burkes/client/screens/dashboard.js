@@ -1,153 +1,85 @@
-/* screens/dashboard.js — 001-dashboard */
+/* screens/dashboard.js — Client Portal Dashboard */
 
-const ScreenDashboard = (() => {
-  function render() {
-    const tx = window.TX;
-    const metrics = computeMetrics(tx);
-    const role = Session.role;
+const DashboardScreen = (() => {
+  function render(outlet) {
+    if (!outlet) return;
 
-    AlertBanner.clearAll();
+    const tx = window.MockData?.transaction || {};
+    const metrics = window.MockData?.metrics || {};
+    const role = window.Session?.role || 'CL';
+    const documents = window.MockData?.getDocumentsForRole(role) || [];
+    const activity = window.MockData?.getActivityForRole(role) || [];
+    const messages = window.MockData?.messages || [];
 
-    // Show action-required alerts
-    if (metrics.needsSignature > 0 && ['CL','TC'].includes(role)) {
-      AlertBanner.show({
-        type: 'warning',
-        id: 'sig-required',
-        title: `${metrics.needsSignature} document${metrics.needsSignature > 1 ? 's' : ''} awaiting your signature`,
-        desc: 'The Closing Disclosure and Loan Estimate require your review and signature.',
-        cta: { label: 'View Documents', action: "Router.navigate('documents')" },
-        dismissible: false,
-      });
-    }
+    const daysToClose = metrics.days_to_close ?? 0;
+    const stageName = metrics.current_stage || tx.stage_name || 'Unknown';
+    const greeting = tx.client_name ? tx.client_name.split(' ')[0] : 'there';
+    const progressPct = metrics.progress_pct ?? 0;
+    const docCount = documents.length;
+    const needsSignature = documents.filter((d) => ['needs-signature', 'NEEDS_SIGNATURE'].includes(d.status)).length;
+    const insuranceStatus = metrics.insurance_pct || '0/0';
+    const unreadMessages = messages.reduce((sum, conv) => sum + (conv.unread || conv.unread_count || 0), 0);
 
-    if (role === 'LN') {
-      AlertBanner.show({
-        type: 'info',
-        id: 'underwriting',
-        title: 'Underwriting in progress — 2 conditions outstanding',
-        desc: 'Employment letter and April pay stub still needed from client.',
-        cta: { label: 'Message Client', action: "Router.navigate('messages')" },
-        dismissible: true,
-      });
-    }
+    const daysColor = daysToClose < 8 ? 'badge-red' : daysToClose < 20 ? 'badge-amber' : 'badge-green';
 
-    const daysLeft = Utils.daysUntil(tx.closing_date);
-    const daysColor = daysLeft < 8 ? 'badge-red' : daysLeft < 20 ? 'badge-amber' : 'badge-green';
-
-    const screenEl = document.getElementById('screen-dashboard');
-    screenEl.innerHTML = `
+    outlet.innerHTML = `
       <div class="page-header">
         <div class="page-header-content">
-          <h1 class="page-title">Welcome back, ${tx.client_name.split(' ')[0]}</h1>
+          <h1 class="page-title">Welcome back, ${greeting}</h1>
           <p class="page-subtitle">
-            ${tx.property_address.street}, ${tx.property_address.city}, ${tx.property_address.state} &nbsp;·&nbsp;
-            Closing target: ${Utils.formatDate(tx.closing_date)}
+            ${tx.property_address?.street || 'Transaction'} · Closing target: ${window.MockData?.formatDate?.(tx.estimated_close_date || tx.closing_date) || 'TBD'}
           </p>
         </div>
         <div class="page-actions">
           <span class="badge ${daysColor}" style="font-size:13px;padding:6px 14px;">
-            ${daysLeft} days to close
+            ${daysToClose} days to close
           </span>
         </div>
       </div>
 
-      <!-- Stats Grid -->
       <div class="grid grid-4" style="margin-bottom:var(--space-6)">
         ${renderStatCard({
-          icon: 'grid', iconBg: '#dbeafe', iconColor: '#2563eb',
-          value: `${metrics.progress}%`,
+          value: `${progressPct}%`,
           label: 'Transaction Progress',
-          sub: `Stage ${tx.current_stage} of 11`,
+          sub: `Current stage: ${stageName}`,
           accent: 'var(--color-accent-blue)',
         })}
         ${renderStatCard({
-          icon: 'folder', iconBg: '#dcfce7', iconColor: '#16a34a',
-          value: metrics.docsTotal,
+          value: docCount,
           label: 'Documents on File',
-          sub: `${metrics.needsSignature} need${metrics.needsSignature !== 1 ? '' : 's'} action`,
+          sub: `${needsSignature} need${needsSignature === 1 ? '' : 's'} action`,
           accent: 'var(--color-success)',
         })}
         ${renderStatCard({
-          icon: 'shield', iconBg: metrics.insuranceComplete === 3 ? '#dcfce7' : '#fef3c7',
-          iconColor: metrics.insuranceComplete === 3 ? '#16a34a' : '#d97706',
-          value: `${metrics.insuranceComplete}/3`,
+          value: insuranceStatus,
           label: 'Insurance Policies',
-          sub: metrics.insuranceComplete === 3 ? 'All policies complete' : 'Warranty policy pending',
-          accent: metrics.insuranceComplete === 3 ? 'var(--color-success)' : 'var(--color-warning)',
+          sub: 'Coverage summary',
+          accent: 'var(--color-warning)',
         })}
         ${renderStatCard({
-          icon: 'chat', iconBg: '#ede9fe', iconColor: '#7c3aed',
-          value: metrics.unreadMessages,
+          value: unreadMessages,
           label: 'Unread Messages',
-          sub: metrics.unreadMessages > 0 ? 'From Jennifer Walsh (Lender)' : 'All caught up',
-          accent: metrics.unreadMessages > 0 ? 'var(--color-info)' : 'var(--neutral-300)',
+          sub: unreadMessages > 0 ? 'From your team' : 'All caught up',
+          accent: 'var(--neutral-300)',
         })}
       </div>
 
-      <!-- Two-column layout -->
       <div class="grid grid-3-2">
-        <!-- Left: Activity + Quick Actions -->
         <div style="display:flex;flex-direction:column;gap:var(--space-6)">
-          ${renderActivityCard()}
-          ${renderQuickActions(role)}
+          ${renderActivityCard(activity)}
+          ${renderQuickActions()}
         </div>
-
-        <!-- Right: Timeline + Team -->
         <div style="display:flex;flex-direction:column;gap:var(--space-6)">
           ${renderTimelineCard(tx)}
           ${renderTeamCard(tx)}
         </div>
       </div>
     `;
-
-    // Animate stats
-    screenEl.querySelectorAll('.stat-card-value').forEach((el, i) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(6px)';
-      setTimeout(() => {
-        el.style.transition = 'all 0.4s cubic-bezier(.34,1.56,.64,1)';
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-      }, 80 + i * 60);
-    });
   }
 
-  function computeMetrics(tx) {
-    const docs = window.MOCK_DOCUMENTS || [];
-    const msgs = window.MOCK_MESSAGES || [];
-    const ins  = window.MOCK_INSURANCE || {};
-
-    const stages = tx.stages || [];
-    const done = stages.filter(s => s.status === 'completed').length;
-    const progress = Math.round((done / 11) * 100);
-
-    const needsSignature = docs.filter(d =>
-      d.status === 'NEEDS_SIGNATURE' &&
-      Session.isVisible({ visibility: { visible_to_roles: ['CL','TC'] } })
-    ).length;
-
-    const insuranceComplete = Object.values(ins)
-      .filter(p => p.status === 'COMPLETED').length;
-
-    const unreadMessages = msgs.reduce((n, c) => n + (c.unread_count || 0), 0);
-
-    return {
-      progress,
-      docsTotal: docs.length,
-      needsSignature,
-      insuranceComplete,
-      unreadMessages,
-    };
-  }
-
-  function renderStatCard({ icon, iconBg, iconColor, value, label, sub, accent }) {
+  function renderStatCard({ value, label, sub, accent }) {
     return `
       <div class="stat-card">
-        <div class="stat-card-header">
-          <div class="stat-card-icon" style="background:${iconBg};color:${iconColor}">
-            ${Utils.ICONS[icon]}
-          </div>
-        </div>
         <div class="stat-card-value">${value}</div>
         <div>
           <div class="stat-card-label">${label}</div>
@@ -157,164 +89,96 @@ const ScreenDashboard = (() => {
       </div>`;
   }
 
-  function renderActivityCard() {
-    const events = (window.MOCK_ACTIVITY_LOG || [])
-      .filter(e => Session.isVisible(e))
-      .slice(0, 5);
-
-    const itemsHtml = events.map((e, i) => `
-      <div class="activity-item" style="animation-delay:${i * 60}ms">
-        <div class="activity-icon">${e.icon}</div>
-        <div class="activity-content">
-          <div class="activity-label">${Utils.escHtml(e.label)}</div>
-          <div class="activity-meta">
-            <span class="activity-time">${Utils.timeAgo(e.timestamp)}</span>
-            <span style="color:var(--neutral-300)">·</span>
-            ${Badge.roleBadge(e.actor_role)}
-            <span class="activity-actor">${e.actor_name.split(' ')[0]}</span>
+  function renderActivityCard(activity) {
+    const items = activity.slice(0, 5);
+    const itemsHtml = items
+      .map((event) => `
+        <div class="activity-item">
+          <div class="activity-icon">${event.icon || '•'}</div>
+          <div class="activity-content">
+            <div class="activity-label">${event.label || 'Event'}</div>
+            <div class="activity-meta">
+              <span class="activity-time">${event.timestamp ? new Date(event.timestamp).toLocaleDateString('en-US') : ''}</span>
+              ${event.role ? ` · ${event.role}` : ''}
+            </div>
           </div>
-        </div>
-      </div>`).join('');
+        </div>`)
+      .join('');
 
     return `
       <div class="card">
         <div class="card-hdr">
-          <div class="card-hdr-left">
-            <div class="card-icon" style="background:var(--neutral-100)">
-              ${Utils.ICONS.grid}
-            </div>
-            <div>
-              <div class="card-title">Recent Activity</div>
-              <div class="card-subtitle">Latest transaction events</div>
-            </div>
-          </div>
-          <button class="btn btn-ghost btn-sm" onclick="ScreenDashboard.openFullFeed()">
-            View all ${Utils.ICONS.arrowRight}
-          </button>
+          <div class="card-title">Recent Activity</div>
         </div>
         <div class="card-bd">
-          <div class="activity-feed">${itemsHtml || '<div class="empty-state" style="padding:var(--space-8)"><div class="empty-state-title">No activity yet</div></div>'}</div>
+          <div class="activity-feed">${itemsHtml || '<div class="empty-state"><div class="empty-state-title">No activity yet</div></div>'}</div>
         </div>
       </div>`;
   }
 
-  function renderQuickActions(role) {
-    const actions = [];
-
-    if (['CL','TC'].includes(role)) {
-      actions.push({ label: 'Sign Closing Disclosure', icon: 'edit', route: 'documents', urgent: true });
-      actions.push({ label: 'Upload Employment Letter', icon: 'upload', route: 'documents', urgent: true });
-    }
-    actions.push({ label: 'View Messages', icon: 'chat', route: 'messages', urgent: false });
-    actions.push({ label: 'Check Insurance Status', icon: 'shield', route: 'insurance', urgent: false });
-
-    const actHtml = actions.map(a => `
-      <button class="btn ${a.urgent ? 'btn-primary' : 'btn-secondary'}" style="justify-content:flex-start;width:100%"
-        onclick="Router.navigate('${a.route}')">
-        <span style="width:14px;height:14px;display:flex">${Utils.ICONS[a.icon]}</span>
-        ${a.label}
-      </button>`).join('');
-
+  function renderQuickActions() {
     return `
       <div class="card">
         <div class="card-hdr">
           <div class="card-title">Quick Actions</div>
         </div>
         <div class="card-bd" style="display:flex;flex-direction:column;gap:var(--space-2)">
-          ${actHtml}
+          <button class="btn btn-primary" type="button" onclick="Router.navigate('documents')">Review Documents</button>
+          <button class="btn btn-secondary" type="button" onclick="Router.navigate('messages')">View Messages</button>
+          <button class="btn btn-secondary" type="button" onclick="Router.navigate('insurance')">Insurance Summary</button>
         </div>
       </div>`;
   }
 
   function renderTimelineCard(tx) {
     const stages = tx.stages || [];
-    const itemsHtml = stages.map(s => `
-      <div class="timeline-item ${s.status}">
-        <div class="timeline-dot">
-          ${s.status === 'completed' ? Utils.ICONS.check : ''}
-        </div>
-        <div class="timeline-content">
-          <div class="timeline-stage-num">Stage ${s.id}</div>
-          <div class="timeline-stage-name">${s.name}</div>
-          ${s.date && s.status !== 'pending' ? `<div style="font-size:11px;color:var(--neutral-400);margin-top:1px">${Utils.formatDate(s.date)}</div>` : ''}
-        </div>
-        ${Badge.roleBadge(s.owner)}
-      </div>`).join('');
+    const itemsHtml = stages
+      .map((stage) => `
+        <div class="timeline-item ${stage.status || ''}">
+          <div class="timeline-dot">${stage.status === 'completed' ? '✓' : ''}</div>
+          <div class="timeline-content">
+            <div class="timeline-stage-num">Stage ${stage.num || stage.id || ''}</div>
+            <div class="timeline-stage-name">${stage.name || stage.stage_name || ''}</div>
+          </div>
+        </div>`)
+      .join('');
 
     return `
       <div class="card">
         <div class="card-hdr">
-          <div class="card-hdr-left">
-            <div>
-              <div class="card-title">Transaction Progress</div>
-              <div class="card-subtitle">11-stage lifecycle</div>
-            </div>
-          </div>
-          ${Badge.render('current', { label: `Stage ${tx.current_stage}/11` })}
+          <div class="card-title">Transaction Timeline</div>
         </div>
-        <div class="card-bd" style="padding-top:var(--space-4)">
-          <div class="timeline-wrap">${itemsHtml}</div>
+        <div class="card-bd">
+          <div class="timeline-wrap">${itemsHtml || '<div class="empty-state"><div class="empty-state-title">No timeline data</div></div>'}</div>
         </div>
       </div>`;
   }
 
   function renderTeamCard(tx) {
-    const roleNames = { AG: 'Agent', LN: 'Lender', AT: 'Attorney', TC: 'Coordinator' };
-    const teamHtml = (tx.professionals || []).map(p => `
-      <div style="display:flex;align-items:center;gap:var(--space-3);padding:var(--space-3) 0;border-bottom:var(--border-light)">
-        ${Badge.roleBadge(p.role, { large: true })}
-        <div style="flex:1;min-width:0">
-          <div style="font-size:var(--text-sm);font-weight:var(--weight-semibold);color:var(--color-navy)">${Utils.escHtml(p.name)}</div>
-          <div style="font-size:var(--text-xs);color:var(--neutral-500)">${roleNames[p.role] || p.role} · ${Utils.escHtml(p.company)}</div>
-        </div>
-        <button class="btn btn-ghost btn-sm" onclick="Router.navigate('messages')" title="Message ${p.name}">
-          ${Utils.ICONS.chat}
-        </button>
-      </div>`).join('');
+    const professionals = tx.professionals || [];
+    const teamHtml = professionals
+      .map((pro) => `
+        <div style="display:flex;align-items:center;gap:var(--space-3);padding:var(--space-3) 0;border-bottom:var(--border-light)">
+          ${window.Badge?.role(pro.role) || ''}
+          <div style="flex:1;min-width:0">
+            <div style="font-size:var(--text-sm);font-weight:var(--weight-semibold);color:var(--color-navy)">${pro.name || ''}</div>
+            <div style="font-size:var(--text-xs);color:var(--neutral-500)">${pro.company || ''}</div>
+          </div>
+        </div>`)
+      .join('');
 
     return `
       <div class="card">
         <div class="card-hdr">
           <div class="card-title">Your Team</div>
-          <span style="font-size:var(--text-xs);color:var(--neutral-400)">${(tx.professionals||[]).length} members</span>
         </div>
-        <div class="card-bd" style="padding-top:0">
-          ${teamHtml}
-          <div style="padding-top:var(--space-3);display:flex;align-items:center;gap:var(--space-3)">
-            ${Badge.roleBadge(Session.role, { large: true })}
-            <div>
-              <div style="font-size:var(--text-sm);font-weight:var(--weight-semibold);color:var(--color-navy)">${Session.name} (You)</div>
-              <div style="font-size:var(--text-xs);color:var(--neutral-500)">${Session.roleInfo.label}</div>
-            </div>
-          </div>
+        <div class="card-bd">
+          ${teamHtml || '<div class="empty-state"><div class="empty-state-title">No team data available</div></div>'}
         </div>
       </div>`;
   }
 
-  function openFullFeed() {
-    const events = (window.MOCK_ACTIVITY_LOG || []).filter(e => Session.isVisible(e));
-    const html = events.map(e => `
-      <div class="activity-item">
-        <div class="activity-icon">${e.icon}</div>
-        <div class="activity-content">
-          <div class="activity-label">${Utils.escHtml(e.label)}</div>
-          ${e.description ? `<div style="font-size:var(--text-xs);color:var(--neutral-500);margin-top:2px">${Utils.escHtml(e.description)}</div>` : ''}
-          <div class="activity-meta">
-            <span class="activity-time">${Utils.timeAgo(e.timestamp)}</span>
-            <span style="color:var(--neutral-300)">·</span>
-            ${Badge.roleBadge(e.actor_role)}
-            <span class="activity-actor">${e.actor_name}</span>
-          </div>
-        </div>
-      </div>`).join('');
-
-    Drawer.open({
-      title: 'Full Activity Log',
-      body: `<div class="activity-feed">${html}</div>`,
-    });
-  }
-
-  return { render, openFullFeed };
+  return { render };
 })();
 
-window.ScreenDashboard = ScreenDashboard;
+window.DashboardScreen = DashboardScreen;

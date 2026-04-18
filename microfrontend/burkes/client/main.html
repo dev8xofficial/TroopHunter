@@ -1,196 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Burkes Group — Client Portal</title>
-  <meta name="description" content="The Burkes Group real estate transaction portal for homebuyers">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Burkes Group Client Portal — manage your real estate transaction" />
+    <meta name="theme-color" content="#1a3a52" />
+    <title>Dashboard — Burkes Group Portal</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- ── Google Fonts ─────────────────────────────────────── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/shell.css">
-  <link rel="stylesheet" href="css/components.css">
+    <!-- ── Stylesheets (load order matters) ─────────────────── -->
+    <link rel="stylesheet" href="css/token.css" />
+    <link rel="stylesheet" href="css/shell.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/screen.css" />
 
-  <!-- Favicon -->
-  <style>
-    /* Screen padding for alerts */
-    body.has-alert #screen-outlet { padding-top: 8px; }
+    <!-- ── Favicon (inline SVG) ─────────────────────────────── -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231a3a52'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='Arial,sans-serif' font-weight='800' font-size='14' fill='%23fdb913'>BG</text></svg>" />
+  </head>
 
-    /* Gold badge variant (services) */
-    .badge-gold {
-      background: var(--color-gold-light);
-      color: var(--color-gold-dark);
-    }
-
-    /* Ensure accordions start visible on mortgage */
-    #screen-mortgage .accordion-item.open .accordion-body { display: block; }
-    #screen-mortgage .accordion-item:not(.open) .accordion-body { display: none; }
-
-    /* Focus styles */
-    :focus-visible {
-      outline: 2px solid var(--color-accent-blue);
-      outline-offset: 2px;
-    }
-
-    /* Mobile nav */
-    @media (max-width: 768px) {
-      #global-nav .nav-items { display: none; }
-      .mobile-nav-bar {
-        position: fixed;
-        bottom: 0; left: 0; right: 0;
-        height: 60px;
-        background: white;
-        border-top: 1px solid var(--neutral-200);
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        z-index: var(--z-sticky);
-        box-shadow: 0 -2px 12px rgba(0,0,0,.08);
-      }
-      .mobile-nav-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 3px;
-        padding: 8px 12px;
-        color: var(--neutral-400);
-        font-size: 10px;
-        font-weight: 600;
-        cursor: pointer;
-        border-radius: var(--radius-md);
-        transition: color .15s;
-        text-transform: uppercase;
-        letter-spacing: .04em;
-      }
-      .mobile-nav-item.active { color: var(--color-navy); }
-      .mobile-nav-item svg { width: 20px; height: 20px; }
-      #screen-outlet { padding-bottom: 60px; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- ══════════════════════════════════════════════════
-       GLOBAL NAVIGATION BAR
-       ══════════════════════════════════════════════════ -->
-  <nav id="global-nav" role="banner" aria-label="Main navigation">
-    <!-- Rendered by Shell.renderNav() -->
-  </nav>
-
-  <!-- ══════════════════════════════════════════════════
-       ACTION ALERT BANNER SLOT
-       ══════════════════════════════════════════════════ -->
-  <div id="alert-banner-slot" role="status" aria-live="polite"></div>
-
-  <!-- ══════════════════════════════════════════════════
-       LAYOUT WRAPPER
-       ══════════════════════════════════════════════════ -->
-  <div id="layout-wrapper">
-
-    <!-- SCREEN OUTLET -->
-    <main id="screen-outlet" role="main">
-
-      <!-- 001 Dashboard -->
-      <div class="screen" id="screen-dashboard" role="region" aria-label="Dashboard">
-        <div class="empty-state">
-          <div class="skeleton" style="width:200px;height:32px;margin-bottom:16px"></div>
-          <div class="skeleton" style="width:320px;height:16px"></div>
-        </div>
+  <body>
+    <!-- ══════════════════════════════════════════════════════════
+       BOOT SCREEN
+       Shown while JS loads. Fades out after app.js completes.
+  ═══════════════════════════════════════════════════════════════ -->
+    <div id="boot-screen" role="status" aria-label="Loading Burkes Group Portal">
+      <div class="boot-logo">
+        <div class="boot-logo-mark">BG</div>
+        <div class="boot-logo-name">Burkes Group</div>
+        <div class="boot-logo-sub">Client Portal</div>
       </div>
+      <div class="boot-spinner" aria-hidden="true"></div>
+    </div>
 
-      <!-- 002 Documents -->
-      <div class="screen" id="screen-documents" role="region" aria-label="Documents">
-      </div>
+    <!-- ══════════════════════════════════════════════════════════
+       GLOBAL NAV BAR (desktop)
+       Rendered by ShellComponent.render()
+       Contains: logo | txn pill | nav links | bell | avatar
+  ═══════════════════════════════════════════════════════════════ -->
+    <header id="global-nav" role="banner" aria-label="Burkes Group Portal navigation">
+      <!-- Populated by js/components/shell.js -->
+    </header>
 
-      <!-- 003 Messages -->
-      <div class="screen" id="screen-messages" role="region" aria-label="Messages">
-      </div>
+    <!-- ══════════════════════════════════════════════════════════
+       ALERT BANNER SLOT
+       Sticky below nav. Rendered by AlertBanner.render()
+       Shows ACTION_REQUIRED / INFO banners for current role.
+  ═══════════════════════════════════════════════════════════════ -->
+    <div id="alert-banner-slot" aria-live="polite" aria-label="System alerts">
+      <!-- Populated by js/components/alert-banner.js -->
+    </div>
 
-      <!-- 004 Insurance -->
-      <div class="screen" id="screen-insurance" role="region" aria-label="Insurance">
-      </div>
-
-      <!-- 005 Mortgage -->
-      <div class="screen" id="screen-mortgage" role="region" aria-label="Mortgage Application">
-      </div>
-
-      <!-- 006 Services -->
-      <div class="screen" id="screen-services" role="region" aria-label="Local Services">
-      </div>
-
+    <!-- ══════════════════════════════════════════════════════════
+       SCREEN OUTLET
+       Screens mount here via Router.
+       Each screen clears and replaces this content.
+  ═══════════════════════════════════════════════════════════════ -->
+    <main id="screen-outlet" role="main" aria-label="Main content" aria-live="polite">
+      <!-- Populated by js/router.js + screens/*.js -->
     </main>
-  </div>
 
-  <!-- ══════════════════════════════════════════════════
-       DRAWER OVERLAY
-       ══════════════════════════════════════════════════ -->
-  <div id="drawer-overlay" aria-label="Side panel" role="dialog"></div>
-
-  <!-- ══════════════════════════════════════════════════
-       MODAL OVERLAY
-       ══════════════════════════════════════════════════ -->
-  <div id="modal-overlay" aria-label="Dialog" role="dialog" aria-modal="true"></div>
-
-  <!-- ══════════════════════════════════════════════════
+    <!-- ══════════════════════════════════════════════════════════
        MOBILE BOTTOM NAV
-       ══════════════════════════════════════════════════ -->
-  <nav class="mobile-nav-bar" aria-label="Mobile navigation">
-    <div class="mobile-nav-item" onclick="Router.navigate('dashboard')" id="mnav-dashboard">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-      Dashboard
+       Hidden on desktop (≥768px). Rendered by shell.js.
+  ═══════════════════════════════════════════════════════════════ -->
+    <nav id="mobile-nav" role="navigation" aria-label="Mobile navigation" style="display: none">
+      <!-- Populated by js/components/shell.js -->
+    </nav>
+
+    <!-- ══════════════════════════════════════════════════════════
+       DRAWER OVERLAY
+       Right-side slide panel for doc preview, activity detail.
+       Managed by js/components/drawer.js
+  ═══════════════════════════════════════════════════════════════ -->
+    <div id="drawer-overlay" aria-hidden="true">
+      <!-- Populated by js/components/drawer.js on first open -->
     </div>
-    <div class="mobile-nav-item" onclick="Router.navigate('documents')" id="mnav-documents">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
-      Docs
+
+    <!-- ══════════════════════════════════════════════════════════
+       MODAL OVERLAY
+       Confirmation and form dialogs.
+       Managed by js/components/modal.js
+  ═══════════════════════════════════════════════════════════════ -->
+    <div id="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+      <!-- Populated by js/components/modal.js on open -->
     </div>
-    <div class="mobile-nav-item" onclick="Router.navigate('messages')" id="mnav-messages">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-      Messages
+
+    <!-- ══════════════════════════════════════════════════════════
+       TOAST CONTAINER
+       Bottom-right notification toasts.
+       Managed by js/components/toast.js
+  ═══════════════════════════════════════════════════════════════ -->
+    <div id="toast-container" role="region" aria-label="Notifications" aria-live="polite">
+      <!-- Populated by js/components/toast.js -->
     </div>
-    <div class="mobile-nav-item" onclick="Router.navigate('insurance')" id="mnav-insurance">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      Insurance
-    </div>
-    <div class="mobile-nav-item" onclick="Router.navigate('mortgage')" id="mnav-mortgage">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
-      Mortgage
-    </div>
-  </nav>
 
-  <!-- ══════════════════════════════════════════════════
-       JAVASCRIPT — Load order matters
-       ══════════════════════════════════════════════════ -->
+    <!-- ══════════════════════════════════════════════════════════
+       SCRIPTS
+       Load order is critical — each module depends on the previous.
+  ═══════════════════════════════════════════════════════════════ -->
 
-  <!-- Core utilities -->
-  <script src="js/session.js"></script>
-  <script src="js/components/core.js"></script>
-  <script src="js/components/shell.js"></script>
-  <script src="js/components/drawer.js"></script>
+    <!-- Layer 1: Session (no dependencies) -->
+    <script src="js/session.js"></script>
 
-  <!-- Screens -->
-  <script src="screens/all-screens.js"></script>
+    <!-- Layer 2: Mock data (no dependencies) -->
+    <script src="js/mock-data.js"></script>
 
-  <!-- App boot -->
-  <script src="js/app.js"></script>
+    <!-- Layer 3: Reusable components (depend on Session + MockData) -->
+    <script src="js/components/badge.js"></script>
+    <script src="js/components/toast.js"></script>
+    <script src="js/components/drawer.js"></script>
+    <script src="js/components/modal.js"></script>
+    <script src="js/components/alert-banner.js"></script>
+    <script src="js/components/shell.js"></script>
 
-  <!-- Mobile nav active state updater -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.addEventListener('hashchange', updateMobileNav);
-      function updateMobileNav() {
-        const route = window.location.hash.slice(1) || 'dashboard';
-        document.querySelectorAll('.mobile-nav-item').forEach(el => {
-          el.classList.toggle('active', el.id === `mnav-${route}`);
-        });
-      }
-      updateMobileNav();
-    });
-  </script>
+    <!-- Layer 4: Screens (depend on all components + MockData + Session) -->
+    <script src="screens/dashboard.js"></script>
+    <script src="screens/stubs.js"></script>
 
-</body>
+    <!-- Layer 5: Router (depends on screens being registered) -->
+    <script src="js/router.js"></script>
+
+    <!-- Layer 6: App boot (runs last — kicks off the entire sequence) -->
+    <script src="js/app.js"></script>
+  </body>
 </html>
