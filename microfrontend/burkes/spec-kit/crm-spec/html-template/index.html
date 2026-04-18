@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Burkes Group CRM HTML Template</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <div class="overlay-backdrop" data-interface-backdrop aria-hidden="true"></div>
+
+    <div class="layout">
+      <aside class="sidebar" data-sidebar>
+        <div class="sidebar-header">
+          <span class="brand-mark">BG</span>
+          <div class="brand-copy">
+            <strong class="brand-title">Burkes CRM</strong>
+            <span class="brand-subtitle">Internal operator shell for shared customer, communication, and department work.</span>
+          </div>
+        </div>
+
+        <div class="sidebar-summary">
+          <span class="eyebrow">Current session</span>
+          <strong><span data-session-role-label>Department Owner</span> · <span data-session-department>Insurance</span></strong>
+          <span class="sidebar-note" data-session-description>Reads all departments, writes the owned department, limited admin.</span>
+        </div>
+
+        <nav class="nav-group">
+          <span class="nav-group-title">Main</span>
+          <div class="nav-links">
+            <a class="nav-link" href="#dashboard" data-route-link="dashboard"><span>Dashboard</span><small>/dashboard</small></a>
+            <a class="nav-link" href="#contacts" data-route-link="contacts"><span>Contacts</span><small>/contacts</small></a>
+            <a class="nav-link" href="#pipeline" data-route-link="pipeline"><span>Pipeline</span><small>/pipeline</small></a>
+            <a class="nav-link" href="#activities" data-route-link="activities"><span>Activities</span><small>/activities</small></a>
+            <a class="nav-link" href="#calendar" data-route-link="calendar"><span>Calendar</span><small>/calendar</small></a>
+          </div>
+        </nav>
+
+        <nav class="nav-group">
+          <span class="nav-group-title">Communications</span>
+          <div class="nav-links">
+            <a class="nav-link" href="#calls" data-route-link="calls"><span>Calls</span><small>/calls</small></a>
+            <a class="nav-link" href="#sms" data-route-link="sms"><span>SMS</span><small>/sms</small></a>
+            <a class="nav-link" href="#email" data-route-link="email"><span>Email</span><small>/email</small></a>
+            <a class="nav-link" href="#email-blast" data-route-link="email-blast"><span>Email Blast</span><small>/email-blast</small></a>
+            <a class="nav-link" href="#video-meetings" data-route-link="video-meetings"><span>Video Meetings</span><small>/video-meetings</small></a>
+          </div>
+        </nav>
+
+        <nav class="nav-group">
+          <span class="nav-group-title">Departments</span>
+          <div class="nav-links">
+            <a class="nav-link" href="#insurance" data-route-link="insurance"><span>Insurance</span><small>Phase 2</small></a>
+            <a class="nav-link" href="#mortgage" data-route-link="mortgage"><span>Mortgage</span><small>Phase 2</small></a>
+            <a class="nav-link" href="#real-estate" data-route-link="real-estate"><span>Real Estate</span><small>Phase 2</small></a>
+          </div>
+        </nav>
+
+        <nav class="nav-group">
+          <span class="nav-group-title">Tools and Admin</span>
+          <div class="nav-links">
+            <a class="nav-link" href="#integrations" data-route-link="integrations"><span>Integrations</span><small>/integrations</small></a>
+            <a class="nav-link" href="#reports" data-route-link="reports"><span>Reports</span><small>/reports</small></a>
+            <a class="nav-link" href="#admin" data-route-link="admin"><span>Admin Settings</span><small>/admin</small></a>
+          </div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a href="./contracts.html">Open contracts reference</a>
+        </div>
+      </aside>
+
+      <div class="shell-main">
+        <header class="topbar">
+          <div class="topbar-left">
+            <button class="sidebar-toggle" type="button" data-sidebar-toggle aria-label="Open sidebar">≡</button>
+            <div class="search-shell">
+              <span aria-hidden="true">Search</span>
+              <input type="search" placeholder="Search contacts, leads, activity, or numbers..." />
+            </div>
+          </div>
+          <div class="topbar-right">
+            <div class="quick-actions">
+              <button class="primary-button" type="button" data-open-overlay="new-contact-modal" data-roles="OW,IA,RA,PA" data-lock-message="This role cannot create contacts.">New Lead</button>
+              <a class="action-button" href="#calls">Dial</a>
+              <a class="action-button" href="#sms">SMS</a>
+              <a class="action-button" href="#email">Email</a>
+              <a class="action-button" href="#video-meetings">Meet</a>
+            </div>
+            <button class="icon-button" type="button" aria-label="Notifications">12</button>
+            <div class="role-picker">
+              <label for="role-select">Role</label>
+              <select id="role-select" data-role-select>
+                <option value="OW">OW - Department Owner</option>
+                <option value="IA">IA - Insurance Agent</option>
+                <option value="ML">ML - Mortgage Liaison</option>
+                <option value="RA">RA - Real Estate Agent</option>
+                <option value="PA">PA - Platform Administrator</option>
+              </select>
+            </div>
+            <div class="user-chip">
+              <strong>Jaquarian Bonilla</strong>
+              <span><span data-session-role-label>Department Owner</span> · <span data-session-department>Insurance</span></span>
+            </div>
+          </div>
+        </header>
+
+        <div class="banner-stack">
+          <section class="banner">
+            <div class="banner-copy">
+              <strong>PWA install prompt and installed-session behavior are part of the shell.</strong>
+              <p>The template surfaces install affordances, offline awareness, and sync-delay messaging defined in the foundation and layout specs.</p>
+            </div>
+            <div class="banner-actions">
+              <button class="secondary-button" type="button">Install CRM shell</button>
+            </div>
+          </section>
+          <section class="status-bar">
+            <div class="status-copy">
+              <strong>VOIP status bar: Active call recording on BG-RE-03</strong>
+              <p>Carla Ruiz follow-up is currently recorded and linked back to the call log and activity stream.</p>
+            </div>
+            <div class="chip-list"><span class="chip" data-tone="red">Recording live</span><span class="chip" data-tone="navy">Call log linked</span></div>
+          </section>
+          <section class="notice-bar">
+            <div class="status-copy">
+              <strong>Offline notice for installed sessions</strong>
+              <p>Calendar, email, SMS, and integration freshness should degrade visibly rather than silently drift.</p>
+            </div>
+            <span class="chip" data-tone="blue">Sync delay messaging enabled</span>
+          </section>
+        </div>
+
+        <main class="workspace">
+          <div class="workspace-inner">
+            <section class="screen" data-screen-route="dashboard" aria-hidden="true">
+              <header class="screen-header">
+                <div class="screen-heading">
+                  <div class="screen-heading-copy">
+                    <div class="chip-list"><span class="chip" data-tone="navy">Dashboard</span><span class="chip" data-tone="gold">Phase 1</span><span class="chip">/api/crm/dashboard/summary</span></div>
+                    <h1 class="screen-title">Operational command center</h1>
+                    <p class="screen-subtitle">KPI row, pipeline funnel, recent leads, activity feed, schedule, compliance, integrations, and today's tasks are arranged as a single triage surface.</p>
+                  </div>
+                  <div class="inline-actions"><a class="primary-button" href="#pipeline">Open pipeline</a><a class="ghost-button" href="#calls">Open calls</a></div>
+                </div>
+                <div class="meta-grid">
+                  <article class="spec-card"><span class="eyebrow">Sections</span><p>kpi_cards, pipeline_funnel, recent_leads, activity_feed, todays_schedule, calls_and_compliance, integrations_status, todays_tasks</p></article>
+                  <article class="spec-card"><span class="eyebrow">Actions</span><p>navigate_to_contacts, navigate_to_pipeline, open_call_workspace, open_sms_workspace, open_email_workspace</p></article>
+                  <article class="spec-card"><span class="eyebrow">Outcome</span><p>Operators should understand daily priorities in under one minute and reach the next workflow in one click.</p></article>
+                </div>
+              </header>
+
+              <div class="stat-grid">
+                <article class="stat-card"><span class="eyebrow">Active leads</span><div class="stat-row"><strong>248</strong><span class="delta positive">+12%</span></div><p>Cross-department shared-lifecycle load.</p></article>
+                <article class="stat-card"><span class="eyebrow">Calls today</span><div class="stat-row"><strong>38</strong><span class="delta info">5 unmatched</span></div><p>Inbound and outbound business calls.</p></article>
+                <article class="stat-card"><span class="eyebrow">Policies quoted</span><div class="stat-row"><strong>19</strong><span class="delta positive">+4 today</span></div><p>Insurance-ready commercial motion.</p></article>
+                <article class="stat-card"><span class="eyebrow">Transactions</span><div class="stat-row"><strong>12</strong><span class="delta warning">3 pending close</span></div><p>Real estate pipeline momentum.</p></article>
+                <article class="stat-card"><span class="eyebrow">MTD revenue</span><div class="stat-row"><strong>$182.4k</strong><span class="delta positive">+8.3%</span></div><p>Operational, not accounting-grade.</p></article>
+              </div>
+
+              <div class="panel-grid">
+                <article class="panel span-7">
+                  <div class="panel-title"><div><span class="eyebrow">Pipeline funnel</span><h2>Shared six-stage model</h2></div><span class="chip">Cross-department</span></div>
+                  <div class="funnel">
+                    <div class="funnel-stage"><div class="funnel-label"><strong>New Inquiry</strong><span>68</span></div><div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div><div class="inline-meta"><span>Insurance 24</span><span>Mortgage 18</span><span>Real Estate 26</span></div></div>
+                    <div class="funnel-stage"><div class="funnel-label"><strong>Contacted</strong><span>52</span></div><div class="progress-track"><div class="progress-fill" style="width: 76%"></div></div><div class="inline-meta"><span>Insurance 17</span><span>Mortgage 13</span><span>Real Estate 22</span></div></div>
+                    <div class="funnel-stage"><div class="funnel-label"><strong>Quoted / Offer</strong><span>44</span></div><div class="progress-track"><div class="progress-fill" style="width: 65%"></div></div><div class="inline-meta"><span>Insurance 21</span><span>Mortgage 11</span><span>Real Estate 12</span></div></div>
+                    <div class="funnel-stage"><div class="funnel-label"><strong>Pending Close</strong><span>29</span></div><div class="progress-track"><div class="progress-fill" style="width: 43%"></div></div><div class="inline-meta"><span>Insurance 9</span><span>Mortgage 8</span><span>Real Estate 12</span></div></div>
+                  </div>
+                </article>
+                <article class="panel span-5"><div class="panel-title"><div><span class="eyebrow">Recent leads</span><h2>Latest intake and touchpoints</h2></div><a class="ghost-button" href="#contacts">Go to Contacts</a></div><div class="list-stack"><div class="list-item"><strong>Nina Thompson</strong><p>Insurance · portal source · VIN missing</p></div><div class="list-item"><strong>Marcus and Elle Boyd</strong><p>Mortgage · Arive linked · last touch 18m ago</p></div><div class="list-item"><strong>Carla Ruiz</strong><p>Real Estate · pending close · closing Apr 19</p></div></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Activity feed</span><h2>Condensed events</h2></div></div><div class="timeline"><div class="timeline-item"><span class="timeline-marker"></span><div><strong>lead.transferred</strong><p>Nina Thompson moved from Insurance intake to Tom Burke.</p></div></div><div class="timeline-item"><span class="timeline-marker"></span><div><strong>email.received</strong><p>Unknown sender is waiting in the Email workspace for linkage.</p></div></div><div class="timeline-item"><span class="timeline-marker"></span><div><strong>calendar.sync.failed</strong><p>Google provider is stale and routes to Integrations.</p></div></div></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Today's schedule</span><h2>Near-term commitments</h2></div><a class="ghost-button" href="#calendar">Open calendar</a></div><div class="meeting-list"><div class="meeting-item"><strong>9:30 AM renewal review</strong><p>Outlook-linked insurance appointment.</p></div><div class="meeting-item"><strong>11:00 AM borrower follow-up</strong><p>Mortgage document collection block.</p></div><div class="meeting-item"><strong>2:00 PM final walkthrough</strong><p>Real estate calendar event for Carla Ruiz.</p></div></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Calls and compliance</span><h2>Recording watch</h2></div><a class="ghost-button" href="#calls">Open calls</a></div><div class="list-stack"><div class="list-item"><strong>Storage usage</strong><p>12.2 GB of provider-hosted recording references.</p></div><div class="list-item"><strong>Retention reminders</strong><p>3 recordings expire in 7 days.</p></div></div></article>
+                <article class="panel span-6"><div class="panel-title"><div><span class="eyebrow">Integrations</span><h2>Provider health</h2></div><a class="ghost-button" href="#integrations">Open Integrations</a></div><div class="chip-list"><span class="chip" data-tone="green">Outlook healthy</span><span class="chip" data-tone="green">VOIP healthy</span><span class="chip" data-tone="red">Google Calendar stale</span><span class="chip" data-tone="blue">Arive synced 4m ago</span></div></article>
+                <article class="panel span-6"><div class="panel-title"><div><span class="eyebrow">Today's tasks</span><h2>Prioritized action stack</h2></div></div><div class="list-stack"><div class="list-item"><strong>Resolve 5 unmatched calls</strong><p>Number linkage keeps the call log attached to the unified contact model.</p></div><div class="list-item"><strong>Review 3 renewal watchlist records</strong><p>Insurance follow-up is behind schedule.</p></div><div class="list-item"><strong>Retry Google Calendar sync</strong><p>Dashboard and Calendar both show the degraded state.</p></div></div></article>
+              </div>
+            </section>
+
+            <section class="screen" data-screen-route="contacts" aria-hidden="true">
+              <header class="screen-header">
+                <div class="screen-heading">
+                  <div class="screen-heading-copy">
+                    <div class="chip-list"><span class="chip" data-tone="navy">Contacts</span><span class="chip" data-tone="gold">Phase 1</span><span class="chip">/api/crm/contacts</span></div>
+                    <h1 class="screen-title">Authoritative contact directory</h1>
+                    <p class="screen-subtitle">One searchable directory for all CRM contacts with minimal-data intake, cumulative profile enrichment, source and consent visibility, and transfer entry points.</p>
+                  </div>
+                  <div class="inline-actions">
+                    <button class="primary-button" type="button" data-open-overlay="new-contact-modal" data-roles="OW,IA,RA,PA" data-lock-message="This role cannot create contacts.">Create contact</button>
+                    <button class="ghost-button" type="button" data-open-overlay="import-contacts-modal" data-roles="OW,PA" data-lock-message="Import support is restricted to owners and administrators.">Import</button>
+                    <button class="ghost-button" type="button" data-open-overlay="transfer-lead-modal" data-roles="OW,IA,RA,PA" data-lock-message="Transfer requires reassignment rights.">Transfer</button>
+                  </div>
+                </div>
+                <div class="meta-grid">
+                  <article class="spec-card"><span class="eyebrow">Sections</span><p>filter_bar, directory_table, contact_profile_drawer, import_modal</p></article>
+                  <article class="spec-card"><span class="eyebrow">Actions</span><p>create_contact, transfer_lead, call_contact, sms_contact, email_contact</p></article>
+                  <article class="spec-card"><span class="eyebrow">States</span><p>empty: No contacts found · error: Failed to load contacts</p></article>
+                </div>
+              </header>
+
+              <div class="scope-banner" data-scope-banner data-department="shared" data-scope-label="contact identity and cross-department context">
+                <div><strong data-scope-state>Editable in current scope</strong><p data-scope-detail>Contacts remain visible to all roles and can be enriched progressively within department scope.</p></div>
+                <span class="chip" data-scope-chip data-tone="green">Write enabled</span>
+              </div>
+
+              <div class="panel-grid">
+                <article class="panel span-8">
+                  <div class="panel-title"><div><span class="eyebrow">Directory table</span><h2>Unified contact records</h2></div></div>
+                  <div class="table-shell">
+                    <table>
+                      <thead><tr><th>Name</th><th>Departments</th><th>Stage</th><th>Source</th><th>Owner</th><th>Consent</th><th>Missing data</th></tr></thead>
+                      <tbody>
+                        <tr><td><strong>Nina Thompson</strong><div class="inline-meta"><span>nina@example.com</span><span>(832) 555-0164</span></div></td><td><span class="tag" data-tone="gold">Insurance</span></td><td>Quoted / Offer</td><td>Portal</td><td>Jaquarian Bonilla</td><td><span class="tag" data-tone="green">Verified</span></td><td><span class="tag" data-tone="gold">VIN missing</span></td></tr>
+                        <tr><td><strong>Marcus and Elle Boyd</strong><div class="inline-meta"><span>boyd.family@example.com</span><span>(713) 555-0108</span></div></td><td><span class="tag" data-tone="blue">Mortgage</span></td><td>Contacted</td><td>Manual</td><td>Mortgage Liaison</td><td><span class="tag" data-tone="green">Stored</span></td><td><span class="tag" data-tone="red">Docs incomplete</span></td></tr>
+                        <tr><td><strong>Carla Ruiz</strong><div class="inline-meta"><span>carla.ruiz@example.com</span><span>(281) 555-0132</span></div></td><td><span class="tag" data-tone="green">Real Estate</span></td><td>Pending Close</td><td>Referral</td><td>Tom Burke</td><td><span class="tag" data-tone="green">Stored</span></td><td><span class="tag">Complete</span></td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Contact profile drawer</span><h2>Progressive enrichment</h2></div></div><div class="list-stack"><div class="list-item"><strong>Selected: Nina Thompson</strong><p>Portal origin, consent proof, departments, assigned_agents, pipeline_stage, insurance_record, created_at, created_by.</p></div><div class="list-item"><strong>Department sub-record</strong><p>Insurance line: Auto · Carrier pending · renewal watch disabled until quote is bound.</p></div><div class="inline-actions"><a class="action-button" href="#calls">Call</a><a class="action-button" href="#sms">SMS</a><a class="action-button" href="#email">Email</a></div></div></article>
+              </div>
+            </section>
+
+            <section class="screen" data-screen-route="pipeline" aria-hidden="true">
+              <header class="screen-header">
+                <div class="screen-heading">
+                  <div class="screen-heading-copy">
+                    <div class="chip-list"><span class="chip" data-tone="navy">Pipeline</span><span class="chip" data-tone="gold">Phase 1</span><span class="chip">/api/crm/leads</span></div>
+                    <h1 class="screen-title">Shared lifecycle workspace</h1>
+                    <p class="screen-subtitle">Kanban, list, and forecast views preserve the six shared stages while surfacing department context, ownership, priority, and communication shortcuts.</p>
+                  </div>
+                  <div class="inline-actions"><button class="primary-button" type="button" data-open-overlay="transfer-lead-modal" data-roles="OW,IA,RA,PA" data-lock-message="Transfers require reassignment rights.">Transfer lead</button><a class="ghost-button" href="#contacts">Open contact</a></div>
+                </div>
+                <div class="meta-grid">
+                  <article class="spec-card"><span class="eyebrow">Views</span><p>kanban, list, forecast</p></article>
+                  <article class="spec-card"><span class="eyebrow">Sections</span><p>filter_bar, shared_stage_board, lead_list, forecast_summary, lead_detail_drawer</p></article>
+                  <article class="spec-card"><span class="eyebrow">Actions</span><p>update_stage, transfer_lead, open_contact, call_contact, sms_contact, email_contact</p></article>
+                </div>
+              </header>
+
+              <div class="panel">
+                <div class="panel-title"><div><span class="eyebrow">Views</span><h2>One lead set, three operating modes</h2></div><div class="tabs"><button class="tab-button is-active" type="button" data-tab-group="pipeline-view" data-tab-target="pipeline-board">Kanban</button><button class="tab-button" type="button" data-tab-group="pipeline-view" data-tab-target="pipeline-list">List</button><button class="tab-button" type="button" data-tab-group="pipeline-view" data-tab-target="pipeline-forecast">Forecast</button></div></div>
+                <div class="tab-panel is-active" data-tab-group="pipeline-view" data-tab-panel="pipeline-board"><div class="kanban-board"><article class="kanban-column"><strong>New Inquiry</strong><div class="kanban-card"><strong>Jamal Porter</strong><p>Real Estate · Hot · referral intake</p></div><div class="kanban-card"><strong>Sonia Patel</strong><p>Insurance · portal quote request</p></div></article><article class="kanban-column"><strong>Contacted</strong><div class="kanban-card"><strong>Marcus Boyd</strong><p>Mortgage · missing W-2 upload</p></div></article><article class="kanban-column"><strong>Quoted / Offer</strong><div class="kanban-card"><strong>Nina Thompson</strong><p>Insurance · quote ready once VIN is captured</p></div></article><article class="kanban-column"><strong>Under Contract</strong><div class="kanban-card"><strong>Lee Family Purchase</strong><p>Mortgage · lender response pending</p></div></article><article class="kanban-column"><strong>Pending Close</strong><div class="kanban-card"><strong>Carla Ruiz</strong><p>Real Estate · walkthrough on calendar</p></div></article><article class="kanban-column"><strong>Closed</strong><div class="kanban-card"><strong>Owens policy bundle</strong><p>Insurance · issued and auditable</p></div></article></div></div>
+                <div class="tab-panel" data-tab-group="pipeline-view" data-tab-panel="pipeline-list" aria-hidden="true"><div class="table-shell"><table><thead><tr><th>Lead</th><th>Department</th><th>Stage</th><th>Priority</th><th>Owner</th></tr></thead><tbody><tr><td>Nina Thompson</td><td>Insurance</td><td>Quoted / Offer</td><td>Hot</td><td>Jaquarian Bonilla</td></tr><tr><td>Marcus Boyd</td><td>Mortgage</td><td>Contacted</td><td>Warm</td><td>Mortgage Liaison</td></tr><tr><td>Carla Ruiz</td><td>Real Estate</td><td>Pending Close</td><td>Hot</td><td>Tom Burke</td></tr></tbody></table></div></div>
+                <div class="tab-panel" data-tab-group="pipeline-view" data-tab-panel="pipeline-forecast" aria-hidden="true"><div class="definition-grid"><article class="spec-card"><span class="eyebrow">Likely closes</span><h3>30-day volume</h3><div class="metric-bar"><div class="funnel-label"><strong>Insurance</strong><span>$61k</span></div><div class="metric-bar-track"><div class="metric-bar-fill" style="width: 72%"></div></div></div><div class="metric-bar"><div class="funnel-label"><strong>Mortgage</strong><span>$48k</span></div><div class="metric-bar-track"><div class="metric-bar-fill" style="width: 58%"></div></div></div><div class="metric-bar"><div class="funnel-label"><strong>Real Estate</strong><span>$73k</span></div><div class="metric-bar-track"><div class="metric-bar-fill" style="width: 81%"></div></div></div></article><article class="spec-card"><span class="eyebrow">At-risk work</span><h3>Operational blockers</h3><ul><li>4 mortgage files stalled on documents</li><li>3 insurance renewals missing timely follow-up</li><li>2 closings have stale external-link context</li></ul></article></div></div>
+              </div>
+            </section>
+
+            <section class="screen" data-screen-route="activities" aria-hidden="true">
+              <header class="screen-header">
+                <div class="screen-heading">
+                  <div class="screen-heading-copy">
+                    <div class="chip-list"><span class="chip" data-tone="navy">Activities</span><span class="chip" data-tone="gold">Phase 2</span><span class="chip">/api/crm/activities</span></div>
+                    <h1 class="screen-title">Append-only activity timeline</h1>
+                    <p class="screen-subtitle">Searchable full history for calls, SMS, email, portal intake, transfers, notes, uploads, and stage changes.</p>
+                  </div>
+                  <div class="inline-actions"><a class="ghost-button" href="#contacts">Open contact</a><a class="ghost-button" href="#integrations">Open source workflow</a></div>
+                </div>
+                <div class="meta-grid">
+                  <article class="spec-card"><span class="eyebrow">Sections</span><p>filter_bar, activity_timeline, activity_detail_drawer, compliance_metadata_panel</p></article>
+                  <article class="spec-card"><span class="eyebrow">Actions</span><p>filter_activities, open_contact, open_source_workflow</p></article>
+                  <article class="spec-card"><span class="eyebrow">States</span><p>empty: No activities match the current filters · error: Failed to load activity history</p></article>
+                </div>
+              </header>
+
+              <div class="panel-grid">
+                <article class="panel span-8"><div class="panel-title"><div><span class="eyebrow">Timeline</span><h2>Global and contact-centric event review</h2></div></div><div class="timeline"><div class="timeline-item"><span class="timeline-marker"></span><div><strong>portal.contact.received</strong><p>Client portal submitted household quote request with consent proof.</p></div></div><div class="timeline-item"><span class="timeline-marker"></span><div><strong>call.completed</strong><p>Outbound call lasted 11m 42s, recording reference attached, follow-up flagged.</p></div></div><div class="timeline-item"><span class="timeline-marker"></span><div><strong>lead.transferred</strong><p>Ownership moved from Insurance to Real Estate without duplication.</p></div></div><div class="timeline-item"><span class="timeline-marker"></span><div><strong>meeting.completed</strong><p>Google Meet review concluded with notes and next steps.</p></div></div></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Compliance metadata</span><h2>Context attached to sensitive events</h2></div></div><div class="list-stack"><div class="list-item"><strong>Recording access scope</strong><p>Restricted playback for protected contexts unless role is OW or PA.</p></div><div class="list-item"><strong>Portal intake proof</strong><p>Consent artifact and source origin stay visible after enrichment.</p></div><div class="list-item"><strong>Immutable presentation</strong><p>No edit or delete affordances are exposed here.</p></div></div></article>
+              </div>
+            </section>
+
+            <section class="screen" data-screen-route="calendar" aria-hidden="true">
+              <header class="screen-header">
+                <div class="screen-heading">
+                  <div class="screen-heading-copy">
+                    <div class="chip-list"><span class="chip" data-tone="navy">Calendar</span><span class="chip" data-tone="gold">Phase 2</span><span class="chip">/api/crm/calendar/events</span></div>
+                    <h1 class="screen-title">Time-based planning and sync visibility</h1>
+                    <p class="screen-subtitle">Outlook and Google-linked events appear in one schedule workspace with contact and lead pivots plus freshness indicators.</p>
+                  </div>
+                  <div class="inline-actions"><button class="primary-button" type="button" data-open-overlay="create-event-modal" data-roles="OW,IA,ML,RA,PA" data-lock-message="Calendar creation is not available for this role.">Create event</button><a class="ghost-button" href="#video-meetings">Launch meeting</a></div>
+                </div>
+                <div class="meta-grid">
+                  <article class="spec-card"><span class="eyebrow">Sections</span><p>provider_status_bar, calendar_filters, calendar_grid, event_detail_drawer</p></article>
+                  <article class="spec-card"><span class="eyebrow">Actions</span><p>change_view, create_event, open_contact, open_lead</p></article>
+                  <article class="spec-card"><span class="eyebrow">State</span><p>degraded: Calendar provider sync is unavailable</p></article>
+                </div>
+              </header>
+
+              <div class="panel-grid">
+                <article class="panel span-12"><div class="panel-title"><div><span class="eyebrow">Provider status bar</span><h2>Freshness and sync health</h2></div><div class="provider-strip"><span class="chip" data-tone="green">Outlook healthy · synced 2m ago</span><span class="chip" data-tone="red">Google stale · last sync 23m ago</span><span class="chip" data-tone="blue">Supports contact and lead pivots</span></div></div></article>
+                <article class="panel span-8"><div class="panel-title"><div><span class="eyebrow">Calendar grid</span><h2>Day, week, and month views</h2></div><div class="tabs"><button class="tab-button is-active" type="button" data-tab-group="calendar-view" data-tab-target="calendar-week">Week</button><button class="tab-button" type="button" data-tab-group="calendar-view" data-tab-target="calendar-day">Day</button><button class="tab-button" type="button" data-tab-group="calendar-view" data-tab-target="calendar-month">Month</button></div></div><div class="tab-panel is-active" data-tab-group="calendar-view" data-tab-panel="calendar-week"><div class="week-grid"><div class="time-column"><div class="time-slot">9 AM</div><div class="time-slot">11 AM</div><div class="time-slot">1 PM</div><div class="time-slot">3 PM</div></div><div class="day-column"><div class="calendar-event"><strong>Renewal review</strong><p>Outlook · Nina Thompson</p></div><div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div></div><div class="day-column"><div class="time-slot"></div><div class="calendar-event"><strong>Borrower docs follow-up</strong><p>Google · Marcus Boyd</p></div><div class="time-slot"></div><div class="time-slot"></div></div><div class="day-column"><div class="time-slot"></div><div class="time-slot"></div><div class="calendar-event"><strong>Final walkthrough</strong><p>Outlook · Carla Ruiz</p></div><div class="time-slot"></div></div><div class="day-column"><div class="time-slot"></div><div class="time-slot"></div><div class="time-slot"></div><div class="calendar-event"><strong>Team handoff block</strong><p>Internal only</p></div></div><div class="day-column"><div class="time-slot"></div><div class="time-slot"></div><div class="calendar-event"><strong>Loan review</strong><p>Outlook · Lee Family</p></div><div class="time-slot"></div></div></div></div><div class="tab-panel" data-tab-group="calendar-view" data-tab-panel="calendar-day" aria-hidden="true"><div class="list-stack"><div class="list-item"><strong>9:30 AM renewal review</strong><p>Calendar event includes provider, timing, and contact linkage.</p></div><div class="list-item"><strong>2:00 PM final walkthrough</strong><p>Lead linkage routes directly to the Real Estate workspace.</p></div></div></div><div class="tab-panel" data-tab-group="calendar-view" data-tab-panel="calendar-month" aria-hidden="true"><div class="list-stack"><div class="list-item"><strong>Month overview</strong><p>Highlights overlapping provider events, stale sync windows, and customer-linked appointments.</p></div></div></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Event detail drawer</span><h2>Selected event context</h2></div></div><div class="list-stack"><div class="list-item"><strong>Title</strong><p>Final walkthrough - 1236 Oak Terrace</p></div><div class="list-item"><strong>Schema highlights</strong><p>provider: Outlook · status: confirmed · starts_at: 2026-04-17T14:00:00Z · contact_id: c-208 · lead_id: l-422</p></div><div class="inline-actions"><a class="action-button" href="#contacts">Open contact</a><a class="action-button" href="#pipeline">Open lead</a></div></div></article>
+              </div>
+            </section>
+
+            <section class="screen" data-screen-route="calls" aria-hidden="true">
+              <header class="screen-header">
+                <div class="screen-heading">
+                  <div class="screen-heading-copy">
+                    <div class="chip-list"><span class="chip" data-tone="navy">Calls</span><span class="chip" data-tone="gold">Phase 1</span><span class="chip">/api/crm/calls</span></div>
+                    <h1 class="screen-title">Compliance-aware calling workspace</h1>
+                    <p class="screen-subtitle">Dialer, active-call state, call log, recording retention, post-call disposition, and unmatched number handling all live in one workflow.</p>
+                  </div>
+                  <div class="inline-actions"><button class="primary-button" type="button" data-open-overlay="post-call-drawer" data-roles="OW,IA,ML,RA,PA" data-lock-message="Calling is blocked for this role.">Open wrap-up</button><button class="ghost-button" type="button" data-open-overlay="resolve-number-drawer">Resolve unknown number</button></div>
+                </div>
+                <div class="meta-grid">
+                  <article class="spec-card"><span class="eyebrow">Sections</span><p>dialer, active_call_panel, call_log, recording_filters, post_call_drawer, unmatched_calls_queue</p></article>
+                  <article class="spec-card"><span class="eyebrow">Actions</span><p>place_call, save_disposition, resolve_unknown_number, play_recording</p></article>
+                  <article class="spec-card"><span class="eyebrow">State</span><p>degraded: Telephony provider unavailable</p></article>
+                </div>
+              </header>
+              <div class="panel-grid">
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Dialer</span><h2>Contact-linked outbound calls</h2></div></div><div class="list-stack"><div class="list-item"><strong>Selected contact</strong><p>Carla Ruiz · (281) 555-0132 · lead_id: l-422</p></div><div class="chip-list"><span class="chip">Line BG-RE-03</span><span class="chip" data-tone="red">Recording required</span></div><button class="primary-button" type="button">Place call</button></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Active call panel</span><h2>Live controls and recording state</h2></div></div><div class="list-stack"><div class="list-item"><strong>00:11:42 active call</strong><p>Hold, mute, transfer, and compliance badge stay visible while preserving page context.</p></div><div class="chip-list"><span class="chip" data-tone="red">Recording active</span><span class="chip">Disposition pending</span></div></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Unmatched queue</span><h2>Unknown number resolution</h2></div></div><div class="queue-list"><div class="queue-item"><strong>(346) 555-0199</strong><p>Inbound 4m ago · candidate contacts: 2</p></div><div class="queue-item"><strong>(713) 555-0140</strong><p>Outbound callback requested · minimal record allowed</p></div></div></article>
+                <article class="panel span-8"><div class="panel-title"><div><span class="eyebrow">Call log</span><h2>Inbound and outbound history</h2></div><div class="chip-list"><span class="chip">Retention window</span><span class="chip">Direction</span><span class="chip">Department</span></div></div><div class="table-shell"><table><thead><tr><th>Contact</th><th>Direction</th><th>Department</th><th>Recorded</th><th>Disposition</th><th>Expires</th></tr></thead><tbody><tr><td>Carla Ruiz</td><td>Outbound</td><td>Real Estate</td><td><span class="tag" data-tone="red">Yes</span></td><td>Left voicemail</td><td>2030-04-17</td></tr><tr><td>Nina Thompson</td><td>Inbound</td><td>Insurance</td><td><span class="tag" data-tone="red">Yes</span></td><td>Quote reviewed</td><td>2027-10-17</td></tr><tr><td>Unknown</td><td>Inbound</td><td>Shared</td><td><span class="tag">No</span></td><td>Needs matching</td><td>n/a</td></tr></tbody></table></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Recording controls</span><h2>Playback and retention</h2></div></div><div class="list-stack"><div class="list-item"><strong>recording_reference_id: rec-8821</strong><p>provider_id: tel-9011 · access_scope: protected · expires_at: 2027-10-17</p></div><button class="ghost-button" type="button" data-roles="OW,PA" data-lock-message="Recording playback is restricted to owners and admins.">Play recording</button></div></article>
+              </div>
+            </section>
+
+            <section class="screen" data-screen-route="sms" aria-hidden="true">
+              <header class="screen-header">
+                <div class="screen-heading">
+                  <div class="screen-heading-copy">
+                    <div class="chip-list"><span class="chip" data-tone="navy">SMS</span><span class="chip" data-tone="gold">Phase 1</span><span class="chip">/api/crm/sms/threads</span></div>
+                    <h1 class="screen-title">Customer texting inside the CRM</h1>
+                    <p class="screen-subtitle">Threaded SMS ties unread state, opt-out protection, and unknown-number resolution back to contacts and ownership.</p>
+                  </div>
+                  <div class="inline-actions"><a class="ghost-button" href="#contacts">Open contact</a><button class="ghost-button" type="button" data-open-overlay="resolve-number-drawer">Resolve unmatched thread</button></div>
+                </div>
+                <div class="meta-grid">
+                  <article class="spec-card"><span class="eyebrow">Sections</span><p>thread_list, conversation_panel, compose_bar, unresolved_threads</p></article>
+                  <article class="spec-card"><span class="eyebrow">Actions</span><p>send_message, resolve_unknown_number, open_contact</p></article>
+                  <article class="spec-card"><span class="eyebrow">State</span><p>degraded: SMS provider unavailable</p></article>
+                </div>
+              </header>
+              <div class="panel split-layout">
+                <div class="thread-list"><div class="thread-item"><strong>Carla Ruiz</strong><p>Unread 2 · Real Estate owner</p></div><div class="thread-item"><strong>Nina Thompson</strong><p>Insurance thread · renewal reminder sent</p></div><div class="thread-item"><strong>Unknown number</strong><p>Inbound only · queued for resolution</p></div></div>
+                <div class="conversation-shell"><div class="message-shell"><div class="message-bubble inbound">Can we move the walkthrough to 3 PM?</div><div class="message-bubble outbound">Yes. I updated the calendar and added the new time to your confirmation note.</div><div class="message-bubble inbound">Perfect. Please send me the address again.</div></div><div class="compose-bar"><textarea placeholder="Type a reply. Opt-out state blocks sending when required."></textarea><button class="primary-button" type="button" data-roles="OW,IA,ML,RA,PA" data-lock-message="SMS send is not available for this role.">Send</button></div></div>
+                <div class="queue-list"><div class="queue-item"><strong>Unresolved thread queue</strong><p>Phone number matching is the first-pass resolution strategy.</p></div><div class="queue-item"><strong>Opt-out safeguard</strong><p>Compose remains visible, but sending is blocked if `opt_out` is true.</p></div></div>
+              </div>
+            </section>
+
+            <section class="screen" data-screen-route="email" aria-hidden="true">
+              <header class="screen-header">
+                <div class="screen-heading">
+                  <div class="screen-heading-copy">
+                    <div class="chip-list"><span class="chip" data-tone="navy">Email</span><span class="chip" data-tone="gold">Phase 1</span><span class="chip">/api/crm/email/inbox</span></div>
+                    <h1 class="screen-title">Operational email with CRM linkage</h1>
+                    <p class="screen-subtitle">Outlook remains the storage and delivery layer while the CRM adds contact linkage, unresolved sender review, and message metadata history.</p>
+                  </div>
+                  <div class="inline-actions"><button class="primary-button" type="button" data-open-overlay="resolve-sender-drawer">Resolve sender</button><a class="ghost-button" href="#contacts">Open contact</a></div>
+                </div>
+                <div class="meta-grid">
+                  <article class="spec-card"><span class="eyebrow">Sections</span><p>inbox_list, message_preview, compose_drawer, unresolved_senders</p></article>
+                  <article class="spec-card"><span class="eyebrow">Actions</span><p>compose_email, reply_email, forward_email, resolve_unknown_sender, open_contact</p></article>
+                  <article class="spec-card"><span class="eyebrow">State</span><p>degraded: Outlook provider unavailable</p></article>
+                </div>
+              </header>
+              <div class="panel split-layout">
+                <div class="mail-list"><div class="mail-item"><strong>Closing packet follow-up</strong><p>Carla Ruiz · has_attachments true · sent 16m ago</p></div><div class="mail-item"><strong>Question about quote changes</strong><p>Nina Thompson · inbound · linked to insurance contact</p></div><div class="mail-item"><strong>Unknown sender</strong><p>new.sender@inbox.example needs contact lookup</p></div></div>
+                <div class="message-shell"><div class="list-item"><strong>Message preview</strong><p>Subject: Closing packet follow-up</p><p>Attached is the updated walkthrough summary and your timeline for final signatures.</p><div class="chip-list"><span class="chip">provider_id: out-9011</span><span class="chip">has_attachments: true</span><span class="chip">status: sent</span></div></div><div class="compose-bar"><textarea placeholder="Compose, reply, or forward from the CRM surface."></textarea><button class="primary-button" type="button" data-roles="OW,IA,ML,RA,PA" data-lock-message="Email send is not available for this role.">Send email</button></div></div>
+                <div class="queue-list"><div class="queue-item"><strong>Unresolved sender queue</strong><p>Unknown senders remain visible until a confident contact match exists.</p></div><div class="queue-item"><strong>Attachment awareness</strong><p>The template keeps association without taking over Outlook storage semantics.</p></div></div>
+              </div>
+            </section>
+
+            <section class="screen" data-screen-route="email-blast" aria-hidden="true">
+              <header class="screen-header">
+                <div class="screen-heading">
+                  <div class="screen-heading-copy">
+                    <div class="chip-list"><span class="chip" data-tone="navy">Email Blast</span><span class="chip" data-tone="gold">Phase 2</span><span class="chip">/api/crm/email-blast/campaigns</span></div>
+                    <h1 class="screen-title">Targeted one-to-many messaging</h1>
+                    <p class="screen-subtitle">Audience building, exclusions, content editing, send review, and summary metrics are represented as one campaign workflow.</p>
+                  </div>
+                  <div class="inline-actions"><button class="primary-button" type="button" data-open-overlay="campaign-review-modal" data-roles="OW,PA" data-lock-message="Campaign send review is restricted to owners and admins.">Send review</button><a class="ghost-button" href="#reports">Open reports</a></div>
+                </div>
+                <div class="meta-grid">
+                  <article class="spec-card"><span class="eyebrow">Sections</span><p>campaign_list, audience_builder, content_editor, send_review_panel, campaign_metrics</p></article>
+                  <article class="spec-card"><span class="eyebrow">Actions</span><p>create_campaign, preview_recipients, send_campaign, open_contact</p></article>
+                  <article class="spec-card"><span class="eyebrow">States</span><p>empty: No campaigns created yet · degraded: Campaign delivery provider unavailable</p></article>
+                </div>
+              </header>
+              <div class="panel-grid">
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Campaign list</span><h2>Draft and sent campaigns</h2></div></div><div class="list-stack"><div class="list-item"><strong>Q2 Renewal Reminder</strong><p>Insurance · audience 122 · excluded 8</p></div><div class="list-item"><strong>Closing week checklist</strong><p>Real Estate · audience 31 · excluded 1</p></div></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Audience builder</span><h2>Filters and exclusions</h2></div></div><div class="chip-list"><span class="chip">Department</span><span class="chip">Lifecycle state</span><span class="chip">Tags</span><span class="chip">Required data completeness</span><span class="chip" data-tone="red">Blocked recipients</span></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Content editor</span><h2>Reusable templates</h2></div></div><p>Subject: Your renewal window is coming up</p><p>Body: Personalized reminder with a next-step CTA and owner contact path.</p></article>
+                <article class="panel span-8"><div class="panel-title"><div><span class="eyebrow">Send review panel</span><h2>Included, excluded, and blocked recipients</h2></div></div><div class="table-shell"><table><thead><tr><th>Status</th><th>Recipient</th><th>Department</th><th>Reason</th></tr></thead><tbody><tr><td><span class="tag" data-tone="green">Included</span></td><td>Nina Thompson</td><td>Insurance</td><td>Renewal date within 30 days</td></tr><tr><td><span class="tag" data-tone="red">Blocked</span></td><td>Marcus Boyd</td><td>Mortgage</td><td>No valid marketing permission</td></tr><tr><td><span class="tag" data-tone="gold">Excluded</span></td><td>Carla Ruiz</td><td>Real Estate</td><td>Already in recent closing nurture</td></tr></tbody></table></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Campaign metrics</span><h2>Summary performance</h2></div></div><div class="list-stack"><div class="list-item"><strong>Delivered</strong><p>96%</p></div><div class="list-item"><strong>Open rate</strong><p>58%</p></div><div class="list-item"><strong>Clicks</strong><p>14%</p></div></div></article>
+              </div>
+            </section>
+
+            <section class="screen" data-screen-route="video-meetings" aria-hidden="true">
+              <header class="screen-header">
+                <div class="screen-heading">
+                  <div class="screen-heading-copy">
+                    <div class="chip-list"><span class="chip" data-tone="navy">Video Meetings</span><span class="chip" data-tone="gold">Phase 2</span><span class="chip">/api/crm/video-meetings</span></div>
+                    <h1 class="screen-title">Meeting launch, notes, and retention guidance</h1>
+                    <p class="screen-subtitle">Teams and Google Meet launches remain external while CRM linkage, meeting notes, and 90-day retention reminders stay visible.</p>
+                  </div>
+                  <div class="inline-actions"><button class="primary-button" type="button" data-open-overlay="launch-meeting-modal" data-roles="OW,IA,ML,RA,PA" data-lock-message="Meeting launch is not available for this role.">Launch meeting</button><a class="ghost-button" href="#calendar">Open calendar event</a></div>
+                </div>
+                <div class="meta-grid">
+                  <article class="spec-card"><span class="eyebrow">Sections</span><p>upcoming_meetings, provider_launcher, meeting_notes_panel, recording_retention_notice</p></article>
+                  <article class="spec-card"><span class="eyebrow">Actions</span><p>launch_meeting, add_meeting_note, open_calendar_event, open_contact</p></article>
+                  <article class="spec-card"><span class="eyebrow">State</span><p>degraded: Meeting provider unavailable</p></article>
+                </div>
+              </header>
+              <div class="panel-grid">
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Upcoming meetings</span><h2>Linked schedule items</h2></div></div><div class="meeting-list"><div class="meeting-item"><strong>Borrower review with Marcus Boyd</strong><p>Teams · today 11:00 AM · contact_id c-144</p></div><div class="meeting-item"><strong>Closing walkthrough recap</strong><p>Google Meet · tomorrow 3:30 PM</p></div></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Provider launcher</span><h2>Supported meeting surfaces</h2></div></div><div class="list-stack"><div class="list-item"><strong>Teams</strong><p>Primary workflow for lender and borrower coordination.</p></div><div class="list-item"><strong>Google Meet</strong><p>Available when provider-linked calendar entries originate there.</p></div></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Meeting notes</span><h2>Outcome and follow-up capture</h2></div></div><p>Notes: Borrower approved updated rate options. Next step is document upload before underwriting.</p><div class="chip-list"><span class="chip">Outcome: follow-up required</span><span class="chip">Task linked</span></div></article>
+                <article class="panel span-12"><div class="panel-title"><div><span class="eyebrow">Recording retention notice</span><h2>90-day purge visibility</h2></div></div><div class="list-stack"><div class="list-item"><strong>Recorded meeting expiring in 12 days</strong><p>retention_expires_at: 2026-04-29 · export guidance is visible before automatic purge.</p></div></div></article>
+              </div>
+            </section>
+
+            <section class="screen" data-screen-route="insurance" aria-hidden="true">
+              <header class="screen-header">
+                <div class="screen-heading">
+                  <div class="screen-heading-copy">
+                    <div class="chip-list"><span class="chip" data-tone="gold">Insurance</span><span class="chip" data-tone="gold">Phase 2</span><span class="chip">/api/crm/insurance</span></div>
+                    <h1 class="screen-title">Quote, bind, issue, and renewal visibility</h1>
+                    <p class="screen-subtitle">Insurance adds policy summary context, quote readiness, missing intake guidance, legacy sync awareness, and renewal watchlists on top of the shared customer model.</p>
+                  </div>
+                  <div class="inline-actions"><a class="ghost-button" href="#contacts">Open contact</a><a class="ghost-button" href="#activities">Open timeline</a></div>
+                </div>
+                <div class="meta-grid">
+                  <article class="spec-card"><span class="eyebrow">Sections</span><p>insurance_filters, insurance_pipeline, policy_summary_panel, missing_data_checklist, renewal_watchlist</p></article>
+                  <article class="spec-card"><span class="eyebrow">Actions</span><p>update_insurance_status, open_contact, open_activity_timeline, start_call</p></article>
+                  <article class="spec-card"><span class="eyebrow">State</span><p>empty when no insurance records match the current filters</p></article>
+                </div>
+              </header>
+              <div class="scope-banner" data-scope-banner data-department="insurance" data-scope-label="insurance records"><div><strong data-scope-state>Editable in current scope</strong><p data-scope-detail>Insurance edits follow department-scoped write rules while preserving cross-department read access.</p></div><span class="chip" data-scope-chip data-tone="green">Write enabled</span></div>
+              <div class="panel-grid">
+                <article class="panel span-8"><div class="panel-title"><div><span class="eyebrow">Insurance pipeline</span><h2>Quote and renewal queue</h2></div></div><div class="table-shell"><table><thead><tr><th>Contact</th><th>Line of business</th><th>Status</th><th>Carrier</th><th>Renewal</th><th>Sync state</th></tr></thead><tbody><tr><td>Nina Thompson</td><td>Auto</td><td>Quoted</td><td>Carrier pending</td><td>2026-05-02</td><td>Agency Zoom imported 2h ago</td></tr><tr><td>Owens household</td><td>Home</td><td>Issued</td><td>Safeco</td><td>2026-06-11</td><td>Vertafore synced 12m ago</td></tr><tr><td>Willis Trucking</td><td>Commercial</td><td>Renewal</td><td>Travelers</td><td>2026-04-28</td><td>Legacy review needed</td></tr></tbody></table></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Policy summary</span><h2>Selected sub-record</h2></div></div><div class="list-stack"><div class="list-item"><strong>policy_type: Auto</strong><p>carrier: Carrier pending · status: Quoted · premium: $1,284 annualized</p></div><div class="list-item"><strong>effective / expiration</strong><p>2026-05-03 through 2027-05-03 · vehicle_vin still missing</p></div></div></article>
+                <article class="panel span-6"><div class="panel-title"><div><span class="eyebrow">Missing data checklist</span><h2>Quote blockers</h2></div></div><div class="list-stack"><div class="list-item"><strong>Date of birth</strong><p>Required for quote readiness</p></div><div class="list-item"><strong>Vehicle VIN</strong><p>Missing from portal intake</p></div><div class="list-item"><strong>Household driver details</strong><p>Needed before bind</p></div></div></article>
+                <article class="panel span-6"><div class="panel-title"><div><span class="eyebrow">Renewal watchlist</span><h2>At-risk follow-up</h2></div></div><div class="list-stack"><div class="list-item"><strong>Willis Trucking</strong><p>Renewal in 14 days with no call logged in the last week.</p></div><div class="list-item"><strong>Owens household</strong><p>Policy issued, but annual review scheduling is still pending.</p></div></div></article>
+              </div>
+            </section>
+
+            <section class="screen" data-screen-route="mortgage" aria-hidden="true">
+              <header class="screen-header">
+                <div class="screen-heading">
+                  <div class="screen-heading-copy">
+                    <div class="chip-list"><span class="chip" data-tone="blue">Mortgage</span><span class="chip" data-tone="gold">Phase 2</span><span class="chip">/api/crm/mortgage</span></div>
+                    <h1 class="screen-title">Pre-approval, milestones, and Arive-linked visibility</h1>
+                    <p class="screen-subtitle">Mortgage layers lender progress, milestone state, missing documentation, and Arive sync context on top of the shared CRM customer model.</p>
+                  </div>
+                  <div class="inline-actions"><a class="ghost-button" href="#contacts">Open contact</a><a class="ghost-button" href="#activities">Open timeline</a></div>
+                </div>
+                <div class="meta-grid">
+                  <article class="spec-card"><span class="eyebrow">Sections</span><p>mortgage_filters, mortgage_pipeline, loan_milestone_panel, missing_items_checklist, sync_status_banner</p></article>
+                  <article class="spec-card"><span class="eyebrow">Actions</span><p>update_mortgage_stage, open_contact, open_activity_timeline, request_missing_items</p></article>
+                  <article class="spec-card"><span class="eyebrow">State</span><p>degraded: Arive synchronization unavailable</p></article>
+                </div>
+              </header>
+              <div class="scope-banner" data-scope-banner data-department="mortgage" data-scope-label="mortgage records"><div><strong data-scope-state>Editable in current scope</strong><p data-scope-detail>Mortgage edits are allowed only for mortgage-scoped roles and platform administration.</p></div><span class="chip" data-scope-chip data-tone="green">Write enabled</span></div>
+              <div class="panel-grid">
+                <article class="panel span-12"><div class="panel-title"><div><span class="eyebrow">Sync status banner</span><h2>Arive freshness and exceptions</h2></div></div><div class="chip-list"><span class="chip" data-tone="blue">Arive synced 4m ago</span><span class="chip">2 files awaiting lender response</span><span class="chip" data-tone="gold">1 stage mismatch flagged</span></div></article>
+                <article class="panel span-8"><div class="panel-title"><div><span class="eyebrow">Mortgage pipeline</span><h2>Loan progress queue</h2></div></div><div class="table-shell"><table><thead><tr><th>Borrower</th><th>Loan stage</th><th>Lender</th><th>Arive ID</th><th>Missing items</th><th>Clear to close</th></tr></thead><tbody><tr><td>Marcus Boyd</td><td>Processing</td><td>PrimePath</td><td>ARV-1182</td><td>W-2, bank statement</td><td>No</td></tr><tr><td>Lee Family Purchase</td><td>Clear-to-close</td><td>EverOak</td><td>ARV-1101</td><td>None</td><td>Yes</td></tr><tr><td>Morgan Wells</td><td>Pre-approval</td><td>HomeTrust</td><td>ARV-1220</td><td>Credit authorization</td><td>No</td></tr></tbody></table></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Loan milestone panel</span><h2>Selected record</h2></div></div><div class="list-stack"><div class="list-item"><strong>loan_stage: Processing</strong><p>pre_approval_amount: $425,000 · lender_name: PrimePath · arive_loan_id: ARV-1182</p></div><div class="list-item"><strong>Exception visibility</strong><p>Stage mismatch between CRM and Arive was flagged instead of silently accepted.</p></div></div></article>
+                <article class="panel span-6"><div class="panel-title"><div><span class="eyebrow">Missing items checklist</span><h2>Document and intake blockers</h2></div></div><div class="list-stack"><div class="list-item"><strong>W-2 upload</strong><p>Still outstanding for Marcus Boyd</p></div><div class="list-item"><strong>Two months of bank statements</strong><p>Required before underwriting can proceed</p></div></div></article>
+                <article class="panel span-6"><div class="panel-title"><div><span class="eyebrow">Closing readiness</span><h2>Next steps</h2></div></div><div class="list-stack"><div class="list-item"><strong>Lee Family Purchase</strong><p>Clear-to-close reached. Funded milestone expected after final document confirmation.</p></div><div class="list-item"><strong>Request missing items</strong><p>Launches communication follow-up without leaving the mortgage context.</p></div></div></article>
+              </div>
+            </section>
+
+            <section class="screen" data-screen-route="real-estate" aria-hidden="true">
+              <header class="screen-header">
+                <div class="screen-heading">
+                  <div class="screen-heading-copy">
+                    <div class="chip-list"><span class="chip" data-tone="green">Real Estate</span><span class="chip" data-tone="gold">Phase 2</span><span class="chip">/api/crm/real-estate</span></div>
+                    <h1 class="screen-title">Property, transaction, and closing coordination</h1>
+                    <p class="screen-subtitle">Real Estate adds property context, transaction status, closing milestones, HAR awareness, and DotLoop readiness while preserving one shared contact record.</p>
+                  </div>
+                  <div class="inline-actions"><a class="ghost-button" href="#calendar">Open calendar event</a><a class="ghost-button" href="#activities">Open timeline</a></div>
+                </div>
+                <div class="meta-grid">
+                  <article class="spec-card"><span class="eyebrow">Sections</span><p>real_estate_filters, transaction_pipeline, property_summary_panel, closing_milestone_panel, external_link_status</p></article>
+                  <article class="spec-card"><span class="eyebrow">Actions</span><p>update_transaction_stage, open_contact, open_calendar_event, open_activity_timeline</p></article>
+                  <article class="spec-card"><span class="eyebrow">State</span><p>empty when no transaction matches filters</p></article>
+                </div>
+              </header>
+              <div class="scope-banner" data-scope-banner data-department="real_estate" data-scope-label="real estate records"><div><strong data-scope-state>Editable in current scope</strong><p data-scope-detail>Real estate records remain readable across departments, with edits limited to scoped writers.</p></div><span class="chip" data-scope-chip data-tone="green">Write enabled</span></div>
+              <div class="panel-grid">
+                <article class="panel span-8"><div class="panel-title"><div><span class="eyebrow">Transaction pipeline</span><h2>Deal queue with closing risk</h2></div></div><div class="table-shell"><table><thead><tr><th>Contact</th><th>Property</th><th>Stage</th><th>Closing date</th><th>Agent</th><th>Risk flags</th></tr></thead><tbody><tr><td>Carla Ruiz</td><td>1236 Oak Terrace</td><td>Pending Close</td><td>2026-04-22</td><td>Tom Burke</td><td>Walkthrough pending</td></tr><tr><td>Jamal Porter</td><td>Pending listing</td><td>Contacted</td><td>TBD</td><td>Tom Burke</td><td>Property address not confirmed</td></tr><tr><td>Mia Alvarez</td><td>88 River Glen</td><td>Under Contract</td><td>2026-05-03</td><td>RA-204</td><td>DotLoop not linked</td></tr></tbody></table></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Property summary</span><h2>Selected transaction</h2></div></div><div class="list-stack"><div class="list-item"><strong>transaction_type: Purchase</strong><p>property_address: 1236 Oak Terrace · status: Pending Close · commission_amount: $9,400</p></div><div class="list-item"><strong>Primary parties</strong><p>Buyer: Carla Ruiz · Agent: Tom Burke · contact_id: c-208</p></div></div></article>
+                <article class="panel span-6"><div class="panel-title"><div><span class="eyebrow">Closing milestones</span><h2>Remaining steps</h2></div></div><div class="list-stack"><div class="list-item"><strong>Walkthrough scheduled</strong><p>Calendar event linked for Apr 17 at 3:00 PM</p></div><div class="list-item"><strong>Title packet review</strong><p>Outstanding email confirmation still needed</p></div></div></article>
+                <article class="panel span-6"><div class="panel-title"><div><span class="eyebrow">External link status</span><h2>HAR and DotLoop readiness</h2></div></div><div class="list-stack"><div class="list-item"><strong>HAR reference</strong><p>Listing data visible as reference-only context.</p></div><div class="list-item"><strong>DotLoop</strong><p>Pending link for Mia Alvarez. Record remains operational even before contract tooling is attached.</p></div></div></article>
+              </div>
+            </section>
+
+            <section class="screen" data-screen-route="integrations" aria-hidden="true">
+              <header class="screen-header">
+                <div class="screen-heading">
+                  <div class="screen-heading-copy">
+                    <div class="chip-list"><span class="chip" data-tone="navy">Integrations</span><span class="chip" data-tone="gold">Phase 2</span><span class="chip">/api/crm/integrations</span></div>
+                    <h1 class="screen-title">Health, freshness, ownership, and dependency mapping</h1>
+                    <p class="screen-subtitle">Integrations turns providers into visible operational dependencies rather than hidden background services.</p>
+                  </div>
+                  <div class="inline-actions"><button class="primary-button" type="button" data-open-overlay="reconnect-integration-modal" data-roles="PA" data-lock-message="Connector remediation is administrator-only.">Reconnect integration</button><a class="ghost-button" href="#reports">Open reports</a></div>
+                </div>
+                <div class="meta-grid">
+                  <article class="spec-card"><span class="eyebrow">Sections</span><p>connector_summary, connector_inventory, connector_detail_drawer, dependency_map, audit_timeline</p></article>
+                  <article class="spec-card"><span class="eyebrow">Actions</span><p>filter_connectors, test_connection, retry_sync, open_connector_detail</p></article>
+                  <article class="spec-card"><span class="eyebrow">State</span><p>empty when no connectors are configured</p></article>
+                </div>
+              </header>
+              <div class="stat-grid">
+                <article class="stat-card"><span class="eyebrow">Healthy connectors</span><div class="stat-row"><strong>6</strong><span class="delta positive">Stable</span></div><p>Outlook, VOIP, Arive, Teams, Google Meet, HAR.</p></article>
+                <article class="stat-card"><span class="eyebrow">Degraded</span><div class="stat-row"><strong>1</strong><span class="delta danger">Google Calendar</span></div><p>Calendar and dashboard show stale sync state.</p></article>
+                <article class="stat-card"><span class="eyebrow">Planned</span><div class="stat-row"><strong>3</strong><span class="delta info">Roadmap</span></div><p>DotLoop automation, DocuSign, deeper Agency Zoom deprecation support.</p></article>
+              </div>
+              <div class="panel-grid">
+                <article class="panel span-8"><div class="panel-title"><div><span class="eyebrow">Connector inventory</span><h2>Provider status and affected features</h2></div></div><div class="table-shell"><table><thead><tr><th>Provider</th><th>Status</th><th>Priority</th><th>Owner</th><th>Last synced</th><th>Affected features</th></tr></thead><tbody><tr><td>Outlook</td><td><span class="tag" data-tone="green">Healthy</span></td><td>P1</td><td>Service account</td><td>2m ago</td><td>Email, Calendar, Dashboard</td></tr><tr><td>Google Calendar</td><td><span class="tag" data-tone="red">Degraded</span></td><td>P2</td><td>Shared connector</td><td>23m ago</td><td>Calendar, Dashboard, Notifications</td></tr><tr><td>Arive</td><td><span class="tag" data-tone="green">Healthy</span></td><td>P1</td><td>Mortgage ops</td><td>4m ago</td><td>Mortgage, Activities, Reports</td></tr><tr><td>DotLoop</td><td><span class="tag" data-tone="gold">Planned</span></td><td>P2</td><td>Real Estate ops</td><td>Not connected</td><td>Real Estate, Reports</td></tr></tbody></table></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Connector detail</span><h2>Selected provider</h2></div></div><div class="list-stack"><div class="list-item"><strong>Google Calendar</strong><p>status: degraded · priority: P2 · last_synced_at: 23m ago</p></div><div class="list-item"><strong>Actions</strong><p>test connection, retry sync, reconnect workflow where permissions allow.</p></div><button class="ghost-button" type="button" data-roles="PA" data-lock-message="Connector management is administrator-only.">Retry sync</button></div></article>
+                <article class="panel span-6"><div class="panel-title"><div><span class="eyebrow">Dependency map</span><h2>Feature impact</h2></div></div><div class="list-stack"><div class="list-item"><strong>Outlook</strong><p>Email, Calendar, Dashboard schedule, notifications</p></div><div class="list-item"><strong>VOIP provider</strong><p>Calls, dashboard compliance, activity log</p></div><div class="list-item"><strong>Arive</strong><p>Mortgage, Activities, Reports, Integrations</p></div></div></article>
+                <article class="panel span-6"><div class="panel-title"><div><span class="eyebrow">Audit timeline</span><h2>Connector changes and failures</h2></div></div><div class="timeline"><div class="timeline-item"><span class="timeline-marker"></span><div><strong>integration.degraded</strong><p>Google Calendar moved to stale state and notified dashboard consumers.</p></div></div><div class="timeline-item"><span class="timeline-marker"></span><div><strong>integration.recovered</strong><p>Outlook token refresh succeeded after a prior reconnect attempt.</p></div></div></div></article>
+              </div>
+            </section>
+
+            <section class="screen" data-screen-route="reports" aria-hidden="true">
+              <header class="screen-header">
+                <div class="screen-heading">
+                  <div class="screen-heading-copy">
+                    <div class="chip-list"><span class="chip" data-tone="navy">Reports</span><span class="chip" data-tone="gold">Phase 2</span><span class="chip">/api/crm/reports/overview</span></div>
+                    <h1 class="screen-title">Revenue, conversion, throughput, and communication analysis</h1>
+                    <p class="screen-subtitle">Reports extends the dashboard into time-based KPI analysis, department comparisons, funnel movement, and communication performance with drill-down paths back to operational records.</p>
+                  </div>
+                  <div class="inline-actions"><a class="ghost-button" href="#dashboard">Return to dashboard</a></div>
+                </div>
+                <div class="meta-grid">
+                  <article class="spec-card"><span class="eyebrow">Sections</span><p>report_filter_bar, kpi_summary, department_comparison, funnel_analysis, communication_metrics</p></article>
+                  <article class="spec-card"><span class="eyebrow">Actions</span><p>apply_filters, compare_departments, drill_into_metric</p></article>
+                  <article class="spec-card"><span class="eyebrow">States</span><p>empty: No report data available · error: Failed to load reports</p></article>
+                </div>
+              </header>
+              <div class="panel-grid">
+                <article class="panel span-12"><div class="panel-title"><div><span class="eyebrow">Filter bar</span><h2>Date range, department, agent, owner, source, and status</h2></div></div><div class="chip-list"><span class="chip">Date range: last 30 days</span><span class="chip">Department: cross-department</span><span class="chip">Owner</span><span class="chip">Source</span><span class="chip">Status</span></div></article>
+                <article class="panel span-12"><div class="stat-grid"><article class="stat-card"><span class="eyebrow">Revenue</span><div class="stat-row"><strong>$182.4k</strong><span class="delta positive">+8.3%</span></div><p>Summary-level revenue across departments.</p></article><article class="stat-card"><span class="eyebrow">Conversion</span><div class="stat-row"><strong>27%</strong><span class="delta info">Lead to close</span></div><p>Shared lifecycle movement across department-specific interpretations.</p></article><article class="stat-card"><span class="eyebrow">Throughput</span><div class="stat-row"><strong>71</strong><span class="delta positive">Closed motions</span></div><p>Policies issued, loans funded, and closings.</p></article><article class="stat-card"><span class="eyebrow">Communication activity</span><div class="stat-row"><strong>624</strong><span class="delta warning">Lag 5m</span></div><p>Calls, SMS, email, and campaign touches.</p></article></div></article>
+                <article class="panel span-6"><div class="panel-title"><div><span class="eyebrow">Department comparison</span><h2>Team-level breakdowns</h2></div></div><div class="metric-bar"><div class="funnel-label"><strong>Insurance revenue</strong><span>$61k</span></div><div class="metric-bar-track"><div class="metric-bar-fill" style="width: 68%"></div></div></div><div class="metric-bar"><div class="funnel-label"><strong>Mortgage funded volume</strong><span>$48k</span></div><div class="metric-bar-track"><div class="metric-bar-fill" style="width: 55%"></div></div></div><div class="metric-bar"><div class="funnel-label"><strong>Real Estate closings</strong><span>$73k</span></div><div class="metric-bar-track"><div class="metric-bar-fill" style="width: 82%"></div></div></div></article>
+                <article class="panel span-6"><div class="panel-title"><div><span class="eyebrow">Funnel analysis</span><h2>Stage movement over time</h2></div></div><div class="table-shell"><table><thead><tr><th>Stage</th><th>Entered</th><th>Exited</th><th>Avg days</th></tr></thead><tbody><tr><td>New Inquiry</td><td>84</td><td>72</td><td>1.8</td></tr><tr><td>Contacted</td><td>72</td><td>58</td><td>4.1</td></tr><tr><td>Quoted / Offer</td><td>58</td><td>41</td><td>7.2</td></tr><tr><td>Pending Close</td><td>29</td><td>24</td><td>5.4</td></tr></tbody></table></div></article>
+                <article class="panel span-12"><div class="panel-title"><div><span class="eyebrow">Communication metrics</span><h2>Calls, SMS, email, and campaign outcomes</h2></div></div><div class="definition-grid"><article class="spec-card"><span class="eyebrow">Calls</span><h3>Recorded rate 82%</h3><p>Playback access remains scoped even when metrics are visible.</p></article><article class="spec-card"><span class="eyebrow">SMS</span><h3>Median reply 19m</h3><p>Unread and opt-out signals contribute to backlog visibility.</p></article><article class="spec-card"><span class="eyebrow">Email</span><h3>Reply rate 46%</h3><p>Outlook linkage preserves provider boundaries.</p></article><article class="spec-card"><span class="eyebrow">Campaigns</span><h3>Open rate 58%</h3><p>Email Blast metrics remain summary-level in this phase.</p></article></div></article>
+              </div>
+            </section>
+
+            <section class="screen" data-screen-route="admin" aria-hidden="true">
+              <header class="screen-header">
+                <div class="screen-heading">
+                  <div class="screen-heading-copy">
+                    <div class="chip-list"><span class="chip" data-tone="navy">Admin Settings</span><span class="chip" data-tone="gold">Phase 2</span><span class="chip">/api/crm/admin/users + /api/crm/admin/retention</span></div>
+                    <h1 class="screen-title">Users, roles, retention, entitlements, and audit visibility</h1>
+                    <p class="screen-subtitle">Admin Settings provides the governance workspace for assignment, role scope, retention policy, feature entitlement, and sensitive change auditing.</p>
+                  </div>
+                  <div class="inline-actions"><button class="primary-button" type="button" data-open-overlay="invite-user-modal" data-roles="PA" data-lock-message="User assignment is restricted to platform administrators.">Invite user</button><button class="ghost-button" type="button" data-open-overlay="retention-policy-modal" data-roles="PA" data-lock-message="Retention management is restricted to platform administrators.">Update retention</button></div>
+                </div>
+                <div class="meta-grid">
+                  <article class="spec-card"><span class="eyebrow">Sections</span><p>user_directory, role_scope_matrix, retention_policies, feature_entitlements, audit_log</p></article>
+                  <article class="spec-card"><span class="eyebrow">Actions</span><p>invite_user, update_role_scope, update_retention_policy, review_entitlements</p></article>
+                  <article class="spec-card"><span class="eyebrow">State</span><p>error: Failed to load administrative settings</p></article>
+                </div>
+              </header>
+              <div class="scope-banner" data-scope-banner data-department="admin" data-scope-label="governance controls"><div><strong data-scope-state>Editable in current scope</strong><p data-scope-detail>Only platform administrators can manage governance settings, while owners may see limited team context.</p></div><span class="chip" data-scope-chip data-tone="green">Write enabled</span></div>
+              <div class="panel-grid">
+                <article class="panel span-6"><div class="panel-title"><div><span class="eyebrow">User directory</span><h2>Assignment and status</h2></div></div><div class="table-shell"><table><thead><tr><th>Name</th><th>Role</th><th>Departments</th><th>Email</th><th>Status</th></tr></thead><tbody><tr><td>Jaquarian Bonilla</td><td>OW</td><td>Insurance</td><td>jaquarian@burkes.example</td><td>Active</td></tr><tr><td>Tom Burke</td><td>RA</td><td>Real Estate</td><td>tom@burkes.example</td><td>Active</td></tr><tr><td>Mortgage Liaison</td><td>ML</td><td>Mortgage</td><td>liaison@burkes.example</td><td>Active</td></tr></tbody></table></div></article>
+                <article class="panel span-6"><div class="panel-title"><div><span class="eyebrow">Role and scope matrix</span><h2>Governed access</h2></div></div><div class="list-stack"><div class="list-item"><strong>Department Owner</strong><p>Read all departments · write own department · limited admin</p></div><div class="list-item"><strong>Insurance Agent</strong><p>Read all departments · edit insurance · no admin</p></div><div class="list-item"><strong>Platform Administrator</strong><p>Read all departments · edit all departments · full admin</p></div></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Retention policies</span><h2>Department-aware rules</h2></div></div><div class="list-stack"><div class="list-item"><strong>Insurance recordings</strong><p>18 months</p></div><div class="list-item"><strong>Mortgage recordings</strong><p>24 months</p></div><div class="list-item"><strong>Real Estate recordings</strong><p>4 years</p></div><div class="list-item"><strong>Video meetings</strong><p>90 days</p></div></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Feature entitlements</span><h2>Active, limited, and future gates</h2></div></div><div class="list-stack"><div class="list-item"><strong>Active</strong><p>Calls, SMS, Email, Calendar, Department workspaces</p></div><div class="list-item"><strong>Limited</strong><p>Email Blast send approval and scoped reporting</p></div><div class="list-item"><strong>Future</strong><p>Native mobile shell, white-label branding, AI workflows</p></div></div></article>
+                <article class="panel span-4"><div class="panel-title"><div><span class="eyebrow">Audit log</span><h2>Sensitive change visibility</h2></div></div><div class="timeline"><div class="timeline-item"><span class="timeline-marker"></span><div><strong>admin.settings.updated</strong><p>Retention policy review submitted at 9:07 AM.</p></div></div><div class="timeline-item"><span class="timeline-marker"></span><div><strong>user.assign_role</strong><p>Real Estate assistant granted read-only department scope.</p></div></div></div></article>
+              </div>
+            </section>
+
+            <section class="overlay" data-overlay-id="new-contact-modal" aria-hidden="true"><div class="overlay-card"><div class="overlay-header"><div><h2>New Contact</h2><p>identity -> department_context -> optional_enrichment</p></div><button class="icon-button" type="button" data-close-overlay="new-contact-modal" aria-label="Close">×</button></div><ol class="step-list"><li class="step-item"><span class="step-number">1</span><div><strong>identity</strong><p>Capture first name, last name, phone, and optionally email.</p></div></li><li class="step-item"><span class="step-number">2</span><div><strong>department_context</strong><p>Assign the originating department and stage.</p></div></li><li class="step-item"><span class="step-number">3</span><div><strong>optional_enrichment</strong><p>Add consent, address, family, or department-specific details later.</p></div></li></ol><div class="field-grid"><label class="field"><span>First name</span><input value="Nina" /></label><label class="field"><span>Last name</span><input value="Thompson" /></label><label class="field"><span>Phone</span><input value="(832) 555-0164" /></label><label class="field"><span>Department</span><select><option>Insurance</option><option>Mortgage</option><option>Real Estate</option></select></label></div><div class="overlay-footer"><span class="chip" data-tone="gold">Outcome: contact_created</span><button class="primary-button" type="button" data-close-overlay="new-contact-modal">Save minimal contact</button></div></div></section>
+            <section class="overlay" data-overlay-id="transfer-lead-modal" aria-hidden="true"><div class="overlay-card"><div class="overlay-header"><div><h2>Transfer Lead</h2><p>select_department -> select_recipient -> confirm_notification</p></div><button class="icon-button" type="button" data-close-overlay="transfer-lead-modal" aria-label="Close">×</button></div><ol class="step-list"><li class="step-item"><span class="step-number">1</span><div><strong>select_department</strong><p>Choose the destination department.</p></div></li><li class="step-item"><span class="step-number">2</span><div><strong>select_recipient</strong><p>Assign the next owner with role-aware write scope.</p></div></li><li class="step-item"><span class="step-number">3</span><div><strong>confirm_notification</strong><p>Record the transfer event and notify the recipient.</p></div></li></ol><div class="overlay-footer"><span class="chip">Outcome: lead_transferred</span><button class="primary-button" type="button" data-close-overlay="transfer-lead-modal">Confirm transfer</button></div></div></section>
+            <section class="overlay" data-overlay-id="import-contacts-modal" aria-hidden="true"><div class="overlay-card"><div class="overlay-header"><div><h2>Import Contacts</h2><p>select_source -> upload_or_map -> review_summary</p></div><button class="icon-button" type="button" data-close-overlay="import-contacts-modal" aria-label="Close">×</button></div><ol class="step-list"><li class="step-item"><span class="step-number">1</span><div><strong>select_source</strong><p>Choose Follow Up Boss, CSV upload, or another structured source.</p></div></li><li class="step-item"><span class="step-number">2</span><div><strong>upload_or_map</strong><p>Map fields to the contact schema and flag duplicate candidates by phone or email.</p></div></li><li class="step-item"><span class="step-number">3</span><div><strong>review_summary</strong><p>Show included rows, flagged rows, and partial failures.</p></div></li></ol><div class="overlay-footer"><span class="chip">Outcome: reviewable import summary</span><button class="primary-button" type="button" data-close-overlay="import-contacts-modal">Continue import</button></div></div></section>
+            <section class="overlay is-drawer" data-overlay-id="resolve-number-drawer" aria-hidden="true"><div class="overlay-card"><div class="overlay-header"><div><h2>Resolve Unknown Number</h2><p>search_existing_contact -> create_minimal_contact_if_needed -> link_thread_or_call</p></div><button class="icon-button" type="button" data-close-overlay="resolve-number-drawer" aria-label="Close">×</button></div><ol class="step-list"><li class="step-item"><span class="step-number">1</span><div><strong>search_existing_contact</strong><p>Review phone-based candidates without leaving the communication context.</p></div></li><li class="step-item"><span class="step-number">2</span><div><strong>create_minimal_contact_if_needed</strong><p>Allow a light record if the number is new.</p></div></li><li class="step-item"><span class="step-number">3</span><div><strong>link_thread_or_call</strong><p>Backfill the call log or SMS thread after linkage.</p></div></li></ol><div class="overlay-footer"><span class="chip">Outcome: communication_resolved</span><button class="primary-button" type="button" data-close-overlay="resolve-number-drawer">Link number</button></div></div></section>
+            <section class="overlay is-drawer" data-overlay-id="resolve-sender-drawer" aria-hidden="true"><div class="overlay-card"><div class="overlay-header"><div><h2>Resolve Unknown Sender</h2><p>search_existing_contact -> create_minimal_contact_if_needed -> link_email_history</p></div><button class="icon-button" type="button" data-close-overlay="resolve-sender-drawer" aria-label="Close">×</button></div><ol class="step-list"><li class="step-item"><span class="step-number">1</span><div><strong>search_existing_contact</strong><p>Lookup by address, name hints, or related thread context.</p></div></li><li class="step-item"><span class="step-number">2</span><div><strong>create_minimal_contact_if_needed</strong><p>Create a light record when no confident match exists.</p></div></li><li class="step-item"><span class="step-number">3</span><div><strong>link_email_history</strong><p>Attach unresolved messages into the unified history.</p></div></li></ol><div class="overlay-footer"><span class="chip">Outcome: email_resolved</span><button class="primary-button" type="button" data-close-overlay="resolve-sender-drawer">Link email history</button></div></div></section>
+            <section class="overlay is-drawer" data-overlay-id="post-call-drawer" aria-hidden="true"><div class="overlay-card"><div class="overlay-header"><div><h2>Post-Call Wrap Up</h2><p>disposition -> note -> follow_up_flag</p></div><button class="icon-button" type="button" data-close-overlay="post-call-drawer" aria-label="Close">×</button></div><ol class="step-list"><li class="step-item"><span class="step-number">1</span><div><strong>disposition</strong><p>Capture the call outcome.</p></div></li><li class="step-item"><span class="step-number">2</span><div><strong>note</strong><p>Attach operator context and customer response.</p></div></li><li class="step-item"><span class="step-number">3</span><div><strong>follow_up_flag</strong><p>Turn the outcome into a task, event, or prompt.</p></div></li></ol><div class="overlay-footer"><span class="chip">Outcome: call_logged</span><button class="primary-button" type="button" data-close-overlay="post-call-drawer">Save wrap-up</button></div></div></section>
+            <section class="overlay" data-overlay-id="create-event-modal" aria-hidden="true"><div class="overlay-card"><div class="overlay-header"><div><h2>Create Calendar Event</h2><p>provider_selection -> schedule_details -> link_contact_or_lead -> confirm_event</p></div><button class="icon-button" type="button" data-close-overlay="create-event-modal" aria-label="Close">×</button></div><ol class="step-list"><li class="step-item"><span class="step-number">1</span><div><strong>provider_selection</strong><p>Select Outlook or Google.</p></div></li><li class="step-item"><span class="step-number">2</span><div><strong>schedule_details</strong><p>Capture title, start, end, and notes.</p></div></li><li class="step-item"><span class="step-number">3</span><div><strong>link_contact_or_lead</strong><p>Attach the event to customer or pipeline context.</p></div></li><li class="step-item"><span class="step-number">4</span><div><strong>confirm_event</strong><p>Emit the shared calendar event signal.</p></div></li></ol><div class="overlay-footer"><span class="chip">Outcome: calendar_event_created</span><button class="primary-button" type="button" data-close-overlay="create-event-modal">Create event</button></div></div></section>
+            <section class="overlay" data-overlay-id="campaign-review-modal" aria-hidden="true"><div class="overlay-card"><div class="overlay-header"><div><h2>Campaign Send Review</h2><p>audience_preview -> exclusion_review -> content_preview -> confirm_send</p></div><button class="icon-button" type="button" data-close-overlay="campaign-review-modal" aria-label="Close">×</button></div><ol class="step-list"><li class="step-item"><span class="step-number">1</span><div><strong>audience_preview</strong><p>Inspect included recipients by department and lifecycle.</p></div></li><li class="step-item"><span class="step-number">2</span><div><strong>exclusion_review</strong><p>See blocked, opted-out, or duplicate audiences.</p></div></li><li class="step-item"><span class="step-number">3</span><div><strong>content_preview</strong><p>Confirm subject and body.</p></div></li><li class="step-item"><span class="step-number">4</span><div><strong>confirm_send</strong><p>Record `campaign.sent` after provider-linked delivery starts.</p></div></li></ol><div class="overlay-footer"><span class="chip">Outcome: campaign_sent</span><button class="primary-button" type="button" data-close-overlay="campaign-review-modal">Approve send</button></div></div></section>
+            <section class="overlay" data-overlay-id="launch-meeting-modal" aria-hidden="true"><div class="overlay-card"><div class="overlay-header"><div><h2>Launch Video Meeting</h2><p>provider_selection -> participant_context -> confirm_launch</p></div><button class="icon-button" type="button" data-close-overlay="launch-meeting-modal" aria-label="Close">×</button></div><ol class="step-list"><li class="step-item"><span class="step-number">1</span><div><strong>provider_selection</strong><p>Choose the provider the session should open in.</p></div></li><li class="step-item"><span class="step-number">2</span><div><strong>participant_context</strong><p>Link attendees back to contacts, leads, or calendar events.</p></div></li><li class="step-item"><span class="step-number">3</span><div><strong>confirm_launch</strong><p>Open the provider while preserving CRM visibility.</p></div></li></ol><div class="overlay-footer"><span class="chip">Outcome: meeting_launched</span><button class="primary-button" type="button" data-close-overlay="launch-meeting-modal">Open provider</button></div></div></section>
+            <section class="overlay" data-overlay-id="reconnect-integration-modal" aria-hidden="true"><div class="overlay-card"><div class="overlay-header"><div><h2>Reconnect Integration</h2><p>review_impact -> verify_permissions -> confirm_retry</p></div><button class="icon-button" type="button" data-close-overlay="reconnect-integration-modal" aria-label="Close">×</button></div><ol class="step-list"><li class="step-item"><span class="step-number">1</span><div><strong>review_impact</strong><p>Summarize affected screens and workflows.</p></div></li><li class="step-item"><span class="step-number">2</span><div><strong>verify_permissions</strong><p>Ensure the operator has governance scope.</p></div></li><li class="step-item"><span class="step-number">3</span><div><strong>confirm_retry</strong><p>Retry the supported action and emit an audit event.</p></div></li></ol><div class="overlay-footer"><span class="chip">Outcome: integration_action_logged</span><button class="primary-button" type="button" data-close-overlay="reconnect-integration-modal">Retry connection</button></div></div></section>
+            <section class="overlay" data-overlay-id="invite-user-modal" aria-hidden="true"><div class="overlay-card"><div class="overlay-header"><div><h2>Invite or Assign User</h2><p>identity -> role_and_scope -> confirm_assignment</p></div><button class="icon-button" type="button" data-close-overlay="invite-user-modal" aria-label="Close">×</button></div><ol class="step-list"><li class="step-item"><span class="step-number">1</span><div><strong>identity</strong><p>Capture full name and email for the managed user.</p></div></li><li class="step-item"><span class="step-number">2</span><div><strong>role_and_scope</strong><p>Apply CRM role and department write scope.</p></div></li><li class="step-item"><span class="step-number">3</span><div><strong>confirm_assignment</strong><p>Persist the change and write the audit event.</p></div></li></ol><div class="overlay-footer"><span class="chip">Outcome: user_assignment_saved</span><button class="primary-button" type="button" data-close-overlay="invite-user-modal">Assign user</button></div></div></section>
+            <section class="overlay" data-overlay-id="retention-policy-modal" aria-hidden="true"><div class="overlay-card"><div class="overlay-header"><div><h2>Update Retention Policy</h2><p>review_current_policy -> impact_summary -> confirm_change</p></div><button class="icon-button" type="button" data-close-overlay="retention-policy-modal" aria-label="Close">×</button></div><ol class="step-list"><li class="step-item"><span class="step-number">1</span><div><strong>review_current_policy</strong><p>Display the current setting by department and data type.</p></div></li><li class="step-item"><span class="step-number">2</span><div><strong>impact_summary</strong><p>Explain who is affected and what changes.</p></div></li><li class="step-item"><span class="step-number">3</span><div><strong>confirm_change</strong><p>Require confirmation and generate the audit trail.</p></div></li></ol><div class="overlay-footer"><span class="chip">Outcome: retention_policy_updated</span><button class="primary-button" type="button" data-close-overlay="retention-policy-modal">Save policy</button></div></div></section>
+
+            <section class="footer-note">
+              <span>This shell is grounded in `layout.yaml`, `screens/*.yaml`, `access_control.yaml`, `interactions.yaml`, `events.yaml`, and the top-level JSON schemas from the CRM spec-kit.</span>
+              <a class="primary-button" href="./contracts.html">Open contracts reference</a>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="./assets/app.js"></script>
+  </body>
+</html>
