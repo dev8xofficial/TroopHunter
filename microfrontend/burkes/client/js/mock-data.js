@@ -1,13 +1,9 @@
 /**
  * MOCK-DATA.JS — Burkes Group Client Portal
  * In-memory data store for all portal mock data.
- * Single source of truth — all screens read from MockData.
- * Simulates what a real API would return.
  */
 
 const MockData = (() => {
-  // ── Raw data (inlined for single-file portability) ────────
-
   const _transaction = {
     transaction_id: 'TXN-0000000001',
     transaction_status: 'underwriting',
@@ -101,7 +97,7 @@ const MockData = (() => {
       unread: 2,
       messages: [
         { id: 'm-010', from: 'LN', text: "Hello Sarah, I've reviewed your mortgage application so far. Looking good!", timestamp: '2026-04-15T09:30:00Z' },
-        { id: 'm-011', from: 'LN', text: "Could you upload your 2023 W-2 as well? I see the 2024 one but I'll need both for the underwriting package.", timestamp: '2026-04-15T10:00:00Z' },
+        { id: 'm-011', from: 'LN', text: 'Could you upload your 2023 W-2 as well?', timestamp: '2026-04-15T10:00:00Z' },
         { id: 'm-012', from: 'CL', text: "Of course — I'll get that uploaded today.", timestamp: '2026-04-15T10:45:00Z' },
         { id: 'm-013', from: 'LN', text: 'Also, the loan commitment letter is ready for your signature in Documents.', timestamp: '2026-04-16T11:00:00Z', unread: true },
         { id: 'm-014', from: 'LN', text: 'Once signed, we should be clear to proceed to underwriting final approval!', timestamp: '2026-04-16T11:02:00Z', unread: true },
@@ -128,12 +124,7 @@ const MockData = (() => {
         icon: '🏠',
         required: true,
         status: 'PENDING',
-        data: {
-          policyholder_name: 'Sarah Chen',
-          property_address: '4821 Willow Creek Dr, The Woodlands, TX 77380',
-          notes: '',
-          document_id: null,
-        },
+        data: { policyholder_name: 'Sarah Chen', property_address: '4821 Willow Creek Dr, The Woodlands, TX 77380', notes: '', document_id: null },
       },
       {
         type: 'AUTO',
@@ -141,13 +132,7 @@ const MockData = (() => {
         icon: '🚗',
         required: true,
         status: 'COMPLETED',
-        data: {
-          policyholder_name: 'Sarah Chen',
-          vin: '1HGBH41JXMN109186',
-          dob: '1985-04-12',
-          policy_number: 'AU-88821',
-          document_id: 'doc-010',
-        },
+        data: { policyholder_name: 'Sarah Chen', vin: '1HGBH41JXMN109186', dob: '1985-04-12', policy_number: 'AU-88821', document_id: 'doc-010' },
       },
       {
         type: 'WARRANTY',
@@ -158,11 +143,7 @@ const MockData = (() => {
         data: {},
       },
     ],
-    compliance_summary: {
-      total_required: 2,
-      completed: 1,
-      message: '1 of 2 required policies complete',
-    },
+    compliance_summary: { total_required: 2, completed: 1, message: '1 of 2 required policies complete' },
   };
 
   const _mortgage = {
@@ -175,110 +156,29 @@ const MockData = (() => {
     interest_rate: 6.875,
     term_years: 30,
     sections: [
-      {
-        id: 'personal',
-        title: 'Personal Information',
-        status: 'complete',
-        fields: {
-          first_name: 'Sarah',
-          last_name: 'Chen',
-          email: 'sarah.chen@email.com',
-          phone: '(832) 555-0199',
-          dob: '1985-04-12',
-          ssn_last4: '4821',
-        },
-      },
-      {
-        id: 'property',
-        title: 'Property Details',
-        status: 'complete',
-        fields: {
-          property_address: '4821 Willow Creek Dr, The Woodlands, TX 77380',
-          purchase_price: 485000,
-          down_payment: 97000,
-          loan_amount: 388000,
-        },
-      },
-      {
-        id: 'employment',
-        title: 'Employment History',
-        status: 'in-progress',
-        fields: {
-          employers: [{ company: 'Meridian Tech Solutions', position: 'Senior Designer', start_date: '2019-03-01', annual_income: 98000 }],
-        },
-      },
-      {
-        id: 'documents',
-        title: 'Financial Documents',
-        status: 'not-started',
-        fields: {},
-      },
+      { id: 'personal', title: 'Personal Information', status: 'complete', fields: { first_name: 'Sarah', last_name: 'Chen', email: 'sarah.chen@email.com', phone: '(832) 555-0199', dob: '1985-04-12', ssn_last4: '4821' } },
+      { id: 'property', title: 'Property Details', status: 'complete', fields: { property_address: '4821 Willow Creek Dr, The Woodlands, TX 77380', purchase_price: 485000, down_payment: 97000, loan_amount: 388000 } },
+      { id: 'employment', title: 'Employment History', status: 'in-progress', fields: { employers: [{ company: 'Meridian Tech Solutions', position: 'Senior Designer', start_date: '2019-03-01', annual_income: 98000 }] } },
+      { id: 'documents', title: 'Financial Documents', status: 'not-started', fields: {} },
     ],
   };
 
   const _services = [
-    { id: 'svc-001', name: 'Atlas Plumbing Co.', category: 'PLUMBING', rating: 4.8, reviews: 127, phone: '(713) 555-0192', contact: 'Mike Torres', recommended: true, zip: '77380' },
-    { id: 'svc-002', name: 'ClearView Home Inspections', category: 'INSPECTION', rating: 4.9, reviews: 214, phone: '(713) 555-0193', contact: 'Donna Park', recommended: true, zip: '77380' },
-    { id: 'svc-003', name: 'Bright Electric LLC', category: 'ELECTRICAL', rating: 4.6, reviews: 89, phone: '(713) 555-0194', contact: 'Ray Gutierrez', recommended: false, zip: '77380' },
-    { id: 'svc-004', name: 'Cool Air HVAC Services', category: 'HVAC', rating: 4.7, reviews: 156, phone: '(713) 555-0195', contact: 'Lisa Kim', recommended: true, zip: '77380' },
-    { id: 'svc-005', name: 'PaintPro Residential', category: 'PAINTING', rating: 4.5, reviews: 63, phone: '(713) 555-0196', contact: 'Carlos Reyes', recommended: false, zip: '77380' },
-    { id: 'svc-006', name: 'Roots & Branches Landscaping', category: 'LANDSCAPING', rating: 4.8, reviews: 101, phone: '(713) 555-0197', contact: 'Amy Tran', recommended: true, zip: '77380' },
+    { id: 'svc-001', name: 'Atlas Plumbing Co.', category: 'PLUMBING', rating: 4.8, reviews: 127, phone: '(713) 555-0192', contact: 'Mike Torres', recommended: true },
+    { id: 'svc-002', name: 'ClearView Home Inspections', category: 'INSPECTION', rating: 4.9, reviews: 214, phone: '(713) 555-0193', contact: 'Donna Park', recommended: true },
+    { id: 'svc-003', name: 'Bright Electric LLC', category: 'ELECTRICAL', rating: 4.6, reviews: 89, phone: '(713) 555-0194', contact: 'Ray Gutierrez', recommended: false },
+    { id: 'svc-004', name: 'Cool Air HVAC Services', category: 'HVAC', rating: 4.7, reviews: 156, phone: '(713) 555-0195', contact: 'Lisa Kim', recommended: true },
+    { id: 'svc-005', name: 'PaintPro Residential', category: 'PAINTING', rating: 4.5, reviews: 63, phone: '(713) 555-0196', contact: 'Carlos Reyes', recommended: false },
+    { id: 'svc-006', name: 'Roots & Branches Landscaping', category: 'LANDSCAPING', rating: 4.8, reviews: 101, phone: '(713) 555-0197', contact: 'Amy Tran', recommended: true },
   ];
 
   const _notifications = [
-    {
-      id: 'notif-001',
-      severity: 'ERROR',
-      title: 'Action Required: 2 documents need your signature',
-      body: 'Purchase Agreement and Loan Commitment Letter are awaiting your signature.',
-      cta_label: 'Sign Now',
-      cta_screen: 'documents',
-      visible_to: ['CL'],
-      read: false,
-    },
-    {
-      id: 'notif-002',
-      severity: 'WARNING',
-      title: 'Home Insurance policy incomplete',
-      body: 'Please upload your home insurance document to continue the closing process.',
-      cta_label: 'Upload Insurance',
-      cta_screen: 'insurance',
-      visible_to: ['CL', 'TC'],
-      read: false,
-    },
-    {
-      id: 'notif-003',
-      severity: 'WARNING',
-      title: 'Mortgage application 65% complete',
-      body: 'Employment section needs completion before the underwriting deadline.',
-      cta_label: 'Complete Application',
-      cta_screen: 'mortgage',
-      visible_to: ['CL'],
-      read: false,
-    },
-    {
-      id: 'notif-004',
-      severity: 'INFO',
-      title: 'New message from Jennifer Walsh (Lender)',
-      body: 'Loan commitment letter ready for signature.',
-      cta_label: 'View Message',
-      cta_screen: 'messages',
-      visible_to: ['CL'],
-      read: false,
-    },
-    {
-      id: 'notif-005',
-      severity: 'INFO',
-      title: 'Title commitment uploaded by David Norton',
-      body: 'Review the title commitment draft in Documents.',
-      cta_label: 'View Document',
-      cta_screen: 'documents',
-      visible_to: ['CL', 'AG', 'TC'],
-      read: true,
-    },
+    { id: 'notif-001', severity: 'ERROR', title: 'Action Required: 2 documents need your signature', body: 'Purchase Agreement and Loan Commitment Letter are awaiting your signature.', cta_label: 'Sign Now', cta_screen: 'documents', visible_to: ['CL'], read: false },
+    { id: 'notif-002', severity: 'WARNING', title: 'Home Insurance policy incomplete', body: 'Please upload your home insurance document to continue the closing process.', cta_label: 'Upload Insurance', cta_screen: 'insurance', visible_to: ['CL', 'TC'], read: false },
+    { id: 'notif-003', severity: 'WARNING', title: 'Mortgage application 65% complete', body: 'Employment section needs completion before the underwriting deadline.', cta_label: 'Complete Application', cta_screen: 'mortgage', visible_to: ['CL'], read: false },
+    { id: 'notif-004', severity: 'INFO', title: 'New message from Jennifer Walsh (Lender)', body: 'Loan commitment letter ready for signature.', cta_label: 'View Message', cta_screen: 'messages', visible_to: ['CL'], read: false },
+    { id: 'notif-005', severity: 'INFO', title: 'Title commitment uploaded by David Norton', body: 'Review the title commitment draft in Documents.', cta_label: 'View Document', cta_screen: 'documents', visible_to: ['CL', 'AG', 'TC'], read: true },
   ];
-
-  // ── Dashboard metrics computed from data ──────────────────
 
   function _computeMetrics() {
     const docs = _documents;
@@ -298,9 +198,6 @@ const MockData = (() => {
     };
   }
 
-  // ── Helpers ───────────────────────────────────────────────
-
-  /** Format a timestamp as relative human-readable (e.g. "2h ago") */
   function relativeTime(isoString) {
     const d = new Date(isoString);
     const now = new Date();
@@ -315,21 +212,14 @@ const MockData = (() => {
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   }
 
-  /** Format ISO date as "Apr 16, 2026" */
   function formatDate(isoString) {
-    return new Date(isoString).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
+    if (!isoString) return 'TBD';
+    return new Date(isoString).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   }
 
-  /** Format currency */
   function currency(amount) {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(amount);
   }
-
-  // ── Public API ────────────────────────────────────────────
 
   let _initialized = false;
 
@@ -337,7 +227,6 @@ const MockData = (() => {
     init() {
       if (_initialized) return;
       _initialized = true;
-      // Future: could fetch from /data/*.json files here
     },
 
     get transaction() {
@@ -368,22 +257,17 @@ const MockData = (() => {
       return _computeMetrics();
     },
 
-    /** Filter activity log for current session role */
     getActivityForRole(role) {
       return _activityLog.filter((e) => !e.visible_to || e.visible_to.includes(role));
     },
 
-    /** Filter documents for current session role */
     getDocumentsForRole(role) {
       return _documents.filter((d) => !d.visible_to || d.visible_to.includes(role));
     },
 
-    /** Get a document by ID */
     getDocument(id) {
       return _documents.find((d) => d.id === id);
     },
-
-    /** Get conversation by professional role */
     getConversation(withRole) {
       return _messages.find((c) => c.with_role === withRole);
     },

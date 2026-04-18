@@ -1,13 +1,9 @@
 /**
  * COMPONENTS/SHELL.JS — Burkes Group Client Portal
  * Renders and manages the global navigation bar.
- * Handles role-based nav item visibility, notification bell,
- * role switcher (demo), and avatar display.
  */
 
 const ShellComponent = (() => {
-  // ── Nav item definitions ──────────────────────────────────
-
   const NAV_ITEMS = [
     {
       screen: 'dashboard',
@@ -62,8 +58,6 @@ const ShellComponent = (() => {
     },
   ];
 
-  // ── Build nav HTML ────────────────────────────────────────
-
   function _buildNavLinks() {
     return NAV_ITEMS.filter((item) => Session.canSee(item.screen))
       .map(
@@ -82,53 +76,25 @@ const ShellComponent = (() => {
       .join('');
   }
 
-  function _buildMobileNavItems() {
-    return NAV_ITEMS.filter((item) => Session.canSee(item.screen))
-      .map(
-        (item) => `
-        <button
-          class="mobile-nav-item"
-          data-screen="${item.screen}"
-          aria-label="${item.label}"
-          type="button"
-        >
-          ${item.icon.replace('class="nav-link-icon"', 'class="mobile-nav-icon"')}
-          <span>${item.label}</span>
-        </button>
-      `,
-      )
-      .join('');
-  }
-
   function _buildRoleOptions() {
-    return Session.allRoles
-      .map((code) => {
-        const labels = { CL: 'Client', AG: 'Agent', LN: 'Lender', AT: 'Attorney', CP: 'CPA', TC: 'Coordinator' };
-        return `<option value="${code}" ${code === Session.role ? 'selected' : ''}>${labels[code] || code}</option>`;
-      })
-      .join('');
+    const labels = { CL: 'Client', AG: 'Agent', LN: 'Lender', AT: 'Attorney', CP: 'CPA', TC: 'Coordinator' };
+    return Session.allRoles.map((code) => `<option value="${code}" ${code === Session.role ? 'selected' : ''}>${labels[code] || code}</option>`).join('');
   }
-
-  // ── Notification count (from MockData if available) ───────
 
   function _getNotificationCount() {
     if (window.MockData && window.MockData.notifications) {
       return window.MockData.notifications.filter((n) => !n.read).length;
     }
-    return 3; // fallback demo count
+    return 0;
   }
-
-  // ── Render ────────────────────────────────────────────────
 
   function render() {
     const nav = document.getElementById('global-nav');
-    const mobileNav = document.getElementById('mobile-nav');
     if (!nav) return;
 
     const unread = _getNotificationCount();
 
     nav.innerHTML = `
-      <!-- Logo -->
       <a class="nav-logo" href="#dashboard" aria-label="Burkes Group Portal home">
         <div class="nav-logo-mark">BG</div>
         <div>
@@ -137,38 +103,22 @@ const ShellComponent = (() => {
         </div>
       </a>
 
-      <!-- Transaction pill -->
-      <div class="nav-txn-pill" title="Active Transaction: ${Session.transaction_id}" aria-label="Active transaction ${Session.transaction_id}">
+      <div class="nav-txn-pill" title="Active Transaction: ${Session.transaction_id}">
         ${Session.transaction_id}
       </div>
 
-      <!-- Nav links -->
       <nav class="nav-links" role="navigation" aria-label="Main navigation">
         ${_buildNavLinks()}
       </nav>
 
-      <!-- Right actions -->
       <div class="nav-actions">
-
-        <!-- Demo: Role switcher -->
-        <div class="nav-role-switcher">
-          <select
-            class="nav-role-select"
-            id="role-switcher"
-            aria-label="Switch demo role"
-            title="Switch role (demo)"
-          >
+        <div class="nav-role-switcher" title="Switch demo role">
+          <select class="nav-role-select" id="role-switcher" aria-label="Switch demo role">
             ${_buildRoleOptions()}
           </select>
         </div>
 
-        <!-- Notification bell -->
-        <button
-          class="nav-bell"
-          id="nav-bell-btn"
-          aria-label="${unread} unread notifications"
-          type="button"
-        >
+        <button class="nav-bell" id="nav-bell-btn" aria-label="${unread} unread notifications" type="button">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M8 1a4.99 4.99 0 0 1 5 5v3l1 1H2l1-1V6a4.99 4.99 0 0 1 5-5z"/>
             <path d="M6.5 13a1.5 1.5 0 0 0 3 0"/>
@@ -176,33 +126,20 @@ const ShellComponent = (() => {
           ${unread > 0 ? `<span class="nav-bell-badge" aria-hidden="true">${unread}</span>` : ''}
         </button>
 
-        <!-- User avatar -->
         <div
           class="nav-avatar"
           role="button"
           tabindex="0"
           aria-label="${Session.displayName} — ${Session.roleData.label}"
           title="${Session.displayName} (${Session.roleData.label})"
-        >
-          ${Session.initials}
-        </div>
-
+        >${Session.initials}</div>
       </div>
     `;
-
-    // Mobile nav
-    if (mobileNav) {
-      mobileNav.innerHTML = _buildMobileNavItems();
-      _bindMobileNavEvents(mobileNav);
-    }
 
     _bindEvents(nav);
   }
 
-  // ── Bind events ───────────────────────────────────────────
-
   function _bindEvents(nav) {
-    // Nav link clicks
     nav.querySelectorAll('.nav-link').forEach((btn) => {
       btn.addEventListener('click', () => {
         const screen = btn.dataset.screen;
@@ -210,17 +147,14 @@ const ShellComponent = (() => {
       });
     });
 
-    // Role switcher
     const roleSwitcher = nav.querySelector('#role-switcher');
     if (roleSwitcher) {
       roleSwitcher.addEventListener('change', (e) => {
         Session.switchRole(e.target.value);
-        // Bell count may change per role
         render();
       });
     }
 
-    // Logo link
     const logo = nav.querySelector('.nav-logo');
     if (logo) {
       logo.addEventListener('click', (e) => {
@@ -229,31 +163,17 @@ const ShellComponent = (() => {
       });
     }
 
-    // Bell — placeholder (will wire to notifications drawer in Sprint 2)
     const bell = nav.querySelector('#nav-bell-btn');
     if (bell) {
       bell.addEventListener('click', () => {
-        Toast.show('Notifications panel coming in Sprint 2', 'info');
+        Toast.info('Notifications panel coming soon!', 3000);
       });
     }
   }
 
-  function _bindMobileNavEvents(mobileNav) {
-    mobileNav.querySelectorAll('.mobile-nav-item').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const screen = btn.dataset.screen;
-        if (screen) Router.navigate(screen);
-      });
-    });
-  }
-
-  // ── Update for role change ────────────────────────────────
-
   function updateForRole() {
-    render(); // full re-render with new role context
+    render();
   }
-
-  // ── Sync active state when screen changes ─────────────────
 
   window.addEventListener('router:screenChanged', (e) => {
     const { screen } = e.detail;
@@ -264,10 +184,6 @@ const ShellComponent = (() => {
       } else {
         el.removeAttribute('aria-current');
       }
-    });
-
-    document.querySelectorAll('.mobile-nav-item').forEach((el) => {
-      el.classList.toggle('active', el.dataset.screen === screen);
     });
   });
 

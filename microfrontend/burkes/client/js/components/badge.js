@@ -1,19 +1,20 @@
 /**
  * COMPONENTS/BADGE.JS — Burkes Group Client Portal
  * Factory functions for rendering status, role, and category badges.
- * Returns HTML strings for inline injection.
  */
 
 const Badge = (() => {
-  // ── Status badge ──────────────────────────────────────────
-
   const STATUS_MAP = {
     // Document statuses
     uploaded: { variant: 'gray', label: 'Uploaded' },
     'under-review': { variant: 'amber', label: 'Under Review' },
+    UNDER_REVIEW: { variant: 'amber', label: 'Under Review' },
     approved: { variant: 'green', label: 'Approved' },
+    APPROVED: { variant: 'green', label: 'Approved' },
     rejected: { variant: 'red', label: 'Rejected' },
+    REJECTED: { variant: 'red', label: 'Rejected' },
     'needs-signature': { variant: 'blue', label: 'Needs Signature' },
+    NEEDS_SIGNATURE: { variant: 'blue', label: 'Needs Signature' },
     signed: { variant: 'green', label: 'Signed' },
     'requires-revision': { variant: 'amber', label: 'Needs Revision' },
 
@@ -43,24 +44,22 @@ const Badge = (() => {
 
   /**
    * Render a status badge.
-   * @param {string} status — Key from STATUS_MAP or raw string
+   * @param {string} status — Key from STATUS_MAP
    * @param {string} [override] — Override display label
    */
   function status(statusKey, override) {
     const def = STATUS_MAP[statusKey] || { variant: 'gray', label: statusKey || '—' };
     const label = override || def.label;
-    return `<span class="badge badge--${def.variant}" title="${label}">${label}</span>`;
+    return `<span class="badge badge-${def.variant}" title="${label}">${label}</span>`;
   }
 
-  // ── Role badge ────────────────────────────────────────────
-
   const ROLE_MAP = {
-    CL: { cssClass: 'role-badge--cl', label: 'Client' },
-    AG: { cssClass: 'role-badge--ag', label: 'Agent' },
-    LN: { cssClass: 'role-badge--ln', label: 'Lender' },
-    AT: { cssClass: 'role-badge--at', label: 'Attorney' },
-    CP: { cssClass: 'role-badge--cp', label: 'CPA' },
-    TC: { cssClass: 'role-badge--tc', label: 'Coordinator' },
+    CL: { cssClass: 'role-badge-cl', label: 'Client' },
+    AG: { cssClass: 'role-badge-ag', label: 'Agent' },
+    LN: { cssClass: 'role-badge-ln', label: 'Lender' },
+    AT: { cssClass: 'role-badge-at', label: 'Attorney' },
+    CP: { cssClass: 'role-badge-cp', label: 'CPA' },
+    TC: { cssClass: 'role-badge-tc', label: 'Coordinator' },
   };
 
   /**
@@ -68,11 +67,9 @@ const Badge = (() => {
    * @param {string} roleCode — CL | AG | LN | AT | CP | TC
    */
   function role(roleCode) {
-    const def = ROLE_MAP[roleCode] || { cssClass: 'role-badge--cl', label: roleCode };
+    const def = ROLE_MAP[roleCode] || { cssClass: 'role-badge-cl', label: roleCode };
     return `<span class="role-badge ${def.cssClass}">${def.label}</span>`;
   }
-
-  // ── Document category badge ───────────────────────────────
 
   const CATEGORY_MAP = {
     PURCHASE: { cssClass: 'doc-category--purchase', label: 'Purchase' },
@@ -87,14 +84,11 @@ const Badge = (() => {
 
   /**
    * Render a document category badge.
-   * @param {string} category — PURCHASE | FINANCIAL | LEGAL | OTHER
    */
   function category(cat) {
     const def = CATEGORY_MAP[cat] || CATEGORY_MAP.OTHER;
     return `<span class="doc-category-badge ${def.cssClass}">${def.label}</span>`;
   }
-
-  // ── Generic colored badge ─────────────────────────────────
 
   /**
    * Render a badge with explicit variant.
@@ -102,7 +96,7 @@ const Badge = (() => {
    * @param {'green'|'amber'|'blue'|'gray'|'red'|'navy'} variant
    */
   function custom(label, variant = 'gray') {
-    return `<span class="badge badge--${variant}">${label}</span>`;
+    return `<span class="badge badge-${variant}">${label}</span>`;
   }
 
   return { status, role, category, custom };

@@ -1,8 +1,6 @@
 /**
  * COMPONENTS/DRAWER.JS — Burkes Group Client Portal
  * Right-side slide-in drawer panel.
- * Used by: document preview, activity detail, team member info.
- * Supports header, scrollable body, optional footer CTAs.
  */
 
 const Drawer = (() => {
@@ -14,7 +12,6 @@ const Drawer = (() => {
     _overlay = document.getElementById('drawer-overlay');
     if (!_overlay) return false;
 
-    // Build interior if not already done
     if (!_overlay.querySelector('.drawer-backdrop')) {
       _overlay.innerHTML = `
         <div class="drawer-backdrop" id="drawer-backdrop"></div>
@@ -33,13 +30,9 @@ const Drawer = (() => {
         </div>
       `;
 
-      // Close on backdrop click
       _overlay.querySelector('#drawer-backdrop').addEventListener('click', close);
-
-      // Close button
       _overlay.querySelector('#drawer-close-btn').addEventListener('click', close);
 
-      // Close on Escape
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && _overlay.classList.contains('open')) close();
       });
@@ -52,10 +45,10 @@ const Drawer = (() => {
   /**
    * Open the drawer.
    * @param {Object} options
-   * @param {string}      options.title       — Header title text
-   * @param {string|Node} options.body        — HTML string or DOM node for body content
-   * @param {Array}       [options.footer]    — Array of { label, variant, onClick } button defs
-   * @param {Function}    [options.onClose]   — Called when drawer closes
+   * @param {string}      options.title
+   * @param {string|Node} options.body
+   * @param {Array}       [options.footer]  — [{ label, variant, onClick }]
+   * @param {Function}    [options.onClose]
    */
   function open({ title, body, footer = [], onClose } = {}) {
     if (!_ensureDOM()) {
@@ -65,11 +58,9 @@ const Drawer = (() => {
 
     _onClose = onClose || null;
 
-    // Set title
     document.getElementById('drawer-title').textContent = title || '';
     _panel.setAttribute('aria-label', title || 'Panel');
 
-    // Set body
     const bodyEl = document.getElementById('drawer-body');
     bodyEl.innerHTML = '';
     if (typeof body === 'string') {
@@ -78,7 +69,6 @@ const Drawer = (() => {
       bodyEl.appendChild(body);
     }
 
-    // Set footer
     const footerEl = document.getElementById('drawer-footer');
     if (footer.length > 0) {
       footerEl.style.display = 'flex';
@@ -86,12 +76,10 @@ const Drawer = (() => {
         .map(
           (btn) => `
         <button
-          class="btn btn--${btn.variant || 'secondary'}"
+          class="btn btn-${btn.variant || 'secondary'}"
           data-drawer-action="${btn.action || btn.label}"
           type="button"
-        >
-          ${btn.label}
-        </button>
+        >${btn.label}</button>
       `,
         )
         .join('');
@@ -107,11 +95,9 @@ const Drawer = (() => {
       footerEl.innerHTML = '';
     }
 
-    // Open
     _overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
 
-    // Focus management
     setTimeout(() => {
       const firstFocusable = _panel.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
       if (firstFocusable) firstFocusable.focus();
@@ -129,7 +115,6 @@ const Drawer = (() => {
     }
   }
 
-  /** Update body content without reopening */
   function updateBody(htmlOrNode) {
     const bodyEl = document.getElementById('drawer-body');
     if (!bodyEl) return;

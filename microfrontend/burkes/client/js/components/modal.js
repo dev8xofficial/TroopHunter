@@ -1,7 +1,6 @@
 /**
  * COMPONENTS/MODAL.JS — Burkes Group Client Portal
  * Confirmation and form dialog overlay.
- * Used for: confirm actions, upload prompts, sign document.
  */
 
 const Modal = (() => {
@@ -44,9 +43,9 @@ const Modal = (() => {
 
   /**
    * @param {Object} options
-   * @param {string}          options.title    — Dialog title
-   * @param {string|Node}     options.body     — Content
-   * @param {Array}           options.actions  — [{ label, variant, onClick, closeOnClick? }]
+   * @param {string}          options.title
+   * @param {string|Node}     options.body
+   * @param {Array}           options.actions — [{ label, variant, onClick, closeOnClick? }]
    */
   function open({ title, body, actions = [] } = {}) {
     if (!_ensureDOM()) return;
@@ -66,7 +65,7 @@ const Modal = (() => {
     footerEl.innerHTML = actions
       .map(
         (a) => `
-      <button class="btn btn--${a.variant || 'secondary'}" data-action="${a.label}" type="button">
+      <button class="btn btn-${a.variant || 'secondary'}" data-action="${a.label}" type="button">
         ${a.label}
       </button>
     `,
@@ -92,19 +91,13 @@ const Modal = (() => {
     }, 50);
   }
 
-  /** Quick confirm dialog */
   function confirm({ title, message, confirmLabel = 'Confirm', cancelLabel = 'Cancel', onConfirm, variant = 'primary' }) {
     open({
       title,
-      body: `<p style="color:var(--color-neutral-600);font-size:var(--text-sm);line-height:1.6">${message}</p>`,
+      body: `<p style="color:var(--neutral-600);font-size:var(--text-sm);line-height:1.6">${message}</p>`,
       actions: [
         { label: cancelLabel, variant: 'secondary' },
-        {
-          label: confirmLabel,
-          variant,
-          onClick: onConfirm,
-          closeOnClick: true,
-        },
+        { label: confirmLabel, variant, onClick: onConfirm, closeOnClick: true },
       ],
     });
   }

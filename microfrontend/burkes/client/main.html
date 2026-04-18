@@ -7,26 +7,25 @@
     <meta name="theme-color" content="#1a3a52" />
     <title>Dashboard — Burkes Group Portal</title>
 
-    <!-- ── Google Fonts ─────────────────────────────────────── -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-    <!-- ── Stylesheets (load order matters) ─────────────────── -->
+    <!-- Stylesheets (load order matters) -->
     <link rel="stylesheet" href="css/token.css" />
     <link rel="stylesheet" href="css/shell.css" />
     <link rel="stylesheet" href="css/components.css" />
     <link rel="stylesheet" href="css/screen.css" />
 
-    <!-- ── Favicon (inline SVG) ─────────────────────────────── -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231a3a52'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='Arial,sans-serif' font-weight='800' font-size='14' fill='%23fdb913'>BG</text></svg>" />
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231a3a52'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial,sans-serif' font-weight='800' font-size='14' fill='%23fdb913'>BG</text></svg>" />
   </head>
 
   <body>
     <!-- ══════════════════════════════════════════════════════════
-       BOOT SCREEN
-       Shown while JS loads. Fades out after app.js completes.
-  ═══════════════════════════════════════════════════════════════ -->
+       BOOT SCREEN — shown while JS loads, fades out on ready
+    ═══════════════════════════════════════════════════════════════ -->
     <div id="boot-screen" role="status" aria-label="Loading Burkes Group Portal">
       <div class="boot-logo">
         <div class="boot-logo-mark">BG</div>
@@ -37,71 +36,50 @@
     </div>
 
     <!-- ══════════════════════════════════════════════════════════
-       GLOBAL NAV BAR (desktop)
-       Rendered by ShellComponent.render()
-       Contains: logo | txn pill | nav links | bell | avatar
-  ═══════════════════════════════════════════════════════════════ -->
+       GLOBAL NAV BAR — rendered by ShellComponent.render()
+    ═══════════════════════════════════════════════════════════════ -->
     <header id="global-nav" role="banner" aria-label="Burkes Group Portal navigation">
       <!-- Populated by js/components/shell.js -->
     </header>
 
     <!-- ══════════════════════════════════════════════════════════
-       ALERT BANNER SLOT
-       Sticky below nav. Rendered by AlertBanner.render()
-       Shows ACTION_REQUIRED / INFO banners for current role.
-  ═══════════════════════════════════════════════════════════════ -->
+       ALERT BANNER SLOT — rendered by AlertBanner.render()
+    ═══════════════════════════════════════════════════════════════ -->
     <div id="alert-banner-slot" aria-live="polite" aria-label="System alerts">
       <!-- Populated by js/components/alert-banner.js -->
     </div>
 
     <!-- ══════════════════════════════════════════════════════════
-       SCREEN OUTLET
-       Screens mount here via Router.
-       Each screen clears and replaces this content.
-  ═══════════════════════════════════════════════════════════════ -->
+       SCREEN OUTLET — screens mount here via Router
+    ═══════════════════════════════════════════════════════════════ -->
     <main id="screen-outlet" role="main" aria-label="Main content" aria-live="polite">
       <!-- Populated by js/router.js + screens/*.js -->
     </main>
 
     <!-- ══════════════════════════════════════════════════════════
-       MOBILE BOTTOM NAV
-       Hidden on desktop (≥768px). Rendered by shell.js.
-  ═══════════════════════════════════════════════════════════════ -->
-    <nav id="mobile-nav" role="navigation" aria-label="Mobile navigation" style="display: none">
-      <!-- Populated by js/components/shell.js -->
-    </nav>
-
-    <!-- ══════════════════════════════════════════════════════════
-       DRAWER OVERLAY
-       Right-side slide panel for doc preview, activity detail.
-       Managed by js/components/drawer.js
-  ═══════════════════════════════════════════════════════════════ -->
+       DRAWER OVERLAY — managed by js/components/drawer.js
+    ═══════════════════════════════════════════════════════════════ -->
     <div id="drawer-overlay" aria-hidden="true">
       <!-- Populated by js/components/drawer.js on first open -->
     </div>
 
     <!-- ══════════════════════════════════════════════════════════
-       MODAL OVERLAY
-       Confirmation and form dialogs.
-       Managed by js/components/modal.js
-  ═══════════════════════════════════════════════════════════════ -->
+       MODAL OVERLAY — managed by js/components/modal.js
+    ═══════════════════════════════════════════════════════════════ -->
     <div id="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
       <!-- Populated by js/components/modal.js on open -->
     </div>
 
     <!-- ══════════════════════════════════════════════════════════
-       TOAST CONTAINER
-       Bottom-right notification toasts.
-       Managed by js/components/toast.js
-  ═══════════════════════════════════════════════════════════════ -->
+       TOAST CONTAINER — managed by js/components/toast.js
+    ═══════════════════════════════════════════════════════════════ -->
     <div id="toast-container" role="region" aria-label="Notifications" aria-live="polite">
       <!-- Populated by js/components/toast.js -->
     </div>
 
     <!-- ══════════════════════════════════════════════════════════
-       SCRIPTS
-       Load order is critical — each module depends on the previous.
-  ═══════════════════════════════════════════════════════════════ -->
+       SCRIPTS — load order is critical
+    ═══════════════════════════════════════════════════════════════ -->
 
     <!-- Layer 1: Session (no dependencies) -->
     <script src="js/session.js"></script>
@@ -109,7 +87,7 @@
     <!-- Layer 2: Mock data (no dependencies) -->
     <script src="js/mock-data.js"></script>
 
-    <!-- Layer 3: Reusable components (depend on Session + MockData) -->
+    <!-- Layer 3: Reusable components -->
     <script src="js/components/badge.js"></script>
     <script src="js/components/toast.js"></script>
     <script src="js/components/drawer.js"></script>
@@ -117,14 +95,14 @@
     <script src="js/components/alert-banner.js"></script>
     <script src="js/components/shell.js"></script>
 
-    <!-- Layer 4: Screens (depend on all components + MockData + Session) -->
+    <!-- Layer 4: Screens -->
     <script src="screens/dashboard.js"></script>
     <script src="screens/stubs.js"></script>
 
-    <!-- Layer 5: Router (depends on screens being registered) -->
+    <!-- Layer 5: Router -->
     <script src="js/router.js"></script>
 
-    <!-- Layer 6: App boot (runs last — kicks off the entire sequence) -->
+    <!-- Layer 6: App boot (runs last) -->
     <script src="js/app.js"></script>
   </body>
 </html>
