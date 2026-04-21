@@ -53,6 +53,9 @@ window.Screens.insurance = {
         </div>
       </div>
 
+      <!-- §2.2 G-02: Per-Department Compliance Notice (T2-02) -->
+      ${window.Compliance ? window.Compliance.deptComplianceBanner('insurance') : ''}
+
       <!-- KPI Row -->
       <div class="stat-cards-grid" style="grid-template-columns:repeat(5,1fr);margin-bottom:var(--space-5)">
         ${StatCard({ label:'Total Records', value: insuranceRecords.length, accent:'navy', icon: Icons.shield })}

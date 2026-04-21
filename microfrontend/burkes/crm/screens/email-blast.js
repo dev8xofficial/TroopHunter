@@ -142,6 +142,12 @@ window.Screens.emailBlast = {
                              color:${deptColors[campaign.department]||'var(--neutral-400)'}">
                   ${window.MockData.helpers.departmentLabel(campaign.department)}
                 </span>
+                ${campaign.is_automation ? `
+                <span style="font-size:10px;color:var(--neutral-400)">·</span>
+                <span style="font-size:10px;background:var(--color-primary-navy);color:white;padding:1px 4px;border-radius:3px;font-weight:600">
+                  ⚡ AUTOMATION
+                </span>
+                ` : ''}
                 <span style="font-size:10px;color:var(--neutral-400)">·</span>
                 <span style="font-size:10px;color:var(--neutral-400)">
                   ${campaign.status === 'sent' && campaign.scheduled_at

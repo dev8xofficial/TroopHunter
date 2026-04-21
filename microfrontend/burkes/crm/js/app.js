@@ -12,6 +12,9 @@
     // Kick off the router (renders sidebar, top nav, VOIP bar, initial screen)
     Router.init();
 
+    // Check first-login consent — shows overlay if not yet accepted (§2.2 G-01)
+    if (window.Compliance) Compliance.boot();
+
     // Dismiss loading splash after first render tick
     requestAnimationFrame(() => {
       const splash = document.getElementById('app-loading');

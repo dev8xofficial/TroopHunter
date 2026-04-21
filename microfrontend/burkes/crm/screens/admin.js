@@ -47,6 +47,9 @@ window.Screens.admin = {
           ['users',        '👥 Users'],
           ['roles',        '🔑 Roles & Scope'],
           ['retention',    '📋 Retention'],
+          ['security',     '🔒 Security / 2FA'],
+          ['billing',      '💳 Billing'],
+          ['branding',     '🎨 White-Label'],
           ['entitlements', '⚙️ Entitlements'],
           ['audit',        '📜 Audit Log']
         ].map(([v, l]) => `
@@ -66,6 +69,9 @@ window.Screens.admin = {
     switch (this._activeTab) {
       case 'roles':        return this.renderRoles();
       case 'retention':    return this.renderRetention();
+      case 'security':     return this.renderSecurity();
+      case 'billing':      return this.renderBilling();
+      case 'branding':     return this.renderBranding();
       case 'entitlements': return this.renderEntitlements();
       case 'audit':        return this.renderAudit();
       default:             return this.renderUsers();
@@ -78,11 +84,12 @@ window.Screens.admin = {
     const { Icons } = window.Components;
 
     const roleConfig = {
-      OW: { label: 'Dept. Owner',     cls: 'badge-navy'  },
-      IA: { label: 'Insurance Agent', cls: 'badge-gold'  },
-      ML: { label: 'Mortgage Liaison',cls: 'badge-blue'  },
-      RA: { label: 'RE Agent',        cls: 'badge-green' },
-      PA: { label: 'Platform Admin',  cls: 'badge-red'   }
+      OW: { label: 'Dept. Owner',     cls: 'badge-navy'   },
+      IA: { label: 'Insurance Agent', cls: 'badge-gold'   },
+      ML: { label: 'Mortgage Liaison',cls: 'badge-blue'   },
+      RA: { label: 'RE Agent',        cls: 'badge-green'  },
+      PA: { label: 'Platform Admin',  cls: 'badge-red'    },
+      AT: { label: 'Attorney (Ext.)', cls: 'badge-purple' }
     };
 
     return `
@@ -103,6 +110,9 @@ window.Screens.admin = {
                 <th>User</th>
                 <th>Role</th>
                 <th>Department Scope</th>
+                <!-- §2.3 G-04 & G-05: License / Bar verification (T2-05, T2-06) -->
+                <th>Credential</th>
+                <th>Verified</th>
                 <th>Status</th>
                 <th></th>
               </tr>
@@ -138,6 +148,24 @@ window.Screens.admin = {
                       </div>
                     </td>
                     <td>
+                      ${u.role === 'RA' || u.role === 'OW' && user?.license_number
+                        ? `<div style="font-family:monospace;font-size:11px;color:var(--neutral-700)">${u.license_number || '<span style="color:var(--color-danger-text);font-size:10px">⚠ Not provided</span>'}</div>
+                           <div style="font-size:10px;color:var(--neutral-400)">TREC License</div>`
+                        : u.role === 'AT'
+                        ? `<div style="font-family:monospace;font-size:11px;color:var(--neutral-700)">${u.bar_number || '<span style="color:var(--color-danger-text);font-size:10px">⚠ Not provided</span>'}</div>
+                           <div style="font-size:10px;color:var(--neutral-400)">TX Bar Number</div>`
+                        : `<span style="font-size:var(--text-xs);color:var(--neutral-300)">N/A</span>`}
+                    </td>
+                    <td>
+                      ${(u.role === 'RA' && u.license_number) || (u.role === 'OW' && u.license_number)
+                        ? `<span class="badge badge-green" style="font-size:10px">✓ Verified</span>`
+                        : u.role === 'AT' && u.bar_number
+                        ? `<span class="badge badge-green" style="font-size:10px">✓ Verified</span>`
+                        : (u.role === 'RA' || u.role === 'AT')
+                        ? `<span class="badge badge-red" style="font-size:10px">⚠ Missing</span>`
+                        : `<span style="color:var(--neutral-300);font-size:10px">—</span>`}
+                    </td>
+                    <td>
                       <span class="badge badge-${u.status === 'active' ? 'green' : u.status === 'invited' ? 'blue' : 'red'}">
                         ${u.status}
                       </span>
@@ -162,26 +190,28 @@ window.Screens.admin = {
   /* ── ROLES ──────────────────────────────────────────── */
   renderRoles() {
     const roles = [
-      { abbrev:'OW', label:'Department Owner',  read:'All departments', write:'Own dept. + approvals', transfer:'✅', admin:'Limited' },
-      { abbrev:'IA', label:'Insurance Agent',   read:'All departments', write:'Insurance only',         transfer:'✅', admin:'—'      },
-      { abbrev:'ML', label:'Mortgage Liaison',  read:'All departments', write:'Mortgage only',          transfer:'—',  admin:'—'      },
-      { abbrev:'RA', label:'Real Estate Agent', read:'All departments', write:'Real Estate only',       transfer:'✅', admin:'—'      },
-      { abbrev:'PA', label:'Platform Admin',    read:'All departments', write:'All departments',        transfer:'✅', admin:'Full'   }
+      { abbrev:'OW', label:'Department Owner',  read:'All departments', write:'Own dept. + approvals', transfer:'✅', admin:'Limited',  credential:'TREC License (if RE)' },
+      { abbrev:'IA', label:'Insurance Agent',   read:'All departments', write:'Insurance only',          transfer:'✅', admin:'—',        credential:'—'                  },
+      { abbrev:'ML', label:'Mortgage Liaison',  read:'All departments', write:'Mortgage only',           transfer:'—',  admin:'—',        credential:'—'                  },
+      { abbrev:'RA', label:'Real Estate Agent', read:'All departments', write:'Real Estate only',        transfer:'✅', admin:'—',        credential:'TREC License ✅ Req.'  },
+      { abbrev:'AT', label:'Attorney (External)',read:'Client files (portal)', write:'Notes only',       transfer:'—',  admin:'—',        credential:'TX Bar Number ✅ Req.' },
+      { abbrev:'PA', label:'Platform Admin',    read:'All departments', write:'All departments',         transfer:'✅', admin:'Full',     credential:'—'                  }
     ];
 
     const actions = [
-      ['contact.create',          [true,  true,  false, true,  true]],
-      ['contact.edit',            [true,  true,  true,  true,  true]],
-      ['contact.transfer',        [true,  true,  false, true,  true]],
-      ['lead.stage_update',       [true,  true,  true,  true,  true]],
-      ['call.place',              [true,  true,  true,  true,  true]],
-      ['call.play_recording',     [true,  false, false, false, true]],
-      ['sms.send',                [true,  true,  true,  true,  true]],
-      ['campaign.send',           [true,  false, false, false, true]],
-      ['meeting.launch',          [true,  true,  true,  true,  true]],
-      ['integrations.manage',     [false, false, false, false, true]],
-      ['admin.settings.manage',   [false, false, false, false, true]],
-      ['retention_policy.edit',   [false, false, false, false, true]]
+      ['contact.create',          [true,  true,  false, true,  false, true]],
+      ['contact.edit',            [true,  true,  true,  true,  false, true]],
+      ['contact.transfer',        [true,  true,  false, true,  false, true]],
+      ['lead.stage_update',       [true,  true,  true,  true,  false, true]],
+      ['call.place',              [true,  true,  true,  true,  false, true]],
+      ['call.play_recording',     [true,  false, false, false, false, true]],
+      ['sms.send',                [true,  true,  true,  true,  false, true]],
+      ['campaign.send',           [true,  false, false, false, false, true]],
+      ['meeting.launch',          [true,  true,  true,  true,  true,  true]],
+      ['file.annotate',           [false, false, false, false, true,  true]],
+      ['integrations.manage',     [false, false, false, false, false, true]],
+      ['admin.settings.manage',   [false, false, false, false, false, true]],
+      ['retention_policy.edit',   [false, false, false, false, false, true]]
     ];
 
     return `
@@ -194,7 +224,7 @@ window.Screens.admin = {
         <div class="table-container">
           <table>
             <thead>
-              <tr><th>Role</th><th>Read Access</th><th>Write Access</th><th>Transfer</th><th>Admin</th></tr>
+              <tr><th>Role</th><th>Read</th><th>Write</th><th>Transfer</th><th>Admin</th><th>Required Credential</th></tr>
             </thead>
             <tbody>
               ${roles.map(r => `
@@ -208,6 +238,11 @@ window.Screens.admin = {
                   <td style="text-align:center;font-size:var(--text-md)">${r.transfer}</td>
                   <td style="font-size:var(--text-sm);color:${r.admin === '—' ? 'var(--neutral-300)' : 'var(--color-primary-navy)'}">
                     ${r.admin}
+                  </td>
+                  <!-- §2.3 G-04 & G-05: credential requirement column -->
+                  <td style="font-size:var(--text-xs);font-weight:var(--weight-semibold);
+                              color:${r.credential.includes('Req.') ? 'var(--color-success-text)' : 'var(--neutral-300)'}">
+                    ${r.credential}
                   </td>
                 </tr>`).join('')}
             </tbody>
@@ -244,6 +279,52 @@ window.Screens.admin = {
           </table>
         </div>
       </div>`;
+  },
+
+  /* ── SECURITY / 2FA (Section 2.7) ───────────────────── */
+  renderSecurity() {
+    return `
+      <!-- §2.7 G-15: Two-Factor Authentication -->
+      <div class="card" style="margin-bottom:var(--space-5)">
+        <div class="card-header">
+          <span class="card-title">Global Security Policies</span>
+          <span style="font-size:var(--text-xs);color:var(--neutral-400)">Authentication & Compliance</span>
+        </div>
+        <div style="padding:var(--space-5)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--neutral-100);padding-bottom:var(--space-4);margin-bottom:var(--space-4)">
+            <div>
+              <div style="font-weight:var(--weight-semibold);font-size:var(--text-base);color:var(--neutral-800);margin-bottom:var(--space-1)">
+                Enforce Two-Factor Authentication (2FA)
+              </div>
+              <div style="font-size:var(--text-sm);color:var(--neutral-500);max-width:500px;line-height:1.5">
+                Require all users to verify logins via an authenticator app (TOTP) or SMS to their registered mobile device.
+              </div>
+            </div>
+            <div>
+              <input type="checkbox" id="toggle-2fa" checked onchange="Components.Toast(this.checked ? '2FA globally enforced across CRM' : '2FA enforcement disabled', 'info'); Screens.admin.logAudit('Toggled global 2FA policy to ' + this.checked);">
+              <label for="toggle-2fa" style="font-size:var(--text-sm);font-weight:600;margin-left:6px;cursor:pointer">Required</label>
+            </div>
+          </div>
+
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div>
+              <div style="font-weight:var(--weight-semibold);font-size:var(--text-base);color:var(--neutral-800);margin-bottom:var(--space-1)">
+                Session Timeout
+              </div>
+              <div style="font-size:var(--text-sm);color:var(--neutral-500);max-width:500px;line-height:1.5">
+                Idle minutes before an agent is forcefully logged out of the application.
+              </div>
+            </div>
+            <select class="form-select" onchange="Components.Toast('Session timeout updated','success'); Screens.admin.logAudit('Updated session timeout to ' + this.value)">
+              <option value="15">15 Minutes</option>
+              <option value="30">30 Minutes</option>
+              <option value="60" selected>1 Hour</option>
+              <option value="480">8 Hours</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    `;
   },
 
   /* ── RETENTION ──────────────────────────────────────── */
@@ -365,16 +446,21 @@ window.Screens.admin = {
       { actor:'Platform Admin',      action:'Reconnect action initiated: Arive connector',                        time:'2026-04-13 11:20 AM', type:'integration' },
       { actor:'Platform Admin',      action:'Role scope updated: Sandra Pham — Mortgage write access enabled',    time:'2026-04-12 02:15 PM', type:'role'        },
       { actor:'Jaquarian Bonilla',   action:'Reviewed feature entitlements — read-only access',                   time:'2026-04-12 10:00 AM', type:'entitlement' },
+      // §2.3 G-04 & G-05: Credential verification audit events
+      { actor:'Platform Admin',      action:'TREC License verified: Derek Okafor (RA) — TREC-TX-519034 ✓',       time:'2026-04-11 05:10 PM', type:'credential'  },
+      { actor:'Platform Admin',      action:'TX Bar Number added: Michael Torres (AT) — TX-BAR-24083156 ✓',       time:'2026-04-11 04:55 PM', type:'credential'  },
       { actor:'Platform Admin',      action:'User status confirmed active: Lisa Chen (RA)',                        time:'2026-04-11 04:30 PM', type:'user'        },
       { actor:'Platform Admin',      action:'Retention policy reviewed: Mortgage recordings — 24 months confirmed',time:'2026-04-10 09:00 AM', type:'retention'  }
     ];
 
     const typeConfig = {
-      retention:   { icon:'📋', color:'var(--color-warning)'        },
-      user:        { icon:'👤', color:'var(--color-info)'           },
-      integration: { icon:'🔌', color:'var(--color-danger)'         },
-      role:        { icon:'🔑', color:'var(--color-primary-navy)'   },
-      entitlement: { icon:'⚙️', color:'var(--neutral-500)'         }
+      retention:   { icon:'📋', color:'var(--color-warning)'       },
+      user:        { icon:'👤', color:'var(--color-info)'          },
+      integration: { icon:'🔌', color:'var(--color-danger)'        },
+      role:        { icon:'🔑', color:'var(--color-primary-navy)'  },
+      entitlement: { icon:'⚙️', color:'var(--neutral-500)'        },
+      // §2.3: credential verification events
+      credential:  { icon:'🪪', color:'var(--color-success)'       }
     };
 
     return `
@@ -438,12 +524,14 @@ window.Screens.admin = {
         </div>
         <div class="form-group">
           <label class="form-label required">Role</label>
-          <select class="form-select">
-            <option>Department Owner (OW)</option>
-            <option>Insurance Agent (IA)</option>
-            <option>Mortgage Liaison (ML)</option>
-            <option>Real Estate Agent (RA)</option>
-            <option>Platform Administrator (PA)</option>
+          <select class="form-select" id="invite-role"
+                  onchange="Screens.admin.onInviteRoleChange(this.value)">
+            <option value="OW">Department Owner (OW)</option>
+            <option value="IA">Insurance Agent (IA)</option>
+            <option value="ML">Mortgage Liaison (ML)</option>
+            <option value="RA">Real Estate Agent (RA)</option>
+            <option value="AT">Attorney — External (AT)</option>
+            <option value="PA">Platform Administrator (PA)</option>
           </select>
         </div>
         <div class="form-group">
@@ -457,6 +545,36 @@ window.Screens.admin = {
             </div>
             <div class="checkbox-item dept-real-estate" onclick="this.classList.toggle('selected')">
               <span class="dept-dot dept-dot-real-estate"></span> Real Estate
+            </div>
+          </div>
+        </div>
+
+        <!-- §2.3 G-04 & G-05: Role-conditional credential fields (hidden by default) -->
+        <div id="invite-credential-block" style="display:none">
+          <div id="invite-license-group" class="form-group" style="display:none">
+            <label class="form-label required" style="display:flex;align-items:center;gap:var(--space-2)">
+              TREC License Number
+              <span style="font-size:10px;background:var(--color-success-bg);color:var(--color-success-text);
+                           padding:1px 6px;border-radius:99px;font-weight:700">Required for RA</span>
+            </label>
+            <input class="form-input" id="invite-license-input"
+                   placeholder="e.g. TREC-TX-519034"
+                   style="font-family:monospace">
+            <div class="form-helper">
+              Agents cannot activate the Real Estate workspace until a valid TREC license is recorded.
+            </div>
+          </div>
+          <div id="invite-bar-group" class="form-group" style="display:none">
+            <label class="form-label required" style="display:flex;align-items:center;gap:var(--space-2)">
+              Texas Bar Number
+              <span style="font-size:10px;background:var(--color-success-bg);color:var(--color-success-text);
+                           padding:1px 6px;border-radius:99px;font-weight:700">Required for AT</span>
+            </label>
+            <input class="form-input" id="invite-bar-input"
+                   placeholder="e.g. TX-BAR-24083156"
+                   style="font-family:monospace">
+            <div class="form-helper">
+              Attorneys must verify their Texas State Bar number before accessing client files.
             </div>
           </div>
         </div>`,
@@ -492,10 +610,45 @@ window.Screens.admin = {
         <div class="form-group">
           <label class="form-label required">Role</label>
           <select class="form-select">
-            ${['OW','IA','ML','RA','PA'].map(r =>
+            ${['OW','IA','ML','RA','AT','PA'].map(r =>
               `<option ${user.role === r ? 'selected' : ''}>${r}</option>`).join('')}
           </select>
         </div>
+
+        <!-- §2.3 G-04: TREC License (RA / RE-scope OW) -->
+        ${user.role === 'RA' || (user.role === 'OW' && user.departments.includes('real_estate')) ? `
+        <div class="form-group">
+          <label class="form-label required" style="display:flex;align-items:center;gap:var(--space-2)">
+            TREC License Number
+            <span style="font-size:10px;background:var(--color-success-bg);color:var(--color-success-text);
+                         padding:1px 6px;border-radius:99px;font-weight:700">Required</span>
+          </label>
+          <input class="form-input" id="edit-license" value="${user.license_number || ''}"
+                 placeholder="e.g. TREC-TX-519034"
+                 style="font-family:monospace">
+          <div class="form-helper">
+            Real estate agents must provide a valid Texas Real Estate Commission (TREC) license number
+            before accessing the Real Estate workspace.
+          </div>
+        </div>` : ''}
+
+        <!-- §2.3 G-05: TX Bar Number (AT) -->
+        ${user.role === 'AT' ? `
+        <div class="form-group">
+          <label class="form-label required" style="display:flex;align-items:center;gap:var(--space-2)">
+            Texas Bar Number
+            <span style="font-size:10px;background:var(--color-success-bg);color:var(--color-success-text);
+                         padding:1px 6px;border-radius:99px;font-weight:700">Required</span>
+          </label>
+          <input class="form-input" id="edit-bar" value="${user.bar_number || ''}"
+                 placeholder="e.g. TX-BAR-24083156"
+                 style="font-family:monospace">
+          <div class="form-helper">
+            Attorneys must provide a valid Texas State Bar number. This is stored and visible
+            to Platform Admins for compliance verification.
+          </div>
+        </div>` : ''}
+
         <div class="form-group">
           <label class="form-label required">Status</label>
           <select class="form-select">
@@ -562,6 +715,148 @@ window.Screens.admin = {
           Confirm Policy Change
         </button>`
     }));
+  },
+
+  /* ── BILLING & SUBSCRIPTION (Section 2.8) ──────────────── */
+  renderBilling() {
+    return `
+      <!-- §2.8 G-17: Subscription Billing System -->
+      <div class="card" style="margin-bottom:var(--space-5)">
+        <div class="card-header">
+          <span class="card-title">SaaS Subscription & Billing</span>
+          <span style="font-size:var(--text-xs);color:var(--neutral-400)">Burkes Group LLC Enterprise</span>
+        </div>
+        <div style="padding:var(--space-5)">
+          <div style="display:flex;gap:var(--space-5);border-bottom:1px solid var(--neutral-100);padding-bottom:var(--space-5);margin-bottom:var(--space-5)">
+            <div style="flex:1">
+              <div style="color:var(--neutral-500);font-size:var(--text-sm);margin-bottom:var(--space-1)">Current Plan</div>
+              <div style="font-size:24px;font-weight:700;color:var(--color-primary-navy);display:flex;align-items:center;gap:var(--space-2)">
+                Diamond Edition 💎
+                <span class="badge badge-green">Active</span>
+              </div>
+              <div style="font-size:var(--text-sm);color:var(--neutral-500);margin-top:var(--space-2)">
+                Unlimited multitenant seats, white-label environment, and priority API rate limits.
+              </div>
+            </div>
+            <div style="flex:1">
+              <div style="color:var(--neutral-500);font-size:var(--text-sm);margin-bottom:var(--space-1)">Next Invoice</div>
+              <div style="font-size:24px;font-weight:700;color:var(--neutral-800)">
+                $850.00 <span style="font-size:14px;font-weight:400;color:var(--neutral-400)">/ mo</span>
+              </div>
+              <div style="font-size:var(--text-sm);color:var(--neutral-500);margin-top:var(--space-2)">
+                Renews on May 1st, 2026. Payment via Visa ending in 4242.
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;gap:var(--space-3)">
+            <button class="btn btn-primary" onclick="Components.Toast('Portal redirecting to Stripe Billing...','info')">Manage Payment Methods</button>
+            <button class="btn btn-secondary" onclick="Components.Toast('Viewing historical invoices...','info')">Download Invoices</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Tenant Quotas</span>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr><th>Resource</th><th>Usage</th><th>Limit</th><th>Health</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Active Users</td>
+                <td>24</td>
+                <td>Unlimited</td>
+                <td><span class="badge badge-green">Healthy</span></td>
+              </tr>
+              <tr>
+                <td>Monthly API Syncs (Agency Zoom / Arive)</td>
+                <td>41,209</td>
+                <td>100,000</td>
+                <td><span class="badge badge-green">Healthy</span></td>
+              </tr>
+              <tr>
+                <td>Storage (Contracts / IDs / Audio)</td>
+                <td>42 GB</td>
+                <td>500 GB</td>
+                <td><span class="badge badge-green">Healthy</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `;
+  },
+
+  /* ── BRANDING (Section 2.8) ───────────────────────── */
+  renderBranding() {
+    return `
+      <!-- §2.8 G-16: White-labelling Implementation -->
+      <div class="card" style="margin-bottom:var(--space-5)">
+        <div class="card-header">
+          <span class="card-title">Instance White-Labeling</span>
+          <span style="font-size:var(--text-xs);color:var(--neutral-400)">Brand Configuration</span>
+        </div>
+        <div style="padding:var(--space-5)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5)">
+            <div>
+              <div class="form-group">
+                <label class="form-label">Company / Trading Name</label>
+                <input type="text" class="form-input" value="Burkes Group CRM">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Support Email (Automations & Billing)</label>
+                <input type="text" class="form-input" value="info@burkeshq.com">
+              </div>
+              <div class="form-group" style="margin-top:var(--space-4)">
+                <label class="form-label">Primary Brand Color</label>
+                <div style="display:flex;gap:var(--space-2);align-items:center">
+                  <input type="color" value="#1a3a52" style="border:none;width:40px;height:40px;padding:0;cursor:pointer">
+                  <input type="text" class="form-input" value="#1a3a52" style="width:100px;font-family:monospace">
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="form-group">
+                <label class="form-label">Platform Logo</label>
+                <div style="border:2px dashed var(--neutral-200);border-radius:var(--radius-md);height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--neutral-50);cursor:pointer" onclick="Components.Toast('Initiating file upload for logo...','info')">
+                  <span style="font-size:32px;margin-bottom:8px">🖼️</span>
+                  <span style="font-size:var(--text-sm);font-weight:600;color:var(--color-primary-navy)">Upload SVG or PNG</span>
+                  <span style="font-size:11px;color:var(--neutral-400)">Max 2MB. Transparent background recommended.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid var(--neutral-100);display:flex;justify-content:flex-end">
+             <button class="btn btn-primary" onclick="Components.Toast('Brand configurations successfully queued for cache flush.','success')">Save Brand Settings</button>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  // §2.3 G-04 & G-05: Toggle credential fields in invite modal based on selected role
+  onInviteRoleChange(role) {
+    const block   = document.getElementById('invite-credential-block');
+    const license = document.getElementById('invite-license-group');
+    const bar     = document.getElementById('invite-bar-group');
+    if (!block || !license || !bar) return;
+
+    if (role === 'RA') {
+      block.style.display   = '';
+      license.style.display = '';
+      bar.style.display     = 'none';
+    } else if (role === 'AT') {
+      block.style.display   = '';
+      license.style.display = 'none';
+      bar.style.display     = '';
+    } else {
+      block.style.display   = 'none';
+      license.style.display = 'none';
+      bar.style.display     = 'none';
+    }
   },
 
   refreshContent() {

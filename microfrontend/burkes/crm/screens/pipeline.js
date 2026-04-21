@@ -424,8 +424,18 @@ window.Screens.pipeline = {
   updateStage(leadId, newStage) {
     const lead = window.MockData.leads.find(l => l.id === leadId);
     if (lead) {
+      const oldStage = lead.stage;
       lead.stage = newStage;
       Components.Toast(`Stage updated to "${newStage}"`, 'success');
+
+      // §2.6 G-06: Cross-department auto-trigger
+      if (newStage === 'Under Contract' && oldStage !== 'Under Contract') {
+        const adjacentDept = lead.department === 'real_estate' ? 'Insurance' : 'Real Estate';
+        setTimeout(() => {
+          Components.Toast(`⚡ Automation: ${adjacentDept} team auto-notified of Contract Execution.`, 'info');
+        }, 800);
+      }
+
       Components.closeDrawer();
       this.refresh();
     }
@@ -472,7 +482,9 @@ window.Screens.pipeline = {
         </div>
         <div style="padding:var(--space-3);background:var(--color-info-bg);border-radius:var(--radius-md);font-size:var(--text-sm);color:var(--color-info-text)">
           ℹ️ The new owner will be notified. Full activity history is preserved.
-        </div>`,
+        </div>
+        <!-- §2.2 G-03: Partner Services Disclosure (T2-14) -->
+        ${window.Compliance ? window.Compliance.partnerDisclosureHTML() : ''}`,
       footerRight: `
         <button class="btn btn-secondary" onclick="Components.closeModal('transfer-lead')">Cancel</button>
         <button class="btn btn-primary" onclick="Screens.pipeline.confirmTransfer('${leadId}')">

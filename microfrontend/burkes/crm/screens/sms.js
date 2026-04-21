@@ -113,6 +113,20 @@ window.Screens.sms = {
         <span class="degraded-banner-text">This contact has opted out of SMS messaging. Outbound sending is blocked.</span>
       </div>` : ''}
 
+      <!-- §2.5 G-09: Auto-save inbound SMS contacts to CRM -->
+      ${thread.is_unknown ? `
+      <div style="margin:var(--space-3) var(--space-4) 0;background:var(--color-info-bg);border-radius:var(--radius-md);padding:var(--space-3);display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:var(--space-2)">
+          <span style="font-size:18px">👤</span>
+          <div style="font-size:var(--text-sm);color:var(--color-info-text)">
+            <strong>Unknown Sender.</strong> Would you like to auto-save this inbound contact to the CRM?
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="Components.Toast('Contact auto-saved to CRM','success'); this.disabled=true; this.innerText='Saved'">
+          Add to CRM
+        </button>
+      </div>` : ''}
+
       <!-- Messages -->
       <div class="sms-messages" id="sms-messages-${thread.id}">
         ${thread.messages.map(msg => `
