@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Authentication Validation Schemas",
+  "description": "Payload validation rules for 001-authentication",
+  "definitions": {
+    "LoginRequest": {
+      "type": "object",
+      "required": ["email", "password", "portal"],
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 254,
+          "description": "User email address"
+        },
+        "password": {
+          "type": "string",
+          "minLength": 8,
+          "description": "User password"
+        },
+        "portal": {
+          "type": "string",
+          "enum": ["candidate", "client", "admin"],
+          "description": "Target portal for authentication"
+        },
+        "totp_code": {
+          "type": "string",
+          "pattern": "^[0-9]{6}$",
+          "description": "TOTP code for Admin portal (required when portal=admin)"
+        },
+        "remember_me": {
+          "type": "boolean",
+          "default": false,
+          "description": "Extend session to 30 days"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RegisterRequest": {
+      "type": "object",
+      "required": ["first_name", "last_name", "email", "password", "password_confirmation"],
+      "properties": {
+        "first_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "description": "Candidate first name"
+        },
+        "last_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "description": "Candidate last name"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 254,
+          "description": "Email address (must be unique)"
+        },
+        "password": {
+          "type": "string",
+          "minLength": 8,
+          "pattern": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$",
+          "description": "Password (min 8 chars, 1 upper, 1 lower, 1 digit)"
+        },
+        "password_confirmation": {
+          "type": "string",
+          "minLength": 8,
+          "description": "Must match password field"
+        }
+      },
+      "additionalProperties": false
+    },
+    "LogoutRequest": {
+      "type": "object",
+      "properties": {
+        "all_devices": {
+          "type": "boolean",
+          "default": false,
+          "description": "Revoke all active sessions"
+        }
+      },
+      "additionalProperties": false
+    },
+    "VerifyEmailRequest": {
+      "type": "object",
+      "required": ["token"],
+      "properties": {
+        "token": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Email verification token"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

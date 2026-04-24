@@ -1,0 +1,28 @@
+name: Version Check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'CHANGELOG.md'
+
+jobs:
+  version-consistency:
+    name: Check Version Consistency
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract latest version
+        run: |
+          VERSION=$(grep -oP '## \[\K[^\]]+' CHANGELOG.md | head -1)
+          echo "Latest spec-kit version: $VERSION"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Validate version format
+        run: |
+          if ! echo "$VERSION" | grep -qP '^\d+\.\d+\.\d+$'; then
+            echo "::error::Version '$VERSION' does not follow semver format"
+            exit 1
+          fi
+          echo "✅ Version $VERSION follows semver"

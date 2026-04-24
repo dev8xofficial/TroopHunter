@@ -1,0 +1,1 @@
+﻿{"$schema":"http://json-schema.org/draft-07/schema#","definitions":{"MoveCard":{"type":"object","required":["target_stage"],"properties":{"target_stage":{"type":"string","enum":["applied","shortlisted","interview","selected","joined"]}}}}}

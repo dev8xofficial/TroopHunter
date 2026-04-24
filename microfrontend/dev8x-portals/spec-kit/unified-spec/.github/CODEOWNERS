@@ -1,0 +1,37 @@
+# CODEOWNERS — Dev8X Unified Spec-Kit
+
+# Root documentation
+/*.md @dev8x/platform-architect
+
+# Centralized contracts (require architect approval)
+/contracts/ @dev8x/platform-architect
+
+# Centralized schemas
+/schemas/ @dev8x/platform-architect
+
+# Constitution
+/.specify/memory/ @dev8x/platform-architect
+
+# ADRs
+/.specify/decisions/ @dev8x/platform-architect
+
+# Templates
+/.specify/templates/ @dev8x/platform-architect
+
+# GitHub automation
+/.github/ @dev8x/platform-architect
+
+# Auth domain (0xx)
+/.specify/specs/00* @dev8x/platform-architect
+
+# HR Admin domain (1xx)
+/.specify/specs/10* @dev8x/hr-domain-owner
+
+# Candidate domain (2xx)
+/.specify/specs/20* @dev8x/hr-domain-owner
+
+# Client domain (3xx)
+/.specify/specs/30* @dev8x/client-services-owner
+
+# CRM/Sales domain (4xx)
+/.specify/specs/40* @dev8x/sales-domain-owner

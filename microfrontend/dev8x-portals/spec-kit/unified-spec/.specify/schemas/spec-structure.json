@@ -1,0 +1,15 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Spec Structure",
+  "description": "Meta-schema validating spec.md structure requirements",
+  "type": "object",
+  "required": ["overview", "actors", "functional_requirements", "data_model", "business_rules"],
+  "properties": {
+    "overview": { "type": "string" },
+    "actors": { "type": "array" },
+    "functional_requirements": { "type": "array" },
+    "data_model": { "type": "array" },
+    "business_rules": { "type": "array" },
+    "dependencies": { "type": "array" }
+  }
+}

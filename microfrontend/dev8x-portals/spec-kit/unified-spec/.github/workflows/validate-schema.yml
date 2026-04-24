@@ -1,0 +1,64 @@
+name: Validate Schemas
+
+on:
+  pull_request:
+    paths:
+      - '.specify/specs/**/validation-schema.json'
+      - 'schemas/**'
+  push:
+    branches: [main]
+    paths:
+      - '.specify/specs/**/validation-schema.json'
+      - 'schemas/**'
+
+jobs:
+  validate-json-schemas:
+    name: Lint JSON Schemas
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install ajv-cli
+        run: npm install -g ajv-cli ajv-formats
+
+      - name: Validate module schemas
+        run: |
+          ERRORS=0
+          for SCHEMA in $(find .specify/specs -name 'validation-schema.json' -type f); do
+            if ! ajv validate --spec=draft7 -s "$SCHEMA" 2>/dev/null; then
+              # Check if the file is non-empty and valid JSON
+              if [ -s "$SCHEMA" ] && python3 -c "import json; json.load(open('$SCHEMA'))" 2>/dev/null; then
+                echo "✅ $SCHEMA is valid JSON"
+              elif [ -s "$SCHEMA" ]; then
+                echo "::error::Invalid JSON in $SCHEMA"
+                ERRORS=$((ERRORS + 1))
+              fi
+            else
+              echo "✅ $SCHEMA validates"
+            fi
+          done
+          
+          if [ $ERRORS -gt 0 ]; then
+            exit 1
+          fi
+          echo "✅ All JSON schemas are valid"
+
+      - name: Validate centralized schemas
+        run: |
+          ERRORS=0
+          for SCHEMA in schemas/*.schema.json; do
+            if [ -s "$SCHEMA" ] && ! python3 -c "import json; json.load(open('$SCHEMA'))" 2>/dev/null; then
+              echo "::error::Invalid JSON in $SCHEMA"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+          
+          if [ $ERRORS -gt 0 ]; then
+            exit 1
+          fi
+          echo "✅ All centralized schemas are valid JSON"

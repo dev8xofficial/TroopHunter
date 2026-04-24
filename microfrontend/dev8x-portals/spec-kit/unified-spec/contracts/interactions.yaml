@@ -1,0 +1,20 @@
+﻿entities:
+  Applicant:
+    states: [applied, shortlisted, interview, selected, joined, rejected, future_hire]
+    transitions:
+      shortlist: applied -> shortlisted
+      schedule_interview: shortlisted -> interview
+      select: interview -> selected
+      reject: [applied, shortlisted, interview, selected] -> rejected
+      join: selected -> joined
+  Job:
+    states: [draft, live, paused, closed]
+    transitions:
+      publish: draft -> live
+      pause: live -> paused
+      resume: paused -> live
+      close: [live, paused] -> closed
+  Deal:
+    states: [new_lead, contacted, meeting_set, proposal, won, lost]
+  Invoice:
+    states: [draft, due, paid, overdue]

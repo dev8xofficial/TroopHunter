@@ -1,0 +1,83 @@
+﻿{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CRM Contact",
+    "description": "CRM contact record",
+    "type": "object",
+    "required": [
+        "id",
+        "name",
+        "company"
+    ],
+    "properties": {
+        "id": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+        },
+        "company": {
+            "type": "string"
+        },
+        "role": {
+            "type": "string"
+        },
+        "health_score": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+        },
+        "last_contact": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "temperature": {
+            "type": "string",
+            "enum": [
+                "hot",
+                "warm",
+                "cool"
+            ]
+        },
+        "channels": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "linkedin",
+                    "email",
+                    "whatsapp",
+                    "upwork",
+                    "cold_call"
+                ]
+            }
+        },
+        "sentiment": {
+            "type": "string",
+            "enum": [
+                "positive",
+                "neutral",
+                "negative",
+                "no_response",
+                "burned"
+            ]
+        },
+        "is_decision_maker": {
+            "type": "boolean"
+        },
+        "pipeline": {
+            "type": "string",
+            "enum": [
+                "b2b",
+                "freelance"
+            ]
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date-time"
+        }
+    },
+    "additionalProperties": false
+}
