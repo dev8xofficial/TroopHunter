@@ -30,6 +30,7 @@ def create_driver(headless: bool = True) -> WebDriver:
     window size, and applies sensible timeouts suitable for scraping.
     """
     chrome_options = Options()
+    chrome_options.page_load_strategy = "eager"
 
     if headless:
         # Use the modern headless mode where supported.
