@@ -17,14 +17,16 @@ window.Router = (() => {
     'calls':         'calls',
     'sms':           'sms',
     'email':         'email',
-    // 'email-blast':   'emailBlast',
+    'email-blast':   'emailBlast',
     'video-meetings':'videoMeetings',
     'insurance':     'insurance',
     'mortgage':      'mortgage',
     'real-estate':   'realEstate',
     'integrations':  'integrations',
     'reports':       'reports',
-    'admin':         'admin'
+    'admin':         'admin',
+    'partners':      'partners',
+    'hr':            'hr'
   };
 
   // Nav item config
@@ -40,13 +42,17 @@ window.Router = (() => {
       { key: 'calls',       label: 'Calls',        hash: 'calls',        icon: 'phone' },
       { key: 'sms',         label: 'SMS',          hash: 'sms',          icon: 'message' },
       { key: 'email',       label: 'Email',        hash: 'email',        icon: 'mail' },
-      // { key: 'email-blast', label: 'Email Blast',  hash: 'email-blast',  icon: 'send' },
+      { key: 'email-blast', label: 'Email Blast',  hash: 'email-blast',  icon: 'send' },
       { key: 'video-meetings', label: 'Video Meetings', hash: 'video-meetings', icon: 'video' },
     ],
     Departments: [
       { key: 'insurance',   label: 'Insurance',    hash: 'insurance',    icon: 'shield' },
       { key: 'mortgage',    label: 'Mortgage',     hash: 'mortgage',     icon: 'bank' },
       { key: 'real-estate', label: 'Real Estate',  hash: 'real-estate',  icon: 'home' },
+    ],
+    'Organization & Partners': [
+      { key: 'partners',    label: 'Service Partners', hash: 'partners', icon: 'mapPin' },
+      { key: 'hr',          label: 'Human Resources',  hash: 'hr',       icon: 'users' },
     ],
     'Tools & Admin': [
       { key: 'integrations',label: 'Integrations', hash: 'integrations', icon: 'link' },

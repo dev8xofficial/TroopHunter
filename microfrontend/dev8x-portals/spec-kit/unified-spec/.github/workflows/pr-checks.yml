@@ -1,0 +1,53 @@
+name: PR Checks
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  pr-quality:
+    name: PR Quality Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check PR description
+        run: |
+          PR_BODY="${{ github.event.pull_request.body }}"
+          if [ -z "$PR_BODY" ] || [ ${#PR_BODY} -lt 20 ]; then
+            echo "::error::PR description is too short. Please describe the changes."
+            exit 1
+          fi
+          echo "✅ PR description is adequate"
+
+      - name: Check branch naming
+        run: |
+          BRANCH="${{ github.head_ref }}"
+          if ! echo "$BRANCH" | grep -qP '^(spec|fix|docs|chore)/'; then
+            echo "::error::Branch name '$BRANCH' does not follow convention: spec/*, fix/*, docs/*, chore/*"
+            exit 1
+          fi
+          echo "✅ Branch name follows convention"
+
+      - name: Check changelog updated
+        run: |
+          CHANGED_SPECS=$(git diff --name-only origin/main... -- '.specify/specs/' | wc -l)
+          if [ "$CHANGED_SPECS" -gt 0 ]; then
+            CHANGELOG_UPDATED=$(git diff --name-only origin/main... -- '.specify/specs/*/changelog.md' | wc -l)
+            if [ "$CHANGELOG_UPDATED" -eq 0 ]; then
+              echo "::warning::Spec files changed but no changelog.md updated"
+            fi
+          fi
+          echo "✅ Changelog check complete"
+
+      - name: Validate YAML contracts
+        run: |
+          for YAML in contracts/*.yaml; do
+            if [ -s "$YAML" ]; then
+              python3 -c "import yaml; yaml.safe_load(open('$YAML'))" 2>/dev/null || {
+                echo "::error::Invalid YAML in $YAML"
+                exit 1
+              }
+            fi
+          done
+          echo "✅ YAML contracts are valid"

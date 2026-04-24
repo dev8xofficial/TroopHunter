@@ -209,9 +209,24 @@ window.Screens.contacts = {
               <span class="badge badge-gray">${contact.source}</span>
               ${contact.missing_data ? '<span class="badge badge-gold badge-dot">Missing data</span>' : '<span class="badge badge-green">Complete</span>'}
               ${contact.portal_origin ? '<span class="badge badge-blue">Portal intake</span>' : ''}
+              <!-- §2.4 G-02: LinkedIn Sales Navigator (T4-03) -->
+              <span class="badge badge-gray" style="background:#e0f2fe;color:#0369a1">💼 Sales Nav Linked</span>
             </div>
           </div>
           <div style="display:flex;gap:var(--space-2)">
+            <!-- §2.5 G-03: Contact card sharing (T4-14) -->
+            <button class="btn btn-secondary btn-sm" onclick="Screens.contacts.shareContact('${contact.id}')" title="Share Contact Card">
+              📤 Share
+            </button>
+            <!-- §2.9 G-10: QR Code Portal Intake (M4 28:54) -->
+            <button class="btn btn-secondary btn-sm" onclick="Components.Toast('Client Intake QR Code generated & copied to clipboard.', 'success')" title="Generate Portal Intake QR">
+              📱 QR Intake
+            </button>
+            <div style="width:1px;background:var(--neutral-200);margin:0 4px"></div>
+            <!-- §2.4 G-02: LinkedIn Sales Navigator (T4-03) -->
+            <button class="btn btn-secondary btn-sm" onclick="Components.Toast('Opening LinkedIn Sales Navigator profile…', 'info')" title="View in Sales Navigator">
+              💼 LinkedIn
+            </button>
             <button class="btn btn-secondary btn-sm" onclick="Screens.contacts.callContact('${contact.id}')" title="Call">${Icons.phone}</button>
             <button class="btn btn-secondary btn-sm" onclick="Screens.contacts.smsContact('${contact.id}')" title="SMS">${Icons.message}</button>
             <button class="btn btn-secondary btn-sm" onclick="Screens.contacts.emailContact('${contact.id}')" title="Email">${Icons.mail}</button>
@@ -279,6 +294,22 @@ window.Screens.contacts = {
           </div>
         </div>
 
+        <!-- §2.5 G-11: Family Members (T4-34) -->
+        ${contact.family_members && contact.family_members.length ? `
+        <div class="profile-section">
+          <div class="profile-section-title">Family / Household</div>
+          ${contact.family_members.map(f => `
+            <div style="display:flex;align-items:center;padding:var(--space-2) var(--space-3);background:var(--neutral-50);border-radius:var(--radius-md);margin-bottom:var(--space-2)">
+              <div style="width:28px;height:28px;border-radius:50%;background:var(--neutral-200);display:flex;align-items:center;justify-content:center;margin-right:var(--space-3);font-size:12px">
+                ${f.relationship === 'spouse' ? '💍' : f.relationship === 'child' ? '🧒' : '👥'}
+              </div>
+              <div style="flex:1">
+                <div style="font-weight:var(--weight-semibold);font-size:var(--text-sm);color:var(--neutral-800)">${f.name}</div>
+                <div style="font-size:var(--text-xs);color:var(--neutral-500);text-transform:capitalize">${f.relationship} ${f.dob ? `· DOB: ${helpers.formatDate(f.dob)}` : ''}</div>
+              </div>
+            </div>`).join('')}
+        </div>` : ''}
+
         ${contact.vehicles?.length ? `
         <!-- Vehicles -->
         <div class="profile-section">
@@ -289,6 +320,19 @@ window.Screens.contacts = {
               <span style="color:var(--neutral-400);font-size:var(--text-xs);margin-left:var(--space-2)">VIN: ${v.vin}</span>
             </div>`).join('')}
         </div>` : ''}
+
+        <!-- §2.5 G-12: Document Upload (T4-27) -->
+        <div class="profile-section">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-3)">
+            <div class="profile-section-title" style="margin-bottom:0">Documents</div>
+            <button class="btn btn-secondary btn-sm" onclick="Screens.contacts.triggerCameraUpload('${contact.id}')" title="Scan or Upload Document">
+               📸 Scan / Upload
+            </button>
+          </div>
+          <div style="padding:var(--space-4);border:2px dashed var(--neutral-200);border-radius:var(--radius-md);text-align:center;color:var(--neutral-400);font-size:var(--text-sm)">
+            No documents uploaded yet.
+          </div>
+        </div>
 
         <!-- Recent Activity -->
         <div class="profile-section">
@@ -437,7 +481,9 @@ window.Screens.contacts = {
         </div>
         <div style="padding:var(--space-3);background:var(--color-info-bg);border-radius:var(--radius-md);font-size:var(--text-sm);color:var(--color-info-text)">
           ℹ️ The new owner will be notified and all activity history will be preserved.
-        </div>`
+        </div>
+        <!-- §2.2 G-03: Partner Services Disclosure (T2-14) -->
+        ${window.Compliance ? window.Compliance.partnerDisclosureHTML() : ''}`
     }));
   },
 
@@ -449,6 +495,59 @@ window.Screens.contacts = {
   },
   emailContact(contactId) {
     Router.navigate('email');
+  },
+  shareContact(contactId) {
+    const contact = window.MockData.contacts.find(c => c.id === contactId);
+    if (!contact) return;
+
+    // Generate standard vCard (VCF) format
+    const vCard = [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      `N:${contact.last_name || ''};${contact.first_name || ''};;;`,
+      `FN:${contact.first_name || ''} ${contact.last_name || ''}`,
+      `TEL;TYPE=CELL:${contact.phone || ''}`,
+      `EMAIL;TYPE=WORK:${contact.email || ''}`,
+      'END:VCARD'
+    ].join('\\n');
+
+    const file = new File([vCard], `${contact.first_name}_${contact.last_name}.vcf`, { type: 'text/vcard' });
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      navigator.share({
+        title: `Contact Card: ${contact.first_name} ${contact.last_name}`,
+        text: 'Shared from Burkes Group CRM',
+        files: [file]
+      }).catch(err => console.log('Share aborted', err));
+    } else {
+      // Fallback: Copy to clipboard
+      navigator.clipboard.writeText(`Name: ${contact.first_name} ${contact.last_name}\nPhone: ${contact.phone}\nEmail: ${contact.email}`)
+        .then(() => window.Components.Toast('Contact details copied to clipboard', 'success'))
+        .catch(() => window.Components.Toast('Failed to share contact', 'error'));
+    }
+  },
+  
+  // §2.5 G-12: Camera-based document upload
+  triggerCameraUpload(contactId) {
+    // Create a hidden file input that prefers the device's rear camera if on mobile (PWA behavior)
+    let input = document.getElementById('camera-upload-input');
+    if (!input) {
+      input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*,application/pdf';
+      // 'capture' attribute triggers the camera directly on mobile devices
+      input.setAttribute('capture', 'environment');
+      input.id = 'camera-upload-input';
+      input.style.display = 'none';
+      
+      input.onchange = (e) => {
+        if (e.target.files && e.target.files.length > 0) {
+          window.Components.Toast(`Document scanned and uploaded for contact.`, 'success');
+        }
+      };
+      document.body.appendChild(input);
+    }
+    input.click();
   },
 
   showToast(msg) {

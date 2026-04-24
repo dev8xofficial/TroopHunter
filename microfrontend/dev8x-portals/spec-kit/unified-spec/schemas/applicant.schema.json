@@ -1,0 +1,65 @@
+﻿{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Applicant",
+    "description": "Job applicant record",
+    "type": "object",
+    "required": [
+        "id",
+        "name",
+        "email",
+        "position",
+        "status"
+    ],
+    "properties": {
+        "id": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+        },
+        "email": {
+            "type": "string",
+            "format": "email"
+        },
+        "phone": {
+            "type": "string"
+        },
+        "position": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "applied",
+                "shortlisted",
+                "interview",
+                "selected",
+                "joined",
+                "rejected",
+                "future_hire"
+            ]
+        },
+        "source": {
+            "type": "string"
+        },
+        "department": {
+            "type": "string"
+        },
+        "applied_date": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "updated_at": {
+            "type": "string",
+            "format": "date-time"
+        }
+    },
+    "additionalProperties": false
+}

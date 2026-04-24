@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "[Module Name] Validation Schema",
+  "description": "Payload validation rules for [module-name]",
+  "type": "object",
+  "required": [],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier"
+    },
+    "example_field": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "description": "Example field description"
+    }
+  },
+  "additionalProperties": false
+}

@@ -53,6 +53,9 @@ window.Screens.mortgage = {
         </div>
       </div>
 
+      <!-- §2.2 G-02: Per-Department Compliance Notice (T2-02) -->
+      ${window.Compliance ? window.Compliance.deptComplianceBanner('mortgage') : ''}
+
       <!-- Arive Sync Status Banner -->
       <div class="degraded-banner"
            style="border-color:${ariveHealthy ? 'var(--color-success)' : 'var(--color-danger)'};

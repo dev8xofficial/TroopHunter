@@ -1,0 +1,51 @@
+name: Validate Dependencies
+
+on:
+  pull_request:
+    paths:
+      - '.specify/specs/**'
+  push:
+    branches: [main]
+    paths:
+      - '.specify/specs/**'
+
+jobs:
+  cross-reference-check:
+    name: Check Cross-References
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate internal links
+        run: |
+          ERRORS=0
+          for FILE in $(find .specify/specs -name '*.md' -type f); do
+            # Extract relative links from markdown
+            LINKS=$(grep -oP '\]\(\.\./[^)]+\)' "$FILE" | sed 's/\](\(.*\))/\1/' || true)
+            FILE_DIR=$(dirname "$FILE")
+            
+            for LINK in $LINKS; do
+              RESOLVED="$FILE_DIR/$LINK"
+              if [ ! -f "$RESOLVED" ] && [ ! -d "$RESOLVED" ]; then
+                echo "::warning::Broken link in $FILE: $LINK"
+                ERRORS=$((ERRORS + 1))
+              fi
+            done
+          done
+          
+          if [ $ERRORS -gt 0 ]; then
+            echo "::warning::Found $ERRORS broken cross-references"
+          fi
+          echo "✅ Cross-reference check complete"
+
+      - name: Validate contract references
+        run: |
+          for FILE in $(find .specify/specs -name 'rbac-matrix.md' -type f); do
+            if grep -q 'access-control.yaml' "$FILE"; then
+              if [ ! -f "contracts/access-control.yaml" ]; then
+                echo "::error::$FILE references contracts/access-control.yaml but file is missing"
+                exit 1
+              fi
+            fi
+          done
+          echo "✅ Contract references validated"

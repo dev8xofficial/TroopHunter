@@ -1,0 +1,37 @@
+﻿roles:
+  super_admin:
+    auth: ["*"]
+    admin: ["*"]
+    candidate: ["read"]
+    client: ["read"]
+    crm: ["*"]
+  hr_admin:
+    auth: ["login"]
+    admin: ["*"]
+    candidate: ["read"]
+    client: []
+    crm: []
+  candidate:
+    auth: ["login", "register"]
+    admin: []
+    candidate: ["own"]
+    client: []
+    crm: []
+  client:
+    auth: ["login"]
+    admin: []
+    candidate: []
+    client: ["own"]
+    crm: []
+  sales_rep:
+    auth: ["login"]
+    admin: []
+    candidate: []
+    client: []
+    crm: ["*"]
+  manager:
+    auth: ["login"]
+    admin: ["read"]
+    candidate: ["read"]
+    client: ["own"]
+    crm: ["*"]

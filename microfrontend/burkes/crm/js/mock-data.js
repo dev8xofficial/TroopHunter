@@ -10,21 +10,36 @@ window.MockData = (() => {
   /* ── Users ────────────────────────────────────────── */
   const users = [
     { id: 'USR-OW-001', role: 'OW', full_name: 'Jaquarian Bonilla', initials: 'JB',
-      email: 'jbonilla@burkesgroup.com', departments: ['insurance'], active: true, avatar_color: '#1a3a52' },
+      email: 'jbonilla@burkesgroup.com', departments: ['insurance'], active: true, avatar_color: '#1a3a52',
+      license_number: null, bar_number: null },
     { id: 'USR-OW-002', role: 'OW', full_name: 'Tom Burke', initials: 'TB',
-      email: 'tburke@burkesgroup.com', departments: ['real_estate'], active: true, avatar_color: '#0f5e35' },
+      email: 'tburke@burkesgroup.com', departments: ['real_estate'], active: true, avatar_color: '#0f5e35',
+      license_number: 'TREC-TX-748291', bar_number: null },
     { id: 'USR-IA-001', role: 'IA', full_name: 'Alisha Reeves', initials: 'AR',
-      email: 'areeves@burkesgroup.com', departments: ['insurance'], active: true, avatar_color: '#7c3aed' },
+      email: 'areeves@burkesgroup.com', departments: ['insurance'], active: true, avatar_color: '#7c3aed',
+      license_number: null, bar_number: null },
     { id: 'USR-IA-002', role: 'IA', full_name: 'Marcus Webb', initials: 'MW',
-      email: 'mwebb@burkesgroup.com', departments: ['insurance'], active: true, avatar_color: '#b45309' },
+      email: 'mwebb@burkesgroup.com', departments: ['insurance'], active: true, avatar_color: '#b45309',
+      license_number: null, bar_number: null },
     { id: 'USR-ML-001', role: 'ML', full_name: 'Sandra Pham', initials: 'SP',
-      email: 'spham@burkesgroup.com', departments: ['mortgage'], active: true, avatar_color: '#1d4ed8' },
+      email: 'spham@burkesgroup.com', departments: ['mortgage'], active: true, avatar_color: '#1d4ed8',
+      license_number: null, bar_number: null },
     { id: 'USR-RA-001', role: 'RA', full_name: 'Derek Okafor', initials: 'DO',
-      email: 'dokafor@burkesgroup.com', departments: ['real_estate'], active: true, avatar_color: '#065f46' },
+      email: 'dokafor@burkesgroup.com', departments: ['real_estate'], active: true, avatar_color: '#065f46',
+      license_number: 'TREC-TX-519034', bar_number: null },
     { id: 'USR-RA-002', role: 'RA', full_name: 'Lisa Chen', initials: 'LC',
-      email: 'lchen@burkesgroup.com', departments: ['real_estate'], active: true, avatar_color: '#be123c' },
+      email: 'lchen@burkesgroup.com', departments: ['real_estate'], active: true, avatar_color: '#be123c',
+      license_number: 'TREC-TX-682174', bar_number: null },
     { id: 'USR-PA-001', role: 'PA', full_name: 'Platform Admin', initials: 'PA',
-      email: 'admin@burkesgroup.com', departments: ['insurance','mortgage','real_estate'], active: true, avatar_color: '#374151' }
+      email: 'admin@burkesgroup.com', departments: ['insurance','mortgage','real_estate'], active: true, avatar_color: '#374151',
+      license_number: null, bar_number: null },
+    // §2.3 G-05: External attorneys — tracked by bar number (T2-06)
+    { id: 'USR-AT-001', role: 'AT', full_name: 'Michael Torres', initials: 'MT',
+      email: 'mtorres@torreslegal.com', departments: ['real_estate'], active: true, avatar_color: '#7e22ce',
+      license_number: null, bar_number: 'TX-BAR-24083156' },
+    { id: 'USR-AT-002', role: 'AT', full_name: 'Priya Nair', initials: 'PN',
+      email: 'pnair@nairesq.com', departments: ['real_estate','mortgage'], active: true, avatar_color: '#0e7490',
+      license_number: null, bar_number: 'TX-BAR-24091847' }
   ];
 
   /* ── Contacts (50) ────────────────────────────────── */
@@ -230,7 +245,15 @@ window.MockData = (() => {
       actions: [], icon: '📄' },
     { id: 'conn-gcal', provider: 'Google Calendar', status: 'healthy', priority: 'priority_2',
       owner: 'Platform Admin', last_synced_at: daysAgo(0.01), affected_features: ['calendar'],
-      actions: ['test'], icon: '📅' }
+      actions: ['test'], icon: '📅' },
+    // §2.4 G-02: LinkedIn Sales Navigator (T4-03)
+    { id: 'conn-linkedin', provider: 'LinkedIn Sales Navigator', status: 'pending', priority: 'priority_2',
+      owner: 'Platform Admin', last_synced_at: null, affected_features: ['contacts','pipeline'],
+      actions: ['reconnect'], icon: '💼' },
+    // §2.4 DocuSign/Adobe (T4-23)
+    { id: 'conn-esign', provider: 'DocuSign / Adobe Sign', status: 'planned', priority: 'priority_3',
+      owner: null, last_synced_at: null, affected_features: ['real_estate', 'mortgage'],
+      actions: [], icon: '🖊️' }
   ];
 
   /* ── Insurance Records (15) ───────────────────────── */
@@ -300,7 +323,9 @@ window.MockData = (() => {
     { id: 'CMP-002', department: 'mortgage', status: 'draft', subject: 'Refinancing Rates at Historic Lows', audience_count: 34, excluded_count: 2, created_by: 'USR-ML-001', scheduled_at: null, metrics: {} },
     { id: 'CMP-003', department: 'real_estate', status: 'scheduled', subject: 'Spring Listings — Houston Heights', audience_count: 156, excluded_count: 9, created_by: 'USR-OW-002', scheduled_at: daysAgo(-2), metrics: {} },
     { id: 'CMP-004', department: 'insurance', status: 'failed', subject: 'Umbrella Policy Awareness', audience_count: 45, excluded_count: 3, created_by: 'USR-OW-001', scheduled_at: daysAgo(7), metrics: { sent: 0, delivered: 0 } },
-    { id: 'CMP-005', department: 'platform', status: 'sent', subject: 'Welcome to Burkes Group Services', audience_count: 200, excluded_count: 5, created_by: 'USR-PA-001', scheduled_at: daysAgo(14), metrics: { sent: 195, delivered: 192, opened: 88, clicked: 31 } }
+    { id: 'CMP-005', department: 'platform', status: 'sent', subject: 'Welcome to Burkes Group Services', audience_count: 200, excluded_count: 5, created_by: 'USR-PA-001', scheduled_at: daysAgo(14), metrics: { sent: 195, delivered: 192, opened: 88, clicked: 31 } },
+    // §2.6 G-08: Automated Birthday/Anniversary emails (T4-35)
+    { id: 'CMP-AUTO-BDAY', department: 'platform', status: 'scheduled', subject: 'Happy Birthday from Burkes Group! 🎉', audience_count: 1205, excluded_count: 0, created_by: 'System Automation', scheduled_at: new Date().toISOString(), is_automation: true, metrics: { sent: 412, delivered: 410, opened: 305, clicked: 0 } }
   ];
 
   /* ── Video Meetings (8) ───────────────────────────── */
@@ -348,7 +373,9 @@ window.MockData = (() => {
   const adminSettings = {
     users: users.map(u => ({
       user_id: u.id, role: u.role, status: 'active',
-      department_scope: u.departments, full_name: u.full_name, email: u.email
+      department_scope: u.departments, full_name: u.full_name, email: u.email,
+      license_number: u.license_number || null,
+      bar_number: u.bar_number || null
     })),
     retention_policies: [
       { data_type: 'Call Recordings', department: 'insurance', retention_window: '18 months' },
@@ -394,6 +421,25 @@ window.MockData = (() => {
       status: 'delivered', created_at: daysAgo(randInt(0,14))
     }))
   }));
+
+  // Inject §2.5 G-09 (Auto-save inbound SMS) mock thread
+  smsThreads.unshift({
+    id: 'THR-UNKNOWN-01',
+    contact_id: null,
+    contact_name: '+1 (512) 555-0199',
+    phone: '+1 (512) 555-0199',
+    department: 'Intake / Unknown',
+    unread_count: 1,
+    opt_out: false,
+    last_message_at: new Date().toISOString(),
+    last_message: 'Hi, I saw your sign on 15th street, is it still available?',
+    messages: [{
+      id: 'MSG-UNK-01', direction: 'inbound',
+      body: 'Hi, I saw your sign on 15th street, is it still available?',
+      status: 'delivered', created_at: new Date().toISOString()
+    }],
+    is_unknown: true
+  });
 
   /* ── Email Inbox (15) ─────────────────────────────── */
   const emailInbox = contacts.slice(0, 15).map((c, i) => ({
@@ -473,7 +519,7 @@ window.MockData = (() => {
     return { insurance: 'Insurance', mortgage: 'Mortgage', real_estate: 'Real Estate' }[d] || d;
   }
   function roleName(r) {
-    return { OW:'Dept. Owner', IA:'Insurance Agent', ML:'Mortgage Liaison', RA:'Real Estate Agent', PA:'Platform Admin' }[r] || r;
+    return { OW:'Dept. Owner', IA:'Insurance Agent', ML:'Mortgage Liaison', RA:'Real Estate Agent', PA:'Platform Admin', AT:'Attorney (External)' }[r] || r;
   }
   function stageBadgeClass(s) {
     return {

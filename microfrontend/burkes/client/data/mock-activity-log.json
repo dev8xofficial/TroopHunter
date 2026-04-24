@@ -1,0 +1,123 @@
+[
+  {
+    "event_id": "EV-0000000050",
+    "event_type": "status_changed",
+    "actor_role": "LN",
+    "actor_name": "Jennifer Walsh",
+    "label": "Underwriting Conditions Submitted",
+    "icon": "📋",
+    "description": "3 conditions require resolution before final approval",
+    "timestamp": "2026-04-17T14:22:00Z",
+    "visibility": { "visible_to_roles": ["CL","AG","LN","AT","TC"], "is_public": true }
+  },
+  {
+    "event_id": "EV-0000000049",
+    "event_type": "document_uploaded",
+    "actor_role": "AT",
+    "actor_name": "David Norton",
+    "label": "Title Commitment Uploaded",
+    "icon": "📄",
+    "description": "Title search completed — no liens found",
+    "timestamp": "2026-04-16T11:05:00Z",
+    "visibility": { "visible_to_roles": ["CL","AG","LN","AT","TC"], "is_public": true }
+  },
+  {
+    "event_id": "EV-0000000048",
+    "event_type": "document_reviewed",
+    "actor_role": "LN",
+    "actor_name": "Jennifer Walsh",
+    "label": "Appraisal Report Reviewed",
+    "icon": "✅",
+    "description": "Property appraised at $492,000 — above purchase price",
+    "timestamp": "2026-04-15T16:44:00Z",
+    "visibility": { "visible_to_roles": ["CL","LN","TC"], "is_public": true }
+  },
+  {
+    "event_id": "EV-0000000047",
+    "event_type": "milestone_reached",
+    "actor_role": "AG",
+    "actor_name": "Michael Garcia",
+    "label": "Home Inspection Completed",
+    "icon": "🏠",
+    "description": "Inspector found minor issues — no structural concerns",
+    "timestamp": "2026-04-15T10:30:00Z",
+    "visibility": { "visible_to_roles": ["CL","AG","LN","TC"], "is_public": true }
+  },
+  {
+    "event_id": "EV-0000000046",
+    "event_type": "insurance_updated",
+    "actor_role": "CL",
+    "actor_name": "Sarah Chen",
+    "label": "Homeowners Insurance Policy Submitted",
+    "icon": "🛡️",
+    "description": "Policy with State Farm — coverage $500,000",
+    "timestamp": "2026-04-14T09:15:00Z",
+    "visibility": { "visible_to_roles": ["CL","LN","AT","TC"], "is_public": true }
+  },
+  {
+    "event_id": "EV-0000000045",
+    "event_type": "document_uploaded",
+    "actor_role": "CL",
+    "actor_name": "Sarah Chen",
+    "label": "W-2 and Bank Statements Uploaded",
+    "icon": "📁",
+    "description": "3 financial documents submitted for underwriting",
+    "timestamp": "2026-04-13T14:00:00Z",
+    "visibility": { "visible_to_roles": ["CL","LN","TC"], "is_public": true }
+  },
+  {
+    "event_id": "EV-0000000044",
+    "event_type": "approval_given",
+    "actor_role": "LN",
+    "actor_name": "Jennifer Walsh",
+    "label": "Pre-Approval Letter Issued",
+    "icon": "🎉",
+    "description": "$388,000 approved at 6.875% for 30 years",
+    "timestamp": "2026-04-10T11:22:00Z",
+    "visibility": { "visible_to_roles": ["CL","AG","LN","AT","TC"], "is_public": true }
+  },
+  {
+    "event_id": "EV-0000000043",
+    "event_type": "mortgage_updated",
+    "actor_role": "LN",
+    "actor_name": "Jennifer Walsh",
+    "label": "Mortgage Application Received",
+    "icon": "🏦",
+    "description": "Application submitted and accepted for processing",
+    "timestamp": "2026-04-09T08:50:00Z",
+    "visibility": { "visible_to_roles": ["CL","LN","TC"], "is_public": true }
+  },
+  {
+    "event_id": "EV-0000000042",
+    "event_type": "document_uploaded",
+    "actor_role": "AG",
+    "actor_name": "Michael Garcia",
+    "label": "Purchase Agreement Uploaded",
+    "icon": "📝",
+    "description": "Fully executed purchase agreement — $485,000",
+    "timestamp": "2026-04-07T13:45:00Z",
+    "visibility": { "visible_to_roles": ["CL","AG","LN","AT","TC"], "is_public": true }
+  },
+  {
+    "event_id": "EV-0000000041",
+    "event_type": "transaction_created",
+    "actor_role": "TC",
+    "actor_name": "Michelle Rodriguez",
+    "label": "Transaction Portal Opened",
+    "icon": "🚀",
+    "description": "Your portal is ready — welcome, Sarah!",
+    "timestamp": "2026-04-03T10:00:00Z",
+    "visibility": { "visible_to_roles": ["CL","AG","LN","AT","CP","TC"], "is_public": true }
+  },
+  {
+    "event_id": "EV-0000000040",
+    "event_type": "status_changed",
+    "actor_role": "AT",
+    "actor_name": "David Norton",
+    "label": "Attorney Notes — Title Search Started",
+    "icon": "⚖️",
+    "description": "Internal: Researching lien history on property",
+    "timestamp": "2026-04-14T09:00:00Z",
+    "visibility": { "visible_to_roles": ["AT","TC"], "is_public": false }
+  }
+]

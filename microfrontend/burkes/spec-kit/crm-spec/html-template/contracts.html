@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Burkes CRM Contracts Reference</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <main class="reference-page">
+      <div class="workspace-inner">
+        <section class="reference-hero">
+          <div class="chip-list">
+            <span class="chip" data-tone="navy">Burkes Group CRM Platform</span>
+            <span class="chip" data-tone="gold">Phase 2</span>
+            <span class="chip" data-tone="green">SaaS ready</span>
+            <span class="chip" data-tone="blue">PWA ready</span>
+          </div>
+          <div class="screen-heading-copy">
+            <h1 class="screen-title">Contracts reference for the HTML template</h1>
+            <p class="screen-subtitle">
+              This companion page preserves the schema, lifecycle, access, event, and interaction
+              contracts that shaped the CRM shell implementation.
+            </p>
+          </div>
+          <div class="inline-actions">
+            <a class="primary-button" href="./index.html#dashboard">Open the CRM shell</a>
+            <a class="ghost-button" href="../README.md">Open the spec-kit README</a>
+          </div>
+        </section>
+
+        <section class="definition-grid">
+          <article class="reference-card">
+            <span class="eyebrow">Manifest</span>
+            <h2>Platform summary</h2>
+            <p>
+              Internal operational CRM for insurance, mortgage, and real estate with shared contacts,
+              pipeline management, communications, reporting, integrations, and admin governance.
+            </p>
+            <div class="chip-list" style="margin-top: 14px">
+              <span class="chip">16 route screens</span>
+              <span class="chip">14 JSON schemas</span>
+              <span class="chip">5 reusable component manifests</span>
+            </div>
+          </article>
+          <article class="reference-card">
+            <span class="eyebrow">Departments</span>
+            <h2>Operating context</h2>
+            <ul>
+              <li>Insurance - quoting, bind, issue, renewal, 18-month call retention</li>
+              <li>Mortgage - Arive-linked milestones and document collection</li>
+              <li>Real Estate - property, transaction, closing, 4-year call retention</li>
+            </ul>
+          </article>
+          <article class="reference-card">
+            <span class="eyebrow">Future capabilities</span>
+            <h2>Reserved expansion</h2>
+            <ul>
+              <li>Native mobile shell</li>
+              <li>White-label branding</li>
+              <li>AI-assisted workflows</li>
+              <li>Deeper DotLoop and DocuSign automation</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="panel">
+          <div class="panel-title">
+            <div>
+              <span class="eyebrow">Lifecycle</span>
+              <h2>Canonical stage model from the constitution</h2>
+            </div>
+          </div>
+          <div class="table-shell">
+            <table>
+              <thead>
+                <tr>
+                  <th>Stage</th>
+                  <th>Canonical meaning</th>
+                  <th>Real Estate</th>
+                  <th>Insurance</th>
+                  <th>Mortgage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>New Inquiry</td><td>Fresh intake awaiting first action</td><td>Buyer or seller lead</td><td>Prospect for quote</td><td>Pre-approval request</td></tr>
+                <tr><td>Contacted</td><td>First meaningful outreach completed</td><td>First contact made</td><td>Quote discussion opened</td><td>Lender introduction</td></tr>
+                <tr><td>Quoted / Offer</td><td>First commercial proposal exists</td><td>Offer submitted</td><td>Policy quoted</td><td>Pre-approval issued</td></tr>
+                <tr><td>Under Contract</td><td>Formal process committed</td><td>Contract executed</td><td>Not used</td><td>Loan processing</td></tr>
+                <tr><td>Pending Close</td><td>Final approvals and close steps active</td><td>Closing scheduled</td><td>Policy bound</td><td>Clear to close</td></tr>
+                <tr><td>Closed</td><td>Current motion complete</td><td>Transaction closed</td><td>Policy issued</td><td>Loan funded</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-title">
+            <div>
+              <span class="eyebrow">Roles and access</span>
+              <h2>Read across departments, write by scope</h2>
+            </div>
+          </div>
+          <div class="table-shell">
+            <table>
+              <thead>
+                <tr>
+                  <th>Role</th>
+                  <th>Read access</th>
+                  <th>Write access</th>
+                  <th>Notable actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>OW - Department Owner</td><td>All departments</td><td>Own department</td><td>Transfer leads, send campaigns, limited admin</td></tr>
+                <tr><td>IA - Insurance Agent</td><td>All departments</td><td>Insurance</td><td>Create contacts, place calls, edit insurance records</td></tr>
+                <tr><td>ML - Mortgage Liaison</td><td>All departments</td><td>Mortgage</td><td>Manage calendar, meetings, mortgage records</td></tr>
+                <tr><td>RA - Real Estate Agent</td><td>All departments</td><td>Real Estate</td><td>Create contacts, transfer leads, edit real estate records</td></tr>
+                <tr><td>PA - Platform Administrator</td><td>All departments</td><td>All departments</td><td>Playback recordings, manage integrations, admin settings, retention</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="definition-grid">
+          <article class="spec-card">
+            <span class="eyebrow">Interaction flows</span>
+            <h3>Guided overlays</h3>
+            <ul>
+              <li>new_contact: identity, department_context, optional_enrichment</li>
+              <li>transfer_lead: select_department, select_recipient, confirm_notification</li>
+              <li>resolve_unknown_number and resolve_unknown_sender as drawers</li>
+              <li>post_call_wrap_up, create_calendar_event, campaign_send_review</li>
+              <li>launch_video_meeting, reconnect_integration, invite_or_assign_user, update_retention_policy</li>
+            </ul>
+          </article>
+          <article class="spec-card">
+            <span class="eyebrow">Events</span>
+            <h3>Cross-feature event graph</h3>
+            <ul>
+              <li>portal.contact.received -> contacts, dashboard, notifications</li>
+              <li>call.completed -> activity_log, contacts, dashboard</li>
+              <li>sms.received and email.received -> notifications, activity_log, contacts</li>
+              <li>calendar.sync.failed -> integrations, notifications, dashboard</li>
+              <li>campaign.sent and meeting.completed -> reports and activity history</li>
+              <li>integration.degraded and admin.settings.updated stay audit-visible</li>
+            </ul>
+          </article>
+          <article class="spec-card">
+            <span class="eyebrow">Layout and tokens</span>
+            <h3>Shell contract</h3>
+            <ul>
+              <li>Sticky top nav at 68px with search, quick actions, notifications, user context</li>
+              <li>236px grouped sidebar with Main, Communications, Departments, Tools and Admin</li>
+              <li>Archivo headings, Manrope body, Burkes navy and gold accents</li>
+              <li>VOIP status bar, install prompt, offline notice, and responsive drawer sidebar</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="panel">
+          <div class="panel-title">
+            <div>
+              <span class="eyebrow">Schemas</span>
+              <h2>Top-level models represented in the HTML template</h2>
+            </div>
+          </div>
+          <div class="definition-grid">
+            <article class="spec-card">
+              <span class="eyebrow">CRM Contact</span>
+              <h3>`contact.schema.json`</h3>
+              <ul>
+                <li>Required: id, first_name, last_name, source, departments, assigned_agents, pipeline_stage</li>
+                <li>Includes consent, portal origin, missing_data, and department sub-records</li>
+              </ul>
+            </article>
+            <article class="spec-card">
+              <span class="eyebrow">CRM Lead and Activity</span>
+              <h3>`lead.schema.json` and `activity.schema.json`</h3>
+              <ul>
+                <li>Lead fields include department, stage, priority, assigned_agent_id, last_activity_at</li>
+                <li>Activity fields include type, actor_id, occurred_at, metadata, notes, recording reference</li>
+              </ul>
+            </article>
+            <article class="spec-card">
+              <span class="eyebrow">Communication schemas</span>
+              <h3>Calendar, call recording, campaign, meeting</h3>
+              <ul>
+                <li>Calendar Event: provider, starts_at, ends_at, contact and lead linkage</li>
+                <li>Call Recording: department, recorded_at, expires_at, access_scope</li>
+                <li>Email Campaign: audience_count, excluded_count, metrics</li>
+                <li>Video Meeting: provider, starts_at, retention_expires_at</li>
+              </ul>
+            </article>
+            <article class="spec-card">
+              <span class="eyebrow">Department sub-records</span>
+              <h3>Insurance, Mortgage, Real Estate</h3>
+              <ul>
+                <li>Policy: policy_type, carrier, premium, effective and expiration dates, VIN</li>
+                <li>Mortgage: status, arive_loan_id, loan_type, pre_approval_amount, lender_name</li>
+                <li>Transaction: transaction_type, status, property_address, dotloop_id, closing_date, commission_amount</li>
+              </ul>
+            </article>
+            <article class="spec-card">
+              <span class="eyebrow">Operations</span>
+              <h3>Integration, report, user, admin settings</h3>
+              <ul>
+                <li>Integration Connector: provider, status, priority, owner, affected_features, actions</li>
+                <li>Report Request: scope, date_range, metrics, group_by</li>
+                <li>User: role, departments, active, license_number</li>
+                <li>Admin Settings: users, retention_policies, entitlements</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="footer-note">
+          <span>The interactive shell on `index.html` maps these contracts into route sections, role-aware action states, and reusable overlays.</span>
+          <a class="primary-button" href="./index.html#dashboard">Return to the CRM shell</a>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

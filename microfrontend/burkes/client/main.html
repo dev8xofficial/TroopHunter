@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Burkes Group Client Portal — manage your real estate transaction" />
+    <meta name="theme-color" content="#1a3a52" />
+    <title>Dashboard — Burkes Group Portal</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Stylesheets (load order matters) -->
+    <link rel="stylesheet" href="css/token.css" />
+    <link rel="stylesheet" href="css/shell.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/screen.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231a3a52'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial,sans-serif' font-weight='800' font-size='14' fill='%23fdb913'>BG</text></svg>" />
+  </head>
+
+  <body>
+    <!-- ══════════════════════════════════════════════════════════
+       BOOT SCREEN — shown while JS loads, fades out on ready
+    ═══════════════════════════════════════════════════════════════ -->
+    <div id="boot-screen" role="status" aria-label="Loading Burkes Group Portal">
+      <div class="boot-logo">
+        <div class="boot-logo-mark">BG</div>
+        <div class="boot-logo-name">Burkes Group</div>
+        <div class="boot-logo-sub">Client Portal</div>
+      </div>
+      <div class="boot-spinner" aria-hidden="true"></div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+       GLOBAL NAV BAR — rendered by ShellComponent.render()
+    ═══════════════════════════════════════════════════════════════ -->
+    <header id="global-nav" role="banner" aria-label="Burkes Group Portal navigation">
+      <!-- Populated by js/components/shell.js -->
+    </header>
+
+    <!-- ══════════════════════════════════════════════════════════
+       ALERT BANNER SLOT — rendered by AlertBanner.render()
+    ═══════════════════════════════════════════════════════════════ -->
+    <div id="alert-banner-slot" aria-live="polite" aria-label="System alerts">
+      <!-- Populated by js/components/alert-banner.js -->
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+       SCREEN OUTLET — screens mount here via Router
+    ═══════════════════════════════════════════════════════════════ -->
+    <main id="screen-outlet" role="main" aria-label="Main content" aria-live="polite">
+      <!-- Populated by js/router.js + screens/*.js -->
+    </main>
+
+    <!-- ══════════════════════════════════════════════════════════
+       DRAWER OVERLAY — managed by js/components/drawer.js
+    ═══════════════════════════════════════════════════════════════ -->
+    <div id="drawer-overlay" aria-hidden="true">
+      <!-- Populated by js/components/drawer.js on first open -->
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+       MODAL OVERLAY — managed by js/components/modal.js
+    ═══════════════════════════════════════════════════════════════ -->
+    <div id="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+      <!-- Populated by js/components/modal.js on open -->
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+       TOAST CONTAINER — managed by js/components/toast.js
+    ═══════════════════════════════════════════════════════════════ -->
+    <div id="toast-container" role="region" aria-label="Notifications" aria-live="polite">
+      <!-- Populated by js/components/toast.js -->
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+       SCRIPTS — load order is critical
+    ═══════════════════════════════════════════════════════════════ -->
+
+    <!-- Layer 1: Session (no dependencies) -->
+    <script src="js/session.js"></script>
+
+    <!-- Layer 2: Mock data (no dependencies) -->
+    <script src="js/mock-data.js"></script>
+
+    <!-- Layer 3: Reusable components -->
+    <script src="js/components/badge.js"></script>
+    <script src="js/components/toast.js"></script>
+    <script src="js/components/drawer.js"></script>
+    <script src="js/components/modal.js"></script>
+    <script src="js/components/alert-banner.js"></script>
+    <script src="js/components/shell.js"></script>
+
+    <!-- Layer 4: Screens (each implements { render(outlet) }) -->
+    <script src="screens/dashboard.js"></script>
+    <script src="screens/documents.js"></script>
+    <script src="screens/messages.js"></script>
+    <script src="screens/insurance.js"></script>
+    <script src="screens/mortgage.js"></script>
+    <script src="screens/services.js"></script>
+
+    <!-- Layer 5: Router -->
+    <script src="js/router.js"></script>
+
+    <!-- Layer 6: App boot (runs last) -->
+    <script src="js/app.js"></script>
+  </body>
+</html>

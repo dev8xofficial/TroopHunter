@@ -1,0 +1,24 @@
+﻿events:
+  auth:
+    - auth.login
+    - auth.logout
+    - auth.register
+    - auth.mfa_verified
+  admin:
+    - applicant.created
+    - applicant.status_changed
+    - job.published
+    - interview.scheduled
+  candidate:
+    - application.submitted
+    - document.signed
+    - onboarding.step_completed
+  client:
+    - project.created
+    - invoice.paid
+    - file.uploaded
+    - ticket.opened
+  crm:
+    - contact.created
+    - deal.stage_changed
+    - outreach.sent

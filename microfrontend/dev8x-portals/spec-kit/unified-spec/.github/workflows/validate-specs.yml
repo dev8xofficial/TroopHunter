@@ -1,0 +1,73 @@
+name: Validate Specs
+
+on:
+  pull_request:
+    paths:
+      - '.specify/specs/**'
+  push:
+    branches: [main]
+    paths:
+      - '.specify/specs/**'
+
+jobs:
+  validate-structure:
+    name: Validate Module Structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check 13-file completeness
+        run: |
+          REQUIRED_FILES=(
+            "spec.md" "plan.md" "tasks.md" "changelog.md" "metrics.md"
+            "risks.md" "rollout.md" "test-scenarios.md" "validation-schema.json"
+            "rbac-matrix.md" "activity-log-events.md" "api-contracts.md" "state-machines.md"
+          )
+          
+          ERRORS=0
+          for MODULE_DIR in .specify/specs/*/; do
+            MODULE_NAME=$(basename "$MODULE_DIR")
+            for FILE in "${REQUIRED_FILES[@]}"; do
+              if [ ! -f "$MODULE_DIR/$FILE" ]; then
+                echo "::error::Missing $FILE in $MODULE_NAME"
+                ERRORS=$((ERRORS + 1))
+              fi
+            done
+          done
+          
+          if [ $ERRORS -gt 0 ]; then
+            echo "::error::Found $ERRORS missing artifact files"
+            exit 1
+          fi
+          echo "✅ All modules have complete 13-file artifact sets"
+
+      - name: Check naming conventions
+        run: |
+          ERRORS=0
+          for DIR in .specify/specs/*/; do
+            DIRNAME=$(basename "$DIR")
+            if ! echo "$DIRNAME" | grep -qP '^\d{3}-[a-z0-9-]+$'; then
+              echo "::error::Invalid module name: $DIRNAME (expected NNN-kebab-case)"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+          
+          if [ $ERRORS -gt 0 ]; then
+            exit 1
+          fi
+          echo "✅ All module names follow NNN-kebab-case convention"
+
+      - name: Check no UI content
+        run: |
+          ERRORS=0
+          for FILE in $(find .specify/specs -name '*.md' -type f); do
+            if grep -qiP '(background-color|font-size|border-radius|margin:|padding:|#[0-9a-fA-F]{3,8}\b|\.css|tailwind|rgba\(|hsl\()' "$FILE"; then
+              echo "::error::UI/design content detected in $FILE"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+          
+          if [ $ERRORS -gt 0 ]; then
+            exit 1
+          fi
+          echo "✅ No UI/design content found in spec files"

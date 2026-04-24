@@ -48,6 +48,9 @@ window.Screens.realEstate = {
         </div>
       </div>
 
+      <!-- §2.2 G-02: Per-Department Compliance Notice (T2-02) -->
+      ${window.Compliance ? window.Compliance.deptComplianceBanner('real_estate') : ''}
+
       <!-- KPI Row -->
       <div class="stat-cards-grid" style="grid-template-columns:repeat(5,1fr);margin-bottom:var(--space-5)">
         ${StatCard({ label:'Total Transactions', value: realEstateRecords.length, accent:'navy', icon: Icons.home })}
@@ -423,7 +426,41 @@ window.Screens.realEstate = {
             </div>
             <div class="profile-field">
               <span class="profile-field-label">Assigned Agent</span>
-              <span class="profile-field-value">${agent?.full_name || '—'}</span>
+              <div>
+                <span class="profile-field-value">${agent?.full_name || '—'}</span>
+                <!-- §2.3 G-04: TREC license number (T2-05) -->
+                ${agent?.license_number
+                  ? `<div style="font-family:monospace;font-size:10px;color:var(--color-success-text);
+                                margin-top:2px;display:flex;align-items:center;gap:4px">
+                       <span>✓</span>
+                       <span>${agent.license_number}</span>
+                       <span style="font-family:var(--font-body);color:var(--neutral-400)">TREC Verified</span>
+                     </div>`
+                  : agent
+                  ? `<div style="font-size:10px;color:var(--color-warning-text);margin-top:2px">
+                       ⚠ No TREC license on file
+                     </div>`
+                  : ''}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- §2.6 G-07: Document Auto-Extraction (OCR) -->
+        <div class="profile-section">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-2)">
+            <div class="profile-section-title" style="margin-bottom:0">TREC Contract Documents</div>
+            <button class="btn btn-secondary btn-sm" onclick="Screens.realEstate.autoExtractData('${r.id}')" title="Extract key terms via OCR">
+               🪄 Auto-Extract (OCR)
+            </button>
+          </div>
+          <div style="padding:var(--space-3);background:var(--neutral-50);border-radius:var(--radius-md);font-size:var(--text-sm)">
+            <div style="display:flex;align-items:center;gap:var(--space-2);color:var(--neutral-600)">
+              <span>📄</span> <span>purchase_agreement_signed.pdf</span>
+              <span class="badge badge-gray" style="margin-left:auto">Pending Data Extraction</span>
+            </div>
+            <div id="ocr-results-${r.id}" style="display:none;margin-top:var(--space-3);border-top:1px dashed var(--neutral-200);padding-top:var(--space-3)">
+              <!-- OCR Data dynamically populated -->
             </div>
           </div>
         </div>
@@ -549,6 +586,51 @@ window.Screens.realEstate = {
     });
   },
 
+  // §2.6 G-07: Document auto-extraction (OCR)
+  autoExtractData(recordId) {
+    Components.Toast('Initiating Optical Character Recognition (OCR) Engine...', 'info');
+    const btn = event.currentTarget;
+    btn.disabled = true;
+    btn.innerHTML = `<span style="opacity:0.5">🪄 Extracting...</span>`;
+
+    setTimeout(() => {
+      const resultsDiv = document.getElementById(`ocr-results-${recordId}`);
+      if (resultsDiv) {
+        resultsDiv.style.display = 'block';
+        resultsDiv.innerHTML = `
+          <div style="color:var(--color-success-text);font-weight:700;margin-bottom:var(--space-2)">✓ Extraction Complete</div>
+          <div class="profile-fields-grid" style="grid-template-columns:1fr 1fr">
+            <div class="profile-field">
+              <span class="profile-field-label">Purchase Price</span>
+              <span class="profile-field-value" style="font-family:monospace">$415,000.00</span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-field-label">Earnest Money</span>
+              <span class="profile-field-value" style="font-family:monospace">$4,150.00</span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-field-label">Option Period</span>
+              <span class="profile-field-value">10 Days</span>
+            </div>
+            <div class="profile-field">
+              <span class="profile-field-label">Closing Date</span>
+              <span class="profile-field-value">11/30/2026</span>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm" style="margin-top:var(--space-3);width:100%" onclick="Components.Toast('Data mapped to deal structure','success'); this.disabled=true; this.innerText='Applied to Deal'">Apply Extracted Data</button>
+        `;
+      }
+      Components.Toast('Document key terms successfully extracted.', 'success');
+      btn.style.display = 'none';
+      
+      const badge = resultsDiv.parentElement.querySelector('.badge');
+      if (badge) {
+        badge.className = 'badge badge-green';
+        badge.innerText = 'OCR Verified';
+      }
+    }, 1500);
+  },
+
   completeMilestone(recordId, milestoneName) {
     const r = window.MockData.realEstateRecords.find(x => x.id === recordId);
     if (!r) return;
@@ -637,7 +719,10 @@ window.Screens.realEstate = {
           <label class="form-label">Transfer Note</label>
           <textarea class="form-input" rows="3" style="height:auto;padding:var(--space-3)"
             placeholder="Context for the new agent…"></textarea>
-        </div>`,
+        </div>
+
+        <!-- §2.2 G-03: Partner Services Disclosure (T2-14) -->
+        ${window.Compliance ? window.Compliance.partnerDisclosureHTML() : ''}`,
       footerRight: `
         <button class="btn btn-secondary" onclick="Components.closeModal('re-transfer')">Cancel</button>
         <button class="btn btn-primary"
