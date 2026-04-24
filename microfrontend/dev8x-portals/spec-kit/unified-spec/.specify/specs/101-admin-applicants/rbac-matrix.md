@@ -1,11 +1,33 @@
-﻿# Admin Applicants - RBAC Matrix
-> **Module ID**: `101-admin-applicants`
+# Admin Applicants - RBAC Matrix
 
-| Operation | super_admin | hr_admin | manager | Others |
-|-----------|-------------|----------|---------|--------|
-| List applicants | Yes | Yes | Read-only | No |
-| View detail | Yes | Yes | Read-only | No |
-| Create | Yes | Yes | No | No |
-| Update | Yes | Yes | No | No |
-| Change status | Yes | Yes | No | No |
-| Delete/archive | Yes | No | No | No |
+> **Module ID**: `101-admin-applicants`
+> References: [contracts/access-control.yaml](../../../contracts/access-control.yaml)
+
+---
+
+## Permissions
+
+| Operation | super_admin | hr_admin | candidate | client | sales_rep | manager |
+| --- | --- | --- | --- | --- | --- | --- |
+| View applicant roster | Allow | Allow | Deny | Deny | Deny | Read |
+| View applicant detail | Allow | Allow | Deny | Deny | Deny | Read |
+| Update applicant status | Allow | Allow | Deny | Deny | Deny | Deny |
+
+---
+
+## Special Access Rules
+
+| Rule | Description |
+| --- | --- |
+| Manager access | `manager` stays read-only across admin modules unless explicitly escalated elsewhere. |
+| Administrative changes | Mutating operations require `hr_admin` or `super_admin`. |
+
+---
+
+## Data Visibility
+
+| Data Scope | super_admin | hr_admin | candidate | client | sales_rep | manager |
+| --- | --- | --- | --- | --- | --- | --- |
+| All recruiting records | Allow | Allow | Deny | Deny | Deny | Read |
+| Configuration and user management | Allow | Support | Deny | Deny | Deny | Deny |
+| Audit exports | Allow | Allow | Deny | Deny | Deny | Read |

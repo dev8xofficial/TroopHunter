@@ -1,8 +1,25 @@
-﻿# Admin Applicants - Test Scenarios
-> **Module ID**: `101-admin-applicants`
+# Admin Applicants - Test Scenarios
 
-### TS-101-01: Filter by status (Positive)
-### TS-101-02: Invalid status transition (Negative) — e.g. joined -> applied
-### TS-101-03: Duplicate email (Edge Case)
-### TS-101-04: Pagination boundary (Edge Case)
-### TS-101-05: Manager read-only (Auth)
+> **Module ID**: `101-admin-applicants`
+> **Version**: 1.0.0
+
+---
+
+## Scenarios
+
+| Scenario ID | Category | Expected Result |
+| --- | --- | --- |
+| TS-101-01 | Happy path | Validate primary admin applicants workflow succeeds for the intended role. |
+| TS-101-02 | Permission boundary | Confirm unauthorized roles receive FORBIDDEN and no state changes occur. |
+| TS-101-03 | Validation failure | Submit malformed or incomplete payloads and confirm schema rejection. |
+| TS-101-04 | Invalid state transition | Attempt a disallowed lifecycle move and confirm the state remains unchanged. |
+| TS-101-05 | Audit emission | Confirm the expected audit event is emitted exactly once with the required payload. |
+
+---
+
+## Coverage Expectations
+
+- Cover all functional requirements in spec.md.
+- Cover all state transitions in state-machines.md.
+- Cover all write operations and audit events in activity-log-events.md.
+- Cover every role-operation pair that should resolve to something other than `Deny`.

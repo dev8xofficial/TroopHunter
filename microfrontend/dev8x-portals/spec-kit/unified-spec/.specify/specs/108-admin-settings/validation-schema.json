@@ -1,1 +1,85 @@
-﻿{"$schema":"http://json-schema.org/draft-07/schema#"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Admin Settings validation schema",
+  "description": "Validation definitions for 108-admin-settings.",
+  "type": "object",
+  "definitions": {
+    "adminSettingUpdate": {
+      "type": "object",
+      "description": "Administrative setting update payload.",
+      "properties": {
+        "setting_key": {
+          "description": "Setting identifier",
+          "type": "string"
+        },
+        "value": {
+          "description": "New value",
+          "type": "string"
+        },
+        "approver_id": {
+          "description": "Approver",
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "setting_key",
+        "value"
+      ]
+    },
+    "adminUserProvision": {
+      "type": "object",
+      "description": "Administrative user provisioning payload.",
+      "properties": {
+        "name": {
+          "description": "Display name",
+          "type": "string"
+        },
+        "email": {
+          "description": "Email address",
+          "type": "string"
+        },
+        "role": {
+          "description": "Administrative role",
+          "type": "string",
+          "enum": [
+            "hr_admin",
+            "super_admin"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "email",
+        "role"
+      ]
+    },
+    "adminSettingSummary": {
+      "type": "object",
+      "description": "Admin settings response summary.",
+      "properties": {
+        "record_id": {
+          "description": "Record identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Current status",
+          "type": "string"
+        },
+        "changed_by": {
+          "description": "Last editor",
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "record_id",
+        "status"
+      ]
+    }
+  }
+}

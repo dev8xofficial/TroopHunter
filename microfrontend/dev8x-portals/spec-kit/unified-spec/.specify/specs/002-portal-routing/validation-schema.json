@@ -1,1 +1,60 @@
-﻿
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Portal Routing validation schema",
+  "description": "Validation definitions for 002-portal-routing.",
+  "type": "object",
+  "definitions": {
+    "portalResolveRequest": {
+      "type": "object",
+      "description": "Portal resolution request.",
+      "properties": {
+        "portal_key": {
+          "description": "Requested portal",
+          "type": "string"
+        },
+        "role": {
+          "description": "Authenticated role",
+          "type": "string"
+        },
+        "last_route": {
+          "description": "Last successful route",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "portal_key",
+        "role"
+      ]
+    },
+    "portalResolveResponse": {
+      "type": "object",
+      "description": "Portal resolution response.",
+      "properties": {
+        "resolved_route": {
+          "description": "Chosen route",
+          "type": "string"
+        },
+        "decision": {
+          "description": "Resolution result",
+          "type": "string",
+          "enum": [
+            "allow",
+            "deny",
+            "redirect"
+          ]
+        },
+        "portal_label": {
+          "description": "Human-readable portal name",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "resolved_route",
+        "decision",
+        "portal_label"
+      ]
+    }
+  }
+}

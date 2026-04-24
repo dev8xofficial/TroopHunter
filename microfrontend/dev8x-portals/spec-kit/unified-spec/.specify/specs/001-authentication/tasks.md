@@ -1,4 +1,4 @@
-# Authentication — Tasks
+# Authentication - Tasks
 
 > **Module ID**: `001-authentication`
 > **Version**: 1.0.0
@@ -7,50 +7,24 @@
 
 ## Task Breakdown
 
-### P0 — Critical Path
+### P0 - Critical Path
 
-- [ ] **T-001-01**: User Entity — Implement User data model with hashed password storage and status management `[Complexity: M]`
-- [ ] **T-001-02**: Login Endpoint — Implement POST /auth/login with credential validation and portal-aware MFA branching `[Complexity: L]`
-- [ ] **T-001-03**: Registration Endpoint — Implement POST /auth/register for candidate accounts with email verification trigger `[Complexity: M]`
-- [ ] **T-001-04**: JWT Issuance — Implement JWT token generation with portal, role, and MFA claims `[Complexity: M]`
-- [ ] **T-001-05**: Session Store — Implement session record creation, lookup, and expiry with portal-specific TTLs `[Complexity: M]`
+- [ ] **T-001-01**: Model User and Session - Finalize canonical data structures, validation rules, and ownership boundaries for authentication. `[Complexity: L]`
+- [ ] **T-001-02**: Deliver core API surface - Implement the request and response contracts for POST /api/v1/auth/login, POST /api/v1/auth/register, POST /api/v1/auth/logout. `[Complexity: L]`
+- [ ] **T-001-03**: Enforce RBAC and data scoping - Apply the role gates, own-data constraints, and managed-account boundaries defined in the RBAC matrix. `[Complexity: M]`
 
-### P1 — High Priority
+### P1 - High Priority
 
-- [ ] **T-001-06**: Account Lockout — Implement failed attempt tracking with configurable thresholds per portal `[Complexity: M]`
-- [ ] **T-001-07**: Email Verification — Implement token generation, email dispatch, and POST /auth/verify-email endpoint `[Complexity: S]`
-- [ ] **T-001-08**: Logout — Implement POST /auth/logout with single and all-devices revocation `[Complexity: S]`
-- [ ] **T-001-09**: Rate Limiting — Implement per-IP rate limits on login (10/min) and register (5/min) endpoints `[Complexity: S]`
-
-### P2 — Medium Priority
-
-- [ ] **T-001-10**: Remember Me — Implement extended session (30 days) for Candidate/Client portals `[Complexity: S]`
-- [ ] **T-001-11**: Concurrent Session Limit — Enforce max 5 active sessions per user with oldest eviction `[Complexity: S]`
-
-### P3 — Low Priority
-
-- [ ] **T-001-12**: Admin Password History — Implement last-5-passwords check for Admin role `[Complexity: S]`
-
----
-
-## Dependency Graph
-
-```
-T-001-01 → T-001-02 → T-001-04 → T-001-05
-         → T-001-03 → T-001-07
-                       T-001-04 → T-001-08
-                       T-001-02 → T-001-06
-                       T-001-02 → T-001-09
-```
+- [ ] **T-001-01**: Implement authentication session lifecycle - Carry the approved lifecycle into state transitions, guard conditions, and invalid transition handling. `[Complexity: M]`
+- [ ] **T-001-02**: Wire audit events - Emit 5 append-only events with payloads aligned to contracts/events.yaml. `[Complexity: S]`
+- [ ] **T-001-03**: Add validation and regression coverage - Cover positive, negative, permission, and lifecycle regression cases before implementation closes. `[Complexity: S]`
 
 ---
 
 ## Validation Tasks
 
-- [ ] **V-001-01**: Verify spec.md coverage — all 6 FRs have implementation tasks
-- [ ] **V-001-02**: Verify RBAC — all 6 roles tested against all operations
-- [ ] **V-001-03**: Verify state machine — all session transitions tested
-- [ ] **V-001-04**: Verify API contracts — all 4 endpoints tested with success + error cases
-- [ ] **V-001-05**: Verify validation schema — all request payloads validated
-- [ ] **V-001-06**: Verify no user enumeration — same error for wrong password and unknown email
-- [ ] **V-001-07**: Verify lockout — portal-specific thresholds enforced
+- [ ] **V-001-01**: Validate primary authentication workflow succeeds for the intended role.
+- [ ] **V-001-02**: Confirm unauthorized roles receive FORBIDDEN and no state changes occur.
+- [ ] **V-001-03**: Submit malformed or incomplete payloads and confirm schema rejection.
+- [ ] **V-001-04**: Attempt a disallowed lifecycle move and confirm the state remains unchanged.
+- [ ] **V-001-05**: Confirm the expected audit event is emitted exactly once with the required payload.

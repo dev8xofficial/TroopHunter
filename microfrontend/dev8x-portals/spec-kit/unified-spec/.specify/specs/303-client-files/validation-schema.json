@@ -1,1 +1,99 @@
-﻿{"$schema": "http://json-schema.org/draft-07/schema#","description":"Placeholder validation schema"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Client Files validation schema",
+  "description": "Validation definitions for 303-client-files.",
+  "type": "object",
+  "definitions": {
+    "clientFileQuery": {
+      "type": "object",
+      "description": "Project file filter.",
+      "properties": {
+        "page": {
+          "description": "Page number",
+          "type": "integer"
+        },
+        "page_size": {
+          "description": "Page size",
+          "type": "integer"
+        },
+        "project_id": {
+          "description": "Project filter",
+          "type": "string",
+          "format": "uuid"
+        },
+        "category": {
+          "description": "Category filter",
+          "type": "string",
+          "enum": [
+            "contracts",
+            "deliverables",
+            "reports",
+            "other"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "clientFileUpload": {
+      "type": "object",
+      "description": "Project file upload payload.",
+      "properties": {
+        "project_id": {
+          "description": "Linked project",
+          "type": "string",
+          "format": "uuid"
+        },
+        "category": {
+          "description": "File category",
+          "type": "string",
+          "enum": [
+            "contracts",
+            "deliverables",
+            "reports",
+            "other"
+          ]
+        },
+        "file_name": {
+          "description": "File name",
+          "type": "string"
+        },
+        "file_size_bytes": {
+          "description": "File size",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project_id",
+        "category",
+        "file_name",
+        "file_size_bytes"
+      ]
+    },
+    "clientFileSummary": {
+      "type": "object",
+      "description": "Project file response.",
+      "properties": {
+        "file_id": {
+          "description": "File identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "version": {
+          "description": "Current version",
+          "type": "integer"
+        },
+        "category": {
+          "description": "Category",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "file_id",
+        "version",
+        "category"
+      ]
+    }
+  }
+}

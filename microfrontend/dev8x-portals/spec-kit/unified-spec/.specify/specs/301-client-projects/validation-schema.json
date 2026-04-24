@@ -1,1 +1,68 @@
-﻿{"$schema": "http://json-schema.org/draft-07/schema#","description":"Placeholder validation schema"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Client Projects validation schema",
+  "description": "Validation definitions for 301-client-projects.",
+  "type": "object",
+  "definitions": {
+    "clientProjectFilter": {
+      "type": "object",
+      "description": "Client project filter.",
+      "properties": {
+        "page": {
+          "description": "Page number",
+          "type": "integer"
+        },
+        "page_size": {
+          "description": "Page size",
+          "type": "integer"
+        },
+        "status": {
+          "description": "Status filter",
+          "type": "string",
+          "enum": [
+            "active",
+            "at_risk",
+            "delayed",
+            "completed",
+            "archived"
+          ]
+        },
+        "payment_type": {
+          "description": "Billing model filter",
+          "type": "string",
+          "enum": [
+            "fixed",
+            "hourly",
+            "monthly"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "clientProjectSummary": {
+      "type": "object",
+      "description": "Client project response.",
+      "properties": {
+        "project_id": {
+          "description": "Project identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Current status",
+          "type": "string"
+        },
+        "progress_pct": {
+          "description": "Progress percentage",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "project_id",
+        "status",
+        "progress_pct"
+      ]
+    }
+  }
+}

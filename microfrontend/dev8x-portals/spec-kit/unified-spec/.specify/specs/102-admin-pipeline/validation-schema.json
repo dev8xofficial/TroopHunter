@@ -1,1 +1,72 @@
-﻿{"$schema":"http://json-schema.org/draft-07/schema#","definitions":{"MoveCard":{"type":"object","required":["target_stage"],"properties":{"target_stage":{"type":"string","enum":["applied","shortlisted","interview","selected","joined"]}}}}}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Admin Pipeline validation schema",
+  "description": "Validation definitions for 102-admin-pipeline.",
+  "type": "object",
+  "definitions": {
+    "pipelineBoardQuery": {
+      "type": "object",
+      "description": "Pipeline board filter.",
+      "properties": {
+        "department": {
+          "description": "Department filter",
+          "type": "string"
+        },
+        "urgent_only": {
+          "description": "Only urgent cards",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "pipelineMoveRequest": {
+      "type": "object",
+      "description": "Pipeline move command.",
+      "properties": {
+        "to_stage": {
+          "description": "Destination stage",
+          "type": "string",
+          "enum": [
+            "applied",
+            "shortlisted",
+            "interview",
+            "selected",
+            "joined"
+          ]
+        },
+        "reason": {
+          "description": "Optional move rationale",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "to_stage"
+      ]
+    },
+    "pipelineBoardResponse": {
+      "type": "object",
+      "description": "Pipeline board summary.",
+      "properties": {
+        "stage": {
+          "description": "Lane name",
+          "type": "string"
+        },
+        "card_count": {
+          "description": "Cards in lane",
+          "type": "integer"
+        },
+        "stale_count": {
+          "description": "Cards over SLA",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "stage",
+        "card_count",
+        "stale_count"
+      ]
+    }
+  }
+}

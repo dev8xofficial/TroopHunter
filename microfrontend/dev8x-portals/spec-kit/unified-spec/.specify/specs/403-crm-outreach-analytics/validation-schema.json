@@ -1,1 +1,57 @@
-﻿{"$schema": "http://json-schema.org/draft-07/schema#","description":"Placeholder validation schema"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Outreach Analytics validation schema",
+  "description": "Validation definitions for 403-crm-outreach-analytics.",
+  "type": "object",
+  "definitions": {
+    "outreachAnalyticsQuery": {
+      "type": "object",
+      "description": "Outreach analytics filter.",
+      "properties": {
+        "segment": {
+          "description": "Segment filter",
+          "type": "string",
+          "enum": [
+            "b2b",
+            "freelance"
+          ]
+        },
+        "date_from": {
+          "description": "Reporting range start",
+          "type": "string",
+          "format": "date"
+        },
+        "date_to": {
+          "description": "Reporting range end",
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "additionalProperties": false
+    },
+    "outreachAnalyticsSummary": {
+      "type": "object",
+      "description": "Outreach analytics response.",
+      "properties": {
+        "channel_count": {
+          "description": "Number of returned channels",
+          "type": "integer"
+        },
+        "best_channel": {
+          "description": "Best channel",
+          "type": "string"
+        },
+        "generated_at": {
+          "description": "Snapshot timestamp",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "channel_count",
+        "generated_at"
+      ]
+    }
+  }
+}

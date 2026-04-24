@@ -1,1 +1,91 @@
-﻿{"$schema": "http://json-schema.org/draft-07/schema#","description":"Placeholder validation schema"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Client Support validation schema",
+  "description": "Validation definitions for 306-client-support.",
+  "type": "object",
+  "definitions": {
+    "supportTicketCreate": {
+      "type": "object",
+      "description": "Support ticket creation payload.",
+      "properties": {
+        "subject": {
+          "description": "Ticket subject",
+          "type": "string"
+        },
+        "category": {
+          "description": "Ticket category",
+          "type": "string"
+        },
+        "priority": {
+          "description": "Ticket priority",
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "urgent"
+          ]
+        },
+        "description": {
+          "description": "Ticket description",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "subject",
+        "category",
+        "priority",
+        "description"
+      ]
+    },
+    "supportTicketUpdate": {
+      "type": "object",
+      "description": "Support ticket status update payload.",
+      "properties": {
+        "status": {
+          "description": "Ticket status",
+          "type": "string",
+          "enum": [
+            "in_progress",
+            "resolved",
+            "open"
+          ]
+        },
+        "reason": {
+          "description": "Status change reason",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ]
+    },
+    "supportTicketSummary": {
+      "type": "object",
+      "description": "Support ticket response.",
+      "properties": {
+        "ticket_id": {
+          "description": "Ticket identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Current status",
+          "type": "string"
+        },
+        "priority": {
+          "description": "Priority",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "ticket_id",
+        "status",
+        "priority"
+      ]
+    }
+  }
+}

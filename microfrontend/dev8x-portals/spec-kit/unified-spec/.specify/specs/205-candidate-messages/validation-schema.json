@@ -1,1 +1,62 @@
-﻿{"$schema":"http://json-schema.org/draft-07/schema#"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Candidate Messages validation schema",
+  "description": "Validation definitions for 205-candidate-messages.",
+  "type": "object",
+  "definitions": {
+    "candidateMessageReply": {
+      "type": "object",
+      "description": "Candidate reply payload.",
+      "properties": {
+        "body": {
+          "description": "Reply body",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "body"
+      ]
+    },
+    "candidateMessageRead": {
+      "type": "object",
+      "description": "Read-state payload.",
+      "properties": {
+        "read": {
+          "description": "Read flag",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "read"
+      ]
+    },
+    "candidateThreadSummary": {
+      "type": "object",
+      "description": "Candidate thread response.",
+      "properties": {
+        "thread_id": {
+          "description": "Thread identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Current state",
+          "type": "string"
+        },
+        "last_message_at": {
+          "description": "Latest message timestamp",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "thread_id",
+        "status",
+        "last_message_at"
+      ]
+    }
+  }
+}

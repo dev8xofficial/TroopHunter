@@ -1,7 +1,22 @@
-﻿# Foundation — Rollout
+# Foundation - Rollout
+
 > **Module ID**: `000-foundation`
+> **Version**: 1.0.0
 
-Foundation is a prerequisite for all other modules. It rolls out first with no feature flags — all primitives are always enabled.
+---
 
-## Feature Flags
-None. Foundation primitives are unconditionally available.
+## Rollout Stages
+
+| Stage | Goal | Exit Criteria |
+| --- | --- | --- |
+| Phase 1 | Contract readiness | Validate 2 schemas, permissions, and event payloads in non-production review. |
+| Phase 2 | Pilot release | Enable foundation for a limited audience with event and error monitoring. |
+| Phase 3 | General availability | Promote to all intended roles after lifecycle, permissions, and audit checks pass. |
+
+---
+
+## Rollback Criteria
+
+- Repeated validation failures on required payloads.
+- Unauthorized access beyond the matrix defined in rbac-matrix.md.
+- Missing or malformed append-only audit events.

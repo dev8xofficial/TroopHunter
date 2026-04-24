@@ -1,1 +1,89 @@
-﻿{"$schema": "http://json-schema.org/draft-07/schema#","description":"Placeholder validation schema"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Pipeline validation schema",
+  "description": "Validation definitions for 402-crm-pipeline.",
+  "type": "object",
+  "definitions": {
+    "crmDealRecord": {
+      "type": "object",
+      "description": "CRM deal create payload.",
+      "properties": {
+        "contact_id": {
+          "description": "Linked contact",
+          "type": "string",
+          "format": "uuid"
+        },
+        "stage": {
+          "description": "Initial stage",
+          "type": "string",
+          "enum": [
+            "new_lead",
+            "contacted",
+            "meeting_set",
+            "proposal"
+          ]
+        },
+        "value": {
+          "description": "Deal value",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "contact_id",
+        "stage",
+        "value"
+      ]
+    },
+    "crmDealStageUpdate": {
+      "type": "object",
+      "description": "CRM deal stage update payload.",
+      "properties": {
+        "stage": {
+          "description": "Requested stage",
+          "type": "string",
+          "enum": [
+            "contacted",
+            "meeting_set",
+            "proposal",
+            "won",
+            "lost"
+          ]
+        },
+        "reason": {
+          "description": "Stage change reason",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "stage"
+      ]
+    },
+    "crmDealSummary": {
+      "type": "object",
+      "description": "CRM deal response.",
+      "properties": {
+        "deal_id": {
+          "description": "Deal identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "stage": {
+          "description": "Current stage",
+          "type": "string"
+        },
+        "value": {
+          "description": "Deal value",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "deal_id",
+        "stage",
+        "value"
+      ]
+    }
+  }
+}

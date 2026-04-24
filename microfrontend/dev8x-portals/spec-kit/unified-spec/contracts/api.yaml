@@ -1,29 +1,175 @@
-﻿api_version: v1
+api_version: v1
+generated_at: 2026-04-24
 domains:
+  foundation:
+    000-foundation:
+      - GET /api/v1/platform/domains
+      - GET /api/v1/platform/roles
+      - GET /api/v1/platform/contracts
   auth:
-    - POST /auth/login
-    - POST /auth/register
-    - POST /auth/mfa/verify
-    - POST /auth/password/reset
-    - POST /auth/sso/google
+    001-authentication:
+      - POST /api/v1/auth/login
+      - POST /api/v1/auth/register
+      - POST /api/v1/auth/logout
+    002-portal-routing:
+      - GET /api/v1/portals/config
+      - POST /api/v1/portals/resolve
+      - GET /api/v1/portals/last-destination
+    003-mfa:
+      - POST /api/v1/auth/mfa/challenge
+      - POST /api/v1/auth/mfa/verify
+      - POST /api/v1/auth/mfa/recovery
+    004-password-reset:
+      - POST /api/v1/auth/password/request
+      - POST /api/v1/auth/password/verify-token
+      - POST /api/v1/auth/password/reset
+    005-sso:
+      - GET /api/v1/auth/sso/google/init
+      - POST /api/v1/auth/sso/google/callback
+      - POST /api/v1/auth/sso/google/link
   admin:
-    - GET /admin/dashboard/kpis
-    - GET /admin/dashboard/funnel
-    - GET /admin/applicants
-    - GET /admin/applicants/{id}
-    - PATCH /admin/applicants/{id}/status
-    - GET /admin/jobs
-    - POST /admin/interviews/schedule
+    100-admin-dashboard:
+      - GET /api/v1/admin/dashboard/summary
+      - GET /api/v1/admin/dashboard/funnel
+      - GET /api/v1/admin/dashboard/priority-queue
+    101-admin-applicants:
+      - GET /api/v1/admin/applicants
+      - GET /api/v1/admin/applicants/{id}
+      - PATCH /api/v1/admin/applicants/{id}/status
+    102-admin-pipeline:
+      - GET /api/v1/admin/pipeline
+      - PATCH /api/v1/admin/pipeline/cards/{applicant_id}/stage
+      - GET /api/v1/admin/pipeline/metrics
+    103-admin-jobs:
+      - GET /api/v1/admin/jobs
+      - POST /api/v1/admin/jobs
+      - PATCH /api/v1/admin/jobs/{id}/status
+      - GET /api/v1/admin/jobs/{id}
+    104-admin-interviews:
+      - GET /api/v1/admin/interviews/calendar
+      - POST /api/v1/admin/interviews
+      - PATCH /api/v1/admin/interviews/{id}/status
+    105-admin-evaluations:
+      - GET /api/v1/admin/evaluations/{applicant_id}
+      - POST /api/v1/admin/evaluations/{applicant_id}
+      - POST /api/v1/admin/evaluations/{applicant_id}/decision
+    106-admin-documents:
+      - GET /api/v1/admin/documents
+      - POST /api/v1/admin/documents/requests
+      - PATCH /api/v1/admin/documents/{id}/review
+      - GET /api/v1/admin/documents/{id}
+    107-admin-email-templates:
+      - GET /api/v1/admin/templates
+      - POST /api/v1/admin/templates
+      - POST /api/v1/admin/templates/{id}/preview
+    108-admin-settings:
+      - GET /api/v1/admin/settings
+      - PATCH /api/v1/admin/settings
+      - POST /api/v1/admin/settings/users
+      - PATCH /api/v1/admin/settings/users/{id}/role
   candidate:
-    - GET /candidate/timeline
-    - POST /candidate/interviews/schedule
-    - POST /candidate/documents/{id}/sign
+    200-candidate-dashboard:
+      - GET /api/v1/candidate/dashboard/summary
+      - GET /api/v1/candidate/dashboard/deadlines
+      - GET /api/v1/candidate/dashboard/quick-actions
+    201-candidate-application:
+      - GET /api/v1/candidate/application/timeline
+      - GET /api/v1/candidate/application/status
+      - POST /api/v1/candidate/application/acknowledge-step
+    202-candidate-interviews:
+      - GET /api/v1/candidate/interviews/availability
+      - POST /api/v1/candidate/interviews/reservations
+      - PATCH /api/v1/candidate/interviews/reservations/{id}
+    203-candidate-documents:
+      - GET /api/v1/candidate/documents
+      - POST /api/v1/candidate/documents/{id}/sign
+      - POST /api/v1/candidate/documents/uploads
+    204-candidate-onboarding:
+      - GET /api/v1/candidate/onboarding/checklist
+      - POST /api/v1/candidate/onboarding/items/{id}/complete
+      - GET /api/v1/candidate/onboarding/accounts
+    205-candidate-messages:
+      - GET /api/v1/candidate/messages
+      - GET /api/v1/candidate/messages/{id}
+      - POST /api/v1/candidate/messages/{id}/reply
+      - POST /api/v1/candidate/messages/{id}/read
+    206-candidate-profile:
+      - GET /api/v1/candidate/profile
+      - PATCH /api/v1/candidate/profile
+      - POST /api/v1/candidate/profile/emergency-contacts
   client:
-    - GET /client/projects
-    - GET /client/invoices
-    - POST /client/files/upload
-    - GET /client/time-entries
+    300-client-dashboard:
+      - GET /api/v1/client/dashboard/summary
+      - GET /api/v1/client/dashboard/projects-overview
+      - GET /api/v1/client/dashboard/activity
+    301-client-projects:
+      - GET /api/v1/client/projects
+      - GET /api/v1/client/projects/{id}
+      - GET /api/v1/client/projects/{id}/milestones
+    302-client-invoices:
+      - GET /api/v1/client/invoices
+      - GET /api/v1/client/invoices/{id}
+      - GET /api/v1/client/invoices/{id}/summary
+    303-client-files:
+      - GET /api/v1/client/files
+      - POST /api/v1/client/files
+      - GET /api/v1/client/files/{id}/versions
+      - GET /api/v1/client/files/{id}/download
+    304-client-working-hours:
+      - GET /api/v1/client/time-entries
+      - GET /api/v1/client/time-entries/summary
+      - GET /api/v1/client/time-entries/budget-burn
+    305-client-messaging:
+      - GET /api/v1/client/messages
+      - GET /api/v1/client/messages/{id}
+      - POST /api/v1/client/messages/{id}/reply
+      - PATCH /api/v1/client/messages/{id}
+    306-client-support:
+      - GET /api/v1/client/support/tickets
+      - POST /api/v1/client/support/tickets
+      - PATCH /api/v1/client/support/tickets/{id}
+      - GET /api/v1/client/support/tickets/{id}
+    307-client-contracts:
+      - GET /api/v1/client/contracts
+      - GET /api/v1/client/contracts/{id}
+      - POST /api/v1/client/contracts/{id}/sign
   crm:
-    - GET /crm/contacts
-    - GET /crm/deals
-    - GET /crm/analytics/channels
+    400-crm-dashboard:
+      - GET /api/v1/crm/dashboard/summary
+      - GET /api/v1/crm/dashboard/funnel
+      - GET /api/v1/crm/dashboard/hot-leads
+    401-crm-contacts:
+      - GET /api/v1/crm/contacts
+      - POST /api/v1/crm/contacts
+      - PATCH /api/v1/crm/contacts/{id}
+      - GET /api/v1/crm/contacts/{id}
+    402-crm-pipeline:
+      - GET /api/v1/crm/deals
+      - POST /api/v1/crm/deals
+      - PATCH /api/v1/crm/deals/{id}/stage
+      - GET /api/v1/crm/deals/board
+    403-crm-outreach-analytics:
+      - GET /api/v1/crm/analytics/channels
+      - GET /api/v1/crm/analytics/heatmap
+      - GET /api/v1/crm/analytics/recommendations
+    404-crm-templates:
+      - GET /api/v1/crm/templates
+      - POST /api/v1/crm/templates
+      - POST /api/v1/crm/templates/{id}/preview
+    405-crm-lead-stacks:
+      - GET /api/v1/crm/lead-stacks
+      - POST /api/v1/crm/lead-stacks
+      - POST /api/v1/crm/lead-stacks/{id}/assign
+    406-crm-scoring:
+      - GET /api/v1/crm/scoring/{contact_id}
+      - POST /api/v1/crm/scoring/recalculate
+      - GET /api/v1/crm/scoring/queue
+    407-crm-archive:
+      - GET /api/v1/crm/archive/won
+      - GET /api/v1/crm/archive/lost
+      - GET /api/v1/crm/archive/{deal_id}
+    408-crm-settings:
+      - GET /api/v1/crm/settings
+      - PATCH /api/v1/crm/settings
+      - POST /api/v1/crm/settings/users
+      - PATCH /api/v1/crm/settings/users/{id}/role

@@ -9,81 +9,130 @@
 
 ## Overview
 
-The Client Dashboard serves as the landing page for authenticated Client users. It aggregates high-level KPIs across all of a client's active projects, recent invoices, unread messages, and overall budget burn.
+The Client Dashboard provides a client-scoped summary of projects, invoices, support tickets, and recent account activity.
 
 ---
 
 ## Actors
 
 | Actor | Role | Interaction |
-|-------|------|-------------|
-| Client | `client` | Views aggregated project data, navigates to specific projects |
-| Manager | `manager` | Views client-specific dashboards for accounts they manage |
-| Super Admin | `super_admin` | Has read-only access to all client dashboards |
+| --- | --- | --- |
+| Client | client | Views and manages their own account data |
+| Manager | manager | Operates on managed client accounts |
+| Super Admin | super_admin | Provides read-only or support access |
+| System | system | Publishes summaries, sync status, and lifecycle events |
 
 ---
 
 ## Functional Requirements
 
-### FR-300-01: KPI Aggregation
+### FR-300-01: Aggregate client KPIs
 
-**Description**: The system shall calculate and display key performance indicators across all active projects owned by the client.
-
-**Acceptance Criteria**:
-- [ ] Displays Total Active Projects count
-- [ ] Displays Total Budget Burn (percentage across all projects)
-- [ ] Displays Unpaid Invoices (count and total amount due)
-- [ ] Displays Open Support Tickets count
-
-### FR-300-02: Project Health Overview
-
-**Description**: The system shall list active projects with their current health status.
+**Description**: The system shall show top-level client account metrics.
 
 **Acceptance Criteria**:
-- [ ] Lists projects sorted by recently updated
-- [ ] Displays health status indicator (On Track, At Risk, Delayed)
-- [ ] Displays progress percentage bar for each project
-- [ ] Clicking a project routes to `301-client-projects` detail view
+- [ ] Metrics include active projects, total invoiced, open tickets, and team size.
+- [ ] Values are scoped to the current client or managed client account.
+- [ ] Snapshot timestamp is included with the response.
 
-### FR-300-03: Recent Activity Feed
+### FR-300-02: List project health overview
 
-**Description**: The system shall display a chronological feed of recent events related to the client's account.
+**Description**: The system shall summarize active projects and their current health.
 
 **Acceptance Criteria**:
-- [ ] Includes recent file uploads, new invoices, and ticket updates
-- [ ] Limited to the 10 most recent events
-- [ ] Events are pulled from the central activity log filtered by `actor.user_id` or `entity.client_id`
+- [ ] Each project row includes current health, progress, and project manager context.
+- [ ] Projects are ordered by recent activity.
+- [ ] Project detail routing leads to the project module.
+
+### FR-300-03: Publish recent account activity
+
+**Description**: The system shall show the latest account-level events.
+
+**Acceptance Criteria**:
+- [ ] Activity includes file uploads, invoices, ticket updates, and project milestones.
+- [ ] Activity stays within the current client account scope.
+- [ ] Dashboard reads emit an audit event.
 
 ---
 
 ## Data Model
 
-The Dashboard does not own any exclusive entities; it aggregates data from:
-- `Project` (Module 301)
-- `Invoice` (Module 302)
-- `Ticket` (Module 306)
+### ClientDashboardSnapshot
+
+Aggregated client account summary.
+
+| Field | Type | Required | Constraints | Description |
+| --- | --- | --- | --- | --- |
+| id | uuid | Yes | Primary key, immutable | Unique identifier |
+| client_id | uuid | Yes | Client account id | Client identifier |
+| active_project_count | integer | Yes | min 0 | Number of active projects |
+| open_ticket_count | integer | Yes | min 0 | Open support tickets |
+| total_invoiced_amount | number | Yes | min 0 | Total invoiced amount |
+| team_size | integer | Yes | min 0 | Visible team size |
+| created_at | datetime | Yes | Auto-generated | Creation timestamp |
+| updated_at | datetime | Yes | Auto-updated on mutation | Last update timestamp |
 
 ---
 
 ## Business Rules
 
-### BR-300-01: Client Data Isolation
+### BR-300-01: Client account isolation
 
 **Condition**: When querying dashboard data
-**Action**: Enforce `client_id = current_user.id` or `manager_id = current_user.id`
-**Rationale**: Constitution G-04 (Never allow a client to view other clients' projects)
+**Action**: Filter all summaries to the active client account or managed account list.
+**Rationale**: Constitution G-04
+
+### BR-300-02: Support-only super admin access
+
+**Condition**: When the actor is super_admin
+**Action**: Allow read-only or support access from the dashboard.
+**Rationale**: Prevents accidental mutation
+
+---
+
+## State Machine
+
+See [state-machines.md](state-machines.md) for the client snapshot lifecycle.
 
 ---
 
 ## API Surface
 
 See [api-contracts.md](api-contracts.md) for endpoint definitions:
-- `GET /client/dashboard/kpis`
-- `GET /client/dashboard/activity`
+- `GET /api/v1/client/dashboard/summary`
+- `GET /api/v1/client/dashboard/projects-overview`
+- `GET /api/v1/client/dashboard/activity`
+
+---
+
+## Access Control
+
+See [rbac-matrix.md](rbac-matrix.md) for role permissions.
+
+---
+
+## Audit Events
+
+See [activity-log-events.md](activity-log-events.md) for:
+- `client.dashboard.viewed` (EVT-300-01)
+- `client.dashboard.project_drilldown_opened` (EVT-300-02)
+
+---
+
+## Dependencies
+
+| Module | Dependency Type | Description |
+| --- | --- | --- |
+| 301-client-projects | Upstream | Provides project health and progress data |
+| 302-client-invoices | Upstream | Provides invoicing summaries |
+| 306-client-support | Upstream | Provides ticket counts and recent updates |
 
 ---
 
 ## References
 
-- [Constitution](../../memory/constitution.md) — G-04 (Client data isolation)
+- [Constitution](../../memory/constitution.md)
 - [contracts/access-control.yaml](../../../contracts/access-control.yaml)
+- [contracts/api.yaml](../../../contracts/api.yaml)
+- [contracts/events.yaml](../../../contracts/events.yaml)
+- [adr-008-clockify-integration-strategy.md](../../decisions/adr-008-clockify-integration-strategy.md)

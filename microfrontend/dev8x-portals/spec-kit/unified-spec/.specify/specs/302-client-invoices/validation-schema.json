@@ -1,1 +1,68 @@
-﻿{"$schema": "http://json-schema.org/draft-07/schema#","description":"Placeholder validation schema"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Client Invoices validation schema",
+  "description": "Validation definitions for 302-client-invoices.",
+  "type": "object",
+  "definitions": {
+    "invoiceFilter": {
+      "type": "object",
+      "description": "Invoice list filter.",
+      "properties": {
+        "page": {
+          "description": "Page number",
+          "type": "integer"
+        },
+        "page_size": {
+          "description": "Page size",
+          "type": "integer"
+        },
+        "status": {
+          "description": "Invoice status filter",
+          "type": "string",
+          "enum": [
+            "draft",
+            "due",
+            "overdue",
+            "paid"
+          ]
+        },
+        "date_from": {
+          "description": "Reporting range start",
+          "type": "string",
+          "format": "date"
+        },
+        "date_to": {
+          "description": "Reporting range end",
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "additionalProperties": false
+    },
+    "invoiceSummary": {
+      "type": "object",
+      "description": "Invoice response summary.",
+      "properties": {
+        "invoice_id": {
+          "description": "Invoice identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Current status",
+          "type": "string"
+        },
+        "amount": {
+          "description": "Invoice amount",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "invoice_id",
+        "status",
+        "amount"
+      ]
+    }
+  }
+}

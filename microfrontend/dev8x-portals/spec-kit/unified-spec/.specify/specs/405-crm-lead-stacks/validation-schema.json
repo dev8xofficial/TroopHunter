@@ -1,1 +1,82 @@
-﻿{"$schema": "http://json-schema.org/draft-07/schema#","description":"Placeholder validation schema"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Lead Stacks validation schema",
+  "description": "Validation definitions for 405-crm-lead-stacks.",
+  "type": "object",
+  "definitions": {
+    "leadStackRecord": {
+      "type": "object",
+      "description": "Lead stack create or update payload.",
+      "properties": {
+        "name": {
+          "description": "Display name",
+          "type": "string"
+        },
+        "description": {
+          "description": "Stack description",
+          "type": "string"
+        },
+        "status": {
+          "description": "Stack status",
+          "type": "string",
+          "enum": [
+            "draft",
+            "active",
+            "exhausted",
+            "archived"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "description",
+        "status"
+      ]
+    },
+    "leadStackAssignment": {
+      "type": "object",
+      "description": "Lead stack assignment payload.",
+      "properties": {
+        "owner_id": {
+          "description": "Assignee",
+          "type": "string",
+          "format": "uuid"
+        },
+        "campaign_name": {
+          "description": "Campaign name",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "owner_id"
+      ]
+    },
+    "leadStackSummary": {
+      "type": "object",
+      "description": "Lead stack response.",
+      "properties": {
+        "stack_id": {
+          "description": "Stack identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Current status",
+          "type": "string"
+        },
+        "lead_count": {
+          "description": "Lead count",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "stack_id",
+        "status",
+        "lead_count"
+      ]
+    }
+  }
+}

@@ -1,1 +1,86 @@
-﻿{"$schema":"http://json-schema.org/draft-07/schema#"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Admin Email Templates validation schema",
+  "description": "Validation definitions for 107-admin-email-templates.",
+  "type": "object",
+  "definitions": {
+    "emailTemplateRecord": {
+      "type": "object",
+      "description": "Template create or update payload.",
+      "properties": {
+        "template_key": {
+          "description": "Template identifier",
+          "type": "string"
+        },
+        "subject": {
+          "description": "Email subject",
+          "type": "string"
+        },
+        "body": {
+          "description": "Email body",
+          "type": "string"
+        },
+        "status": {
+          "description": "Template status",
+          "type": "string",
+          "enum": [
+            "draft",
+            "approved",
+            "retired"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "template_key",
+        "subject",
+        "body",
+        "status"
+      ]
+    },
+    "emailTemplatePreview": {
+      "type": "object",
+      "description": "Template preview payload.",
+      "properties": {
+        "sample_candidate_name": {
+          "description": "Sample candidate name",
+          "type": "string"
+        },
+        "sample_position_title": {
+          "description": "Sample position title",
+          "type": "string"
+        },
+        "sample_company_name": {
+          "description": "Sample company name",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "emailTemplateSummary": {
+      "type": "object",
+      "description": "Template response summary.",
+      "properties": {
+        "template_id": {
+          "description": "Template identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Current status",
+          "type": "string"
+        },
+        "variable_count": {
+          "description": "Number of allowed variables",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "template_id",
+        "status",
+        "variable_count"
+      ]
+    }
+  }
+}

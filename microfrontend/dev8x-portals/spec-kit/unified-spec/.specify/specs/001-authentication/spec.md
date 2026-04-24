@@ -3,97 +3,67 @@
 > **Module ID**: `001-authentication`
 > **Domain**: Authentication & Identity (0xx)
 > **Version**: 1.0.0
-> **Last Updated**: 2026-04-22
+> **Last Updated**: 2026-04-24
 
 ---
 
 ## Overview
 
-The Authentication module provides credential validation, session management, and login/logout flows for all Dev8X platform portals. It serves as the gateway to the entire platform — every user interaction begins with this module.
+The Authentication module validates credentials, creates portal-scoped sessions, applies account lockout, and handles candidate registration for the Dev8X platform.
 
 ---
 
 ## Actors
 
 | Actor | Role | Interaction |
-|-------|------|-------------|
-| Candidate | `candidate` | Registers, logs in via email/password or Google SSO |
-| Client | `client` | Logs in via email/password or Google SSO (no self-registration) |
-| HR Admin | `hr_admin` | Logs in via email/password + TOTP (mandatory 2FA) |
-| Super Admin | `super_admin` | Logs in via email/password + TOTP (mandatory 2FA) |
-| Sales Rep | `sales_rep` | Logs in via email/password |
-| Manager | `manager` | Logs in via email/password |
-| System | `system` | Enforces lockout, expires sessions, emits audit events |
+| --- | --- | --- |
+| Candidate | candidate | Registers and authenticates into the candidate portal |
+| Client | client | Authenticates into the client portal |
+| HR Admin | hr_admin | Authenticates into the admin portal with MFA |
+| Super Admin | super_admin | Authenticates into privileged administrative flows |
+| Sales Rep | sales_rep | Authenticates into CRM portal access |
+| Manager | manager | Authenticates for managed account oversight |
+| System | system | Issues tokens, challenges, and audit events |
 
 ---
 
 ## Functional Requirements
 
-### FR-001-01: Email/Password Login
+### FR-001-01: Validate email and password credentials
 
-**Description**: The system shall authenticate users by validating email and password credentials against stored hashed passwords.
-
-**Acceptance Criteria**:
-- [ ] Valid email + correct password → session created, JWT issued
-- [ ] Valid email + wrong password → error "Invalid credentials", attempt counter incremented
-- [ ] Unknown email → same error as wrong password (no user enumeration)
-- [ ] Locked account → error "Account locked" with lockout duration
-- [ ] Successful login records IP address, user agent, and timestamp
-
-### FR-001-02: Self-Registration (Candidate Only)
-
-**Description**: The system shall allow candidates to create new accounts via email registration.
+**Description**: The system shall authenticate users against stored credentials without leaking whether an email exists.
 
 **Acceptance Criteria**:
-- [ ] Registration form accepts: first_name, last_name, email, password, password_confirmation
-- [ ] Duplicate email → error "Email already registered"
-- [ ] Password must meet complexity requirements (min 8 chars, 1 upper, 1 lower, 1 digit)
-- [ ] Successful registration sends email verification link
-- [ ] Account is inactive until email is verified
-- [ ] Only `candidate` role accounts can self-register
+- [ ] Valid credentials create a session for the selected portal.
+- [ ] Invalid email and invalid password return the same error response.
+- [ ] Successful login records IP address, user agent, and portal.
 
-### FR-001-03: Session Management
+### FR-001-02: Support candidate self-registration
 
-**Description**: The system shall manage authenticated sessions with JWT tokens.
+**Description**: The system shall allow only candidates to register new accounts.
 
 **Acceptance Criteria**:
-- [ ] JWT contains: sub (user_id), portal, role, iat, exp, mfa_verified
-- [ ] Admin sessions expire after 4 hours of inactivity
-- [ ] CRM sessions expire after 8 hours
-- [ ] Candidate/Client sessions expire after 24 hours
-- [ ] "Remember me" extends Client/Candidate sessions to 30 days
-- [ ] Concurrent sessions allowed (max 5 per user)
+- [ ] Registration requires first name, last name, email, and password confirmation.
+- [ ] Duplicate email addresses are rejected.
+- [ ] New candidate accounts remain inactive until verification completes.
 
-### FR-001-04: Logout
+### FR-001-03: Manage portal-scoped sessions
 
-**Description**: The system shall terminate authenticated sessions on user request.
+**Description**: The system shall issue sessions whose role and portal claims restrict downstream access.
 
 **Acceptance Criteria**:
-- [ ] Logout invalidates the current JWT token
-- [ ] Logout emits `auth.session.logout` event with session duration
-- [ ] Logout redirects to portal selector
-- [ ] "Logout all devices" option invalidates all active sessions for the user
+- [ ] Admin sessions require later MFA completion.
+- [ ] Session lifetime follows the selected portal policy.
+- [ ] Logout can revoke the current session or all active sessions for the current user.
 
-### FR-001-05: Account Lockout
+### FR-001-04: Apply lockout policy
 
-**Description**: The system shall lock accounts after repeated failed login attempts.
-
-**Acceptance Criteria**:
-- [ ] Admin accounts: lock after 3 failed attempts, 60-minute cooldown, manual unlock by super_admin
-- [ ] All other portals: lock after 5 failed attempts, 30-minute auto-unlock
-- [ ] Lockout emits `auth.account.locked` event
-- [ ] Failed attempt counter resets on successful login
-- [ ] Lockout applies per-email, not per-IP
-
-### FR-001-06: Email Verification
-
-**Description**: The system shall verify candidate email addresses during registration.
+**Description**: The system shall lock accounts after repeated failures according to portal policy.
 
 **Acceptance Criteria**:
-- [ ] Verification token sent via email, valid for 24 hours
-- [ ] Clicking verification link activates the account
-- [ ] Expired token → prompt to resend verification email
-- [ ] Resend limit: 3 per 24 hours
+- [ ] Admin accounts lock faster than non-admin accounts.
+- [ ] Lockout records the responsible email, portal, and lock duration.
+- [ ] Successful login resets the failed-attempt counter.
 
 ---
 
@@ -101,78 +71,70 @@ The Authentication module provides credential validation, session management, an
 
 ### User
 
+Platform identity record for every authenticated actor.
+
 | Field | Type | Required | Constraints | Description |
-|-------|------|----------|-------------|-------------|
+| --- | --- | --- | --- | --- |
 | id | uuid | Yes | Primary key, immutable | Unique identifier |
-| email | string | Yes | RFC 5322, max 254, unique | Login email |
-| password_hash | string | Yes | bcrypt/argon2 hash | Hashed password |
+| email | string | Yes | RFC 5322, max 254 | Email address |
 | first_name | string | Yes | min 1, max 100 | First name |
 | last_name | string | Yes | min 1, max 100 | Last name |
-| role | enum | Yes | super_admin, hr_admin, candidate, client, sales_rep, manager | Platform role |
-| status | enum | Yes | active, inactive, locked | Account status |
-| email_verified | boolean | Yes | Default: false | Email verification status |
-| failed_login_attempts | integer | Yes | Default: 0, max 10 | Failed attempt counter |
-| locked_until | datetime | No | Nullable | Lockout expiry |
-| last_login | datetime | No | Nullable | Last successful login |
+| role | string | Yes | platform role id | Assigned role |
+| status | string | Yes | enum: active, inactive, locked | Account status |
+| failed_login_attempts | integer | Yes | min 0 | Failed login counter |
 | created_at | datetime | Yes | Auto-generated | Creation timestamp |
-| updated_at | datetime | Yes | Auto-generated | Last update |
+| updated_at | datetime | Yes | Auto-updated on mutation | Last update timestamp |
 
 ### Session
 
+Portal-scoped authenticated session.
+
 | Field | Type | Required | Constraints | Description |
-|-------|------|----------|-------------|-------------|
-| id | uuid | Yes | Primary key | Session identifier |
-| user_id | uuid | Yes | FK → User.id | Session owner |
-| portal | enum | Yes | candidate, client, admin, crm | Portal scope |
-| token_hash | string | Yes | SHA-256 hash of JWT | Token fingerprint |
-| ip_address | string | Yes | IPv4/IPv6 | Client IP |
-| user_agent | string | Yes | max 500 | Browser user agent |
+| --- | --- | --- | --- | --- |
+| id | uuid | Yes | Primary key, immutable | Unique identifier |
+| user_id | uuid | Yes | FK -> User.id | Owning user |
+| portal | string | Yes | enum: candidate, client, admin, crm | Portal scope |
+| mfa_verified | boolean | Yes | default false | Whether MFA is complete |
 | expires_at | datetime | Yes | Portal-specific TTL | Session expiry |
-| created_at | datetime | Yes | Auto-generated | Login timestamp |
+| created_at | datetime | Yes | Auto-generated | Creation timestamp |
+| updated_at | datetime | Yes | Auto-updated on mutation | Last update timestamp |
 
 ---
 
 ## Business Rules
 
-### BR-001-01: No User Enumeration
+### BR-001-01: No user enumeration
 
-**Condition**: When login fails (wrong password OR unknown email)
-**Action**: Return identical error message "Invalid credentials"
-**Rationale**: Prevents attackers from discovering valid email addresses
+**Condition**: When login fails for unknown email or wrong password
+**Action**: Return the same invalid-credentials response.
+**Rationale**: Constitution guardrail and security hardening
 
-### BR-001-02: Portal-Scoped Sessions
+### BR-001-02: Portal-scoped claims
 
-**Condition**: When a user authenticates
-**Action**: JWT `portal` claim restricts API access to the authenticated portal's endpoints
-**Rationale**: A candidate token cannot access admin endpoints (see ADR-006)
+**Condition**: When a session is created
+**Action**: Bind the session to the selected portal and role claims.
+**Rationale**: Prevents cross-portal access leakage
 
-### BR-001-03: Password Storage
+### BR-001-03: Admin lockout severity
 
-**Condition**: When a password is stored or updated
-**Action**: Hash with bcrypt (cost factor ≥ 12) or argon2id before storage. Never store plaintext.
-**Rationale**: Constitution Guardrail G-08
-
-### BR-001-04: Admin Password History
-
-**Condition**: When an Admin/Super Admin changes their password
-**Action**: Reject if the new password matches any of the last 5 passwords
-**Rationale**: ADR-010 password requirements
+**Condition**: When an admin or super admin exceeds the failure threshold
+**Action**: Apply the stricter lockout policy before another login attempt.
+**Rationale**: Administrative accounts carry elevated risk
 
 ---
 
 ## State Machine
 
-See [state-machines.md](state-machines.md) for the Authentication Session lifecycle.
+See [state-machines.md](state-machines.md) for the authentication session lifecycle.
 
 ---
 
 ## API Surface
 
 See [api-contracts.md](api-contracts.md) for endpoint definitions:
-- `POST /auth/login`
-- `POST /auth/logout`
-- `POST /auth/register`
-- `POST /auth/verify-email`
+- `POST /api/v1/auth/login`
+- `POST /api/v1/auth/register`
+- `POST /api/v1/auth/logout`
 
 ---
 
@@ -196,17 +158,19 @@ See [activity-log-events.md](activity-log-events.md) for:
 ## Dependencies
 
 | Module | Dependency Type | Description |
-|--------|----------------|-------------|
-| `002-portal-routing` | Downstream | Uses portal config to route after login |
-| `003-mfa` | Conditional | Admin logins require MFA verification |
-| `004-password-reset` | Related | Shares user/credential data model |
-| `005-sso` | Alternative | Provides alternative login flow via OAuth |
+| --- | --- | --- |
+| 002-portal-routing | Downstream | Consumes role and portal context after successful authentication |
+| 003-mfa | Conditional | Admin sessions remain incomplete until MFA verification succeeds |
+| 004-password-reset | Related | Shares credential recovery entities and audit rules |
+| 005-sso | Alternative | Alternative identity entry path for eligible portals |
 
 ---
 
 ## References
 
-- [Constitution](../../memory/constitution.md) — P-05 (RBAC), G-08 (no plaintext), G-09 (admin MFA)
-- [ADR-006: Portal Routing](../../decisions/adr-006-portal-routing-architecture.md)
-- [ADR-010: Multi-Portal Auth](../../decisions/adr-010-multi-portal-auth.md)
+- [Constitution](../../memory/constitution.md)
 - [contracts/access-control.yaml](../../../contracts/access-control.yaml)
+- [contracts/api.yaml](../../../contracts/api.yaml)
+- [contracts/events.yaml](../../../contracts/events.yaml)
+- [adr-006-portal-routing-architecture.md](../../decisions/adr-006-portal-routing-architecture.md)
+- [adr-010-multi-portal-auth.md](../../decisions/adr-010-multi-portal-auth.md)

@@ -1,1 +1,76 @@
-﻿
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SSO validation schema",
+  "description": "Validation definitions for 005-sso.",
+  "type": "object",
+  "definitions": {
+    "ssoInitRequest": {
+      "type": "object",
+      "description": "SSO init request.",
+      "properties": {
+        "portal": {
+          "description": "Target portal",
+          "type": "string",
+          "enum": [
+            "candidate",
+            "client"
+          ]
+        },
+        "return_to": {
+          "description": "Preferred return route",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "portal"
+      ]
+    },
+    "ssoCallbackRequest": {
+      "type": "object",
+      "description": "SSO callback payload.",
+      "properties": {
+        "state": {
+          "description": "Provider state value",
+          "type": "string"
+        },
+        "authorization_code": {
+          "description": "Provider code",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "authorization_code"
+      ]
+    },
+    "ssoSessionResponse": {
+      "type": "object",
+      "description": "SSO completion response.",
+      "properties": {
+        "token": {
+          "description": "Issued session token",
+          "type": "string"
+        },
+        "provider": {
+          "description": "Identity provider",
+          "type": "string",
+          "enum": [
+            "google"
+          ]
+        },
+        "linked_account": {
+          "description": "Link result",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "token",
+        "provider",
+        "linked_account"
+      ]
+    }
+  }
+}

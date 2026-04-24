@@ -1,24 +1,159 @@
-﻿events:
+generated_at: 2026-04-24
+events:
+  foundation:
+    000-foundation:
+      - foundation.registry.read
+      - foundation.registry.published
+      - foundation.contracts.published
   auth:
-    - auth.login
-    - auth.logout
-    - auth.register
-    - auth.mfa_verified
+    001-authentication:
+      - auth.session.login
+      - auth.session.logout
+      - auth.session.login_failed
+      - auth.account.registered
+      - auth.account.locked
+    002-portal-routing:
+      - auth.portal.selected
+      - auth.route.resolved
+      - auth.route.blocked
+    003-mfa:
+      - auth.mfa.challenge_issued
+      - auth.mfa.verified
+      - auth.mfa.failed
+      - auth.mfa.expired
+    004-password-reset:
+      - auth.password.reset_requested
+      - auth.password.token_verified
+      - auth.password.reset_completed
+    005-sso:
+      - auth.sso.started
+      - auth.sso.completed
+      - auth.sso.linked
   admin:
-    - applicant.created
-    - applicant.status_changed
-    - job.published
-    - interview.scheduled
+    100-admin-dashboard:
+      - admin.dashboard.viewed
+      - admin.dashboard.drilldown_opened
+    101-admin-applicants:
+      - admin.applicant.viewed
+      - admin.applicant.status_changed
+      - admin.applicant.exported
+    102-admin-pipeline:
+      - admin.pipeline.stage_changed
+      - admin.pipeline.stale_flagged
+      - admin.pipeline.metrics_viewed
+    103-admin-jobs:
+      - admin.job.created
+      - admin.job.status_changed
+      - admin.job.closed
+    104-admin-interviews:
+      - admin.interview.scheduled
+      - admin.interview.rescheduled
+      - admin.interview.status_changed
+    105-admin-evaluations:
+      - admin.evaluation.saved
+      - admin.evaluation.submitted
+      - admin.evaluation.finalized
+    106-admin-documents:
+      - admin.document.requested
+      - admin.document.reviewed
+      - admin.document.downloaded
+    107-admin-email-templates:
+      - admin.template.created
+      - admin.template.updated
+      - admin.template.previewed
+    108-admin-settings:
+      - admin.setting.updated
+      - admin.user.provisioned
+      - admin.user.role_changed
   candidate:
-    - application.submitted
-    - document.signed
-    - onboarding.step_completed
+    200-candidate-dashboard:
+      - candidate.dashboard.viewed
+      - candidate.dashboard.quick_action_opened
+    201-candidate-application:
+      - candidate.application.timeline_viewed
+      - candidate.application.step_acknowledged
+    202-candidate-interviews:
+      - candidate.interview.reserved
+      - candidate.interview.rescheduled
+      - candidate.interview.confirmed
+    203-candidate-documents:
+      - candidate.document.viewed
+      - candidate.document.signed
+      - candidate.document.uploaded
+    204-candidate-onboarding:
+      - candidate.onboarding.item_completed
+      - candidate.onboarding.account_provisioned
+      - candidate.onboarding.completed
+    205-candidate-messages:
+      - candidate.message.received
+      - candidate.message.replied
+      - candidate.message.read
+    206-candidate-profile:
+      - candidate.profile.updated
+      - candidate.profile.emergency_contact_updated
+      - candidate.profile.verification_changed
   client:
-    - project.created
-    - invoice.paid
-    - file.uploaded
-    - ticket.opened
+    300-client-dashboard:
+      - client.dashboard.viewed
+      - client.dashboard.project_drilldown_opened
+    301-client-projects:
+      - client.project.viewed
+      - client.project.lifecycle_changed
+    302-client-invoices:
+      - client.invoice.viewed
+      - client.invoice.lifecycle_changed
+    303-client-files:
+      - client.file.uploaded
+      - client.file.downloaded
+      - client.file.version_created
+    304-client-working-hours:
+      - client.time_entries.synced
+      - client.budget.threshold_crossed
+      - client.time_entries.viewed
+    305-client-messaging:
+      - client.message.received
+      - client.message.replied
+      - client.thread.escalated
+    306-client-support:
+      - client.ticket.opened
+      - client.ticket.status_changed
+      - client.ticket.reopened
+    307-client-contracts:
+      - client.contract.viewed
+      - client.contract.signed
+      - client.contract.reminder_sent
   crm:
-    - contact.created
-    - deal.stage_changed
-    - outreach.sent
+    400-crm-dashboard:
+      - crm.dashboard.viewed
+      - crm.dashboard.segment_changed
+    401-crm-contacts:
+      - crm.contact.created
+      - crm.contact.updated
+      - crm.contact.health_changed
+    402-crm-pipeline:
+      - crm.deal.created
+      - crm.deal.stage_changed
+      - crm.deal.stale_flagged
+      - crm.deal.closed
+    403-crm-outreach-analytics:
+      - crm.analytics.viewed
+      - crm.analytics.recommendation_generated
+    404-crm-templates:
+      - crm.template.created
+      - crm.template.updated
+      - crm.template.previewed
+    405-crm-lead-stacks:
+      - crm.lead_stack.created
+      - crm.lead_stack.updated
+      - crm.lead_stack.assigned
+    406-crm-scoring:
+      - crm.score.recalculated
+      - crm.score.priority_changed
+      - crm.score.overridden
+    407-crm-archive:
+      - crm.archive.viewed
+      - crm.deal.archived
+    408-crm-settings:
+      - crm.setting.updated
+      - crm.integration.toggled
+      - crm.user.role_changed

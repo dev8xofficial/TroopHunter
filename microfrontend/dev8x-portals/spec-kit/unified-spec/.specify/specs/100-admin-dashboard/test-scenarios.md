@@ -1,14 +1,25 @@
-﻿# Admin Dashboard - Test Scenarios
+# Admin Dashboard - Test Scenarios
+
 > **Module ID**: `100-admin-dashboard`
+> **Version**: 1.0.0
 
-### TS-100-01: KPI Values (Positive)
-Verify all 4 KPIs return correct aggregated values.
+---
 
-### TS-100-02: Funnel Conversion (Positive)
-Verify funnel conversion rates are mathematically correct.
+## Scenarios
 
-### TS-100-03: Unauthorized Access (Negative)
-Verify candidate/client tokens return 403 on dashboard endpoints.
+| Scenario ID | Category | Expected Result |
+| --- | --- | --- |
+| TS-100-01 | Happy path | Validate primary admin dashboard workflow succeeds for the intended role. |
+| TS-100-02 | Permission boundary | Confirm unauthorized roles receive FORBIDDEN and no state changes occur. |
+| TS-100-03 | Validation failure | Submit malformed or incomplete payloads and confirm schema rejection. |
+| TS-100-04 | Invalid state transition | Attempt a disallowed lifecycle move and confirm the state remains unchanged. |
+| TS-100-05 | Audit emission | Confirm the expected audit event is emitted exactly once with the required payload. |
 
-### TS-100-04: Empty State (Edge Case)
-Verify dashboard handles zero applicants gracefully.
+---
+
+## Coverage Expectations
+
+- Cover all functional requirements in spec.md.
+- Cover all state transitions in state-machines.md.
+- Cover all write operations and audit events in activity-log-events.md.
+- Cover every role-operation pair that should resolve to something other than `Deny`.

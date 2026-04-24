@@ -1,1 +1,104 @@
-﻿{"$schema":"http://json-schema.org/draft-07/schema#","definitions":{"CreateApplicant":{"type":"object","required":["name","email","position","department"],"properties":{"name":{"type":"string","minLength":1,"maxLength":200},"email":{"type":"string","format":"email"},"position":{"type":"string"},"department":{"type":"string"},"source":{"type":"string"}}},"StatusTransition":{"type":"object","required":["status"],"properties":{"status":{"type":"string","enum":["applied","shortlisted","interview","selected","joined","rejected","future_hire"]},"reason":{"type":"string"}}}}}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Admin Applicants validation schema",
+  "description": "Validation definitions for 101-admin-applicants.",
+  "type": "object",
+  "definitions": {
+    "applicantFilter": {
+      "type": "object",
+      "description": "Applicant list filter.",
+      "properties": {
+        "page": {
+          "description": "Page number",
+          "type": "integer"
+        },
+        "page_size": {
+          "description": "Page size",
+          "type": "integer"
+        },
+        "status": {
+          "description": "Status filter",
+          "type": "string",
+          "enum": [
+            "applied",
+            "shortlisted",
+            "interview",
+            "selected",
+            "joined",
+            "rejected",
+            "future_hire"
+          ]
+        },
+        "position_title": {
+          "description": "Position filter",
+          "type": "string"
+        },
+        "department": {
+          "description": "Department filter",
+          "type": "string"
+        },
+        "date_from": {
+          "description": "Reporting range start",
+          "type": "string",
+          "format": "date"
+        },
+        "date_to": {
+          "description": "Reporting range end",
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "additionalProperties": false
+    },
+    "applicantStatusUpdate": {
+      "type": "object",
+      "description": "Applicant status update command.",
+      "properties": {
+        "status": {
+          "description": "New status",
+          "type": "string",
+          "enum": [
+            "shortlisted",
+            "interview",
+            "selected",
+            "joined",
+            "rejected",
+            "future_hire"
+          ]
+        },
+        "reason": {
+          "description": "Status reason",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ]
+    },
+    "applicantSummary": {
+      "type": "object",
+      "description": "Applicant response summary.",
+      "properties": {
+        "applicant_id": {
+          "description": "Applicant identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Applicant status",
+          "type": "string"
+        },
+        "evaluation_score": {
+          "description": "Current evaluation score",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "applicant_id",
+        "status"
+      ]
+    }
+  }
+}

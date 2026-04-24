@@ -1,4 +1,4 @@
-# Authentication — Implementation Plan
+# Authentication - Implementation Plan
 
 > **Module ID**: `001-authentication`
 > **Version**: 1.0.0
@@ -7,103 +7,82 @@
 
 ## Objective
 
-Implement the core authentication system supporting email/password login, candidate self-registration, JWT session management, account lockout, and email verification across all 4 portal types.
+Implement the authentication specification for the authentication & identity domain with contract-first validation, RBAC enforcement, and append-only audit coverage.
 
 ---
 
 ## Prerequisites
 
 | Prerequisite | Status |
-|-------------|--------|
-| User data model defined | Complete (spec.md) |
-| Session data model defined | Complete (spec.md) |
-| RBAC contract defined | Complete (access-control.yaml) |
-| Portal routing spec | Complete (002-portal-routing) |
+| --- | --- |
+| Functional requirements approved | Complete (spec.md) |
+| Validation models defined | Complete (validation-schema.json) |
+| RBAC contract defined | Complete (rbac-matrix.md) |
+| Shared contracts aligned | Complete (contracts/*.yaml) |
 
 ---
 
 ## Implementation Tasks
 
-### Task 1: User Entity & Credential Storage
-
-**Complexity**: M
-**Priority**: P0
-
-**Description**: Implement User entity with password hashing, email uniqueness constraint, and account status management.
-
-**Acceptance Criteria**: FR-001-01, FR-001-02 credential storage requirements met.
-
-### Task 2: Login Endpoint
+### Task 1: Model User and Session
 
 **Complexity**: L
 **Priority**: P0
 
-**Description**: Implement POST /auth/login with portal-aware authentication flow including MFA branching for Admin portal.
+**Description**: Finalize canonical data structures, validation rules, and ownership boundaries for authentication.
 
-**Acceptance Criteria**: FR-001-01 login flow, BR-001-01 no user enumeration, BR-001-02 portal-scoped sessions.
-
-### Task 3: Registration Endpoint
-
-**Complexity**: M
-**Priority**: P0
-
-**Description**: Implement POST /auth/register for candidate self-registration with email verification trigger.
-
-**Acceptance Criteria**: FR-001-02 registration requirements.
-
-### Task 4: Session Management
+### Task 2: Deliver core API surface
 
 **Complexity**: L
 **Priority**: P0
 
-**Description**: Implement JWT issuance, validation, portal-scoped claims, and portal-specific TTLs.
+**Description**: Implement the request and response contracts for POST /api/v1/auth/login, POST /api/v1/auth/register, POST /api/v1/auth/logout.
 
-**Acceptance Criteria**: FR-001-03 session requirements, BR-001-02 portal scoping.
+### Task 3: Enforce RBAC and data scoping
 
-### Task 5: Account Lockout
+**Complexity**: M
+**Priority**: P0
+
+**Description**: Apply the role gates, own-data constraints, and managed-account boundaries defined in the RBAC matrix.
+
+### Task 4: Implement authentication session lifecycle
 
 **Complexity**: M
 **Priority**: P1
 
-**Description**: Implement failed attempt tracking, lockout enforcement, and auto-unlock timer.
+**Description**: Carry the approved lifecycle into state transitions, guard conditions, and invalid transition handling.
 
-**Acceptance Criteria**: FR-001-05 lockout requirements.
-
-### Task 6: Email Verification
+### Task 5: Wire audit events
 
 **Complexity**: S
 **Priority**: P1
 
-**Description**: Implement email verification token generation, email dispatch, and verification endpoint.
+**Description**: Emit 5 append-only events with payloads aligned to contracts/events.yaml.
 
-**Acceptance Criteria**: FR-001-06 verification requirements.
-
-### Task 7: Logout & Session Revocation
+### Task 6: Add validation and regression coverage
 
 **Complexity**: S
 **Priority**: P1
 
-**Description**: Implement POST /auth/logout with single-session and all-devices options.
-
-**Acceptance Criteria**: FR-001-04 logout requirements.
+**Description**: Cover positive, negative, permission, and lifecycle regression cases before implementation closes.
 
 ---
 
 ## Cross-Domain Dependencies
 
 | Contract | Update Required | Description |
-|----------|----------------|-------------|
-| api.yaml | Yes | Auth endpoints registered |
-| access-control.yaml | Yes | Auth permissions defined |
-| events.yaml | Yes | 8 auth events registered |
-| interactions.yaml | Yes | Session lifecycle defined |
+| --- | --- | --- |
+| api.yaml | Yes | Registers 3 endpoints |
+| access-control.yaml | Yes | Captures 6 permission operations |
+| events.yaml | Yes | Registers 5 append-only audit events |
+| interactions.yaml | Yes | Publishes Authentication Session Lifecycle transitions |
 
 ---
 
 ## Estimated Timeline
 
 | Phase | Duration | Tasks |
-|-------|----------|-------|
-| Phase 1 | 3 days | Tasks 1–3 (core login + register) |
-| Phase 2 | 2 days | Tasks 4–5 (sessions + lockout) |
-| Phase 3 | 1 day | Tasks 6–7 (verification + logout) |
+| --- | --- | --- |
+| Phase 1 | 1-2 days | Model User and Session, Deliver core API surface, Enforce RBAC and data scoping |
+| Phase 2 | 2-3 days | Implement authentication session lifecycle, Wire audit events, Add validation and regression coverage |
+| Phase 3 | 3-4 days | Regression, observability, and rollout checks |

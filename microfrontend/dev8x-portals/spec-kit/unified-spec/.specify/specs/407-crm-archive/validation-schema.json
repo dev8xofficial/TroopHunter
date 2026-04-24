@@ -1,1 +1,63 @@
-﻿{"$schema": "http://json-schema.org/draft-07/schema#","description":"Placeholder validation schema"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Archive validation schema",
+  "description": "Validation definitions for 407-crm-archive.",
+  "type": "object",
+  "definitions": {
+    "archiveQuery": {
+      "type": "object",
+      "description": "Archive query filter.",
+      "properties": {
+        "outcome": {
+          "description": "Archive outcome filter",
+          "type": "string",
+          "enum": [
+            "won",
+            "lost"
+          ]
+        },
+        "date_from": {
+          "description": "Reporting range start",
+          "type": "string",
+          "format": "date"
+        },
+        "date_to": {
+          "description": "Reporting range end",
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "additionalProperties": false
+    },
+    "archiveSummary": {
+      "type": "object",
+      "description": "Archive response summary.",
+      "properties": {
+        "deal_id": {
+          "description": "Deal identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "outcome": {
+          "description": "Closed outcome",
+          "type": "string",
+          "enum": [
+            "won",
+            "lost"
+          ]
+        },
+        "close_date": {
+          "description": "Closure date",
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "deal_id",
+        "outcome",
+        "close_date"
+      ]
+    }
+  }
+}

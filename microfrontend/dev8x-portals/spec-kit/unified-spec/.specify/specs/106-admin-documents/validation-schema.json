@@ -1,1 +1,81 @@
-﻿{"$schema":"http://json-schema.org/draft-07/schema#"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Admin Documents validation schema",
+  "description": "Validation definitions for 106-admin-documents.",
+  "type": "object",
+  "definitions": {
+    "documentRequest": {
+      "type": "object",
+      "description": "Document request payload.",
+      "properties": {
+        "applicant_id": {
+          "description": "Applicant identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "document_type": {
+          "description": "Requested document type",
+          "type": "string"
+        },
+        "deadline": {
+          "description": "Submission deadline",
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "applicant_id",
+        "document_type"
+      ]
+    },
+    "documentReview": {
+      "type": "object",
+      "description": "Document review payload.",
+      "properties": {
+        "status": {
+          "description": "Review outcome",
+          "type": "string",
+          "enum": [
+            "verified",
+            "rejected",
+            "archived"
+          ]
+        },
+        "reason": {
+          "description": "Review notes",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ]
+    },
+    "documentSummary": {
+      "type": "object",
+      "description": "Document response summary.",
+      "properties": {
+        "document_id": {
+          "description": "Document identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Current status",
+          "type": "string"
+        },
+        "version": {
+          "description": "Current version",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "document_id",
+        "status",
+        "version"
+      ]
+    }
+  }
+}

@@ -1,1 +1,66 @@
-﻿{"$schema": "http://json-schema.org/draft-07/schema#","description":"Placeholder validation schema"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Dashboard validation schema",
+  "description": "Validation definitions for 400-crm-dashboard.",
+  "type": "object",
+  "definitions": {
+    "crmDashboardQuery": {
+      "type": "object",
+      "description": "CRM dashboard filter.",
+      "properties": {
+        "segment": {
+          "description": "Selected segment",
+          "type": "string",
+          "enum": [
+            "b2b",
+            "freelance"
+          ]
+        },
+        "date_from": {
+          "description": "Reporting range start",
+          "type": "string",
+          "format": "date"
+        },
+        "date_to": {
+          "description": "Reporting range end",
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "segment"
+      ]
+    },
+    "crmDashboardResponse": {
+      "type": "object",
+      "description": "CRM dashboard response.",
+      "properties": {
+        "segment": {
+          "description": "Current segment",
+          "type": "string"
+        },
+        "open_deal_count": {
+          "description": "Open deals",
+          "type": "integer"
+        },
+        "hot_lead_count": {
+          "description": "Hot leads",
+          "type": "integer"
+        },
+        "generated_at": {
+          "description": "Snapshot timestamp",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "segment",
+        "open_deal_count",
+        "hot_lead_count",
+        "generated_at"
+      ]
+    }
+  }
+}

@@ -1,1 +1,57 @@
-﻿{"$schema":"http://json-schema.org/draft-07/schema#"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Candidate Application validation schema",
+  "description": "Validation definitions for 201-candidate-application.",
+  "type": "object",
+  "definitions": {
+    "applicationTimelineQuery": {
+      "type": "object",
+      "description": "Application timeline request.",
+      "properties": {},
+      "additionalProperties": false
+    },
+    "applicationAcknowledgement": {
+      "type": "object",
+      "description": "Application step acknowledgement payload.",
+      "properties": {
+        "step_key": {
+          "description": "Acknowledged step",
+          "type": "string"
+        },
+        "acknowledged": {
+          "description": "Acknowledgement flag",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "step_key",
+        "acknowledged"
+      ]
+    },
+    "applicationStepSummary": {
+      "type": "object",
+      "description": "Application step response.",
+      "properties": {
+        "step_key": {
+          "description": "Step identifier",
+          "type": "string"
+        },
+        "status": {
+          "description": "Step status",
+          "type": "string"
+        },
+        "step_date": {
+          "description": "When the step changed",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "step_key",
+        "status"
+      ]
+    }
+  }
+}

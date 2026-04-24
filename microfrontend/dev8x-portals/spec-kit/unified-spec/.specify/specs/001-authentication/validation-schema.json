@@ -1,99 +1,161 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Authentication Validation Schemas",
-  "description": "Payload validation rules for 001-authentication",
+  "title": "Authentication validation schema",
+  "description": "Validation definitions for 001-authentication.",
+  "type": "object",
   "definitions": {
-    "LoginRequest": {
+    "loginRequest": {
       "type": "object",
-      "required": ["email", "password", "portal"],
+      "description": "Credential validation request.",
       "properties": {
         "email": {
-          "type": "string",
-          "format": "email",
-          "maxLength": 254,
-          "description": "User email address"
+          "description": "Email address",
+          "type": "string"
         },
         "password": {
-          "type": "string",
-          "minLength": 8,
-          "description": "User password"
+          "description": "Submitted password",
+          "type": "string"
         },
         "portal": {
+          "description": "Requested portal",
           "type": "string",
-          "enum": ["candidate", "client", "admin"],
-          "description": "Target portal for authentication"
-        },
-        "totp_code": {
-          "type": "string",
-          "pattern": "^[0-9]{6}$",
-          "description": "TOTP code for Admin portal (required when portal=admin)"
+          "enum": [
+            "candidate",
+            "client",
+            "admin",
+            "crm"
+          ]
         },
         "remember_me": {
-          "type": "boolean",
-          "default": false,
-          "description": "Extend session to 30 days"
+          "description": "Extend non-admin session lifetime",
+          "type": "boolean"
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "required": [
+        "email",
+        "password",
+        "portal"
+      ]
     },
-    "RegisterRequest": {
+    "registerRequest": {
       "type": "object",
-      "required": ["first_name", "last_name", "email", "password", "password_confirmation"],
+      "description": "Candidate self-registration request.",
       "properties": {
         "first_name": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 100,
-          "description": "Candidate first name"
+          "description": "First name",
+          "type": "string"
         },
         "last_name": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 100,
-          "description": "Candidate last name"
+          "description": "Last name",
+          "type": "string"
         },
         "email": {
-          "type": "string",
-          "format": "email",
-          "maxLength": 254,
-          "description": "Email address (must be unique)"
+          "description": "Email address",
+          "type": "string"
         },
         "password": {
-          "type": "string",
-          "minLength": 8,
-          "pattern": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$",
-          "description": "Password (min 8 chars, 1 upper, 1 lower, 1 digit)"
+          "description": "Password",
+          "type": "string"
         },
         "password_confirmation": {
-          "type": "string",
-          "minLength": 8,
-          "description": "Must match password field"
+          "description": "Password confirmation",
+          "type": "string"
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "required": [
+        "first_name",
+        "last_name",
+        "email",
+        "password",
+        "password_confirmation"
+      ]
     },
-    "LogoutRequest": {
+    "logoutRequest": {
       "type": "object",
+      "description": "Logout request payload.",
       "properties": {
         "all_devices": {
-          "type": "boolean",
-          "default": false,
-          "description": "Revoke all active sessions"
+          "description": "Revoke all active sessions for the current user",
+          "type": "boolean"
         }
       },
       "additionalProperties": false
     },
-    "VerifyEmailRequest": {
+    "authSessionResponse": {
       "type": "object",
-      "required": ["token"],
+      "description": "Authentication success envelope.",
       "properties": {
         "token": {
+          "description": "Issued access token",
+          "type": "string"
+        },
+        "portal": {
+          "description": "Session portal",
+          "type": "string"
+        },
+        "expires_at": {
+          "description": "Session expiry",
           "type": "string",
-          "format": "uuid",
-          "description": "Email verification token"
+          "format": "date-time"
+        },
+        "mfa_required": {
+          "description": "Indicates whether MFA is pending",
+          "type": "boolean"
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "required": [
+        "token",
+        "portal",
+        "expires_at",
+        "mfa_required"
+      ]
+    },
+    "authRegistrationResponse": {
+      "type": "object",
+      "description": "Registration success envelope.",
+      "properties": {
+        "user_id": {
+          "description": "Created user",
+          "type": "string",
+          "format": "uuid"
+        },
+        "email": {
+          "description": "Registered email",
+          "type": "string"
+        },
+        "message": {
+          "description": "Registration result message",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "user_id",
+        "email",
+        "message"
+      ]
+    },
+    "logoutResponse": {
+      "type": "object",
+      "description": "Logout success envelope.",
+      "properties": {
+        "message": {
+          "description": "Logout result",
+          "type": "string"
+        },
+        "sessions_revoked": {
+          "description": "Number of revoked sessions",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "message",
+        "sessions_revoked"
+      ]
     }
   }
 }

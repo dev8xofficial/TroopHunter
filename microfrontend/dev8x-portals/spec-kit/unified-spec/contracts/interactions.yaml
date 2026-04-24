@@ -1,20 +1,587 @@
-﻿entities:
-  Applicant:
+generated_at: 2026-04-24
+entities:
+  000-foundation:
+    lifecycle: Specification Registry Lifecycle
+    states: [draft, validated, published, superseded]
+    transitions:
+      - trigger: validate()
+        from: draft
+        to: validated
+      - trigger: publish()
+        from: validated
+        to: published
+      - trigger: supersede()
+        from: published
+        to: superseded
+  001-authentication:
+    lifecycle: Authentication Session Lifecycle
+    states: [unauthenticated, credentials_validated, authenticated, expired, revoked]
+    transitions:
+      - trigger: login()
+        from: unauthenticated
+        to: credentials_validated
+      - trigger: login()
+        from: unauthenticated
+        to: authenticated
+      - trigger: verify_mfa()
+        from: credentials_validated
+        to: authenticated
+      - trigger: timeout()
+        from: authenticated
+        to: expired
+      - trigger: logout()
+        from: authenticated
+        to: revoked
+  002-portal-routing:
+    lifecycle: Portal Resolution Lifecycle
+    states: [selected, validated, resolved, blocked]
+    transitions:
+      - trigger: validate()
+        from: selected
+        to: validated
+      - trigger: resolve()
+        from: validated
+        to: resolved
+      - trigger: resolve()
+        from: validated
+        to: blocked
+  003-mfa:
+    lifecycle: MFA Challenge Lifecycle
+    states: [issued, verified, failed, expired]
+    transitions:
+      - trigger: verify()
+        from: issued
+        to: verified
+      - trigger: verify()
+        from: issued
+        to: failed
+      - trigger: expire()
+        from: issued
+        to: expired
+  004-password-reset:
+    lifecycle: Password Reset Token Lifecycle
+    states: [issued, verified, consumed, expired]
+    transitions:
+      - trigger: verify_token()
+        from: issued
+        to: verified
+      - trigger: reset_password()
+        from: verified
+        to: consumed
+      - trigger: expire()
+        from: issued
+        to: expired
+  005-sso:
+    lifecycle: SSO Handshake Lifecycle
+    states: [initiated, validated, linked, failed]
+    transitions:
+      - trigger: validate_callback()
+        from: initiated
+        to: validated
+      - trigger: link_or_create()
+        from: validated
+        to: linked
+      - trigger: validate_callback()
+        from: initiated
+        to: failed
+  100-admin-dashboard:
+    lifecycle: Recruiting Snapshot Lifecycle
+    states: [requested, aggregated, published, stale]
+    transitions:
+      - trigger: aggregate()
+        from: requested
+        to: aggregated
+      - trigger: publish()
+        from: aggregated
+        to: published
+      - trigger: age_out()
+        from: published
+        to: stale
+  101-admin-applicants:
+    lifecycle: Applicant Lifecycle
     states: [applied, shortlisted, interview, selected, joined, rejected, future_hire]
     transitions:
-      shortlist: applied -> shortlisted
-      schedule_interview: shortlisted -> interview
-      select: interview -> selected
-      reject: [applied, shortlisted, interview, selected] -> rejected
-      join: selected -> joined
-  Job:
+      - trigger: shortlist()
+        from: applied
+        to: shortlisted
+      - trigger: schedule_interview()
+        from: shortlisted
+        to: interview
+      - trigger: select()
+        from: interview
+        to: selected
+      - trigger: confirm_joining()
+        from: selected
+        to: joined
+      - trigger: reject()
+        from: applied
+        to: rejected
+      - trigger: hold_for_future()
+        from: shortlisted
+        to: future_hire
+  102-admin-pipeline:
+    lifecycle: Recruiting Pipeline Lifecycle
+    states: [applied, shortlisted, interview, selected, joined]
+    transitions:
+      - trigger: move_card()
+        from: applied
+        to: shortlisted
+      - trigger: move_card()
+        from: shortlisted
+        to: interview
+      - trigger: move_card()
+        from: interview
+        to: selected
+      - trigger: move_card()
+        from: selected
+        to: joined
+  103-admin-jobs:
+    lifecycle: Job Posting Lifecycle
     states: [draft, live, paused, closed]
     transitions:
-      publish: draft -> live
-      pause: live -> paused
-      resume: paused -> live
-      close: [live, paused] -> closed
-  Deal:
+      - trigger: publish()
+        from: draft
+        to: live
+      - trigger: pause()
+        from: live
+        to: paused
+      - trigger: resume()
+        from: paused
+        to: live
+      - trigger: close()
+        from: live
+        to: closed
+      - trigger: close()
+        from: paused
+        to: closed
+  104-admin-interviews:
+    lifecycle: Interview Lifecycle
+    states: [scheduled, confirmed, completed, cancelled, no_show]
+    transitions:
+      - trigger: confirm()
+        from: scheduled
+        to: confirmed
+      - trigger: complete()
+        from: confirmed
+        to: completed
+      - trigger: cancel()
+        from: scheduled
+        to: cancelled
+      - trigger: mark_no_show()
+        from: confirmed
+        to: no_show
+  105-admin-evaluations:
+    lifecycle: Evaluation Lifecycle
+    states: [draft, submitted, calibrated, finalized]
+    transitions:
+      - trigger: submit()
+        from: draft
+        to: submitted
+      - trigger: calibrate()
+        from: submitted
+        to: calibrated
+      - trigger: finalize()
+        from: calibrated
+        to: finalized
+  106-admin-documents:
+    lifecycle: Applicant Document Lifecycle
+    states: [requested, uploaded, verified, rejected, archived]
+    transitions:
+      - trigger: upload()
+        from: requested
+        to: uploaded
+      - trigger: verify()
+        from: uploaded
+        to: verified
+      - trigger: reject()
+        from: uploaded
+        to: rejected
+      - trigger: archive()
+        from: verified
+        to: archived
+  107-admin-email-templates:
+    lifecycle: Template Lifecycle
+    states: [draft, approved, retired]
+    transitions:
+      - trigger: approve()
+        from: draft
+        to: approved
+      - trigger: retire()
+        from: approved
+        to: retired
+  108-admin-settings:
+    lifecycle: Administrative Setting Lifecycle
+    states: [proposed, approved, applied, rolled_back]
+    transitions:
+      - trigger: approve()
+        from: proposed
+        to: approved
+      - trigger: apply()
+        from: approved
+        to: applied
+      - trigger: rollback()
+        from: applied
+        to: rolled_back
+  200-candidate-dashboard:
+    lifecycle: Candidate Snapshot Lifecycle
+    states: [requested, assembled, published, stale]
+    transitions:
+      - trigger: assemble()
+        from: requested
+        to: assembled
+      - trigger: publish()
+        from: assembled
+        to: published
+      - trigger: age_out()
+        from: published
+        to: stale
+  201-candidate-application:
+    lifecycle: Candidate Application Lifecycle
+    states: [applied, screening, shortlisted, interview, hr_review, offer, not_selected]
+    transitions:
+      - trigger: screen()
+        from: applied
+        to: screening
+      - trigger: shortlist()
+        from: screening
+        to: shortlisted
+      - trigger: schedule_interview()
+        from: shortlisted
+        to: interview
+      - trigger: complete_interview()
+        from: interview
+        to: hr_review
+      - trigger: issue_offer()
+        from: hr_review
+        to: offer
+      - trigger: close_as_not_selected()
+        from: hr_review
+        to: not_selected
+  202-candidate-interviews:
+    lifecycle: Candidate Interview Reservation Lifecycle
+    states: [scheduled, confirmed, completed, cancelled, no_show]
+    transitions:
+      - trigger: confirm()
+        from: scheduled
+        to: confirmed
+      - trigger: cancel()
+        from: scheduled
+        to: cancelled
+      - trigger: complete()
+        from: confirmed
+        to: completed
+      - trigger: mark_no_show()
+        from: confirmed
+        to: no_show
+  203-candidate-documents:
+    lifecycle: Candidate Document Lifecycle
+    states: [pending, viewed, signed, uploaded, accepted]
+    transitions:
+      - trigger: view()
+        from: pending
+        to: viewed
+      - trigger: sign()
+        from: viewed
+        to: signed
+      - trigger: upload()
+        from: pending
+        to: uploaded
+      - trigger: accept()
+        from: signed
+        to: accepted
+      - trigger: accept()
+        from: uploaded
+        to: accepted
+  204-candidate-onboarding:
+    lifecycle: Onboarding Item Lifecycle
+    states: [not_started, in_progress, blocked, completed]
+    transitions:
+      - trigger: start()
+        from: not_started
+        to: in_progress
+      - trigger: complete()
+        from: in_progress
+        to: completed
+      - trigger: block()
+        from: not_started
+        to: blocked
+      - trigger: unblock()
+        from: blocked
+        to: in_progress
+  205-candidate-messages:
+    lifecycle: Candidate Thread Lifecycle
+    states: [unread, read, replied, closed]
+    transitions:
+      - trigger: mark_read()
+        from: unread
+        to: read
+      - trigger: reply()
+        from: read
+        to: replied
+      - trigger: receive_message()
+        from: replied
+        to: unread
+      - trigger: close()
+        from: read
+        to: closed
+  206-candidate-profile:
+    lifecycle: Candidate Profile Verification Lifecycle
+    states: [incomplete, submitted, verified, needs_revision]
+    transitions:
+      - trigger: submit()
+        from: incomplete
+        to: submitted
+      - trigger: verify()
+        from: submitted
+        to: verified
+      - trigger: request_revision()
+        from: submitted
+        to: needs_revision
+      - trigger: resubmit()
+        from: needs_revision
+        to: submitted
+  300-client-dashboard:
+    lifecycle: Client Snapshot Lifecycle
+    states: [requested, aggregated, published, stale]
+    transitions:
+      - trigger: aggregate()
+        from: requested
+        to: aggregated
+      - trigger: publish()
+        from: aggregated
+        to: published
+      - trigger: age_out()
+        from: published
+        to: stale
+  301-client-projects:
+    lifecycle: Project Lifecycle
+    states: [active, at_risk, delayed, completed, archived]
+    transitions:
+      - trigger: flag_risk()
+        from: active
+        to: at_risk
+      - trigger: mark_delayed()
+        from: at_risk
+        to: delayed
+      - trigger: complete()
+        from: active
+        to: completed
+      - trigger: archive()
+        from: completed
+        to: archived
+  302-client-invoices:
+    lifecycle: Invoice Lifecycle
+    states: [draft, due, overdue, paid]
+    transitions:
+      - trigger: issue()
+        from: draft
+        to: due
+      - trigger: age_past_due()
+        from: due
+        to: overdue
+      - trigger: record_payment()
+        from: due
+        to: paid
+      - trigger: record_payment()
+        from: overdue
+        to: paid
+  303-client-files:
+    lifecycle: Project File Lifecycle
+    states: [uploaded, reviewed, approved, superseded, archived]
+    transitions:
+      - trigger: review()
+        from: uploaded
+        to: reviewed
+      - trigger: approve()
+        from: reviewed
+        to: approved
+      - trigger: replace()
+        from: approved
+        to: superseded
+      - trigger: archive()
+        from: superseded
+        to: archived
+  304-client-working-hours:
+    lifecycle: Time Data Sync Lifecycle
+    states: [queued, synced, degraded, stale]
+    transitions:
+      - trigger: sync_complete()
+        from: queued
+        to: synced
+      - trigger: detect_issue()
+        from: synced
+        to: degraded
+      - trigger: age_out()
+        from: degraded
+        to: stale
+  305-client-messaging:
+    lifecycle: Client Thread Lifecycle
+    states: [unread, read, replied, escalated, closed]
+    transitions:
+      - trigger: mark_read()
+        from: unread
+        to: read
+      - trigger: reply()
+        from: read
+        to: replied
+      - trigger: escalate()
+        from: read
+        to: escalated
+      - trigger: close()
+        from: escalated
+        to: closed
+  306-client-support:
+    lifecycle: Support Ticket Lifecycle
+    states: [open, in_progress, resolved]
+    transitions:
+      - trigger: start_work()
+        from: open
+        to: in_progress
+      - trigger: resolve()
+        from: in_progress
+        to: resolved
+      - trigger: reopen()
+        from: resolved
+        to: open
+  307-client-contracts:
+    lifecycle: Client Contract Lifecycle
+    states: [draft, pending_signature, signed, archived]
+    transitions:
+      - trigger: send_for_signature()
+        from: draft
+        to: pending_signature
+      - trigger: sign()
+        from: pending_signature
+        to: signed
+      - trigger: archive()
+        from: signed
+        to: archived
+  400-crm-dashboard:
+    lifecycle: CRM Snapshot Lifecycle
+    states: [requested, aggregated, published, stale]
+    transitions:
+      - trigger: aggregate()
+        from: requested
+        to: aggregated
+      - trigger: publish()
+        from: aggregated
+        to: published
+      - trigger: age_out()
+        from: published
+        to: stale
+  401-crm-contacts:
+    lifecycle: CRM Contact Qualification Lifecycle
+    states: [new, qualified, nurturing, disqualified, archived]
+    transitions:
+      - trigger: qualify()
+        from: new
+        to: qualified
+      - trigger: start_nurture()
+        from: qualified
+        to: nurturing
+      - trigger: disqualify()
+        from: new
+        to: disqualified
+      - trigger: archive()
+        from: nurturing
+        to: archived
+  402-crm-pipeline:
+    lifecycle: CRM Deal Lifecycle
     states: [new_lead, contacted, meeting_set, proposal, won, lost]
-  Invoice:
-    states: [draft, due, paid, overdue]
+    transitions:
+      - trigger: contact()
+        from: new_lead
+        to: contacted
+      - trigger: schedule_meeting()
+        from: contacted
+        to: meeting_set
+      - trigger: send_proposal()
+        from: meeting_set
+        to: proposal
+      - trigger: close_won()
+        from: proposal
+        to: won
+      - trigger: close_lost()
+        from: proposal
+        to: lost
+  403-crm-outreach-analytics:
+    lifecycle: Outreach Analytics Snapshot Lifecycle
+    states: [requested, computed, published, stale]
+    transitions:
+      - trigger: compute()
+        from: requested
+        to: computed
+      - trigger: publish()
+        from: computed
+        to: published
+      - trigger: age_out()
+        from: published
+        to: stale
+  404-crm-templates:
+    lifecycle: CRM Template Lifecycle
+    states: [draft, tested, approved, retired]
+    transitions:
+      - trigger: preview()
+        from: draft
+        to: tested
+      - trigger: approve()
+        from: tested
+        to: approved
+      - trigger: retire()
+        from: approved
+        to: retired
+  405-crm-lead-stacks:
+    lifecycle: Lead Stack Lifecycle
+    states: [draft, active, exhausted, archived]
+    transitions:
+      - trigger: activate()
+        from: draft
+        to: active
+      - trigger: mark_exhausted()
+        from: active
+        to: exhausted
+      - trigger: archive()
+        from: exhausted
+        to: archived
+  406-crm-scoring:
+    lifecycle: Lead Score Lifecycle
+    states: [stale, recalculating, current, overridden]
+    transitions:
+      - trigger: recalculate()
+        from: stale
+        to: recalculating
+      - trigger: complete()
+        from: recalculating
+        to: current
+      - trigger: override()
+        from: current
+        to: overridden
+  407-crm-archive:
+    lifecycle: Archived Deal Lifecycle
+    states: [active, closed_won, closed_lost, archived]
+    transitions:
+      - trigger: close_won()
+        from: active
+        to: closed_won
+      - trigger: close_lost()
+        from: active
+        to: closed_lost
+      - trigger: archive()
+        from: closed_won
+        to: archived
+      - trigger: archive()
+        from: closed_lost
+        to: archived
+  408-crm-settings:
+    lifecycle: CRM Setting Lifecycle
+    states: [proposed, approved, applied, rolled_back]
+    transitions:
+      - trigger: approve()
+        from: proposed
+        to: approved
+      - trigger: apply()
+        from: approved
+        to: applied
+      - trigger: rollback()
+        from: applied
+        to: rolled_back

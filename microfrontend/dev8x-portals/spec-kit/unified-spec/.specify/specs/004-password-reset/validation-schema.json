@@ -1,1 +1,82 @@
-﻿
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Password Reset validation schema",
+  "description": "Validation definitions for 004-password-reset.",
+  "type": "object",
+  "definitions": {
+    "passwordResetRequest": {
+      "type": "object",
+      "description": "Reset request payload.",
+      "properties": {
+        "email": {
+          "description": "Email address",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "email"
+      ]
+    },
+    "passwordTokenCheck": {
+      "type": "object",
+      "description": "Reset token verification payload.",
+      "properties": {
+        "token": {
+          "description": "Reset token",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "token"
+      ]
+    },
+    "passwordResetCompletion": {
+      "type": "object",
+      "description": "Password reset completion payload.",
+      "properties": {
+        "token": {
+          "description": "Reset token",
+          "type": "string"
+        },
+        "password": {
+          "description": "New password",
+          "type": "string"
+        },
+        "password_confirmation": {
+          "description": "Confirmation",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "token",
+        "password",
+        "password_confirmation"
+      ]
+    },
+    "passwordResetResponse": {
+      "type": "object",
+      "description": "Reset flow status response.",
+      "properties": {
+        "accepted": {
+          "description": "Request accepted",
+          "type": "boolean"
+        },
+        "token_valid": {
+          "description": "Whether token is valid",
+          "type": "boolean"
+        },
+        "sessions_revoked": {
+          "description": "Number of revoked sessions",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "accepted"
+      ]
+    }
+  }
+}

@@ -1,1 +1,60 @@
-﻿{"$schema":"http://json-schema.org/draft-07/schema#","title":"Admin Dashboard","description":"No request payloads - read-only endpoints"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Admin Dashboard validation schema",
+  "description": "Validation definitions for 100-admin-dashboard.",
+  "type": "object",
+  "definitions": {
+    "adminDashboardQuery": {
+      "type": "object",
+      "description": "Dashboard filter request.",
+      "properties": {
+        "date_from": {
+          "description": "Reporting range start",
+          "type": "string",
+          "format": "date"
+        },
+        "date_to": {
+          "description": "Reporting range end",
+          "type": "string",
+          "format": "date"
+        },
+        "department": {
+          "description": "Department filter",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "adminDashboardResponse": {
+      "type": "object",
+      "description": "Dashboard KPI response.",
+      "properties": {
+        "snapshot_id": {
+          "description": "Snapshot identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "applicant_count": {
+          "description": "Total applicants",
+          "type": "integer"
+        },
+        "priority_item_count": {
+          "description": "Priority queue size",
+          "type": "integer"
+        },
+        "generated_at": {
+          "description": "Snapshot timestamp",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "snapshot_id",
+        "applicant_count",
+        "priority_item_count",
+        "generated_at"
+      ]
+    }
+  }
+}

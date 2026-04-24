@@ -1,1 +1,118 @@
-﻿{"$schema": "http://json-schema.org/draft-07/schema#","description":"Placeholder validation schema"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Contacts validation schema",
+  "description": "Validation definitions for 401-crm-contacts.",
+  "type": "object",
+  "definitions": {
+    "crmContactFilter": {
+      "type": "object",
+      "description": "CRM contact filter.",
+      "properties": {
+        "page": {
+          "description": "Page number",
+          "type": "integer"
+        },
+        "page_size": {
+          "description": "Page size",
+          "type": "integer"
+        },
+        "temperature": {
+          "description": "Temperature filter",
+          "type": "string",
+          "enum": [
+            "hot",
+            "warm",
+            "cool"
+          ]
+        },
+        "channel": {
+          "description": "Channel filter",
+          "type": "string",
+          "enum": [
+            "linkedin",
+            "email",
+            "whatsapp",
+            "upwork",
+            "call"
+          ]
+        },
+        "sentiment": {
+          "description": "Sentiment filter",
+          "type": "string",
+          "enum": [
+            "positive",
+            "neutral",
+            "negative",
+            "no_response",
+            "burned"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "crmContactRecord": {
+      "type": "object",
+      "description": "CRM contact create or update payload.",
+      "properties": {
+        "name": {
+          "description": "Display name",
+          "type": "string"
+        },
+        "email": {
+          "description": "Email address",
+          "type": "string"
+        },
+        "company_name": {
+          "description": "Company name",
+          "type": "string"
+        },
+        "job_title": {
+          "description": "Job title",
+          "type": "string"
+        },
+        "temperature": {
+          "description": "Lead temperature",
+          "type": "string",
+          "enum": [
+            "hot",
+            "warm",
+            "cool"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "email",
+        "company_name",
+        "job_title",
+        "temperature"
+      ]
+    },
+    "crmContactSummary": {
+      "type": "object",
+      "description": "CRM contact response.",
+      "properties": {
+        "contact_id": {
+          "description": "Contact identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "health_score": {
+          "description": "Health score",
+          "type": "number"
+        },
+        "qualification_state": {
+          "description": "Qualification state",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "contact_id",
+        "health_score",
+        "qualification_state"
+      ]
+    }
+  }
+}

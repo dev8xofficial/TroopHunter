@@ -1,3 +1,30 @@
-﻿# Admin Pipeline - tasks.md
+# Admin Pipeline - Tasks
+
 > **Module ID**: `102-admin-pipeline`
 > **Version**: 1.0.0
+
+---
+
+## Task Breakdown
+
+### P0 - Critical Path
+
+- [ ] **T-102-01**: Model PipelineCard - Finalize canonical data structures, validation rules, and ownership boundaries for admin pipeline. `[Complexity: M]`
+- [ ] **T-102-02**: Deliver core API surface - Implement the request and response contracts for GET /api/v1/admin/pipeline, PATCH /api/v1/admin/pipeline/cards/{applicant_id}/stage, GET /api/v1/admin/pipeline/metrics. `[Complexity: L]`
+- [ ] **T-102-03**: Enforce RBAC and data scoping - Apply the role gates, own-data constraints, and managed-account boundaries defined in the RBAC matrix. `[Complexity: M]`
+
+### P1 - High Priority
+
+- [ ] **T-102-01**: Implement recruiting pipeline lifecycle - Carry the approved lifecycle into state transitions, guard conditions, and invalid transition handling. `[Complexity: M]`
+- [ ] **T-102-02**: Wire audit events - Emit 3 append-only events with payloads aligned to contracts/events.yaml. `[Complexity: S]`
+- [ ] **T-102-03**: Add validation and regression coverage - Cover positive, negative, permission, and lifecycle regression cases before implementation closes. `[Complexity: S]`
+
+---
+
+## Validation Tasks
+
+- [ ] **V-102-01**: Validate primary admin pipeline workflow succeeds for the intended role.
+- [ ] **V-102-02**: Confirm unauthorized roles receive FORBIDDEN and no state changes occur.
+- [ ] **V-102-03**: Submit malformed or incomplete payloads and confirm schema rejection.
+- [ ] **V-102-04**: Attempt a disallowed lifecycle move and confirm the state remains unchanged.
+- [ ] **V-102-05**: Confirm the expected audit event is emitted exactly once with the required payload.

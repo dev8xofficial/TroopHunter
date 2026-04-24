@@ -1,1 +1,49 @@
-﻿{"$schema": "http://json-schema.org/draft-07/schema#","description":"Placeholder validation schema"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Scoring validation schema",
+  "description": "Validation definitions for 406-crm-scoring.",
+  "type": "object",
+  "definitions": {
+    "leadScoreRequest": {
+      "type": "object",
+      "description": "Lead score recalculation request.",
+      "properties": {
+        "contact_id": {
+          "description": "Target contact",
+          "type": "string",
+          "format": "uuid"
+        },
+        "force": {
+          "description": "Force recalculation",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "leadScoreSummary": {
+      "type": "object",
+      "description": "Lead score response.",
+      "properties": {
+        "contact_id": {
+          "description": "Linked contact",
+          "type": "string",
+          "format": "uuid"
+        },
+        "total_score": {
+          "description": "Composite score",
+          "type": "number"
+        },
+        "status": {
+          "description": "Current status",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "contact_id",
+        "total_score",
+        "status"
+      ]
+    }
+  }
+}

@@ -1,9 +1,22 @@
-﻿# Foundation — Metrics
+# Foundation - Metrics
+
 > **Module ID**: `000-foundation`
+> **Version**: 1.0.0
+
+---
 
 ## Success Metrics
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| Schema adoption | 100% of modules reference foundation schemas | Automated cross-reference check |
-| Error response consistency | 100% of endpoints use unified format | API integration tests |
-| Audit event coverage | Every state transition emits an event | Event coverage audit |
+
+| Metric | Target | Measurement Source |
+| --- | --- | --- |
+| Request success rate | > 99% | API status codes |
+| Lifecycle compliance | 100% of state changes follow the approved lifecycle | state transition logs |
+| Audit coverage | 100% of writes emit events | event pipeline reconciliation |
+
+---
+
+## Review Cadence
+
+- Weekly review during active delivery.
+- Monthly review after general availability.
+- Immediate review when lifecycle, permission, or audit regressions are detected.

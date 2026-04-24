@@ -1,1 +1,102 @@
-﻿{"$schema":"http://json-schema.org/draft-07/schema#","description":"Validation schema for 105-admin-evaluations"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Admin Evaluations validation schema",
+  "description": "Validation definitions for 105-admin-evaluations.",
+  "type": "object",
+  "definitions": {
+    "evaluationSubmission": {
+      "type": "object",
+      "description": "Evaluation save or submit payload.",
+      "properties": {
+        "applicant_id": {
+          "description": "Applicant identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Requested lifecycle state",
+          "type": "string",
+          "enum": [
+            "draft",
+            "submitted"
+          ]
+        },
+        "technical_score": {
+          "description": "Technical score",
+          "type": "number"
+        },
+        "communication_score": {
+          "description": "Communication score",
+          "type": "number"
+        },
+        "notes": {
+          "description": "Evaluator notes",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "applicant_id",
+        "status",
+        "technical_score",
+        "communication_score"
+      ]
+    },
+    "evaluationDecision": {
+      "type": "object",
+      "description": "Calibration or final decision payload.",
+      "properties": {
+        "status": {
+          "description": "Lifecycle state",
+          "type": "string",
+          "enum": [
+            "calibrated",
+            "finalized"
+          ]
+        },
+        "recommendation": {
+          "description": "Decision recommendation",
+          "type": "string",
+          "enum": [
+            "advance",
+            "hold",
+            "reject"
+          ]
+        },
+        "decision_notes": {
+          "description": "Decision notes",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "recommendation"
+      ]
+    },
+    "evaluationSummary": {
+      "type": "object",
+      "description": "Evaluation summary response.",
+      "properties": {
+        "evaluation_id": {
+          "description": "Evaluation identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Current status",
+          "type": "string"
+        },
+        "recommendation": {
+          "description": "Recommendation",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "evaluation_id",
+        "status"
+      ]
+    }
+  }
+}

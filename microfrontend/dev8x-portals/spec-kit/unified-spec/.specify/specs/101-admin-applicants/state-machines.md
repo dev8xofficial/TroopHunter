@@ -1,30 +1,49 @@
-﻿# Admin Applicants - State Machines
+# Admin Applicants - State Machines
+
 > **Module ID**: `101-admin-applicants`
+> References: [contracts/interactions.yaml](../../../contracts/interactions.yaml)
+
+---
 
 ## Applicant Lifecycle
 
 ### States
-| State | Terminal |
-|-------|---------|
-| applied | No |
-| shortlisted | No |
-| interview | No |
-| selected | No |
-| joined | Yes |
-| rejected | Yes |
-| future_hire | No |
+
+| State | Description | Terminal |
+| --- | --- | --- |
+| applied | Application submitted. | No |
+| shortlisted | Applicant advanced to shortlist. | No |
+| interview | Interview process active. | No |
+| selected | Offer or selection decision reached. | No |
+| joined | Applicant joined successfully. | Yes |
+| rejected | Applicant rejected from current process. | Yes |
+| future_hire | Applicant held for a future opportunity. | Yes |
 
 ### Transitions
-| From | To | Trigger | Guard |
-|------|----|---------|-------|
-| applied | shortlisted | shortlist() | hr_admin or super_admin |
-| applied | rejected | reject() | hr_admin or super_admin |
-| applied | future_hire | mark_future() | hr_admin or super_admin |
-| shortlisted | interview | schedule_interview() | Interview slot available |
-| shortlisted | rejected | reject() | — |
-| interview | selected | select() | Evaluation score >= threshold |
-| interview | rejected | reject() | — |
-| interview | future_hire | mark_future() | — |
-| selected | joined | join() | Onboarding completed |
-| selected | rejected | reject() | Offer declined |
-| future_hire | applied | reapply() | New position opened |
+
+| From | To | Trigger | Guard | Side Effects |
+| --- | --- | --- | --- | --- |
+| applied | shortlisted | shortlist() | Initial screening passed | Emit admin.applicant.status_changed |
+| shortlisted | interview | schedule_interview() | Interview capacity exists | Notify interview module |
+| interview | selected | select() | Evaluation threshold met | Prepare offer readiness |
+| selected | joined | confirm_joining() | Offer accepted and onboarding approved | Close recruiting workflow |
+| applied | rejected | reject() | Reason supplied | Record rejection reason |
+| shortlisted | future_hire | hold_for_future() | Reason supplied | Tag for future pipeline |
+
+### State Diagram
+
+```
+[applied] -- shortlist() --> [shortlisted]
+[shortlisted] -- schedule_interview() --> [interview]
+[interview] -- select() --> [selected]
+[selected] -- confirm_joining() --> [joined]
+[applied] -- reject() --> [rejected]
+[shortlisted] -- hold_for_future() --> [future_hire]
+```
+
+### Invariants
+
+| Invariant | Description |
+| --- | --- |
+| INV-101-01 | Joined, rejected, and future_hire are terminal states. |
+| INV-101-02 | Applicant records retain a full timeline of all approved state changes. |

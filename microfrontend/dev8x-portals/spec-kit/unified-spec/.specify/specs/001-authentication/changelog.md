@@ -1,22 +1,20 @@
-# Authentication — Changelog
+# Authentication - Changelog
 
 > **Module ID**: `001-authentication`
+> **Version**: 1.0.0
 
 ---
 
-## [1.0.0] — 2026-04-22
+## Entries
 
-### Added
+| Date | Version | Change | Author |
+| --- | --- | --- | --- |
+| 2026-04-24 | 1.0.0 | Replaced placeholder artifact set with portal-aligned functional spec, contracts, RBAC, lifecycle, validation schema, rollout, and test coverage. | Codex |
+| 2026-04-22 | 0.1.0 | Scaffolded module directory and empty artifact set. | System |
 
-- Initial specification with 6 functional requirements (FR-001-01 through FR-001-06)
-- User and Session data models with field-level constraints
-- 4 business rules (BR-001-01 through BR-001-04)
-- 4 API endpoints (login, register, logout, verify-email)
-- Authentication Session and Account Status state machines
-- RBAC matrix covering all 6 platform roles
-- 8 activity log events (EVT-001-01 through EVT-001-08)
-- 19 test scenarios with coverage matrix
-- Validation schemas for all request payloads
-- 5 feature flags for phased rollout
-- Risk register with 5 risks and 4 STRIDE threats
-- Success metrics and monitoring signals
+---
+
+## Notes
+
+- This changelog tracks specification evolution only.
+- Contract-breaking updates must publish a new ADR before the next version increment.

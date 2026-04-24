@@ -1,18 +1,25 @@
-﻿# Foundation — Test Scenarios
+# Foundation - Test Scenarios
+
 > **Module ID**: `000-foundation`
+> **Version**: 1.0.0
 
-### TS-000-01: Error Response Format (Positive)
-**Steps**: Trigger any 400 error
-**Expected**: Response matches `{ error, message, details, request_id }` schema
+---
 
-### TS-000-02: UUID Generation (Positive)
-**Steps**: Create any entity
-**Expected**: ID is valid UUID v4 format
+## Scenarios
 
-### TS-000-03: Audit Event Immutability (Negative)
-**Steps**: Attempt to UPDATE or DELETE an audit event record
-**Expected**: Operation rejected (append-only enforcement)
+| Scenario ID | Category | Expected Result |
+| --- | --- | --- |
+| TS-000-01 | Happy path | Validate primary foundation workflow succeeds for the intended role. |
+| TS-000-02 | Permission boundary | Confirm unauthorized roles receive FORBIDDEN and no state changes occur. |
+| TS-000-03 | Validation failure | Submit malformed or incomplete payloads and confirm schema rejection. |
+| TS-000-04 | Invalid state transition | Attempt a disallowed lifecycle move and confirm the state remains unchanged. |
+| TS-000-05 | Audit emission | Confirm the expected audit event is emitted exactly once with the required payload. |
 
-### TS-000-04: Notification Scoping (Authorization)
-**Steps**: User A reads User B's notifications
-**Expected**: 403 Forbidden
+---
+
+## Coverage Expectations
+
+- Cover all functional requirements in spec.md.
+- Cover all state transitions in state-machines.md.
+- Cover all write operations and audit events in activity-log-events.md.
+- Cover every role-operation pair that should resolve to something other than `Deny`.

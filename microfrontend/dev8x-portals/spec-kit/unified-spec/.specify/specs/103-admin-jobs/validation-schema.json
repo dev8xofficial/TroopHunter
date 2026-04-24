@@ -1,1 +1,91 @@
-﻿{"$schema":"http://json-schema.org/draft-07/schema#","definitions":{"CreateJob":{"type":"object","required":["title","department","description","requirements"],"properties":{"title":{"type":"string","minLength":1},"department":{"type":"string"},"description":{"type":"string"},"requirements":{"type":"string"}}},"StatusAction":{"type":"object","required":["action"],"properties":{"action":{"type":"string","enum":["publish","pause","resume","close"]}}}}}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Admin Jobs validation schema",
+  "description": "Validation definitions for 103-admin-jobs.",
+  "type": "object",
+  "definitions": {
+    "jobRecord": {
+      "type": "object",
+      "description": "Job create or update payload.",
+      "properties": {
+        "title": {
+          "description": "Job title",
+          "type": "string"
+        },
+        "department": {
+          "description": "Owning department",
+          "type": "string"
+        },
+        "employment_type": {
+          "description": "Employment type",
+          "type": "string"
+        },
+        "status": {
+          "description": "Job status",
+          "type": "string",
+          "enum": [
+            "draft",
+            "live",
+            "paused",
+            "closed"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "department",
+        "employment_type",
+        "status"
+      ]
+    },
+    "jobStatusUpdate": {
+      "type": "object",
+      "description": "Job lifecycle transition command.",
+      "properties": {
+        "status": {
+          "description": "Requested status",
+          "type": "string",
+          "enum": [
+            "live",
+            "paused",
+            "closed"
+          ]
+        },
+        "reason": {
+          "description": "Lifecycle transition reason",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ]
+    },
+    "jobSummary": {
+      "type": "object",
+      "description": "Job summary response.",
+      "properties": {
+        "job_id": {
+          "description": "Job identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Current status",
+          "type": "string"
+        },
+        "applicant_count": {
+          "description": "Linked applicants",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "job_id",
+        "status",
+        "applicant_count"
+      ]
+    }
+  }
+}

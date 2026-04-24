@@ -1,116 +1,154 @@
-﻿# Foundation
+# Foundation
 
 > **Module ID**: `000-foundation`
-> **Domain**: Cross-Cutting (0xx)
+> **Domain**: Platform Foundation (000)
 > **Version**: 1.0.0
-> **Last Updated**: 2026-04-22
+> **Last Updated**: 2026-04-24
 
 ---
 
 ## Overview
 
-The Foundation module defines cross-cutting platform primitives shared by all domains: the canonical User entity, system-wide notification model, audit log schema, and the base error response contract. It has no endpoints of its own but is a dependency of every other module.
+The Foundation module owns the canonical role registry, domain map, audit envelope, and contract discovery surfaces used by every Dev8X portal. It prevents domain drift by keeping shared definitions centralized and versioned.
 
 ---
 
 ## Actors
 
 | Actor | Role | Interaction |
-|-------|------|-------------|
-| All roles | All | Inherit foundation data models and contracts |
+| --- | --- | --- |
+| Super Admin | super_admin | Owns canonical registries and governance updates |
+| HR Admin | hr_admin | Consumes global registries for admin workflows |
+| Sales Rep | sales_rep | Consumes shared contracts and role definitions |
+| Manager | manager | Uses shared registries for cross-portal oversight |
+| System | system | Publishes immutable contracts and activity envelopes |
 
 ---
 
 ## Functional Requirements
 
-### FR-000-01: Canonical User Entity
+### FR-000-01: Publish the canonical domain registry
 
-**Description**: The system shall maintain a single User entity schema shared across all domains, with role-based polymorphism (candidate profile fields, client billing fields, etc.) handled via domain-specific extension tables.
-
-**Acceptance Criteria**:
-- [ ] User entity defined with id, email, first_name, last_name, role, status, created_at, updated_at
-- [ ] All domain modules reference this schema — never re-define it
-- [ ] UUID v4 used for all entity identifiers platform-wide
-
-### FR-000-02: Unified Error Response Contract
-
-**Description**: The system shall return errors in a consistent JSON structure across all endpoints.
+**Description**: The system shall expose the single approved registry of platform domains, modules, and ownership boundaries.
 
 **Acceptance Criteria**:
-- [ ] All errors return: `{ error: "ERROR_CODE", message: "Human-readable", details: [...] }`
-- [ ] HTTP status codes follow REST conventions (400, 401, 403, 404, 409, 422, 429, 500)
+- [ ] Registry lists all 39 modules with their domain grouping.
+- [ ] Superseded registry versions remain discoverable for audit.
+- [ ] Consumers can retrieve the current contract manifest without portal-specific knowledge.
 
-### FR-000-03: Audit Log Schema
+### FR-000-02: Publish the canonical role model
 
-**Description**: The system shall define a canonical audit event schema referenced by all domains.
-
-**Acceptance Criteria**:
-- [ ] Event schema: event_id, event_name, timestamp, actor, entity, payload, metadata
-- [ ] Events are append-only and immutable (Constitution G-01)
-- [ ] All modules emit events using this schema
-
-### FR-000-04: System Notifications
-
-**Description**: The system shall support typed notifications (success, error, warning, info) delivered to specific users.
+**Description**: The system shall expose the approved platform roles and their cross-domain meanings.
 
 **Acceptance Criteria**:
-- [ ] Notification entity: id, type, message, timestamp, read, user_id
-- [ ] Notifications are user-scoped (only the target user can read them)
-- [ ] Mark-as-read operation available
+- [ ] All six platform roles are listed with a unique role identifier.
+- [ ] Role definitions align with the constitution and access-control contract.
+- [ ] Changes to role definitions are versioned before publication.
+
+### FR-000-03: Define the immutable audit envelope
+
+**Description**: The system shall define the append-only event wrapper shared by all domains.
+
+**Acceptance Criteria**:
+- [ ] Audit envelope includes actor, entity, payload, and timestamp.
+- [ ] Envelope structure is consistent across auth, admin, candidate, client, and CRM domains.
+- [ ] Envelope schema is referenced by contracts/events.yaml.
 
 ---
 
 ## Data Model
 
-### User (Canonical)
+### DomainRegistry
 
-Defined in [schemas/user.schema.json](../../../schemas/user.schema.json).
+Canonical list of platform modules and their domain ownership.
 
-### Notification
+| Field | Type | Required | Constraints | Description |
+| --- | --- | --- | --- | --- |
+| id | uuid | Yes | Primary key, immutable | Unique identifier |
+| domain_code | string | Yes | enum: 000, 0xx, 1xx, 2xx, 3xx, 4xx | Domain code group |
+| module_id | string | Yes | unique | Module identifier |
+| module_title | string | Yes | max 255 | Module title |
+| owner_role | string | Yes | enum: super_admin, hr_admin, sales_rep, manager | Owning role |
+| status | string | Yes | enum: draft, validated, published, superseded | Registry record status |
+| created_at | datetime | Yes | Auto-generated | Creation timestamp |
+| updated_at | datetime | Yes | Auto-updated on mutation | Last update timestamp |
 
-Defined in [schemas/notification.schema.json](../../../schemas/notification.schema.json).
+### AuditEnvelope
 
-### Audit Event
+Shared wrapper for immutable event records.
 
-Defined in [contracts/events.yaml](../../../contracts/events.yaml).
-
-### Error Response
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| error | string | Yes | Machine-readable error code (SCREAMING_SNAKE) |
-| message | string | Yes | Human-readable description |
-| details | array | No | Field-level validation errors |
-| request_id | uuid | Yes | Echoed from X-Request-ID header |
+| Field | Type | Required | Constraints | Description |
+| --- | --- | --- | --- | --- |
+| event_id | string | Yes | Unique event identifier | Published event id |
+| event_name | string | Yes | dot.notation | Canonical event name |
+| actor_role | string | Yes | platform role id | Role responsible for the event |
+| entity_type | string | Yes | max 120 | Affected entity type |
+| entity_id | uuid | No | Nullable for anonymous flows | Affected entity identifier |
+| occurred_at | datetime | Yes | ISO-8601 | Event timestamp |
 
 ---
 
 ## Business Rules
 
-### BR-000-01: UUID Everywhere
+### BR-000-01: Single source of truth
 
-**Condition**: When any entity is created
-**Action**: Assign a UUID v4 as the primary key
-**Rationale**: Non-enumerable, globally unique, prevents IDOR
+**Condition**: When a shared platform definition changes
+**Action**: Update the foundation registry before downstream module specs.
+**Rationale**: Constitution P-02
 
-### BR-000-02: Timestamps Are Immutable
+### BR-000-02: Append-only history
 
-**Condition**: When created_at is set
-**Action**: Never modify. Only updated_at changes on mutation.
-**Rationale**: Audit integrity
+**Condition**: When a registry version is replaced
+**Action**: Mark the old record as superseded rather than deleting it.
+**Rationale**: Constitution P-03 and P-07
+
+---
+
+## State Machine
+
+See [state-machines.md](state-machines.md) for the specification registry lifecycle.
+
+---
+
+## API Surface
+
+See [api-contracts.md](api-contracts.md) for endpoint definitions:
+- `GET /api/v1/platform/domains`
+- `GET /api/v1/platform/roles`
+- `GET /api/v1/platform/contracts`
+
+---
+
+## Access Control
+
+See [rbac-matrix.md](rbac-matrix.md) for role permissions.
+
+---
+
+## Audit Events
+
+See [activity-log-events.md](activity-log-events.md) for:
+- `foundation.registry.read` (EVT-000-01)
+- `foundation.registry.published` (EVT-000-02)
+- `foundation.contracts.published` (EVT-000-03)
 
 ---
 
 ## Dependencies
 
 | Module | Dependency Type | Description |
-|--------|----------------|-------------|
-| All modules | Upstream | Every module depends on foundation data models |
+| --- | --- | --- |
+| contracts | Shared | Owns the shared contracts directory and keeps downstream references stable |
+| all modules | Downstream | Every module consumes foundation definitions for roles, module ids, or audit envelope fields |
 
 ---
 
 ## References
 
-- [Constitution](../../memory/constitution.md) — Section 6: Global Data Vocabulary
-- [schemas/user.schema.json](../../../schemas/user.schema.json)
-- [schemas/notification.schema.json](../../../schemas/notification.schema.json)
+- [Constitution](../../memory/constitution.md)
+- [contracts/access-control.yaml](../../../contracts/access-control.yaml)
+- [contracts/api.yaml](../../../contracts/api.yaml)
+- [contracts/events.yaml](../../../contracts/events.yaml)
+- [adr-001-unified-spec-kit.md](../../decisions/adr-001-unified-spec-kit.md)
+- [adr-003-centralized-contracts.md](../../decisions/adr-003-centralized-contracts.md)
+- [adr-004-13-file-module-standard.md](../../decisions/adr-004-13-file-module-standard.md)

@@ -1,1 +1,83 @@
-﻿
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MFA validation schema",
+  "description": "Validation definitions for 003-mfa.",
+  "type": "object",
+  "definitions": {
+    "mfaChallengeRequest": {
+      "type": "object",
+      "description": "MFA challenge creation request.",
+      "properties": {
+        "session_id": {
+          "description": "Pending session identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "challenge_type": {
+          "description": "Requested challenge type",
+          "type": "string",
+          "enum": [
+            "totp",
+            "recovery_code",
+            "step_up"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "session_id"
+      ]
+    },
+    "mfaVerifyRequest": {
+      "type": "object",
+      "description": "Second-factor verification request.",
+      "properties": {
+        "challenge_id": {
+          "description": "Challenge identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "code": {
+          "description": "Submitted second factor",
+          "type": "string",
+          "pattern": "^[A-Za-z0-9-]{6,16}$"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "challenge_id",
+        "code"
+      ]
+    },
+    "mfaVerifyResponse": {
+      "type": "object",
+      "description": "MFA verification response.",
+      "properties": {
+        "challenge_id": {
+          "description": "Challenge identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Challenge outcome",
+          "type": "string",
+          "enum": [
+            "verified",
+            "failed",
+            "expired"
+          ]
+        },
+        "session_activated": {
+          "description": "Whether the session became active",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "challenge_id",
+        "status",
+        "session_activated"
+      ]
+    }
+  }
+}

@@ -1,1 +1,56 @@
-﻿{"$schema": "http://json-schema.org/draft-07/schema#","description":"Placeholder validation schema"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Client Contracts validation schema",
+  "description": "Validation definitions for 307-client-contracts.",
+  "type": "object",
+  "definitions": {
+    "clientContractSign": {
+      "type": "object",
+      "description": "Contract signature payload.",
+      "properties": {
+        "signed_name": {
+          "description": "Signer name",
+          "type": "string"
+        },
+        "signature_type": {
+          "description": "Signature method",
+          "type": "string",
+          "enum": [
+            "typed_name",
+            "drawn"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "signed_name",
+        "signature_type"
+      ]
+    },
+    "clientContractSummary": {
+      "type": "object",
+      "description": "Client contract response.",
+      "properties": {
+        "contract_id": {
+          "description": "Contract identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Current status",
+          "type": "string"
+        },
+        "signed_at": {
+          "description": "Signed at",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "contract_id",
+        "status"
+      ]
+    }
+  }
+}

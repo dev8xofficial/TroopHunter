@@ -1,1 +1,47 @@
-﻿{"$schema":"http://json-schema.org/draft-07/schema#","title":"Foundation Validation","description":"Shared validation rules for foundation entities","definitions":{"ErrorResponse":{"type":"object","required":["error","message","request_id"],"properties":{"error":{"type":"string","pattern":"^[A-Z_]+$"},"message":{"type":"string","minLength":1},"details":{"type":"array","items":{"type":"object","properties":{"field":{"type":"string"},"message":{"type":"string"}}}},"request_id":{"type":"string","format":"uuid"}}},"PaginationMeta":{"type":"object","required":["total","page","limit"],"properties":{"total":{"type":"integer","minimum":0},"page":{"type":"integer","minimum":1},"limit":{"type":"integer","minimum":1,"maximum":100},"total_pages":{"type":"integer","minimum":0}}}}}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Foundation validation schema",
+  "description": "Validation definitions for 000-foundation.",
+  "type": "object",
+  "definitions": {
+    "foundationQuery": {
+      "type": "object",
+      "description": "Request model for registry lookups.",
+      "properties": {
+        "domain_code": {
+          "description": "Requested domain code",
+          "type": "string"
+        },
+        "include_superseded": {
+          "description": "Include superseded versions",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "foundationSnapshot": {
+      "type": "object",
+      "description": "Response envelope for shared registry reads.",
+      "properties": {
+        "module_count": {
+          "description": "Total modules returned",
+          "type": "integer"
+        },
+        "roles_count": {
+          "description": "Total platform roles returned",
+          "type": "integer"
+        },
+        "published_version": {
+          "description": "Current publication version",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "module_count",
+        "roles_count",
+        "published_version"
+      ]
+    }
+  }
+}

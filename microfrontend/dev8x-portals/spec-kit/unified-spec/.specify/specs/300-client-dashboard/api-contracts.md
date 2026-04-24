@@ -1,56 +1,113 @@
-# Client Dashboard — API Contracts
-> **Module ID**: `300-client-dashboard`
+# Client Dashboard - API Contracts
 
-### GET /api/v1/client/dashboard/kpis
+> **Module ID**: `300-client-dashboard`
+> References: [contracts/api.yaml](../../../contracts/api.yaml)
+
+---
+
+## Endpoints
+
+### GET /api/v1/client/dashboard/summary
 
 | Field | Value |
-|-------|-------|
-| **Description** | Retrieve aggregated KPIs for the client dashboard |
-| **Auth** | Bearer token (`client`, `manager`, `super_admin`) |
+| --- | --- |
+| **Description** | Return client KPI summary. |
+| **Auth** | Bearer token |
 | **Rate Limit** | 60 requests/minute |
+| **Idempotent** | Yes |
+
+**Request Body:** None
+
 
 **Response (200 OK):**
 
-```json
-{
-  "active_projects": 3,
-  "total_budget_burn_pct": 65.5,
-  "unpaid_invoices": {
-    "count": 2,
-    "total_amount": 4500.00
-  },
-  "open_tickets": 1,
-  "projects_health": {
-    "on_track": 2,
-    "at_risk": 1,
-    "delayed": 0
-  }
-}
-```
+| Field | Type | Description |
+| --- | --- | --- |
+| active_project_count | integer | Number of active projects |
+| open_ticket_count | integer | Open support tickets |
+| total_invoiced_amount | number | Total invoiced amount |
+| generated_at | datetime | Snapshot timestamp |
+
+**Error Codes:**
+
+| Code | Condition | Response Body |
+| --- | --- | --- |
+| 400 | Validation failure | `{ error: "VALIDATION_ERROR" }` |
+| 401 | Unauthorized | `{ error: "UNAUTHORIZED" }` |
+| 403 | Forbidden | `{ error: "FORBIDDEN" }` |
+| 429 | Rate limit exceeded | `{ error: "RATE_LIMITED" }` |
+
+---
+
+### GET /api/v1/client/dashboard/projects-overview
+
+| Field | Value |
+| --- | --- |
+| **Description** | Return active project overview. |
+| **Auth** | Bearer token |
+| **Rate Limit** | 60 requests/minute |
+| **Idempotent** | Yes |
+
+**Request Body:** None
+
+
+**Response (200 OK):**
+
+| Field | Type | Description |
+| --- | --- | --- |
+| active_project_count | integer | Number of active projects |
+| open_ticket_count | integer | Open support tickets |
+| total_invoiced_amount | number | Total invoiced amount |
+| generated_at | datetime | Snapshot timestamp |
+
+**Error Codes:**
+
+| Code | Condition | Response Body |
+| --- | --- | --- |
+| 400 | Validation failure | `{ error: "VALIDATION_ERROR" }` |
+| 401 | Unauthorized | `{ error: "UNAUTHORIZED" }` |
+| 403 | Forbidden | `{ error: "FORBIDDEN" }` |
+| 429 | Rate limit exceeded | `{ error: "RATE_LIMITED" }` |
+
+---
 
 ### GET /api/v1/client/dashboard/activity
 
 | Field | Value |
-|-------|-------|
-| **Description** | Retrieve chronological activity feed for the client |
-| **Auth** | Bearer token (`client`, `manager`, `super_admin`) |
+| --- | --- |
+| **Description** | Return recent client account activity. |
+| **Auth** | Bearer token |
+| **Rate Limit** | 60 requests/minute |
+| **Idempotent** | Yes |
+
+**Request Body:** None
+
 
 **Response (200 OK):**
 
-```json
-{
-  "data": [
-    {
-      "id": "uuid",
-      "type": "invoice_generated",
-      "title": "New Invoice #1042",
-      "timestamp": "2026-04-24T10:00:00Z",
-      "link": "/client/invoices/1042"
-    }
-  ],
-  "meta": {
-    "total": 15,
-    "limit": 10
-  }
-}
-```
+| Field | Type | Description |
+| --- | --- | --- |
+| active_project_count | integer | Number of active projects |
+| open_ticket_count | integer | Open support tickets |
+| total_invoiced_amount | number | Total invoiced amount |
+| generated_at | datetime | Snapshot timestamp |
+
+**Error Codes:**
+
+| Code | Condition | Response Body |
+| --- | --- | --- |
+| 400 | Validation failure | `{ error: "VALIDATION_ERROR" }` |
+| 401 | Unauthorized | `{ error: "UNAUTHORIZED" }` |
+| 403 | Forbidden | `{ error: "FORBIDDEN" }` |
+| 429 | Rate limit exceeded | `{ error: "RATE_LIMITED" }` |
+
+---
+
+## Common Headers
+
+| Header | Required | Description |
+| --- | --- | --- |
+| `Authorization` | Yes (authenticated endpoints) | `Bearer {token}` |
+| `Content-Type` | Yes | `application/json` |
+| `X-Request-ID` | Recommended | Request tracing identifier |
+| `X-Portal` | Optional | Portal context |

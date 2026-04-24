@@ -1,11 +1,20 @@
-﻿# Foundation — Changelog
-> **Module ID**: `000-foundation`
+# Foundation - Changelog
 
-## [1.0.0] — 2026-04-22
-### Added
-- Canonical User entity schema
-- Unified error response contract
-- Audit event canonical schema
-- Notification entity
-- Pagination response schema
-- 2 business rules (BR-000-01, BR-000-02)
+> **Module ID**: `000-foundation`
+> **Version**: 1.0.0
+
+---
+
+## Entries
+
+| Date | Version | Change | Author |
+| --- | --- | --- | --- |
+| 2026-04-24 | 1.0.0 | Replaced placeholder artifact set with portal-aligned functional spec, contracts, RBAC, lifecycle, validation schema, rollout, and test coverage. | Codex |
+| 2026-04-22 | 0.1.0 | Scaffolded module directory and empty artifact set. | System |
+
+---
+
+## Notes
+
+- This changelog tracks specification evolution only.
+- Contract-breaking updates must publish a new ADR before the next version increment.

@@ -1,1 +1,75 @@
-﻿{"$schema":"http://json-schema.org/draft-07/schema#"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Candidate Interviews validation schema",
+  "description": "Validation definitions for 202-candidate-interviews.",
+  "type": "object",
+  "definitions": {
+    "candidateInterviewReservation": {
+      "type": "object",
+      "description": "Candidate interview reservation payload.",
+      "properties": {
+        "slot_id": {
+          "description": "Requested slot",
+          "type": "string",
+          "format": "uuid"
+        },
+        "confirmation_note": {
+          "description": "Optional note",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "slot_id"
+      ]
+    },
+    "candidateInterviewUpdate": {
+      "type": "object",
+      "description": "Candidate interview update payload.",
+      "properties": {
+        "status": {
+          "description": "Requested status",
+          "type": "string",
+          "enum": [
+            "confirmed",
+            "cancelled"
+          ]
+        },
+        "reason": {
+          "description": "Update reason",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ]
+    },
+    "candidateInterviewSummary": {
+      "type": "object",
+      "description": "Candidate interview response.",
+      "properties": {
+        "interview_id": {
+          "description": "Interview identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Current status",
+          "type": "string"
+        },
+        "reserved_for": {
+          "description": "Reserved slot",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "interview_id",
+        "status",
+        "reserved_for"
+      ]
+    }
+  }
+}

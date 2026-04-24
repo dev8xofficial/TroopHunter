@@ -1,1 +1,58 @@
-﻿{"$schema":"http://json-schema.org/draft-07/schema#"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Candidate Onboarding validation schema",
+  "description": "Validation definitions for 204-candidate-onboarding.",
+  "type": "object",
+  "definitions": {
+    "onboardingItemUpdate": {
+      "type": "object",
+      "description": "Candidate onboarding completion payload.",
+      "properties": {
+        "status": {
+          "description": "Requested status",
+          "type": "string",
+          "enum": [
+            "completed"
+          ]
+        },
+        "note": {
+          "description": "Optional completion note",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ]
+    },
+    "onboardingSummary": {
+      "type": "object",
+      "description": "Onboarding summary response.",
+      "properties": {
+        "item_id": {
+          "description": "Item identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Current status",
+          "type": "string"
+        },
+        "owner_type": {
+          "description": "Owning actor",
+          "type": "string",
+          "enum": [
+            "candidate",
+            "system"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "item_id",
+        "status",
+        "owner_type"
+      ]
+    }
+  }
+}

@@ -1,4 +1,5 @@
-﻿# Admin Dashboard
+# Admin Dashboard
+
 > **Module ID**: `100-admin-dashboard`
 > **Domain**: HR Admin Panel (1xx)
 > **Version**: 1.0.0
@@ -8,67 +9,139 @@
 
 ## Overview
 
-The Admin Dashboard aggregates HR pipeline health into a single view: applicant volume, active job postings, upcoming interviews, and hiring velocity (average time-to-hire). KPI cards show delta metrics for period-over-period comparisons, and a 5-stage hiring funnel visualizes conversion rates.
+The Admin Dashboard aggregates recruiting KPIs, funnel conversion counts, and exception queues so HR administrators can prioritize day-to-day hiring work from a single entry point.
 
 ---
 
 ## Actors
 
 | Actor | Role | Interaction |
-|-------|------|-------------|
-| HR Admin | `hr_admin` | Full dashboard access |
-| Super Admin | `super_admin` | Full dashboard access |
-| Manager | `manager` | Read-only access |
+| --- | --- | --- |
+| HR Admin | hr_admin | Runs recruiting, hiring, and operational workflows |
+| Super Admin | super_admin | Maintains global oversight and escalations |
+| Manager | manager | Has read-only oversight for managed teams |
+| System | system | Publishes calculations, alerts, and audit entries |
 
 ---
 
 ## Functional Requirements
 
-### FR-100-01: KPI Aggregation
+### FR-100-01: Aggregate recruiting KPIs
 
-**Description**: Display 4 core KPIs with delta trends.
-
-**Acceptance Criteria**:
-- [ ] Total Applicants (count + delta %)
-- [ ] Active Jobs (count + delta %)
-- [ ] Interviews This Week (count + delta %)
-- [ ] Avg Time-to-Hire (days + delta %)
-
-### FR-100-02: Hiring Funnel
-
-**Description**: Display a 5-stage conversion funnel.
+**Description**: The system shall calculate and display top-level recruiting metrics.
 
 **Acceptance Criteria**:
-- [ ] Stages: Applied -> Shortlisted -> Interview -> Selected -> Joined
-- [ ] Each stage shows count, percentage of total, and conversion rate to next stage
-- [ ] Time period selectable (7d, 30d, 90d, All)
+- [ ] Counts include total applicants, active jobs, interviews this week, and average time to hire.
+- [ ] Metrics may be filtered by date range.
+- [ ] Each metric publishes the snapshot timestamp used for calculation.
 
-### FR-100-03: Pipeline Summary
+### FR-100-02: Display funnel performance
 
-**Description**: Display counts per pipeline stage for quick overview.
+**Description**: The system shall show the recruiting funnel from applied through joined.
 
 **Acceptance Criteria**:
-- [ ] Shows count per stage in a horizontal bar
-- [ ] Clicking a stage navigates to `102-admin-pipeline` filtered by that stage
+- [ ] Each stage shows the current count and conversion rate from the previous stage.
+- [ ] Joined and rejected records are excluded from active-stage counts.
+- [ ] Users can drill into the underlying queue for a selected stage.
+
+### FR-100-03: Surface priority queues
+
+**Description**: The system shall present stale, urgent, or blocked recruiting work items.
+
+**Acceptance Criteria**:
+- [ ] Urgent applicant cards and overdue interview scheduling requests appear in the priority queue.
+- [ ] Items are ordered by urgency and age.
+- [ ] Queue selection routes to the owning downstream module.
 
 ---
 
 ## Data Model
 
-### DashboardKPI
+### AdminDashboardSnapshot
 
-| Field | Type | Description |
-|-------|------|-------------|
-| metric | string | KPI name |
-| value | number | Current value |
-| delta | number | Change from prior period (%) |
-| direction | enum | up, down, flat |
+Aggregated recruiting summary for the current filter scope.
+
+| Field | Type | Required | Constraints | Description |
+| --- | --- | --- | --- | --- |
+| id | uuid | Yes | Primary key, immutable | Unique identifier |
+| applicant_count | integer | Yes | min 0 | Total applicants |
+| active_job_count | integer | Yes | min 0 | Open jobs |
+| interviews_this_week | integer | Yes | min 0 | Upcoming interviews this week |
+| average_time_to_hire_days | number | Yes | min 0 | Average days to join |
+| created_at | datetime | Yes | Auto-generated | Creation timestamp |
+| updated_at | datetime | Yes | Auto-updated on mutation | Last update timestamp |
 
 ### FunnelMetric
 
-| Field | Type | Description |
-|-------|------|-------------|
-| stage | string | Pipeline stage name |
-| count | integer | Applicants in stage |
-| percentage | number | % of total applicants |
-| conversion_rate | number | % converting to next stage |
+Recruiting funnel stage aggregate.
+
+| Field | Type | Required | Constraints | Description |
+| --- | --- | --- | --- | --- |
+| stage | string | Yes | Recruiting stage | Stage name |
+| count | integer | Yes | min 0 | Records in stage |
+| conversion_rate | number | Yes | 0-100 | Conversion from prior stage |
+
+---
+
+## Business Rules
+
+### BR-100-01: Snapshot freshness
+
+**Condition**: When metrics are shown
+**Action**: Expose the timestamp used for the calculation.
+**Rationale**: Prevents stale operational decisions
+
+### BR-100-02: Manager read-only oversight
+
+**Condition**: When the actor role is manager
+**Action**: Allow drilldown visibility but block any mutation paths from the dashboard.
+**Rationale**: Constitution P-05
+
+---
+
+## State Machine
+
+See [state-machines.md](state-machines.md) for the recruiting snapshot lifecycle.
+
+---
+
+## API Surface
+
+See [api-contracts.md](api-contracts.md) for endpoint definitions:
+- `GET /api/v1/admin/dashboard/summary`
+- `GET /api/v1/admin/dashboard/funnel`
+- `GET /api/v1/admin/dashboard/priority-queue`
+
+---
+
+## Access Control
+
+See [rbac-matrix.md](rbac-matrix.md) for role permissions.
+
+---
+
+## Audit Events
+
+See [activity-log-events.md](activity-log-events.md) for:
+- `admin.dashboard.viewed` (EVT-100-01)
+- `admin.dashboard.drilldown_opened` (EVT-100-02)
+
+---
+
+## Dependencies
+
+| Module | Dependency Type | Description |
+| --- | --- | --- |
+| 101-admin-applicants | Upstream | Provides applicant counts and queue details |
+| 102-admin-pipeline | Upstream | Provides funnel stage counts and stale-stage indicators |
+| 104-admin-interviews | Upstream | Provides upcoming interview metrics |
+
+---
+
+## References
+
+- [Constitution](../../memory/constitution.md)
+- [contracts/access-control.yaml](../../../contracts/access-control.yaml)
+- [contracts/api.yaml](../../../contracts/api.yaml)
+- [contracts/events.yaml](../../../contracts/events.yaml)
+- [adr-007-pipeline-kanban-state-machine.md](../../decisions/adr-007-pipeline-kanban-state-machine.md)

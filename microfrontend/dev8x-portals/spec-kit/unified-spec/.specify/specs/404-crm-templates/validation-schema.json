@@ -1,1 +1,86 @@
-﻿{"$schema": "http://json-schema.org/draft-07/schema#","description":"Placeholder validation schema"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CRM Templates validation schema",
+  "description": "Validation definitions for 404-crm-templates.",
+  "type": "object",
+  "definitions": {
+    "crmTemplateRecord": {
+      "type": "object",
+      "description": "CRM outreach template create or update payload.",
+      "properties": {
+        "channel": {
+          "description": "Template channel",
+          "type": "string",
+          "enum": [
+            "linkedin",
+            "email",
+            "whatsapp"
+          ]
+        },
+        "body": {
+          "description": "Template body",
+          "type": "string"
+        },
+        "status": {
+          "description": "Template status",
+          "type": "string",
+          "enum": [
+            "draft",
+            "tested",
+            "approved",
+            "retired"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "channel",
+        "body",
+        "status"
+      ]
+    },
+    "crmTemplatePreview": {
+      "type": "object",
+      "description": "CRM template preview payload.",
+      "properties": {
+        "first_name": {
+          "description": "Sample first name",
+          "type": "string"
+        },
+        "company": {
+          "description": "Sample company",
+          "type": "string"
+        },
+        "job_title": {
+          "description": "Sample job title",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "crmTemplateSummary": {
+      "type": "object",
+      "description": "CRM template response.",
+      "properties": {
+        "template_id": {
+          "description": "Template identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Current status",
+          "type": "string"
+        },
+        "reply_rate": {
+          "description": "Observed reply rate",
+          "type": "number"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "template_id",
+        "status"
+      ]
+    }
+  }
+}

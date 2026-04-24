@@ -1,1 +1,57 @@
-﻿{"$schema":"http://json-schema.org/draft-07/schema#"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Candidate Profile validation schema",
+  "description": "Validation definitions for 206-candidate-profile.",
+  "type": "object",
+  "definitions": {
+    "candidateProfileUpdate": {
+      "type": "object",
+      "description": "Candidate profile update payload.",
+      "properties": {
+        "phone": {
+          "description": "Phone number",
+          "type": "string"
+        },
+        "address": {
+          "description": "Address",
+          "type": "string"
+        },
+        "emergency_contact_name": {
+          "description": "Emergency contact name",
+          "type": "string"
+        },
+        "emergency_contact_phone": {
+          "description": "Emergency contact phone",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "candidateProfileSummary": {
+      "type": "object",
+      "description": "Candidate profile response.",
+      "properties": {
+        "profile_id": {
+          "description": "Profile identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "verification_state": {
+          "description": "Verification state",
+          "type": "string"
+        },
+        "updated_at": {
+          "description": "Latest profile update time",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "profile_id",
+        "verification_state",
+        "updated_at"
+      ]
+    }
+  }
+}

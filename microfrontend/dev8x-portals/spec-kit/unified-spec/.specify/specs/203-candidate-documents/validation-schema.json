@@ -1,1 +1,80 @@
-﻿{"$schema":"http://json-schema.org/draft-07/schema#"}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Candidate Documents validation schema",
+  "description": "Validation definitions for 203-candidate-documents.",
+  "type": "object",
+  "definitions": {
+    "candidateDocumentSign": {
+      "type": "object",
+      "description": "Candidate signature payload.",
+      "properties": {
+        "signature_type": {
+          "description": "Signature method",
+          "type": "string",
+          "enum": [
+            "typed_name",
+            "drawn"
+          ]
+        },
+        "signed_name": {
+          "description": "Rendered signature name",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "signature_type",
+        "signed_name"
+      ]
+    },
+    "candidateDocumentUpload": {
+      "type": "object",
+      "description": "Candidate supplemental upload payload.",
+      "properties": {
+        "document_type": {
+          "description": "Document type",
+          "type": "string"
+        },
+        "file_name": {
+          "description": "Uploaded file name",
+          "type": "string"
+        },
+        "file_size_bytes": {
+          "description": "Uploaded file size",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "document_type",
+        "file_name",
+        "file_size_bytes"
+      ]
+    },
+    "candidateDocumentSummary": {
+      "type": "object",
+      "description": "Candidate document response.",
+      "properties": {
+        "document_id": {
+          "description": "Document identifier",
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "description": "Current status",
+          "type": "string"
+        },
+        "version": {
+          "description": "Current version",
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "document_id",
+        "status",
+        "version"
+      ]
+    }
+  }
+}
