@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dev8X · Sign In</title>
+    <meta name="description" content="Dev8X Spec-Kit Auth Gateway — spec modules 001–005" />
+
+    <!-- Shared styles -->
+    <link rel="stylesheet" href="../shared/css/tokens.css" />
+    <link rel="stylesheet" href="../shared/css/components.css" />
+
+    <!-- Auth surface styles -->
+    <link rel="stylesheet" href="./css/screen.css" />
+
+    <!-- Preconnect for Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+      /* Auth shell — no sidebar, full-page centered layout */
+      body {
+        margin: 0;
+        background: var(--bg-subtle);
+      }
+      #d8x-auth-root {
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="d8x-auth-root" aria-live="polite"></div>
+
+    <!-- Spec badge (dev-only helper) -->
+    <div style="position: fixed; bottom: 12px; right: 12px; z-index: 9999; display: flex; gap: 6px; flex-wrap: wrap; max-width: 280px">
+      <span class="d8x-spec-badge">auth surface</span>
+      <span class="d8x-spec-badge">modules 001–005</span>
+    </div>
+
+    <script type="module">
+      import { Router } from '../shared/js/router.js';
+      import { Session } from '../shared/js/mock-data.js';
+      import { AuthController, AUTH_ROUTES, initLoginScreen, initMfaScreen, initSignupScreen, initForgotScreen } from './js/auth.js';
+
+      // ── If already authenticated → go to portal ──────────────
+      const session = Session.current();
+      if (session) {
+        const portalMap = { admin: '../admin/main.html', candidate: '../candidate/main.html', client: '../client/main.html', crm: '../crm/main.html' };
+        const dest = portalMap[session.role] || '#portal-select';
+        if (dest.startsWith('..')) {
+          window.location.href = dest;
+        }
+      }
+
+      // ── Router ────────────────────────────────────────────────
+      const outlet = '#d8x-auth-root';
+
+      const router = new Router({ outlet });
+
+      const controller = new AuthController({ router });
+      await controller.init();
+
+      // ── Routes ────────────────────────────────────────────────
+      router.register([
+        {
+          path: AUTH_ROUTES.LOGIN,
+          label: 'Sign In',
+          default: true,
+          src: './screens/login.html',
+          init: (el) => initLoginScreen(el, controller),
+        },
+        {
+          path: AUTH_ROUTES.SIGNUP,
+          label: 'Create Account',
+          src: './screens/signup.html',
+          init: (el) => initSignupScreen(el, controller),
+        },
+        {
+          path: AUTH_ROUTES.FORGOT,
+          label: 'Reset Password',
+          src: './screens/forgot-password.html',
+          init: (el) => initForgotScreen(el, controller),
+        },
+        {
+          path: AUTH_ROUTES.MFA,
+          label: 'Verify Identity',
+          src: './screens/mfa.html',
+          init: (el) => initMfaScreen(el, controller),
+        },
+        {
+          path: AUTH_ROUTES.SSO,
+          label: 'SSO',
+          src: './screens/sso.html',
+        },
+        {
+          path: AUTH_ROUTES.PORTAL_SELECT,
+          label: 'Choose Portal',
+          src: './screens/portal-select.html',
+          init: (el) => initPortalSelect(el, controller),
+        },
+      ]);
+
+      router.start();
+
+      // ── Portal-select screen init ─────────────────────────────
+      function initPortalSelect(el, ctrl) {
+        el.querySelectorAll('[data-portal]').forEach((card) => {
+          card.addEventListener('click', (e) => {
+            e.preventDefault();
+            const role = card.dataset.portal;
+            // Write a session for the selected portal if none set
+            const user = Session.current() || {
+              id: 'guest',
+              name: 'Demo User',
+              email: 'demo@dev8x.io',
+              role,
+            };
+            Session.set({ ...user, role });
+            ctrl.routeToPortal({ role });
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+{
+  "$schema": "../../schemas/manifest.schema.json",
+  "id": "auth",
+  "title": "Dev8X Auth",
+  "version": "1.0.0",
+  "entry": "main.html",
+  "surface": "auth",
+  "description": "Authentication gateway. Entry point for all Dev8X portals. Handles login, signup, password recovery, MFA, and SSO. Routes users to the correct surface based on role.",
+
+  "specRefs": [
+    { "module": "001", "label": "Portal Selection", "screen": "portal-select" },
+    { "module": "002", "label": "Login", "screen": "login" },
+    { "module": "003", "label": "Signup", "screen": "signup" },
+    { "module": "004", "label": "Password Recovery", "screen": "forgot-password" },
+    { "module": "005", "label": "MFA / SSO", "screen": "mfa" }
+  ],
+
+  "contracts": ["contracts/access-control.yaml"],
+
+  "routes": [
+    { "path": "", "screen": "login", "label": "Sign In", "default": true },
+    { "path": "login", "screen": "login", "label": "Sign In" },
+    { "path": "signup", "screen": "signup", "label": "Create Account" },
+    { "path": "forgot", "screen": "forgot-password", "label": "Forgot Password" },
+    { "path": "mfa", "screen": "mfa", "label": "Verify Identity" },
+    { "path": "sso", "screen": "sso", "label": "SSO Redirect" },
+    { "path": "portal-select", "screen": "portal-select", "label": "Choose Portal" }
+  ],
+
+  "screens": [
+    {
+      "id": "portal-select",
+      "file": "screens/portal-select.html",
+      "specRef": "001",
+      "description": "Role selection — routes authenticated user to the correct surface portal."
+    },
+    {
+      "id": "login",
+      "file": "screens/login.html",
+      "specRef": "002",
+      "description": "Email + password login with remember-me and SSO shortcut."
+    },
+    {
+      "id": "signup",
+      "file": "screens/signup.html",
+      "specRef": "003",
+      "description": "New account registration with role selection."
+    },
+    {
+      "id": "forgot-password",
+      "file": "screens/forgot-password.html",
+      "specRef": "004",
+      "description": "Password reset request and confirmation flows."
+    },
+    {
+      "id": "mfa",
+      "file": "screens/mfa.html",
+      "specRef": "005",
+      "description": "TOTP / SMS MFA verification gate."
+    },
+    {
+      "id": "sso",
+      "file": "screens/sso.html",
+      "specRef": "005",
+      "description": "SSO callback landing and redirect."
+    }
+  ],
+
+  "dataSources": [{ "id": "users", "file": "data/users.json", "description": "Mock user accounts for demo login" }],
+
+  "roles": ["admin", "candidate", "client", "crm"],
+
+  "meta": {
+    "createdAt": "2025-04-24",
+    "phase": 2,
+    "status": "active"
+  }
+}
