@@ -1,3 +1,5 @@
+
+
 ## Monorepo Identity
 - **Always** treat `troophunter` as a Turborepo monorepo hosting multiple microfrontends, microservices, shared packages, and CDNs for the TroopHunter platform.
 - **Always** use **Node >= 18** and the root `npm@10.1.0` workspace configuration for all development and CI.

@@ -91,13 +91,13 @@ Examples:
 
 ```bash
 # Scrape up to 10 pages in headless mode, loading 5 at a time
-python3 main.py "https://example.com" --max-pages 10 --concurrent-tabs 5 --headless
+python3 main.py "https://easy.com/" --max-pages 10 --concurrent-tabs 5 --headless
 
 # Scrape up to 15 pages with a visible browser window
-python main.py "https://www.jollydeck.com/" --max-pages 15 --concurrent-tabs 5 --no-headless
+python main.py "https://easy.com/" --max-pages 50 --concurrent-tabs 5 --no-headless
 
 # Simple crawl: discover & scrape
-python main.py "https://www.jollydeck.com/" --max-pages 50 --concurrent-tabs 5 --no-headless
+python main.py "https://www.fitnesssuperstore.com/" --max-pages 50 --concurrent-tabs 5 --no-headless
 ```
 
 ## Usage (Web page)
