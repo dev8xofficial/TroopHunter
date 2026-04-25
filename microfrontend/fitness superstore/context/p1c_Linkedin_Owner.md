@@ -1,8 +1,16 @@
-Name: Timothy French
-HEadline: Founder & CEO | Fitness Superstore & French Fitness
-LOcation: Benicia, California, United States
+---
+platform: LinkedIn
+profile_type: person
+name: Timothy French
+headline: Founder & CEO | Fitness Superstore & French Fitness
+location: Benicia, California, United States
+website: https://www.FrenchFitness.com
+---
 
-About: Timothy J. French didn’t start with a big plan or investors. He started with one used Bowflex machine and his parents’ garage.
+# Timothy French — LinkedIn Profile
+
+## Summary
+Timothy J. French didn't start with a big plan or investors. He started with one used Bowflex machine and his parents' garage.
 
 In 2003, he bought equipment locally, listed it online, packed and shipped it himself, and repeated the process day after day. It was slow, hands-on work, but it built the foundation for everything that followed.
 
@@ -18,16 +26,18 @@ So in 2019, he launched French Fitness, a line of new commercial-grade strength 
 
 The French Fitness lineup includes:
 
-FFB Black, Tahoe, Telluride, and Marin strength systems
-FSR racks, rigs, and functional trainers
-Commercial treadmills, ellipticals, rowers, and bikes
-Flooring, benches, accessories, and full facility outfitting support
+- FFB Black, Tahoe, Telluride, and Marin strength systems
+- FSR racks, rigs, and functional trainers
+- Commercial treadmills, ellipticals, rowers, and bikes
+- Flooring, benches, accessories, and full facility outfitting support
 
 Every piece is backed by industry-leading warranty protection:
 
-Lifetime Frame → Up to 10-Year Parts → 1-Year Labor (extendable nationwide)
+- Lifetime Frame
+- Up to 10-Year Parts
+- 1-Year Labor (extendable nationwide)
 
-Today, French Fitness represents nearly 60% of Fitness Superstore’s annual sales, supporting high-performance facilities and advanced home gyms across the country.
+Today, French Fitness represents nearly 60% of Fitness Superstore's annual sales, supporting high-performance facilities and advanced home gyms across the country.
 
 His philosophy is simple:
 
@@ -35,13 +45,4 @@ Strength comes from consistency. Equipment should support that, never get in the
 
 If you're building or upgrading a training space, his team will help you do it right from day one, with clear guidance and equipment built for real training.
 
-→ Message to discuss your facility, or explore the equipment line below: https://www.FrenchFitness.com
-
 Designed & Quality-Controlled in California. Built for real training.
-
-#CommercialFitnessEquipment #GymDesign #BeniciaCalifornia #FrenchFitness #FitnessSuperstore
-
-
-
-POst
-No post
