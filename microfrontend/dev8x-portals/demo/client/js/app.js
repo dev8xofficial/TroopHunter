@@ -311,11 +311,11 @@ function initClientRoute({ outlet, route, datasets }) {
 bootstrapSurface({ onRouteInit: initClientRoute }).catch((error) => {
   const root = document.getElementById('d8x-shell');
   if (root) {
-    root.innerHTML = \`
+    root.innerHTML = `
       <div class="empty-state" style="margin:2rem">
         <h1 class="empty-state__title">Client surface failed to load</h1>
-        <p class="empty-state__desc">\${error.message}</p>
+        <p class="empty-state__desc">${error.message}</p>
       </div>
-    \`;
+    `;
   }
 });

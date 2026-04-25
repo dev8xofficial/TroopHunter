@@ -26,6 +26,25 @@ const requiredSurfaceEntries = ['css', 'data', 'js', 'screens', 'main.html', 'ma
 const errors = [];
 const warnings = [];
 
+function extractRouteHandlerCaseIds(scriptSource) {
+  const routeHandlerMatch = scriptSource.match(
+    /function\s+init\w+Route\s*\([^)]*\)\s*{[\s\S]*?switch\s*\(route\.id\)\s*{([\s\S]*?)\n\s*}\n}/,
+  );
+
+  if (!routeHandlerMatch) return [];
+
+  const caseIds = [];
+  const casePattern = /case\s+'([^']+)':/g;
+  let match = casePattern.exec(routeHandlerMatch[1]);
+
+  while (match) {
+    caseIds.push(match[1]);
+    match = casePattern.exec(routeHandlerMatch[1]);
+  }
+
+  return caseIds;
+}
+
 function addError(message) {
   errors.push(message);
 }
@@ -75,6 +94,7 @@ async function validateFileReferences(surfaceDir, refs, label) {
 async function validateSurface(surface, schema) {
   const surfaceDir = path.join(demoDir, surface);
   const manifestPath = path.join(surfaceDir, 'manifest.json');
+  const appScriptPath = path.join(surfaceDir, 'js', 'app.js');
 
   if (!(await exists(surfaceDir))) {
     addError(`Missing demo surface directory "${surface}/".`);
@@ -119,6 +139,7 @@ async function validateSurface(surface, schema) {
   const seenRoutePaths = new Set();
   const screenById = new Map();
   const localDataSources = dataSources.filter((source) => source.startsWith('data/'));
+  const manifestRouteIds = new Set(routes.map((route) => route.id).filter(Boolean));
 
   if (!localDataSources.length) {
     addError(`${surface}/manifest.json should include at least one surface-local mock data file under data/.`);
@@ -208,6 +229,21 @@ async function validateSurface(surface, schema) {
         addWarning(`${surface} data source "${source}" is empty.`);
       }
     }
+  }
+
+  if (surface !== 'auth' && (await exists(appScriptPath))) {
+    const appScript = await readFile(appScriptPath, 'utf8');
+
+    if (appScript.includes('\\`') || appScript.includes('\\${')) {
+      addError(`${surface}/js/app.js contains escaped template-literal markers that break browser parsing.`);
+    }
+
+    const handlerCaseIds = extractRouteHandlerCaseIds(appScript);
+    handlerCaseIds
+      .filter((caseId) => !manifestRouteIds.has(caseId))
+      .forEach((caseId) => {
+        addError(`${surface}/js/app.js handles unknown route id "${caseId}".`);
+      });
   }
 
   await validateFileReferences(surfaceDir, manifest.specRefs, `${surface} manifest`);

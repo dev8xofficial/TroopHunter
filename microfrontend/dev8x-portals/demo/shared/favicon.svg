@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="dev8x-gradient" x1="8" x2="56" y1="8" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff5a5f" />
+      <stop offset="1" stop-color="#7048e8" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="#101828" />
+  <path
+    fill="url(#dev8x-gradient)"
+    d="M17 19h16.4c8.8 0 14.6 5.2 14.6 13.2S42.2 45.5 33.5 45.5H17V19Zm8.2 7.2v12.1h8c4.4 0 7.1-2.2 7.1-6.1s-2.7-6-7.1-6h-8Z"
+  />
+  <path
+    fill="#f8fafc"
+    d="M41.4 18.8h6.8l-5.8 8.1 6.3 8.6h-6.9l-2.8-4.1-2.9 4.1h-6.8l6.3-8.5-5.8-8.2h6.8l2.5 3.8 2.3-3.8Z"
+  />
+</svg>

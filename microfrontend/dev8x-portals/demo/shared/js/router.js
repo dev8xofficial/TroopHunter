@@ -34,8 +34,16 @@ export class Router {
 
   /** Start the router — listen for hash changes */
   start() {
-    window.addEventListener('hashchange', () => this._handleChange());
-    window.addEventListener('load', () => this._handleChange());
+    const syncRoute = () => this._handleChange();
+
+    window.addEventListener('hashchange', syncRoute);
+
+    if (document.readyState !== 'loading') {
+      syncRoute();
+    } else {
+      window.addEventListener('load', syncRoute, { once: true });
+    }
+
     return this;
   }
 

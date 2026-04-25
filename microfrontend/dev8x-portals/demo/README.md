@@ -58,10 +58,23 @@ demo/
 
 Use `auth/main.html` as the canonical demo entry. Because screens and manifests are fetched dynamically, preview the demo through a local static server instead of opening files from `file://`.
 
+## Running The Demo
+
+From the repo root:
+
+- `npm run start:dev8x-portals-demo`
+
+From `microfrontend/dev8x-portals/demo/` directly:
+
+- `node server.mjs`
+
+The demo server defaults to `http://127.0.0.1:4173/` and redirects `/` to the shared auth entry at `auth/main.html#portal-select`.
+
 ## Validation
 
 - Run `npm run validate:dev8x-portals-demo` from the repo root to verify surface structure, manifest shape, screen references, spec links, data sources, and legacy reference files.
 - Use `node --check` on updated surface scripts when you add or change route-specific behavior.
+- The validator now also flags browser-breaking escaped template literals in surface boot files and route handlers that reference manifest ids that do not exist.
 
 ## Current Scope
 
