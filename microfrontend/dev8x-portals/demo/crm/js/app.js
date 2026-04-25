@@ -276,7 +276,7 @@ function initContacts(outlet, data) {
               <strong>${contact.name}</strong><br />
               <span class="panel__meta">${contact.jobTitle}${contact.decisionMaker ? ' · Decision maker' : ''}</span>
             </td>
-            <td>${contact.companyName}<br /><span class="panel__meta">${titleCase(contact.channel)}</span></td>
+            <td>${contact.companyName}<br /><div style="margin-top:4px"><span class="tag">${titleCase(contact.channel)}</span></div></td>
             <td>${contact.healthScore}</td>
             <td>${statusPill(titleCase(contact.temperature), scoreTone(contact.temperature))}</td>
             <td>${statusPill(titleCase(contact.sentiment), scoreTone(contact.sentiment))}</td>

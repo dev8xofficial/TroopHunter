@@ -12,13 +12,22 @@
 
   <div class="panel-grid">
     <article class="panel panel--span-5">
-      <div class="panel__heading"><h2 class="panel__title">Recent threads</h2></div>
+      <div class="panel__heading">
+        <h2 class="panel__title">Threads</h2>
+      </div>
       <div class="list-stack" data-client-threads></div>
     </article>
 
     <article class="panel panel--span-7">
-      <div class="panel__heading"><h2 class="panel__title">Current conversation</h2></div>
+      <div class="panel__heading">
+        <h2 class="panel__title">Conversation</h2>
+      </div>
       <div class="list-stack" data-client-conversation></div>
+
+      <div style="margin-top:1rem">
+        <textarea class="form-textarea" id="client-compose-input" placeholder="Reply to delivery lead…" rows="3" style="width:100%;resize:vertical;margin-bottom:.5rem"></textarea>
+        <button class="btn btn-primary" type="button" data-client-compose-send>Send reply</button>
+      </div>
     </article>
   </div>
 </section>

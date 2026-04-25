@@ -458,6 +458,23 @@
   font-size: var(--text-sm);
 }
 
+.kanban-card--stale {
+  border-color: var(--amber);
+  box-shadow: 0 0 0 1px var(--amber-light), inset 3px 0 0 var(--amber);
+}
+
+.tag--warning {
+  background: var(--amber-light);
+  color: var(--amber);
+}
+
+.tag[data-selected='true'],
+button.tag[data-selected='true'] {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-strong);
+  border: 1px solid var(--color-primary-border);
+}
+
 .alert {
   padding: var(--space-4) var(--space-5);
   border-radius: var(--border-radius);

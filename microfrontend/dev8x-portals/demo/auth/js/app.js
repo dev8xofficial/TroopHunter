@@ -206,10 +206,13 @@ async function handleLogin(event, outlet) {
     return;
   }
 
+  const remember = outlet.querySelector('[name="remember_me"]')?.checked || false;
+
   const sessionPayload = {
     ...matchedUser,
     portal: portalKey,
-    mfaVerified: !(matchedUser.mfaEnabled && portalKey === 'admin')
+    mfaVerified: !(matchedUser.mfaEnabled && portalKey === 'admin'),
+    rememberMe: remember
   };
 
   if (matchedUser.mfaEnabled && portalKey === 'admin') {
@@ -276,6 +279,10 @@ function bindLogin(outlet) {
     signupHelper.querySelector('[data-go-signup]').addEventListener('click', () => {
       state.router.navigate('signup');
     });
+  }
+
+  if (portal.key === 'client') {
+    outlet.querySelector('[data-client-remember-group]')?.style.removeProperty('display');
   }
 
   outlet.querySelector('[data-login-form]').addEventListener('submit', (event) => {
