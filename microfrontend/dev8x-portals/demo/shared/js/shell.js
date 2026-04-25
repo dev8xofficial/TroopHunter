@@ -1,24 +1,5 @@
-/**
- * Dev8X Spec-Kit · demo/shared/js/shell.js
- *
- * Renders the app shell (sidebar nav + topbar) from a surface manifest
- * and the current session user.
- *
- * Usage (in surface main.html):
- *   import { Shell } from '../../shared/js/shell.js';
- *   import { Session } from '../../shared/js/mock-data.js';
- *
- *   const shell = new Shell({
- *     manifest: await fetch('./manifest.json').then(r => r.json()),
- *     user: Session.current(),
- *     router,
- *   });
- *   shell.mount('#d8x-shell');
- */
-
 import { Session } from './mock-data.js';
 
-/* ── SVG icon registry ────────────────────────────────── */
 const ICONS = {
   home: `<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>`,
   users: `<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>`,
@@ -37,186 +18,178 @@ const ICONS = {
   bell: `<path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>`,
   search: `<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>`,
   shield: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>`,
-  pipeline: `<rect x="2" y="3" width="4" height="18" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="18" y="11" width="4" height="10" rx="1"/>`,
+  pipeline: `<rect x="2" y="3" width="4" height="18" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="18" y="11" width="4" height="10" rx="1"/>`
 };
 
 function icon(name, size = 16) {
   const path = ICONS[name] || ICONS.folder;
   return `<svg width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="2"
     stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
-    ${path}</svg>`;
+    ${path}
+  </svg>`;
 }
 
-/* ── Shell class ─────────────────────────────────────── */
 export class Shell {
   constructor({ manifest, user, router, accentColor = null } = {}) {
     this.manifest = manifest;
     this.user = user || Session.current();
     this.router = router;
     this.accentColor = accentColor;
-    this._collapsed = localStorage.getItem('d8x-sidebar-collapsed') === 'true';
+    this.collapsed = localStorage.getItem('d8x-sidebar-collapsed') === 'true';
   }
 
   mount(selector) {
     const root = document.querySelector(selector);
-    if (!root) throw new Error(`Shell.mount: selector not found → ${selector}`);
+    if (!root) throw new Error(`Shell.mount: selector not found -> ${selector}`);
 
-    root.innerHTML = this._buildShell();
-    this._bindEvents(root);
-    this._applyAccent();
-    this._syncCollapsed(root);
+    root.innerHTML = this.buildShell();
+    this.bindEvents(root);
+    this.applyAccent();
+    this.syncCollapsed(root);
 
     if (this.router) {
-      this.router.onNavigate = ({ path, route }) => this._setActive(root, path, route);
+      const previousNavigate = this.router.onNavigate;
+      this.router.onNavigate = (payload) => {
+        previousNavigate?.(payload);
+        this.setActive(root, payload.path, payload.route);
+      };
     }
 
     return this;
   }
 
-  // ── Templates ──────────────────────────────────────
-
-  _buildShell() {
-    const { manifest, user } = this;
-    const initials = this._initials(user.name);
+  buildShell() {
+    const initials = this.initials(this.user?.name || 'Dev8X');
 
     return `
-      <aside class="d8x-sidebar" id="d8x-sidebar" aria-label="Main navigation">
-        <a class="d8x-sidebar__brand" href="#" aria-label="${manifest.title} home">
-          <div class="d8x-sidebar__logo">${manifest.id?.slice(0, 2)?.toUpperCase() || 'D8'}</div>
+      <aside class="d8x-sidebar" id="d8x-sidebar" aria-label="Surface navigation">
+        <a class="d8x-sidebar__brand" href="#${this.manifest.defaultRoute || ''}" aria-label="${this.manifest.title}">
+          <div class="d8x-sidebar__logo">${this.manifest.id?.slice(0, 2)?.toUpperCase() || 'D8'}</div>
           <div class="d8x-sidebar__brand-text">
-            ${manifest.title}
-            <small>Dev8X Spec-Kit</small>
+            ${this.manifest.title}
+            <small>Spec-Kit Demo</small>
           </div>
         </a>
 
-        <nav class="d8x-sidebar__nav" id="d8x-nav" role="navigation" aria-label="Surface navigation">
-          ${this._buildNav()}
+        <nav class="d8x-sidebar__nav" id="d8x-nav">
+          ${this.buildNav()}
         </nav>
 
         <div class="d8x-sidebar__footer">
-          <button class="d8x-nav-item" id="d8x-logout-btn" aria-label="Log out">
-            ${icon('logout')}
-            <span class="d8x-nav-item__label">Log out</span>
+          <button class="d8x-nav-item" id="d8x-logout-btn" aria-label="Sign out">
+            <span class="d8x-nav-item__icon">${icon('logout')}</span>
+            <span class="d8x-nav-item__label">Sign out</span>
           </button>
         </div>
       </aside>
 
       <div class="d8x-main">
-        <header class="d8x-topbar" role="banner">
-          <button class="d8x-topbar__toggle" id="d8x-sidebar-toggle" aria-label="Toggle sidebar" aria-expanded="true">
+        <header class="d8x-topbar">
+          <button class="d8x-topbar__toggle" id="d8x-sidebar-toggle" aria-label="Toggle navigation" aria-expanded="${String(!this.collapsed)}">
             ${icon('menu', 18)}
           </button>
 
           <nav class="d8x-topbar__breadcrumb" aria-label="Breadcrumb" id="d8x-breadcrumb">
-            <span class="d8x-topbar__breadcrumb-item">${manifest.title}</span>
+            <span class="d8x-topbar__breadcrumb-item">${this.manifest.title}</span>
           </nav>
 
           <div class="d8x-topbar__actions">
-            <button class="d8x-icon-btn" aria-label="Search">
-              ${icon('search', 18)}
-            </button>
-            <button class="d8x-icon-btn" aria-label="Notifications" id="d8x-notif-btn">
+            <button class="d8x-icon-btn" aria-label="Search">${icon('search', 18)}</button>
+            <button class="d8x-icon-btn" aria-label="Notifications">
               ${icon('bell', 18)}
               <span class="d8x-icon-btn__dot" aria-hidden="true"></span>
             </button>
-            <div class="d8x-avatar" id="d8x-avatar" role="button" tabindex="0"
-                 aria-label="User menu — ${user.name}" title="${user.name} · ${user.role}">
+            <div class="d8x-avatar" id="d8x-avatar" role="button" tabindex="0" aria-label="${this.user?.name || 'User'}">
               ${initials}
             </div>
           </div>
         </header>
 
-        <main class="d8x-content" id="d8x-screen-outlet" role="main" aria-live="polite">
-          <!-- screens render here -->
-        </main>
+        <main class="d8x-content" id="d8x-screen-outlet" role="main" aria-live="polite"></main>
       </div>
     `;
   }
 
-  _buildNav() {
+  buildNav() {
     const sections = this.manifest.navSections || [{ items: this.manifest.routes || [] }];
     return sections
       .map(
         (section) => `
-      ${section.label ? `<div class="d8x-sidebar__section-label">${section.label}</div>` : ''}
-      ${(section.items || []).map((item) => this._buildNavItem(item)).join('')}
-    `,
+          ${section.label ? `<div class="d8x-sidebar__section-label">${section.label}</div>` : ''}
+          ${(section.items || []).map((item) => this.buildNavItem(item)).join('')}
+        `,
       )
       .join('');
   }
 
-  _buildNavItem(item) {
+  buildNavItem(item) {
     return `
       <a class="d8x-nav-item"
          href="#${item.path}"
          data-path="${item.path}"
-         aria-label="${item.label}${item.badge ? ` (${item.badge})` : ''}">
+         aria-label="${item.label}">
         <span class="d8x-nav-item__icon">${icon(item.icon || 'folder')}</span>
         <span class="d8x-nav-item__label">${item.label}</span>
-        ${item.badge ? `<span class="d8x-nav-item__badge" aria-label="${item.badge} items">${item.badge}</span>` : ''}
-      </a>`;
+        ${item.badge ? `<span class="d8x-nav-item__badge">${item.badge}</span>` : ''}
+      </a>
+    `;
   }
 
-  // ── Events ─────────────────────────────────────────
-
-  _bindEvents(root) {
-    // Sidebar toggle
+  bindEvents(root) {
     root.querySelector('#d8x-sidebar-toggle')?.addEventListener('click', () => {
-      this._collapsed = !this._collapsed;
-      localStorage.setItem('d8x-sidebar-collapsed', this._collapsed);
-      this._syncCollapsed(root);
+      this.collapsed = !this.collapsed;
+      localStorage.setItem('d8x-sidebar-collapsed', String(this.collapsed));
+      this.syncCollapsed(root);
     });
 
-    // Logout
     root.querySelector('#d8x-logout-btn')?.addEventListener('click', () => {
       Session.clear();
-      window.location.href = '../../auth/main.html';
+      window.location.href = new URL('../auth/main.html#portal-select', window.location.href).href;
     });
 
-    // Avatar menu (simple toggle for demo)
     root.querySelector('#d8x-avatar')?.addEventListener('click', () => {
       const user = Session.current();
-      alert(`Signed in as:\n${user.name}\n${user.email}\nRole: ${user.role}`);
+      alert(`Signed in as ${user?.name || 'Demo User'}\n${user?.email || ''}\nRole: ${user?.role || 'unknown'}`);
     });
   }
 
-  _setActive(root, path, route) {
-    root.querySelectorAll('.d8x-nav-item[data-path]').forEach((el) => {
-      const isActive = el.dataset.path === path || path.startsWith(el.dataset.path + '/');
-      el.classList.toggle('active', isActive);
-      el.setAttribute('aria-current', isActive ? 'page' : 'false');
+  setActive(root, path, route) {
+    root.querySelectorAll('.d8x-nav-item[data-path]').forEach((node) => {
+      const isActive = node.dataset.path === path || path.startsWith(`${node.dataset.path}/`);
+      node.classList.toggle('active', isActive);
+      node.setAttribute('aria-current', isActive ? 'page' : 'false');
     });
 
-    // Update breadcrumb
-    const crumb = root.querySelector('#d8x-breadcrumb');
-    if (crumb && route?.label) {
-      crumb.innerHTML = `
+    const breadcrumb = root.querySelector('#d8x-breadcrumb');
+    if (breadcrumb && route?.label) {
+      breadcrumb.innerHTML = `
         <span class="d8x-topbar__breadcrumb-item">${this.manifest.title}</span>
         <span class="d8x-topbar__breadcrumb-sep">›</span>
-        <span class="d8x-topbar__breadcrumb-item current">${route.label}</span>`;
+        <span class="d8x-topbar__breadcrumb-item current">${route.label}</span>
+      `;
     }
   }
 
-  _syncCollapsed(root) {
+  syncCollapsed(root) {
     const sidebar = root.querySelector('#d8x-sidebar');
     const toggle = root.querySelector('#d8x-sidebar-toggle');
     if (!sidebar) return;
-    sidebar.classList.toggle('collapsed', this._collapsed);
-    toggle?.setAttribute('aria-expanded', String(!this._collapsed));
+    sidebar.classList.toggle('collapsed', this.collapsed);
+    toggle?.setAttribute('aria-expanded', String(!this.collapsed));
   }
 
-  _applyAccent() {
-    if (this.accentColor) {
-      document.documentElement.style.setProperty('--color-primary', this.accentColor);
-    }
+  applyAccent() {
+    if (!this.accentColor) return;
+    document.documentElement.style.setProperty('--color-primary', this.accentColor);
+    document.documentElement.style.setProperty('--accent', this.accentColor);
   }
 
-  _initials(name = '') {
+  initials(name = '') {
     return (
       name
         .split(' ')
         .slice(0, 2)
-        .map((w) => w[0])
+        .map((word) => word[0])
         .join('')
         .toUpperCase() || '?'
     );

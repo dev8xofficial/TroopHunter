@@ -1,0 +1,42 @@
+<!-- SCREEN_START -->
+<section class="surface-stack">
+  <header class="surface-header">
+    <div class="surface-header__content">
+      <div class="surface-eyebrow">Module 106 · Documents</div>
+      <h1 class="surface-title">Applicant documents and compliance state</h1>
+      <p class="surface-subtitle">
+        The documents module keeps offer packets, NDA signatures, CVs, and compliance uploads attached to the correct applicant record.
+      </p>
+    </div>
+  </header>
+
+  <div class="panel-grid">
+    <article class="panel panel--span-8">
+      <div class="panel__heading">
+        <h2 class="panel__title">Recent documents</h2>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Document</th>
+              <th>Candidate</th>
+              <th>Type</th>
+              <th>Uploaded by</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody data-admin-docs-recent></tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="panel panel--span-4">
+      <div class="panel__heading">
+        <h2 class="panel__title">Compliance reminders</h2>
+      </div>
+      <div class="list-stack" data-admin-docs-reminders></div>
+    </article>
+  </div>
+</section>
+<!-- SCREEN_END -->

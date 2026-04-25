@@ -1,0 +1,76 @@
+<!-- SCREEN_START -->
+<section class="surface-stack">
+  <header class="surface-header">
+    <div class="surface-header__content">
+      <div class="surface-eyebrow">Module 401 · CRM contacts</div>
+      <h1 class="surface-title">Contact health and qualification</h1>
+      <p class="surface-subtitle">
+        Searchable contacts stay scoped to the sales assignment, with temperature, sentiment, qualification state, and decision-maker context visible in one table.
+      </p>
+    </div>
+    <div class="surface-actions">
+      <button class="btn btn-primary" type="button" data-demo-action="Create CRM contact">New contact</button>
+    </div>
+  </header>
+
+  <article class="panel panel--span-12">
+    <div class="panel__body">
+      <div class="crm-filter-row">
+        <div class="form-group" style="flex:2; min-width:220px; margin-bottom:0">
+          <label class="form-label" for="crm-contact-search">Search contacts</label>
+          <div class="form-input-wrap">
+            <input class="form-input no-icon" id="crm-contact-search" type="search" placeholder="Name, company, or role" data-crm-contact-search />
+          </div>
+        </div>
+        <div class="form-group" style="min-width:180px; margin-bottom:0">
+          <label class="form-label" for="crm-contact-temperature">Temperature</label>
+          <select class="form-select no-icon" id="crm-contact-temperature" data-crm-contact-temperature>
+            <option value="all">All temperatures</option>
+            <option value="hot">Hot</option>
+            <option value="warm">Warm</option>
+            <option value="cool">Cool</option>
+          </select>
+        </div>
+        <div class="form-group" style="min-width:180px; margin-bottom:0">
+          <label class="form-label" for="crm-contact-state">Qualification</label>
+          <select class="form-select no-icon" id="crm-contact-state" data-crm-contact-state>
+            <option value="all">All states</option>
+            <option value="new">New</option>
+            <option value="qualified">Qualified</option>
+            <option value="nurturing">Nurturing</option>
+            <option value="disqualified">Disqualified</option>
+            <option value="archived">Archived</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="crm-stat-strip" data-crm-contact-stats></div>
+    </div>
+  </article>
+
+  <article class="panel panel--span-12">
+    <div class="panel__header">
+      <div class="panel__heading">
+        <h2 class="panel__title">Visible contacts</h2>
+        <p class="panel__copy">Rows stay aligned to the current contact and qualification filters.</p>
+      </div>
+    </div>
+    <div class="data-table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Contact</th>
+            <th>Company</th>
+            <th>Health</th>
+            <th>Temperature</th>
+            <th>Sentiment</th>
+            <th>Qualification</th>
+            <th>Last contact</th>
+          </tr>
+        </thead>
+        <tbody data-crm-contact-rows></tbody>
+      </table>
+    </div>
+  </article>
+</section>
+<!-- SCREEN_END -->

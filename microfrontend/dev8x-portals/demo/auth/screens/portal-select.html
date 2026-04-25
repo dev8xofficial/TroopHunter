@@ -1,92 +1,60 @@
 <!-- SCREEN_START -->
-<!-- spec: module 001 · Portal Selection -->
-<div class="portal-select-page">
-  <div class="portal-select__header">
-    <div style="display: flex; align-items: center; justify-content: center; gap: var(--space-3); margin-bottom: var(--space-4)">
-      <div style="width: 40px; height: 40px; background: var(--color-primary); border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: var(--text-sm)">D8</div>
-      <span style="font-weight: var(--font-semibold); font-size: var(--text-lg)">Dev8X</span>
+<section class="auth-card">
+  <div class="auth-card__heading">
+    <div class="surface-eyebrow">Module 002 · Portal routing</div>
+    <h1 class="auth-card__title">Choose the portal that matches your role.</h1>
+    <p class="auth-card__copy">
+      This is the canonical entry for the demo. The selected portal drives the login copy, allowed roles, and the final route after authentication.
+    </p>
+  </div>
+
+  <div class="auth-portal-grid">
+    <button class="auth-portal-card" type="button" data-select-portal="candidate" style="--portal-color:#ff5a5f">
+      <div class="auth-portal-card__icon">CN</div>
+      <div class="auth-portal-card__content">
+        <h2 class="auth-portal-card__title">Candidate Portal</h2>
+        <p class="auth-portal-card__copy">Application progress, interviews, documents, onboarding, and recruiter messages.</p>
+      </div>
+      <p class="auth-portal-card__meta">Modules 200-206 · Google SSO available</p>
+    </button>
+
+    <button class="auth-portal-card" type="button" data-select-portal="client" style="--portal-color:#00a699">
+      <div class="auth-portal-card__icon">CL</div>
+      <div class="auth-portal-card__content">
+        <h2 class="auth-portal-card__title">Client Portal</h2>
+        <p class="auth-portal-card__copy">Projects, invoices, files, time tracking, support, and contract review.</p>
+      </div>
+      <p class="auth-portal-card__meta">Modules 300-307 · Google SSO available</p>
+    </button>
+
+    <button class="auth-portal-card" type="button" data-select-portal="admin" style="--portal-color:#7048e8">
+      <div class="auth-portal-card__icon">AD</div>
+      <div class="auth-portal-card__content">
+        <h2 class="auth-portal-card__title">Admin Portal</h2>
+        <p class="auth-portal-card__copy">Recruiting operations, applicant reviews, templates, interviews, and settings.</p>
+      </div>
+      <p class="auth-portal-card__meta">Modules 100-108 · MFA required</p>
+    </button>
+
+    <button class="auth-portal-card" type="button" data-select-portal="crm" style="--portal-color:#dc2626">
+      <div class="auth-portal-card__icon">CRM</div>
+      <div class="auth-portal-card__content">
+        <h2 class="auth-portal-card__title">CRM Portal</h2>
+        <p class="auth-portal-card__copy">Contacts, pipeline, outreach analytics, scoring, templates, and lead stacks.</p>
+      </div>
+      <p class="auth-portal-card__meta">Modules 400-408 · Sales pipeline and scoring</p>
+    </button>
+  </div>
+
+  <div class="auth-session-banner hidden" data-session-banner>
+    <div>
+      <div class="surface-eyebrow">Active demo session</div>
+      <p class="auth-card__copy" data-session-summary></p>
     </div>
-    <h1 class="portal-select__title">Choose your portal</h1>
-    <p class="portal-select__sub">Select the workspace that matches your role.</p>
+    <div class="auth-inline">
+      <button class="btn btn-primary" type="button" data-continue-session>Continue session</button>
+      <button class="btn btn-secondary" type="button" data-sign-out-session>Sign out</button>
+    </div>
   </div>
-
-  <div class="portal-grid" role="list" style="max-width: 900px; width: 100%">
-    <!-- Admin / Recruiter -->
-    <a class="portal-card" data-portal="admin" href="../admin/main.html" role="listitem" style="--accent: #7c3aed" aria-label="Open Recruiter Admin portal">
-      <div class="portal-card__icon" style="background: #7c3aed20; color: #7c3aed">
-        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-          <circle cx="9" cy="7" r="4" />
-          <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
-        </svg>
-      </div>
-      <div class="portal-card__title">Recruiter Admin</div>
-      <div class="portal-card__desc">Manage candidates, job pipelines, interviews, evaluations, and team workflows.</div>
-      <div class="portal-card__arrow">Open portal →</div>
-      <span class="d8x-spec-badge" style="width: fit-content">modules 100–108</span>
-    </a>
-
-    <!-- Candidate -->
-    <a class="portal-card" data-portal="candidate" href="../candidate/main.html" role="listitem" style="--accent: #0891b2" aria-label="Open Candidate portal">
-      <div class="portal-card__icon" style="background: #0891b220; color: #0891b2">
-        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-          <circle cx="12" cy="7" r="4" />
-        </svg>
-      </div>
-      <div class="portal-card__title">Candidate</div>
-      <div class="portal-card__desc">Track applications, upcoming interviews, onboarding tasks, documents, and messages.</div>
-      <div class="portal-card__arrow">Open portal →</div>
-      <span class="d8x-spec-badge" style="width: fit-content">modules 200–206</span>
-    </a>
-
-    <!-- Client -->
-    <a class="portal-card" data-portal="client" href="../client/main.html" role="listitem" style="--accent: #0d9488" aria-label="Open Client portal">
-      <div class="portal-card__icon" style="background: #0d948820; color: #0d9488">
-        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="2" y="7" width="20" height="14" rx="2" />
-          <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" />
-        </svg>
-      </div>
-      <div class="portal-card__title">Client</div>
-      <div class="portal-card__desc">View active placements, invoices, contracts, working hours reports, and project files.</div>
-      <div class="portal-card__arrow">Open portal →</div>
-      <span class="d8x-spec-badge" style="width: fit-content">modules 300–307</span>
-    </a>
-
-    <!-- CRM -->
-    <a class="portal-card" data-portal="crm" href="../crm/main.html" role="listitem" style="--accent: #dc2626" aria-label="Open CRM portal">
-      <div class="portal-card__icon" style="background: #dc262620; color: #dc2626">
-        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-          <line x1="18" y1="20" x2="18" y2="10" />
-          <line x1="12" y1="20" x2="12" y2="4" />
-          <line x1="6" y1="20" x2="6" y2="14" />
-        </svg>
-      </div>
-      <div class="portal-card__title">CRM Agent</div>
-      <div class="portal-card__desc">Manage leads, contacts, sales pipeline, analytics dashboards, and compliance scoring.</div>
-      <div class="portal-card__arrow">Open portal →</div>
-      <span class="d8x-spec-badge" style="width: fit-content">modules 400–408</span>
-    </a>
-  </div>
-
-  <p style="margin-top: var(--space-8); font-size: var(--text-sm); color: var(--text-muted)">
-    Signed in as <strong id="portal-select-user-name"></strong> ·
-    <a href="#login" id="portal-select-logout" style="color: var(--text-link); text-decoration: none">Sign out</a>
-  </p>
-
-  <script type="module">
-    import { Session } from '../../shared/js/mock-data.js';
-    const user = Session.current();
-    const nameEl = document.getElementById('portal-select-user-name');
-    if (nameEl && user) nameEl.textContent = user.name;
-
-    document.getElementById('portal-select-logout')?.addEventListener('click', (e) => {
-      e.preventDefault();
-      Session.clear();
-      window.location.hash = 'login';
-      window.location.reload();
-    });
-  </script>
-</div>
+</section>
 <!-- SCREEN_END -->

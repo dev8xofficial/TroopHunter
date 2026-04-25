@@ -1,127 +1,93 @@
 # Demo Migration Mapping
 
-> **Phase 1 artefact.** Maps legacy single-file HTML prototypes to the organised `demo/` surface structure.  
-> Last updated: 2026-04-24
+> Updated for the completed Phase 2, Phase 3, and Phase 4 demo structure.
 
----
+## Legacy Source to Demo Surface
 
-## Source Files
+| Legacy File | Current Demo Surface |
+| --- | --- |
+| `auth.html` | `demo/auth/` |
+| `admin-panel.html` | `demo/admin/` |
+| `candidate-portal.html` | `demo/candidate/` |
+| `client-portal.html` | `demo/client/` |
+| `crm-portal.html` | `demo/crm/` |
 
-| Legacy File | Location | Surface Target |
-|-------------|----------|----------------|
-| `auth.html` | `spec-kit/reference/` (source HTML archive) | `demo/auth/` |
-| `admin-panel.html` | `spec-kit/reference/` | `demo/admin/` |
-| `candidate-portal.html` | `spec-kit/reference/` | `demo/candidate/` |
-| `client-portal.html` | `spec-kit/reference/` | `demo/client/` |
-| `crm-portal.html` | `spec-kit/reference/` | `demo/crm/` |
+## Auth Screens
 
-> The legacy files are retained at their original locations for parity checking. They are not modified or deleted.
+| Route | Screen File | Module |
+| --- | --- | --- |
+| `portal-select` | `auth/screens/portal-select.html` | `002-portal-routing` |
+| `login` | `auth/screens/login.html` | `001-authentication` |
+| `signup` | `auth/screens/signup.html` | `001-authentication` |
+| `forgot-password` | `auth/screens/forgot-password.html` | `004-password-reset` |
+| `mfa` | `auth/screens/mfa.html` | `003-mfa` |
+| `sso` | `auth/screens/sso.html` | `005-sso` |
 
----
+## Admin Screens
 
-## Module-to-Surface Assignment
+| Route | Screen File | Module |
+| --- | --- | --- |
+| `dashboard` | `admin/screens/dashboard.html` | `100-admin-dashboard` |
+| `applicants` | `admin/screens/applicants.html` | `101-admin-applicants` |
+| `pipeline` | `admin/screens/pipeline.html` | `102-admin-pipeline` |
+| `jobs` | `admin/screens/jobs.html` | `103-admin-jobs` |
+| `interviews` | `admin/screens/interviews.html` | `104-admin-interviews` |
+| `evaluations` | `admin/screens/evaluations.html` | `105-admin-evaluations` |
+| `documents` | `admin/screens/documents.html` | `106-admin-documents` |
+| `templates` | `admin/screens/templates.html` | `107-admin-email-templates` |
+| `settings` | `admin/screens/settings.html` | `108-admin-settings` |
 
-### Authentication & Identity (0xx) → `demo/auth/`
+## Candidate Screens
 
-| Module ID | Module Title | Screen Slug | Screen File |
-|-----------|-------------|-------------|-------------|
-| `001-authentication` | Authentication | portal-select | `auth/screens/001-portal-select.html` |
-| `001-authentication` | Authentication | login | `auth/screens/001-login.html` |
-| `001-authentication` | Authentication | register | `auth/screens/001-register.html` |
-| `001-authentication` | Authentication | locked | `auth/screens/001-locked.html` |
-| `002-portal-routing` | Portal Routing | routing | `auth/screens/002-routing.html` |
-| `003-mfa` | MFA | mfa-challenge | `auth/screens/003-mfa-challenge.html` |
-| `004-password-reset` | Password Reset | forgot-password | `auth/screens/004-forgot-password.html` |
-| `004-password-reset` | Password Reset | reset-password | `auth/screens/004-reset-password.html` |
-| `005-sso` | SSO | sso-callback | `auth/screens/005-sso-callback.html` |
+| Route | Screen File | Module |
+| --- | --- | --- |
+| `dashboard` | `candidate/screens/dashboard.html` | `200-candidate-dashboard` |
+| `timeline` | `candidate/screens/timeline.html` | `201-candidate-application` |
+| `interviews` | `candidate/screens/interviews.html` | `202-candidate-interviews` |
+| `documents` | `candidate/screens/documents.html` | `203-candidate-documents` |
+| `onboarding` | `candidate/screens/onboarding.html` | `204-candidate-onboarding` |
+| `messages` | `candidate/screens/messages.html` | `205-candidate-messages` |
+| `profile` | `candidate/screens/profile.html` | `206-candidate-profile` |
 
-### HR Admin Panel (1xx) → `demo/admin/`
+## Client Screens
 
-| Module ID | Module Title | Screen Slug | Screen File |
-|-----------|-------------|-------------|-------------|
-| `100-admin-dashboard` | Admin Dashboard | dashboard | `admin/screens/100-dashboard.html` |
-| `101-admin-applicants` | Admin Applicants | applicants-list | `admin/screens/101-applicants-list.html` |
-| `101-admin-applicants` | Admin Applicants | applicant-detail | `admin/screens/101-applicant-detail.html` |
-| `102-admin-pipeline` | Admin Pipeline | pipeline-board | `admin/screens/102-pipeline-board.html` |
-| `103-admin-jobs` | Admin Jobs | jobs-list | `admin/screens/103-jobs-list.html` |
-| `103-admin-jobs` | Admin Jobs | job-detail | `admin/screens/103-job-detail.html` |
-| `104-admin-interviews` | Admin Interviews | interview-calendar | `admin/screens/104-interview-calendar.html` |
-| `105-admin-evaluations` | Admin Evaluations | evaluation-form | `admin/screens/105-evaluation-form.html` |
-| `106-admin-documents` | Admin Documents | documents-list | `admin/screens/106-documents-list.html` |
-| `107-admin-email-templates` | Admin Email Templates | templates-list | `admin/screens/107-templates-list.html` |
-| `108-admin-settings` | Admin Settings | settings | `admin/screens/108-settings.html` |
+| Route | Screen File | Module |
+| --- | --- | --- |
+| `dashboard` | `client/screens/dashboard.html` | `300-client-dashboard` |
+| `projects` | `client/screens/projects.html` | `301-client-projects` |
+| `invoices` | `client/screens/invoices.html` | `302-client-invoices` |
+| `files` | `client/screens/files.html` | `303-client-files` |
+| `working-hours` | `client/screens/working-hours.html` | `304-client-working-hours` |
+| `messaging` | `client/screens/messaging.html` | `305-client-messaging` |
+| `support` | `client/screens/support.html` | `306-client-support` |
+| `contracts` | `client/screens/contracts.html` | `307-client-contracts` |
 
-### Candidate Portal (2xx) → `demo/candidate/`
+## CRM Screens
 
-| Module ID | Module Title | Screen Slug | Screen File |
-|-----------|-------------|-------------|-------------|
-| `200-candidate-dashboard` | Candidate Dashboard | dashboard | `candidate/screens/200-dashboard.html` |
-| `201-candidate-application` | Candidate Application | application-timeline | `candidate/screens/201-application-timeline.html` |
-| `202-candidate-interviews` | Candidate Interviews | interview-slots | `candidate/screens/202-interview-slots.html` |
-| `203-candidate-documents` | Candidate Documents | documents | `candidate/screens/203-documents.html` |
-| `204-candidate-onboarding` | Candidate Onboarding | onboarding-checklist | `candidate/screens/204-onboarding-checklist.html` |
-| `205-candidate-messages` | Candidate Messages | inbox | `candidate/screens/205-inbox.html` |
-| `205-candidate-messages` | Candidate Messages | thread | `candidate/screens/205-thread.html` |
-| `206-candidate-profile` | Candidate Profile | profile | `candidate/screens/206-profile.html` |
-
-### Client Portal (3xx) → `demo/client/`
-
-| Module ID | Module Title | Screen Slug | Screen File |
-|-----------|-------------|-------------|-------------|
-| `300-client-dashboard` | Client Dashboard | dashboard | `client/screens/300-dashboard.html` |
-| `301-client-projects` | Client Projects | projects-list | `client/screens/301-projects-list.html` |
-| `301-client-projects` | Client Projects | project-detail | `client/screens/301-project-detail.html` |
-| `302-client-invoices` | Client Invoices | invoices-list | `client/screens/302-invoices-list.html` |
-| `302-client-invoices` | Client Invoices | invoice-detail | `client/screens/302-invoice-detail.html` |
-| `303-client-files` | Client Files | files | `client/screens/303-files.html` |
-| `304-client-working-hours` | Client Working Hours | working-hours | `client/screens/304-working-hours.html` |
-| `305-client-messaging` | Client Messaging | messages | `client/screens/305-messages.html` |
-| `306-client-support` | Client Support | tickets-list | `client/screens/306-tickets-list.html` |
-| `306-client-support` | Client Support | ticket-detail | `client/screens/306-ticket-detail.html` |
-| `307-client-contracts` | Client Contracts | contracts | `client/screens/307-contracts.html` |
-
-### CRM / Sales (4xx) → `demo/crm/`
-
-| Module ID | Module Title | Screen Slug | Screen File |
-|-----------|-------------|-------------|-------------|
-| `400-crm-dashboard` | CRM Dashboard | dashboard | `crm/screens/400-dashboard.html` |
-| `401-crm-contacts` | CRM Contacts | contacts-list | `crm/screens/401-contacts-list.html` |
-| `401-crm-contacts` | CRM Contacts | contact-detail | `crm/screens/401-contact-detail.html` |
-| `402-crm-pipeline` | CRM Pipeline | pipeline-board | `crm/screens/402-pipeline-board.html` |
-| `403-crm-outreach-analytics` | CRM Outreach Analytics | analytics | `crm/screens/403-analytics.html` |
-| `404-crm-templates` | CRM Templates | templates-list | `crm/screens/404-templates-list.html` |
-| `405-crm-lead-stacks` | CRM Lead Stacks | lead-stacks | `crm/screens/405-lead-stacks.html` |
-| `406-crm-scoring` | CRM Scoring | scoring-queue | `crm/screens/406-scoring-queue.html` |
-| `407-crm-archive` | CRM Archive | archive | `crm/screens/407-archive.html` |
-| `408-crm-settings` | CRM Settings | settings | `crm/screens/408-settings.html` |
-
----
+| Route | Screen File | Module |
+| --- | --- | --- |
+| `dashboard` | `crm/screens/dashboard.html` | `400-crm-dashboard` |
+| `contacts` | `crm/screens/contacts.html` | `401-crm-contacts` |
+| `pipeline` | `crm/screens/pipeline.html` | `402-crm-pipeline` |
+| `analytics` | `crm/screens/analytics.html` | `403-crm-outreach-analytics` |
+| `templates` | `crm/screens/templates.html` | `404-crm-templates` |
+| `lead-stacks` | `crm/screens/lead-stacks.html` | `405-crm-lead-stacks` |
+| `scoring` | `crm/screens/scoring.html` | `406-crm-scoring` |
+| `archive` | `crm/screens/archive.html` | `407-crm-archive` |
+| `settings` | `crm/screens/settings.html` | `408-crm-settings` |
 
 ## Shared Asset Mapping
 
-The following categories of content are extracted from legacy files into `demo/shared/`:
+| Concern | Target |
+| --- | --- |
+| Design tokens | `shared/css/tokens.css` |
+| Shell chrome and layout | `shared/css/shell.css` + `shared/js/shell.js` |
+| Reusable UI pieces | `shared/css/components.css` |
+| Route handling | `shared/js/router.js` |
+| Portal and role access rules | `shared/js/auth-guard.js` + `shared/data/*.json` |
+| Session + mock data loading | `shared/js/mock-data.js` |
+| Generic portal bootstrap | `shared/js/surface-app.js` |
 
-| Content Category | Legacy Location | Target in `shared/` |
-|-----------------|-----------------|---------------------|
-| CSS custom properties / design tokens | Inline `<style>` in each HTML | `shared/css/tokens.css` |
-| App chrome (nav, header, sidebar) | Repeated across all HTML files | `shared/css/shell.css` |
-| Common UI components (cards, badges, tables) | Inline across HTML files | `shared/css/components.css` |
-| Navigation / routing logic | Inline JS in each HTML | `shared/js/router.js` + `nav.js` |
-| Role-based access guard | Inline JS in each HTML | `shared/js/auth-guard.js` |
-| Mock data loader | Ad-hoc JS in each HTML | `shared/js/mock-loader.js` |
-| Platform role definitions | Hard-coded in auth logic | `shared/data/roles.json` |
-| Portal config (routes, labels) | Hard-coded in auth logic | `shared/data/portals.json` |
+## Preferred Path
 
----
-
-## Cross-Surface Contract References
-
-| Demo Concern | Spec-Kit Contract File |
-|-------------|------------------------|
-| RBAC / role permissions | `contracts/access-control.yaml` |
-| API endpoint shapes | `contracts/api.yaml` |
-| Audit / activity events | `contracts/events.yaml` |
-| State machine transitions | `contracts/interactions.yaml` |
-| Platform roles & vocabulary | `.specify/memory/constitution.md` |
-| Module data models | `.specify/specs/<module>/spec.md` |
-| Validation rules | `.specify/specs/<module>/validation-schema.json` |
+The organized demo path under `demo/` is the preferred implementation target for future portal work. The legacy root HTML files remain in place only as historical reference and should not be extended further.

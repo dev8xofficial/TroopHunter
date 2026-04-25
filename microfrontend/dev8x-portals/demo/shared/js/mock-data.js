@@ -1,42 +1,81 @@
-/**
- * Dev8X Spec-Kit · demo/shared/js/mock-data.js
- *
- * Central mock-data registry + session management.
- * Surfaces fetch their own data files; this module provides
- * the loading utility and the shared session/RBAC helpers.
- *
- * References:
- *   - contracts/access-control.yaml
- *   - spec modules 001-005 (auth)
- */
-
-/* ── RBAC role definitions (mirrors access-control.yaml) ── */
-export const ROLES = {
-  admin: { label: 'Recruiter / Admin', portal: 'admin', color: '#7c3aed', modules: ['100-108'] },
-  candidate: { label: 'Candidate', portal: 'candidate', color: '#0891b2', modules: ['200-206'] },
-  client: { label: 'Client', portal: 'client', color: '#0d9488', modules: ['300-307'] },
-  crm: { label: 'CRM Agent', portal: 'crm', color: '#dc2626', modules: ['400-408'] },
-};
-
-/* ── Session ─────────────────────────────────────────────── */
 const SESSION_KEY = 'd8x-demo-session';
+const PENDING_SESSION_KEY = 'd8x-demo-pending-session';
+const SELECTED_PORTAL_KEY = 'd8x-demo-selected-portal';
+const LAST_ROUTE_PREFIX = 'd8x-demo-last-route:';
 
-export const Session = {
-  /**
-   * Store a user session.
-   * @param {{ id, name, email, role, avatar? }} user
-   */
-  set(user) {
-    sessionStorage.setItem(
-      SESSION_KEY,
-      JSON.stringify({
-        ...user,
-        loginAt: new Date().toISOString(),
-      }),
-    );
+const cache = new Map();
+
+function normalizeSource(src) {
+  return src instanceof URL ? src.href : String(src);
+}
+
+export const MockData = {
+  async load(src) {
+    const key = normalizeSource(src);
+    if (cache.has(key)) return cache.get(key);
+
+    const response = await fetch(key);
+    if (!response.ok) {
+      throw new Error(`MockData.load: HTTP ${response.status} -> ${key}`);
+    }
+
+    const data = await response.json();
+    cache.set(key, data);
+    return data;
   },
 
-  /** Get current session or null */
+  async loadAll(sources = []) {
+    const entries = await Promise.all(
+      sources.map(async (source) => [source, await this.load(source)]),
+    );
+    return Object.fromEntries(entries);
+  },
+
+  clearCache(src) {
+    if (src) {
+      cache.delete(normalizeSource(src));
+      return;
+    }
+
+    cache.clear();
+  },
+};
+
+export async function loadRoleRegistry() {
+  return MockData.load(new URL('../data/roles.json', import.meta.url));
+}
+
+export async function loadPortalRegistry() {
+  return MockData.load(new URL('../data/portals.json', import.meta.url));
+}
+
+export async function getRole(roleId) {
+  const registry = await loadRoleRegistry();
+  return registry.roles?.[roleId] ?? null;
+}
+
+export async function getPortal(portalKey) {
+  const registry = await loadPortalRegistry();
+  return registry.portals?.[portalKey] ?? null;
+}
+
+export const Session = {
+  set(user) {
+    const payload = {
+      ...user,
+      loginAt: new Date().toISOString(),
+    };
+
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify(payload));
+    this.clearPending();
+
+    if (payload.portal) {
+      this.selectPortal(payload.portal);
+    }
+
+    return payload;
+  },
+
   current() {
     try {
       return JSON.parse(sessionStorage.getItem(SESSION_KEY)) || null;
@@ -45,121 +84,111 @@ export const Session = {
     }
   },
 
-  /** Check if a session exists */
   isAuthenticated() {
     return !!this.current();
   },
 
-  /** Clear session (logout) */
-  clear() {
-    sessionStorage.removeItem(SESSION_KEY);
+  setPending(user) {
+    sessionStorage.setItem(PENDING_SESSION_KEY, JSON.stringify(user));
   },
 
-  /** Redirect to auth if no session */
-  require(redirectTo = '../../auth/main.html') {
-    if (!this.isAuthenticated()) {
-      window.location.href = redirectTo;
+  pending() {
+    try {
+      return JSON.parse(sessionStorage.getItem(PENDING_SESSION_KEY)) || null;
+    } catch {
       return null;
     }
-    return this.current();
   },
 
-  /** Check if current user has a specific role */
+  commitPending(extra = {}) {
+    const pending = this.pending();
+    if (!pending) return null;
+    this.clearPending();
+    return this.set({ ...pending, ...extra });
+  },
+
+  clearPending() {
+    sessionStorage.removeItem(PENDING_SESSION_KEY);
+  },
+
+  selectPortal(portalKey) {
+    sessionStorage.setItem(SELECTED_PORTAL_KEY, portalKey);
+  },
+
+  selectedPortal() {
+    return sessionStorage.getItem(SELECTED_PORTAL_KEY) || null;
+  },
+
+  rememberRoute(portalKey, routePath) {
+    if (!portalKey || !routePath) return;
+    localStorage.setItem(`${LAST_ROUTE_PREFIX}${portalKey}`, routePath);
+  },
+
+  lastRoute(portalKey) {
+    if (!portalKey) return null;
+    return localStorage.getItem(`${LAST_ROUTE_PREFIX}${portalKey}`);
+  },
+
   hasRole(role) {
-    const user = this.current();
-    return user?.role === role;
+    return this.current()?.role === role;
   },
 
-  /** Portal URL for a given role */
-  portalUrl(role) {
-    const r = ROLES[role];
-    return r ? `../${r.portal}/main.html` : '../auth/main.html';
-  },
-};
-
-/* ── Mock Data Loader ────────────────────────────────────── */
-const _cache = {};
-
-export const MockData = {
-  /**
-   * Load a JSON mock-data file.
-   * @param {string} src  Path to JSON file (relative to the caller)
-   * @returns {Promise<any>}
-   */
-  async load(src) {
-    if (_cache[src]) return _cache[src];
-    const res = await fetch(src);
-    if (!res.ok) throw new Error(`MockData.load: HTTP ${res.status} → ${src}`);
-    const data = await res.json();
-    _cache[src] = data;
-    return data;
+  require(redirectTo = '../auth/main.html') {
+    if (this.isAuthenticated()) return this.current();
+    window.location.href = new URL(redirectTo, window.location.href).href;
+    return null;
   },
 
-  /** Load multiple files in parallel */
-  async loadAll(sources) {
-    return Promise.all(sources.map((src) => this.load(src)));
-  },
-
-  /** Clear the in-memory cache */
-  clearCache(src) {
-    if (src) delete _cache[src];
-    else Object.keys(_cache).forEach((k) => delete _cache[k]);
+  clear() {
+    sessionStorage.removeItem(SESSION_KEY);
+    sessionStorage.removeItem(PENDING_SESSION_KEY);
+    sessionStorage.removeItem(SELECTED_PORTAL_KEY);
   },
 };
 
-/* ── Helpers ─────────────────────────────────────────────── */
-
-/** Format a date string to locale short date */
 export function fmtDate(iso, opts = {}) {
-  if (!iso) return '—';
-  return new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric', ...opts }).format(new Date(iso));
+  if (!iso) return '-';
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    ...opts,
+  }).format(new Date(iso));
 }
 
-/** Format currency */
 export function fmtCurrency(amount, currency = 'USD') {
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(amount);
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency,
+    maximumFractionDigits: 0,
+  }).format(amount);
 }
 
-/** Format a number with commas */
-export function fmtNumber(n) {
-  return new Intl.NumberFormat('en-US').format(n);
+export function fmtNumber(value) {
+  return new Intl.NumberFormat('en-US').format(value);
 }
 
-/** Relative time (e.g. "3 days ago") */
 export function fmtRelative(iso) {
-  if (!iso) return '—';
-  const diff = Date.now() - new Date(iso).getTime();
-  const mins = Math.floor(diff / 60000);
-  if (mins < 1) return 'just now';
-  if (mins < 60) return `${mins}m ago`;
-  const hrs = Math.floor(mins / 60);
-  if (hrs < 24) return `${hrs}h ago`;
-  const days = Math.floor(hrs / 24);
+  if (!iso) return '-';
+
+  const diffMs = Date.now() - new Date(iso).getTime();
+  const minutes = Math.floor(diffMs / 60000);
+  if (minutes < 1) return 'just now';
+  if (minutes < 60) return `${minutes}m ago`;
+
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+
+  const days = Math.floor(hours / 24);
   if (days < 30) return `${days}d ago`;
+
   return fmtDate(iso);
 }
 
-/** Generate a simple avatar placeholder URL using initials */
-export function avatarInitials(name = '', bg = '6366f1') {
-  const initials = name
-    .split(' ')
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join('')
-    .toUpperCase();
-  return `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=${bg}&color=fff&size=64`;
-}
-
-/** Debounce utility */
 export function debounce(fn, ms = 200) {
-  let t;
+  let timerId;
   return (...args) => {
-    clearTimeout(t);
-    t = setTimeout(() => fn(...args), ms);
+    clearTimeout(timerId);
+    timerId = setTimeout(() => fn(...args), ms);
   };
-}
-
-/** Simple template interpolator */
-export function interpolate(tmpl, vars) {
-  return tmpl.replace(/\{\{(\w+)\}\}/g, (_, k) => vars[k] ?? '');
 }

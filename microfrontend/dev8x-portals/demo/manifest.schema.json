@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dev8x.local/demo/manifest.schema.json",
+  "title": "Dev8X Demo Manifest",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "entry",
+    "routes",
+    "screens",
+    "dataSources",
+    "specRefs"
+  ],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "portalKey": { "type": "string", "minLength": 1 },
+    "entry": { "type": "string", "minLength": 1 },
+    "defaultRoute": { "type": "string" },
+    "accentColor": { "type": "string" },
+    "navSections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["items"],
+        "properties": {
+          "label": { "type": "string" },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["path", "label", "icon"],
+              "properties": {
+                "path": { "type": "string" },
+                "label": { "type": "string" },
+                "icon": { "type": "string" },
+                "badge": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "path", "label", "src", "moduleId", "specRefs"],
+        "properties": {
+          "id": { "type": "string" },
+          "path": { "type": "string" },
+          "label": { "type": "string" },
+          "icon": { "type": "string" },
+          "src": { "type": "string" },
+          "default": { "type": "boolean" },
+          "moduleId": { "type": "string" },
+          "specRefs": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          }
+        }
+      }
+    },
+    "screens": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "path", "src", "moduleId", "specRefs"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "path": { "type": "string" },
+          "src": { "type": "string" },
+          "moduleId": { "type": "string" },
+          "specRefs": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          }
+        }
+      }
+    },
+    "dataSources": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "specRefs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    }
+  }
+}

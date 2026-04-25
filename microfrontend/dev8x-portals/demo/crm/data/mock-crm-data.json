@@ -1,0 +1,183 @@
+{
+  "_meta": {
+    "surface": "crm",
+    "description": "Representative mock data for the CRM portal screens.",
+    "specRefs": [
+      "400-crm-dashboard",
+      "401-crm-contacts",
+      "402-crm-pipeline",
+      "403-crm-outreach-analytics",
+      "404-crm-templates",
+      "405-crm-lead-stacks",
+      "406-crm-scoring",
+      "407-crm-archive",
+      "408-crm-settings"
+    ]
+  },
+  "dashboard": {
+    "segments": {
+      "b2b": {
+        "label": "B2B",
+        "snapshotTime": "2026-04-24T09:00:00Z",
+        "openDealCount": 32,
+        "pipelineValue": 418000,
+        "hotLeadCount": 7,
+        "replyRate": 31,
+        "funnel": [
+          { "stage": "New lead", "count": 18 },
+          { "stage": "Contacted", "count": 11 },
+          { "stage": "Meeting", "count": 9 },
+          { "stage": "Proposal", "count": 6 },
+          { "stage": "Closed", "count": 4 }
+        ],
+        "hotLeads": [
+          { "id": "c-001", "name": "Maya Patel", "company": "Northlane Health", "score": 92, "temperature": "hot", "lastContact": "2026-04-24T07:30:00Z", "nextStep": "Proposal review on Friday", "value": 78000 },
+          { "id": "c-003", "name": "Jordan Alvarez", "company": "MeritStack", "score": 88, "temperature": "hot", "lastContact": "2026-04-23T16:10:00Z", "nextStep": "Meeting recap due today", "value": 54000 },
+          { "id": "c-008", "name": "Helen Brooks", "company": "Summit Harbor", "score": 84, "temperature": "warm", "lastContact": "2026-04-23T12:45:00Z", "nextStep": "Decision-maker intro requested", "value": 39000 }
+        ],
+        "activity": [
+          { "title": "Proposal sent to Northlane Health", "meta": "Jordan Blake · Email · $78k pipeline", "timestamp": "2026-04-24T08:10:00Z" },
+          { "title": "Meeting booked with MeritStack", "meta": "Farah Malik · LinkedIn · Thursday 11:00 AM", "timestamp": "2026-04-24T07:40:00Z" },
+          { "title": "Score refreshed for Summit Harbor", "meta": "Automation queue · Lead score 84", "timestamp": "2026-04-24T07:05:00Z" }
+        ]
+      },
+      "freelance": {
+        "label": "Freelance",
+        "snapshotTime": "2026-04-24T09:00:00Z",
+        "openDealCount": 21,
+        "pipelineValue": 126000,
+        "hotLeadCount": 5,
+        "replyRate": 43,
+        "funnel": [
+          { "stage": "New lead", "count": 10 },
+          { "stage": "Contacted", "count": 8 },
+          { "stage": "Meeting", "count": 4 },
+          { "stage": "Proposal", "count": 3 },
+          { "stage": "Closed", "count": 6 }
+        ],
+        "hotLeads": [
+          { "id": "c-006", "name": "Hammad Tariq", "company": "Independent Founder", "score": 90, "temperature": "hot", "lastContact": "2026-04-24T08:00:00Z", "nextStep": "Budget call in two hours", "value": 18000 },
+          { "id": "c-007", "name": "Lina Gross", "company": "Studio Gross", "score": 83, "temperature": "warm", "lastContact": "2026-04-23T18:20:00Z", "nextStep": "Upwork proposal edit requested", "value": 12000 },
+          { "id": "c-010", "name": "Adam Stewart", "company": "Solo Product Lab", "score": 79, "temperature": "warm", "lastContact": "2026-04-23T09:10:00Z", "nextStep": "Scope clarification pending", "value": 9000 }
+        ],
+        "activity": [
+          { "title": "WhatsApp follow-up sent to Hammad Tariq", "meta": "Jordan Blake · Budget follow-up", "timestamp": "2026-04-24T08:25:00Z" },
+          { "title": "Upwork proposal opened by Studio Gross", "meta": "Farah Malik · Proposal re-read", "timestamp": "2026-04-24T06:55:00Z" },
+          { "title": "Freelance stack assigned to Jordan Blake", "meta": "Lead stack · 22 contacts", "timestamp": "2026-04-23T17:30:00Z" }
+        ]
+      }
+    }
+  },
+  "contacts": [
+    { "id": "c-001", "name": "Maya Patel", "companyName": "Northlane Health", "jobTitle": "VP Operations", "healthScore": 92, "temperature": "hot", "sentiment": "positive", "qualificationState": "qualified", "channel": "email", "pipeline": "proposal", "lastContactAt": "2026-04-24T07:30:00Z", "decisionMaker": true },
+    { "id": "c-002", "name": "Omar Siddiqui", "companyName": "Vector Ridge", "jobTitle": "COO", "healthScore": 74, "temperature": "warm", "sentiment": "neutral", "qualificationState": "nurturing", "channel": "linkedin", "pipeline": "contacted", "lastContactAt": "2026-04-22T14:00:00Z", "decisionMaker": true },
+    { "id": "c-003", "name": "Jordan Alvarez", "companyName": "MeritStack", "jobTitle": "Head of Sales Ops", "healthScore": 88, "temperature": "hot", "sentiment": "positive", "qualificationState": "qualified", "channel": "linkedin", "pipeline": "meeting_set", "lastContactAt": "2026-04-23T16:10:00Z", "decisionMaker": true },
+    { "id": "c-004", "name": "Nadia Wilson", "companyName": "Brightwell Labs", "jobTitle": "Operations Director", "healthScore": 81, "temperature": "warm", "sentiment": "positive", "qualificationState": "qualified", "channel": "email", "pipeline": "won", "lastContactAt": "2026-04-18T12:15:00Z", "decisionMaker": true },
+    { "id": "c-005", "name": "Tariq Mahmood", "companyName": "HarborLink", "jobTitle": "Founder", "healthScore": 63, "temperature": "cool", "sentiment": "no_response", "qualificationState": "new", "channel": "cold_call", "pipeline": "new_lead", "lastContactAt": "2026-04-20T11:40:00Z", "decisionMaker": true },
+    { "id": "c-006", "name": "Hammad Tariq", "companyName": "Independent Founder", "jobTitle": "Founder", "healthScore": 90, "temperature": "hot", "sentiment": "positive", "qualificationState": "qualified", "channel": "whatsapp", "pipeline": "proposal", "lastContactAt": "2026-04-24T08:00:00Z", "decisionMaker": true },
+    { "id": "c-007", "name": "Lina Gross", "companyName": "Studio Gross", "jobTitle": "Creative Director", "healthScore": 83, "temperature": "warm", "sentiment": "neutral", "qualificationState": "nurturing", "channel": "upwork", "pipeline": "meeting_set", "lastContactAt": "2026-04-23T18:20:00Z", "decisionMaker": true },
+    { "id": "c-008", "name": "Helen Brooks", "companyName": "Summit Harbor", "jobTitle": "CEO", "healthScore": 84, "temperature": "warm", "sentiment": "positive", "qualificationState": "qualified", "channel": "email", "pipeline": "contacted", "lastContactAt": "2026-04-23T12:45:00Z", "decisionMaker": true },
+    { "id": "c-009", "name": "Ali Rehman", "companyName": "ByteCanvas", "jobTitle": "Product Manager", "healthScore": 56, "temperature": "cool", "sentiment": "negative", "qualificationState": "disqualified", "channel": "linkedin", "pipeline": "lost", "lastContactAt": "2026-04-16T10:05:00Z", "decisionMaker": false },
+    { "id": "c-010", "name": "Adam Stewart", "companyName": "Solo Product Lab", "jobTitle": "Founder", "healthScore": 79, "temperature": "warm", "sentiment": "neutral", "qualificationState": "nurturing", "channel": "upwork", "pipeline": "proposal", "lastContactAt": "2026-04-23T09:10:00Z", "decisionMaker": true },
+    { "id": "c-011", "name": "Sana Aziz", "companyName": "North Peak", "jobTitle": "Chief of Staff", "healthScore": 48, "temperature": "cool", "sentiment": "burned", "qualificationState": "archived", "channel": "email", "pipeline": "archive", "lastContactAt": "2026-04-09T15:35:00Z", "decisionMaker": false },
+    { "id": "c-012", "name": "Victor Chen", "companyName": "Relay Forge", "jobTitle": "CTO", "healthScore": 77, "temperature": "warm", "sentiment": "positive", "qualificationState": "qualified", "channel": "email", "pipeline": "meeting_set", "lastContactAt": "2026-04-22T17:30:00Z", "decisionMaker": true }
+  ],
+  "pipeline": {
+    "deals": [
+      { "id": "d-001", "contactId": "c-005", "name": "HarborLink sales enablement setup", "company": "HarborLink", "owner": "Jordan Blake", "stage": "new_lead", "value": 22000, "ageDays": 2, "staleLevel": null, "nextStep": "Outbound call tomorrow" },
+      { "id": "d-002", "contactId": "c-008", "name": "Summit Harbor analytics sprint", "company": "Summit Harbor", "owner": "Jordan Blake", "stage": "contacted", "value": 39000, "ageDays": 9, "staleLevel": "amber", "nextStep": "Decision-maker intro pending" },
+      { "id": "d-003", "contactId": "c-003", "name": "MeritStack revops rollout", "company": "MeritStack", "owner": "Farah Malik", "stage": "meeting_set", "value": 54000, "ageDays": 4, "staleLevel": null, "nextStep": "Discovery call Thursday" },
+      { "id": "d-004", "contactId": "c-001", "name": "Northlane operations retainer", "company": "Northlane Health", "owner": "Jordan Blake", "stage": "proposal", "value": 78000, "ageDays": 5, "staleLevel": null, "nextStep": "Pricing review Friday" },
+      { "id": "d-005", "contactId": "c-004", "name": "Brightwell onboarding automation", "company": "Brightwell Labs", "owner": "Farah Malik", "stage": "won", "value": 64000, "ageDays": 0, "staleLevel": null, "nextStep": "Archive for reporting" },
+      { "id": "d-006", "contactId": "c-009", "name": "ByteCanvas CRM advisory", "company": "ByteCanvas", "owner": "Jordan Blake", "stage": "lost", "value": 28000, "ageDays": 0, "staleLevel": null, "nextStep": "Closed out - budget freeze" },
+      { "id": "d-007", "contactId": "c-006", "name": "Founder growth audit", "company": "Independent Founder", "owner": "Jordan Blake", "stage": "proposal", "value": 18000, "ageDays": 3, "staleLevel": null, "nextStep": "Budget call today" },
+      { "id": "d-008", "contactId": "c-010", "name": "Solo Product Lab sprint", "company": "Solo Product Lab", "owner": "Farah Malik", "stage": "proposal", "value": 9000, "ageDays": 11, "staleLevel": "red", "nextStep": "Scope clarification overdue" }
+    ]
+  },
+  "analytics": {
+    "range": "Last 30 days",
+    "channels": [
+      { "channel": "email", "sentCount": 148, "replyRate": 34, "meetingRate": 15 },
+      { "channel": "linkedin", "sentCount": 92, "replyRate": 28, "meetingRate": 12 },
+      { "channel": "whatsapp", "sentCount": 44, "replyRate": 41, "meetingRate": 18 },
+      { "channel": "upwork", "sentCount": 37, "replyRate": 46, "meetingRate": 22 },
+      { "channel": "cold_call", "sentCount": 21, "replyRate": 19, "meetingRate": 8 }
+    ],
+    "heatmap": {
+      "timeBlocks": ["08:00", "10:00", "12:00", "14:00", "16:00"],
+      "rows": [
+        { "day": "Mon", "values": [4, 8, 6, 3, 1] },
+        { "day": "Tue", "values": [5, 7, 5, 4, 2] },
+        { "day": "Wed", "values": [3, 6, 4, 2, 1] },
+        { "day": "Thu", "values": [6, 9, 7, 4, 2] },
+        { "day": "Fri", "values": [4, 5, 3, 2, 1] }
+      ]
+    },
+    "recommendations": [
+      { "title": "Lean into Upwork for freelance outreach", "detail": "Upwork is the strongest freelance reply channel this month at 46% reply and 22% meeting conversion." },
+      { "title": "Keep B2B founder emails before noon", "detail": "The 10:00 and 12:00 blocks have the densest response volume across B2B contacts." },
+      { "title": "Reserve cold calls for stalled mid-funnel deals", "detail": "Cold call reply rates lag email and LinkedIn, but they still recover a small portion of stale opportunities." }
+    ]
+  },
+  "templates": {
+    "variableCatalog": ["first_name", "company_name", "job_title", "pain_point", "calendar_link"],
+    "sampleValues": {
+      "first_name": "Maya",
+      "company_name": "Northlane Health",
+      "job_title": "VP Operations",
+      "pain_point": "manual vendor coordination",
+      "calendar_link": "https://cal.dev8x.io/jordan"
+    },
+    "items": [
+      { "id": "t-001", "name": "B2B intro email", "channel": "email", "status": "approved", "replyRate": 34, "variableNames": ["first_name", "company_name", "pain_point", "calendar_link"], "subject": "Reducing ops drag at {{company_name}}", "body": "Hi {{first_name}},\\n\\nI noticed {{company_name}} is scaling quickly. Teams in your stage usually feel pressure around {{pain_point}}.\\n\\nWould a 15-minute review next week be useful? You can grab time here: {{calendar_link}}\\n\\nJordan" },
+      { "id": "t-002", "name": "LinkedIn meeting follow-up", "channel": "linkedin", "status": "tested", "replyRate": 29, "variableNames": ["first_name", "company_name", "job_title"], "subject": "Quick follow-up", "body": "Hi {{first_name}},\\n\\nThanks again for connecting. I put together a short outline based on your {{job_title}} priorities at {{company_name}}. Happy to share if useful." },
+      { "id": "t-003", "name": "WhatsApp freelance nudge", "channel": "whatsapp", "status": "approved", "replyRate": 41, "variableNames": ["first_name", "pain_point"], "subject": "WhatsApp opener", "body": "Hey {{first_name}} - quick nudge on the {{pain_point}} thread. If you want, I can send a narrower scope option today." },
+      { "id": "t-004", "name": "Upwork scope clarification", "channel": "upwork", "status": "draft", "replyRate": 18, "variableNames": ["first_name", "company_name", "calendar_link"], "subject": "Proposal refinement", "body": "Hi {{first_name}},\\n\\nI reviewed the latest notes for {{company_name}}. I can tighten the scope and timeline if that helps. If a quick call is easier, here is my link: {{calendar_link}}" },
+      { "id": "t-005", "name": "Retired budget objection", "channel": "email", "status": "retired", "replyRate": 12, "variableNames": ["first_name", "company_name"], "subject": "Budget path", "body": "Hi {{first_name}},\\n\\nSharing an older pricing path we used with {{company_name}}-style teams. This version stays readable for analysis but is retired from live use." }
+    ]
+  },
+  "leadStacks": [
+    { "id": "ls-001", "name": "Healthtech Series A", "description": "Operations leaders at recently funded healthtech companies.", "platforms": ["LinkedIn", "Email"], "leadCount": 46, "status": "active", "owner": "Jordan Blake", "assignedAt": "2026-04-22", "campaign": "Q2 healthtech sprint" },
+    { "id": "ls-002", "name": "Founder-led freelance leads", "description": "Independent founders with immediate build or growth needs.", "platforms": ["Upwork", "WhatsApp"], "leadCount": 22, "status": "active", "owner": "Farah Malik", "assignedAt": "2026-04-21", "campaign": "Freelance fast lane" },
+    { "id": "ls-003", "name": "RevOps warm list", "description": "Contacts already engaged on LinkedIn but not yet in proposal stage.", "platforms": ["LinkedIn", "Email"], "leadCount": 31, "status": "draft", "owner": null, "assignedAt": null, "campaign": "Build next wave" },
+    { "id": "ls-004", "name": "Fintech Q1 exhausted", "description": "Completed list kept for historical learning.", "platforms": ["Email"], "leadCount": 18, "status": "exhausted", "owner": "Jordan Blake", "assignedAt": "2026-03-30", "campaign": "Fintech outbound" },
+    { "id": "ls-005", "name": "Archived founder referrals", "description": "Closed historical founder introductions.", "platforms": ["Referral"], "leadCount": 12, "status": "archived", "owner": null, "assignedAt": null, "campaign": "Historical" }
+  ],
+  "scoring": {
+    "queue": [
+      { "id": "score-001", "contactId": "c-001", "contact": "Maya Patel", "company": "Northlane Health", "totalScore": 92, "status": "current", "calculatedAt": "2026-04-24T07:05:00Z", "priority": "P1", "owner": "Jordan Blake", "dimensions": { "responseTime": 88, "budgetFit": 94, "decisionPower": 95, "timeline": 86, "technicalFit": 90 } },
+      { "id": "score-002", "contactId": "c-006", "contact": "Hammad Tariq", "company": "Independent Founder", "totalScore": 90, "status": "current", "calculatedAt": "2026-04-24T06:55:00Z", "priority": "P1", "owner": "Jordan Blake", "dimensions": { "responseTime": 91, "budgetFit": 82, "decisionPower": 96, "timeline": 94, "technicalFit": 87 } },
+      { "id": "score-003", "contactId": "c-003", "contact": "Jordan Alvarez", "company": "MeritStack", "totalScore": 88, "status": "current", "calculatedAt": "2026-04-23T15:30:00Z", "priority": "P1", "owner": "Farah Malik", "dimensions": { "responseTime": 84, "budgetFit": 90, "decisionPower": 88, "timeline": 85, "technicalFit": 92 } },
+      { "id": "score-004", "contactId": "c-008", "contact": "Helen Brooks", "company": "Summit Harbor", "totalScore": 84, "status": "stale", "calculatedAt": "2026-04-20T09:10:00Z", "priority": "P2", "owner": "Jordan Blake", "dimensions": { "responseTime": 77, "budgetFit": 86, "decisionPower": 92, "timeline": 74, "technicalFit": 81 } },
+      { "id": "score-005", "contactId": "c-010", "contact": "Adam Stewart", "company": "Solo Product Lab", "totalScore": 79, "status": "overridden", "calculatedAt": "2026-04-22T10:40:00Z", "priority": "P2", "owner": "Farah Malik", "dimensions": { "responseTime": 73, "budgetFit": 78, "decisionPower": 88, "timeline": 72, "technicalFit": 80 }, "overrideNote": "Raised manually after confirmed budget line." },
+      { "id": "score-006", "contactId": "c-005", "contact": "Tariq Mahmood", "company": "HarborLink", "totalScore": 63, "status": "stale", "calculatedAt": "2026-04-18T08:20:00Z", "priority": "P3", "owner": "Jordan Blake", "dimensions": { "responseTime": 55, "budgetFit": 68, "decisionPower": 81, "timeline": 49, "technicalFit": 62 } }
+    ]
+  },
+  "archive": {
+    "won": [
+      { "dealId": "d-101", "contact": "Nadia Wilson", "company": "Brightwell Labs", "owner": "Farah Malik", "closeDate": "2026-04-18", "value": 64000, "closeReason": "Urgent rollout aligned with delivery bandwidth." },
+      { "dealId": "d-102", "contact": "Harper Dean", "company": "Opal Foundry", "owner": "Jordan Blake", "closeDate": "2026-04-09", "value": 42000, "closeReason": "Fast approval after proposal workshop." }
+    ],
+    "lost": [
+      { "dealId": "d-201", "contact": "Ali Rehman", "company": "ByteCanvas", "owner": "Jordan Blake", "closeDate": "2026-04-16", "value": 28000, "closeReason": "Budget freeze after internal hiring shift." },
+      { "dealId": "d-202", "contact": "Sana Aziz", "company": "North Peak", "owner": "Farah Malik", "closeDate": "2026-04-03", "value": 24000, "closeReason": "Timeline moved outside the current quarter." }
+    ]
+  },
+  "settings": {
+    "items": [
+      { "settingKey": "email_sync", "label": "Email sync", "valueType": "toggle", "value": "Enabled", "status": "applied", "updatedBy": "Sofia Reyes", "updatedAt": "2026-04-23T13:10:00Z", "description": "Sync inbound and outbound CRM mail threads." },
+      { "settingKey": "auto_follow_up", "label": "Auto follow-up", "valueType": "toggle", "value": "Draft cadence", "status": "proposed", "updatedBy": "Farah Malik", "updatedAt": "2026-04-24T07:45:00Z", "description": "Queue follow-up reminders for unanswered outreach after the configured delay." },
+      { "settingKey": "lead_assignment_mode", "label": "Lead assignment mode", "valueType": "select", "value": "Round robin", "status": "approved", "updatedBy": "Sofia Reyes", "updatedAt": "2026-04-22T16:20:00Z", "description": "Distribute new qualified leads across the active sales team." },
+      { "settingKey": "whatsapp_integration", "label": "WhatsApp integration", "valueType": "toggle", "value": "Connected", "status": "applied", "updatedBy": "Sofia Reyes", "updatedAt": "2026-04-21T10:05:00Z", "description": "Allow WhatsApp touchpoints to appear in CRM activity and analytics." }
+    ],
+    "users": [
+      { "id": "crm-u-001", "name": "Jordan Blake", "email": "jordan@dev8x.io", "role": "sales_rep", "status": "active" },
+      { "id": "crm-u-002", "name": "Farah Malik", "email": "farah@clientco.com", "role": "manager", "status": "active" },
+      { "id": "crm-u-003", "name": "Mina Saeed", "email": "mina@dev8x.io", "role": "sales_rep", "status": "suspended" }
+    ],
+    "approvals": [
+      { "title": "Auto follow-up cadence", "detail": "Move freelance reminders from 5 days to 7 days to reduce duplicate nudges.", "status": "proposed", "owner": "Farah Malik" },
+      { "title": "Lead assignment override", "detail": "Temporarily pin healthtech leads to Jordan Blake during the Q2 sprint.", "status": "approved", "owner": "Sofia Reyes" }
+    ]
+  }
+}

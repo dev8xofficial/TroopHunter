@@ -1,0 +1,37 @@
+<!-- SCREEN_START -->
+<section class="auth-card">
+  <div class="auth-card__heading">
+    <div class="surface-eyebrow">Module 005 · Google SSO</div>
+    <h1 class="auth-card__title">Complete provider sign-in.</h1>
+    <p class="auth-card__copy">
+      The selected provider context is preserved for the chosen portal, then the resulting session is issued with the correct portal scope.
+    </p>
+  </div>
+
+  <div class="auth-summary-grid">
+    <div class="auth-summary-card">
+      <div class="auth-summary-card__label">Portal</div>
+      <div class="auth-summary-card__value" data-sso-portal></div>
+    </div>
+    <div class="auth-summary-card">
+      <div class="auth-summary-card__label">Provider</div>
+      <div class="auth-summary-card__value" data-sso-provider></div>
+    </div>
+    <div class="auth-summary-card">
+      <div class="auth-summary-card__label">State token</div>
+      <div class="auth-summary-card__value">Signed and short-lived</div>
+    </div>
+    <div class="auth-summary-card">
+      <div class="auth-summary-card__label">Resulting action</div>
+      <div class="auth-summary-card__value">Issue portal-scoped session</div>
+    </div>
+  </div>
+
+  <div class="alert alert--danger hidden" data-auth-message></div>
+
+  <div class="surface-actions">
+    <button class="btn btn-primary" type="button" data-complete-sso>Complete Google sign-in</button>
+    <button class="btn btn-ghost" type="button" data-back-login>Back to login</button>
+  </div>
+</section>
+<!-- SCREEN_END -->

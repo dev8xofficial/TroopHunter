@@ -1,0 +1,68 @@
+{
+  "id": "dev8x-crm",
+  "title": "Dev8X CRM Portal",
+  "portalKey": "crm",
+  "entry": "main.html",
+  "defaultRoute": "dashboard",
+  "accentColor": "#dc2626",
+  "navSections": [
+    {
+      "label": "Overview",
+      "items": [
+        { "path": "dashboard", "label": "Dashboard", "icon": "home" },
+        { "path": "contacts", "label": "Contacts", "icon": "contact", "badge": "124" },
+        { "path": "pipeline", "label": "Pipeline", "icon": "pipeline", "badge": "6 stale" }
+      ]
+    },
+    {
+      "label": "Enablement",
+      "items": [
+        { "path": "analytics", "label": "Analytics", "icon": "chart" },
+        { "path": "templates", "label": "Templates", "icon": "inbox" },
+        { "path": "lead-stacks", "label": "Lead Stacks", "icon": "folder" }
+      ]
+    },
+    {
+      "label": "Operations",
+      "items": [
+        { "path": "scoring", "label": "Scoring", "icon": "shield", "badge": "3 stale" },
+        { "path": "archive", "label": "Archive", "icon": "document" },
+        { "path": "settings", "label": "Settings", "icon": "settings" }
+      ]
+    }
+  ],
+  "routes": [
+    { "id": "dashboard", "path": "dashboard", "label": "Dashboard", "icon": "home", "src": "screens/dashboard.html", "default": true, "moduleId": "400-crm-dashboard", "specRefs": ["spec-kit/unified-spec/.specify/specs/400-crm-dashboard/spec.md"] },
+    { "id": "contacts", "path": "contacts", "label": "Contacts", "icon": "contact", "src": "screens/contacts.html", "moduleId": "401-crm-contacts", "specRefs": ["spec-kit/unified-spec/.specify/specs/401-crm-contacts/spec.md"] },
+    { "id": "pipeline", "path": "pipeline", "label": "Pipeline", "icon": "pipeline", "src": "screens/pipeline.html", "moduleId": "402-crm-pipeline", "specRefs": ["spec-kit/unified-spec/.specify/specs/402-crm-pipeline/spec.md"] },
+    { "id": "analytics", "path": "analytics", "label": "Analytics", "icon": "chart", "src": "screens/analytics.html", "moduleId": "403-crm-outreach-analytics", "specRefs": ["spec-kit/unified-spec/.specify/specs/403-crm-outreach-analytics/spec.md"] },
+    { "id": "templates", "path": "templates", "label": "Templates", "icon": "inbox", "src": "screens/templates.html", "moduleId": "404-crm-templates", "specRefs": ["spec-kit/unified-spec/.specify/specs/404-crm-templates/spec.md"] },
+    { "id": "lead-stacks", "path": "lead-stacks", "label": "Lead Stacks", "icon": "folder", "src": "screens/lead-stacks.html", "moduleId": "405-crm-lead-stacks", "specRefs": ["spec-kit/unified-spec/.specify/specs/405-crm-lead-stacks/spec.md"] },
+    { "id": "scoring", "path": "scoring", "label": "Scoring", "icon": "shield", "src": "screens/scoring.html", "moduleId": "406-crm-scoring", "specRefs": ["spec-kit/unified-spec/.specify/specs/406-crm-scoring/spec.md"] },
+    { "id": "archive", "path": "archive", "label": "Archive", "icon": "document", "src": "screens/archive.html", "moduleId": "407-crm-archive", "specRefs": ["spec-kit/unified-spec/.specify/specs/407-crm-archive/spec.md"] },
+    { "id": "settings", "path": "settings", "label": "Settings", "icon": "settings", "src": "screens/settings.html", "moduleId": "408-crm-settings", "specRefs": ["spec-kit/unified-spec/.specify/specs/408-crm-settings/spec.md"] }
+  ],
+  "screens": [
+    { "id": "dashboard", "label": "Dashboard", "path": "dashboard", "src": "screens/dashboard.html", "moduleId": "400-crm-dashboard", "specRefs": ["spec-kit/unified-spec/.specify/specs/400-crm-dashboard/spec.md"] },
+    { "id": "contacts", "label": "Contacts", "path": "contacts", "src": "screens/contacts.html", "moduleId": "401-crm-contacts", "specRefs": ["spec-kit/unified-spec/.specify/specs/401-crm-contacts/spec.md"] },
+    { "id": "pipeline", "label": "Pipeline", "path": "pipeline", "src": "screens/pipeline.html", "moduleId": "402-crm-pipeline", "specRefs": ["spec-kit/unified-spec/.specify/specs/402-crm-pipeline/spec.md"] },
+    { "id": "analytics", "label": "Analytics", "path": "analytics", "src": "screens/analytics.html", "moduleId": "403-crm-outreach-analytics", "specRefs": ["spec-kit/unified-spec/.specify/specs/403-crm-outreach-analytics/spec.md"] },
+    { "id": "templates", "label": "Templates", "path": "templates", "src": "screens/templates.html", "moduleId": "404-crm-templates", "specRefs": ["spec-kit/unified-spec/.specify/specs/404-crm-templates/spec.md"] },
+    { "id": "lead-stacks", "label": "Lead Stacks", "path": "lead-stacks", "src": "screens/lead-stacks.html", "moduleId": "405-crm-lead-stacks", "specRefs": ["spec-kit/unified-spec/.specify/specs/405-crm-lead-stacks/spec.md"] },
+    { "id": "scoring", "label": "Scoring", "path": "scoring", "src": "screens/scoring.html", "moduleId": "406-crm-scoring", "specRefs": ["spec-kit/unified-spec/.specify/specs/406-crm-scoring/spec.md"] },
+    { "id": "archive", "label": "Archive", "path": "archive", "src": "screens/archive.html", "moduleId": "407-crm-archive", "specRefs": ["spec-kit/unified-spec/.specify/specs/407-crm-archive/spec.md"] },
+    { "id": "settings", "label": "Settings", "path": "settings", "src": "screens/settings.html", "moduleId": "408-crm-settings", "specRefs": ["spec-kit/unified-spec/.specify/specs/408-crm-settings/spec.md"] }
+  ],
+  "dataSources": ["data/mock-crm-data.json"],
+  "specRefs": [
+    "spec-kit/unified-spec/.specify/specs/400-crm-dashboard/spec.md",
+    "spec-kit/unified-spec/.specify/specs/401-crm-contacts/spec.md",
+    "spec-kit/unified-spec/.specify/specs/402-crm-pipeline/spec.md",
+    "spec-kit/unified-spec/.specify/specs/403-crm-outreach-analytics/spec.md",
+    "spec-kit/unified-spec/.specify/specs/404-crm-templates/spec.md",
+    "spec-kit/unified-spec/.specify/specs/405-crm-lead-stacks/spec.md",
+    "spec-kit/unified-spec/.specify/specs/406-crm-scoring/spec.md",
+    "spec-kit/unified-spec/.specify/specs/407-crm-archive/spec.md",
+    "spec-kit/unified-spec/.specify/specs/408-crm-settings/spec.md"
+  ]
+}

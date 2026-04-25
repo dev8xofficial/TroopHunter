@@ -1,0 +1,168 @@
+{
+  "_meta": {
+    "surface": "client",
+    "description": "Representative mock data for the client portal screens.",
+    "specRefs": [
+      "300-client-dashboard",
+      "301-client-projects",
+      "302-client-invoices",
+      "303-client-files",
+      "304-client-working-hours",
+      "305-client-messaging",
+      "306-client-support",
+      "307-client-contracts"
+    ]
+  },
+  "summary": {
+    "activeProjects": 4,
+    "dueInvoices": 2,
+    "weeklyHours": 84,
+    "openTickets": 3
+  },
+  "dashboard": {
+    "metrics": [
+      {
+        "label": "Active projects",
+        "value": "4",
+        "meta": "Three delivery streams are on track, one needs stakeholder input.",
+        "highlight": true
+      },
+      {
+        "label": "Total invoiced",
+        "value": "$184k",
+        "meta": "Across the current quarter."
+      },
+      {
+        "label": "Open tickets",
+        "value": "3",
+        "meta": "One item is awaiting QA confirmation."
+      },
+      {
+        "label": "Team size",
+        "value": "9",
+        "meta": "Product, engineering, QA, and delivery support."
+      }
+    ],
+    "projects": [
+      {
+        "title": "Partner Portal Refresh",
+        "meta": "Design handoff complete · QA begins tomorrow",
+        "status": "success",
+        "statusLabel": "On track"
+      },
+      {
+        "title": "Revenue Ops Integration",
+        "meta": "Waiting on API credentials from finance",
+        "status": "warning",
+        "statusLabel": "Needs client input"
+      },
+      {
+        "title": "Support Automation",
+        "meta": "Final acceptance checklist opens Friday",
+        "status": "info",
+        "statusLabel": "Review soon"
+      }
+    ]
+  },
+  "projects": {
+    "active": [
+      {
+        "title": "Partner Portal Refresh",
+        "meta": "Fixed scope · PM: Sara Malik · Team of 4 · 82% progress",
+        "status": "success",
+        "statusLabel": "On track"
+      },
+      {
+        "title": "Revenue Ops Integration",
+        "meta": "Hourly engagement · PM: Adnan Hussain · 61% progress",
+        "status": "warning",
+        "statusLabel": "At risk"
+      },
+      {
+        "title": "Support Automation",
+        "meta": "Monthly retainer · PM: Hiba Aslam · 44% progress",
+        "status": "info",
+        "statusLabel": "In flight"
+      }
+    ],
+    "cues": [
+      {
+        "title": "Team visibility",
+        "copy": "Every project keeps the PM, engineering owner, and QA lead visible for quick escalation."
+      },
+      {
+        "title": "Payment model",
+        "copy": "Fixed, hourly, and monthly contracts surface next to progress so budget context is never separated from delivery status."
+      }
+    ]
+  },
+  "invoices": {
+    "list": [
+      { "id": "INV-2404", "project": "Partner Portal Refresh", "amount": "$42,000", "statusTone": "warning", "statusLabel": "Due", "date": "Apr 28" },
+      { "id": "INV-2403", "project": "Revenue Ops Integration", "amount": "$18,600", "statusTone": "danger", "statusLabel": "Overdue", "date": "Apr 18" },
+      { "id": "INV-2402", "project": "Support Automation", "amount": "$11,500", "statusTone": "success", "statusLabel": "Paid", "date": "Apr 04" }
+    ],
+    "summary": [
+      { "title": "Subtotal", "copy": "$60,600" },
+      { "title": "Tax", "copy": "$4,848" },
+      { "title": "Preferred payment method", "copy": "ACH transfer · Finance approval required for card fallback." }
+    ]
+  },
+  "files": {
+    "uploads": [
+      { "name": "Portal-refresh-demo.mp4", "category": "Deliverables", "version": "v4", "date": "Apr 23" },
+      { "name": "Sprint-12-status.pdf", "category": "Reports", "version": "v2", "date": "Apr 22" },
+      { "name": "Revenue-ops-contract.pdf", "category": "Contracts", "version": "v3", "date": "Apr 19" }
+    ],
+    "guidance": [
+      { "title": "Contracts", "copy": "Signed agreements, amendments, and legal approvals." },
+      { "title": "Deliverables", "copy": "Design previews, demos, release notes, and QA evidence." },
+      { "title": "Reports", "copy": "Weekly status, burn reports, and stakeholder summaries." }
+    ]
+  },
+  "workingHours": {
+    "metrics": [
+      { "label": "Hours this week", "value": "84", "meta": "Across engineering, QA, and PM." },
+      { "label": "Budget used", "value": "68%", "meta": "Healthy pacing for the current milestone." },
+      { "label": "Highest activity", "value": "Tue", "meta": "16 logged hours against the portal refresh stream." }
+    ],
+    "logs": [
+      { "member": "Sara Malik", "project": "Partner Portal Refresh", "hours": "18", "focus": "Sprint planning and stakeholder sync" },
+      { "member": "Usman Tariq", "project": "Revenue Ops Integration", "hours": "23", "focus": "API implementation" },
+      { "member": "Maryam Iqbal", "project": "Support Automation", "hours": "14", "focus": "QA pass and regression review" }
+    ],
+    "budget": {
+      "used": "$54k / $80k",
+      "percent": "68%",
+      "copy": "Current burn rate remains inside plan as long as the integration credential delay does not extend beyond next week."
+    }
+  },
+  "messaging": {
+    "threads": [
+      { "title": "Revenue Ops Integration", "meta": "Waiting on finance API credentials.", "status": "info", "statusLabel": "1 unread" },
+      { "title": "Portal Refresh QA", "meta": "Acceptance notes from the latest demo review.", "status": "neutral", "statusLabel": "Up to date" }
+    ],
+    "conversation": [
+      { "sender": "Delivery Lead · 09:05 AM", "copy": "We can keep the release plan intact if the API credentials arrive before Thursday morning." },
+      { "sender": "You · 09:18 AM", "copy": "Understood. Finance is reviewing the request today and I will update you once they confirm." }
+    ]
+  },
+  "support": {
+    "tickets": [
+      { "id": "TCK-104", "subject": "Finance API credentials pending", "priority": "High", "statusTone": "warning", "statusLabel": "In progress", "owner": "Delivery lead" },
+      { "id": "TCK-099", "subject": "Portal QA edge case in Safari", "priority": "Medium", "statusTone": "info", "statusLabel": "Reviewing", "owner": "QA team" },
+      { "id": "TCK-091", "subject": "Invoice export formatting", "priority": "Low", "statusTone": "success", "statusLabel": "Resolved", "owner": "Finance ops" }
+    ]
+  },
+  "contracts": {
+    "agreements": [
+      { "name": "Master services agreement", "project": "Partner Portal Refresh", "statusTone": "success", "statusLabel": "Signed", "date": "Apr 03" },
+      { "name": "Integration change request", "project": "Revenue Ops Integration", "statusTone": "warning", "statusLabel": "Pending signature", "date": "Apr 21" },
+      { "name": "Monthly support addendum", "project": "Support Automation", "statusTone": "info", "statusLabel": "Draft", "date": "Apr 24" }
+    ],
+    "notes": [
+      { "title": "Next signer", "copy": "Finance lead is next in the chain for the integration change request." },
+      { "title": "Auto-reminders", "copy": "Reminder emails send automatically every 48 hours while a signature remains pending." }
+    ]
+  }
+}

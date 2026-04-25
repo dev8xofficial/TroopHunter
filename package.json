@@ -11,6 +11,7 @@
     "dev": "turbo dev",
     "build": "turbo build",
     "lint": "turbo run lint",
+    "validate:dev8x-portals-demo": "node microfrontend/dev8x-portals/demo/validate-demo.mjs",
     "\n============================== Repo Commands ======================": "",
     "install:packages:components": "cd packages/components && npm install",
     "install:packages:messages": "cd packages/messages && npm install",

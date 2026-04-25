@@ -1,97 +1,52 @@
 <!-- SCREEN_START -->
-<!-- spec: module 003 · Signup / Account Creation -->
-<div class="auth-page">
-  <div class="auth-page__brand" role="img" aria-label="Join Dev8X">
-    <div class="auth-brand__logo">
-      <div class="auth-brand__logo-mark">D8</div>
-      Dev8X
-    </div>
-    <div class="auth-brand__headline">
-      <h1>Start your<br />journey today.</h1>
-      <p>Create your Dev8X account and get access to the portal built for your role — free to explore.</p>
-    </div>
-    <div class="auth-brand__stats">
-      <div class="auth-brand__stat">
-        <div class="auth-brand__stat-value">5 min</div>
-        <div class="auth-brand__stat-label">Setup time</div>
-      </div>
-      <div class="auth-brand__stat">
-        <div class="auth-brand__stat-value">Free</div>
-        <div class="auth-brand__stat-label">Demo access</div>
-      </div>
-    </div>
+<section class="auth-card">
+  <div class="auth-card__heading">
+    <div class="surface-eyebrow">Module 001 · Candidate registration</div>
+    <h1 class="auth-card__title">Create a candidate account.</h1>
+    <p class="auth-card__copy">
+      Registration stays scoped to the candidate portal. In the real flow, new accounts remain inactive until verification completes.
+    </p>
   </div>
 
-  <div class="auth-page__form">
-    <div class="auth-card">
-      <div class="auth-card__header">
-        <div class="auth-card__eyebrow">New account</div>
-        <h2 class="auth-card__title">Create your account</h2>
-        <p class="auth-card__subtitle">Fill in your details to get started.</p>
+  <div class="alert alert--danger hidden" data-auth-message></div>
+
+  <form data-signup-form>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="signup-first">First name</label>
+        <input class="form-input no-icon" id="signup-first" name="firstName" type="text" placeholder="Ayesha" required />
       </div>
-
-      <form id="auth-signup-form" novalidate aria-label="Signup form">
-        <div id="signup-error" role="alert" aria-live="polite" style="color: var(--color-danger); font-size: var(--text-sm); margin-bottom: var(--space-3); min-height: 20px"></div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3)">
-          <div class="form-group" style="margin-bottom: 0">
-            <label class="form-label" for="signup-first">First name <span aria-hidden="true">*</span></label>
-            <input class="form-input" type="text" id="signup-first" name="firstName" placeholder="Ada" required autocomplete="given-name" />
-          </div>
-          <div class="form-group" style="margin-bottom: 0">
-            <label class="form-label" for="signup-last">Last name <span aria-hidden="true">*</span></label>
-            <input class="form-input" type="text" id="signup-last" name="lastName" placeholder="Lovelace" required autocomplete="family-name" />
-          </div>
-        </div>
-
-        <div class="form-group" style="margin-top: var(--space-4)">
-          <label class="form-label" for="signup-email">Work email <span aria-hidden="true">*</span></label>
-          <input class="form-input" type="email" id="signup-email" name="email" placeholder="ada@company.com" required autocomplete="email" />
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="signup-role">I am a… <span aria-hidden="true">*</span></label>
-          <select class="form-select" id="signup-role" name="role" required aria-required="true">
-            <option value="">Select your role</option>
-            <option value="admin">Recruiter / Admin</option>
-            <option value="candidate">Candidate / Job seeker</option>
-            <option value="client">Client / Hiring manager</option>
-            <option value="crm">CRM / Sales agent</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="signup-password">Password <span aria-hidden="true">*</span></label>
-          <input class="form-input" type="password" id="signup-password" name="password" placeholder="Min. 8 characters" required minlength="8" autocomplete="new-password" />
-          <p class="form-hint">At least 8 characters, one uppercase, one number.</p>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="signup-confirm">Confirm password <span aria-hidden="true">*</span></label>
-          <input class="form-input" type="password" id="signup-confirm" name="confirmPassword" placeholder="Repeat password" required autocomplete="new-password" />
-        </div>
-
-        <div class="form-group">
-          <label class="form-check">
-            <input type="checkbox" name="terms" required />
-            I agree to the <a href="#" style="color: var(--text-link)">Terms of Service</a> and
-            <a href="#" style="color: var(--text-link)">Privacy Policy</a>
-          </label>
-        </div>
-
-        <button class="btn btn--primary btn--full" type="submit" id="signup-submit">Create account</button>
-      </form>
-
-      <div class="auth-card__footer">Already have an account? <a href="#login">Sign in</a></div>
-
-      <script>
-        // Combine first + last name into `name` field on submit
-        document.getElementById('auth-signup-form')?.addEventListener('formdata', (e) => {
-          const fd = e.formData;
-          fd.set('name', `${fd.get('firstName')} ${fd.get('lastName')}`.trim());
-        });
-      </script>
+      <div class="form-group">
+        <label class="form-label" for="signup-last">Last name</label>
+        <input class="form-input no-icon" id="signup-last" name="lastName" type="text" placeholder="Khan" required />
+      </div>
     </div>
-  </div>
-</div>
+
+    <div class="form-group">
+      <label class="form-label" for="signup-email">Email address</label>
+      <input class="form-input no-icon" id="signup-email" name="email" type="email" placeholder="candidate@dev8x.io" required />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="signup-password">Password</label>
+        <input class="form-input no-icon" id="signup-password" name="password" type="password" placeholder="Create a password" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="signup-confirm">Confirm password</label>
+        <input class="form-input no-icon" id="signup-confirm" name="confirmPassword" type="password" placeholder="Confirm it" required />
+      </div>
+    </div>
+
+    <label class="auth-helper" style="display:flex;gap:.75rem;align-items:flex-start">
+      <input type="checkbox" name="terms" style="margin-top:.2rem" />
+      <span>I agree to the demo terms, acknowledge the mock nature of this flow, and understand activation would normally follow verification.</span>
+    </label>
+
+    <div class="surface-actions" style="margin-top:1.25rem">
+      <button class="btn btn-primary" type="submit">Create account</button>
+      <button class="btn btn-ghost" type="button" data-back-login>Back to login</button>
+    </div>
+  </form>
+</section>
 <!-- SCREEN_END -->

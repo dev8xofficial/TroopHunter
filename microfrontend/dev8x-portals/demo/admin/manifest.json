@@ -1,0 +1,141 @@
+{
+  "id": "dev8x-admin",
+  "title": "Dev8X Admin Portal",
+  "portalKey": "admin",
+  "entry": "main.html",
+  "defaultRoute": "dashboard",
+  "accentColor": "#7048e8",
+  "navSections": [
+    {
+      "label": "Overview",
+      "items": [
+        { "path": "dashboard", "label": "Dashboard", "icon": "home" },
+        { "path": "applicants", "label": "Applicants", "icon": "users", "badge": "12" },
+        { "path": "pipeline", "label": "Pipeline", "icon": "pipeline" },
+        { "path": "jobs", "label": "Jobs", "icon": "briefcase" }
+      ]
+    },
+    {
+      "label": "Hiring",
+      "items": [
+        { "path": "interviews", "label": "Interviews", "icon": "calendar" },
+        { "path": "evaluations", "label": "Evaluations", "icon": "chart" }
+      ]
+    },
+    {
+      "label": "Operations",
+      "items": [
+        { "path": "documents", "label": "Documents", "icon": "document" },
+        { "path": "templates", "label": "Templates", "icon": "inbox" },
+        { "path": "settings", "label": "Settings", "icon": "settings" }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "id": "dashboard",
+      "path": "dashboard",
+      "label": "Dashboard",
+      "icon": "home",
+      "src": "screens/dashboard.html",
+      "default": true,
+      "moduleId": "100-admin-dashboard",
+      "specRefs": ["spec-kit/unified-spec/.specify/specs/100-admin-dashboard/spec.md"]
+    },
+    {
+      "id": "applicants",
+      "path": "applicants",
+      "label": "Applicants",
+      "icon": "users",
+      "src": "screens/applicants.html",
+      "moduleId": "101-admin-applicants",
+      "specRefs": ["spec-kit/unified-spec/.specify/specs/101-admin-applicants/spec.md"]
+    },
+    {
+      "id": "pipeline",
+      "path": "pipeline",
+      "label": "Pipeline",
+      "icon": "pipeline",
+      "src": "screens/pipeline.html",
+      "moduleId": "102-admin-pipeline",
+      "specRefs": ["spec-kit/unified-spec/.specify/specs/102-admin-pipeline/spec.md"]
+    },
+    {
+      "id": "jobs",
+      "path": "jobs",
+      "label": "Jobs",
+      "icon": "briefcase",
+      "src": "screens/jobs.html",
+      "moduleId": "103-admin-jobs",
+      "specRefs": ["spec-kit/unified-spec/.specify/specs/103-admin-jobs/spec.md"]
+    },
+    {
+      "id": "interviews",
+      "path": "interviews",
+      "label": "Interviews",
+      "icon": "calendar",
+      "src": "screens/interviews.html",
+      "moduleId": "104-admin-interviews",
+      "specRefs": ["spec-kit/unified-spec/.specify/specs/104-admin-interviews/spec.md"]
+    },
+    {
+      "id": "evaluations",
+      "path": "evaluations",
+      "label": "Evaluations",
+      "icon": "chart",
+      "src": "screens/evaluations.html",
+      "moduleId": "105-admin-evaluations",
+      "specRefs": ["spec-kit/unified-spec/.specify/specs/105-admin-evaluations/spec.md"]
+    },
+    {
+      "id": "documents",
+      "path": "documents",
+      "label": "Documents",
+      "icon": "document",
+      "src": "screens/documents.html",
+      "moduleId": "106-admin-documents",
+      "specRefs": ["spec-kit/unified-spec/.specify/specs/106-admin-documents/spec.md"]
+    },
+    {
+      "id": "templates",
+      "path": "templates",
+      "label": "Templates",
+      "icon": "inbox",
+      "src": "screens/templates.html",
+      "moduleId": "107-admin-email-templates",
+      "specRefs": ["spec-kit/unified-spec/.specify/specs/107-admin-email-templates/spec.md"]
+    },
+    {
+      "id": "settings",
+      "path": "settings",
+      "label": "Settings",
+      "icon": "settings",
+      "src": "screens/settings.html",
+      "moduleId": "108-admin-settings",
+      "specRefs": ["spec-kit/unified-spec/.specify/specs/108-admin-settings/spec.md"]
+    }
+  ],
+  "screens": [
+    { "id": "dashboard", "label": "Dashboard", "path": "dashboard", "src": "screens/dashboard.html", "moduleId": "100-admin-dashboard", "specRefs": ["spec-kit/unified-spec/.specify/specs/100-admin-dashboard/spec.md"] },
+    { "id": "applicants", "label": "Applicants", "path": "applicants", "src": "screens/applicants.html", "moduleId": "101-admin-applicants", "specRefs": ["spec-kit/unified-spec/.specify/specs/101-admin-applicants/spec.md"] },
+    { "id": "pipeline", "label": "Pipeline", "path": "pipeline", "src": "screens/pipeline.html", "moduleId": "102-admin-pipeline", "specRefs": ["spec-kit/unified-spec/.specify/specs/102-admin-pipeline/spec.md"] },
+    { "id": "jobs", "label": "Jobs", "path": "jobs", "src": "screens/jobs.html", "moduleId": "103-admin-jobs", "specRefs": ["spec-kit/unified-spec/.specify/specs/103-admin-jobs/spec.md"] },
+    { "id": "interviews", "label": "Interviews", "path": "interviews", "src": "screens/interviews.html", "moduleId": "104-admin-interviews", "specRefs": ["spec-kit/unified-spec/.specify/specs/104-admin-interviews/spec.md"] },
+    { "id": "evaluations", "label": "Evaluations", "path": "evaluations", "src": "screens/evaluations.html", "moduleId": "105-admin-evaluations", "specRefs": ["spec-kit/unified-spec/.specify/specs/105-admin-evaluations/spec.md"] },
+    { "id": "documents", "label": "Documents", "path": "documents", "src": "screens/documents.html", "moduleId": "106-admin-documents", "specRefs": ["spec-kit/unified-spec/.specify/specs/106-admin-documents/spec.md"] },
+    { "id": "templates", "label": "Templates", "path": "templates", "src": "screens/templates.html", "moduleId": "107-admin-email-templates", "specRefs": ["spec-kit/unified-spec/.specify/specs/107-admin-email-templates/spec.md"] },
+    { "id": "settings", "label": "Settings", "path": "settings", "src": "screens/settings.html", "moduleId": "108-admin-settings", "specRefs": ["spec-kit/unified-spec/.specify/specs/108-admin-settings/spec.md"] }
+  ],
+  "dataSources": ["data/mock-admin-data.json"],
+  "specRefs": [
+    "spec-kit/unified-spec/.specify/specs/100-admin-dashboard/spec.md",
+    "spec-kit/unified-spec/.specify/specs/101-admin-applicants/spec.md",
+    "spec-kit/unified-spec/.specify/specs/102-admin-pipeline/spec.md",
+    "spec-kit/unified-spec/.specify/specs/103-admin-jobs/spec.md",
+    "spec-kit/unified-spec/.specify/specs/104-admin-interviews/spec.md",
+    "spec-kit/unified-spec/.specify/specs/105-admin-evaluations/spec.md",
+    "spec-kit/unified-spec/.specify/specs/106-admin-documents/spec.md",
+    "spec-kit/unified-spec/.specify/specs/107-admin-email-templates/spec.md",
+    "spec-kit/unified-spec/.specify/specs/108-admin-settings/spec.md"
+  ]
+}

@@ -1,0 +1,63 @@
+<!-- SCREEN_START -->
+<section class="surface-stack">
+  <header class="surface-header">
+    <div class="surface-header__content">
+      <div class="surface-eyebrow">Module 403 · Outreach analytics</div>
+      <h1 class="surface-title">Channel performance and response timing</h1>
+      <p class="surface-subtitle">
+        Outreach analytics compares channel results, keeps the response heatmap complete with zero-value cells, and turns recent performance into read-only guidance.
+      </p>
+    </div>
+    <div class="surface-actions">
+      <span class="tag" data-crm-analytics-range></span>
+      <button class="btn btn-secondary" type="button" data-demo-action="Export outreach analytics">Export analytics</button>
+    </div>
+  </header>
+
+  <div class="metric-grid" data-crm-analytics-metrics></div>
+
+  <div class="panel-grid">
+    <article class="panel panel--span-6">
+      <div class="panel__header">
+        <div class="panel__heading">
+          <h2 class="panel__title">Channel metrics</h2>
+          <p class="panel__copy">Sent, reply, and meeting conversion by channel.</p>
+        </div>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Channel</th>
+              <th>Sent</th>
+              <th>Reply rate</th>
+              <th>Meeting rate</th>
+            </tr>
+          </thead>
+          <tbody data-crm-channel-rows></tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="panel panel--span-6">
+      <div class="panel__header">
+        <div class="panel__heading">
+          <h2 class="panel__title">Next-best guidance</h2>
+          <p class="panel__copy">Descriptive recommendations drawn from the visible range.</p>
+        </div>
+      </div>
+      <div class="list-stack" data-crm-recommendations></div>
+    </article>
+
+    <article class="panel panel--span-12">
+      <div class="panel__header">
+        <div class="panel__heading">
+          <h2 class="panel__title">Response heatmap</h2>
+          <p class="panel__copy">Every day and time bucket stays present so the pattern remains comparable across reads.</p>
+        </div>
+      </div>
+      <div data-crm-heatmap></div>
+    </article>
+  </div>
+</section>
+<!-- SCREEN_END -->

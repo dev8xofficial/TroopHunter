@@ -1,64 +1,56 @@
 <!-- SCREEN_START -->
-<!-- spec: module 005 · MFA Verification (TOTP / SMS) -->
-<div class="auth-page" style="grid-template-columns: 1fr">
-  <div class="auth-page__form" style="min-height: 100vh">
-    <div class="auth-card" style="text-align: center">
-      <div style="width: 56px; height: 56px; background: var(--color-primary-subtle); border-radius: var(--border-radius-xl); display: flex; align-items: center; justify-content: center; color: var(--color-primary); margin: 0 auto var(--space-5)">
-        <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        </svg>
-      </div>
+<section class="auth-card">
+  <div class="auth-card__heading">
+    <div class="surface-eyebrow">Module 003 · MFA challenge</div>
+    <h1 class="auth-card__title">Verify the privileged session.</h1>
+    <p class="auth-card__copy">
+      The admin portal stays locked until the second factor succeeds. For the demo, use <strong>246810</strong> or the recovery code <strong>DEV8X-RECOVER</strong>.
+    </p>
+  </div>
 
-      <div class="auth-card__header" style="text-align: center">
-        <h2 class="auth-card__title">Two-factor verification</h2>
-        <p class="auth-card__subtitle">
-          Enter the 6-digit code from your authenticator app or the SMS we sent to
-          <strong>•••&nbsp;••&nbsp;1234</strong>.
-        </p>
-      </div>
-
-      <div id="mfa-error" role="alert" aria-live="polite" style="color: var(--color-danger); font-size: var(--text-sm); margin-bottom: var(--space-2); min-height: 20px"></div>
-
-      <!-- Digit inputs -->
-      <div class="mfa-inputs" aria-label="Six-digit verification code" role="group">
-        <input class="mfa-digit" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 1" autocomplete="one-time-code" />
-        <input class="mfa-digit" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 2" />
-        <input class="mfa-digit" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 3" />
-        <input class="mfa-digit" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 4" />
-        <input class="mfa-digit" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 5" />
-        <input class="mfa-digit" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 6" />
-      </div>
-
-      <button class="btn btn--primary btn--full" id="mfa-submit" style="max-width: 280px; margin: 0 auto">Verify code</button>
-
-      <p style="margin-top: var(--space-5); font-size: var(--text-sm); color: var(--text-secondary)">
-        Didn't receive a code?
-        <a href="#" id="mfa-resend" style="color: var(--text-link); font-weight: var(--font-medium); text-decoration: none"> Resend </a>
-      </p>
-
-      <!-- Method switcher -->
-      <div class="divider" style="margin-top: var(--space-6)">or verify with</div>
-
-      <div style="display: flex; gap: var(--space-3); justify-content: center; margin-bottom: var(--space-4)">
-        <button class="btn btn--secondary btn--sm" onclick="alert('Demo: SMS code sent.')">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.22 2.18 2 2 0 012.2 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.09 6.09l1.27-.54a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-          </svg>
-          SMS code
-        </button>
-        <button class="btn btn--secondary btn--sm" onclick="alert('Demo: Backup code accepted.')">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-            <polyline points="14 2 14 8 20 8" />
-          </svg>
-          Backup code
-        </button>
-      </div>
-
-      <p style="font-size: var(--text-xs); color: var(--text-muted)">
-        <a href="#login" style="color: var(--text-link); text-decoration: none">← Back to sign in</a>
-      </p>
+  <div class="auth-summary-grid">
+    <div class="auth-summary-card">
+      <div class="auth-summary-card__label">User</div>
+      <div class="auth-summary-card__value" data-mfa-user></div>
+    </div>
+    <div class="auth-summary-card">
+      <div class="auth-summary-card__label">Email</div>
+      <div class="auth-summary-card__value" data-mfa-email></div>
+    </div>
+    <div class="auth-summary-card">
+      <div class="auth-summary-card__label">Role</div>
+      <div class="auth-summary-card__value" data-mfa-role></div>
+    </div>
+    <div class="auth-summary-card">
+      <div class="auth-summary-card__label">Challenge window</div>
+      <div class="auth-summary-card__value">5 minutes</div>
     </div>
   </div>
-</div>
+
+  <div class="alert alert--danger hidden" data-auth-message></div>
+
+  <form data-mfa-form>
+    <div class="form-group">
+      <label class="form-label">One-time code</label>
+      <div class="auth-code-grid">
+        <input class="auth-code-input" data-mfa-digit inputmode="numeric" />
+        <input class="auth-code-input" data-mfa-digit inputmode="numeric" />
+        <input class="auth-code-input" data-mfa-digit inputmode="numeric" />
+        <input class="auth-code-input" data-mfa-digit inputmode="numeric" />
+        <input class="auth-code-input" data-mfa-digit inputmode="numeric" />
+        <input class="auth-code-input" data-mfa-digit inputmode="numeric" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="recovery-code">Recovery code</label>
+      <input class="form-input no-icon" id="recovery-code" name="recoveryCode" type="text" placeholder="Optional fallback" />
+    </div>
+
+    <div class="surface-actions">
+      <button class="btn btn-primary" type="submit">Verify and continue</button>
+      <button class="btn btn-ghost" type="button" data-back-login>Cancel</button>
+    </div>
+  </form>
+</section>
 <!-- SCREEN_END -->

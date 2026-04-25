@@ -1,0 +1,78 @@
+{
+  "_meta": {
+    "description": "Demo portal registry aligned to module 002-portal-routing.",
+    "specRef": ".specify/specs/002-portal-routing/spec.md",
+    "contractRef": "spec-kit/unified-spec/contracts/access-control.yaml",
+    "generatedAt": "2026-04-24"
+  },
+  "portals": {
+    "admin": {
+      "key": "admin",
+      "label": "Admin Portal",
+      "description": "Run hiring operations, applicant review, pipeline management, and recruiter workflows.",
+      "defaultRoute": "dashboard",
+      "accentColor": "#7048e8",
+      "allowedRoles": ["hr_admin", "super_admin"],
+      "heroTag": "Recruiting Operations",
+      "heroTitle": "Hire faster with one connected operations surface.",
+      "heroDescription": "Applicants, interviews, evaluations, documents, and templates stay coordinated from one route-aware admin workspace.",
+      "steps": [
+        "Review live hiring KPIs and funnel health before the standup.",
+        "Move candidates across interviews, evaluations, and offer stages.",
+        "Keep templates, documents, and settings aligned with the recruiting process."
+      ],
+      "ssoProviders": []
+    },
+    "candidate": {
+      "key": "candidate",
+      "label": "Candidate Portal",
+      "description": "Track applications, interviews, documents, onboarding, and messages from HR.",
+      "defaultRoute": "dashboard",
+      "accentColor": "#ff5a5f",
+      "allowedRoles": ["candidate"],
+      "heroTag": "Candidate Journey",
+      "heroTitle": "See every application step without guessing what comes next.",
+      "heroDescription": "Timelines, interviews, documents, onboarding, and recruiter messages all stay in one personal workspace.",
+      "steps": [
+        "Follow live progress from application review through offer and onboarding.",
+        "Book interviews, sign required paperwork, and keep deadlines visible.",
+        "Ask HR questions without leaving the same candidate workspace."
+      ],
+      "ssoProviders": ["google"]
+    },
+    "client": {
+      "key": "client",
+      "label": "Client Portal",
+      "description": "Review projects, invoices, files, working hours, support, and active contracts.",
+      "defaultRoute": "dashboard",
+      "accentColor": "#00a699",
+      "allowedRoles": ["client", "manager"],
+      "heroTag": "Delivery Visibility",
+      "heroTitle": "Stay close to delivery, budget, and support from a single client hub.",
+      "heroDescription": "Projects, invoices, time tracking, files, support tickets, and contract status remain visible in real time.",
+      "steps": [
+        "Review project health, milestones, and team activity in one place.",
+        "Keep invoices, working hours, files, and contracts synced to delivery.",
+        "Reach delivery leads quickly through messaging and support routes."
+      ],
+      "ssoProviders": ["google"]
+    },
+    "crm": {
+      "key": "crm",
+      "label": "CRM Portal",
+      "description": "Manage contacts, lead stacks, outreach, scoring, and the active sales pipeline.",
+      "defaultRoute": "dashboard",
+      "accentColor": "#dc2626",
+      "allowedRoles": ["sales_rep", "manager", "super_admin"],
+      "heroTag": "Revenue Pipeline",
+      "heroTitle": "Prioritize leads, outreach, and scoring from one revenue cockpit.",
+      "heroDescription": "The CRM surface groups pipeline movement, hot leads, outreach analytics, template operations, and lead scoring together.",
+      "steps": [
+        "Track contacts, pipeline velocity, and stale deals across active campaigns.",
+        "Coordinate templates, lead stacks, and scoring criteria without context switching.",
+        "Review closed-won, closed-lost, and operational settings from the same portal."
+      ],
+      "ssoProviders": []
+    }
+  }
+}

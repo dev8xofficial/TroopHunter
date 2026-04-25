@@ -1,0 +1,52 @@
+<!-- SCREEN_START -->
+<section class="surface-stack">
+  <header class="surface-header">
+    <div class="surface-header__content">
+      <div class="surface-eyebrow">Module 400 · CRM dashboard</div>
+      <h1 class="surface-title">Revenue cockpit for <span data-session-name></span></h1>
+      <p class="surface-subtitle">
+        The dashboard keeps pipeline value, funnel pressure, hot leads, and recent outreach movement in one place so the sales team can act from the same view.
+      </p>
+    </div>
+    <div class="surface-actions crm-toggle-group">
+      <button class="btn btn-secondary crm-filter-btn" type="button" data-crm-segment="b2b">B2B segment</button>
+      <button class="btn btn-secondary crm-filter-btn" type="button" data-crm-segment="freelance">Freelance segment</button>
+      <button class="btn btn-primary" type="button" data-demo-action="Export CRM summary">Export summary</button>
+    </div>
+  </header>
+
+  <div class="metric-grid" data-crm-dashboard-metrics></div>
+
+  <div class="panel-grid">
+    <article class="panel panel--span-4">
+      <div class="panel__header">
+        <div class="panel__heading">
+          <h2 class="panel__title">Funnel shape</h2>
+          <p class="panel__copy" data-crm-dashboard-snapshot></p>
+        </div>
+      </div>
+      <div class="list-stack" data-crm-funnel></div>
+    </article>
+
+    <article class="panel panel--span-4">
+      <div class="panel__header">
+        <div class="panel__heading">
+          <h2 class="panel__title">Hot leads</h2>
+          <p class="panel__copy">High-score contacts with immediate next steps.</p>
+        </div>
+      </div>
+      <div class="list-stack" data-crm-hot-leads></div>
+    </article>
+
+    <article class="panel panel--span-4">
+      <div class="panel__header">
+        <div class="panel__heading">
+          <h2 class="panel__title">Recent activity</h2>
+          <p class="panel__copy">Newest first, aligned with the CRM audit stream.</p>
+        </div>
+      </div>
+      <div class="list-stack" data-crm-activity></div>
+    </article>
+  </div>
+</section>
+<!-- SCREEN_END -->
