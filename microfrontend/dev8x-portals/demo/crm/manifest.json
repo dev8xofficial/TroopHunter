@@ -11,6 +11,8 @@
       "items": [
         { "path": "dashboard", "label": "Dashboard", "icon": "home" },
         { "path": "contacts", "label": "Contacts", "icon": "contact", "badge": "124" },
+        { "path": "companies", "label": "Companies", "icon": "briefcase" },
+        { "path": "jobs", "label": "Jobs", "icon": "list" },
         { "path": "pipeline", "label": "Pipeline", "icon": "pipeline", "badge": "6 stale" }
       ]
     },
@@ -40,7 +42,9 @@
     { "id": "lead-stacks", "path": "lead-stacks", "label": "Lead Stacks", "icon": "folder", "src": "screens/lead-stacks.html", "moduleId": "405-crm-lead-stacks", "specRefs": ["spec-kit/unified-spec/.specify/specs/405-crm-lead-stacks/spec.md"] },
     { "id": "scoring", "path": "scoring", "label": "Scoring", "icon": "shield", "src": "screens/scoring.html", "moduleId": "406-crm-scoring", "specRefs": ["spec-kit/unified-spec/.specify/specs/406-crm-scoring/spec.md"] },
     { "id": "archive", "path": "archive", "label": "Archive", "icon": "document", "src": "screens/archive.html", "moduleId": "407-crm-archive", "specRefs": ["spec-kit/unified-spec/.specify/specs/407-crm-archive/spec.md"] },
-    { "id": "settings", "path": "settings", "label": "Settings", "icon": "settings", "src": "screens/settings.html", "moduleId": "408-crm-settings", "specRefs": ["spec-kit/unified-spec/.specify/specs/408-crm-settings/spec.md"] }
+    { "id": "settings", "path": "settings", "label": "Settings", "icon": "settings", "src": "screens/settings.html", "moduleId": "408-crm-settings", "specRefs": ["spec-kit/unified-spec/.specify/specs/408-crm-settings/spec.md"] },
+    { "id": "companies", "path": "companies", "label": "Companies", "icon": "briefcase", "src": "screens/companies.html", "moduleId": "409-crm-companies", "specRefs": ["spec-kit/unified-spec/.specify/specs/409-crm-companies/spec.md"] },
+    { "id": "jobs", "path": "jobs", "label": "Jobs", "icon": "list", "src": "screens/jobs.html", "moduleId": "410-crm-jobs", "specRefs": ["spec-kit/unified-spec/.specify/specs/410-crm-jobs/spec.md"] }
   ],
   "screens": [
     { "id": "dashboard", "label": "Dashboard", "path": "dashboard", "src": "screens/dashboard.html", "moduleId": "400-crm-dashboard", "specRefs": ["spec-kit/unified-spec/.specify/specs/400-crm-dashboard/spec.md"] },
@@ -51,7 +55,9 @@
     { "id": "lead-stacks", "label": "Lead Stacks", "path": "lead-stacks", "src": "screens/lead-stacks.html", "moduleId": "405-crm-lead-stacks", "specRefs": ["spec-kit/unified-spec/.specify/specs/405-crm-lead-stacks/spec.md"] },
     { "id": "scoring", "label": "Scoring", "path": "scoring", "src": "screens/scoring.html", "moduleId": "406-crm-scoring", "specRefs": ["spec-kit/unified-spec/.specify/specs/406-crm-scoring/spec.md"] },
     { "id": "archive", "label": "Archive", "path": "archive", "src": "screens/archive.html", "moduleId": "407-crm-archive", "specRefs": ["spec-kit/unified-spec/.specify/specs/407-crm-archive/spec.md"] },
-    { "id": "settings", "label": "Settings", "path": "settings", "src": "screens/settings.html", "moduleId": "408-crm-settings", "specRefs": ["spec-kit/unified-spec/.specify/specs/408-crm-settings/spec.md"] }
+    { "id": "settings", "label": "Settings", "path": "settings", "src": "screens/settings.html", "moduleId": "408-crm-settings", "specRefs": ["spec-kit/unified-spec/.specify/specs/408-crm-settings/spec.md"] },
+    { "id": "companies", "label": "Companies", "path": "companies", "src": "screens/companies.html", "moduleId": "409-crm-companies", "specRefs": ["spec-kit/unified-spec/.specify/specs/409-crm-companies/spec.md"] },
+    { "id": "jobs", "label": "Jobs", "path": "jobs", "src": "screens/jobs.html", "moduleId": "410-crm-jobs", "specRefs": ["spec-kit/unified-spec/.specify/specs/410-crm-jobs/spec.md"] }
   ],
   "dataSources": ["data/mock-crm-data.json"],
   "specRefs": [
@@ -63,6 +69,8 @@
     "spec-kit/unified-spec/.specify/specs/405-crm-lead-stacks/spec.md",
     "spec-kit/unified-spec/.specify/specs/406-crm-scoring/spec.md",
     "spec-kit/unified-spec/.specify/specs/407-crm-archive/spec.md",
-    "spec-kit/unified-spec/.specify/specs/408-crm-settings/spec.md"
+    "spec-kit/unified-spec/.specify/specs/408-crm-settings/spec.md",
+    "spec-kit/unified-spec/.specify/specs/409-crm-companies/spec.md",
+    "spec-kit/unified-spec/.specify/specs/410-crm-jobs/spec.md"
   ]
 }

@@ -113,6 +113,33 @@
       "src": "screens/settings.html",
       "moduleId": "108-admin-settings",
       "specRefs": ["spec-kit/unified-spec/.specify/specs/108-admin-settings/spec.md"]
+    },
+    {
+      "id": "performance",
+      "path": "performance",
+      "label": "Performance",
+      "icon": "chart",
+      "src": "screens/performance.html",
+      "moduleId": "109-admin-performance",
+      "specRefs": ["spec-kit/unified-spec/.specify/specs/109-admin-performance/spec.md"]
+    },
+    {
+      "id": "team",
+      "path": "team",
+      "label": "Team",
+      "icon": "users",
+      "src": "screens/team.html",
+      "moduleId": "110-admin-team",
+      "specRefs": ["spec-kit/unified-spec/.specify/specs/110-admin-team/spec.md"]
+    },
+    {
+      "id": "analytics",
+      "path": "analytics",
+      "label": "Analytics",
+      "icon": "chart",
+      "src": "screens/analytics.html",
+      "moduleId": "111-admin-analytics",
+      "specRefs": ["spec-kit/unified-spec/.specify/specs/111-admin-analytics/spec.md"]
     }
   ],
   "screens": [
@@ -124,7 +151,10 @@
     { "id": "evaluations", "label": "Evaluations", "path": "evaluations", "src": "screens/evaluations.html", "moduleId": "105-admin-evaluations", "specRefs": ["spec-kit/unified-spec/.specify/specs/105-admin-evaluations/spec.md"] },
     { "id": "documents", "label": "Documents", "path": "documents", "src": "screens/documents.html", "moduleId": "106-admin-documents", "specRefs": ["spec-kit/unified-spec/.specify/specs/106-admin-documents/spec.md"] },
     { "id": "templates", "label": "Templates", "path": "templates", "src": "screens/templates.html", "moduleId": "107-admin-email-templates", "specRefs": ["spec-kit/unified-spec/.specify/specs/107-admin-email-templates/spec.md"] },
-    { "id": "settings", "label": "Settings", "path": "settings", "src": "screens/settings.html", "moduleId": "108-admin-settings", "specRefs": ["spec-kit/unified-spec/.specify/specs/108-admin-settings/spec.md"] }
+    { "id": "settings", "label": "Settings", "path": "settings", "src": "screens/settings.html", "moduleId": "108-admin-settings", "specRefs": ["spec-kit/unified-spec/.specify/specs/108-admin-settings/spec.md"] },
+    { "id": "performance", "label": "Performance", "path": "performance", "src": "screens/performance.html", "moduleId": "109-admin-performance", "specRefs": ["spec-kit/unified-spec/.specify/specs/109-admin-performance/spec.md"] },
+    { "id": "team", "label": "Team", "path": "team", "src": "screens/team.html", "moduleId": "110-admin-team", "specRefs": ["spec-kit/unified-spec/.specify/specs/110-admin-team/spec.md"] },
+    { "id": "analytics", "label": "Analytics", "path": "analytics", "src": "screens/analytics.html", "moduleId": "111-admin-analytics", "specRefs": ["spec-kit/unified-spec/.specify/specs/111-admin-analytics/spec.md"] }
   ],
   "dataSources": ["data/mock-admin-data.json"],
   "specRefs": [
@@ -136,6 +166,9 @@
     "spec-kit/unified-spec/.specify/specs/105-admin-evaluations/spec.md",
     "spec-kit/unified-spec/.specify/specs/106-admin-documents/spec.md",
     "spec-kit/unified-spec/.specify/specs/107-admin-email-templates/spec.md",
-    "spec-kit/unified-spec/.specify/specs/108-admin-settings/spec.md"
+    "spec-kit/unified-spec/.specify/specs/108-admin-settings/spec.md",
+    "spec-kit/unified-spec/.specify/specs/109-admin-performance/spec.md",
+    "spec-kit/unified-spec/.specify/specs/110-admin-team/spec.md",
+    "spec-kit/unified-spec/.specify/specs/111-admin-analytics/spec.md"
   ]
 }

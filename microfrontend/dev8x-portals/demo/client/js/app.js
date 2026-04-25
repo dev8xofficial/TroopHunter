@@ -404,6 +404,16 @@ function initClientRoute({ outlet, route, datasets }) {
     case 'contracts':
       initContracts(outlet, data);
       break;
+    case 'milestones':
+      break;
+    case 'payment-methods':
+      break;
+    case 'team':
+      break;
+    case 'notifications':
+      break;
+    case 'settings':
+      break;
     default:
       break;
   }

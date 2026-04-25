@@ -107,6 +107,9 @@
 | `106-admin-documents` | Document management, upload, viewing, per-applicant association |
 | `107-admin-email-templates` | Template CRUD, variable system, message sending |
 | `108-admin-settings` | System configuration, user management |
+| `109-admin-performance` | Performance tracking, clockify integration |
+| `110-admin-team` | Internal HR team management, roles |
+| `111-admin-analytics` | Platform analytics, funnel metrics |
 
 ---
 
@@ -139,6 +142,7 @@
 | `204-candidate-onboarding` | Account provisioning, software setup, first-day checklist |
 | `205-candidate-messages` | Inbox, message threads, read/unread |
 | `206-candidate-profile` | Personal info, editable profile, emergency contacts |
+| `207-candidate-performance` | Performance dashboard, target hours, late alerts |
 
 ---
 
@@ -170,6 +174,11 @@
 | `305-client-messaging` | Thread-based messaging, team communication |
 | `306-client-support` | Support tickets, status lifecycle |
 | `307-client-contracts` | Contract management, e-signing |
+| `308-client-milestones` | Project milestones, phase tracking |
+| `309-client-payment-methods` | Billing management, saved cards |
+| `310-client-team` | Client-side team provisioning, roles |
+| `311-client-notifications` | System notifications, inbox |
+| `312-client-settings` | Client profile, security, danger zone |
 
 ---
 
@@ -202,6 +211,8 @@
 | `406-crm-scoring` | Lead scoring, multi-dimension assessment |
 | `407-crm-archive` | Closed deals (Won/Lost), historical data |
 | `408-crm-settings` | System config, user management, integrations |
+| `409-crm-companies` | Account-level CRM management |
+| `410-crm-jobs` | Job requisition tracking for recruiting |
 
 ---
 
@@ -504,13 +515,13 @@ Single unified constitution covering:
 
 ### Phase C: Auth Domain (001–005) — 5 modules × 13 files = 65 files
 
-### Phase D: Admin Domain (100–108) — 9 modules × 13 files = 117 files
+### Phase D: Admin Domain (100–111) — 12 modules × 13 files = 156 files
 
-### Phase E: Candidate Domain (200–206) — 7 modules × 13 files = 91 files
+### Phase E: Candidate Domain (200–207) — 8 modules × 13 files = 104 files
 
-### Phase F: Client Domain (300–307) — 8 modules × 13 files = 104 files
+### Phase F: Client Domain (300–312) — 13 modules × 13 files = 169 files
 
-### Phase G: CRM Domain (400–408) — 9 modules × 13 files = 117 files
+### Phase G: CRM Domain (400–410) — 11 modules × 13 files = 143 files
 
 ### Phase H: Centralized Contracts & Schemas
 
@@ -536,11 +547,11 @@ Single unified constitution covering:
 |--------|-------------|-------------------|-------------|
 | Foundation | 1 | 13 | All |
 | Auth (0xx) | 5 | 65 | `auth.html` |
-| Admin (1xx) | 9 | 117 | `admin-panel.html` |
-| Candidate (2xx) | 7 | 91 | `candidate-portal.html` |
-| Client (3xx) | 8 | 104 | `client-portal.html` |
-| CRM (4xx) | 9 | 117 | `crm-portal.html` |
-| **Total** | **39** | **507** | — |
+| Admin (1xx) | 12 | 156 | `admin-panel.html` |
+| Candidate (2xx) | 8 | 104 | `candidate-portal.html` |
+| Client (3xx) | 13 | 169 | `client-portal.html` |
+| CRM (4xx) | 11 | 143 | `crm-portal.html` |
+| **Total** | **50** | **650** | — |
 
 ---
 

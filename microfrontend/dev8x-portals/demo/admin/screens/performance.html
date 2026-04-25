@@ -1,0 +1,122 @@
+<div class="page" id="page-performance">
+  <!-- Clockify Sync Strip -->
+  <div class="sync-strip">
+    <span class="sync-strip-icon">⏱</span>
+    <span class="clockify-badge">Clockify API</span>
+    <span>Connected · Auto-syncing time data for all active members</span>
+    <span class="api-indicator"><span class="api-dot"></span> Live</span>
+    <span class="sync-time">Last synced: Today, 11:47 AM</span>
+    <div style="display:flex;align-items:center;gap:8px;margin-left:auto">
+      <div class="period-tabs">
+        <button class="period-tab" onclick="setPerfPeriod('day', this)">Today</button>
+        <button class="period-tab active" onclick="setPerfPeriod('week', this)">This Week</button>
+        <button class="period-tab" onclick="setPerfPeriod('month', this)">This Month</button>
+        <button class="period-tab" onclick="setPerfPeriod('custom', this)">Custom</button>
+      </div>
+      <div class="icon-btn" title="Refresh from Clockify" onclick="showToast('Syncing from Clockify…', '⏱')">🔄</div>
+      <div class="icon-btn" title="Export report" onclick="showToast('Exporting CSV report…', '📥')">📥</div>
+      <button class="btn btn-primary btn-sm" onclick="openPerfConcernModal()">⚠️ Flag Member</button>
+    </div>
+  </div>
+
+  <div class="page-header" style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px">
+    <div>
+      <div class="section-title">📊 Performance Hub</div>
+      <div id="perfPageSub" class="section-sub" style="margin-top:4px">Week of Mar 3 – Mar 9, 2026 · 12 active interns & employees tracked via Clockify</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button class="filter-chip active" onclick="filterPerfStatus('all', this)">All Members</button>
+      <button class="filter-chip" onclick="filterPerfStatus('excellent', this)">🌟 Excellent</button>
+      <button class="filter-chip" onclick="filterPerfStatus('on-track', this)">✅ On Track</button>
+      <button class="filter-chip" onclick="filterPerfStatus('at-risk', this)">⚠️ At Risk</button>
+      <button class="filter-chip" onclick="filterPerfStatus('below', this)">🚨 Below Policy</button>
+    </div>
+  </div>
+
+  <!-- Alert Banner -->
+  <div class="alert-banner warn" id="perfAlertBanner">
+    <span class="alert-icon">⚠️</span>
+    <div>
+      <div class="alert-title">3 members are below the weekly hour policy (40 hrs)</div>
+      <div class="alert-desc">Omar Farooq (22h), Zainab Raza (18h), and Faisal Iqbal (28h) have not met the minimum hours requirement this week. Consider sending reminders or scheduling 1-on-1 check-ins.</div>
+    </div>
+    <button class="btn btn-warn btn-sm" style="flex-shrink:0;margin-left:auto" onclick="showToast('Bulk reminder sent to 3 members 📧', '✅')">Send Reminders</button>
+  </div>
+
+  <!-- Stats Row -->
+  <div class="perf-stats-row">
+    <div class="stat-card" style="position:relative;overflow:hidden">
+      <div class="stat-card-accent" style="background:var(--baia)"></div>
+      <div class="stat-label">Active Members</div>
+      <div class="stat-value">12</div>
+      <div class="stat-delta up">↑ 2 joined this week</div>
+    </div>
+    <div class="stat-card" style="position:relative;overflow:hidden">
+      <div class="stat-card-accent" style="background:var(--blue)"></div>
+      <div class="stat-label">Avg Hours / Week</div>
+      <div class="stat-value">34.6<span style="font-size:14px;color:var(--foggy);font-weight:600">h</span></div>
+      <div class="stat-delta warn" style="background:var(--amber-light);color:var(--amber)">↓ Target: 40h</div>
+    </div>
+    <div class="stat-card" style="position:relative;overflow:hidden">
+      <div class="stat-card-accent" style="background:var(--green)"></div>
+      <div class="stat-label">Attendance Rate</div>
+      <div class="stat-value">87<span style="font-size:14px;color:var(--foggy);font-weight:600">%</span></div>
+      <div class="stat-delta up">↑ 4% vs last week</div>
+    </div>
+    <div class="stat-card" style="position:relative;overflow:hidden">
+      <div class="stat-card-accent" style="background:var(--red)"></div>
+      <div class="stat-label">Below Policy</div>
+      <div class="stat-value" style="color:var(--red)">3</div>
+      <div class="stat-delta down">⚠️ Needs attention</div>
+    </div>
+    <div class="stat-card" style="position:relative;overflow:hidden">
+      <div class="stat-card-accent" style="background:var(--amber)"></div>
+      <div class="stat-label">Open Concerns</div>
+      <div class="stat-value" style="color:var(--amber)">5</div>
+      <div class="stat-delta" style="background:var(--amber-light);color:var(--amber)">2 unresolved > 7 days</div>
+    </div>
+  </div>
+
+  <!-- Team Performance Table -->
+  <div class="section-header" style="margin-bottom:12px">
+    <div>
+      <div class="section-title" style="font-size:16px">Team Performance</div>
+      <div class="section-sub">Click any row to view detailed Clockify report, attendance & performance matrix</div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <div class="icon-btn" title="Sort" onclick="showToast('Sort applied', '🔃')">↕️</div>
+      <div class="icon-btn" title="Column settings" onclick="showToast('Column settings', '🔧')">⚙️</div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-wrap">
+      <table id="perfTable">
+        <thead>
+          <tr>
+            <th>Member</th>
+            <th>Role</th>
+            <th>Type</th>
+            <th>Hrs This Week</th>
+            <th>Avg Start</th>
+            <th>Avg End</th>
+            <th>Attendance</th>
+            <th>Overall Score</th>
+            <th>TL Concerns</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="perfTableBody">
+          <!-- Populated by JS -->
+        </tbody>
+      </table>
+    </div>
+    <div class="table-footer">
+      <div class="table-footer-info" id="perfTableFooterInfo">Showing 8 of 8 active members</div>
+      <div style="display:flex;gap:6px">
+        <div class="clockify-badge">⏱ Data via Clockify API</div>
+      </div>
+    </div>
+  </div>
+</div>

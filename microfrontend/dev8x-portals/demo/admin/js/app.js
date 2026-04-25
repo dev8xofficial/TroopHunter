@@ -504,6 +504,15 @@ function initAdminRoute({ outlet, route, datasets }) {
     case 'settings':
       initSettings(outlet, data);
       break;
+    case 'analytics':
+      // Static for now, no dynamic initialization needed
+      break;
+    case 'team':
+      // Static for now, no dynamic initialization needed
+      break;
+    case 'performance':
+      // Static for now, no dynamic initialization needed
+      break;
     default:
       break;
   }

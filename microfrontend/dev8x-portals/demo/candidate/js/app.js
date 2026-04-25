@@ -283,6 +283,9 @@ function initCandidateRoute({ outlet, route, datasets }) {
     case 'profile':
       initProfile(outlet, data);
       break;
+    case 'performance':
+      // Static HTML for now
+      break;
     default:
       break;
   }

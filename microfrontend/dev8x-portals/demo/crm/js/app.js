@@ -826,6 +826,10 @@ function initCrmRoute({ outlet, route, datasets }) {
     case 'settings':
       initSettings(outlet, data);
       break;
+    case 'companies':
+      break;
+    case 'jobs':
+      break;
     default:
       break;
   }

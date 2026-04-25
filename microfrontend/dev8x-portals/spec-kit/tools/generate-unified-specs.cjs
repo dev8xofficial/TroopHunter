@@ -4673,6 +4673,94 @@ const modules = [
       ['Applied settings remain effective until another approved change supersedes or rolls them back.', 'Role changes always emit an audit event.'],
     ),
   },
+  {
+    id: '109-admin-performance',
+    title: 'Admin Performance',
+    domainKey: 'admin',
+    overview: 'Performance tracking, time logging, attendance calendar, and HR-raised concerns.',
+    requirements: [req('Track performance', 'Track attendance and clockify hours.', ['Record clock-ins'])],
+    endpoints: [ep('GET', '/api/v1/admin/performance', 'Get performance records')]
+  },
+  {
+    id: '110-admin-team',
+    title: 'Admin Team',
+    domainKey: 'admin',
+    overview: 'Internal HR team management, role assignments, and permissions.',
+    requirements: [req('Manage team', 'HR team provisioning.', ['Add HR members'])],
+    endpoints: [ep('GET', '/api/v1/admin/team', 'Get HR team members')]
+  },
+  {
+    id: '111-admin-analytics',
+    title: 'Admin Analytics',
+    domainKey: 'admin',
+    overview: 'Platform analytics, conversion charts, and pipeline velocity metrics.',
+    requirements: [req('View analytics', 'High-level reporting.', ['Show charts'])],
+    endpoints: [ep('GET', '/api/v1/admin/analytics', 'Get admin analytics')]
+  },
+  {
+    id: '207-candidate-performance',
+    title: 'Candidate Performance',
+    domainKey: 'candidate',
+    overview: 'Candidate-facing performance dashboard, target hours, late alerts.',
+    requirements: [req('View performance', 'Candidate sees own stats.', ['Show hours'])],
+    endpoints: [ep('GET', '/api/v1/candidate/performance', 'Get own performance')]
+  },
+  {
+    id: '308-client-milestones',
+    title: 'Client Milestones',
+    domainKey: 'client',
+    overview: 'Project milestones, phase tracking, and deliverable sign-offs.',
+    requirements: [req('Track milestones', 'Manage project phases.', ['Sign-off phases'])],
+    endpoints: [ep('GET', '/api/v1/client/milestones', 'Get milestones')]
+  },
+  {
+    id: '309-client-payment-methods',
+    title: 'Client Payment Methods',
+    domainKey: 'client',
+    overview: 'Billing management, saved cards, ACH connections, and auto-pay settings.',
+    requirements: [req('Manage billing', 'Save payment methods.', ['Add card'])],
+    endpoints: [ep('GET', '/api/v1/client/payment-methods', 'Get saved cards')]
+  },
+  {
+    id: '310-client-team',
+    title: 'Client Team',
+    domainKey: 'client',
+    overview: 'Client-side team provisioning, role assignment.',
+    requirements: [req('Manage client team', 'Client adds internal members.', ['Invite members'])],
+    endpoints: [ep('GET', '/api/v1/client/team', 'Get client team members')]
+  },
+  {
+    id: '311-client-notifications',
+    title: 'Client Notifications',
+    domainKey: 'client',
+    overview: 'System-wide notifications, alert histories, and inbox.',
+    requirements: [req('View notifications', 'Alerts and system messages.', ['Mark as read'])],
+    endpoints: [ep('GET', '/api/v1/client/notifications', 'Get notifications')]
+  },
+  {
+    id: '312-client-settings',
+    title: 'Client Settings',
+    domainKey: 'client',
+    overview: 'Client profile, security (2FA), billing preferences, and danger zone actions.',
+    requirements: [req('Manage settings', 'Update profile and security.', ['Enable 2FA'])],
+    endpoints: [ep('GET', '/api/v1/client/settings', 'Get client settings')]
+  },
+  {
+    id: '409-crm-companies',
+    title: 'CRM Companies',
+    domainKey: 'crm',
+    overview: 'Account-level CRM management, hierarchy tracking, and firmographics.',
+    requirements: [req('Manage companies', 'Account level records.', ['View hierarchy'])],
+    endpoints: [ep('GET', '/api/v1/crm/companies', 'Get CRM companies')]
+  },
+  {
+    id: '410-crm-jobs',
+    title: 'CRM Jobs',
+    domainKey: 'crm',
+    overview: 'Job requisition tracking tied to CRM pipelines.',
+    requirements: [req('Track jobs', 'Recruiting job boards.', ['View open roles'])],
+    endpoints: [ep('GET', '/api/v1/crm/jobs', 'Get CRM jobs')]
+  }
 ];
 
 modules.forEach((module) => {
