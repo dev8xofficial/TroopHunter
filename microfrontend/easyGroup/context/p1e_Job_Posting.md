@@ -1,68 +1,62 @@
-Headline: n8n Automation Specialist for E-Commerce Platform
+---
+platform: Upwork
+job_title: n8n Automation Specialist for E-Commerce Platform
+company: easySkip (easyskip.uk)
+location: Remote
+remote: true
+employment_type: Contract
+engagement: Hourly
+hours_per_week: 10
+duration: Ongoing
+experience_level: Intermediate
+compensation: $20.00 – $30.00 per hour
+---
 
+# n8n Automation Specialist for E-Commerce Platform — easySkip — Job Posting
 
+## Role Summary
 
-We are seeking an n8n Automation Specialist to join our fast-growing e-commerce platform. The ideal candidate will have experience in creating workflows and automations that enhance operational efficiency. You will work approximately 10 hours per week, collaborating closely with our team to optimize our processes. If you are passionate about automation and have a strong background in n8n, we would love to hear from you. This position is ongoing, and we are looking for someone who can be a reliable part of our team.
+easySkip (easyskip.uk) is a fast-growing online skip hire brokerage in the UK processing approximately 1,000 orders per month through waste carrier partners. The n8n Automation Specialist will own and expand the company's workflow infrastructure on an ongoing basis — building new automations, maintaining existing ones, troubleshooting issues, and continuously improving operational efficiency as the business scales. A missed SLA costs £200–600 per incident, so these workflows directly impact revenue.
 
-We're easySkip (easyskip.uk), a fast-growing online skip hire brokerage in the UK processing ~1000 orders/month through waste carrier partners. We run on n8n (cloud-hosted), Freshworks CRM, Postmark, Google Sheets, Slack, Stripe, Claude API, and Gmail — and we need a dedicated n8n automation specialist to own and expand our workflow infrastructure on an ongoing basis.
-This is not a one-off project. We're looking for someone to become our go-to n8n person — 10 hours per week, building new workflows, maintaining existing ones, troubleshooting issues, and continuously improving our operational automation as the business scales.
+## Responsibilities
 
-Our current stack:
+- Build new n8n workflows and automations across the full technology stack.
+- Maintain and troubleshoot existing production n8n workflows.
+- Integrate with Freshworks CRM (deals, contacts, suppliers), Postmark (transactional emails), Gmail API (inbound email monitoring and parsing), Google Sheets API (dashboards, logging, reporting), Slack API (alerts, escalations, team notifications), Stripe (payments and refunds), Strapi CMS (supplier pricelists, product data), and Claude API / Anthropic (AI-powered document extraction and classification).
+- Pick up Jira tickets with detailed acceptance criteria and architecture diagrams, build independently, test, and ship without hand-holding.
+- Continuously improve operational automation as the business scales.
 
-n8n (cloud-hosted)
-Freshworks CRM (deals, contacts, suppliers)
-Postmark (transactional emails — order confirmations, customer updates, supplier requests)
-Gmail API (inbound email monitoring and parsing)
-Google Sheets API (dashboards, logging, reporting)
-Slack API (alerts, escalations, team notifications)
-Stripe (payments, refunds)
-Claude API / Anthropic (AI-powered document extraction and classification)
-Strapi CMS (supplier pricelists, product data)
+## Requirements
 
-What makes this role interesting:
+##### Must Have
 
-You're not building toy automations — these workflows directly impact revenue. A missed SLA costs us £200-600 per incident.
-The spec quality is high — we write detailed Jira tickets with acceptance criteria, architecture diagrams, and edge cases. You won't be guessing at requirements.
-You'll work with AI — Claude API integration is a growing part of our automation stack.
-There's a clear pipeline of projects — the backlog has 20+ automation tickets ready for development.
-You'll have autonomy — we care about outcomes, not hours. Build it right, ship it, move to the next thing.
+- 2+ years building production n8n workflows (not just tutorials).
+- Strong hands-on experience with: Gmail nodes, HTTP Request nodes (REST APIs), Google Sheets nodes, Slack nodes, cron/scheduled triggers, Wait/timer nodes, Switch/conditional routing, error handling and retry logic.
+- Experience with CRM API integrations (Freshworks preferred; any CRM experience acceptable).
+- Experience with Postmark or similar transactional email APIs.
+- Available with UK timezone overlap (at least a few hours daily).
+- Self-starter able to manage tasks from Jira ticket through to shipped workflow independently.
 
-Ideal candidate:
+##### Nice to Have
 
-2+ years building production n8n workflows (not just tutorials)
-Strong experience with: Gmail nodes, HTTP Request nodes (REST APIs), Google Sheets nodes, Slack nodes, cron/scheduled triggers, Wait/timer nodes, Switch/conditional routing, error handling and retry logic
-Comfortable with CRM API integrations (Freshworks preferred, any CRM experience fine)
-Experience with Postmark or similar transactional email APIs
-Bonus: experience integrating AI/LLM APIs (Claude, OpenAI) into n8n
-Bonus: experience with Stripe API
-Bonus: JavaScript/Python for custom n8n Function nodes
-Self-starter who can pick up a Jira ticket, build it, test it, and ship it without hand-holding
-Available in UK/ timezone overlap (at least a few hours daily)
+- Experience integrating AI/LLM APIs (Claude, OpenAI) into n8n.
+- Experience with Stripe API.
+- JavaScript or Python skills for custom n8n Function nodes.
 
-How to apply:
-Please include in your proposal:
+## Client / Company Profile
 
-1)Your most complex production n8n workflow — what it does, what integrations it uses, and how many nodes it has
-2)How you handle error recovery in n8n when an API call fails mid-workflow
-3)Your weekly availability and timezone and Your hourly rate
-4)Any questions after reading this — the quality of your questions tells us a lot
+- Website: easyskip.uk
+- Industry: E-Commerce / Waste Management / Skip Hire Brokerage
+- Order volume: ~1,000 orders/month
+- Current stack: n8n (cloud-hosted), Freshworks CRM, Postmark, Gmail API, Google Sheets API, Slack API, Stripe, Claude API / Anthropic, Strapi CMS
+- Backlog: 20+ automation tickets ready for development
+- Spec quality: Detailed Jira tickets with acceptance criteria, architecture diagrams, and edge cases provided
 
+## Compensation & Terms
 
-
-
-Less than 30 hrs/week
-Hourly
-1-3 months
-Duration
-Intermediate
-Experience Level
-$20.00
-
--
-
-$30.00
-
-Hourly
-Remote Job
-Ongoing project
-Project Type
+- Type: Hourly
+- Rate: $20.00 – $30.00
+- Hours per week: ~10
+- Project type: Ongoing
+- Employment classification: Contract / Freelance
+- Location requirement: Remote; UK timezone overlap required

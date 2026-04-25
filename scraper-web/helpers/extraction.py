@@ -33,13 +33,18 @@ def extract_sequential_content(driver: WebDriver) -> List[Dict[str, Any]]:
       - text:     {"type": "text", "text": "..."}
       - list:     {"type": "list", "items": ["...", "..."]}
     """
+    from selenium.common.exceptions import StaleElementReferenceException
+    
     elements = driver.find_elements(By.CSS_SELECTOR, _CONTENT_SELECTOR)
     blocks: List[Dict[str, Any]] = []
     seen_texts: set = set()  # Deduplicate identical content
 
     for el in elements:
-        tag = (el.tag_name or "").lower()
-        text = _visible_text(el)
+        try:
+            tag = (el.tag_name or "").lower()
+            text = _visible_text(el)
+        except StaleElementReferenceException:
+            continue
 
         if not text:
             continue
@@ -53,11 +58,18 @@ def extract_sequential_content(driver: WebDriver) -> List[Dict[str, Any]]:
         # --- Lists (ul / ol) ---
         elif tag in ("ul", "ol"):
             items = []
-            for li in el.find_elements(By.CSS_SELECTOR, ":scope > li"):
-                li_text = _visible_text(li)
-                if li_text and li_text not in seen_texts:
-                    seen_texts.add(li_text)
-                    items.append(li_text)
+            try:
+                for li in el.find_elements(By.CSS_SELECTOR, ":scope > li"):
+                    try:
+                        li_text = _visible_text(li)
+                        if li_text and li_text not in seen_texts:
+                            seen_texts.add(li_text)
+                            items.append(li_text)
+                    except StaleElementReferenceException:
+                        continue
+            except StaleElementReferenceException:
+                pass
+                
             if items:
                 blocks.append({"type": "list", "items": items})
 

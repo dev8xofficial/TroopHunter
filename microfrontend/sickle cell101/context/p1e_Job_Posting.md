@@ -1,42 +1,54 @@
-Headline: Expert WordPress Developer to Build Educational Video Platform (Crash Course / TED-Ed Style)
+---
+platform: Upwork
+job_title: Expert WordPress Developer to Build Educational Video Platform (Crash Course / TED-Ed Style)
+category: Web Development
+location: Worldwide
+remote: true
+employment_type: Freelance
+engagement: Hourly
+hours_per_week: Less than 30
+duration: 1 to 3 months
+experience_level: Expert
+compensation: $20.00 – $30.00 per hour
+---
 
-About: We are looking for a WordPress specialist to build a custom educational hub. The site needs to mirror the aesthetic and functionality of The Crash Course and TED-Ed.
+# Expert WordPress Developer to Build Educational Video Platform (Crash Course / TED-Ed Style) — Job Posting
 
-The goal is to create a "Netflix-style" library for educational videos where each video is part of a larger lesson framework (quizzes, extra reading, and discussion).
+## Role Summary
 
-Key WordPress Requirements:
+The client is building a custom WordPress-based educational hub modelled on the aesthetic and functionality of Crash Course and TED-Ed. The hired developer will design and build a Netflix-style video library where each video sits within a structured lesson framework — including quizzes, supplementary reading, and discussion. The primary outcome is a fully responsive, high-performance WordPress site that supports structured course progression and a polished content library experience.
 
-LMS Integration: Experience with LearnDash, LifterLMS, or TutorLMS to handle lesson progression and structured content.
+## Responsibilities
 
-Custom Post Types: To manage "Series," "Lessons," and "Resources" efficiently.
+- Build a fully responsive WordPress site optimized for high-traffic video browsing.
+- Integrate an LMS plugin (LearnDash, LifterLMS, or TutorLMS) to handle lesson progression and structured content delivery.
+- Create custom post types to manage Series, Lessons, and Resources efficiently.
+- Implement seamless video embedding from YouTube and Vimeo with custom thumbnail overlays.
+- Build advanced AJAX filtering by subject, grade, or series using tools such as FacetWP or SearchWP.
+- Design and develop a custom Lesson template including a video player, text area, and interactive quiz section.
+- Build a Series archive page styled as a high-end content library.
+- Apply performance optimizations for speed and high-traffic video browsing.
 
-Video Hosting Integration: Seamless embedding from YouTube/Vimeo with custom thumbnail overlays.
+## Requirements
 
-Filtering & Search: Advanced AJAX filtering (by subject, grade, or series) using tools like FacetWP or SearchWP.
+##### Must Have
 
-Design: A clean, "distraction-free" UI. We prefer a lightweight theme (like Astra or Hello Elementor) paired with a page builder (Elementor or Gutenberg/Blocks).
+- Demonstrated expertise with WordPress LMS plugins — must list specific plugins used (LearnDash, LifterLMS, or TutorLMS).
+- Experience building sites with heavy video libraries — must provide a live site link.
+- Ability to work with lightweight themes (Astra or Hello Elementor) paired with Elementor or Gutenberg/Blocks page builder.
+- Experience implementing custom post types.
+- Experience with advanced AJAX filtering tools (FacetWP or SearchWP).
 
-Performance: The site must be optimized for speed and high-traffic video browsing.
+##### Nice to Have
 
-Technical Deliverables:
+- Prior work building educational or e-learning platforms.
+- Familiarity with Crash Course or TED-Ed design patterns and distraction-free UI principles.
 
-- A fully responsive WordPress site.
-- A custom "Lesson" template that includes a video player, text area, and interactive quiz section.
-- A "Series" archive page that looks like a high-end content library.
+## Compensation & Terms
 
-To Apply:
-Please list the specific LMS plugins you have used in the past. If you have built a site that features a heavy video library, please include that link!
-
-Less than 30 hrs/week
-Hourly
-1 to 3 months
-Duration
-Expert
-I am willing to pay higher rates for the most experienced freelancers
-$20.00
-
--
-
-$30.00
-
-Hourly
+- Type: Hourly
+- Rate: $20.00 – $30.00 per hour
+- Hours per week: Less than 30
+- Duration: 1 to 3 months
+- Experience classification: Expert — client willing to pay higher rates for the most experienced freelancers
+- Project type: One-time
