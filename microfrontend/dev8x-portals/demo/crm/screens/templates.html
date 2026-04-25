@@ -1,0 +1,77 @@
+<!-- SCREEN_START -->
+<section class="surface-stack">
+  <header class="surface-header">
+    <div class="surface-header__content">
+      <div class="surface-eyebrow">Module 404 · CRM templates</div>
+      <h1 class="surface-title">Outreach templates and placeholder validation</h1>
+      <p class="surface-subtitle">
+        Templates stay grouped by channel and lifecycle state, while preview substitution uses approved sample values without changing the underlying content.
+      </p>
+    </div>
+    <div class="surface-actions">
+      <button class="btn btn-primary" type="button" data-demo-action="Create outreach template">New template</button>
+    </div>
+  </header>
+
+  <div class="panel-grid">
+    <article class="panel panel--span-5">
+      <div class="panel__header">
+        <div class="panel__heading">
+          <h2 class="panel__title">Template list</h2>
+          <p class="panel__copy">Filter by channel and lifecycle state before previewing.</p>
+        </div>
+      </div>
+      <div class="crm-filter-row">
+        <div class="form-group" style="min-width:160px; margin-bottom:0">
+          <label class="form-label" for="crm-template-channel">Channel</label>
+          <select class="form-select no-icon" id="crm-template-channel" data-crm-template-channel>
+            <option value="all">All channels</option>
+            <option value="email">Email</option>
+            <option value="linkedin">LinkedIn</option>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="upwork">Upwork</option>
+          </select>
+        </div>
+        <div class="form-group" style="min-width:160px; margin-bottom:0">
+          <label class="form-label" for="crm-template-status">Status</label>
+          <select class="form-select no-icon" id="crm-template-status" data-crm-template-status>
+            <option value="all">All statuses</option>
+            <option value="draft">Draft</option>
+            <option value="tested">Tested</option>
+            <option value="approved">Approved</option>
+            <option value="retired">Retired</option>
+          </select>
+        </div>
+      </div>
+      <div class="crm-template-list" data-crm-template-list></div>
+    </article>
+
+    <article class="panel panel--span-7">
+      <div class="panel__header">
+        <div class="panel__heading">
+          <h2 class="panel__title" data-crm-template-preview-name>Template preview</h2>
+          <p class="panel__copy">Approved variable catalog: <span data-crm-variable-catalog></span></p>
+        </div>
+        <div class="chip-row">
+          <span class="tag" data-crm-template-preview-channel></span>
+          <span class="status-pill status-pill--info" data-crm-template-preview-status></span>
+        </div>
+      </div>
+      <div class="stack-sm">
+        <div>
+          <div class="surface-eyebrow">Subject</div>
+          <div class="crm-template-preview" data-crm-template-preview-subject></div>
+        </div>
+        <div>
+          <div class="surface-eyebrow">Body</div>
+          <div class="crm-template-preview" data-crm-template-preview-body></div>
+        </div>
+        <div>
+          <div class="surface-eyebrow">Preview substitution</div>
+          <div class="crm-template-preview" data-crm-template-preview-rendered></div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+<!-- SCREEN_END -->

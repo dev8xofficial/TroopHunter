@@ -1,0 +1,60 @@
+<!-- SCREEN_START -->
+<section class="auth-card">
+  <div class="auth-card__heading">
+    <div class="surface-eyebrow">Module 002 · Portal routing</div>
+    <h1 class="auth-card__title">Choose the portal that matches your role.</h1>
+    <p class="auth-card__copy">
+      This is the canonical entry for the demo. The selected portal drives the login copy, allowed roles, and the final route after authentication.
+    </p>
+  </div>
+
+  <div class="auth-portal-grid">
+    <button class="auth-portal-card" type="button" data-select-portal="candidate" style="--portal-color:#ff5a5f">
+      <div class="auth-portal-card__icon">CN</div>
+      <div class="auth-portal-card__content">
+        <h2 class="auth-portal-card__title">Candidate Portal</h2>
+        <p class="auth-portal-card__copy">Application progress, interviews, documents, onboarding, and recruiter messages.</p>
+      </div>
+      <p class="auth-portal-card__meta">Modules 200-206 · Google SSO available</p>
+    </button>
+
+    <button class="auth-portal-card" type="button" data-select-portal="client" style="--portal-color:#00a699">
+      <div class="auth-portal-card__icon">CL</div>
+      <div class="auth-portal-card__content">
+        <h2 class="auth-portal-card__title">Client Portal</h2>
+        <p class="auth-portal-card__copy">Projects, invoices, files, time tracking, support, and contract review.</p>
+      </div>
+      <p class="auth-portal-card__meta">Modules 300-307 · Google SSO available</p>
+    </button>
+
+    <button class="auth-portal-card" type="button" data-select-portal="admin" style="--portal-color:#7048e8">
+      <div class="auth-portal-card__icon">AD</div>
+      <div class="auth-portal-card__content">
+        <h2 class="auth-portal-card__title">Admin Portal</h2>
+        <p class="auth-portal-card__copy">Recruiting operations, applicant reviews, templates, interviews, and settings.</p>
+      </div>
+      <p class="auth-portal-card__meta">Modules 100-108 · MFA required</p>
+    </button>
+
+    <button class="auth-portal-card" type="button" data-select-portal="crm" style="--portal-color:#dc2626">
+      <div class="auth-portal-card__icon">CRM</div>
+      <div class="auth-portal-card__content">
+        <h2 class="auth-portal-card__title">CRM Portal</h2>
+        <p class="auth-portal-card__copy">Contacts, pipeline, outreach analytics, scoring, templates, and lead stacks.</p>
+      </div>
+      <p class="auth-portal-card__meta">Modules 400-408 · Sales pipeline and scoring</p>
+    </button>
+  </div>
+
+  <div class="auth-session-banner hidden" data-session-banner>
+    <div>
+      <div class="surface-eyebrow">Active demo session</div>
+      <p class="auth-card__copy" data-session-summary></p>
+    </div>
+    <div class="auth-inline">
+      <button class="btn btn-primary" type="button" data-continue-session>Continue session</button>
+      <button class="btn btn-secondary" type="button" data-sign-out-session>Sign out</button>
+    </div>
+  </div>
+</section>
+<!-- SCREEN_END -->

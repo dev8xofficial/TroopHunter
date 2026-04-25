@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dev8X Access Hub</title>
+    <link rel="icon" href="../shared/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../shared/css/tokens.css" />
+    <link rel="stylesheet" href="../shared/css/shell.css" />
+    <link rel="stylesheet" href="../shared/css/components.css" />
+    <link rel="stylesheet" href="css/screen.css" />
+  </head>
+  <body>
+    <div class="auth-layout">
+      <aside class="auth-rail">
+        <div class="auth-rail__inner">
+          <div class="auth-brand">
+            <div class="auth-brand__mark">D8</div>
+            <div class="auth-brand__copy">
+              <div class="auth-brand__name">Dev8X</div>
+              <div class="auth-brand__meta">Phase 2 canonical entry</div>
+            </div>
+          </div>
+
+          <div class="auth-rail__copy">
+            <div class="auth-rail__badge" id="auth-rail-tag">Multi-portal access</div>
+            <h1 class="auth-rail__title" id="auth-rail-title">One entry point for every Dev8X workspace.</h1>
+            <p class="auth-rail__description" id="auth-rail-description">
+              Portal selection, role checks, MFA, password recovery, and SSO all resolve through the shared demo contracts.
+            </p>
+          </div>
+
+          <div class="auth-rail__card">
+            <div class="auth-rail__card-label">Selected portal</div>
+            <div class="auth-rail__card-value" id="auth-rail-portal">Choose a portal</div>
+            <p class="auth-rail__card-copy" id="auth-rail-portal-copy">
+              The selected portal controls the login copy, allowed roles, and the final route after authentication.
+            </p>
+          </div>
+
+          <div class="auth-rail__steps" id="auth-rail-steps"></div>
+        </div>
+      </aside>
+
+      <main class="auth-stage">
+        <div class="auth-stage__shell">
+          <div class="auth-stage__top">
+            <div>
+              <div class="surface-eyebrow">Phase 2 entry surface</div>
+              <p class="auth-stage__meta">
+                Auth modules 001-005 drive the demo routing, session scope, and portal access states.
+              </p>
+            </div>
+            <button class="btn btn-ghost" id="auth-reset-flow" type="button">Reset flow</button>
+          </div>
+
+          <section class="auth-stage__panel" id="auth-screen-outlet" aria-live="polite"></section>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

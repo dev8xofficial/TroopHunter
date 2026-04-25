@@ -1,0 +1,93 @@
+{
+  "_meta": {
+    "description": "Portal-aware demo accounts for the authentication surface.",
+    "contractRef": "spec-kit/unified-spec/contracts/access-control.yaml",
+    "note": "Passwords are demo-only values."
+  },
+  "users": [
+    {
+      "id": "u-001",
+      "name": "Ava Hendricks",
+      "email": "ava@dev8x.io",
+      "password": "demo1234",
+      "role": "hr_admin",
+      "title": "Senior Recruiter",
+      "department": "Talent Acquisition",
+      "status": "active",
+      "mfaEnabled": true,
+      "ssoProvider": null,
+      "portals": ["admin"],
+      "lastLogin": "2026-04-24T06:45:00Z"
+    },
+    {
+      "id": "u-002",
+      "name": "Sofia Reyes",
+      "email": "sofia@dev8x.io",
+      "password": "demo1234",
+      "role": "super_admin",
+      "title": "Talent Ops Director",
+      "department": "Operations",
+      "status": "active",
+      "mfaEnabled": true,
+      "ssoProvider": null,
+      "portals": ["admin", "crm"],
+      "lastLogin": "2026-04-23T11:10:00Z"
+    },
+    {
+      "id": "u-003",
+      "name": "Marcus Chen",
+      "email": "marcus@candidate.dev8x.io",
+      "password": "demo1234",
+      "role": "candidate",
+      "title": "Software Engineer Candidate",
+      "department": null,
+      "status": "active",
+      "mfaEnabled": false,
+      "ssoProvider": "google",
+      "portals": ["candidate"],
+      "lastLogin": "2026-04-22T16:05:00Z"
+    },
+    {
+      "id": "u-004",
+      "name": "Priya Anand",
+      "email": "priya@clientco.com",
+      "password": "demo1234",
+      "role": "client",
+      "title": "VP Engineering",
+      "department": "Engineering",
+      "status": "active",
+      "mfaEnabled": false,
+      "ssoProvider": "google",
+      "portals": ["client"],
+      "lastLogin": "2026-04-24T08:05:00Z"
+    },
+    {
+      "id": "u-005",
+      "name": "Jordan Blake",
+      "email": "jordan@dev8x.io",
+      "password": "demo1234",
+      "role": "sales_rep",
+      "title": "Business Development Rep",
+      "department": "Sales",
+      "status": "active",
+      "mfaEnabled": false,
+      "ssoProvider": null,
+      "portals": ["crm"],
+      "lastLogin": "2026-04-24T07:55:00Z"
+    },
+    {
+      "id": "u-006",
+      "name": "Farah Malik",
+      "email": "farah@clientco.com",
+      "password": "demo1234",
+      "role": "manager",
+      "title": "Portfolio Manager",
+      "department": "Client Services",
+      "status": "active",
+      "mfaEnabled": false,
+      "ssoProvider": null,
+      "portals": ["client", "crm"],
+      "lastLogin": "2026-04-23T14:20:00Z"
+    }
+  ]
+}

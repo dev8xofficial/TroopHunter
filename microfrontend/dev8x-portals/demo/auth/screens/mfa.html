@@ -1,0 +1,56 @@
+<!-- SCREEN_START -->
+<section class="auth-card">
+  <div class="auth-card__heading">
+    <div class="surface-eyebrow">Module 003 · MFA challenge</div>
+    <h1 class="auth-card__title">Verify the privileged session.</h1>
+    <p class="auth-card__copy">
+      The admin portal stays locked until the second factor succeeds. For the demo, use <strong>246810</strong> or the recovery code <strong>DEV8X-RECOVER</strong>.
+    </p>
+  </div>
+
+  <div class="auth-summary-grid">
+    <div class="auth-summary-card">
+      <div class="auth-summary-card__label">User</div>
+      <div class="auth-summary-card__value" data-mfa-user></div>
+    </div>
+    <div class="auth-summary-card">
+      <div class="auth-summary-card__label">Email</div>
+      <div class="auth-summary-card__value" data-mfa-email></div>
+    </div>
+    <div class="auth-summary-card">
+      <div class="auth-summary-card__label">Role</div>
+      <div class="auth-summary-card__value" data-mfa-role></div>
+    </div>
+    <div class="auth-summary-card">
+      <div class="auth-summary-card__label">Challenge window</div>
+      <div class="auth-summary-card__value">5 minutes</div>
+    </div>
+  </div>
+
+  <div class="alert alert--danger hidden" data-auth-message></div>
+
+  <form data-mfa-form>
+    <div class="form-group">
+      <label class="form-label">One-time code</label>
+      <div class="auth-code-grid">
+        <input class="auth-code-input" data-mfa-digit inputmode="numeric" />
+        <input class="auth-code-input" data-mfa-digit inputmode="numeric" />
+        <input class="auth-code-input" data-mfa-digit inputmode="numeric" />
+        <input class="auth-code-input" data-mfa-digit inputmode="numeric" />
+        <input class="auth-code-input" data-mfa-digit inputmode="numeric" />
+        <input class="auth-code-input" data-mfa-digit inputmode="numeric" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="recovery-code">Recovery code</label>
+      <input class="form-input no-icon" id="recovery-code" name="recoveryCode" type="text" placeholder="Optional fallback" />
+    </div>
+
+    <div class="surface-actions">
+      <button class="btn btn-primary" type="submit">Verify and continue</button>
+      <button class="btn btn-ghost" type="button" data-back-login>Cancel</button>
+    </div>
+  </form>
+</section>
+<!-- SCREEN_END -->

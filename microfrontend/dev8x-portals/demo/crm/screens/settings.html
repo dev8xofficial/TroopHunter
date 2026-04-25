@@ -1,0 +1,60 @@
+<!-- SCREEN_START -->
+<section class="surface-stack">
+  <header class="surface-header">
+    <div class="surface-header__content">
+      <div class="surface-eyebrow">Module 408 · CRM settings</div>
+      <h1 class="surface-title">CRM configuration and role ownership</h1>
+      <p class="surface-subtitle">
+        Settings, integrations, automation toggles, and CRM role assignments stay manager-owned, auditable, and separate from daily pipeline work.
+      </p>
+    </div>
+    <div class="surface-actions">
+      <button class="btn btn-primary" type="button" data-demo-action="Propose CRM settings change">Propose change</button>
+    </div>
+  </header>
+
+  <div class="panel-grid">
+    <article class="panel panel--span-6">
+      <div class="panel__header">
+        <div class="panel__heading">
+          <h2 class="panel__title">Effective settings</h2>
+          <p class="panel__copy">Current integration and automation state with latest actor and timestamp.</p>
+        </div>
+      </div>
+      <div class="crm-setting-list" data-crm-setting-list></div>
+    </article>
+
+    <article class="panel panel--span-6">
+      <div class="panel__header">
+        <div class="panel__heading">
+          <h2 class="panel__title">CRM users</h2>
+          <p class="panel__copy">Provisioning remains limited to sales-rep and manager roles.</p>
+        </div>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody data-crm-user-rows></tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="panel panel--span-12">
+      <div class="panel__header">
+        <div class="panel__heading">
+          <h2 class="panel__title">Approvals and change queue</h2>
+          <p class="panel__copy">High-impact changes can sit in proposal or approval states before being applied.</p>
+        </div>
+      </div>
+      <div class="list-stack" data-crm-approval-list></div>
+    </article>
+  </div>
+</section>
+<!-- SCREEN_END -->

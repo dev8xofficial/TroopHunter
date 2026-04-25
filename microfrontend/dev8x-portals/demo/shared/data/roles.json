@@ -1,0 +1,45 @@
+{
+  "_meta": {
+    "description": "Demo role registry derived from contracts/access-control.yaml.",
+    "contractRef": "spec-kit/unified-spec/contracts/access-control.yaml",
+    "generatedAt": "2026-04-24"
+  },
+  "roles": {
+    "super_admin": {
+      "label": "Super Admin",
+      "defaultPortal": "admin",
+      "allowedPortals": ["admin", "crm"],
+      "requiresMfa": true
+    },
+    "hr_admin": {
+      "label": "HR Admin",
+      "defaultPortal": "admin",
+      "allowedPortals": ["admin"],
+      "requiresMfa": true
+    },
+    "candidate": {
+      "label": "Candidate",
+      "defaultPortal": "candidate",
+      "allowedPortals": ["candidate"],
+      "requiresMfa": false
+    },
+    "client": {
+      "label": "Client",
+      "defaultPortal": "client",
+      "allowedPortals": ["client"],
+      "requiresMfa": false
+    },
+    "sales_rep": {
+      "label": "Sales Rep",
+      "defaultPortal": "crm",
+      "allowedPortals": ["crm"],
+      "requiresMfa": false
+    },
+    "manager": {
+      "label": "Manager",
+      "defaultPortal": "client",
+      "allowedPortals": ["client", "crm"],
+      "requiresMfa": false
+    }
+  }
+}

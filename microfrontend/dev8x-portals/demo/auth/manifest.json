@@ -1,0 +1,146 @@
+{
+  "id": "dev8x-auth",
+  "title": "Dev8X Access Hub",
+  "portalKey": "auth",
+  "entry": "main.html",
+  "defaultRoute": "portal-select",
+  "routes": [
+    {
+      "id": "portal-select",
+      "path": "portal-select",
+      "label": "Portal Select",
+      "src": "screens/portal-select.html",
+      "default": true,
+      "moduleId": "002-portal-routing",
+      "specRefs": [
+        "spec-kit/unified-spec/.specify/specs/002-portal-routing/spec.md",
+        "spec-kit/unified-spec/contracts/access-control.yaml"
+      ]
+    },
+    {
+      "id": "login",
+      "path": "login",
+      "label": "Login",
+      "src": "screens/login.html",
+      "moduleId": "001-authentication",
+      "specRefs": [
+        "spec-kit/unified-spec/.specify/specs/001-authentication/spec.md"
+      ]
+    },
+    {
+      "id": "signup",
+      "path": "signup",
+      "label": "Signup",
+      "src": "screens/signup.html",
+      "moduleId": "001-authentication",
+      "specRefs": [
+        "spec-kit/unified-spec/.specify/specs/001-authentication/spec.md"
+      ]
+    },
+    {
+      "id": "forgot-password",
+      "path": "forgot-password",
+      "label": "Forgot Password",
+      "src": "screens/forgot-password.html",
+      "moduleId": "004-password-reset",
+      "specRefs": [
+        "spec-kit/unified-spec/.specify/specs/004-password-reset/spec.md"
+      ]
+    },
+    {
+      "id": "mfa",
+      "path": "mfa",
+      "label": "MFA",
+      "src": "screens/mfa.html",
+      "moduleId": "003-mfa",
+      "specRefs": [
+        "spec-kit/unified-spec/.specify/specs/003-mfa/spec.md"
+      ]
+    },
+    {
+      "id": "sso",
+      "path": "sso",
+      "label": "SSO",
+      "src": "screens/sso.html",
+      "moduleId": "005-sso",
+      "specRefs": [
+        "spec-kit/unified-spec/.specify/specs/005-sso/spec.md"
+      ]
+    }
+  ],
+  "screens": [
+    {
+      "id": "portal-select",
+      "label": "Portal selection",
+      "moduleId": "002-portal-routing",
+      "path": "portal-select",
+      "src": "screens/portal-select.html",
+      "specRefs": [
+        "spec-kit/unified-spec/.specify/specs/002-portal-routing/spec.md"
+      ]
+    },
+    {
+      "id": "login",
+      "label": "Credential login",
+      "moduleId": "001-authentication",
+      "path": "login",
+      "src": "screens/login.html",
+      "specRefs": [
+        "spec-kit/unified-spec/.specify/specs/001-authentication/spec.md"
+      ]
+    },
+    {
+      "id": "signup",
+      "label": "Candidate registration",
+      "moduleId": "001-authentication",
+      "path": "signup",
+      "src": "screens/signup.html",
+      "specRefs": [
+        "spec-kit/unified-spec/.specify/specs/001-authentication/spec.md"
+      ]
+    },
+    {
+      "id": "forgot-password",
+      "label": "Password reset request",
+      "moduleId": "004-password-reset",
+      "path": "forgot-password",
+      "src": "screens/forgot-password.html",
+      "specRefs": [
+        "spec-kit/unified-spec/.specify/specs/004-password-reset/spec.md"
+      ]
+    },
+    {
+      "id": "mfa",
+      "label": "MFA challenge",
+      "moduleId": "003-mfa",
+      "path": "mfa",
+      "src": "screens/mfa.html",
+      "specRefs": [
+        "spec-kit/unified-spec/.specify/specs/003-mfa/spec.md"
+      ]
+    },
+    {
+      "id": "sso",
+      "label": "Google SSO callback state",
+      "moduleId": "005-sso",
+      "path": "sso",
+      "src": "screens/sso.html",
+      "specRefs": [
+        "spec-kit/unified-spec/.specify/specs/005-sso/spec.md"
+      ]
+    }
+  ],
+  "dataSources": [
+    "data/users.json",
+    "../shared/data/portals.json",
+    "../shared/data/roles.json"
+  ],
+  "specRefs": [
+    "spec-kit/unified-spec/.specify/specs/001-authentication/spec.md",
+    "spec-kit/unified-spec/.specify/specs/002-portal-routing/spec.md",
+    "spec-kit/unified-spec/.specify/specs/003-mfa/spec.md",
+    "spec-kit/unified-spec/.specify/specs/004-password-reset/spec.md",
+    "spec-kit/unified-spec/.specify/specs/005-sso/spec.md",
+    "spec-kit/unified-spec/contracts/access-control.yaml"
+  ]
+}

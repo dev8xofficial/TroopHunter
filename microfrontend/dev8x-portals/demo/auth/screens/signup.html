@@ -1,0 +1,52 @@
+<!-- SCREEN_START -->
+<section class="auth-card">
+  <div class="auth-card__heading">
+    <div class="surface-eyebrow">Module 001 · Candidate registration</div>
+    <h1 class="auth-card__title">Create a candidate account.</h1>
+    <p class="auth-card__copy">
+      Registration stays scoped to the candidate portal. In the real flow, new accounts remain inactive until verification completes.
+    </p>
+  </div>
+
+  <div class="alert alert--danger hidden" data-auth-message></div>
+
+  <form data-signup-form>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="signup-first">First name</label>
+        <input class="form-input no-icon" id="signup-first" name="firstName" type="text" placeholder="Ayesha" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="signup-last">Last name</label>
+        <input class="form-input no-icon" id="signup-last" name="lastName" type="text" placeholder="Khan" required />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="signup-email">Email address</label>
+      <input class="form-input no-icon" id="signup-email" name="email" type="email" placeholder="candidate@dev8x.io" required />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" for="signup-password">Password</label>
+        <input class="form-input no-icon" id="signup-password" name="password" type="password" placeholder="Create a password" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="signup-confirm">Confirm password</label>
+        <input class="form-input no-icon" id="signup-confirm" name="confirmPassword" type="password" placeholder="Confirm it" required />
+      </div>
+    </div>
+
+    <label class="auth-helper" style="display:flex;gap:.75rem;align-items:flex-start">
+      <input type="checkbox" name="terms" style="margin-top:.2rem" />
+      <span>I agree to the demo terms, acknowledge the mock nature of this flow, and understand activation would normally follow verification.</span>
+    </label>
+
+    <div class="surface-actions" style="margin-top:1.25rem">
+      <button class="btn btn-primary" type="submit">Create account</button>
+      <button class="btn btn-ghost" type="button" data-back-login>Back to login</button>
+    </div>
+  </form>
+</section>
+<!-- SCREEN_END -->

@@ -1,0 +1,60 @@
+{
+  "id": "dev8x-candidate",
+  "title": "Dev8X Candidate Portal",
+  "portalKey": "candidate",
+  "entry": "main.html",
+  "defaultRoute": "dashboard",
+  "accentColor": "#ff5a5f",
+  "navSections": [
+    {
+      "label": "Journey",
+      "items": [
+        { "path": "dashboard", "label": "Dashboard", "icon": "home" },
+        { "path": "timeline", "label": "Timeline", "icon": "chart" },
+        { "path": "interviews", "label": "Interviews", "icon": "calendar" }
+      ]
+    },
+    {
+      "label": "Next steps",
+      "items": [
+        { "path": "documents", "label": "Documents", "icon": "document" },
+        { "path": "onboarding", "label": "Onboarding", "icon": "shield" }
+      ]
+    },
+    {
+      "label": "Account",
+      "items": [
+        { "path": "messages", "label": "Messages", "icon": "message", "badge": "3" },
+        { "path": "profile", "label": "Profile", "icon": "contact" }
+      ]
+    }
+  ],
+  "routes": [
+    { "id": "dashboard", "path": "dashboard", "label": "Dashboard", "icon": "home", "src": "screens/dashboard.html", "default": true, "moduleId": "200-candidate-dashboard", "specRefs": ["spec-kit/unified-spec/.specify/specs/200-candidate-dashboard/spec.md"] },
+    { "id": "timeline", "path": "timeline", "label": "Timeline", "icon": "chart", "src": "screens/timeline.html", "moduleId": "201-candidate-application", "specRefs": ["spec-kit/unified-spec/.specify/specs/201-candidate-application/spec.md"] },
+    { "id": "interviews", "path": "interviews", "label": "Interviews", "icon": "calendar", "src": "screens/interviews.html", "moduleId": "202-candidate-interviews", "specRefs": ["spec-kit/unified-spec/.specify/specs/202-candidate-interviews/spec.md"] },
+    { "id": "documents", "path": "documents", "label": "Documents", "icon": "document", "src": "screens/documents.html", "moduleId": "203-candidate-documents", "specRefs": ["spec-kit/unified-spec/.specify/specs/203-candidate-documents/spec.md"] },
+    { "id": "onboarding", "path": "onboarding", "label": "Onboarding", "icon": "shield", "src": "screens/onboarding.html", "moduleId": "204-candidate-onboarding", "specRefs": ["spec-kit/unified-spec/.specify/specs/204-candidate-onboarding/spec.md"] },
+    { "id": "messages", "path": "messages", "label": "Messages", "icon": "message", "src": "screens/messages.html", "moduleId": "205-candidate-messages", "specRefs": ["spec-kit/unified-spec/.specify/specs/205-candidate-messages/spec.md"] },
+    { "id": "profile", "path": "profile", "label": "Profile", "icon": "contact", "src": "screens/profile.html", "moduleId": "206-candidate-profile", "specRefs": ["spec-kit/unified-spec/.specify/specs/206-candidate-profile/spec.md"] }
+  ],
+  "screens": [
+    { "id": "dashboard", "label": "Dashboard", "path": "dashboard", "src": "screens/dashboard.html", "moduleId": "200-candidate-dashboard", "specRefs": ["spec-kit/unified-spec/.specify/specs/200-candidate-dashboard/spec.md"] },
+    { "id": "timeline", "label": "Timeline", "path": "timeline", "src": "screens/timeline.html", "moduleId": "201-candidate-application", "specRefs": ["spec-kit/unified-spec/.specify/specs/201-candidate-application/spec.md"] },
+    { "id": "interviews", "label": "Interviews", "path": "interviews", "src": "screens/interviews.html", "moduleId": "202-candidate-interviews", "specRefs": ["spec-kit/unified-spec/.specify/specs/202-candidate-interviews/spec.md"] },
+    { "id": "documents", "label": "Documents", "path": "documents", "src": "screens/documents.html", "moduleId": "203-candidate-documents", "specRefs": ["spec-kit/unified-spec/.specify/specs/203-candidate-documents/spec.md"] },
+    { "id": "onboarding", "label": "Onboarding", "path": "onboarding", "src": "screens/onboarding.html", "moduleId": "204-candidate-onboarding", "specRefs": ["spec-kit/unified-spec/.specify/specs/204-candidate-onboarding/spec.md"] },
+    { "id": "messages", "label": "Messages", "path": "messages", "src": "screens/messages.html", "moduleId": "205-candidate-messages", "specRefs": ["spec-kit/unified-spec/.specify/specs/205-candidate-messages/spec.md"] },
+    { "id": "profile", "label": "Profile", "path": "profile", "src": "screens/profile.html", "moduleId": "206-candidate-profile", "specRefs": ["spec-kit/unified-spec/.specify/specs/206-candidate-profile/spec.md"] }
+  ],
+  "dataSources": ["data/mock-candidate-data.json"],
+  "specRefs": [
+    "spec-kit/unified-spec/.specify/specs/200-candidate-dashboard/spec.md",
+    "spec-kit/unified-spec/.specify/specs/201-candidate-application/spec.md",
+    "spec-kit/unified-spec/.specify/specs/202-candidate-interviews/spec.md",
+    "spec-kit/unified-spec/.specify/specs/203-candidate-documents/spec.md",
+    "spec-kit/unified-spec/.specify/specs/204-candidate-onboarding/spec.md",
+    "spec-kit/unified-spec/.specify/specs/205-candidate-messages/spec.md",
+    "spec-kit/unified-spec/.specify/specs/206-candidate-profile/spec.md"
+  ]
+}

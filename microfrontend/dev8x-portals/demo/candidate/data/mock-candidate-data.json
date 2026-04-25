@@ -1,0 +1,139 @@
+{
+  "_meta": {
+    "surface": "candidate",
+    "description": "Representative mock data for the candidate portal screens.",
+    "specRefs": [
+      "200-candidate-dashboard",
+      "201-candidate-application",
+      "202-candidate-interviews",
+      "203-candidate-documents",
+      "204-candidate-onboarding",
+      "205-candidate-messages",
+      "206-candidate-profile"
+    ]
+  },
+  "summary": {
+    "progress": 76,
+    "pendingDocuments": 2,
+    "unreadMessages": 3
+  },
+  "dashboard": {
+    "metrics": [
+      {
+        "label": "Application progress",
+        "value": "76%",
+        "meta": "You are currently in the interview and review phase."
+      },
+      {
+        "label": "Next interview",
+        "value": "Apr 25",
+        "meta": "Frontend panel · 10:00 AM"
+      },
+      {
+        "label": "Pending documents",
+        "value": "2",
+        "meta": "One signature and one tax form remain."
+      },
+      {
+        "label": "Unread messages",
+        "value": "3",
+        "meta": "Latest update came in from the recruiting coordinator."
+      }
+    ],
+    "deadlines": [
+      {
+        "title": "Upload tax form",
+        "meta": "Required before offer stage can open.",
+        "status": "danger",
+        "statusLabel": "Due today"
+      },
+      {
+        "title": "Confirm interview slot",
+        "meta": "Choose your final panel time by midnight.",
+        "status": "warning",
+        "statusLabel": "Due tomorrow"
+      },
+      {
+        "title": "Review welcome packet",
+        "meta": "The onboarding overview is ready whenever you are.",
+        "status": "info",
+        "statusLabel": "Optional"
+      }
+    ]
+  },
+  "timeline": [
+    {
+      "step": 1,
+      "title": "Application submitted",
+      "date": "Apr 05 · 09:20 AM",
+      "copy": "Your profile, CV, and portfolio were received successfully.",
+      "state": "complete"
+    },
+    {
+      "step": 2,
+      "title": "AI screening complete",
+      "date": "Apr 07 · Match score 87%",
+      "copy": "Your CV and portfolio aligned strongly with the role requirements.",
+      "state": "complete"
+    },
+    {
+      "step": 3,
+      "title": "Recruiter review",
+      "date": "Apr 10",
+      "copy": "The recruiting team advanced your application to the shortlist.",
+      "state": "complete"
+    },
+    {
+      "step": 4,
+      "title": "Interview scheduled",
+      "date": "Awaiting confirmation",
+      "copy": "Your final panel interview is set for Apr 25 at 10:00 AM.",
+      "state": "active"
+    },
+    {
+      "step": 5,
+      "title": "Offer and onboarding",
+      "date": "Pending",
+      "copy": "This stage opens automatically once the final decision is complete.",
+      "state": "pending"
+    }
+  ],
+  "interviews": {
+    "availableSlots": [
+      { "date": "Apr 25", "time": "10:00 AM", "label": "Apr 25 · 10:00 AM" },
+      { "date": "Apr 25", "time": "2:00 PM", "label": "Apr 25 · 2:00 PM" },
+      { "date": "Apr 26", "time": "11:30 AM", "label": "Apr 26 · 11:30 AM" }
+    ],
+    "panelDetails": [
+      { "title": "Format", "copy": "60-minute remote panel with product, engineering, and recruiter members." },
+      { "title": "What to expect", "copy": "Portfolio walkthrough, collaboration questions, and role-specific problem solving." },
+      { "title": "Reminder", "copy": "Joining instructions will appear after you confirm the slot." }
+    ]
+  },
+  "documents": [
+    { "name": "Offer summary.pdf", "category": "Employment docs", "statusTone": "warning", "statusLabel": "Pending signature", "action": "Review and sign" },
+    { "name": "Passport scan.pdf", "category": "Identity verification", "statusTone": "success", "statusLabel": "Uploaded", "action": "No action" },
+    { "name": "Tax form W-9", "category": "Compliance", "statusTone": "danger", "statusLabel": "Missing", "action": "Upload form" },
+    { "name": "Degree transcript.pdf", "category": "Education", "statusTone": "info", "statusLabel": "Read only", "action": "View" }
+  ],
+  "messages": {
+    "inbox": [
+      { "sender": "Recruiting Coordinator", "preview": "Please confirm which panel slot works best for you.", "tone": "info", "label": "Unread" },
+      { "sender": "Talent Ops", "preview": "Your onboarding checklist is now available.", "tone": "neutral", "label": "Read" },
+      { "sender": "Hiring Manager", "preview": "Thanks again for the portfolio walkthrough.", "tone": "neutral", "label": "Read" }
+    ],
+    "thread": [
+      { "sender": "Recruiting Coordinator", "time": "09:12 AM", "copy": "We opened two more slots for the final panel on Friday. Let us know which one you prefer and we will send the meeting details." },
+      { "sender": "You", "time": "09:26 AM", "copy": "Friday at 10:00 AM works best. Please share any preparation notes when you can." }
+    ]
+  },
+  "profile": {
+    "phone": "+92 300 555 0191",
+    "location": "Lahore, Pakistan",
+    "summary": [
+      { "title": "Core skills", "copy": "React, TypeScript, design systems, testing, and product collaboration." },
+      { "title": "Preferred contact", "copy": "Email updates for recruiter steps and calendar invitations for interview changes." },
+      { "title": "Emergency contact", "copy": "Arooba Khan · +92 300 555 0137" }
+    ]
+  }
+}

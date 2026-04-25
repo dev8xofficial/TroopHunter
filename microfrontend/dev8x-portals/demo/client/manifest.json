@@ -1,0 +1,64 @@
+{
+  "id": "dev8x-client",
+  "title": "Dev8X Client Portal",
+  "portalKey": "client",
+  "entry": "main.html",
+  "defaultRoute": "dashboard",
+  "accentColor": "#00a699",
+  "navSections": [
+    {
+      "label": "Overview",
+      "items": [
+        { "path": "dashboard", "label": "Dashboard", "icon": "home" },
+        { "path": "projects", "label": "Projects", "icon": "briefcase" },
+        { "path": "invoices", "label": "Invoices", "icon": "dollar", "badge": "2" }
+      ]
+    },
+    {
+      "label": "Delivery",
+      "items": [
+        { "path": "files", "label": "Files", "icon": "folder" },
+        { "path": "working-hours", "label": "Working Hours", "icon": "chart" },
+        { "path": "contracts", "label": "Contracts", "icon": "document" }
+      ]
+    },
+    {
+      "label": "Support",
+      "items": [
+        { "path": "messaging", "label": "Messaging", "icon": "message" },
+        { "path": "support", "label": "Support", "icon": "inbox" }
+      ]
+    }
+  ],
+  "routes": [
+    { "id": "dashboard", "path": "dashboard", "label": "Dashboard", "icon": "home", "src": "screens/dashboard.html", "default": true, "moduleId": "300-client-dashboard", "specRefs": ["spec-kit/unified-spec/.specify/specs/300-client-dashboard/spec.md"] },
+    { "id": "projects", "path": "projects", "label": "Projects", "icon": "briefcase", "src": "screens/projects.html", "moduleId": "301-client-projects", "specRefs": ["spec-kit/unified-spec/.specify/specs/301-client-projects/spec.md"] },
+    { "id": "invoices", "path": "invoices", "label": "Invoices", "icon": "dollar", "src": "screens/invoices.html", "moduleId": "302-client-invoices", "specRefs": ["spec-kit/unified-spec/.specify/specs/302-client-invoices/spec.md"] },
+    { "id": "files", "path": "files", "label": "Files", "icon": "folder", "src": "screens/files.html", "moduleId": "303-client-files", "specRefs": ["spec-kit/unified-spec/.specify/specs/303-client-files/spec.md"] },
+    { "id": "working-hours", "path": "working-hours", "label": "Working Hours", "icon": "chart", "src": "screens/working-hours.html", "moduleId": "304-client-working-hours", "specRefs": ["spec-kit/unified-spec/.specify/specs/304-client-working-hours/spec.md"] },
+    { "id": "messaging", "path": "messaging", "label": "Messaging", "icon": "message", "src": "screens/messaging.html", "moduleId": "305-client-messaging", "specRefs": ["spec-kit/unified-spec/.specify/specs/305-client-messaging/spec.md"] },
+    { "id": "support", "path": "support", "label": "Support", "icon": "inbox", "src": "screens/support.html", "moduleId": "306-client-support", "specRefs": ["spec-kit/unified-spec/.specify/specs/306-client-support/spec.md"] },
+    { "id": "contracts", "path": "contracts", "label": "Contracts", "icon": "document", "src": "screens/contracts.html", "moduleId": "307-client-contracts", "specRefs": ["spec-kit/unified-spec/.specify/specs/307-client-contracts/spec.md"] }
+  ],
+  "screens": [
+    { "id": "dashboard", "label": "Dashboard", "path": "dashboard", "src": "screens/dashboard.html", "moduleId": "300-client-dashboard", "specRefs": ["spec-kit/unified-spec/.specify/specs/300-client-dashboard/spec.md"] },
+    { "id": "projects", "label": "Projects", "path": "projects", "src": "screens/projects.html", "moduleId": "301-client-projects", "specRefs": ["spec-kit/unified-spec/.specify/specs/301-client-projects/spec.md"] },
+    { "id": "invoices", "label": "Invoices", "path": "invoices", "src": "screens/invoices.html", "moduleId": "302-client-invoices", "specRefs": ["spec-kit/unified-spec/.specify/specs/302-client-invoices/spec.md"] },
+    { "id": "files", "label": "Files", "path": "files", "src": "screens/files.html", "moduleId": "303-client-files", "specRefs": ["spec-kit/unified-spec/.specify/specs/303-client-files/spec.md"] },
+    { "id": "working-hours", "label": "Working Hours", "path": "working-hours", "src": "screens/working-hours.html", "moduleId": "304-client-working-hours", "specRefs": ["spec-kit/unified-spec/.specify/specs/304-client-working-hours/spec.md"] },
+    { "id": "messaging", "label": "Messaging", "path": "messaging", "src": "screens/messaging.html", "moduleId": "305-client-messaging", "specRefs": ["spec-kit/unified-spec/.specify/specs/305-client-messaging/spec.md"] },
+    { "id": "support", "label": "Support", "path": "support", "src": "screens/support.html", "moduleId": "306-client-support", "specRefs": ["spec-kit/unified-spec/.specify/specs/306-client-support/spec.md"] },
+    { "id": "contracts", "label": "Contracts", "path": "contracts", "src": "screens/contracts.html", "moduleId": "307-client-contracts", "specRefs": ["spec-kit/unified-spec/.specify/specs/307-client-contracts/spec.md"] }
+  ],
+  "dataSources": ["data/mock-client-data.json"],
+  "specRefs": [
+    "spec-kit/unified-spec/.specify/specs/300-client-dashboard/spec.md",
+    "spec-kit/unified-spec/.specify/specs/301-client-projects/spec.md",
+    "spec-kit/unified-spec/.specify/specs/302-client-invoices/spec.md",
+    "spec-kit/unified-spec/.specify/specs/303-client-files/spec.md",
+    "spec-kit/unified-spec/.specify/specs/304-client-working-hours/spec.md",
+    "spec-kit/unified-spec/.specify/specs/305-client-messaging/spec.md",
+    "spec-kit/unified-spec/.specify/specs/306-client-support/spec.md",
+    "spec-kit/unified-spec/.specify/specs/307-client-contracts/spec.md"
+  ]
+}

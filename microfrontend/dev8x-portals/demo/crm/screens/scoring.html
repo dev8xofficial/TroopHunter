@@ -1,0 +1,53 @@
+<!-- SCREEN_START -->
+<section class="surface-stack">
+  <header class="surface-header">
+    <div class="surface-header__content">
+      <div class="surface-eyebrow">Module 406 · CRM scoring</div>
+      <h1 class="surface-title">Priority queue and score freshness</h1>
+      <p class="surface-subtitle">
+        Composite scores stay explainable through their dimension breakdown, while stale and overridden entries remain clearly separated from current decision support.
+      </p>
+    </div>
+    <div class="surface-actions crm-toggle-group">
+      <button class="btn btn-secondary crm-filter-btn" type="button" data-crm-score-status="all">All scores</button>
+      <button class="btn btn-secondary crm-filter-btn" type="button" data-crm-score-status="current">Current</button>
+      <button class="btn btn-secondary crm-filter-btn" type="button" data-crm-score-status="stale">Stale</button>
+      <button class="btn btn-secondary crm-filter-btn" type="button" data-crm-score-status="overridden">Overridden</button>
+      <button class="btn btn-primary" type="button" data-demo-action="Recalculate CRM scores">Recalculate</button>
+    </div>
+  </header>
+
+  <div class="metric-grid" data-crm-score-metrics></div>
+
+  <div class="panel-grid">
+    <article class="panel panel--span-5">
+      <div class="panel__header">
+        <div class="panel__heading">
+          <h2 class="panel__title">Priority queue</h2>
+          <p class="panel__copy">Highest-score leads stay at the top of the visible work queue.</p>
+        </div>
+      </div>
+      <div class="crm-template-list" data-crm-score-list></div>
+    </article>
+
+    <article class="panel panel--span-7">
+      <div class="panel__header">
+        <div class="panel__heading">
+          <h2 class="panel__title" data-crm-score-name>Select a scored lead</h2>
+          <p class="panel__copy" data-crm-score-meta></p>
+        </div>
+        <div class="chip-row">
+          <span class="tag" data-crm-score-priority></span>
+          <span class="status-pill status-pill--info" data-crm-score-status-badge></span>
+        </div>
+      </div>
+      <div class="crm-stat-strip" data-crm-score-summary></div>
+      <div class="crm-dimension-list" data-crm-score-dimensions></div>
+      <div class="note-card">
+        <h3 class="note-card__title">Override note</h3>
+        <p class="note-card__copy" data-crm-score-override>Current scores follow the automated model unless a manual override is recorded.</p>
+      </div>
+    </article>
+  </div>
+</section>
+<!-- SCREEN_END -->

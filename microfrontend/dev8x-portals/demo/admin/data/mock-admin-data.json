@@ -1,0 +1,186 @@
+{
+  "_meta": {
+    "surface": "admin",
+    "description": "Representative mock data for the admin portal screens.",
+    "specRefs": [
+      "100-admin-dashboard",
+      "101-admin-applicants",
+      "102-admin-pipeline",
+      "103-admin-jobs",
+      "104-admin-interviews",
+      "105-admin-evaluations",
+      "106-admin-documents",
+      "107-admin-email-templates",
+      "108-admin-settings"
+    ]
+  },
+  "summary": {
+    "totalApplicants": 148,
+    "activeJobs": 19,
+    "interviewsThisWeek": 27,
+    "avgTimeToHireDays": 24,
+    "pendingApplicants": 12
+  },
+  "dashboard": {
+    "metrics": [
+      { "label": "Total applicants", "value": "148", "meta": "+12 this week", "trend": "positive" },
+      { "label": "Active jobs", "value": "19", "meta": "Across product, sales, and delivery teams." },
+      { "label": "Interviews this week", "value": "27", "meta": "5 still need interviewer confirmation", "trend": "warning" },
+      { "label": "Average time to hire", "value": "24 days", "meta": "Down 3 days from last month", "trend": "positive" }
+    ],
+    "funnel": [
+      { "stage": "Applied", "count": "64 candidates", "percent": 100 },
+      { "stage": "Shortlisted", "count": "31 candidates", "percent": 48 },
+      { "stage": "Interview", "count": "22 candidates", "percent": 34 },
+      { "stage": "Selected", "count": "11 candidates", "percent": 17 },
+      { "stage": "Joined", "count": "7 candidates", "percent": 11 }
+    ],
+    "highlights": [
+      { "title": "4 offer letters pending approval", "meta": "Finance and legal review are the blockers.", "status": "warning", "statusLabel": "Needs review" },
+      { "title": "3 interview loops conflict tomorrow", "meta": "Reschedule before 3 PM to protect candidate experience.", "status": "danger", "statusLabel": "Urgent" },
+      { "title": "New engineering roles posted", "meta": "Frontend, platform, and QA roles are now live.", "status": "success", "statusLabel": "Completed" }
+    ],
+    "recentMovement": [
+      { "candidate": "Sana Riaz", "role": "Frontend Engineer", "change": "Interview → Selected", "owner": "Olivia Grant", "time": "08:12 AM" },
+      { "candidate": "Rafay Tariq", "role": "Sales Associate", "change": "Applied → Shortlisted", "owner": "Marcus Dean", "time": "09:06 AM" },
+      { "candidate": "Alina Noor", "role": "QA Analyst", "change": "Selected → Joined", "owner": "Emma Price", "time": "10:40 AM" },
+      { "candidate": "Mehreen Shah", "role": "Product Designer", "change": "Interview scheduled", "owner": "Ava Hendricks", "time": "11:05 AM" }
+    ],
+    "reminders": [
+      { "title": "Offer packet compliance", "copy": "Review the updated contractor clauses before the next two offer releases." },
+      { "title": "Interviewer coverage", "copy": "Engineering manager bandwidth is tight after Wednesday afternoon." },
+      { "title": "Template hygiene", "copy": "Refresh nurture sequence variables before the Friday sourcing campaign." }
+    ]
+  },
+  "applicants": {
+    "list": [
+      { "name": "Sana Riaz", "role": "Frontend Engineer", "statusTone": "success", "statusLabel": "Selected", "source": "Referral", "applied": "Apr 06", "nextAction": "Prepare offer" },
+      { "name": "Rafay Tariq", "role": "Sales Associate", "statusTone": "info", "statusLabel": "Shortlisted", "source": "LinkedIn", "applied": "Apr 11", "nextAction": "Schedule recruiter screen" },
+      { "name": "Hira Khan", "role": "QA Analyst", "statusTone": "warning", "statusLabel": "Interview", "source": "Inbound", "applied": "Apr 13", "nextAction": "Collect panel scorecards" },
+      { "name": "Mehreen Shah", "role": "Product Designer", "statusTone": "neutral", "statusLabel": "Applied", "source": "Portfolio review", "applied": "Apr 14", "nextAction": "Initial CV review" },
+      { "name": "Bilal Ahmed", "role": "Platform Engineer", "statusTone": "danger", "statusLabel": "Rejected", "source": "Agency", "applied": "Apr 08", "nextAction": "Send final response" }
+    ],
+    "cues": [
+      { "title": "Sana Riaz · Frontend Engineer", "meta": "Technical interview score 4.6/5 · Portfolio approved · Compensation aligned.", "status": "success", "statusLabel": "Offer ready" },
+      { "title": "Hira Khan · QA Analyst", "meta": "Panel debrief is late. Two scorecards are still missing.", "status": "warning", "statusLabel": "Awaiting feedback" }
+    ],
+    "notes": [
+      { "title": "Shortlist quality is improving", "copy": "Referral and portfolio-review sources continue to outperform general inbound volume." },
+      { "title": "Follow-up delay risk", "copy": "Three shortlisted candidates will age out of SLA if first outreach slips beyond tomorrow." }
+    ]
+  },
+  "pipeline": {
+    "columns": [
+      {
+        "title": "Applied",
+        "count": 14,
+        "cards": [
+          { "title": "Mehreen Shah", "meta": "Product Designer · 2 days in stage", "tags": ["Portfolio review"] },
+          { "title": "Usman Latif", "meta": "Support Engineer · 1 day in stage", "tags": ["Inbound"] }
+        ]
+      },
+      {
+        "title": "Shortlisted",
+        "count": 9,
+        "cards": [
+          { "title": "Rafay Tariq", "meta": "Sales Associate · 3 days in stage", "tags": ["Needs recruiter call"] },
+          { "title": "Zainab Qureshi", "meta": "QA Analyst · 2 days in stage", "tags": ["Fast-track"] }
+        ]
+      },
+      {
+        "title": "Interview",
+        "count": 6,
+        "cards": [
+          { "title": "Hira Khan", "meta": "QA Analyst · Waiting on panel notes", "tags": ["Scorecards late"] },
+          { "title": "Saad Ali", "meta": "Platform Engineer · Technical round tomorrow", "tags": [] }
+        ]
+      },
+      {
+        "title": "Selected",
+        "count": 4,
+        "cards": [
+          { "title": "Sana Riaz", "meta": "Frontend Engineer · Compensation approved", "tags": [] },
+          { "title": "Muneeb Tariq", "meta": "DevOps Engineer · Offer draft ready", "tags": [] }
+        ]
+      },
+      {
+        "title": "Joined",
+        "count": 2,
+        "cards": [
+          { "title": "Alina Noor", "meta": "QA Analyst · Started Apr 15", "tags": [] },
+          { "title": "Adeel Khan", "meta": "Recruiter · Started Apr 08", "tags": [] }
+        ]
+      }
+    ]
+  },
+  "jobs": {
+    "cards": [
+      { "title": "Senior Frontend Engineer", "meta": "Engineering · Owner: Ava Hendricks · 26 applicants", "statusTone": "success", "statusLabel": "Live" },
+      { "title": "Product Designer", "meta": "Design · Owner: Sofia Reyes · 18 applicants", "statusTone": "warning", "statusLabel": "Paused" },
+      { "title": "Sales Associate", "meta": "Revenue · Owner: Marcus Dean · 22 applicants", "statusTone": "success", "statusLabel": "Live" },
+      { "title": "QA Analyst", "meta": "Engineering · Owner: Emma Price · 11 applicants", "statusTone": "neutral", "statusLabel": "Draft" }
+    ],
+    "lifecycle": [
+      { "step": 1, "title": "Draft", "copy": "Internal approval only. No candidate traffic yet.", "state": "complete" },
+      { "step": 2, "title": "Live", "copy": "Candidate sourcing and recruiter outreach are active.", "state": "complete" },
+      { "step": 3, "title": "Paused", "copy": "Pipeline is intact, but new sourcing is temporarily stopped.", "state": "active" },
+      { "step": 4, "title": "Closed", "copy": "Requisition complete or deprioritized.", "state": "pending" }
+    ]
+  },
+  "interviews": {
+    "upcoming": [
+      { "candidate": "Hira Khan", "role": "QA Analyst", "slot": "Apr 25 · 10:00 AM", "interviewer": "Faisal Mehmood", "statusTone": "warning", "statusLabel": "Panel notes pending" },
+      { "candidate": "Saad Ali", "role": "Platform Engineer", "slot": "Apr 25 · 2:00 PM", "interviewer": "Imran Javed", "statusTone": "success", "statusLabel": "Confirmed" },
+      { "candidate": "Rafay Tariq", "role": "Sales Associate", "slot": "Apr 26 · 11:30 AM", "interviewer": "Nadia Sheikh", "statusTone": "info", "statusLabel": "Needs invite" }
+    ],
+    "risks": [
+      { "title": "Engineering manager clash", "meta": "Two platform interviews overlap tomorrow afternoon.", "status": "danger", "statusLabel": "Reschedule" },
+      { "title": "Sales interview loop", "meta": "Invite still missing from the client stakeholder.", "status": "warning", "statusLabel": "Follow up" }
+    ]
+  },
+  "evaluations": {
+    "scorecards": [
+      { "title": "Sana Riaz · Frontend Engineer", "meta": "Technical depth 4.8 · Communication 4.5 · Collaboration 4.7", "statusTone": "success", "statusLabel": "Strong hire" },
+      { "title": "Hira Khan · QA Analyst", "meta": "Quality mindset 4.4 · Automation 4.0 · Stakeholder clarity 3.8", "statusTone": "warning", "statusLabel": "Discuss in debrief" }
+    ],
+    "dimensions": [
+      { "title": "Role fit", "copy": "How closely the candidate matches the requirements and domain context." },
+      { "title": "Execution quality", "copy": "Evidence of hands-on delivery, ownership, and technical decision making." },
+      { "title": "Communication", "copy": "Signal clarity, cross-functional collaboration, and feedback response." }
+    ]
+  },
+  "documents": {
+    "recent": [
+      { "name": "Offer-letter-v3.pdf", "candidate": "Sana Riaz", "type": "Offer", "uploadedBy": "Ava Hendricks", "statusTone": "warning", "statusLabel": "Needs signature" },
+      { "name": "Passport-scan.pdf", "candidate": "Alina Noor", "type": "ID verification", "uploadedBy": "Candidate", "statusTone": "success", "statusLabel": "Verified" },
+      { "name": "NDA-template.pdf", "candidate": "Muneeb Tariq", "type": "Compliance", "uploadedBy": "Talent Ops", "statusTone": "info", "statusLabel": "Sent" }
+    ],
+    "reminders": [
+      { "title": "Offer packet", "copy": "Two selected candidates still need final signature collection before onboarding can start." },
+      { "title": "Identity verification", "copy": "One pending passport upload is blocking contract preparation." }
+    ]
+  },
+  "templates": {
+    "active": [
+      { "title": "Shortlist outreach", "meta": "Variables: first_name, role_name, recruiter_name", "statusTone": "success", "statusLabel": "Approved" },
+      { "title": "Interview confirmation", "meta": "Variables: first_name, interview_date, interviewer_name", "statusTone": "success", "statusLabel": "Approved" },
+      { "title": "Offer extension", "meta": "Variables: first_name, role_name, salary_range", "statusTone": "warning", "statusLabel": "Awaiting legal review" }
+    ],
+    "guidance": [
+      { "title": "Variable hygiene", "copy": "Keep placeholder names aligned to candidate, role, and interviewer models so every template remains reusable across hiring teams." },
+      { "title": "Approval path", "copy": "Compensation, compliance, and contractor templates require legal review before publishing." }
+    ]
+  },
+  "settings": {
+    "controls": [
+      { "title": "Admin MFA enforcement", "meta": "All privileged logins require MFA before the portal opens.", "statusTone": "success", "statusLabel": "Enabled" },
+      { "title": "Offer approval workflow", "meta": "Legal and finance review are mandatory for contractor offers.", "statusTone": "success", "statusLabel": "Enabled" },
+      { "title": "Auto-archive inactive requisitions", "meta": "Draft and paused jobs move to archive after 45 days.", "statusTone": "warning", "statusLabel": "Review cadence" }
+    ],
+    "users": [
+      { "name": "Ava Hendricks", "role": "HR Admin", "scope": "Jobs, applicants, interviews" },
+      { "name": "Sofia Reyes", "role": "Super Admin", "scope": "Cross-portal oversight" },
+      { "name": "Emma Price", "role": "Hiring Manager", "scope": "Interview feedback only" }
+    ]
+  }
+}

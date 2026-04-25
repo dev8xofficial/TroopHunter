@@ -1,0 +1,68 @@
+<!-- SCREEN_START -->
+<section class="surface-stack">
+  <header class="surface-header">
+    <div class="surface-header__content">
+      <div class="surface-eyebrow">Module 100 · Admin dashboard</div>
+      <h1 class="surface-title">Welcome back, <span data-session-name></span>.</h1>
+      <p class="surface-subtitle">
+        The dashboard keeps funnel health, recruiter workload, and the next hiring actions visible before the team starts moving candidates.
+      </p>
+    </div>
+    <div class="surface-actions">
+      <button class="btn btn-primary" type="button" data-demo-action="Create job">New job</button>
+      <button class="btn btn-secondary" type="button" data-demo-action="Export dashboard">Export report</button>
+    </div>
+  </header>
+
+  <div class="metric-grid" data-admin-metrics></div>
+
+  <div class="panel-grid">
+    <article class="panel panel--span-7 admin-highlight">
+      <div class="panel__header">
+        <div class="panel__heading">
+          <h2 class="panel__title">Funnel snapshot</h2>
+          <p class="panel__copy">Recruiters are keeping strong flow through shortlist and interview stages.</p>
+        </div>
+        <span class="status-pill status-pill--success">Pipeline steady</span>
+      </div>
+      <div class="panel__body list-stack" data-admin-funnel></div>
+    </article>
+
+    <article class="panel panel--span-5">
+      <div class="panel__heading">
+        <h2 class="panel__title">This week</h2>
+        <p class="panel__copy">Operational highlights before the recruiter standup.</p>
+      </div>
+      <div class="list-stack" data-admin-highlights></div>
+    </article>
+
+    <article class="panel panel--span-8">
+      <div class="panel__heading">
+        <h2 class="panel__title">Recent applicant movement</h2>
+        <p class="panel__copy">The last 24 hours of stage changes across the recruiting funnel.</p>
+      </div>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Candidate</th>
+              <th>Role</th>
+              <th>Change</th>
+              <th>Owner</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody data-admin-movement></tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="panel panel--span-4">
+      <div class="panel__heading">
+        <h2 class="panel__title">Priority reminders</h2>
+      </div>
+      <div class="list-stack" data-admin-reminders></div>
+    </article>
+  </div>
+</section>
+<!-- SCREEN_END -->

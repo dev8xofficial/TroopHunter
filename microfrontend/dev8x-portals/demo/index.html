@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dev8X Portal Demo</title>
+    <link rel="icon" href="shared/favicon.svg" type="image/svg+xml" />
+    <meta http-equiv="refresh" content="0; url=auth/main.html#portal-select" />
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background:
+          radial-gradient(circle at top, #33415c 0%, rgba(51, 65, 92, 0) 45%),
+          linear-gradient(160deg, #101828 0%, #182033 100%);
+        color: #f8fafc;
+      }
+
+      main {
+        width: min(92vw, 560px);
+        padding: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        background: rgba(15, 23, 42, 0.78);
+        box-shadow: 0 24px 64px rgba(15, 23, 42, 0.45);
+      }
+
+      h1 {
+        margin: 0 0 0.75rem;
+        font-size: clamp(2rem, 4vw, 2.75rem);
+      }
+
+      p {
+        margin: 0 0 1.5rem;
+        line-height: 1.6;
+        color: rgba(241, 245, 249, 0.82);
+      }
+
+      a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.875rem 1.25rem;
+        border-radius: 999px;
+        background: #ff5a5f;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Launching the Dev8X portal demo</h1>
+      <p>
+        The demo starts from the shared authentication hub so every portal can load its manifest,
+        mock data, and screen partials correctly.
+      </p>
+      <a href="auth/main.html#portal-select">Open the demo</a>
+    </main>
+  </body>
+</html>

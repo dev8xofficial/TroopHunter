@@ -1,0 +1,54 @@
+<!-- SCREEN_START -->
+<section class="auth-card">
+  <div class="auth-card__heading">
+    <div class="surface-eyebrow" data-login-badge>Portal access</div>
+    <h1 class="auth-card__title" data-login-title>Sign in</h1>
+    <p class="auth-card__copy" data-login-copy></p>
+  </div>
+
+  <div class="alert alert--danger hidden" data-auth-message></div>
+
+  <form data-login-form>
+    <div class="form-group">
+      <label class="form-label" for="auth-email">Email address</label>
+      <div class="form-input-wrap">
+        <span class="form-icon">@</span>
+        <input class="form-input" id="auth-email" name="email" type="email" placeholder="you@dev8x.io" required />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="auth-password">Password</label>
+      <div class="form-input-wrap">
+        <span class="form-icon">#</span>
+        <input class="form-input" id="auth-password" name="password" type="password" placeholder="Enter your password" required />
+      </div>
+    </div>
+
+    <div class="auth-inline auth-inline--between">
+      <p class="auth-helper">
+        Selected portal: <strong data-login-portal-name></strong><br />
+        <span data-login-route-note></span>
+      </p>
+      <button class="auth-link-button" type="button" data-go-forgot>Forgot password?</button>
+    </div>
+
+    <div class="surface-actions" style="margin-top:1.25rem">
+      <button class="btn btn-primary" type="submit">Continue</button>
+      <button class="btn btn-secondary hidden" type="button" data-sso-trigger>Continue with Google</button>
+      <button class="btn btn-ghost" type="button" data-change-portal>Change portal</button>
+    </div>
+  </form>
+
+  <div>
+    <div class="surface-eyebrow">Demo accounts</div>
+    <p class="auth-helper">Tap a chip to prefill a valid account for the selected portal.</p>
+    <div class="auth-demo-list" data-demo-accounts></div>
+  </div>
+
+  <p class="auth-helper hidden" data-signup-helper>
+    Need a candidate account?
+    <button class="auth-link-button" type="button" data-go-signup>Create one here</button>
+  </p>
+</section>
+<!-- SCREEN_END -->
