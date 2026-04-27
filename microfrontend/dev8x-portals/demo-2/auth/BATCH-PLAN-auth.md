@@ -43,8 +43,8 @@ Total files: 20 → 10 batches (max 2 per batch)
 - Batch 4: screens/auth-register.html + screens/auth-mfa.html → ✅ DONE
 - Batch 5: screens/auth-password-reset.html + screens/auth-sso-callback.html → ✅ DONE
 - Batch 6: js/components/portal-selector.js + js/components/auth-form.js → ✅ DONE
-- Batch 7: js/components/mfa-challenge.js + js/components/password-reset.js
-- Batch 8: js/components/sso-handler.js + js/router.js
+- Batch 7: js/components/mfa-challenge.js + js/components/password-reset.js → ✅ DONE
+- Batch 8: js/components/sso-handler.js + js/router.js → ✅ DONE
 - Batch 9: js/app.js + js/mock-data.js
 - Batch 10: main.html + manifest.json
 
