@@ -26,14 +26,14 @@ Total files: 20 → 10 batches (max 2 per batch)
 | 10  | screens/auth-sso-callback.html   | 005       | ✅ DONE |
 | 11  | js/components/portal-selector.js | 002       | ✅ DONE |
 | 12  | js/components/auth-form.js       | 001       | ✅ DONE |
-| 13  | js/components/mfa-challenge.js   | 003       | PENDING |
-| 14  | js/components/password-reset.js  | 004       | PENDING |
-| 15  | js/components/sso-handler.js     | 005       | PENDING |
-| 16  | js/router.js                     | 001-005   | PENDING |
-| 17  | js/app.js                        | 001-005   | PENDING |
-| 18  | js/mock-data.js                  | 001-005   | PENDING |
-| 19  | main.html                        | all       | PENDING |
-| 20  | manifest.json                    | all       | PENDING |
+| 13  | js/components/mfa-challenge.js   | 003       | ✅ DONE |
+| 14  | js/components/password-reset.js  | 004       | ✅ DONE |
+| 15  | js/components/sso-handler.js     | 005       | ✅ DONE |
+| 16  | js/router.js                     | 001-005   | ✅ DONE |
+| 17  | js/app.js                        | 001-005   | ✅ DON  |
+| 18  | js/mock-data.js                  | 001-005   | ✅ DONE |
+| 19  | main.html                        | all       | ✅ DONE |
+| 20  | manifest.json                    | all       | ✅ DONE |
 
 ## Batch Sequence
 
@@ -45,8 +45,8 @@ Total files: 20 → 10 batches (max 2 per batch)
 - Batch 6: js/components/portal-selector.js + js/components/auth-form.js → ✅ DONE
 - Batch 7: js/components/mfa-challenge.js + js/components/password-reset.js → ✅ DONE
 - Batch 8: js/components/sso-handler.js + js/router.js → ✅ DONE
-- Batch 9: js/app.js + js/mock-data.js
-- Batch 10: main.html + manifest.json
+- Batch 9: js/app.js + js/mock-data.js → ✅ DONE
+- Batch 10: main.html + manifest.json → ✅ DONE
 
 ## Design Direction
 

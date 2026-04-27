@@ -1,0 +1,877 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#080d1a" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Primary meta -->
+    <title>Dev8X — Sign In</title>
+    <meta name="description" content="Dev8X Talent Management &amp; CRM Platform — Secure sign-in for Candidates, Clients, HR Admins, and Sales teams." />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- PWA / App manifest -->
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23080d1a'/><circle cx='10' cy='16' r='4' fill='%2300c8a0'/></svg>" />
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%23080d1a'/><circle cx='64' cy='90' r='28' fill='%2300c8a0'/></svg>" />
+
+    <!-- Open Graph (minimal, for shared link previews in internal tools) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Dev8X — Sign In" />
+    <meta property="og:description" content="Talent Management &amp; CRM Platform" />
+    <meta property="og:image" content="" />
+
+    <!-- Security headers via meta (supplemented by server headers in production) -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <!-- ── Design Token CSS (must load first — defines all CSS custom properties) -->
+    <link rel="stylesheet" href="css/tokens.css" />
+
+    <!-- ── App Shell CSS (reset, typography, layout primitives, screen transitions) -->
+    <link rel="stylesheet" href="css/shell.css" />
+
+    <!-- ── Screen-Level Layouts (portal-select, login, register, mfa, reset, sso) -->
+    <link rel="stylesheet" href="css/screen.css" />
+
+    <!-- ── Reusable UI Components (buttons, forms, alerts, OTP, portal cards …) -->
+    <link rel="stylesheet" href="css/components.css" />
+
+    <!-- Preconnect to Google Fonts CDN (tokens.css @import) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+
+  <body>
+    <!-- ═══════════════════════════════════════════════════════
+       APP ROOT
+       All screens are rendered inside #app. The router sets
+       exactly one .screen--active at a time. Inactive screens
+       are display:none (shell.css .screen rule).
+  ══════════════════════════════════════════════════════════ -->
+    <div id="app" role="application" aria-label="Dev8X Platform Authentication">
+      <!-- ── SCREEN: Portal Select (002-portal-routing)
+         Entry point for all unauthenticated users.
+         FR-002-01: Publish portal metadata
+         BR-002-01: Role-to-portal match enforced after selection
+         EVT-002-01: auth.portal.selected
+    ── -->
+      <div class="screen screen--active" id="screen-portal-select" data-screen="portal-select" role="main" aria-label="Select your portal">
+        <div class="auth-shell">
+          <div class="auth-container screen-portal-select">
+            <header class="auth-header" role="banner">
+              <div class="auth-wordmark">
+                <span class="auth-wordmark-dot" aria-hidden="true"></span>
+                Dev8X
+              </div>
+              <p class="auth-tagline">Talent Management &amp; CRM Platform</p>
+            </header>
+
+            <nav class="portal-grid" role="navigation" aria-label="Portal selection">
+              <!-- Candidate Portal -->
+              <button class="portal-card portal-card--candidate" data-portal="candidate" aria-label="Candidate portal — track your application and manage documents" type="button">
+                <div class="portal-card__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+                    <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                    <line x1="12" y1="12" x2="12" y2="16" />
+                    <line x1="10" y1="14" x2="14" y2="14" />
+                  </svg>
+                </div>
+                <div class="portal-card__body">
+                  <div class="portal-card__name">Candidate</div>
+                  <div class="portal-card__desc">Track your application, schedule interviews, and complete onboarding.</div>
+                </div>
+                <svg class="portal-card__arrow" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 17 17 7M17 7H7M17 7v10" />
+                </svg>
+              </button>
+
+              <!-- Client Portal -->
+              <button class="portal-card portal-card--client" data-portal="client" aria-label="Client portal — monitor projects, invoices, and team hours" type="button">
+                <div class="portal-card__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" />
+                    <path d="M8 21h8M12 17v4" />
+                    <path d="M7 8h.01M12 8h.01M17 8h.01" />
+                    <path d="M7 12h10" />
+                  </svg>
+                </div>
+                <div class="portal-card__body">
+                  <div class="portal-card__name">Client</div>
+                  <div class="portal-card__desc">Monitor project progress, review invoices, and track team working hours.</div>
+                </div>
+                <svg class="portal-card__arrow" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 17 17 7M17 7H7M17 7v10" />
+                </svg>
+              </button>
+
+              <!-- Admin Portal (MFA required — Constitution G-09, ADR-010) -->
+              <button class="portal-card portal-card--admin" data-portal="admin" aria-label="Admin portal — manage applicants, pipeline, and system settings. Requires two-factor authentication." type="button">
+                <span class="portal-card__badge" aria-label="Multi-factor authentication required">2FA</span>
+                <div class="portal-card__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg>
+                </div>
+                <div class="portal-card__body">
+                  <div class="portal-card__name">HR Admin</div>
+                  <div class="portal-card__desc">Manage the hiring pipeline, job postings, interviews, and evaluations.</div>
+                </div>
+                <svg class="portal-card__arrow" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 17 17 7M17 7H7M17 7v10" />
+                </svg>
+              </button>
+
+              <!-- CRM Portal -->
+              <button class="portal-card portal-card--crm" data-portal="crm" aria-label="CRM portal — manage contacts, deal pipeline, outreach, and lead scoring" type="button">
+                <div class="portal-card__icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                  </svg>
+                </div>
+                <div class="portal-card__body">
+                  <div class="portal-card__name">CRM</div>
+                  <div class="portal-card__desc">Manage contacts, deals pipeline, outreach analytics, and lead scoring.</div>
+                </div>
+                <svg class="portal-card__arrow" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 17 17 7M17 7H7M17 7v10" />
+                </svg>
+              </button>
+            </nav>
+
+            <p class="portal-select-footer" role="contentinfo">Secure &amp; encrypted connection</p>
+          </div>
+        </div>
+      </div>
+      <!-- /#screen-portal-select -->
+
+      <!-- ── SCREEN: Login (001-authentication)
+         FR-001-01: Validate credentials
+         FR-001-02: Candidate self-registration link
+         FR-001-03: Portal-scoped sessions
+         FR-001-04: Account lockout policy
+         005-sso: Google SSO for candidate / client
+    ── -->
+      <div class="screen" id="screen-login" data-screen="login" role="main" aria-label="Sign in">
+        <div class="auth-shell">
+          <div class="auth-container screen-login">
+            <button class="auth-back" id="login-back-btn" type="button" aria-label="Back to portal selection">
+              <svg class="auth-back__icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6" /></svg>
+              All portals
+            </button>
+
+            <div class="auth-card" id="login-card" data-portal="candidate" role="region" aria-label="Sign-in form">
+              <button class="login-portal-context" id="login-portal-ctx" type="button" aria-label="Currently signing into Candidate portal — click to change" data-portal="candidate">
+                <span class="login-portal-context__dot" id="login-ctx-dot" style="background: var(--portal-candidate)" aria-hidden="true"></span>
+                <span id="login-ctx-label">Candidate</span>
+                <span class="login-portal-context__change" aria-hidden="true">change</span>
+              </button>
+
+              <div class="admin-mfa-notice" id="login-mfa-notice" role="note" aria-live="polite" hidden>
+                <svg class="admin-mfa-notice__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+                Two-factor authentication is required for admin access. You'll be prompted after sign-in.
+              </div>
+
+              <h1 class="auth-card__title" id="login-title">Welcome back</h1>
+              <p class="auth-card__subtitle" id="login-subtitle">Sign in to your Candidate account to continue.</p>
+
+              <div class="alert alert--error" id="login-error" role="alert" aria-live="assertive" aria-atomic="true" hidden>
+                <svg class="alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                <div class="alert__body">
+                  <div class="alert__title" id="login-error-title">Invalid email or password</div>
+                  <span id="login-error-body">Please check your credentials and try again.</span>
+                </div>
+              </div>
+
+              <form class="form" id="login-form" novalidate autocomplete="on" aria-label="Sign-in credentials">
+                <div class="form-group">
+                  <label class="form-label" for="login-email">Email address <span class="form-label__required" aria-hidden="true">*</span></label>
+                  <div class="input-wrap">
+                    <svg class="input-wrap__icon-left" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    <input class="input input--with-left-icon" type="email" id="login-email" name="email" placeholder="you@example.com" autocomplete="email" required aria-required="true" aria-describedby="login-email-error" inputmode="email" />
+                  </div>
+                  <span class="form-error" id="login-email-error" role="alert" hidden>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="12" y1="8" x2="12" y2="12" />
+                      <line x1="12" y1="16" x2="12.01" y2="16" />
+                    </svg>
+                    Please enter a valid email address.
+                  </span>
+                </div>
+
+                <div class="form-group">
+                  <div class="form-row-actions" style="margin-top: 0; margin-bottom: var(--space-2)">
+                    <label class="form-label" for="login-password" style="margin-bottom: 0">Password <span class="form-label__required" aria-hidden="true">*</span></label>
+                    <button class="text-link" type="button" id="login-forgot-btn" aria-label="Forgot your password? Start password reset">Forgot password?</button>
+                  </div>
+                  <div class="input-wrap">
+                    <svg class="input-wrap__icon-left" viewBox="0 0 24 24" aria-hidden="true">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                    <input class="input input--with-both-icons" type="password" id="login-password" name="password" placeholder="Your password" autocomplete="current-password" required aria-required="true" minlength="8" aria-describedby="login-password-error" />
+                    <button class="password-toggle" type="button" id="login-pw-toggle" aria-label="Show password" aria-pressed="false">
+                      <svg id="login-pw-icon-show" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg>
+                      <svg id="login-pw-icon-hide" viewBox="0 0 24 24" aria-hidden="true" style="display: none">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+                        <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+                        <line x1="1" y1="1" x2="23" y2="23" />
+                      </svg>
+                    </button>
+                  </div>
+                  <span class="form-error" id="login-password-error" role="alert" hidden>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="12" y1="8" x2="12" y2="12" />
+                      <line x1="12" y1="16" x2="12.01" y2="16" />
+                    </svg>
+                    Password must be at least 8 characters.
+                  </span>
+                </div>
+
+                <div class="form-group form-group--row" id="login-remember-row">
+                  <label class="checkbox-group" for="login-remember">
+                    <input class="checkbox-input" type="checkbox" id="login-remember" name="remember_me" aria-label="Keep me signed in for 30 days" />
+                    <span class="checkbox-box" aria-hidden="true"></span>
+                    <span class="checkbox-label">Keep me signed in</span>
+                  </label>
+                  <div class="session-hint" id="login-session-hint" aria-label="Session expires after">
+                    <span>Session:</span>
+                    <span class="session-hint__value" id="login-session-value">24 h</span>
+                  </div>
+                </div>
+
+                <div class="form-submit form-submit--stack">
+                  <button class="btn btn--primary btn--full" type="submit" id="login-submit-btn" aria-label="Sign in">Sign in</button>
+                  <div class="mfa-attempts" id="login-attempts" aria-label="Failed login attempts" hidden>
+                    <span class="mfa-attempts__dot" aria-hidden="true"></span>
+                    <span class="mfa-attempts__dot" aria-hidden="true"></span>
+                    <span class="mfa-attempts__dot" aria-hidden="true"></span>
+                    <span class="mfa-attempts__dot" aria-hidden="true"></span>
+                    <span class="mfa-attempts__dot" aria-hidden="true"></span>
+                    <span class="sr-only" id="login-attempts-label">0 of 5 attempts used</span>
+                  </div>
+                </div>
+              </form>
+
+              <div id="login-sso-block">
+                <div class="auth-divider" role="separator" aria-label="Or continue with"><span class="auth-divider__label">or</span></div>
+                <button class="btn btn--sso btn--full" type="button" id="login-google-btn" aria-label="Continue with Google — starts Google sign-in flow">
+                  <svg class="btn--sso__logo google-logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" />
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+                  </svg>
+                  Continue with Google
+                </button>
+              </div>
+
+              <div class="auth-card__footer" id="login-register-footer">
+                Don't have an account?
+                <button class="text-link" type="button" id="login-register-btn" aria-label="Create a new candidate account">Create account</button>
+              </div>
+            </div>
+
+            <div class="lockout-overlay" id="login-lockout-overlay" role="dialog" aria-modal="true" aria-labelledby="lockout-title" aria-describedby="lockout-desc" hidden>
+              <div class="lockout-card">
+                <div class="lockout-card__icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                </div>
+                <h2 class="auth-card__title lockout-card__title" id="lockout-title">Account Locked</h2>
+                <p class="auth-card__subtitle" id="lockout-desc">Too many failed sign-in attempts. Your account has been temporarily locked for security.</p>
+                <div class="lockout-card__timer" aria-live="polite" aria-label="Time remaining until account unlocks"><span id="lockout-min">30</span>:<span id="lockout-sec">00</span></div>
+                <p class="form-help" style="text-align: center; justify-content: center">The account will unlock automatically. Contact support if you need immediate access.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /#screen-login -->
+
+      <!-- ── SCREEN: Register (001-authentication FR-001-02)
+         Candidate self-registration only.
+    ── -->
+      <div class="screen" id="screen-register" data-screen="register" role="main" aria-label="Create your account">
+        <div class="auth-shell">
+          <div class="auth-container screen-register">
+            <!-- Register screen HTML loaded from screens/auth-register.html -->
+            <!-- Inline for SPA: full content below -->
+            <button class="auth-back" id="register-back-btn" type="button" aria-label="Back to sign in">
+              <svg class="auth-back__icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6" /></svg>
+              Back to sign in
+            </button>
+            <div class="auth-card auth-card--wide" id="register-card" data-portal="candidate" role="region" aria-label="Create candidate account">
+              <div class="portal-chip portal-chip--candidate" aria-label="Candidate portal"><span class="portal-chip__dot" aria-hidden="true"></span>Candidate Portal</div>
+              <h1 class="auth-card__title" style="margin-top: var(--space-4)">Create your account</h1>
+              <p class="auth-card__subtitle">Join Dev8X to track your application, prepare for interviews, and complete onboarding — all in one place.</p>
+              <div class="alert alert--success" id="register-success" role="status" aria-live="polite" hidden>
+                <svg class="alert__icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                <div class="alert__body">
+                  <div class="alert__title">Account created</div>
+                  Check your inbox for a verification link before signing in.
+                </div>
+              </div>
+              <div class="alert alert--error" id="register-error" role="alert" aria-live="assertive" aria-atomic="true" hidden>
+                <svg class="alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                <div class="alert__body"><span id="register-error-body">Something went wrong. Please try again.</span></div>
+              </div>
+              <form class="form" id="register-form" novalidate autocomplete="on" aria-label="New candidate account details">
+                <div class="register-name-row">
+                  <div class="form-group">
+                    <label class="form-label" for="reg-first-name">First name <span class="form-label__required" aria-hidden="true">*</span></label>
+                    <div class="input-wrap"><input class="input" type="text" id="reg-first-name" name="first_name" placeholder="Jane" autocomplete="given-name" required aria-required="true" maxlength="100" aria-describedby="reg-first-name-error" /></div>
+                    <span class="form-error" id="reg-first-name-error" role="alert" hidden
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" /></svg
+                      >First name is required.</span
+                    >
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="reg-last-name">Last name <span class="form-label__required" aria-hidden="true">*</span></label>
+                    <div class="input-wrap"><input class="input" type="text" id="reg-last-name" name="last_name" placeholder="Smith" autocomplete="family-name" required aria-required="true" maxlength="100" aria-describedby="reg-last-name-error" /></div>
+                    <span class="form-error" id="reg-last-name-error" role="alert" hidden
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" /></svg
+                      >Last name is required.</span
+                    >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="reg-email">Email address <span class="form-label__required" aria-hidden="true">*</span></label>
+                  <div class="input-wrap">
+                    <svg class="input-wrap__icon-left" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    <input class="input input--with-left-icon" type="email" id="reg-email" name="email" placeholder="you@example.com" autocomplete="email" required aria-required="true" maxlength="254" inputmode="email" aria-describedby="reg-email-error" />
+                  </div>
+                  <span class="form-error" id="reg-email-error" role="alert" hidden
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="12" y1="8" x2="12" y2="12" />
+                      <line x1="12" y1="16" x2="12.01" y2="16" /></svg
+                    >Please enter a valid email address.</span
+                  >
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="reg-password">Password <span class="form-label__required" aria-hidden="true">*</span> <span class="form-label__optional">min 8 characters</span></label>
+                  <div class="input-wrap">
+                    <svg class="input-wrap__icon-left" viewBox="0 0 24 24" aria-hidden="true">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                    <input class="input input--with-both-icons" type="password" id="reg-password" name="password" placeholder="Create a strong password" autocomplete="new-password" required aria-required="true" minlength="8" aria-describedby="reg-password-strength reg-password-error" />
+                    <button class="password-toggle" type="button" id="reg-pw-toggle" aria-label="Show password" aria-pressed="false">
+                      <svg id="reg-pw-icon-show" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg>
+                      <svg id="reg-pw-icon-hide" viewBox="0 0 24 24" aria-hidden="true" style="display: none">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+                        <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+                        <line x1="1" y1="1" x2="23" y2="23" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="password-strength" id="reg-password-strength" data-strength="0" role="meter" aria-label="Password strength" aria-valuenow="0" aria-valuemin="0" aria-valuemax="5">
+                    <div class="password-strength__bars" aria-hidden="true">
+                      <div class="password-strength__bar"></div>
+                      <div class="password-strength__bar"></div>
+                      <div class="password-strength__bar"></div>
+                      <div class="password-strength__bar"></div>
+                      <div class="password-strength__bar"></div>
+                    </div>
+                    <div class="password-strength__label"><span>Strength</span><span id="reg-strength-label" aria-live="polite">—</span></div>
+                  </div>
+                  <span class="form-error" id="reg-password-error" role="alert" hidden
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="12" y1="8" x2="12" y2="12" />
+                      <line x1="12" y1="16" x2="12.01" y2="16" /></svg
+                    >Password must be at least 8 characters with uppercase, lowercase, and a number.</span
+                  >
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="reg-password-confirm">Confirm password <span class="form-label__required" aria-hidden="true">*</span></label>
+                  <div class="input-wrap">
+                    <svg class="input-wrap__icon-left" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                    <input class="input input--with-left-icon" type="password" id="reg-password-confirm" name="password_confirmation" placeholder="Repeat your password" autocomplete="new-password" required aria-required="true" aria-describedby="reg-confirm-error reg-confirm-match" />
+                  </div>
+                  <span class="verified-badge" id="reg-confirm-match" role="status" aria-live="polite" hidden
+                    ><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Passwords match</span
+                  >
+                  <span class="form-error" id="reg-confirm-error" role="alert" hidden
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="12" y1="8" x2="12" y2="12" />
+                      <line x1="12" y1="16" x2="12.01" y2="16" /></svg
+                    >Passwords do not match.</span
+                  >
+                </div>
+                <div class="form-submit" style="margin-top: var(--space-2)">
+                  <button class="btn btn--primary btn--full" type="submit" id="register-submit-btn" aria-label="Create your candidate account">Create account</button>
+                </div>
+              </form>
+              <p class="register-terms" role="note">By creating an account you agree to Dev8X's Terms of Service and Privacy Policy. Your data is processed solely to facilitate your application and onboarding experience.</p>
+              <div class="auth-card__footer">Already have an account? <button class="text-link" type="button" id="register-signin-btn" aria-label="Go back to sign in">Sign in</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /#screen-register -->
+
+      <!-- ── SCREEN: MFA Challenge (003-mfa)
+         FR-003-01: Issue MFA challenges for privileged sessions
+         FR-003-02: Verify TOTP or recovery code
+         FR-003-03: Support step-up verification
+         Constitution G-09: MFA mandatory for admin
+    ── -->
+      <div class="screen" id="screen-mfa" data-screen="mfa" role="main" aria-label="Two-factor authentication">
+        <!-- Full MFA screen HTML — mirrors screens/auth-mfa.html -->
+        <div class="auth-shell">
+          <div class="auth-container screen-mfa">
+            <button class="auth-back" id="mfa-back-btn" type="button" aria-label="Cancel step-up and return to portal" hidden>
+              <svg class="auth-back__icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6" /></svg>Cancel
+            </button>
+            <nav class="auth-steps" aria-label="Sign-in progress">
+              <div class="auth-steps__item auth-steps__item--done" aria-label="Step 1: Credentials, complete"><span class="auth-steps__dot" aria-hidden="true"></span>Credentials</div>
+              <div class="auth-steps__line auth-steps__line--done" aria-hidden="true"></div>
+              <div class="auth-steps__item auth-steps__item--active" aria-current="step" aria-label="Step 2: Verification, current"><span class="auth-steps__dot" aria-hidden="true"></span>Verification</div>
+            </nav>
+            <div class="auth-card" id="mfa-card" data-portal="admin" role="region" aria-label="Two-factor verification">
+              <div style="margin-bottom: var(--space-5)">
+                <span class="security-badge security-badge--admin" aria-label="Admin portal — enhanced security"
+                  ><svg class="security-badge__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>Admin Portal · Enhanced Security</span
+                >
+              </div>
+              <h1 class="auth-card__title">Verify your identity</h1>
+              <p class="auth-card__subtitle" id="mfa-subtitle">Enter the 6-digit code from your authenticator app to complete sign-in.</p>
+              <div class="alert alert--error" id="mfa-error" role="alert" aria-live="assertive" aria-atomic="true" hidden>
+                <svg class="alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                <div class="alert__body">
+                  <div class="alert__title" id="mfa-error-title">Incorrect code</div>
+                  <span id="mfa-error-body">The code you entered is invalid or has expired. Please try again.</span>
+                </div>
+              </div>
+              <div class="mfa-type-tabs" role="tablist" aria-label="Verification method" id="mfa-tabs">
+                <button class="mfa-type-tabs__tab mfa-type-tabs__tab--active" role="tab" id="mfa-tab-totp" aria-selected="true" aria-controls="mfa-panel-totp" type="button" data-tab="totp">Authenticator</button>
+                <button class="mfa-type-tabs__tab" role="tab" id="mfa-tab-recovery" aria-selected="false" aria-controls="mfa-panel-recovery" type="button" data-tab="recovery">Recovery code</button>
+              </div>
+              <div id="mfa-panel-totp" role="tabpanel" aria-labelledby="mfa-tab-totp">
+                <form class="form" id="mfa-form-totp" novalidate autocomplete="off" aria-label="Authenticator code">
+                  <div class="mfa-issuer" aria-label="Open your authenticator app">
+                    <div class="mfa-issuer__icon" aria-hidden="true">🔐</div>
+                    <span>Open your authenticator app and enter the current code</span>
+                  </div>
+                  <div class="otp-row">
+                    <div class="otp-input-group" id="mfa-otp-group" role="group" aria-label="6-digit authenticator code — enter one digit per box">
+                      <input class="otp-digit" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" id="otp-1" aria-label="Digit 1" autocomplete="one-time-code" />
+                      <input class="otp-digit" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" id="otp-2" aria-label="Digit 2" autocomplete="off" />
+                      <input class="otp-digit" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" id="otp-3" aria-label="Digit 3" autocomplete="off" />
+                      <div class="otp-input-group__sep" aria-hidden="true"></div>
+                      <input class="otp-digit" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" id="otp-4" aria-label="Digit 4" autocomplete="off" />
+                      <input class="otp-digit" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" id="otp-5" aria-label="Digit 5" autocomplete="off" />
+                      <input class="otp-digit" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" id="otp-6" aria-label="Digit 6" autocomplete="off" />
+                    </div>
+                    <div class="mfa-expiry" aria-live="polite" aria-label="Code expires in">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                      </svg>
+                      Code expires in <span class="mfa-expiry__timer" id="mfa-totp-countdown" aria-live="off">30</span>s
+                    </div>
+                  </div>
+                  <div class="mfa-attempts" id="mfa-totp-attempts" aria-label="Remaining attempts" aria-live="polite">
+                    <span class="mfa-attempts__dot" aria-hidden="true"></span><span class="mfa-attempts__dot" aria-hidden="true"></span><span class="mfa-attempts__dot" aria-hidden="true"></span>
+                    <span class="sr-only" id="mfa-totp-attempts-label">3 attempts remaining</span>
+                  </div>
+                  <div class="form-submit"><button class="btn btn--gold btn--full" type="submit" id="mfa-totp-submit" aria-label="Verify authenticator code" disabled>Verify</button></div>
+                  <div class="resend-action" aria-live="polite">
+                    <span>Didn't get a code?</span>
+                    <button class="resend-action__btn" type="button" id="mfa-resend-btn" aria-label="Request a new authenticator challenge" disabled>Get a new challenge</button>
+                    <span class="resend-action__countdown" id="mfa-resend-countdown" aria-hidden="true">30s</span>
+                  </div>
+                </form>
+              </div>
+              <div id="mfa-panel-recovery" role="tabpanel" aria-labelledby="mfa-tab-recovery" hidden>
+                <form class="form" id="mfa-form-recovery" novalidate autocomplete="off" aria-label="Recovery code">
+                  <p class="mfa-recovery-hint" role="note">Use one of the one-time recovery codes you saved when you set up two-factor authentication. Each code can only be used once.</p>
+                  <div class="form-group">
+                    <label class="form-label" for="mfa-recovery-input">Recovery code <span class="form-label__required" aria-hidden="true">*</span></label>
+                    <div class="input-wrap"><input class="input recovery-input" type="text" id="mfa-recovery-input" name="code" placeholder="XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false" maxlength="20" aria-describedby="mfa-recovery-error" aria-required="true" required /></div>
+                    <span class="form-error" id="mfa-recovery-error" role="alert" hidden
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" /></svg
+                      >Recovery code is invalid or has already been used.</span
+                    >
+                  </div>
+                  <div class="mfa-attempts" id="mfa-recovery-attempts" aria-label="Remaining attempts" aria-live="polite">
+                    <span class="mfa-attempts__dot" aria-hidden="true"></span><span class="mfa-attempts__dot" aria-hidden="true"></span><span class="mfa-attempts__dot" aria-hidden="true"></span>
+                    <span class="sr-only" id="mfa-recovery-attempts-label">3 attempts remaining</span>
+                  </div>
+                  <div class="form-submit"><button class="btn btn--gold btn--full" type="submit" id="mfa-recovery-submit" aria-label="Verify recovery code">Verify recovery code</button></div>
+                  <div class="alert alert--warning" id="mfa-recovery-low-warn" role="note" aria-live="polite" hidden>
+                    <svg class="alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>
+                    <div class="alert__body">
+                      <div class="alert__title">Low on recovery codes</div>
+                      You have fewer than 2 codes remaining. Generate new codes in your account settings after signing in.
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="auth-card__footer">Lost access to your authenticator? <button class="text-link" type="button" id="mfa-support-btn" aria-label="Contact support for account recovery">Contact support</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /#screen-mfa -->
+
+      <!-- ── SCREEN: Password Reset (004-password-reset) ── -->
+      <div class="screen" id="screen-password-reset" data-screen="password-reset" role="main" aria-label="Reset your password">
+        <div class="auth-shell">
+          <div class="auth-container screen-password-reset">
+            <button class="auth-back" id="reset-back-btn" type="button" aria-label="Back to sign in">
+              <svg class="auth-back__icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6" /></svg>Back to sign in
+            </button>
+            <div class="auth-card" id="reset-card" role="region" aria-label="Password reset">
+              <h1 class="auth-card__title">Reset your password</h1>
+              <p class="auth-card__subtitle" id="reset-subtitle">Enter your email address and we'll send you a link to reset your password.</p>
+              <nav class="reset-steps-track" aria-label="Password reset progress" id="reset-steps">
+                <div class="reset-step reset-step--active" id="reset-step-1" aria-label="Step 1: Request, current">
+                  <div class="reset-step__num" aria-hidden="true">1</div>
+                  <span class="reset-step__label">Request</span>
+                </div>
+                <div class="reset-step-connector" id="reset-connector-1" aria-hidden="true"><div class="reset-step-connector__fill"></div></div>
+                <div class="reset-step" id="reset-step-2" aria-label="Step 2: Verify, pending">
+                  <div class="reset-step__num" aria-hidden="true">2</div>
+                  <span class="reset-step__label">Verify</span>
+                </div>
+                <div class="reset-step-connector" id="reset-connector-2" aria-hidden="true"><div class="reset-step-connector__fill"></div></div>
+                <div class="reset-step" id="reset-step-3" aria-label="Step 3: New password, pending">
+                  <div class="reset-step__num" aria-hidden="true">3</div>
+                  <span class="reset-step__label">New password</span>
+                </div>
+              </nav>
+              <div class="alert alert--error" id="reset-error" role="alert" aria-live="assertive" aria-atomic="true" hidden>
+                <svg class="alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                <div class="alert__body"><span id="reset-error-body">Something went wrong. Please try again.</span></div>
+              </div>
+              <div id="reset-panel-request">
+                <form class="form" id="reset-request-form" novalidate autocomplete="on" aria-label="Request password reset">
+                  <div class="form-group">
+                    <label class="form-label" for="reset-email">Email address <span class="form-label__required" aria-hidden="true">*</span></label>
+                    <div class="input-wrap">
+                      <svg class="input-wrap__icon-left" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" /></svg
+                      ><input class="input input--with-left-icon" type="email" id="reset-email" name="email" placeholder="you@example.com" autocomplete="email" required aria-required="true" maxlength="254" inputmode="email" aria-describedby="reset-email-error" />
+                    </div>
+                    <span class="form-error" id="reset-email-error" role="alert" hidden
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" /></svg
+                      >Please enter a valid email address.</span
+                    >
+                  </div>
+                  <div class="form-submit"><button class="btn btn--primary btn--full" type="submit" id="reset-request-submit" aria-label="Send password reset link">Send reset link</button></div>
+                </form>
+                <p class="form-help" style="text-align: center; justify-content: center; margin-top: var(--space-4)">If an account exists for this email, a reset link will be sent. Check your spam folder if you don't receive it.</p>
+                <div class="resend-action" id="reset-resend-block" style="margin-top: var(--space-5)" hidden aria-live="polite">
+                  <span>Didn't receive the email?</span>
+                  <button class="resend-action__btn" type="button" id="reset-resend-btn" aria-label="Resend reset link" disabled>Resend</button>
+                  <span class="resend-action__countdown" id="reset-resend-countdown" aria-hidden="true">60s</span>
+                </div>
+              </div>
+              <div id="reset-panel-verify" hidden>
+                <div class="reset-token-expiry" id="reset-expiry-notice" role="note" aria-live="polite">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" /></svg
+                  >This link expires in <strong id="reset-token-timer">23:59</strong>
+                </div>
+                <div class="alert alert--info" role="status" aria-live="polite" style="margin-bottom: var(--space-6)">
+                  <svg class="alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                  <div class="alert__body">
+                    <div class="alert__title">Check your inbox</div>
+                    We've sent a 6-digit verification code to <strong id="reset-email-display"></strong>.
+                  </div>
+                </div>
+                <form class="form" id="reset-verify-form" novalidate autocomplete="off" aria-label="Enter verification code">
+                  <div class="form-group">
+                    <label class="form-label" for="reset-token-input">Verification code <span class="form-label__required" aria-hidden="true">*</span></label>
+                    <div class="input-wrap">
+                      <svg class="input-wrap__icon-left" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg
+                      ><input class="input input--with-left-icon" type="text" id="reset-token-input" name="token" placeholder="Enter 6-digit code" autocomplete="one-time-code" required aria-required="true" maxlength="6" inputmode="numeric" pattern="[0-9]{6}" aria-describedby="reset-token-error" style="font-family: var(--font-mono); letter-spacing: var(--tracking-wider)" />
+                    </div>
+                    <span class="form-error" id="reset-token-error" role="alert" hidden
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" /></svg
+                      >Invalid or expired code. Please check and try again.</span
+                    >
+                  </div>
+                  <div class="form-submit"><button class="btn btn--primary btn--full" type="submit" id="reset-verify-submit" aria-label="Verify code">Verify code</button></div>
+                </form>
+              </div>
+              <div id="reset-panel-new-password" hidden>
+                <form class="form" id="reset-new-password-form" novalidate autocomplete="new-password" aria-label="Set new password">
+                  <div class="form-group">
+                    <label class="form-label" for="reset-new-password">New password <span class="form-label__required" aria-hidden="true">*</span> <span class="form-label__optional">min 8 characters</span></label>
+                    <div class="input-wrap">
+                      <svg class="input-wrap__icon-left" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg
+                      ><input class="input input--with-both-icons" type="password" id="reset-new-password" name="password" placeholder="Create a strong password" autocomplete="new-password" required aria-required="true" minlength="8" aria-describedby="reset-pw-strength reset-pw-error" /><button
+                        class="password-toggle"
+                        type="button"
+                        id="reset-pw-toggle"
+                        aria-label="Show password"
+                        aria-pressed="false"
+                      >
+                        <svg id="reset-pw-icon-show" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                          <circle cx="12" cy="12" r="3" /></svg
+                        ><svg id="reset-pw-icon-hide" viewBox="0 0 24 24" aria-hidden="true" style="display: none">
+                          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+                          <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+                          <line x1="1" y1="1" x2="23" y2="23" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="password-strength" id="reset-pw-strength" data-strength="0" role="meter" aria-label="Password strength" aria-valuenow="0" aria-valuemin="0" aria-valuemax="5">
+                      <div class="password-strength__bars" aria-hidden="true">
+                        <div class="password-strength__bar"></div>
+                        <div class="password-strength__bar"></div>
+                        <div class="password-strength__bar"></div>
+                        <div class="password-strength__bar"></div>
+                        <div class="password-strength__bar"></div>
+                      </div>
+                      <div class="password-strength__label"><span>Strength</span><span id="reset-strength-label" aria-live="polite">—</span></div>
+                    </div>
+                    <span class="form-error" id="reset-pw-error" role="alert" hidden
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" /></svg
+                      >Password must be at least 8 characters with uppercase, lowercase, and a number.</span
+                    >
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="reset-confirm-password">Confirm password <span class="form-label__required" aria-hidden="true">*</span></label>
+                    <div class="input-wrap">
+                      <svg class="input-wrap__icon-left" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                        <polyline points="22 4 12 14.01 9 11.01" /></svg
+                      ><input class="input input--with-left-icon" type="password" id="reset-confirm-password" name="password_confirmation" placeholder="Repeat your password" autocomplete="new-password" required aria-required="true" aria-describedby="reset-confirm-error reset-confirm-match" />
+                    </div>
+                    <span class="verified-badge" id="reset-confirm-match" role="status" aria-live="polite" hidden
+                      ><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Passwords match</span
+                    >
+                    <span class="form-error" id="reset-confirm-error" role="alert" hidden
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" /></svg
+                      >Passwords do not match.</span
+                    >
+                  </div>
+                  <div class="alert alert--warning" role="note" style="margin-top: calc(-1 * var(--space-2))">
+                    <svg class="alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>
+                    <div class="alert__body">Setting a new password will sign you out of all active sessions.</div>
+                  </div>
+                  <div class="form-submit" style="margin-top: var(--space-2)"><button class="btn btn--primary btn--full" type="submit" id="reset-new-password-submit" aria-label="Set new password and sign in">Set new password</button></div>
+                </form>
+              </div>
+              <div class="reset-success" id="reset-success" role="status" aria-live="polite" hidden>
+                <div class="reset-success__icon" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                </div>
+                <h2 class="auth-card__title" style="margin-bottom: var(--space-2)">Password updated</h2>
+                <p class="auth-card__subtitle" style="margin-bottom: var(--space-6)">Your password has been successfully reset. All previous sessions have been signed out for your security.</p>
+                <button class="btn btn--primary btn--full" type="button" id="reset-go-login-btn" aria-label="Go to sign in">Sign in with new password</button>
+              </div>
+              <div class="auth-card__footer" id="reset-footer">Remembered your password? <button class="text-link" type="button" id="reset-signin-btn" aria-label="Go back to sign in">Sign in</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /#screen-password-reset -->
+
+      <!-- ── SCREEN: SSO Callback (005-sso) ── -->
+      <div class="screen" id="screen-sso-callback" data-screen="sso-callback" role="main" aria-label="Completing Google sign-in">
+        <div class="auth-shell">
+          <div class="auth-container screen-sso-callback">
+            <div class="auth-card" id="sso-callback-card" role="region" aria-label="Google sign-in status">
+              <div class="sso-callback-state" id="sso-state-processing" role="status" aria-live="polite" aria-label="Verifying Google sign-in, please wait">
+                <div class="sso-callback-state__spinner-wrap" aria-hidden="true">
+                  <div class="sso-callback-state__orbit"></div>
+                  <svg class="sso-callback-state__provider-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" />
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="sso-callback-state__message" id="sso-state-message">Completing sign-in…</p>
+                  <p class="sso-callback-state__sub" id="sso-state-sub">Verifying with Google</p>
+                </div>
+              </div>
+
+              <div class="sso-callback-state" id="sso-state-linking" role="status" aria-live="polite" aria-label="Linking Google account" hidden>
+                <div class="sso-callback-state__spinner-wrap" aria-hidden="true">
+                  <div class="sso-callback-state__orbit" style="border-top-color: var(--portal-candidate)"></div>
+                  <svg class="sso-callback-state__provider-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" />
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="sso-callback-state__message">Linking Google account…</p>
+                  <p class="sso-callback-state__sub">Connecting to your existing account</p>
+                </div>
+              </div>
+
+              <div class="sso-callback-state" id="sso-state-success" role="status" aria-live="assertive" aria-label="Sign-in successful, redirecting" hidden>
+                <div class="sso-callback-state__spinner-wrap" aria-hidden="true" style="background: var(--status-success-bg); border-color: var(--status-success-border)">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
+                </div>
+                <div>
+                  <p class="sso-callback-state__message" style="color: var(--status-success)">Signed in successfully</p>
+                  <p class="sso-callback-state__sub">Redirecting to your portal…</p>
+                </div>
+              </div>
+
+              <div class="sso-callback-error" id="sso-state-error" role="alert" aria-live="assertive" aria-atomic="true" hidden>
+                <div class="sso-callback-error__icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="15" y1="9" x2="9" y2="15" />
+                    <line x1="9" y1="9" x2="15" y2="15" />
+                  </svg>
+                </div>
+                <h2 class="auth-card__title" id="sso-error-title" style="color: var(--status-error)">Sign-in failed</h2>
+                <p class="auth-card__subtitle" id="sso-error-body">We couldn't complete the Google sign-in. The link may have expired or been used already.</p>
+                <div class="alert alert--error" style="width: 100%; text-align: left" role="none">
+                  <svg class="alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                  <div class="alert__body">
+                    <div class="alert__title" id="sso-error-reason">Invalid or expired state token</div>
+                    <span id="sso-error-detail">The sign-in session timed out. Please try again from the sign-in screen.</span>
+                  </div>
+                </div>
+                <div class="form-submit" style="width: 100%; margin-top: var(--space-2)"><button class="btn btn--primary btn--full" type="button" id="sso-retry-btn" aria-label="Try signing in with Google again">Try again</button><button class="btn btn--ghost btn--full" type="button" id="sso-use-password-btn" aria-label="Sign in with email and password instead">Sign in with password</button></div>
+              </div>
+
+              <div class="sso-callback-error" id="sso-state-ineligible" role="alert" aria-live="assertive" hidden>
+                <div class="sso-callback-error__icon" aria-hidden="true" style="background: var(--gold-subtle); border-color: rgba(212, 168, 67, 0.3); color: var(--gold)">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <line x1="12" y1="9" x2="12" y2="13" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                  </svg>
+                </div>
+                <h2 class="auth-card__title" style="color: var(--gold)">Google sign-in not available</h2>
+                <p class="auth-card__subtitle">The Admin and CRM portals require password authentication for security reasons. Google sign-in is only available for Candidate and Client portals.</p>
+                <div class="form-submit" style="width: 100%; margin-top: var(--space-4)"><button class="btn btn--gold btn--full" type="button" id="sso-ineligible-back-btn" aria-label="Go to sign in with password">Sign in with password</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /#screen-sso-callback -->
+    </div>
+    <!-- /#app -->
+
+    <!-- ═══════════════════════════════════════════════════════════
+       JAVASCRIPT — Load order matters:
+       1. mock-data.js    — shared fixtures (no dependencies)
+       2. app.js          — global utilities (no dependencies)
+       3. portal-selector.js — 002-portal-routing component
+       4. auth-form.js    — 001-authentication component
+       5. mfa-challenge.js — 003-mfa component
+       6. password-reset.js — 004-password-reset component
+       7. sso-handler.js  — 005-sso component
+       8. router.js       — SPA router (depends on all components)
+  ══════════════════════════════════════════════════════════════ -->
+
+    <!-- Shared fixtures — no DOM or component dependencies -->
+    <script src="js/mock-data.js"></script>
+
+    <!-- Global app utilities — DevApp, toast, keyboard nav -->
+    <script src="js/app.js"></script>
+
+    <!-- Auth domain components (order: 002, 001, 003, 004, 005) -->
+    <script src="js/components/portal-selector.js"></script>
+    <script src="js/components/auth-form.js"></script>
+    <script src="js/components/mfa-challenge.js"></script>
+    <script src="js/components/password-reset.js"></script>
+    <script src="js/components/sso-handler.js"></script>
+
+    <!-- SPA Router — must load last; registers window.App -->
+    <script src="js/router.js"></script>
+  </body>
+</html>
