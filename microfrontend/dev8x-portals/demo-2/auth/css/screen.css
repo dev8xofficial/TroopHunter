@@ -1,0 +1,566 @@
+/* ============================================================
+   DEV8X PLATFORM — SCREEN CSS
+   Screen-level layouts for auth domain (001–005)
+   ============================================================ */
+
+/* ── PORTAL SELECT SCREEN (002-portal-routing) ────────────── */
+.screen-portal-select .auth-container {
+  justify-content: center;
+  padding: var(--space-10) var(--space-6);
+}
+
+.screen-portal-select .auth-header {
+  margin-bottom: var(--space-12);
+}
+
+.portal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 680px;
+  animation: stagger-in var(--duration-enter) var(--ease-out) both;
+}
+
+@media (min-width: 900px) {
+  .portal-grid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 900px;
+    gap: var(--space-5);
+  }
+}
+
+@media (max-width: 400px) {
+  .portal-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+  }
+}
+
+@keyframes stagger-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.portal-select-footer {
+  margin-top: var(--space-10);
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--text-disabled);
+  letter-spacing: var(--tracking-wide);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+.portal-select-footer::before,
+.portal-select-footer::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+/* ── AUTH LOGIN SCREEN (001-authentication) ───────────────── */
+.screen-login .auth-container {
+  padding: var(--space-8) var(--space-6);
+}
+
+.screen-login .auth-card {
+  width: 100%;
+}
+
+/* Portal context pill shown above the login card */
+.login-portal-context {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition-base);
+  width: fit-content;
+}
+
+.login-portal-context:hover {
+  border-color: var(--border-default);
+  color: var(--text-secondary);
+}
+
+.login-portal-context__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.login-portal-context__change {
+  margin-left: auto;
+  opacity: 0.5;
+  font-size: 10px;
+}
+
+/* Portal-specific card accent line */
+.auth-card[data-portal="candidate"]::before { background: linear-gradient(90deg, transparent, rgba(0,200,160,0.5), transparent); }
+.auth-card[data-portal="client"]::before    { background: linear-gradient(90deg, transparent, rgba(91,140,255,0.5), transparent); }
+.auth-card[data-portal="admin"]::before     { background: linear-gradient(90deg, transparent, rgba(212,168,67,0.5), transparent); }
+.auth-card[data-portal="crm"]::before       { background: linear-gradient(90deg, transparent, rgba(192,109,232,0.5), transparent); }
+
+/* Admin MFA required indicator */
+.admin-mfa-notice {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--gold-subtle);
+  border: 1px solid rgba(212, 168, 67, 0.25);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+  font-size: var(--text-xs);
+  color: var(--gold);
+}
+
+.admin-mfa-notice__icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* Session lifetime hint */
+.session-hint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--text-disabled);
+}
+
+.session-hint__value {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+/* ── AUTH REGISTER SCREEN (001-authentication FR-001-02) ───── */
+.screen-register .auth-container {
+  padding: var(--space-6) var(--space-6);
+}
+
+.screen-register .auth-card {
+  max-width: var(--auth-card-width-wide);
+}
+
+.register-name-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+@media (max-width: 480px) {
+  .register-name-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.register-terms {
+  font-size: var(--text-xs);
+  color: var(--text-disabled);
+  line-height: var(--leading-relaxed);
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ── MFA SCREEN (003-mfa) ─────────────────────────────────── */
+.screen-mfa .auth-container {
+  padding: var(--space-8) var(--space-6);
+}
+
+.screen-mfa .auth-card {
+  max-width: 400px;
+}
+
+.mfa-type-tabs {
+  display: flex;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  background: var(--bg-elevated);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-8);
+  border: 1px solid var(--border-subtle);
+}
+
+.mfa-type-tabs__tab {
+  flex: 1;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-base);
+  text-align: center;
+}
+
+.mfa-type-tabs__tab:hover { color: var(--text-secondary); }
+
+.mfa-type-tabs__tab--active {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* OTP input row */
+.otp-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+.mfa-issuer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.mfa-issuer__icon {
+  width: 32px;
+  height: 32px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.mfa-expiry {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.mfa-expiry__timer {
+  color: var(--status-warning);
+  font-weight: var(--weight-medium);
+  min-width: 2ch;
+  text-align: right;
+}
+
+.mfa-expiry__timer--urgent { color: var(--status-error); }
+
+/* Retry count indicator */
+.mfa-attempts {
+  display: flex;
+  gap: var(--space-1);
+  justify-content: center;
+}
+
+.mfa-attempts__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--status-error);
+  opacity: 0.3;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.mfa-attempts__dot--used { opacity: 1; }
+
+/* Recovery code input variant */
+.mfa-recovery-hint {
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--space-4);
+}
+
+/* ── PASSWORD RESET SCREEN (004-password-reset) ───────────── */
+.screen-password-reset .auth-container {
+  padding: var(--space-8) var(--space-6);
+}
+
+/* Multi-step layout */
+.reset-steps-track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: var(--space-8);
+  padding: 0 var(--space-2);
+}
+
+.reset-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 0 0 auto;
+}
+
+.reset-step__num {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  font-family: var(--font-mono);
+  border: 1.5px solid var(--border-default);
+  color: var(--text-disabled);
+  background: var(--bg-elevated);
+  transition: var(--transition-base);
+}
+
+.reset-step--active .reset-step__num {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-subtle);
+}
+
+.reset-step--done .reset-step__num {
+  border-color: var(--status-success);
+  color: var(--bg-base);
+  background: var(--status-success);
+}
+
+.reset-step__label {
+  font-size: 10px;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-disabled);
+  white-space: nowrap;
+}
+
+.reset-step--active .reset-step__label { color: var(--accent); }
+.reset-step--done .reset-step__label   { color: var(--text-muted); }
+
+.reset-step-connector {
+  flex: 1;
+  height: 1.5px;
+  background: var(--border-subtle);
+  margin: 0 var(--space-2);
+  margin-bottom: 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+.reset-step-connector__fill {
+  position: absolute;
+  left: 0; top: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--status-success);
+  transition: width var(--duration-slow) var(--ease-out);
+}
+
+.reset-step-connector--done .reset-step-connector__fill { width: 100%; }
+
+/* Token expiry notice */
+.reset-token-expiry {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: rgba(255, 179, 71, 0.06);
+  border: 1px solid var(--status-warning-border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-xs);
+  color: var(--status-warning);
+  margin-bottom: var(--space-6);
+}
+
+/* Success state */
+.reset-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+  padding: var(--space-6) 0;
+}
+
+.reset-success__icon {
+  width: 56px;
+  height: 56px;
+  background: var(--status-success-bg);
+  border: 1px solid var(--status-success-border);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--status-success);
+  animation: icon-pop var(--duration-slow) var(--ease-spring) both;
+}
+
+@keyframes icon-pop {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+/* ── SSO CALLBACK SCREEN (005-sso) ────────────────────────── */
+.screen-sso-callback .auth-container {
+  padding: var(--space-8) var(--space-6);
+}
+
+.screen-sso-callback .auth-card {
+  max-width: 360px;
+  text-align: center;
+}
+
+.sso-callback-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-6) 0;
+}
+
+.sso-callback-state__spinner-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Rotating orbit ring */
+.sso-callback-state__orbit {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--accent);
+  animation: spin 1s linear infinite;
+}
+
+.sso-callback-state__provider-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.sso-callback-state__message {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.sso-callback-state__sub {
+  font-size: var(--text-xs);
+  color: var(--text-disabled);
+  font-family: var(--font-mono);
+}
+
+/* Error state in callback */
+.sso-callback-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+}
+
+.sso-callback-error__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: var(--status-error-bg);
+  border: 1px solid var(--status-error-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--status-error);
+  font-size: var(--text-xl);
+}
+
+/* ── LOCKOUT SCREEN OVERLAY ───────────────────────────────── */
+.lockout-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-overlay);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  animation: fade-in var(--duration-base) var(--ease-out) both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.lockout-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-top: 3px solid var(--status-error);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10);
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-xl);
+}
+
+.lockout-card__icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--space-5);
+  background: var(--status-error-bg);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--status-error);
+}
+
+.lockout-card__title {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-2);
+  color: var(--status-error);
+}
+
+.lockout-card__timer {
+  font-family: var(--font-mono);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-light);
+  color: var(--text-primary);
+  letter-spacing: var(--tracking-tight);
+  margin: var(--space-6) 0;
+}
+
+.lockout-card__timer span {
+  display: inline-block;
+  min-width: 2ch;
+  text-align: center;
+}

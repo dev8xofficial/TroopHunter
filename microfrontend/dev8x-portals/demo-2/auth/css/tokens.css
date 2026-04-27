@@ -1,0 +1,241 @@
+/* ============================================================
+   DEV8X PLATFORM — DESIGN TOKENS
+   Auth Domain: 001-authentication · 002-portal-routing
+                003-mfa · 004-password-reset · 005-sso
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap');
+
+/* ── COLOR PRIMITIVES ──────────────────────────────────────── */
+:root {
+  /* Base palette */
+  --_navy-950:  #04080f;
+  --_navy-900:  #080d1a;
+  --_navy-800:  #0c1222;
+  --_navy-700:  #0f1729;
+  --_navy-600:  #131e34;
+  --_navy-500:  #1a2840;
+  --_navy-400:  #1e3052;
+  --_navy-300:  #243868;
+  --_navy-200:  #2d477d;
+
+  --_teal-400:  #00f5c4;
+  --_teal-300:  #00c8a0;
+  --_teal-200:  #00a882;
+  --_teal-100:  #007a60;
+  --_teal-050:  #003d30;
+
+  --_gold-400:  #f0c96a;
+  --_gold-300:  #d4a843;
+  --_gold-200:  #b08728;
+  --_gold-100:  #7a5c12;
+  --_gold-050:  #3a2a06;
+
+  --_slate-100: #f0f4ff;
+  --_slate-200: #c8d0e8;
+  --_slate-300: #96a3c0;
+  --_slate-400: #6b7a99;
+  --_slate-500: #3d4a66;
+  --_slate-600: #2a3352;
+
+  --_red-300:   #ff6b6b;
+  --_red-200:   #e84040;
+  --_red-100:   #9b1c1c;
+  --_red-050:   #3d0a0a;
+
+  --_amber-300: #ffb347;
+  --_amber-200: #e07a00;
+  --_amber-050: #3a2200;
+
+  --_green-300: #52d68a;
+  --_green-200: #2cb562;
+  --_green-050: #0a2e19;
+
+  /* ── SEMANTIC TOKENS ──────────────────────────────────── */
+
+  /* Backgrounds */
+  --bg-base:        var(--_navy-900);
+  --bg-surface:     var(--_navy-700);
+  --bg-elevated:    var(--_navy-600);
+  --bg-overlay:     rgba(4, 8, 15, 0.85);
+  --bg-scrim:       rgba(4, 8, 15, 0.60);
+
+  /* Borders */
+  --border-subtle:  var(--_navy-400);
+  --border-default: var(--_navy-300);
+  --border-strong:  var(--_slate-500);
+  --border-focus:   var(--_teal-300);
+  --border-error:   var(--_red-200);
+
+  /* Text */
+  --text-primary:   var(--_slate-100);
+  --text-secondary: var(--_slate-200);
+  --text-muted:     var(--_slate-400);
+  --text-disabled:  var(--_slate-500);
+  --text-inverse:   var(--_navy-900);
+  --text-on-accent: var(--_navy-900);
+
+  /* Brand / Accents */
+  --accent:         var(--_teal-300);
+  --accent-hover:   var(--_teal-400);
+  --accent-subtle:  rgba(0, 200, 160, 0.12);
+  --accent-ring:    rgba(0, 200, 160, 0.30);
+
+  --gold:           var(--_gold-300);
+  --gold-hover:     var(--_gold-400);
+  --gold-subtle:    rgba(212, 168, 67, 0.12);
+
+  /* Status */
+  --status-success:        var(--_green-300);
+  --status-success-bg:     var(--_green-050);
+  --status-success-border: rgba(82, 214, 138, 0.25);
+
+  --status-warning:        var(--_amber-300);
+  --status-warning-bg:     var(--_amber-050);
+  --status-warning-border: rgba(255, 179, 71, 0.25);
+
+  --status-error:          var(--_red-300);
+  --status-error-bg:       var(--_red-050);
+  --status-error-border:   rgba(255, 107, 107, 0.25);
+
+  --status-info:           var(--_teal-300);
+  --status-info-bg:        var(--_teal-050);
+  --status-info-border:    rgba(0, 200, 160, 0.25);
+
+  /* Portal identity tokens */
+  --portal-candidate:      #00c8a0;   /* teal */
+  --portal-candidate-bg:   rgba(0, 200, 160, 0.08);
+  --portal-client:         #5b8cff;   /* cornflower */
+  --portal-client-bg:      rgba(91, 140, 255, 0.08);
+  --portal-admin:          #d4a843;   /* gold */
+  --portal-admin-bg:       rgba(212, 168, 67, 0.08);
+  --portal-crm:            #c06de8;   /* violet */
+  --portal-crm-bg:         rgba(192, 109, 232, 0.08);
+
+  /* ── TYPOGRAPHY ──────────────────────────────────────── */
+  --font-display:   'Fraunces', Georgia, serif;
+  --font-body:      'DM Sans', system-ui, sans-serif;
+  --font-mono:      'DM Mono', 'Cascadia Code', monospace;
+
+  --text-xs:        0.6875rem;  /* 11px */
+  --text-sm:        0.8125rem;  /* 13px */
+  --text-base:      0.9375rem;  /* 15px */
+  --text-md:        1.0625rem;  /* 17px */
+  --text-lg:        1.25rem;    /* 20px */
+  --text-xl:        1.5rem;     /* 24px */
+  --text-2xl:       2rem;       /* 32px */
+  --text-3xl:       2.5rem;     /* 40px */
+  --text-4xl:       3.25rem;    /* 52px */
+
+  --weight-light:   300;
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold: 600;
+
+  --leading-tight:  1.2;
+  --leading-snug:   1.35;
+  --leading-normal: 1.55;
+  --leading-relaxed: 1.7;
+
+  --tracking-tight:  -0.03em;
+  --tracking-snug:   -0.015em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.04em;
+  --tracking-wider:   0.08em;
+  --tracking-caps:    0.12em;
+
+  /* ── SPACING ──────────────────────────────────────────── */
+  --space-1:   0.25rem;   /*  4px */
+  --space-2:   0.5rem;    /*  8px */
+  --space-3:   0.75rem;   /* 12px */
+  --space-4:   1rem;      /* 16px */
+  --space-5:   1.25rem;   /* 20px */
+  --space-6:   1.5rem;    /* 24px */
+  --space-8:   2rem;      /* 32px */
+  --space-10:  2.5rem;    /* 40px */
+  --space-12:  3rem;      /* 48px */
+  --space-16:  4rem;      /* 64px */
+  --space-20:  5rem;      /* 80px */
+  --space-24:  6rem;      /* 96px */
+
+  /* ── RADII ────────────────────────────────────────────── */
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* ── SHADOWS ──────────────────────────────────────────── */
+  --shadow-sm:
+    0 1px 2px rgba(0,0,0,0.4),
+    0 0 0 1px rgba(255,255,255,0.03);
+
+  --shadow-md:
+    0 4px 12px rgba(0,0,0,0.5),
+    0 1px 3px rgba(0,0,0,0.3),
+    0 0 0 1px rgba(255,255,255,0.04);
+
+  --shadow-lg:
+    0 8px 32px rgba(0,0,0,0.6),
+    0 2px 8px rgba(0,0,0,0.4),
+    0 0 0 1px rgba(255,255,255,0.05);
+
+  --shadow-xl:
+    0 24px 64px rgba(0,0,0,0.7),
+    0 4px 16px rgba(0,0,0,0.4);
+
+  --shadow-focus:
+    0 0 0 2px var(--bg-base),
+    0 0 0 4px var(--accent-ring);
+
+  --shadow-accent-glow:
+    0 0 24px rgba(0, 200, 160, 0.20),
+    0 0 48px rgba(0, 200, 160, 0.08);
+
+  --shadow-card-hover:
+    0 8px 32px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(255,255,255,0.08),
+    0 0 32px rgba(0, 200, 160, 0.08);
+
+  /* ── TRANSITIONS ──────────────────────────────────────── */
+  --ease-out:       cubic-bezier(0.0, 0.0, 0.2, 1.0);
+  --ease-in-out:    cubic-bezier(0.4, 0.0, 0.2, 1.0);
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1.0);
+  --ease-bounce:    cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  --duration-fast:  120ms;
+  --duration-base:  200ms;
+  --duration-slow:  340ms;
+  --duration-enter: 480ms;
+
+  --transition-base:   all var(--duration-base) var(--ease-out);
+  --transition-color:  color var(--duration-fast) var(--ease-out),
+                       background-color var(--duration-fast) var(--ease-out),
+                       border-color var(--duration-fast) var(--ease-out);
+  --transition-shadow: box-shadow var(--duration-base) var(--ease-out);
+  --transition-transform: transform var(--duration-base) var(--ease-spring);
+
+  /* ── Z-INDEX LAYERS ───────────────────────────────────── */
+  --z-base:    0;
+  --z-raised:  10;
+  --z-overlay: 100;
+  --z-modal:   200;
+  --z-toast:   300;
+  --z-tooltip: 400;
+
+  /* ── LAYOUT ───────────────────────────────────────────── */
+  --auth-card-width:       420px;
+  --auth-card-width-wide:  520px;
+  --portal-grid-cols:      2;
+  --input-height:          48px;
+  --button-height:         48px;
+  --button-height-sm:      36px;
+}
+
+/* Wide viewport: 4-col portal grid */
+@media (min-width: 900px) {
+  :root {
+    --portal-grid-cols: 4;
+  }
+}
