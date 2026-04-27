@@ -1,0 +1,132 @@
+<!-- ============================================================
+     SCREEN: Portal Select  |  002-portal-routing
+     FR-002-01 · Publish portal metadata
+     Roles: all (unauthenticated entry point)
+     ============================================================ -->
+<div class="screen screen--active" id="screen-portal-select" data-screen="portal-select" role="main" aria-label="Select your portal">
+
+  <div class="auth-shell">
+    <div class="auth-container screen-portal-select">
+
+      <!-- ── Wordmark ─────────────────────────────────────── -->
+      <header class="auth-header" role="banner">
+        <div class="auth-wordmark">
+          <span class="auth-wordmark-dot" aria-hidden="true"></span>
+          Dev8X
+        </div>
+        <p class="auth-tagline">Talent Management &amp; CRM Platform</p>
+      </header>
+
+      <!-- ── Portal Grid ──────────────────────────────────── -->
+      <!-- BR-002-01: Role-to-portal match enforced after selection -->
+      <nav class="portal-grid" role="navigation" aria-label="Portal selection">
+
+        <!-- Candidate Portal — 001/candidate role -->
+        <button
+          class="portal-card portal-card--candidate"
+          data-portal="candidate"
+          aria-label="Candidate portal — track your application and manage documents"
+          type="button"
+        >
+          <div class="portal-card__icon" aria-hidden="true">
+            <!-- person-walking / briefcase icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+              <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+              <line x1="12" y1="12" x2="12" y2="16"/>
+              <line x1="10" y1="14" x2="14" y2="14"/>
+            </svg>
+          </div>
+          <div class="portal-card__body">
+            <div class="portal-card__name">Candidate</div>
+            <div class="portal-card__desc">Track your application, schedule interviews, and complete onboarding.</div>
+          </div>
+          <svg class="portal-card__arrow" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 17 17 7M17 7H7M17 7v10"/>
+          </svg>
+        </button>
+
+        <!-- Client Portal — client role -->
+        <button
+          class="portal-card portal-card--client"
+          data-portal="client"
+          aria-label="Client portal — monitor projects, invoices, and team hours"
+          type="button"
+        >
+          <div class="portal-card__icon" aria-hidden="true">
+            <!-- chart / building icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <path d="M8 21h8M12 17v4"/>
+              <path d="M7 8h.01M12 8h.01M17 8h.01"/>
+              <path d="M7 12h10"/>
+            </svg>
+          </div>
+          <div class="portal-card__body">
+            <div class="portal-card__name">Client</div>
+            <div class="portal-card__desc">Monitor project progress, review invoices, and track team working hours.</div>
+          </div>
+          <svg class="portal-card__arrow" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 17 17 7M17 7H7M17 7v10"/>
+          </svg>
+        </button>
+
+        <!-- Admin Portal — hr_admin / super_admin roles · MFA required -->
+        <button
+          class="portal-card portal-card--admin"
+          data-portal="admin"
+          aria-label="Admin portal — manage applicants, pipeline, and system settings. Requires two-factor authentication."
+          type="button"
+        >
+          <!-- MFA required badge (Constitution G-09, ADR-010) -->
+          <span class="portal-card__badge" aria-label="Multi-factor authentication required">2FA</span>
+
+          <div class="portal-card__icon" aria-hidden="true">
+            <!-- shield / settings icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="portal-card__body">
+            <div class="portal-card__name">HR Admin</div>
+            <div class="portal-card__desc">Manage the hiring pipeline, job postings, interviews, and evaluations.</div>
+          </div>
+          <svg class="portal-card__arrow" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 17 17 7M17 7H7M17 7v10"/>
+          </svg>
+        </button>
+
+        <!-- CRM Portal — sales_rep / manager roles -->
+        <button
+          class="portal-card portal-card--crm"
+          data-portal="crm"
+          aria-label="CRM portal — manage contacts, deal pipeline, outreach, and lead scoring"
+          type="button"
+        >
+          <div class="portal-card__icon" aria-hidden="true">
+            <!-- target / funnel icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+            </svg>
+          </div>
+          <div class="portal-card__body">
+            <div class="portal-card__name">CRM</div>
+            <div class="portal-card__desc">Manage contacts, deals pipeline, outreach analytics, and lead scoring.</div>
+          </div>
+          <svg class="portal-card__arrow" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 17 17 7M17 7H7M17 7v10"/>
+          </svg>
+        </button>
+
+      </nav><!-- /.portal-grid -->
+
+      <!-- ── Footer note ──────────────────────────────────── -->
+      <p class="portal-select-footer" role="contentinfo">
+        Secure &amp; encrypted connection
+      </p>
+
+    </div><!-- /.auth-container -->
+  </div><!-- /.auth-shell -->
+
+</div><!-- #screen-portal-select -->

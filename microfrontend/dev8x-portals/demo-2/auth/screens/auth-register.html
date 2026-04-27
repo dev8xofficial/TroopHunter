@@ -1,0 +1,224 @@
+<!-- ============================================================
+     SCREEN: Register  |  001-authentication
+     FR-001-02 · Support candidate self-registration
+     Role: candidate (only portal with self-registration)
+     BR-001-01 · No user enumeration (duplicate email returns
+                 same envelope as success in API; UI shows generic msg)
+     ============================================================ -->
+<div class="screen" id="screen-register" data-screen="register" role="main" aria-label="Create your account">
+  <div class="auth-shell">
+    <div class="auth-container screen-register">
+      <!-- ── Back to login ──────────────────────────────── -->
+      <button class="auth-back" id="register-back-btn" type="button" aria-label="Back to sign in">
+        <svg class="auth-back__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        Back to sign in
+      </button>
+
+      <!-- ── Wide auth card ────────────────────────────── -->
+      <div class="auth-card auth-card--wide" id="register-card" data-portal="candidate" role="region" aria-label="Create candidate account">
+        <!-- Portal chip — candidate-only badge -->
+        <div class="portal-chip portal-chip--candidate" aria-label="Candidate portal">
+          <span class="portal-chip__dot" aria-hidden="true"></span>
+          Candidate Portal
+        </div>
+
+        <!-- Headings -->
+        <h1 class="auth-card__title" style="margin-top: var(--space-4)">Create your account</h1>
+        <p class="auth-card__subtitle">Join Dev8X to track your application, prepare for interviews, and complete onboarding — all in one place.</p>
+
+        <!-- ── Success state (hidden; shown after API success) ── -->
+        <div class="alert alert--success" id="register-success" role="status" aria-live="polite" hidden>
+          <svg class="alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          <div class="alert__body">
+            <div class="alert__title">Account created</div>
+            Check your inbox for a verification link before signing in.
+          </div>
+        </div>
+
+        <!-- ── Error alert ──────────────────────────────── -->
+        <div class="alert alert--error" id="register-error" role="alert" aria-live="assertive" aria-atomic="true" hidden>
+          <svg class="alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          <div class="alert__body">
+            <span id="register-error-body">Something went wrong. Please try again.</span>
+          </div>
+        </div>
+
+        <!-- ── Registration Form ─────────────────────────── -->
+        <form class="form" id="register-form" novalidate autocomplete="on" aria-label="New candidate account details">
+          <!-- Name row — first + last -->
+          <div class="register-name-row">
+            <!-- First name -->
+            <div class="form-group">
+              <label class="form-label" for="reg-first-name">
+                First name
+                <span class="form-label__required" aria-hidden="true">*</span>
+              </label>
+              <div class="input-wrap">
+                <input class="input" type="text" id="reg-first-name" name="first_name" placeholder="Jane" autocomplete="given-name" required aria-required="true" maxlength="100" aria-describedby="reg-first-name-error" />
+              </div>
+              <span class="form-error" id="reg-first-name-error" role="alert" hidden>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                First name is required.
+              </span>
+            </div>
+
+            <!-- Last name -->
+            <div class="form-group">
+              <label class="form-label" for="reg-last-name">
+                Last name
+                <span class="form-label__required" aria-hidden="true">*</span>
+              </label>
+              <div class="input-wrap">
+                <input class="input" type="text" id="reg-last-name" name="last_name" placeholder="Smith" autocomplete="family-name" required aria-required="true" maxlength="100" aria-describedby="reg-last-name-error" />
+              </div>
+              <span class="form-error" id="reg-last-name-error" role="alert" hidden>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                Last name is required.
+              </span>
+            </div>
+          </div>
+          <!-- /.register-name-row -->
+
+          <!-- Email -->
+          <div class="form-group">
+            <label class="form-label" for="reg-email">
+              Email address
+              <span class="form-label__required" aria-hidden="true">*</span>
+            </label>
+            <div class="input-wrap">
+              <svg class="input-wrap__icon-left" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              <input class="input input--with-left-icon" type="email" id="reg-email" name="email" placeholder="you@example.com" autocomplete="email" required aria-required="true" maxlength="254" inputmode="email" aria-describedby="reg-email-error" />
+            </div>
+            <span class="form-error" id="reg-email-error" role="alert" hidden>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+              Please enter a valid email address.
+            </span>
+          </div>
+
+          <!-- Password + strength meter -->
+          <div class="form-group">
+            <label class="form-label" for="reg-password">
+              Password
+              <span class="form-label__required" aria-hidden="true">*</span>
+              <span class="form-label__optional">min 8 characters</span>
+            </label>
+            <div class="input-wrap">
+              <svg class="input-wrap__icon-left" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+              <input class="input input--with-both-icons" type="password" id="reg-password" name="password" placeholder="Create a strong password" autocomplete="new-password" required aria-required="true" minlength="8" aria-describedby="reg-password-strength reg-password-error" />
+              <button class="password-toggle" type="button" id="reg-pw-toggle" aria-label="Show password" aria-pressed="false">
+                <svg id="reg-pw-icon-show" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+                <svg id="reg-pw-icon-hide" viewBox="0 0 24 24" aria-hidden="true" style="display: none">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+                  <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+                  <line x1="1" y1="1" x2="23" y2="23" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Strength meter — data-strength set by JS (1–5) -->
+            <div class="password-strength" id="reg-password-strength" data-strength="0" role="meter" aria-label="Password strength" aria-valuenow="0" aria-valuemin="0" aria-valuemax="5">
+              <div class="password-strength__bars" aria-hidden="true">
+                <div class="password-strength__bar"></div>
+                <div class="password-strength__bar"></div>
+                <div class="password-strength__bar"></div>
+                <div class="password-strength__bar"></div>
+                <div class="password-strength__bar"></div>
+              </div>
+              <div class="password-strength__label">
+                <span>Strength</span>
+                <span id="reg-strength-label" aria-live="polite">—</span>
+              </div>
+            </div>
+
+            <span class="form-error" id="reg-password-error" role="alert" hidden>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+              Password must be at least 8 characters with uppercase, lowercase, and a number.
+            </span>
+          </div>
+
+          <!-- Password confirmation -->
+          <div class="form-group">
+            <label class="form-label" for="reg-password-confirm">
+              Confirm password
+              <span class="form-label__required" aria-hidden="true">*</span>
+            </label>
+            <div class="input-wrap">
+              <svg class="input-wrap__icon-left" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <input class="input input--with-left-icon" type="password" id="reg-password-confirm" name="password_confirmation" placeholder="Repeat your password" autocomplete="new-password" required aria-required="true" aria-describedby="reg-confirm-error reg-confirm-match" />
+            </div>
+            <!-- Match indicator — shown when both fields have values -->
+            <span class="verified-badge" id="reg-confirm-match" role="status" aria-live="polite" hidden>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Passwords match
+            </span>
+            <span class="form-error" id="reg-confirm-error" role="alert" hidden>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+              Passwords do not match.
+            </span>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-submit" style="margin-top: var(--space-2)">
+            <button class="btn btn--primary btn--full" type="submit" id="register-submit-btn" aria-label="Create your candidate account">Create account</button>
+          </div>
+        </form>
+        <!-- /#register-form -->
+
+        <!-- ── Terms note ─────────────────────────────── -->
+        <p class="register-terms" role="note">By creating an account you agree to Dev8X's Terms of Service and Privacy Policy. Your data is processed solely to facilitate your application and onboarding experience.</p>
+
+        <!-- ── Footer: already have account ──────────── -->
+        <div class="auth-card__footer">
+          Already have an account?
+          <button class="text-link" type="button" id="register-signin-btn" aria-label="Go back to sign in">Sign in</button>
+        </div>
+      </div>
+      <!-- /.auth-card -->
+    </div>
+    <!-- /.auth-container -->
+  </div>
+  <!-- /.auth-shell -->
+</div>
+<!-- #screen-register -->

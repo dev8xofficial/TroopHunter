@@ -1,0 +1,215 @@
+<!-- ============================================================
+     SCREEN: MFA Challenge  |  003-mfa
+     FR-003-01 · Issue MFA challenges for privileged sessions
+     FR-003-02 · Verify TOTP or recovery code
+     FR-003-03 · Support step-up verification
+     BR-003-01 · Single active challenge (enforced server-side)
+     BR-003-02 · Recovery code consumption (enforced server-side)
+     Constitution G-09 · MFA mandatory for super_admin / hr_admin
+     ADR-010    · Admin sessions expire in 4 h; TOTP valid 30 s
+     ============================================================ -->
+<div class="screen" id="screen-mfa" data-screen="mfa" role="main" aria-label="Two-factor authentication">
+  <div class="auth-shell">
+    <div class="auth-container screen-mfa">
+      <!-- ── Back link — only visible during step-up (not initial admin login) -->
+      <button class="auth-back" id="mfa-back-btn" type="button" aria-label="Cancel step-up and return to portal" hidden>
+        <svg class="auth-back__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        Cancel
+      </button>
+
+      <!-- ── Auth step indicator — login is step 1, MFA is step 2 ── -->
+      <nav class="auth-steps" aria-label="Sign-in progress">
+        <!-- Step 1: credentials (done) -->
+        <div class="auth-steps__item auth-steps__item--done" aria-label="Step 1: Credentials, complete">
+          <span class="auth-steps__dot" aria-hidden="true"></span>
+          Credentials
+        </div>
+        <div class="auth-steps__line auth-steps__line--done" aria-hidden="true">
+          <div class="auth-steps__line::after"></div>
+        </div>
+        <!-- Step 2: MFA (active) -->
+        <div class="auth-steps__item auth-steps__item--active" aria-current="step" aria-label="Step 2: Verification, current">
+          <span class="auth-steps__dot" aria-hidden="true"></span>
+          Verification
+        </div>
+      </nav>
+
+      <!-- ── MFA Card ──────────────────────────────────────── -->
+      <div class="auth-card" id="mfa-card" data-portal="admin" role="region" aria-label="Two-factor verification">
+        <!-- Security badge — admin context -->
+        <div style="margin-bottom: var(--space-5)">
+          <span class="security-badge security-badge--admin" aria-label="Admin portal — enhanced security">
+            <svg class="security-badge__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            Admin Portal · Enhanced Security
+          </span>
+        </div>
+
+        <h1 class="auth-card__title">Verify your identity</h1>
+        <p class="auth-card__subtitle" id="mfa-subtitle">Enter the 6-digit code from your authenticator app to complete sign-in.</p>
+
+        <!-- ── Error alert ────────────────────────────────── -->
+        <div class="alert alert--error" id="mfa-error" role="alert" aria-live="assertive" aria-atomic="true" hidden>
+          <svg class="alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          <div class="alert__body">
+            <div class="alert__title" id="mfa-error-title">Incorrect code</div>
+            <span id="mfa-error-body">The code you entered is invalid or has expired. Please try again.</span>
+          </div>
+        </div>
+
+        <!-- ── Challenge type tabs — TOTP | Recovery Code ── -->
+        <!--
+          FR-003-02: valid TOTP or recovery code both accepted.
+          Tabs switch the active input panel; JS manages aria-selected.
+        -->
+        <div class="mfa-type-tabs" role="tablist" aria-label="Verification method" id="mfa-tabs">
+          <button class="mfa-type-tabs__tab mfa-type-tabs__tab--active" role="tab" id="mfa-tab-totp" aria-selected="true" aria-controls="mfa-panel-totp" type="button" data-tab="totp">Authenticator</button>
+          <button class="mfa-type-tabs__tab" role="tab" id="mfa-tab-recovery" aria-selected="false" aria-controls="mfa-panel-recovery" type="button" data-tab="recovery">Recovery code</button>
+        </div>
+
+        <!-- ── TOTP Panel ─────────────────────────────────── -->
+        <div id="mfa-panel-totp" role="tabpanel" aria-labelledby="mfa-tab-totp">
+          <form class="form" id="mfa-form-totp" novalidate autocomplete="off" aria-label="Authenticator code">
+            <!-- Issuer context: which app to open -->
+            <div class="mfa-issuer" aria-label="Open your authenticator app">
+              <div class="mfa-issuer__icon" aria-hidden="true">🔐</div>
+              <span>Open your authenticator app and enter the current code</span>
+            </div>
+
+            <!-- 6-digit OTP input — split 3 + 3 with separator -->
+            <div class="otp-row">
+              <div class="otp-input-group" id="mfa-otp-group" role="group" aria-label="6-digit authenticator code — enter one digit per box">
+                <!-- Digits 1–3 -->
+                <input class="otp-digit" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" id="otp-1" aria-label="Digit 1" autocomplete="one-time-code" />
+                <input class="otp-digit" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" id="otp-2" aria-label="Digit 2" autocomplete="off" />
+                <input class="otp-digit" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" id="otp-3" aria-label="Digit 3" autocomplete="off" />
+
+                <!-- Visual separator -->
+                <div class="otp-input-group__sep" aria-hidden="true"></div>
+
+                <!-- Digits 4–6 -->
+                <input class="otp-digit" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" id="otp-4" aria-label="Digit 4" autocomplete="off" />
+                <input class="otp-digit" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" id="otp-5" aria-label="Digit 5" autocomplete="off" />
+                <input class="otp-digit" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" id="otp-6" aria-label="Digit 6" autocomplete="off" />
+              </div>
+
+              <!-- Expiry countdown (30 s TOTP window) -->
+              <!--
+                INV-003-01: verified/failed/expired challenges are terminal.
+                JS resets digits + emits new challenge request when timer hits 0.
+              -->
+              <div class="mfa-expiry" aria-live="polite" aria-label="Code expires in">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+                Code expires in
+                <span class="mfa-expiry__timer" id="mfa-totp-countdown" aria-live="off">30</span>s
+              </div>
+            </div>
+            <!-- /.otp-row -->
+
+            <!-- Attempt dots — 3 max (INV-003-02 / FR-003-02) -->
+            <!--
+              3 failed attempts → challenge moves to `failed` terminal state.
+              JS marks dots .mfa-attempts__dot--used on each failure.
+            -->
+            <div class="mfa-attempts" id="mfa-totp-attempts" aria-label="Remaining attempts" aria-live="polite">
+              <span class="mfa-attempts__dot" aria-hidden="true"></span>
+              <span class="mfa-attempts__dot" aria-hidden="true"></span>
+              <span class="mfa-attempts__dot" aria-hidden="true"></span>
+              <span class="sr-only" id="mfa-totp-attempts-label">3 attempts remaining</span>
+            </div>
+
+            <!-- Submit -->
+            <div class="form-submit">
+              <button class="btn btn--gold btn--full" type="submit" id="mfa-totp-submit" aria-label="Verify authenticator code" disabled>Verify</button>
+            </div>
+
+            <!-- Resend / rotate challenge (POST /api/v1/auth/mfa/challenge) -->
+            <div class="resend-action" aria-live="polite">
+              <span>Didn't get a code?</span>
+              <button class="resend-action__btn" type="button" id="mfa-resend-btn" aria-label="Request a new authenticator challenge" disabled>Get a new challenge</button>
+              <span class="resend-action__countdown" id="mfa-resend-countdown" aria-hidden="true">30s</span>
+            </div>
+          </form>
+        </div>
+        <!-- /#mfa-panel-totp -->
+
+        <!-- ── Recovery Code Panel ────────────────────────── -->
+        <!--
+          FR-003-02: one-time recovery code accepted as second factor.
+          BR-003-02: recovery code is consumed on success (server enforced).
+        -->
+        <div id="mfa-panel-recovery" role="tabpanel" aria-labelledby="mfa-tab-recovery" hidden>
+          <form class="form" id="mfa-form-recovery" novalidate autocomplete="off" aria-label="Recovery code">
+            <p class="mfa-recovery-hint" role="note">Use one of the one-time recovery codes you saved when you set up two-factor authentication. Each code can only be used once.</p>
+
+            <!-- Single recovery code input -->
+            <div class="form-group">
+              <label class="form-label" for="mfa-recovery-input">
+                Recovery code
+                <span class="form-label__required" aria-hidden="true">*</span>
+              </label>
+              <div class="input-wrap">
+                <input class="input recovery-input" type="text" id="mfa-recovery-input" name="code" placeholder="XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false" maxlength="20" aria-describedby="mfa-recovery-error" aria-required="true" required />
+              </div>
+              <span class="form-error" id="mfa-recovery-error" role="alert" hidden>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                Recovery code is invalid or has already been used.
+              </span>
+            </div>
+
+            <!-- Attempt dots for recovery path -->
+            <div class="mfa-attempts" id="mfa-recovery-attempts" aria-label="Remaining attempts" aria-live="polite">
+              <span class="mfa-attempts__dot" aria-hidden="true"></span>
+              <span class="mfa-attempts__dot" aria-hidden="true"></span>
+              <span class="mfa-attempts__dot" aria-hidden="true"></span>
+              <span class="sr-only" id="mfa-recovery-attempts-label">3 attempts remaining</span>
+            </div>
+
+            <!-- Submit -->
+            <div class="form-submit">
+              <button class="btn btn--gold btn--full" type="submit" id="mfa-recovery-submit" aria-label="Verify recovery code">Verify recovery code</button>
+            </div>
+
+            <!-- Warn: limited codes remaining -->
+            <div class="alert alert--warning" id="mfa-recovery-low-warn" role="note" aria-live="polite" hidden>
+              <svg class="alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              <div class="alert__body">
+                <div class="alert__title">Low on recovery codes</div>
+                You have fewer than 2 codes remaining. Generate new codes in your account settings after signing in.
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- /#mfa-panel-recovery -->
+
+        <!-- ── Card footer — contact support ──────────────── -->
+        <div class="auth-card__footer">
+          Lost access to your authenticator?
+          <button class="text-link" type="button" id="mfa-support-btn" aria-label="Contact support for account recovery">Contact support</button>
+        </div>
+      </div>
+      <!-- /.auth-card -->
+    </div>
+    <!-- /.auth-container -->
+  </div>
+  <!-- /.auth-shell -->
+</div>
+<!-- #screen-mfa -->

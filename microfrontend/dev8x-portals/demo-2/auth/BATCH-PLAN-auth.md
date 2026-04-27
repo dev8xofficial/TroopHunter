@@ -18,10 +18,10 @@ Total files: 20 → 10 batches (max 2 per batch)
 | 2   | css/shell.css                    | all       | ✅ DONE |
 | 3   | css/screen.css                   | all       | ✅ DONE |
 | 4   | css/components.css               | all       | ✅ DONE |
-| 5   | screens/auth-portal-select.html  | 002       | PENDING |
-| 6   | screens/auth-login.html          | 001       | PENDING |
-| 7   | screens/auth-register.html       | 001       | PENDING |
-| 8   | screens/auth-mfa.html            | 003       | PENDING |
+| 5   | screens/auth-portal-select.html  | 002       | ✅ DONE |
+| 6   | screens/auth-login.html          | 001       | ✅ DONE |
+| 7   | screens/auth-register.html       | 001       | ✅ DONE |
+| 8   | screens/auth-mfa.html            | 003       | ✅ DONE |
 | 9   | screens/auth-password-reset.html | 004       | PENDING |
 | 10  | screens/auth-sso-callback.html   | 005       | PENDING |
 | 11  | js/components/portal-selector.js | 002       | PENDING |
@@ -37,10 +37,10 @@ Total files: 20 → 10 batches (max 2 per batch)
 
 ## Batch Sequence
 
-- Batch 1: css/tokens.css + css/shell.css → IN PROGRESS
-- Batch 2: css/screen.css + css/components.css
-- Batch 3: screens/auth-portal-select.html + screens/auth-login.html
-- Batch 4: screens/auth-register.html + screens/auth-mfa.html
+- Batch 1: css/tokens.css + css/shell.css → ✅ DONE
+- Batch 2: css/screen.css + css/components.css → ✅ DONE
+- Batch 3: screens/auth-portal-select.html + screens/auth-login.html → ✅ DONE
+- Batch 4: screens/auth-register.html + screens/auth-mfa.html → ✅ DONE
 - Batch 5: screens/auth-password-reset.html + screens/auth-sso-callback.html
 - Batch 6: js/components/portal-selector.js + js/components/auth-form.js
 - Batch 7: js/components/mfa-challenge.js + js/components/password-reset.js

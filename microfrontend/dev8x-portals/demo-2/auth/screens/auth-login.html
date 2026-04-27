@@ -1,0 +1,286 @@
+<!-- ============================================================
+     SCREEN: Login  |  001-authentication
+     FR-001-01 · Validate email and password credentials
+     FR-001-02 · Support candidate self-registration (link)
+     FR-001-03 · Manage portal-scoped sessions
+     FR-001-04 · Apply lockout policy (counter in JS)
+     005-sso   · Google SSO for candidate / client portals
+     ============================================================ -->
+<div class="screen" id="screen-login" data-screen="login" role="main" aria-label="Sign in">
+
+  <div class="auth-shell">
+    <div class="auth-container screen-login">
+
+      <!-- ── Back to portal select ────────────────────────── -->
+      <button class="auth-back" id="login-back-btn" type="button" aria-label="Back to portal selection">
+        <svg class="auth-back__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        All portals
+      </button>
+
+      <!-- ── Auth Card ─────────────────────────────────────── -->
+      <!--
+        data-portal is set dynamically by portal-selector.js
+        after the user picks a portal on the select screen.
+        Drives the card accent colour via screen.css selectors.
+      -->
+      <div class="auth-card" id="login-card" data-portal="candidate" role="region" aria-label="Sign-in form">
+
+        <!-- Portal context pill — shows which portal was selected
+             BR-002-01: clicking it routes back to portal select -->
+        <button
+          class="login-portal-context"
+          id="login-portal-ctx"
+          type="button"
+          aria-label="Currently signing into Candidate portal — click to change"
+          data-portal="candidate"
+        >
+          <span class="login-portal-context__dot" id="login-ctx-dot" style="background: var(--portal-candidate);" aria-hidden="true"></span>
+          <span id="login-ctx-label">Candidate</span>
+          <span class="login-portal-context__change" aria-hidden="true">change</span>
+        </button>
+
+        <!-- ── Admin MFA notice (shown only when portal=admin)
+               Constitution G-09, ADR-010: mandatory 2FA for admin ── -->
+        <div
+          class="admin-mfa-notice"
+          id="login-mfa-notice"
+          role="note"
+          aria-live="polite"
+          hidden
+        >
+          <svg class="admin-mfa-notice__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+          Two-factor authentication is required for admin access. You'll be prompted after sign-in.
+        </div>
+
+        <!-- Card headings -->
+        <h1 class="auth-card__title" id="login-title">Welcome back</h1>
+        <p class="auth-card__subtitle" id="login-subtitle">Sign in to your Candidate account to continue.</p>
+
+        <!-- ── Error / lockout alert (hidden by default) ──── -->
+        <div
+          class="alert alert--error"
+          id="login-error"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+          hidden
+        >
+          <svg class="alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <div class="alert__body">
+            <div class="alert__title" id="login-error-title">Invalid email or password</div>
+            <span id="login-error-body">Please check your credentials and try again.</span>
+          </div>
+        </div>
+
+        <!-- ── Login Form ────────────────────────────────── -->
+        <form class="form" id="login-form" novalidate autocomplete="on" aria-label="Sign-in credentials">
+
+          <!-- Email -->
+          <div class="form-group">
+            <label class="form-label" for="login-email">
+              Email address
+              <span class="form-label__required" aria-hidden="true">*</span>
+            </label>
+            <div class="input-wrap">
+              <svg class="input-wrap__icon-left" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <input
+                class="input input--with-left-icon"
+                type="email"
+                id="login-email"
+                name="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+                aria-required="true"
+                aria-describedby="login-email-error"
+                inputmode="email"
+              />
+            </div>
+            <span class="form-error" id="login-email-error" role="alert" hidden>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Please enter a valid email address.
+            </span>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <div class="form-row-actions" style="margin-top:0; margin-bottom: var(--space-2);">
+              <label class="form-label" for="login-password" style="margin-bottom:0;">
+                Password
+                <span class="form-label__required" aria-hidden="true">*</span>
+              </label>
+              <!-- FR-001: forgot password link → screen 004-password-reset -->
+              <button
+                class="text-link"
+                type="button"
+                id="login-forgot-btn"
+                aria-label="Forgot your password? Start password reset"
+              >Forgot password?</button>
+            </div>
+            <div class="input-wrap">
+              <svg class="input-wrap__icon-left" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              <input
+                class="input input--with-both-icons"
+                type="password"
+                id="login-password"
+                name="password"
+                placeholder="Your password"
+                autocomplete="current-password"
+                required
+                aria-required="true"
+                minlength="8"
+                aria-describedby="login-password-error"
+              />
+              <button
+                class="password-toggle"
+                type="button"
+                id="login-pw-toggle"
+                aria-label="Show password"
+                aria-pressed="false"
+              >
+                <!-- eye icon — toggled by JS -->
+                <svg id="login-pw-icon-show" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <svg id="login-pw-icon-hide" viewBox="0 0 24 24" aria-hidden="true" style="display:none;">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                  <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                  <line x1="1" y1="1" x2="23" y2="23"/>
+                </svg>
+              </button>
+            </div>
+            <span class="form-error" id="login-password-error" role="alert" hidden>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Password must be at least 8 characters.
+            </span>
+          </div>
+
+          <!-- Remember me + session hint (hidden for admin per ADR-010) -->
+          <div class="form-group form-group--row" id="login-remember-row">
+            <label class="checkbox-group" for="login-remember">
+              <input
+                class="checkbox-input"
+                type="checkbox"
+                id="login-remember"
+                name="remember_me"
+                aria-label="Keep me signed in for 30 days"
+              />
+              <span class="checkbox-box" aria-hidden="true"></span>
+              <span class="checkbox-label">Keep me signed in</span>
+            </label>
+            <div class="session-hint" id="login-session-hint" aria-label="Session expires after">
+              <span>Session:</span>
+              <span class="session-hint__value" id="login-session-value">24 h</span>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-submit form-submit--stack">
+            <button
+              class="btn btn--primary btn--full"
+              type="submit"
+              id="login-submit-btn"
+              aria-label="Sign in"
+            >
+              Sign in
+            </button>
+
+            <!-- Attempt counter (shown after first failure) -->
+            <div class="mfa-attempts" id="login-attempts" aria-label="Failed login attempts" hidden>
+              <span class="mfa-attempts__dot" aria-hidden="true"></span>
+              <span class="mfa-attempts__dot" aria-hidden="true"></span>
+              <span class="mfa-attempts__dot" aria-hidden="true"></span>
+              <span class="sr-only" id="login-attempts-label">0 of 3 attempts used</span>
+            </div>
+          </div>
+
+        </form><!-- /#login-form -->
+
+        <!-- ── SSO divider + Google button
+               005-sso: available for candidate and client portals only
+               Hidden for admin and CRM portals (ADR-010) ─────────── -->
+        <div id="login-sso-block">
+          <div class="auth-divider" role="separator" aria-label="Or continue with">
+            <span class="auth-divider__label">or</span>
+          </div>
+
+          <button
+            class="btn btn--sso btn--full"
+            type="button"
+            id="login-google-btn"
+            aria-label="Continue with Google — starts Google sign-in flow"
+          >
+            <!-- Google "G" SVG logo -->
+            <svg class="btn--sso__logo google-logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            Continue with Google
+          </button>
+        </div>
+
+        <!-- ── Card footer ────────────────────────────────── -->
+        <!-- Candidate only: register link (FR-001-02) -->
+        <div class="auth-card__footer" id="login-register-footer">
+          Don't have an account?
+          <button class="text-link" type="button" id="login-register-btn" aria-label="Create a new candidate account">
+            Create account
+          </button>
+        </div>
+
+      </div><!-- /.auth-card -->
+
+      <!-- ── Lockout overlay (rendered here, activated by JS) ── -->
+      <!-- FR-001-04: lockout policy; shown after threshold is hit -->
+      <div
+        class="lockout-overlay"
+        id="login-lockout-overlay"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="lockout-title"
+        aria-describedby="lockout-desc"
+        hidden
+      >
+        <div class="lockout-card">
+          <div class="lockout-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <h2 class="auth-card__title lockout-card__title" id="lockout-title">Account Locked</h2>
+          <p class="auth-card__subtitle" id="lockout-desc">
+            Too many failed sign-in attempts. Your account has been temporarily locked for security.
+          </p>
+          <!-- Countdown MM:SS -->
+          <div class="lockout-card__timer" aria-live="polite" aria-label="Time remaining until account unlocks">
+            <span id="lockout-min">30</span>:<span id="lockout-sec">00</span>
+          </div>
+          <p class="form-help" style="text-align:center; justify-content:center;">
+            The account will unlock automatically. Contact support if you need immediate access.
+          </p>
+        </div>
+      </div><!-- /.lockout-overlay -->
+
+    </div><!-- /.auth-container -->
+  </div><!-- /.auth-shell -->
+
+</div><!-- #screen-login -->
