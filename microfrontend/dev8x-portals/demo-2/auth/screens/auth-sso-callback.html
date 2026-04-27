@@ -1,0 +1,168 @@
+<!-- ============================================================
+     SCREEN: SSO Callback  |  005-sso
+     FR-005-02 · Complete SSO callback safely
+     FR-005-03 · Support account linking
+     BR-005-01 · Portal eligibility (candidate / client only)
+     BR-005-02 · Unique provider binding (no duplicate links)
+     EVT-005-01 · auth.sso.started
+     EVT-005-02 · auth.sso.completed
+     EVT-005-03 · auth.sso.linked
+     INV-005-01 · Only validated handshakes may create sessions
+     INV-005-02 · Linked provider identity is unique across accounts
+     Lifecycle: initiated → validated → linked | failed
+     ADR-010: SSO restricted to candidate and client portals
+     ============================================================ -->
+<div class="screen" id="screen-sso-callback" data-screen="sso-callback" role="main" aria-label="Completing Google sign-in">
+  <div class="auth-shell">
+    <div class="auth-container screen-sso-callback">
+      <!-- ── Callback Card ──────────────────────────────── -->
+      <div class="auth-card" id="sso-callback-card" role="region" aria-label="Google sign-in status">
+        <!-- ══════════════════════════════════════════════
+             STATE: Processing
+             Default visible state — shown while the system
+             is validating the provider callback:
+             POST /api/v1/auth/sso/google/callback
+             Transition: initiated → validated
+        ══════════════════════════════════════════════ -->
+        <div class="sso-callback-state" id="sso-state-processing" role="status" aria-live="polite" aria-label="Verifying Google sign-in, please wait">
+          <!-- Orbit spinner wrapping provider icon -->
+          <div class="sso-callback-state__spinner-wrap" aria-hidden="true">
+            <!-- Rotating ring — CSS animation .sso-callback-state__orbit -->
+            <div class="sso-callback-state__orbit"></div>
+            <!-- Google "G" logo centred inside the ring -->
+            <svg class="sso-callback-state__provider-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" />
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+            </svg>
+          </div>
+
+          <div>
+            <p class="sso-callback-state__message" id="sso-state-message">Completing sign-in…</p>
+            <p class="sso-callback-state__sub" id="sso-state-sub">Verifying with Google</p>
+          </div>
+        </div>
+        <!-- /#sso-state-processing -->
+
+        <!-- ══════════════════════════════════════════════
+             STATE: Linking existing account
+             Shown when an authenticated session exists and
+             the user is linking a Google identity:
+             POST /api/v1/auth/sso/google/link
+             Transition: validated → linked (EVT-005-03)
+             Hidden by default; JS reveals when link flow detected.
+        ══════════════════════════════════════════════ -->
+        <div class="sso-callback-state" id="sso-state-linking" role="status" aria-live="polite" aria-label="Linking Google account" hidden>
+          <div class="sso-callback-state__spinner-wrap" aria-hidden="true">
+            <div class="sso-callback-state__orbit" style="border-top-color: var(--portal-candidate)"></div>
+            <svg class="sso-callback-state__provider-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" />
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+            </svg>
+          </div>
+          <div>
+            <p class="sso-callback-state__message">Linking Google account…</p>
+            <p class="sso-callback-state__sub">Connecting to your existing account</p>
+          </div>
+        </div>
+        <!-- /#sso-state-linking -->
+
+        <!-- ══════════════════════════════════════════════
+             STATE: Success / Linked
+             Momentarily shown before redirect.
+             Transition complete: validated → linked
+             EVT-005-02 or EVT-005-03 emitted server-side.
+             Hidden by default; JS reveals briefly then redirects.
+        ══════════════════════════════════════════════ -->
+        <div class="sso-callback-state" id="sso-state-success" role="status" aria-live="assertive" aria-label="Sign-in successful, redirecting" hidden>
+          <div class="sso-callback-state__spinner-wrap" aria-hidden="true" style="background: var(--status-success-bg); border-color: var(--status-success-border)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--status-success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <div>
+            <p class="sso-callback-state__message" style="color: var(--status-success)">Signed in successfully</p>
+            <p class="sso-callback-state__sub">Redirecting to your portal…</p>
+          </div>
+        </div>
+        <!-- /#sso-state-success -->
+
+        <!-- ══════════════════════════════════════════════
+             STATE: Error
+             Shown when:
+             - State token is invalid or expired
+             - Provider code exchange fails
+             - Portal ineligibility (admin/crm attempted SSO)
+             - Provider identity already linked to another account (BR-005-02)
+             Transition: initiated → failed
+             Hidden by default; JS reveals with specific error message.
+        ══════════════════════════════════════════════ -->
+        <div class="sso-callback-error" id="sso-state-error" role="alert" aria-live="assertive" aria-atomic="true" hidden>
+          <!-- Error icon -->
+          <div class="sso-callback-error__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="15" y1="9" x2="9" y2="15" />
+              <line x1="9" y1="9" x2="15" y2="15" />
+            </svg>
+          </div>
+
+          <!-- Dynamic error heading + message — set by JS -->
+          <h2 class="auth-card__title" id="sso-error-title" style="color: var(--status-error)">Sign-in failed</h2>
+          <p class="auth-card__subtitle" id="sso-error-body">We couldn't complete the Google sign-in. The link may have expired or been used already.</p>
+
+          <!-- Error code for support reference (set by JS from API response) -->
+          <div class="alert alert--error" style="width: 100%; text-align: left" role="none">
+            <svg class="alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+            <div class="alert__body">
+              <div class="alert__title" id="sso-error-reason">Invalid or expired state token</div>
+              <span id="sso-error-detail">The sign-in session timed out. Please try again from the sign-in screen.</span>
+            </div>
+          </div>
+
+          <!-- Recovery actions -->
+          <div class="form-submit" style="width: 100%; margin-top: var(--space-2)">
+            <button class="btn btn--primary btn--full" type="button" id="sso-retry-btn" aria-label="Try signing in with Google again">Try again</button>
+            <button class="btn btn--ghost btn--full" type="button" id="sso-use-password-btn" aria-label="Sign in with email and password instead">Sign in with password</button>
+          </div>
+        </div>
+        <!-- /#sso-state-error -->
+
+        <!-- ══════════════════════════════════════════════
+             ERROR: Portal not eligible for SSO
+             BR-005-01 — admin and CRM portals cannot use Google SSO
+             Separate state from generic error for clarity.
+             Hidden by default.
+        ══════════════════════════════════════════════ -->
+        <div class="sso-callback-error" id="sso-state-ineligible" role="alert" aria-live="assertive" hidden>
+          <div class="sso-callback-error__icon" aria-hidden="true" style="background: var(--gold-subtle); border-color: rgba(212, 168, 67, 0.3); color: var(--gold)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+          </div>
+
+          <h2 class="auth-card__title" style="color: var(--gold)">Google sign-in not available</h2>
+          <p class="auth-card__subtitle">The Admin and CRM portals require password authentication for security reasons. Google sign-in is only available for Candidate and Client portals.</p>
+
+          <div class="form-submit" style="width: 100%; margin-top: var(--space-4)">
+            <button class="btn btn--gold btn--full" type="button" id="sso-ineligible-back-btn" aria-label="Go to sign in with password">Sign in with password</button>
+          </div>
+        </div>
+        <!-- /#sso-state-ineligible -->
+      </div>
+      <!-- /.auth-card -->
+    </div>
+    <!-- /.auth-container -->
+  </div>
+  <!-- /.auth-shell -->
+</div>
+<!-- #screen-sso-callback -->

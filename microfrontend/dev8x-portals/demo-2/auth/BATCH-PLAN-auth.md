@@ -22,10 +22,10 @@ Total files: 20 → 10 batches (max 2 per batch)
 | 6   | screens/auth-login.html          | 001       | ✅ DONE |
 | 7   | screens/auth-register.html       | 001       | ✅ DONE |
 | 8   | screens/auth-mfa.html            | 003       | ✅ DONE |
-| 9   | screens/auth-password-reset.html | 004       | PENDING |
-| 10  | screens/auth-sso-callback.html   | 005       | PENDING |
-| 11  | js/components/portal-selector.js | 002       | PENDING |
-| 12  | js/components/auth-form.js       | 001       | PENDING |
+| 9   | screens/auth-password-reset.html | 004       | ✅ DONE |
+| 10  | screens/auth-sso-callback.html   | 005       | ✅ DONE |
+| 11  | js/components/portal-selector.js | 002       | ✅ DONE |
+| 12  | js/components/auth-form.js       | 001       | ✅ DONE |
 | 13  | js/components/mfa-challenge.js   | 003       | PENDING |
 | 14  | js/components/password-reset.js  | 004       | PENDING |
 | 15  | js/components/sso-handler.js     | 005       | PENDING |
@@ -41,8 +41,8 @@ Total files: 20 → 10 batches (max 2 per batch)
 - Batch 2: css/screen.css + css/components.css → ✅ DONE
 - Batch 3: screens/auth-portal-select.html + screens/auth-login.html → ✅ DONE
 - Batch 4: screens/auth-register.html + screens/auth-mfa.html → ✅ DONE
-- Batch 5: screens/auth-password-reset.html + screens/auth-sso-callback.html
-- Batch 6: js/components/portal-selector.js + js/components/auth-form.js
+- Batch 5: screens/auth-password-reset.html + screens/auth-sso-callback.html → ✅ DONE
+- Batch 6: js/components/portal-selector.js + js/components/auth-form.js → ✅ DONE
 - Batch 7: js/components/mfa-challenge.js + js/components/password-reset.js
 - Batch 8: js/components/sso-handler.js + js/router.js
 - Batch 9: js/app.js + js/mock-data.js

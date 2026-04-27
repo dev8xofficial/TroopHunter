@@ -1,8 +1,8 @@
-# HANDOFF: auth — Batch 4 Complete
+# HANDOFF: auth — Batch 1 Complete
 
 ## Status
 
-Batch 4 of 10 complete.
+Batch 1 of 10 complete.
 
 ## Files Written (Batch 4)
 
@@ -48,13 +48,13 @@ Batch 4 of 10 complete.
 | EVT-003-01–04 · MFA audit events         | auth-mfa.html      | All states wired: submit / failure / expiry / resend     |
 | Constitution G-09 · MFA mandatory admin  | auth-mfa.html      | Gold verify button; no skip path available               |
 
-## Pending (Batch 5)
+## Pending (Batch 6)
 
-Next: `screens/auth-password-reset.html` + `screens/auth-sso-callback.html`
+Next: `css/screen.css` + `css/components.css`
 
 - **auth-password-reset.html**: 3-step flow (Request → Verify token → New password). Uses `reset-steps-track`, `reset-step`, `reset-step-connector`, `reset-token-expiry`, `reset-success` CSS classes. FR-004-01 through FR-004-03.
 - **auth-sso-callback.html**: Loading/processing/error states for Google OAuth callback. Uses `sso-callback-state`, orbit spinner, `sso-callback-error` CSS classes. FR-005-02.
 
 ## Run Next Batch
 
-Re-invoke spec-kit-to-code.md prompt. Current batch pointer: **Batch 5**.
+Re-invoke spec-kit-to-code.md prompt. Current batch pointer: **Batch 6**.
