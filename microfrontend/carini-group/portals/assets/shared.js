@@ -6,8 +6,7 @@
 
 /* ── APPLY THEME IMMEDIATELY (before first paint) ── */
 (function () {
-  var t = localStorage.getItem("cg-theme") || "light";
-  document.documentElement.setAttribute("data-theme", t);
+  document.documentElement.setAttribute("data-theme", "light");
 })();
 
 (function () {
@@ -87,28 +86,7 @@
   ];
 
   /* ── THEME ── */
-  function getTheme() {
-    return localStorage.getItem("cg-theme") || "light";
-  }
-
-  function setTheme(theme) {
-    localStorage.setItem("cg-theme", theme);
-    document.documentElement.setAttribute("data-theme", theme);
-    var btn = document.getElementById("cgn-theme-toggle");
-    if (btn) {
-      btn.textContent = theme === "light" ? "🌙" : "☀";
-      btn.title =
-        theme === "light" ? "Switch to dark mode" : "Switch to light mode";
-    }
-  }
-
-  function toggleTheme() {
-    document.documentElement.classList.add("theme-transitioning");
-    setTheme(getTheme() === "light" ? "dark" : "light");
-    setTimeout(function () {
-      document.documentElement.classList.remove("theme-transitioning");
-    }, 280);
-  }
+  // Theme is locked to light mode globally
 
   /* ── INJECT BOTTOM NAV ── */
   function injectNav() {
@@ -116,7 +94,6 @@
     if (existing) existing.remove();
 
     const cur = window.location.pathname.split("/").pop() || "index.html";
-    const theme = getTheme();
 
     let publicLinks = "";
     let portalLinks = "";
@@ -128,24 +105,15 @@
       else portalLinks += link;
     });
 
-    const themeIcon = theme === "light" ? "🌙" : "☀";
-    const themeTitle =
-      theme === "light" ? "Switch to dark mode" : "Switch to light mode";
-
     const nav = document.createElement("div");
     nav.id = "cg-nav";
     nav.innerHTML =
       publicLinks +
       `<span class="cgn-sep"></span>` +
       portalLinks +
-      `<span class="cgn-spacer"></span>` +
-      `<button class="cgn-theme-btn" id="cgn-theme-toggle" title="${themeTitle}">${themeIcon}</button>`
+      `<span class="cgn-spacer"></span>`;
 
     document.body.appendChild(nav);
-
-    document
-      .getElementById("cgn-theme-toggle")
-      .addEventListener("click", toggleTheme);
 
     const activeLink = nav.querySelector(".cgn-active");
     if (activeLink) {
@@ -173,6 +141,12 @@
       )
         return;
       if (!href.endsWith(".html")) return;
+      
+      e.preventDefault();
+      document.body.classList.add("page-exit");
+      setTimeout(function () {
+        window.location.href = href;
+      }, 300); // Wait for CSS animation
     });
   }
 

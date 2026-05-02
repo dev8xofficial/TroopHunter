@@ -1,6 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
+  <script>document.documentElement.setAttribute("data-theme","light");</script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Carini Group — Admin Dashboard</title>
@@ -184,134 +185,7 @@
 
     /* ── TOAST ── */
     #toast{position:fixed;bottom:28px;right:28px;padding:12px 18px;background:var(--dark3);border:1px solid rgba(201,168,76,.25);font-size:12px;color:var(--cream);z-index:10000;transform:translateY(80px);opacity:0;transition:all .35s;max-width:320px;box-shadow:0 16px 32px rgba(0,0,0,.5)}
-    #toast.show{transform:none;opacity:1}
-  
-/* ── v2.0 MODERNIZATION OVERRIDES ── */
-
-/* Nav bars */
-nav {
-  background: rgba(6,5,10,0.96) !important;
-  backdrop-filter: blur(28px) saturate(2) !important;
-  border-bottom-color: rgba(212,168,67,0.28) !important;
-}
-.nav-logo { color: #d4a843 !important; letter-spacing: .10em !important; }
-.nav-links a { color: rgba(240,235,224,0.55) !important; font-size: 11.5px; letter-spacing:.05em; }
-.nav-links a:hover, .nav-links a.active { color: #d4a843 !important; }
-
-/* Top bar in app pages */
-.topbar {
-  background: rgba(6,5,10,0.95) !important;
-  border-bottom-color: rgba(212,168,67,0.22) !important;
-  backdrop-filter: blur(20px) !important;
-}
-.topbar-title { color: #f5efe3 !important; font-size: 18px !important; }
-
-/* Sidebar */
-.sb { background: #0d0c10 !important; border-right-color: rgba(212,168,67,0.18) !important; }
-.sb-head { border-bottom-color: rgba(212,168,67,0.18) !important; }
-.sb-logo { color: #d4a843 !important; }
-.sb-sub  { color: rgba(240,235,224,0.42) !important; }
-.sidebar { background: #0d0c10 !important; border-right-color: rgba(212,168,67,0.20) !important; }
-
-/* Cards */
-.module-card { background: #0d0c10 !important; border-color: rgba(212,168,67,0.22) !important; }
-.module-card .card-top { border-bottom-color: rgba(212,168,67,0.16) !important; }
-.module-card .card-name { color: #f5efe3 !important; }
-.module-card .card-phase { color: #d4a843 !important; }
-.module-card .card-desc { color: rgba(240,235,224,0.60) !important; }
-.module-card:hover { border-color: #d4a843 !important; }
-
-/* Hero area */
-.hero-title { color: #f5efe3 !important; }
-.hero-sub { color: rgba(240,235,224,0.68) !important; }
-.hero-badge { color: #d4a843 !important; border-color: rgba(212,168,67,0.30) !important; }
-.hero-stat-val { color: #d4a843 !important; }
-.hero-stat-label { color: rgba(240,235,224,0.55) !important; }
-.hero-divider { background: rgba(212,168,67,0.22) !important; }
-
-/* Section labels */
-.section-label { color: #d4a843 !important; }
-.section-title { color: #f5efe3 !important; }
-.section-sub { color: rgba(240,235,224,0.60) !important; }
-
-/* KPI tiles */
-.kpi { background: #0d0c10 !important; border-color: rgba(212,168,67,0.20) !important; }
-.kpi-val { color: #d4a843 !important; }
-.kpi-lbl { color: rgba(240,235,224,0.55) !important; }
-.kpi-delta { font-size: 10px !important; }
-.delta-up { color: #3fd68a !important; }
-.delta-down { color: #f05252 !important; }
-
-/* Panels */
-.panel { background: #0d0c10 !important; border-color: rgba(212,168,67,0.18) !important; }
-.panel-header, .ph { border-bottom-color: rgba(212,168,67,0.14) !important; }
-.panel-title, .ph-title { color: #f5efe3 !important; }
-.s-card { background: #0d0c10 !important; border-color: rgba(212,168,67,0.18) !important; }
-.s-card-head { border-bottom-color: rgba(212,168,67,0.14) !important; }
-.s-card-title { color: #f5efe3 !important; font-weight: 500 !important; }
-
-/* Pills & tags */
-.pill-g { background: rgba(63,214,138,0.14) !important; color: #3fd68a !important; border-color: rgba(63,214,138,0.28) !important; }
-.pill-b { background: rgba(77,200,255,0.13) !important; color: #4dc8ff !important; border-color: rgba(77,200,255,0.28) !important; }
-.pill-r { background: rgba(240,82,82,0.14) !important;  color: #f05252 !important; border-color: rgba(240,82,82,0.28) !important; }
-.pill-y { background: rgba(245,166,35,0.14) !important; color: #f5a623 !important; border-color: rgba(245,166,35,0.28) !important; }
-.pill-a { background: rgba(232,178,74,0.13) !important; color: #e8b24a !important; }
-
-/* Table */
-.data-table th { color: rgba(240,235,224,0.50) !important; letter-spacing: .10em !important; }
-.data-table td { color: #f0ebe0 !important; }
-.data-table tr:hover td { background: rgba(212,168,67,0.06) !important; }
-
-/* Build bar (index page) */
-.build-bar { background: #0d0c10 !important; border-color: rgba(212,168,67,0.22) !important; }
-.build-pct { color: #d4a843 !important; }
-.build-fill { background: linear-gradient(90deg,#d4a843,#f0c55a) !important; }
-
-/* Flow dots */
-.flow-dot { background: #0d0c10 !important; border-color: rgba(212,168,67,0.28) !important; }
-.flow-dot.gold { border-color: #d4a843 !important; background: rgba(212,168,67,0.14) !important; }
-.flow-dot:hover { border-color: #d4a843 !important; background: rgba(212,168,67,0.16) !important; }
-.flow-step-name { color: rgba(240,235,224,0.58) !important; }
-.flow-step-name strong { color: #f0ebe0 !important; }
-
-/* Topbar actions */
-.ph-action, .panel-action { 
-  color: rgba(240,235,224,0.55) !important; 
-  border-color: rgba(212,168,67,0.22) !important;
-  font-size: 11px !important;
-}
-.ph-action:hover, .panel-action:hover { color: #d4a843 !important; border-color: #d4a843 !important; }
-
-/* Footer */
-footer { border-top-color: rgba(212,168,67,0.22) !important; }
-.footer-logo { color: #d4a843 !important; }
-.footer-note { color: rgba(240,235,224,0.38) !important; }
-.footer-links a { color: rgba(240,235,224,0.45) !important; }
-.footer-links a:hover { color: #d4a843 !important; }
-
-
-/* ── ADMIN DASHBOARD ENHANCEMENTS ── */
-.badge-admin { background: rgba(240,82,82,0.14) !important; color: #f05252 !important; border-color: rgba(240,82,82,0.28) !important; }
-.config-label { color: #f0ebe0 !important; font-weight: 500 !important; }
-.config-sub   { color: rgba(240,235,224,0.52) !important; }
-.config-val   { color: #d4a843 !important; }
-.config-slider { accent-color: #d4a843 !important; }
-.role-pill { font-size: 10px !important; letter-spacing: .08em !important; font-weight: 600 !important; }
-.role-pill.role-super  { background: rgba(212,168,67,0.15) !important; color: #d4a843 !important; border-color: rgba(212,168,67,0.32) !important; }
-.role-pill.role-agent  { background: rgba(77,200,255,0.12) !important; color: #4dc8ff !important; border-color: rgba(77,200,255,0.28) !important; }
-.role-pill.role-client { background: rgba(63,214,138,0.12) !important; color: #3fd68a !important; border-color: rgba(63,214,138,0.28) !important; }
-.role-pill.role-investor { background: rgba(232,178,74,0.12) !important; color: #e8b24a !important; border-color: rgba(232,178,74,0.28) !important; }
-.status-active   { color: #3fd68a !important; }
-.status-inactive { color: rgba(240,235,224,0.40) !important; }
-.audit-text { color: rgba(240,235,224,0.78) !important; }
-.audit-meta { color: rgba(240,235,224,0.42) !important; }
-.audit-hash { color: rgba(212,168,67,0.55) !important; font-family: monospace !important; }
-.td-name { color: #f0ebe0 !important; font-weight: 500 !important; }
-.pipe-bar { background: var(--bar-color, #d4a843) !important; border-radius: 3px 3px 0 0 !important; }
-.pipe-bar-count { color: #f0ebe0 !important; font-weight: 600 !important; }
-.pipe-bar-label { color: rgba(240,235,224,0.48) !important; font-size: 10px !important; }
-
-</style>
+    #toast.show{transform:none;opacity:1}</style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -486,17 +360,7 @@ footer { border-top-color: rgba(212,168,67,0.22) !important; }
             <div style="width:36px;height:36px;border-radius:50%;background:var(--gold-dim);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:14px;color:var(--gold);flex-shrink:0">M</div>
             <div style="flex:1"><div style="font-size:13px;color:var(--cream)">Maria Chen ⭐ 8.5</div><div style="font-size:10.5px;color:var(--muted)">Buyer Specialist · EN/CN</div></div>
             <div style="text-align:right"><span style="color:var(--gold);font-size:13px;font-family:'Playfair Display',serif;display:block">4</span>Tasks</div>
-          </div></div>
-              <div style="flex:1">
-              </div>
-              <div style="text-align:center;font-size:10px;color:var(--muted)">
-              </div>
-              <div style="text-align:center;font-size:10px;color:var(--muted)">
-              </div>
-              <div style="text-align:center;font-size:10px;color:var(--muted)">
-              </div>
-            </div>
-          `).join('')}
+          </div>
         </div>
       </div>
 
@@ -620,6 +484,42 @@ footer { border-top-color: rgba(212,168,67,0.22) !important; }
         <table>
           <thead><tr><th>User</th><th>Role</th><th>Language</th><th>Status</th><th>Last Active</th><th>Active Deals</th><th>Actions</th></tr></thead>
           <tbody>
+            <tr>
+              <td><div class="td-name">Alex Carini</div><div style="font-size:10px;color:var(--text-muted)">alex@carinigroup.com</div></td>
+              <td><span class="role-pill role-super">Super Admin</span></td>
+              <td>EN/IT/ES</td>
+              <td><span class="status-active">● Active</span></td>
+              <td>Just now</td>
+              <td>12</td>
+              <td><button style="background:transparent;border:none;color:var(--gold);cursor:pointer;font-size:11px">Edit</button></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Eddie Romano</div><div style="font-size:10px;color:var(--text-muted)">eddie@carinigroup.com</div></td>
+              <td><span class="role-pill role-agent">Agent</span></td>
+              <td>EN/IT</td>
+              <td><span class="status-active">● Active</span></td>
+              <td>2h ago</td>
+              <td>8</td>
+              <td><button style="background:transparent;border:none;color:var(--gold);cursor:pointer;font-size:11px">Edit</button></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Vivek Shah</div><div style="font-size:10px;color:var(--text-muted)">vivek@carinigroup.com</div></td>
+              <td><span class="role-pill role-agent">Agent</span></td>
+              <td>EN/ES</td>
+              <td><span class="status-active">● Active</span></td>
+              <td>1d ago</td>
+              <td>5</td>
+              <td><button style="background:transparent;border:none;color:var(--gold);cursor:pointer;font-size:11px">Edit</button></td>
+            </tr>
+            <tr>
+              <td><div class="td-name">Maria Chen</div><div style="font-size:10px;color:var(--text-muted)">maria@carinigroup.com</div></td>
+              <td><span class="role-pill role-agent">Agent</span></td>
+              <td>EN/CN</td>
+              <td><span class="status-inactive">● Offline</span></td>
+              <td>3d ago</td>
+              <td>3</td>
+              <td><button style="background:transparent;border:none;color:var(--gold);cursor:pointer;font-size:11px">Edit</button></td>
+            </tr>
           </tbody>
         </table>
       </div>

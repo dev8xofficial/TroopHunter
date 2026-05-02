@@ -1503,3 +1503,23 @@ html.theme-transitioning *::after {
     color 0.24s ease,
     box-shadow 0.24s ease !important;
 }
+ / *    % %  P A G E   T R A N S I T I O N S    % %  * / 
+ b o d y   { 
+     a n i m a t i o n :   p a g e I n   0 . 4 s   c u b i c - b e z i e r ( 0 . 4 ,   0 ,   0 . 2 ,   1 )   f o r w a r d s ; 
+ } 
+ 
+ @ k e y f r a m e s   p a g e I n   { 
+     f r o m   {   o p a c i t y :   0 ;   t r a n s f o r m :   t r a n s l a t e Y ( 1 2 p x ) ;   } 
+     t o   {   o p a c i t y :   1 ;   t r a n s f o r m :   t r a n s l a t e Y ( 0 ) ;   } 
+ } 
+ 
+ b o d y . p a g e - e x i t   { 
+     a n i m a t i o n :   p a g e O u t   0 . 3 s   c u b i c - b e z i e r ( 0 . 4 ,   0 ,   0 . 2 ,   1 )   f o r w a r d s ; 
+ } 
+ 
+ @ k e y f r a m e s   p a g e O u t   { 
+     f r o m   {   o p a c i t y :   1 ;   t r a n s f o r m :   t r a n s l a t e Y ( 0 ) ;   } 
+     t o   {   o p a c i t y :   0 ;   t r a n s f o r m :   t r a n s l a t e Y ( - 1 2 p x ) ;   } 
+ } 
+  
+ 
