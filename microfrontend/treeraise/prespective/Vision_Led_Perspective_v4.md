@@ -1,233 +1,80 @@
-# Vision-Led Pipeline v4: The Executable Framework
-> **Version history:**
-> v1 = Priority Mode anchor.
-> v2 = Absorbed 6 counter-perspectives.
-> v3 = Priority Detection Algorithm, North Star Scoring, Decision Tree, prompt instructions.
-> v4 = Fixes all structural gaps found in v3. Introduces p0 Pre-Step, Priority Thread Variable,
->       Portal KPI Mapping, Demo Screen Routing, and enforces detection as a structured OUTPUT
->       (not a reading instruction). Every fix is traceable to a numbered problem below.
+# Vision-Led Balanced Matrix v3 (Updated): The Definitive Framework
+
+> **Version history:** v1 = original Priority Mode anchor. v2 = absorbed 6 counter-perspectives.
+> v3 = adds Priority Detection Algorithm, North Star Scoring, TreeRaise worked examples,
+> Decision Tree, and revised prompt instructions across all phases.
+> v3-updated = integrates all v4 structural fixes directly into the sections where the
+> problems existed in v3: p0 Pre-Step, Priority Thread Variable, Portal KPI Mapping,
+> Demo Screen Routing, Tier C Execution Path, and Solution Card Metric Mapping.
 
 ---
 
-## PART 0 — WHY v4 EXISTS: THE 6 PROBLEMS FOUND IN v3
+## PART 0 — WHY THIS FILE EXISTS
 
-After applying v3 to the TreeRaise pipeline, six structural failures were identified.
-Each is documented here with its root cause and the exact fix applied in v4.
+Every previous version of the Dev8X pipeline made one fatal assumption: that the
+value proposition is the same for every client.
 
----
+It is not.
 
-### PROBLEM 1 — The algorithm ran too late (inside the wrong prompt)
+The TreeRaise discovery made this undeniable. While preparing their Outcome Report,
+it became clear that leading with cost savings — the pipeline's default — was the
+wrong pitch for a company whose stated public goal is **500 organizations by 2026**.
+Their bottleneck is not money. It is operational capacity. Their primary driver is
+scalability and growth execution. Pitching $2,000/month in savings to a founder
+chasing a 10x growth target is not just weak — it is a signal that you did not do
+your homework.
 
-**What v3 said:**
-"Before writing any HTML, run the Priority Detection Algorithm."
-This instruction lived *inside* p3a_Outcome_Report.md as a comment block.
-
-**What actually happened:**
-The Outcome Report prompt (p3a) was already structured around cost-savings metrics.
-Hero stats defaulted to hours-saved / cost-impact / workflows-eliminated.
-The classification step was bolted on top of a Priority D template.
-Even if the AI correctly detected Priority A, it was still filling a Priority D frame.
-
-**Root cause:**
-Priority Detection was a *reading instruction*, not a *structured output*.
-It produced no file. It fed no downstream prompt. It changed nothing architecturally.
-
-**Fix in v4 → PART 2:**
-A new mandatory pre-step prompt `p0_Priority_Detection.md` runs before any deliverable.
-It produces a structured output file `p0_Priority_Profile_[Client].md`.
-Every downstream prompt (p3a, p4e, p5a, p5b) attaches this file and reads it first.
-The detection result is now an INPUT, not an instruction.
+This framework solves that problem permanently. It introduces a **Priority Detection
+Algorithm** that runs before any deliverable is written, identifies the client's
+primary strategic driver from observable data, and threads that specific narrative
+through every phase of the pipeline.
 
 ---
 
-### PROBLEM 2 — The demo portal was disconnected from the Priority
+## PART 1 — PROBLEMS FIXED FROM v2
 
-**What v3 said:**
-"The demo portal carries the pitch" (absorbed from Counter-Perspective 6).
+The following weaknesses in v2 are addressed in this version:
 
-**What actually happened:**
-admin.html and partner-portal.html were fixed HTML files.
-The KPI cards always showed the same numbers.
-The same screens were shown regardless of Priority A, B, C, or D.
-For TreeRaise (Priority A — Scalability), the admin dashboard still led with revenue
-and fee numbers instead of org pipeline volume and campaign capacity.
-
-**Root cause:**
-No mechanism existed to change portal emphasis based on detected Priority.
-The portal implementation prompt (p4d) received no Priority signal.
-
-**Fix in v4 → PART 4:**
-A new Portal KPI Mapping table defines which KPI cards, which screens, and which
-data labels to emphasize per Priority.
-p4d implementation instructions now include a "Priority Emphasis Layer" section.
-For Priority A clients, the admin dashboard hero section must show:
-- Organizations in Pipeline (not revenue)
-- Campaigns Launched This Month (not fee collected)
-- Capacity vs. Goal (progress toward North Star)
+| v2 Problem | Where Fixed in v3 |
+|---|---|
+| Priority detection was vague — no scoring system | Part 2: Priority Detection Algorithm with signal weights |
+| Confidence Tiers lacked decision rules | Part 3: North Star Scoring with explicit thresholds |
+| 3-step data engine had no worked example | Part 4: TreeRaise worked example throughout |
+| Impact Snapshot had no template | Part 5: Impact Snapshot template with fill-in structure |
+| Demo act structure was described, not scripted | Part 6: Act-by-act script instructions per priority |
+| No single decision tree for the operator | Part 7: One-page Decision Tree |
+| Prompt changes were implied, not specified | Part 8: Exact prompt modification instructions |
 
 ---
 
-### PROBLEM 3 — The Demo Pitch Script had no Priority-based screen routing
+## PART 2 — THE PRIORITY DETECTION ALGORITHM
 
-**What v3 said:**
-"Abdul opens with a specific, verifiable operational pain."
+> **⚠ STRUCTURAL FIX (from v4 Problem 1):** In the original v3, Priority Detection was
+> a *reading instruction* embedded inside p3a_Outcome_Report.md. It produced no file, fed
+> no downstream prompt, and changed nothing architecturally — even when it correctly
+> identified the Priority, the Outcome Report still defaulted to a Priority D (cost-savings)
+> template frame. The fix: Priority Detection is now a **mandatory pre-step** (`p0`) that
+> runs before Phase 3 begins and produces a structured output file. Every downstream prompt
+> attaches this file. See Part 2A below for the p0 Pre-Step specification.
 
-**What actually happened:**
-p4e_Demo_Pitch.md instructed the AI to map screens to pain points.
-But it gave no instruction about *which* screens to prioritize based on Priority.
-A Priority A client and a Priority D client would receive scripts emphasizing
-the same screens in the same order.
+Before writing a single word of any deliverable, the AI must classify the prospect
+into exactly one of four primary strategic buckets. This classification drives every
+narrative decision downstream.
 
-**Root cause:**
-p4e had no screen routing logic. Screen selection was left entirely to the AI
-with no Priority constraint.
+### Part 2A — The p0 Pre-Step: Priority Detection as a Structured Output
 
-**Fix in v4 → PART 5:**
-A Demo Screen Routing Table is introduced.
-For each Priority (A/B/C/D), the table specifies:
-- Which portal to open first
-- Which panels/screens to navigate to, in order
-- Which KPIs to call out by name
-- What the Act 3 (Possibility) closing line must reference
+**What p0 Is**
 
----
+A mandatory prompt that runs BEFORE Phase 3 begins. It reads all Phase 1 context files
+and produces a single structured Markdown file. This file is the "thread variable"
+(see Part 2B) passed to every downstream phase.
 
-### PROBLEM 4 — The Outcome Report was built before the portals, but portals should reflect the Priority identified in the Outcome Report
-
-**What v3 said:** (silent on this dependency)
-
-**What actually happened:**
-Phase 3 → p3a Outcome Report (first touch, Priority detected here)
-Phase 4 → p4d Portal implementation (built later, Priority not passed forward)
-
-The Priority detected during Outcome Report generation was never formally passed to
-the portal implementation step. The portals were built from the Tech Spec (p4c) alone,
-with no Priority signal.
-
-**Root cause:**
-The pipeline had no formal "thread variable" — a value computed once and passed
-through every subsequent phase.
-
-**Fix in v4 → PART 3:**
-The Priority Profile file (produced by p0) becomes the thread variable.
-It is explicitly listed as a required attachment for: p3a, p4d, p4e, p5a, p5b.
-Each prompt must read the Priority Profile before generating any content.
-The pipeline README (p0 section) documents this dependency chain.
-
----
-
-### PROBLEM 5 — Confidence Tier C produced no usable output for data-poor clients
-
-**What v3 said:**
-"Tier C → skip vision framing entirely. Use pure Pain → Fix → Unlock structure."
-
-**What actually happened:**
-The TreeRaise portals are built for TreeRaise.
-For a different client with sparse data (Tier C), what does Abdul show?
-v3 acknowledged the problem but provided no alternative content path.
-A Tier C client would receive the same TreeRaise portals with a weaker narrative.
-
-**Root cause:**
-Tier C graceful degradation was described but never operationalized.
-No alternative template, no alternative portal guidance, no alternative script
-structure was defined for data-poor scenarios.
-
-**Fix in v4 → PART 6:**
-A Tier C Execution Path is defined with three concrete outputs:
-1. A 24-Hour Impact Snapshot (single-page, pain-only, no vision)
-2. A Generic-but-Credible Demo path (which portal panels to show when no
-   custom portal exists for the client's industry)
-3. A Tier C Script Template — a pre-written hook and Act 3 that works without
-   a North Star quote
-
----
-
-### PROBLEM 6 — The Outcome Report financial estimates used wrong metric categories
-
-**What v3 said:**
-"For Priority A, express as capacity."
-
-**What actually happened:**
-The TreeRaise Outcome Report showed:
-- CRM & Pipeline: $960/mo (cost impact)
-- Email Automation: $1,280/mo (cost impact)
-- BDR Portal: $1,800/mo (cost impact)
-Total: "$10,630/month impact" framed as money saved.
-
-For a Priority A client (TreeRaise, chasing 500 orgs by 2026), this is the wrong
-metric category. The correct frame is:
-- CRM & Pipeline: "Handles 500-org pipeline without adding coaches"
-- Email Automation: "Reactivates past campaigns automatically — Legacy Forest grows itself"
-- BDR Portal: "One BDR manages 150+ outreach conversations simultaneously"
-
-The numbers in the report weren't wrong. The *column header* was wrong.
-
-**Root cause:**
-The solution card template in p3a hardcoded three metric slots:
-- Time Saved
-- Cost Impact
-- Effort Reduction
-
-These are Priority D metrics. For Priority A they should be:
-- Capacity Unlocked
-- Volume Handled
-- Orgs Supportable at Scale
-
-**Fix in v4 → PART 7:**
-A Solution Card Metric Mapping table replaces the hardcoded three-slot template.
-Each Priority gets its own three metric slots with correct labels and calculation methods.
-
----
-
-## PART 1 — THE FOUR PRIORITIES (unchanged from v3, included for completeness)
-
-Every prospect is classified into exactly one primary bucket before any deliverable is written.
-
-### Priority A — Scalability / Growth Execution
-**Goal:** Reach a specific volume or market expansion target. Current systems cannot support that scale.
-**Signals:** Explicit numerical targets, aggressive hiring, multi-market expansion, waitlists, network/franchise model.
-**Demo framing:** "Your current operations handle X. This infrastructure handles 10X."
-**Metric set:** Capacity Unlocked, Volume Handled, Orgs Supportable, Processing Velocity.
-
-### Priority B — Revenue Growth / Deal Velocity
-**Goal:** Close more deals faster, or unlock new revenue streams.
-**Signals:** Sales team hiring, CRM references, revenue targets, outbound expansion language.
-**Demo framing:** "This platform lets your team close 30% more campaigns without adding headcount."
-**Metric set:** Deals Closed/Mo, Time-to-Close Reduction, Revenue Unlocked/Mo.
-
-### Priority C — Operational Efficiency / Productivity
-**Goal:** Ship faster, deliver better service, eliminate internal friction.
-**Signals:** Burnout language in job postings, manual process complaints, turnaround time issues.
-**Demo framing:** "Your team can deliver in the same day instead of next week."
-**Metric set:** Hours Saved/Week, Turnaround Time Reduction, Error Rate Eliminated, Tasks Automated.
-
-### Priority D — Cost Reduction (Fallback only)
-**Goal:** Reduce operational spend, headcount, or tooling costs.
-**Signals:** Layoff mentions, cost-cutting language, lean team framing, CFO-led decisions.
-**Demo framing:** "This eliminates $X/month in operational waste."
-**Metric set:** Hours Saved, Cost Impact ($), Effort Reduction (%).
-
-> **Rule:** Priority D is never the first choice. It is the fallback when no other signal dominates.
-> Most early-stage social enterprises are Priority A.
-> Most established SMBs are Priority C.
-> Priority D is most common in late-stage or declining businesses.
-
----
-
-## PART 2 — THE p0 PRE-STEP: PRIORITY DETECTION AS A STRUCTURED OUTPUT
-
-### What p0 Is
-
-A new mandatory prompt that runs BEFORE Phase 3 begins.
-It reads all Phase 1 context files and produces a single structured Markdown file.
-This file is the "thread variable" passed to every downstream phase.
-
-### When to Run p0
+**When to Run p0**
 
 Run p0 after Phase 1 is complete and before p3a (Outcome Report) is generated.
 p0 runs once per client. Its output is reused across all phases.
 
-### p0 Input Files
+**p0 Input Files**
 
 | File | Role |
 |------|------|
@@ -237,7 +84,7 @@ p0 runs once per client. Its output is reused across all phases.
 | p1e_Job_Posting.md | Operational reality signals |
 | Any p1d_ files | Supporting context |
 
-### p0 Output File Structure
+**p0 Output File Structure**
 
 Save output as: `context/p0_Priority_Profile_[ClientName].md`
 
@@ -245,7 +92,7 @@ Save output as: `context/p0_Priority_Profile_[ClientName].md`
 ---
 client: [Client Name]
 generated: [Date]
-version: p0_v4
+version: p0_v3updated
 ---
 
 # Priority Profile — [Client Name]
@@ -303,39 +150,31 @@ version: p0_v4
 - Tier C: Pain → Fix → Unlock only. Use 24-Hour Impact Snapshot first. No vision claims.
 ```
 
-### Signal Weighting Table (unchanged from v3, reproduced here for operator use)
+**Rule for Every Downstream Prompt**
 
-When scanning Phase 1 files, assign weight points. Highest total score wins.
+Add this block at the top of every downstream prompt's WHAT TO READ FIRST section:
 
-| Signal Type | Source | A | B | C | D |
-|---|---|---|---|---|---|
-| Explicit numerical growth target | LinkedIn / website | +5 | +2 | 0 | 0 |
-| Aggressive hiring in ops/tech roles | Job posting | +3 | +2 | +2 | -1 |
-| Revenue target or funding mention | LinkedIn / press | +2 | +5 | 0 | 0 |
-| "Burnout", "drowning", "manual" language | Job posting / posts | +1 | 0 | +4 | +2 |
-| Cost-cutting or "lean" language | Any source | 0 | 0 | +1 | +5 |
-| Multi-market expansion planned | Website / LinkedIn | +4 | +3 | 0 | 0 |
-| Sales team or CRM hiring | Job posting | +1 | +4 | +1 | 0 |
-| Client complaint about turnaround | Reviews / posts | 0 | 0 | +4 | 0 |
-| CFO or finance-led organization | LinkedIn team | -1 | 0 | 0 | +4 |
-| Founder posts about scale/mission | LinkedIn posts | +3 | +1 | +1 | -1 |
-| Social enterprise / mission-driven model | Website | +3 | +1 | +1 | -2 |
-
-**TreeRaise example (verified):**
-- "500+ organizations by 2026" → A: +5
-- Client Specialist job posting (ops/client hiring) → A: +3
-- Wayne Elsey posts repeatedly about scaling mission → A: +3
-- Social enterprise model → A: +3
-- No cost-cutting signals → D: 0
-- **Result: Priority A = 14. Confirmed.**
+```
+FIRST — Read p0_Priority_Profile_[Client].md completely before writing anything.
+This file contains your Priority classification, Confidence Tier, North Star,
+Hero Stats, Metric Slot labels, Hook sentence, Act 3 closing line, and Portal Emphasis.
+All content you generate must reflect these directives.
+Do not default to cost-savings framing. Do not default to hours-saved metrics.
+Use only the metric categories specified in the Priority Profile.
+```
 
 ---
 
-## PART 3 — THE PRIORITY THREAD: HOW p0 CONNECTS TO EVERY PHASE
+### Part 2B — The Priority Thread: How p0 Connects to Every Phase
 
-The Priority Profile file is the thread variable. It must be attached to every downstream prompt.
+> **⚠ STRUCTURAL FIX (from v4 Problem 4):** In v3, the Priority Profile was generated during
+> p3a but was never formally passed to p4d (portal implementation) or other phases. Portals were
+> built from the Tech Spec alone with no Priority signal. The fix: the Priority Profile file
+> becomes the **thread variable** explicitly attached to every downstream prompt.
 
-### Dependency Chain (updated pipeline)
+The Priority Profile file must be attached to every downstream prompt.
+
+**Dependency Chain**
 
 ```
 Phase 1 (Research)
@@ -362,13 +201,13 @@ Phase 4 — p4c Tech Spec
   └── Attaches: p0_Priority_Profile + p4a + p4b
   └── (Prioritizes features that serve the detected Priority)
 
-Phase 4 — p4d Portal Implementation (UPDATED)
+Phase 4 — p4d Portal Implementation (UPDATED — see Part 2C)
   └── Attaches: p0_Priority_Profile + p4c
-  └── Reads Priority → applies Portal KPI Mapping (see Part 4)
+  └── Reads Priority → applies Portal KPI Mapping
 
-Phase 4 — p4e Demo Pitch Script (UPDATED)
+Phase 4 — p4e Demo Pitch Script (UPDATED — see Part 2D)
   └── Attaches: p0_Priority_Profile + both portal HTML files + p4a
-  └── Reads Priority → applies Demo Screen Routing (see Part 5)
+  └── Reads Priority → applies Demo Screen Routing
 
 Phase 5 — p5a Proposal
   └── Attaches: p0_Priority_Profile + p4c
@@ -379,30 +218,22 @@ Phase 5 — p5b Proposal Pitch Script
   └── Reads Priority → hooks, analogies, and possibility framing match Priority
 ```
 
-### Rule for Every Downstream Prompt
-
-Add this block at the top of every downstream prompt's WHAT TO READ FIRST section:
-
-```
-FIRST — Read p0_Priority_Profile_[Client].md completely before writing anything.
-This file contains your Priority classification, Confidence Tier, North Star,
-Hero Stats, Metric Slot labels, Hook sentence, Act 3 closing line, and Portal Emphasis.
-All content you generate must reflect these directives.
-Do not default to cost-savings framing. Do not default to hours-saved metrics.
-Use only the metric categories specified in the Priority Profile.
-```
-
 ---
 
-## PART 4 — PORTAL KPI MAPPING (Fix for Problem 2)
+### Part 2C — Portal KPI Mapping
 
-### What This Solves
+> **⚠ STRUCTURAL FIX (from v4 Problem 2):** In v3, the demo portal was disconnected from the
+> Priority. admin.html and partner-portal.html were fixed HTML files — KPI cards always showed
+> the same numbers, and the same screens were shown regardless of Priority A, B, C, or D.
+> For TreeRaise (Priority A — Scalability), the admin dashboard still led with revenue and
+> fee numbers instead of org pipeline volume and campaign capacity. The fix: the Portal KPI
+> Mapping table below tells p4d which KPI cards, labels, and default panel to use per Priority.
 
-When p4d (portal implementation) runs, it now receives the Priority Profile.
-The following table tells the developer which KPI cards to make prominent,
-which data labels to use, and which panels to open by default — per Priority.
+When p4d (portal implementation) runs, it receives the Priority Profile.
+The following table defines which KPI cards to make prominent, which data labels to use,
+and which panels to open by default — per Priority.
 
-### Admin Portal KPI Mapping
+**Admin Portal KPI Mapping**
 
 | KPI Card Position | Priority A | Priority B | Priority C | Priority D |
 |---|---|---|---|---|
@@ -411,7 +242,7 @@ which data labels to use, and which panels to open by default — per Priority.
 | Hero KPI 3 | Capacity vs. 2026 Goal | Time-to-Close (days) | Error Rate | Monthly Savings ($) |
 | Hero KPI 4 | Coach Capacity Remaining | Pipeline Value | Team Utilization | Break-Even Progress |
 
-### Admin Portal Default Panel (on load)
+**Admin Portal Default Panel (on load)**
 
 | Priority | Open This Panel First |
 |---|---|
@@ -420,16 +251,16 @@ which data labels to use, and which panels to open by default — per Priority.
 | C | Operations / Task Queue |
 | D | Financial / Cost Dashboard |
 
-### Partner Portal KPI Mapping
+**Partner Portal KPI Mapping**
 
 | KPI Card | Priority A | Priority B | Priority C | Priority D |
 |---|---|---|---|---|
 | Primary metric | Campaigns Supported | Revenue Generated | Time Saved | Fee Reduced |
 | Secondary metric | Orgs Onboarded | Deals Closed | Tasks Automated | Cost per Campaign |
 
-### Implementation Instruction for p4d
+**Implementation Instruction for p4d**
 
-Add this section to p4d_Implementation prompt:
+Add this section to the p4d implementation prompt:
 
 ```
 ## PRIORITY EMPHASIS LAYER (read p0_Priority_Profile first)
@@ -453,15 +284,18 @@ For TreeRaise (Priority A):
 
 ---
 
-## PART 5 — DEMO SCREEN ROUTING TABLE (Fix for Problem 3)
+### Part 2D — Demo Screen Routing Table
 
-### What This Solves
+> **⚠ STRUCTURAL FIX (from v4 Problem 3):** In v3, p4e_Demo_Pitch.md instructed the AI to map
+> screens to pain points but gave no instruction about *which* screens to prioritize based on
+> Priority. A Priority A client and a Priority D client received scripts emphasizing the same
+> screens in the same order. The fix: the Demo Screen Routing Table below specifies for each
+> Priority which portal to open first, which panels to navigate to in order, which KPIs to call
+> out by name, and what the Act 3 closing line must reference.
 
-p4e (Demo Pitch Script) now receives the Priority Profile.
+p4e (Demo Pitch Script) receives the Priority Profile.
 The following table tells Abdul which screens to navigate to, in which order,
 and what to say about each one — per Priority.
-
-### Screen Routing by Priority
 
 #### Priority A — Scalability
 
@@ -547,9 +381,7 @@ feel the difference."
 "[Cost impact] per month is recoverable. But the more important number is what your team
 does with the hours they get back."
 
----
-
-### Updated p4e Hook Template (by Priority)
+**Updated p4e Hook Template (by Priority)**
 
 Replace the generic p4e hook instruction with this:
 
@@ -574,20 +406,128 @@ This platform eliminates that."
 
 ---
 
-## PART 6 — TIER C EXECUTION PATH (Fix for Problem 5)
+### The Four Priorities (Signal Weighting)
 
-### When Tier C Applies
+Every prospect is classified into exactly one primary bucket.
+
+**Priority A — Scalability / Growth Execution**
+The client has a specific volume or market expansion goal and their current systems
+cannot support that scale without breaking.
+
+Signals: explicit numerical targets ("500 orgs", "10x revenue"), rapid hiring,
+multi-market expansion language, new geography launches, franchise or network model,
+waitlists or backlog mentioned.
+
+Demo framing: "Your current operations handle X. This infrastructure handles 10X."
+Metric set: Capacity Unlocked, Volume Handled, Processing Velocity, Orgs Onboarded/Mo.
+
+**Priority B — Revenue Growth / Deal Velocity**
+The client wants to close more deals, faster, or unlock new revenue streams.
+
+Signals: sales team hiring, CRM references, "we need more clients" language, revenue
+growth targets in founder posts, outbound expansion language.
+
+Demo framing: "This platform lets your team close 30% more campaigns without adding headcount."
+Metric set: Deals Closed/Mo, Time-to-Close Reduction, Revenue Unlocked/Mo.
+
+**Priority C — Operational Efficiency / Productivity**
+The client wants to ship faster, deliver better service, and eliminate friction.
+
+Signals: burnout language in job postings, "we're drowning in admin" posts, quality
+complaints in reviews, turnaround time mentioned as a client complaint.
+
+Demo framing: "Your team can deliver in the same day instead of next week."
+Metric set: Hours Saved/Week, Turnaround Time Reduction, Error Rate Eliminated, Tasks Automated.
+
+**Priority D — Cost Reduction (Original Pipeline Default)**
+The client's primary driver is reducing operational spend, headcount, or tooling costs.
+
+Signals: layoff mentions, cost-cutting language, "lean team" framing, CFO as primary
+stakeholder.
+
+Demo framing: "This eliminates $X/month in operational waste."
+Metric set: Hours Saved, Cost Impact ($), Effort Reduction (%).
+
+> **Rule:** Priority D is the fallback only. It is never the first choice unless
+> cost signals clearly dominate the evidence. Most early-stage social enterprises
+> (like TreeRaise) are Priority A. Most established SMBs are Priority C.
+
+---
+
+### Signal Weighting Table
+
+When scanning Phase 1 files, assign weight points to each signal found.
+The Priority with the highest total score wins.
+
+| Signal Type | Source | Priority A | Priority B | Priority C | Priority D |
+|---|---|---|---|---|---|
+| Explicit numerical growth target | LinkedIn post / website | **+5** | +2 | 0 | 0 |
+| Aggressive hiring in ops/tech roles | Job posting | **+3** | +2 | +2 | -1 |
+| Revenue target or funding mention | LinkedIn / press | +2 | **+5** | 0 | 0 |
+| "Burnout", "drowning", "manual" language | Job posting / posts | +1 | 0 | **+4** | +2 |
+| Cost-cutting or "lean" language | Any source | 0 | 0 | +1 | **+5** |
+| Multi-market expansion planned | Website / LinkedIn | **+4** | +3 | 0 | 0 |
+| Sales team or CRM hiring | Job posting | +1 | **+4** | +1 | 0 |
+| Client complaint about turnaround | Reviews / posts | 0 | 0 | **+4** | 0 |
+| CFO or finance-led organization | LinkedIn team | -1 | 0 | 0 | **+4** |
+| Founder posts about scale/mission | LinkedIn posts | **+3** | +1 | +1 | -1 |
+| Social enterprise / mission-driven model | Website | **+3** | +1 | +1 | -2 |
+
+**Scoring example — TreeRaise:**
+- "500 organizations by 2026" — explicit numerical growth target → A: +5
+- Client Specialist job posting — ops/client hiring → A: +3
+- Wayne Elsey posts repeatedly about scaling mission → A: +3
+- Social enterprise model → A: +3
+- No cost-cutting signals found → D: 0
+
+**TreeRaise Priority Score: A = 14. Confirmed: Priority A — Scalability.**
+
+---
+
+## PART 3 — NORTH STAR SCORING (Confidence Tiers)
+
+After identifying the Priority, score the confidence of the North Star on a 3-tier system.
+
+### Tier A — Direct Quote (Score: 8–10)
+A specific, attributed, quantified statement found in the source data.
+
+Examples:
+- "Our 2026 organizations engaged goal: 500+" [Source: p1a_Website, Press Kit page]
+- "2026 trees planted goal: 125,000+" [Source: p1a_Website]
+
+Action: Use the exact quote as the anchor in the Outcome Report hero section.
+Flag the source explicitly. Full vision-anchored narrative is activated.
+
+### Tier B — Strong Inference (Score: 4–7)
+No explicit quote, but 3 or more consistent directional signals point to the same ambition.
+
+Action: Frame as "Based on your current trajectory..." not "You said...".
+Use conditional language. Do not invent a number. Tier B narrative activated.
+
+### Tier C — Insufficient Data (Score: 0–3)
+Fewer than 3 directional signals. Website is generic. No strategic content found.
+
+Action: Skip vision framing entirely. Use pure Pain → Fix → Unlock structure.
+Do not guess. Do not hallucinate a goal.
+
+> **⚠ STRUCTURAL FIX (from v4 Problem 5):** In v3, Tier C graceful degradation was described
+> but never operationalized — no alternative template, no alternative portal guidance, and no
+> alternative script structure. See Part 3A below for the complete Tier C Execution Path.
+
+### Part 3A — Tier C Execution Path
+
+**When Tier C Applies**
 
 Confidence Score 0–3. Fewer than 3 directional signals. Generic website. No strategic content.
 
-### Tier C Deliverable Path
+**Tier C Deliverable Path**
 
 **Step 1 — Generate the 24-Hour Impact Snapshot only.**
 Do not generate the full Outcome Report. Do not invest in full portal customization.
 Do not write the full demo script. Send the snapshot and wait for a response.
 
 **Step 2 — If the prospect responds, book a discovery call.**
-Use the structured discovery call questions (from v2 Counter-Perspective 2):
+Use the structured discovery call questions:
 1. "What is the single biggest goal you are trying to hit this year?"
 2. "What is the biggest operational headache your team deals with daily?"
 3. "If we could fix one thing for you, what would make the biggest difference?"
@@ -596,7 +536,7 @@ Now you have Tier A or B data. Proceed with full pipeline.
 
 **Step 3 — If no discovery call is possible, use the Tier C Generic Demo Path.**
 
-### Tier C 24-Hour Impact Snapshot Template
+**Tier C 24-Hour Impact Snapshot Template**
 
 ```
 IMPACT SNAPSHOT — [Company Name]
@@ -616,7 +556,8 @@ THE BOTTLENECK:
 → [Pain Point 3] — [Time Cost or Risk, marked Estimated]
 
 WHAT THIS UNLOCKS:
-[Use Tier C language: "Your team reclaims the time needed to focus on what actually grows the business."]
+[Use Tier C language: "Your team reclaims the time needed to focus on what
+actually grows the business."]
 [Do NOT claim a specific North Star goal. Do NOT invent a vision you cannot cite.]
 
 ─────────────────────────────────────────────────
@@ -629,7 +570,7 @@ Reply to this message. I will send a 6-minute walkthrough.
 Abdul | Dev8X
 ```
 
-### Tier C Generic Demo Path (no custom portal for this client's industry)
+**Tier C Generic Demo Path (no custom portal for this client's industry)**
 
 If no custom portal exists:
 1. Open the Admin Portal → Company Overview dashboard
@@ -644,7 +585,7 @@ This path works for any client type because it shows:
 - An end-user experience (partner dashboard)
 - Proof of impact (impact registry)
 
-### Tier C Hook (pre-written, no North Star required)
+**Tier C Hook (pre-written, no North Star required)**
 
 ```
 Right now, your team is managing [most visible process] manually.
@@ -652,7 +593,7 @@ Every hour spent on [specific task] is an hour not spent on [their actual job].
 This platform automates [that process] so your team can focus on [the real work].
 ```
 
-### Tier C Act 3 Closing (pre-written)
+**Tier C Act 3 Closing (pre-written)**
 
 ```
 With these bottlenecks removed, your team reclaims [X hours per week].
@@ -661,69 +602,190 @@ people are doing what they were actually hired to do.
 The next step is yours.
 ```
 
----
+### North Star Conflict Resolution
 
-## PART 7 — SOLUTION CARD METRIC MAPPING (Fix for Problem 6)
+When signals conflict, apply the **Hierarchy of Evidence**:
 
-### What This Replaces
+1. Job Postings (most current, operational reality)
+2. Operational Documents / Operations Manual
+3. CEO LinkedIn Posts (stated intent)
+4. Company LinkedIn Posts (marketing intent)
+5. Website "About Us" / Mission Pages
+6. Marketing Taglines (least reliable — aspirational, not operational)
 
-The hardcoded three metric slots in p3a solution cards:
-- ~~Time Saved~~
-- ~~Cost Impact~~
-- ~~Effort Reduction~~
-
-These are Priority D slots. They are wrong for Priority A, B, and C clients.
-
-### Metric Slots by Priority
-
-#### Priority A — Scalability
-
-| Slot | Label | How to Calculate |
-|---|---|---|
-| Slot 1 | Capacity Unlocked | How many orgs/clients/campaigns can this system handle at the stated volume target? State as a multiple or absolute number. |
-| Slot 2 | Volume Handled | How many transactions, campaigns, or onboarding events per month does this solution support without adding headcount? |
-| Slot 3 | Orgs Supportable at Scale | At the North Star goal volume, how does this solution prevent the bottleneck it is replacing? Express as "X orgs without adding Y coaches." |
-
-**Example for TreeRaise CRM card:**
-- Slot 1: "500-org pipeline — visible and trackable with zero additional coaches"
-- Slot 2: "Every new sign-up captured automatically — no leads fall through"
-- Slot 3: "One dashboard replaces memory + email + spreadsheets for the entire coaching team"
+The source higher on this list wins the conflict.
 
 ---
 
-#### Priority B — Revenue
+## PART 4 — THE 3-STEP DATA ENGINE
 
-| Slot | Label | How to Calculate |
-|---|---|---|
-| Slot 1 | Revenue Unlocked / Month | Estimated: conversion rate lift × average deal value × current monthly traffic/leads |
-| Slot 2 | Deals Closed / Month (increase) | Estimated: time recovered from manual work ÷ average time-to-close × close rate |
-| Slot 3 | Time-to-Close Reduction | Estimated: steps removed from sales process × average time per step |
+The engine runs once per prospect, before any deliverable is generated.
+
+### Step 1 — Manual Pain Extraction (Always Run)
+
+Scan all Phase 1 files. Extract every observable manual operation.
+
+**Rules:**
+- Every pain point must cite its source file and the specific text that supports it.
+- Minimum 3, maximum 7 pain points.
+- Tag each with: Time Cost (hrs/wk) and Risk Factor (Low/Medium/High).
+- No invented statistics. Use qualitative language if no number is supportable.
+- Map each pain point to the human role doing it.
+
+**TreeRaise Step 1 Output (example):**
+| # | Pain Point | Source | Time Cost | Risk | Human Role |
+|---|---|---|---|---|---|
+| 1 | No CRM — coaches manually track every new signup in their head | p1e_Job_Posting, p4d_partner-portal.html | ~6 hrs/wk | High | TreeRaiser Coach |
+| 2 | Zero email automation — no nurture for warm leads, no renewal trigger | p1b_Linkedin_Company, p1a_Website | ~8 hrs/wk | High | TreeRaiser Coach |
+| 3 | Coach follow-up after every signup is 100% manual | p1e_Job_Posting | ~4 hrs/wk | High | TreeRaiser Coach |
+| 4 | Impact reports may be manually assembled by one person (Victor Junco) | p1a_Website (team page) | ~6 hrs/mo | High | Sustainability Specialist |
+| 5 | No outbound prospecting system — growth is 100% inbound only | p1a_Website, p1c_Linkedin_Owner | N/A (revenue risk) | High | Founder / BDR |
+
+### Step 2 — Ambition Detection (Run After Priority Scoring)
+
+Apply the Confidence Tier system from Part 3.
+
+For TreeRaise:
+- Tier A confirmed: "2026 organizations engaged goal: 500+" directly from website Press Kit
+- North Star: Reach 500 partner organizations by end of 2026
+- Confidence Score: 9/10
+
+### Step 3 — Human Impact Mapping
+
+For each pain point from Step 1, map to the three human layers:
+
+**Layer 1 — The Executive (Buyer):**
+What does this pain prevent them from doing strategically?
+
+**Layer 2 — The Operator (Daily User):**
+What is this person's Tuesday like because of this pain?
+
+**Layer 3 — The End-Client:**
+What does this person experience because of the pain?
 
 ---
 
-#### Priority C — Efficiency
+## PART 5 — FIXED DELIVERABLE STRUCTURE (Guaranteed Quality Floor)
 
-| Slot | Label | How to Calculate |
-|---|---|---|
-| Slot 1 | Hours Saved / Week | Task frequency × task duration, per role. Show calculation. Label Estimated if not from source data. |
-| Slot 2 | Turnaround Time Reduction | Before: manual process duration. After: automated process duration. Express as % or hours. |
-| Slot 3 | Error Rate Eliminated | Manual error frequency × downstream cost of error correction. Express as incidents/month eliminated. |
+The structure of every deliverable is locked. What adapts dynamically is the
+content *within* each section, based on Priority (A/B/C/D) and Confidence Tier.
+
+### 5.1 — The 24-Hour Impact Snapshot
+
+**Purpose:** Sent within 24 hours of a lead expressing interest. Generated from
+Step 1 data only. No vision analysis required.
+
+**Template:**
+
+```
+IMPACT SNAPSHOT — [Company Name]
+Prepared by Dev8X · [Date]
+
+We analyzed [Company Name]'s public operations.
+Here is what we found.
+
+─────────────────────────────────────────────
+
+THE BOTTLENECK:
+[Single most painful manual operation from Step 1 — one sentence, specific]
+
+3 THINGS WE CAN ELIMINATE:
+→ [Pain Point 1] — [Time Cost or Risk]
+→ [Pain Point 2] — [Time Cost or Risk]
+→ [Pain Point 3] — [Time Cost or Risk]
+
+WHAT THIS UNLOCKS:
+[Priority A: "The operational capacity to scale to [North Star goal]"]
+[Priority B: "The bandwidth to close [X]% more campaigns per month"]
+[Priority C: "Your team's time back for the work that actually grows the business"]
+[Priority D: "$[X]/month in recoverable operational cost"]
+
+─────────────────────────────────────────────
+
+[SCREENSHOT: Most impressive screen from the admin or partner portal]
+
+Want to see the full demo?
+→ Reply to this message. I'll send a 6-minute walkthrough.
+
+Abdul | Dev8X
+[email] | [LinkedIn]
+```
+
+**Generation rule:** This is the ONLY deliverable generated before prospect engagement
+is confirmed.
 
 ---
 
-#### Priority D — Cost
+### 5.2 — The Outcome Report (p3a) — Fixed 5-Section Architecture
 
-| Slot | Label | How to Calculate |
-|---|---|---|
-| Slot 1 | Hours Saved / Week | Task frequency × task duration. Label Estimated if not from source data. |
-| Slot 2 | Cost Impact / Month | Hours saved × blended role rate ($35/hr default, adjust to region if known). |
-| Slot 3 | Effort Reduction % | Manual steps before ÷ manual steps after. Express as percentage. |
+Every Outcome Report follows this exact section order, every time:
+
+**Section 1 — Operational Snapshot**
+Always achievable. Never skipped.
+
+**Section 2 — The Friction Map**
+3–7 manual bottlenecks with time costs and human impact from Step 1.
+Always achievable. Never skipped.
+
+**Section 3 — The Transformation Preview**
+For each friction point: before/after using the actual demo portal screens.
+Always achievable. Never skipped.
+
+**Section 4 — The Strategic Unlock**
+What becomes possible when friction is removed.
+**THIS SECTION ADAPTS BY PRIORITY AND TIER:**
+
+| Priority | Tier A | Tier B | Tier C |
+|---|---|---|---|
+| A (Scale) | "This infrastructure directly supports your stated goal of [quote]. Here is how each automation maps to that target." | "With these bottlenecks removed, your team gains the capacity to handle 3–5x more volume." | "With these bottlenecks removed, your team can scale operations without adding headcount." |
+| B (Revenue) | "This directly enables your stated revenue target of [quote]. Here is how." | "With these fixes in place, your pipeline can close [X]% more campaigns per month." | "With this in place, your team reclaims the time needed to grow revenue without adding staff." |
+| C (Efficiency) | "Your stated goal of [quote] requires your team to operate at full capacity." | "Removing these bottlenecks frees your team to focus on what they were hired to do." | "Your team reclaims [X] hours per week. Here is what that time is worth." |
+| D (Cost) | "Beyond the cost savings, this infrastructure positions you for [quote]." | "The cost savings fund the next phase of growth." | "$[X]/month recovered. Break-even in [N] months." |
+
+**Section 5 — Investment Framework**
+Pricing and timeline reference. Always achievable. Never skipped.
 
 ---
 
-### How to Apply in p3a
+### 5.3 — Hero Stats Block
 
-Replace the metric-row template in p3a with this instruction:
+> **⚠ STRUCTURAL FIX (from v4 Problem 6):** In v3, the Outcome Report solution card template
+> hardcoded three metric slots — Time Saved / Cost Impact / Effort Reduction — which are
+> Priority D metrics. For a Priority A client like TreeRaise, the hero stats defaulted to
+> "37 hrs/week saved" and "$10,630/month impact" instead of capacity-framed metrics. The numbers
+> may have overlapped but the *column headers* were wrong. The fix: the Hero Stats Block and
+> Solution Card Metric Mapping below replace the hardcoded three-slot template entirely.
+
+The three headline numbers in the hero section must match the Priority:
+
+| Priority | Stat 1 | Stat 2 | Stat 3 |
+|---|---|---|---|
+| A (Scale) | Capacity Unlocked (e.g., "500 orgs supported") | Processing Velocity (e.g., "10x campaign volume") | Manual Workflows Eliminated |
+| B (Revenue) | Revenue Unlocked/Mo | Deals Closed/Mo (increase) | Time-to-Close Reduction |
+| C (Efficiency) | Hours Saved/Week | Turnaround Time Reduction | Error Rate Eliminated |
+| D (Cost) | Hours Saved/Week | Cost Impact ($/mo) | Workflows Automated |
+
+**TreeRaise hero stats (Priority A, Tier A) — CORRECT:**
+- "500 — Organizations your 2026 goal demands your infrastructure must support"
+- "10x — Campaign management capacity without adding coaching headcount"
+- "6 — Manual workflows currently blocking that growth path"
+
+**TreeRaise hero stats — INCORRECT (original v3 Priority D defaults):**
+- ~~"37 hrs/week saved"~~
+- ~~"$10,630/month impact"~~
+- ~~"6 workflows eliminated"~~
+
+The numbers may overlap. The *framing* is what was wrong.
+
+---
+
+### 5.4 — Solution Card Metric Mapping
+
+> **⚠ STRUCTURAL FIX (from v4 Problem 6, continued):** This table replaces the hardcoded
+> three metric slots in p3a solution cards. Do not use "Time Saved / Cost Impact /
+> Effort Reduction" unless Priority D is confirmed.
+
+**How to Apply in p3a**
 
 ```
 ## SOLUTION CARD METRIC SLOTS
@@ -741,200 +803,322 @@ Show the calculation basis under each metric as a small note.
 Always label estimates clearly.
 ```
 
----
+**Metric Slots by Priority**
 
-## PART 8 — UPDATED HERO STATS BLOCK
+#### Priority A — Scalability
 
-### Replaces Part 5.3 of v3
+| Slot | Label | How to Calculate |
+|---|---|---|
+| Slot 1 | Capacity Unlocked | How many orgs/clients/campaigns can this system handle at the stated volume target? State as a multiple or absolute number. |
+| Slot 2 | Volume Handled | How many transactions, campaigns, or onboarding events per month does this solution support without adding headcount? |
+| Slot 3 | Orgs Supportable at Scale | At the North Star goal volume, how does this solution prevent the bottleneck it is replacing? Express as "X orgs without adding Y coaches." |
 
-The Hero Stats in the Outcome Report must match the Priority.
-Read from the Priority Profile. Do not compute independently.
+**Example for TreeRaise CRM card:**
+- Slot 1: "500-org pipeline — visible and trackable with zero additional coaches"
+- Slot 2: "Every new sign-up captured automatically — no leads fall through"
+- Slot 3: "One dashboard replaces memory + email + spreadsheets for the entire coaching team"
 
-| Priority | Stat 1 | Stat 2 | Stat 3 |
-|---|---|---|---|
-| A (Scale) | Capacity goal supportable (e.g., "500 orgs") | Volume multiplier (e.g., "10x campaigns") | Manual workflows blocking the goal |
-| B (Revenue) | Revenue unlocked / month | Deals closed / month increase | Time-to-close reduction |
-| C (Efficiency) | Hours saved / week | Turnaround time reduction | Error rate eliminated |
-| D (Cost) | Hours saved / week | Cost impact ($/month) | Workflows automated |
+#### Priority B — Revenue
 
-### TreeRaise Correct Hero Stats (Priority A, Tier A)
+| Slot | Label | How to Calculate |
+|---|---|---|
+| Slot 1 | Revenue Unlocked / Month | Estimated: conversion rate lift × average deal value × current monthly traffic/leads |
+| Slot 2 | Deals Closed / Month (increase) | Estimated: time recovered from manual work ÷ average time-to-close × close rate |
+| Slot 3 | Time-to-Close Reduction | Estimated: steps removed from sales process × average time per step |
 
-- Stat 1: "500 — Organizations your 2026 goal demands this infrastructure must support"
-- Stat 2: "10x — Campaign management capacity without adding coaching headcount"
-- Stat 3: "6 — Manual workflows currently blocking that growth path"
+#### Priority C — Efficiency
 
-### TreeRaise Incorrect Hero Stats (what v3 actually produced — Priority D framing)
+| Slot | Label | How to Calculate |
+|---|---|---|
+| Slot 1 | Hours Saved / Week | Task frequency × task duration, per role. Show calculation. Label Estimated if not from source data. |
+| Slot 2 | Turnaround Time Reduction | Before: manual process duration. After: automated process duration. Express as % or hours. |
+| Slot 3 | Error Rate Eliminated | Manual error frequency × downstream cost of error correction. Express as incidents/month eliminated. |
 
-- ~~Stat 1: "37 hrs/week saved"~~
-- ~~Stat 2: "$10,630/month impact"~~
-- ~~Stat 3: "6 workflows eliminated"~~
+#### Priority D — Cost
 
-The numbers may overlap. The *framing* is what was wrong.
-
----
-
-## PART 9 — UPDATED PROPOSAL ROI FRAMEWORK
-
-### Three-Lens ROI (from v3, preserved — but lens selection is now Priority-guided)
-
-The proposal must present three parallel ROI scenarios. The order of the lenses
-changes based on Priority. Lead with the Priority's native lens.
-
-#### Priority A — Lead with Capacity Lens
-
-**Lens 1 (Lead) — Capacity ROI:**
-"With manual bottlenecks removed, the team can support [X]x the current volume without
-adding proportional headcount. At current average revenue per client, [X]x capacity
-= [estimated revenue potential]."
-
-**Lens 2 — Strategic ROI:**
-"The platform directly enables [North Star goal]. Without this infrastructure,
-reaching [goal] would require [N] additional hires at [estimated cost/yr].
-The platform replaces that hiring requirement."
-
-**Lens 3 — Efficiency ROI:**
-"These [N] automations recover [X] hours per week. At a blended rate of [$/hr],
-that is [$/month] recovered. Break-even: [N] months."
-
-#### Priority B — Lead with Revenue Lens
-
-**Lens 1 (Lead) — Revenue ROI:**
-"With pipeline automation running, your team can close [X]% more campaigns per month.
-At current average deal value, that is [$/month] in additional revenue potential."
-
-**Lens 2 — Capacity ROI:** (as above)
-
-**Lens 3 — Efficiency ROI:** (as above)
-
-#### Priority C — Lead with Efficiency Lens
-
-**Lens 1 (Lead) — Efficiency ROI:** (hours + cost)
-
-**Lens 2 — Capacity ROI:** (what the recovered time enables)
-
-**Lens 3 — Strategic ROI:** (Tier A/B only — skip for Tier C)
-
-#### Priority D — Lead with Cost Lens
-
-**Lens 1 (Lead) — Cost ROI:** (hours saved × rate = $/month, break-even months)
-
-**Lens 2 — Capacity ROI:** (what the savings fund next)
-
-**Lens 3 — Strategic ROI:** (skip unless Tier A/B signals exist)
+| Slot | Label | How to Calculate |
+|---|---|---|
+| Slot 1 | Hours Saved / Week | Task frequency × task duration. Label Estimated if not from source data. |
+| Slot 2 | Cost Impact / Month | Hours saved × blended role rate ($35/hr default, adjust to region if known). |
+| Slot 3 | Effort Reduction % | Manual steps before ÷ manual steps after. Express as percentage. |
 
 ---
 
-## PART 10 — ONE-PAGE DECISION TREE (updated from v3)
+## PART 6 — THE DEMO PITCH — 3-ACT STRUCTURE BY PRIORITY
+
+The demo script follows the Pain → Proof → Possibility arc for all Priorities.
+What changes is the opening line and the closing possibility.
+
+### Act 1 — The Pain (0:00 – 0:30)
+
+All priorities start the same way: prove you understand their operational reality.
+The opener is always specific and verifiable — never a strategic claim.
+
+**Template:**
+"We analyzed [Company Name]'s operations and found [N] manual processes that are
+[cost/blocking/preventing]. I'm going to show you what we built to eliminate them."
+
+The specific framing adapts:
+- Priority A: "...that are blocking your path to [North Star goal]."
+- Priority B: "...that are costing your team [X] deals per month."
+- Priority C: "...that are consuming [X] hours per week your team should be spending on [real work]."
+- Priority D: "...that are costing roughly $[X] per month in recoverable labour."
+
+### Act 2 — The Proof (0:30 – 4:00)
+
+The demo portal carries the pitch. Each screen is tied to a pain point from Step 1.
+Abdul narrates in human terms:
+
+Standard narration pattern per screen:
+1. Name the human role doing this manually today.
+2. Show the screen that replaces their manual process.
+3. State what they can do with the time they get back.
+
+> **Navigate screens in the order specified by the Demo Screen Routing Table in Part 2D.**
+> For Priority A clients open the Organizations panel first. For Priority C clients open
+> the Coach Task Queue first. Do not default to a generic screen order.
+
+Example (TreeRaise, Pain Point 1 — No CRM):
+"Right now, your TreeRaiser Coach tracks every new signup manually. There is no
+pipeline — just emails and memory. This screen is their new morning. Every new
+organization is here, with their stage, their assigned coach, and their next action.
+Nothing falls through the cracks."
+
+### Act 3 — The Possibility (4:00 – 5:00)
+
+Introduced last. Earned through Acts 1 and 2. Adapts by Priority and Tier.
+
+**Priority A, Tier A:**
+"With these systems running, the operational question changes. It is no longer
+'can we handle more organizations?' It is 'how fast do you want to reach 500?'
+This infrastructure is built for that target."
+
+**Priority A, Tier B:**
+"With these bottlenecks removed, you have the operational capacity to grow
+significantly — maybe 3x, maybe 5x — without adding proportional headcount.
+How far do you want to take it?"
+
+**Priority B, Tier A:**
+"This is the infrastructure that makes [revenue quote] achievable. Every minute
+your team spends on admin is a minute they are not closing the next campaign."
+
+**Priority C (any tier):**
+"Your team did not sign up to copy-paste data between spreadsheets. This gives
+them back the capacity to do the actual work. And when they are doing the actual
+work, your clients feel the difference."
+
+**Priority D (any tier):**
+"$[X] per month is recoverable. But the more important number is what your team
+does with the hours they get back."
+
+---
+
+## PART 7 — ONE-PAGE DECISION TREE
+
+Use this before starting any deliverable. Work top to bottom.
 
 ```
 START
   │
   ▼
-STEP 0: Run p0_Priority_Detection.md on all Phase 1 files
+STEP 0: Run p0_Priority_Detection on all Phase 1 files (NEW — see Part 2A)
   │     Save output as p0_Priority_Profile_[Client].md
   │     Attach this file to every downstream prompt
   │
   ▼
 STEP 1: Read Priority Score from p0 output
   │
-  ├─── Priority A (highest score)?
+  ├─── Highest score is A (Scalability)?
   │         │
   │         ▼
-  │    Confidence Tier A → Full vision-anchored narrative
-  │    Confidence Tier B → Trajectory-based narrative
-  │    Confidence Tier C → 24-Hour Snapshot only → Discovery call → Re-run p0
+  │    Run Confidence Tiers (Part 3)
+  │    Tier A → Vision-anchored scale narrative
+  │    Tier B → Trajectory-based scale narrative
+  │    Tier C → 24-Hour Snapshot only → Discovery call → Re-run p0
+  │             (use Tier C Execution Path in Part 3A)
   │
-  ├─── Priority B (highest score)?
+  ├─── Highest score is B (Revenue)?
   │         │
   │         ▼
+  │    Run Confidence Tiers
   │    Tier A → Revenue target narrative
   │    Tier B → Pipeline capacity narrative
-  │    Tier C → Throughput improvement (no vision claim)
+  │    Tier C → Throughput improvement (use Tier C Execution Path)
   │
-  ├─── Priority C (highest score)?
+  ├─── Highest score is C (Efficiency)?
   │         │
   │         ▼
+  │    Run Confidence Tiers
   │    Tier A → Stated quality/speed goal narrative
   │    Tier B → Team capacity narrative
-  │    Tier C → Hours saved + role elevation (no vision claim)
+  │    Tier C → Hours saved + role elevation (use Tier C Execution Path)
   │
-  └─── Priority D, OR all scores low?
+  └─── Highest score is D, OR all scores low?
             │
             ▼
-       Balanced Three-Lens ROI
-       Show Cost + Capacity + Strategic across three columns
-       Let the CEO pick their lens
+       Use Balanced Value (Part 2 Fallback)
+       Show Cost + Capacity + Strategic Unlock
+       across 3 columns — let the CEO pick their lens
 
-IF scores tied between two priorities:
-  Lead with higher-scored Priority in hero section.
-  Show both priority metrics side-by-side in solution cards.
+IF scores are tied between two priorities:
+  Use the "Balanced Twin" approach:
+  Lead with the higher-scored Priority in the hero section.
+  Show both priority metrics side by side in the solution cards.
 
-IF data insufficient for any scoring (Tier C + low signals):
-  Generate 24-Hour Impact Snapshot ONLY.
-  Do not generate full Outcome Report.
-  Book discovery call first. Re-run p0 with first-party data.
+IF data is insufficient for any scoring (Tier C + low signals):
+  Generate Impact Snapshot ONLY.
+  Do not generate full Outcome Report until discovery call data is available.
+  Follow the Tier C Execution Path in Part 3A exactly.
 ```
 
 ---
 
-## PART 11 — IMPLEMENTATION CHECKLIST (updated from v3)
+## PART 8 — PROMPT MODIFICATION INSTRUCTIONS
 
-Use this checklist in order. Do not skip steps.
+The following changes must be made to pipeline prompts to implement this framework:
+
+### p3a_Outcome_Report.md — Required Changes
+
+**Add before Section 1 of the prompt:**
 
 ```
-PRE-DELIVERABLE (required before writing anything)
-□ Run p0_Priority_Detection.md on all Phase 1 files
-□ Save output as p0_Priority_Profile_[Client].md
-□ Verify Priority Score is recorded for all four priorities
-□ Verify winning Priority is confirmed (A / B / C / D)
-□ Verify Confidence Tier is recorded (A / B / C)
-□ Verify North Star quote is present (or marked "Not found" for Tier B/C)
-□ Verify Hook sentence is written (ready to read aloud)
-□ Verify Hero Stats are computed (three stats matching the Priority)
-□ Verify Solution Card Metric Slot labels are set (not defaulting to cost/hours)
-□ Verify Portal Emphasis panel and KPI cards are specified
-□ Verify Act 3 Possibility sentence is written (ready to read aloud)
+## PRE-GENERATION STEP — PRIORITY CLASSIFICATION
 
-WITHIN 24 HOURS (Tier C only — or any client before full Phase 4 investment)
-□ Generate 24-Hour Impact Snapshot from p0 output (Step 1 data only)
-□ Send snapshot, await response before investing further
+FIRST — Read p0_Priority_Profile_[Client].md completely before writing any HTML.
+This file was produced by the p0 Pre-Step and contains your Priority classification,
+Confidence Tier, North Star quote, Hero Stats, Metric Slot labels, Hook sentence,
+Act 3 closing line, and Portal Emphasis directives.
 
-AFTER PROSPECT RESPONDS (confirmed interest — all tiers)
-□ Attach p0_Priority_Profile to p3a prompt
-□ Generate Outcome Report with correct Hero Stats (not cost/hours defaults)
-□ Verify hero stats match Priority (use PART 8 table to check)
-□ Verify Section 4 (Strategic Unlock) uses correct Priority + Tier language
-□ Attach p0_Priority_Profile to p4d prompt
-□ Verify portal KPI cards reflect Priority Emphasis Layer (PART 4 table)
-□ Verify default panel on load matches Priority
-□ Attach p0_Priority_Profile to p4e prompt
-□ Verify demo script hook uses the Priority Profile hook sentence
-□ Verify screen navigation follows Priority screen routing (PART 5 table)
-□ Verify Act 3 closing uses the Priority Profile Act 3 sentence
-□ Attach p0_Priority_Profile to p5a prompt
-□ Verify proposal ROI leads with the correct Priority lens (PART 9)
+If p0_Priority_Profile_[Client].md is not attached, STOP and generate it first
+by running the p0 Pre-Step on all Phase 1 files before proceeding.
 
-QUALITY CHECKS (before sending anything to prospect)
-□ Can Abdul defend every claim with a source on a live call? (Simplicity test)
-□ Does the report hold together if the CEO has quietly changed their goal? (Buyer Psychology test)
-□ Does a Tier C version of this report still stand on its own? (Consistency test)
-□ Is the demo portal doing 80% of the selling? (Product-Led test)
-□ Does the hook open with pain, not vision? (Narrative Arc test)
-□ Are all estimates clearly labeled [Estimated]? (Defensibility test)
-□ Are all source citations present for quoted claims? (Credibility test)
+Do not default to cost-savings framing.
+Do not default to hours-saved / cost-impact / effort-reduction metrics.
+Use only the metric categories specified in the Priority Profile.
+
+Include a comment block at the top of the HTML output:
+<!-- Priority: [X] | Tier: [X] | North Star: [text or N/A] -->
+```
+
+**Replace the Hero Stats rule with:**
+```
+Hero stats must match the Priority detected in p0_Priority_Profile.
+Use the Hero Stats Block table from Part 5.3 of this framework.
+Do not default to Hours Saved / Cost Impact / Workflows Eliminated
+unless Priority D is confirmed.
+```
+
+**Replace the Outcome Quantification Method (Rule 3) with:**
+```
+Quantify outcomes relative to the detected Priority:
+- Priority A: Express as capacity (orgs handled, volume processed, scale factor)
+- Priority B: Express as revenue (deals/mo, revenue unlocked, close rate)
+- Priority C: Express as efficiency (hours saved, turnaround time, error rate)
+- Priority D: Express as cost ($/mo saved, break-even months, effort %)
+
+Use the Solution Card Metric Slot labels from the Priority Profile exactly.
+For every metric, show the basis calculation and label as [Estimated] or [From source].
 ```
 
 ---
 
-## PART 12 — TREERAISE COMPLETE WORKED EXAMPLE (v4 correction)
+### p4d_Implementation.md — Required Changes
 
-### p0 Output (what should have been generated before Phase 3)
+**Add the Priority Emphasis Layer section:**
+
+```
+## PRIORITY EMPHASIS LAYER
+
+FIRST — Read p0_Priority_Profile_[Client].md before making any portal changes.
+
+After implementing all functional changes listed in the implementation spec:
+
+1. Update the hero KPI cards in admin.html to match the Portal KPI Mapping table
+   (see Part 2C of the Vision-Led framework).
+2. Set the default active panel on page load to match the Priority.
+3. Update all KPI card labels, values, and trend lines to reflect the correct
+   metric category for the detected Priority.
+4. Do not change the visual design system. Change only data labels and which
+   panel is marked active on load.
+```
+
+---
+
+### p4e_Demo_Pitch.md — Required Changes
+
+**Add to WHAT TO READ FIRST:**
+```
+1. FIRST — Read p0_Priority_Profile_[Client].md completely.
+   The demo script Hook (Act 1) and Act 3 Possibility sentence must be read
+   verbatim from the Priority Profile — do not write new versions of these.
+   Record: Priority = [X], Tier = [X] before writing the script.
+
+2. Navigate screens in the order specified by the Demo Screen Routing Table
+   in Part 2D of the Vision-Led framework for the detected Priority.
+   Do not default to a generic screen order.
+```
+
+**Replace Section 00 HOOK template with:**
+```
+The Hook must:
+1. Be read verbatim from the "Hook sentence" in p0_Priority_Profile.
+2. NOT open with a strategic claim, a revenue number, or a vision statement.
+3. End by promising to show the fix — not to explain the vision.
+
+If the Priority Profile hook sentence is missing, use this fallback:
+"[Company] currently manages [most visible manual process] by hand.
+This platform eliminates that."
+```
+
+---
+
+### p5a_Proposal.md — Required Changes
+
+**Add a Multi-Lens ROI section after the Cost Estimate table:**
+```
+Add Section: ROI Framework (3 Lenses)
+
+Present three parallel ROI scenarios so every stakeholder finds their metric.
+Lead with the lens that matches the detected Priority from p0_Priority_Profile.
+
+Lens 1 (lead with this for Priority A) — Capacity ROI:
+"With manual bottlenecks removed, the team can support [X]x the current volume
+without adding proportional headcount. At current average revenue per client,
+[X]x capacity = $[Y] additional annual revenue potential."
+
+Lens 2 (lead with this for Priority B) — Revenue ROI:
+"With pipeline automation running, your team can close [X]% more campaigns per month.
+At current average deal value, that is $[Y]/month in additional revenue potential."
+
+Lens 3 — Efficiency ROI (always present):
+"These [N] automations recover [X] hours per week. At a blended rate of $[Y]/hr,
+that is $[Z]/month recovered. Break-even on the investment: [N] months."
+
+Strategic ROI (Priority A/B Tier A/B only — skip for C/D or Tier C):
+"The platform directly enables [North Star goal]. Without this infrastructure,
+reaching [goal] would require [N] additional hires. The platform replaces that
+hiring requirement."
+
+Label each lens clearly. The client reads whichever speaks to them.
+```
+
+---
+
+## PART 9 — WORKED EXAMPLE: TREERAISE END-TO-END
+
+### Priority Classification Result
+- Signal scan: Scalability signals dominate (score: 14)
+- Priority: **A — Scalability / Growth Execution**
+- Confidence Tier: **A — Direct Quote**
+- North Star: "2026 organizations engaged goal: 500+" [Source: p1a_Website, Press Kit]
+
+### p0 Priority Profile Output (what must be generated before Phase 3)
 
 ```
 Priority: A — Scalability / Growth Execution
 Confidence Tier: A — Direct Quote
 Confidence Score: 9/10
-North Star: "2026 organizations engaged goal: 500+" [Source: p1a_Website.md, Press Kit page]
+North Star: "2026 organizations engaged goal: 500+" [Source: p1a_Website.md, Press Kit]
 
 Hero Stats:
 - Stat 1: "500 — Organizations your 2026 goal demands this infrastructure must support"
@@ -966,80 +1150,205 @@ Portal Emphasis:
 - Demo screen order: All Organizations → Pending Approvals → Coach Task Queue → Growth Analytics → Partner Home
 ```
 
-### Outcome Report Correction
+### Impact Snapshot (24-Hour Version)
 
-**Was generated (Priority D framing — wrong):**
-- Hero Stat 1: "37 hrs/week saved"
-- Hero Stat 2: "$10,630/month impact"
-- CRM card Slot 2: "$960/mo cost impact"
+```
+IMPACT SNAPSHOT — TreeRaise
+Prepared by Dev8X · March 2026
 
-**Should have been generated (Priority A framing — correct):**
-- Hero Stat 1: "500 — Organizations your 2026 goal demands this infrastructure must support"
-- Hero Stat 2: "10x — Campaign management capacity without adding coaching headcount"
-- CRM card Slot 2: "500-org pipeline visible and trackable with zero additional coaches"
+We analyzed TreeRaise's public operations across 5 data sources.
+Here is what we found.
+
+───────────────────────────────────────────────────
+
+THE BOTTLENECK:
+Your TreeRaiser Coaches have no CRM — every new signup is tracked manually,
+which means the pipeline to 500 organizations is invisible.
+
+3 THINGS BLOCKING YOUR 2026 GOAL:
+→ No lead pipeline — coaches cannot see which orgs are at risk of going cold
+→ Zero renewal automation — past campaign organizers only return if they remember you
+→ No outbound system — 100% of growth depends on inbound organic traffic
+
+WHAT THIS UNLOCKS:
+The operational infrastructure to scale to 500 organizations without
+adding proportional headcount or losing any leads in the process.
+
+───────────────────────────────────────────────────
+
+[Screenshot of the Admin Dashboard showing the 47 active partner pipeline]
+
+Want to see the full 6-minute demo?
+→ Reply to this message. I'll send the walkthrough video.
+
+Abdul | Dev8X
+```
+
+### Outcome Report Hero Stats — Corrected
+
+**Correct (Priority A framing):**
+- "500 — Organizations your 2026 goal demands your infrastructure must support"
+- "10x — Campaign management capacity without adding coaching headcount"
+- "6 — Manual workflows currently blocking that growth path"
+
+**Original v3 output — WRONG (Priority D defaults):**
+- ~~"37 hrs/week saved"~~
+- ~~"$10,630/month impact"~~
+- ~~"6 workflows eliminated"~~
+
+### Demo Pitch Hook (Act 1)
+
+Read verbatim from Priority Profile hook sentence above.
+
+### Demo Pitch Screen Order (from Part 2D, Priority A routing)
+
+1. Admin Portal → All Organizations (pipeline view)
+2. Pending Approvals (onboarding queue)
+3. Coach Task Queue (coach capacity and alerts)
+4. Growth Analytics (acquisition chart)
+5. Partner Portal → Campaigns (live partner view)
+
+### Demo Pitch Possibility (Act 3)
+
+Read verbatim from Priority Profile Act 3 sentence above.
+
+### Proposal ROI Framework (3 Lenses)
+
+**Lens 1 (Lead — Priority A) — Capacity:**
+"These 6 automations allow one TreeRaiser Coach to support 3x the number of active
+campaigns without additional working hours. At current revenue per campaign, this
+capacity directly enables the 500-organization target."
+
+**Lens 2 — Efficiency:**
+"These 6 automations recover approximately 37 hours per week across coaching and
+admin roles. At a blended rate of $40/hr for coaching staff, that is $5,920/month
+recovered. Break-even on the investment: approximately 5–6 months."
+
+**Lens 3 — Strategic:**
+"Reaching 500 organizations via inbound-only growth with manual coaching would
+require hiring 3–4 additional coaches. This platform replaces that hiring requirement
+with automated systems — turning a $180k–$240k annual headcount decision into a
+one-time platform investment."
 
 ---
 
-## PART 13 — WHAT WAS ABSORBED FROM EVERY SOURCE
+## PART 10 — IMPLEMENTATION CHECKLIST
 
-| Source | Core Insight Absorbed | Where It Appears in v4 |
+Use this checklist in order. Do not skip steps.
+
+```
+PRE-DELIVERABLE (required before writing anything)
+□ Run p0_Priority_Detection on all Phase 1 files (see Part 2A)
+□ Save output as p0_Priority_Profile_[Client].md
+□ Verify Priority Score is recorded for all four priorities
+□ Verify winning Priority is confirmed (A / B / C / D)
+□ Verify Confidence Tier is recorded (A / B / C)
+□ Verify North Star quote is present (or marked "Not found" for Tier B/C)
+□ Verify Hook sentence is written (ready to read aloud)
+□ Verify Hero Stats are computed (three stats matching the Priority — NOT cost/hours defaults)
+□ Verify Solution Card Metric Slot labels are set (NOT "Time Saved / Cost Impact / Effort Reduction"
+  unless Priority D confirmed)
+□ Verify Portal Emphasis panel and KPI cards are specified (from Portal KPI Mapping in Part 2C)
+□ Verify Act 3 Possibility sentence is written (ready to read aloud)
+
+WITHIN 24 HOURS (Tier C only — or any client before full Phase 4 investment)
+□ Generate 24-Hour Impact Snapshot from p0 output (Step 1 data only)
+□ If Tier C: use Tier C template from Part 3A (NOT the full Outcome Report)
+□ Send snapshot, await response before investing further
+
+AFTER PROSPECT RESPONDS (confirmed interest — all tiers)
+□ Attach p0_Priority_Profile to p3a prompt
+□ Generate Outcome Report with correct Hero Stats (not cost/hours defaults)
+□ Verify hero stats match Priority (use Part 5.3 table to check)
+□ Verify solution cards use correct Metric Slot labels (use Part 5.4 table to check)
+□ Verify Section 4 (Strategic Unlock) uses correct Priority + Tier language
+□ Attach p0_Priority_Profile to p4d prompt
+□ Verify portal KPI cards reflect Priority Emphasis Layer (Part 2C table)
+□ Verify default panel on load matches Priority
+□ Attach p0_Priority_Profile to p4e prompt
+□ Verify demo script hook is read verbatim from Priority Profile
+□ Verify screen navigation follows Priority Screen Routing (Part 2D table)
+□ Verify Act 3 closing is read verbatim from Priority Profile
+□ Attach p0_Priority_Profile to p5a prompt
+□ Verify proposal ROI leads with the correct Priority lens (Part 8)
+
+QUALITY CHECKS (before sending anything to prospect)
+□ Can Abdul defend every claim with a source on a live call? (Simplicity test)
+□ Does the report hold together if the CEO has quietly changed their goal? (Buyer Psychology test)
+□ Does a Tier C version of this report still stand on its own? (Consistency test)
+□ Is the demo portal doing 80% of the selling? (Product-Led test)
+□ Does the hook open with pain, not vision? (Narrative Arc test)
+□ Are all estimates clearly labeled [Estimated]? (Defensibility test)
+□ Are all source citations present for quoted claims? (Credibility test)
+□ Are hero stats framed in Priority-correct language — NOT cost/hours defaults? (v3 fix check)
+□ Are solution card metric slots Priority-specific — NOT hardcoded three-slot defaults? (v3 fix check)
+□ Does the portal KPI mapping match the Priority? (v3 fix check)
+□ Are demo screens navigated in Priority-routing order? (v3 fix check)
+```
+
+---
+
+## PART 11 — WHAT WAS ABSORBED FROM EVERY SOURCE
+
+| Source | Core Insight Absorbed | Where It Appears |
 |---|---|---|
-| Priority Mode (v1) | Dynamic priority detection per client | Part 1, Part 2 (p0 Pre-Step) |
-| Balanced Value Matrix | Multi-lens ROI for every stakeholder | Part 9 (Three-Lens ROI) |
-| Role-Based Perspective | Human impact mapping per pain point | Part 5 (what to call out in demo) |
-| Counter 1 — Simplicity | Defensible claims only | Part 11 Quality Checks |
-| Counter 2 — Data Poverty | Discovery call for Tier C | Part 6 (Tier C Path) |
-| Counter 3 — Buyer Psychology | Pain → Proof → Possibility arc | Part 5 (screen routing structure) |
-| Counter 4 — Consistency | Fixed structure per phase | Part 11 Checklist |
-| Counter 5 — Speed | 24-Hour Impact Snapshot | Part 6 (Tier C template) |
-| Counter 6 — Product-Led | Demo portal carries the pitch | Part 4 (Portal KPI Mapping) |
-| v3 original | Priority Detection Algorithm, Confidence Tiers, Decision Tree | Parts 1, 2, 10 |
-| **v4 new (Problem 1)** | p0 as structured output, not reading instruction | **Part 2** |
-| **v4 new (Problem 2)** | Portal KPI Mapping table | **Part 4** |
-| **v4 new (Problem 3)** | Demo Screen Routing Table | **Part 5** |
-| **v4 new (Problem 4)** | Priority Thread Variable / dependency chain | **Part 3** |
-| **v4 new (Problem 5)** | Tier C Execution Path with concrete templates | **Part 6** |
-| **v4 new (Problem 6)** | Solution Card Metric Mapping by Priority | **Part 7** |
+| Priority Mode | Dynamic priority detection per client | Part 2 — Signal Weighting Table |
+| Balanced Value Matrix | Multi-lens ROI for every stakeholder | Part 5.2 Section 4, Part 8 Proposal changes |
+| Role-Based Perspective | Human impact mapping per pain point | Part 4 Step 3, Part 6 Act 2 narration |
+| Counter 1 — Simplicity | Engine simplified to 3 steps, all defensible | Part 4 |
+| Counter 2 — Data Poverty | Confidence Tiers with graceful degradation | Part 3 |
+| Counter 3 — Buyer Psychology | Pain → Proof → Possibility arc; vision earned last | Part 6 Act structure |
+| Counter 4 — Consistency | Fixed 5-section report structure guaranteed | Part 5.2 |
+| Counter 5 — Speed | 24-hour Impact Snapshot before full package | Part 5.1 |
+| Counter 6 — Product-Led | Demo portal carries the pitch; narrative supports it | Part 6 Act 2 |
+| v2 original | Fixed structure, Confidence Tiers base, 3-step engine base | Parts 3–6 |
+| **v4 fix (Problem 1)** | p0 as structured output file, not reading instruction | **Part 2A** |
+| **v4 fix (Problem 2)** | Portal KPI Mapping table per Priority | **Part 2C** |
+| **v4 fix (Problem 3)** | Demo Screen Routing Table per Priority | **Part 2D** |
+| **v4 fix (Problem 4)** | Priority Thread Variable / dependency chain | **Part 2B** |
+| **v4 fix (Problem 5)** | Tier C Execution Path with concrete templates | **Part 3A** |
+| **v4 fix (Problem 6)** | Solution Card Metric Mapping by Priority | **Parts 5.3, 5.4** |
 
 ---
 
 ## APPENDIX — PRIORITY QUICK-REFERENCE CARD
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│  PRIORITY DETECTION QUICK CARD                                              │
-├──────────────┬────────────────────────┬─────────────────────────────────────┤
-│  PRIORITY    │  KEY SIGNAL            │  HERO METRIC SLOTS                  │
-├──────────────┼────────────────────────┼─────────────────────────────────────┤
-│  A — Scale   │  Growth targets,       │  Capacity Unlocked                  │
-│              │  "10x", "500 orgs"     │  Volume Handled                     │
-│              │  social enterprise     │  Orgs Supportable at Scale          │
-├──────────────┼────────────────────────┼─────────────────────────────────────┤
-│  B — Revenue │  Sales hiring, CRM,    │  Revenue Unlocked / Month           │
-│              │  revenue targets       │  Deals Closed / Month (increase)    │
-│              │  outbound signals      │  Time-to-Close Reduction            │
-├──────────────┼────────────────────────┼─────────────────────────────────────┤
-│  C — Ops     │  "Burnout", "manual"   │  Hours Saved / Week                 │
-│              │  quality complaints    │  Turnaround Time Reduction          │
-│              │  process bottlenecks   │  Error Rate Eliminated              │
-├──────────────┼────────────────────────┼─────────────────────────────────────┤
-│  D — Cost    │  CFO-led, lean team    │  Hours Saved / Week                 │
-│              │  cost-cutting lang.    │  Cost Impact ($/Month)              │
-│              │  layoff signals        │  Effort Reduction (%)               │
-└──────────────┴────────────────────────┴─────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────┐
+│  PRIORITY DETECTION QUICK CARD                                               │
+├──────────────┬───────────────────────┬────────────────────────────────────── ┤
+│  PRIORITY    │  KEY SIGNAL           │  METRIC SLOTS (solution cards)        │
+├──────────────┼───────────────────────┼───────────────────────────────────────┤
+│  A — Scale   │  "500 orgs", "10x"    │  Capacity Unlocked                    │
+│              │  growth targets,      │  Volume Handled                       │
+│              │  social enterprise    │  Orgs Supportable at Scale            │
+├──────────────┼───────────────────────┼───────────────────────────────────────┤
+│  B — Revenue │  Sales hiring, CRM,   │  Revenue Unlocked / Month             │
+│              │  revenue targets      │  Deals Closed / Month (increase)      │
+│              │  mentioned            │  Time-to-Close Reduction              │
+├──────────────┼───────────────────────┼───────────────────────────────────────┤
+│  C — Ops     │  "Burnout", "manual"  │  Hours Saved / Week                   │
+│              │  quality complaints   │  Turnaround Time Reduction            │
+│              │  process bottlenecks  │  Error Rate Eliminated                │
+├──────────────┼───────────────────────┼───────────────────────────────────────┤
+│  D — Cost    │  CFO-led, lean team   │  Hours Saved / Week                   │
+│              │  cost-cutting lang.   │  Cost Impact ($/Month)                │
+│              │  layoff signals       │  Effort Reduction (%)                 │
+└──────────────┴───────────────────────┴───────────────────────────────────────┘
 
 CONFIDENCE TIER QUICK CARD
   Tier A: Direct quote found → use it verbatim, cite source
   Tier B: 3+ consistent signals → frame as trajectory, not claim
   Tier C: <3 signals → 24-Hour Snapshot only → discovery call → re-run p0
+          Use Tier C Execution Path (Part 3A) — NOT fallback Outcome Report
 
-NARRATIVE ARC (all priorities, unchanged from v3)
-  Hook:         Specific operational pain (verifiable, citable)
-  Demo:         Portal screens tied to pain points, Priority Screen Routing applied
-  Possibility:  Vision introduced last — earned through proof
+NARRATIVE ARC (all priorities)
+  Hook:        Verbatim from p0 Priority Profile hook sentence
+  Demo:        Portal screens in Priority Screen Routing order (Part 2D)
+  Possibility: Verbatim from p0 Priority Profile Act 3 sentence
 
 p0 THREAD VARIABLE RULE
-  p0 output file must be attached to: p3a, p4d, p4e, p5a, p5b
+  p0 output file MUST be attached to: p3a, p4d, p4e, p5a, p5b
   Every prompt reads Priority Profile before generating content
   No prompt defaults to cost/hours metrics without Priority D confirmed
 
@@ -1053,4 +1362,9 @@ SOLUTION CARD CHECK (before finalizing any Outcome Report)
   Ask: are these metric slot labels from the Priority Profile?
   If the labels say "Time Saved / Cost Impact / Effort Reduction" → STOP
   Those are Priority D defaults. Re-read the Priority Profile and apply correct labels.
+
+HERO STAT CHECK (before finalizing any Outcome Report)
+  Ask: are these hero stats framed in Priority-correct language?
+  Priority A hero stats must reference capacity/scale — NOT hours or dollars saved.
+  Priority D is the only Priority where "$X/month" is the correct primary frame.
 ```
