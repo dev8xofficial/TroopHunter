@@ -1,751 +1,922 @@
-# Decision-Led Proof Perspective v2: Decision Safety Operating System
+# Decision-Led Proof Perspective v2
 
-> Purpose: improve the `Decision_Led_Proof_Perspective_v1.md` model from `9.2/10`
-> to a `10.0/10` fit for your current situation by solving both the **current
-> problems** and the **future problems** that will appear as this system scales.
-
-> Important note: `10.0/10` here does not mean universal perfection.
-> It means **best-fit operating model for your current reality**:
-> custom demos, custom reports, incomplete public research, uncertain ROI math,
-> multiple stakeholders, and a need to convert interest into trust.
+> A framework for building B2B sales deliverables that are anchored in what the
+> buyer needs to believe, see, and trust before saying yes — not in what the
+> seller thinks sounds most impressive.
+>
+> This file is company-independent. It applies to any B2B prospect in any industry.
+> Replace all examples with data from your specific prospect's research files.
 
 ---
 
-## 1. Why v1 Was 9.2, Not 10
+## 1. The Core Problem This Framework Solves
 
-The v1 model was already stronger than the Priority Stack because it changed the
-question from:
+Standard B2B pitch systems make one critical mistake: they start with the seller's
+strongest narrative angle instead of the buyer's actual decision situation.
 
-```text
-What story should lead?
+The result is a pitch that is well-crafted but poorly aimed. The metrics are
+estimated, not sourced. The story is logical but not proven. The buyer sees polish
+and feels doubt.
+
+Three specific failure modes drive most lost deals:
+
+**Failure 1 — Wrong priority anchor**
+The pitch leads with cost savings. The buyer already has budget and cares about
+speed to scale. Or the pitch leads with productivity. The buyer is trying to hit
+a growth target. The story is internally consistent but pointed at the wrong goal.
+
+**Failure 2 — Unproven claims**
+The report says "save 14 hours per week." The buyer asks: where does that number
+come from? The honest answer is: a conservative industry estimate. The buyer loses
+confidence in everything else too.
+
+**Failure 3 — Demo disconnected from research**
+The research identified three specific manual bottlenecks. The demo walks through
+six feature screens, two of which relate to those bottlenecks. The buyer watches a
+feature tour instead of seeing their problems solved.
+
+This framework fixes all three by changing the operating question:
+
 ```
-
-to:
-
-```text
-What must be proven for the buyer to move?
-```
-
-That was the right move.
-
-But it was still missing six things that prevent a true 10/10 system:
-
-| Gap in v1 | Why It Prevented a 10 |
-|---|---|
-| No full current-problem register | It improved the framework, but did not fully map the problems in your live workflow |
-| No future-problem prevention system | It could work now, but not stay strong as volume, team size, and complexity increase |
-| Decision risk was captured, but not operationalized enough | The model knew objections existed, but not exactly how to prevent them early |
-| Delivery trust was present, but not scored rigorously | Buyers may like the idea but still worry about implementation reality |
-| Learning loop was implied, not built | Good insights could still be lost after each prospect |
-| No full handoff bridge from sales logic to actual implementation logic | A persuasive sale can still produce a weak build if the operational insight is not transferred cleanly |
-
-This v2 file solves those gaps.
-
----
-
-## 2. Your Current Problems
-
-These are the real current problems in your situation, not generic sales theory.
-
-### Current Problem 1: Message accuracy is fragile
-
-You know a generic cost-saving pitch is weak, but public research alone can still
-lead to the wrong narrative.
-
-**Risk:**
-The report sounds tailored, but the buyer quietly thinks:
-
-```text
-"This is interesting, but that is not actually why I would buy."
-```
-
-**Fix in v2:**
-- separate `Desired Outcome` from `Buying Reason`
-- require a `Buyer Confirmation Status`
-- do not allow full proposal framing unless the buying reason is either confirmed
-  or clearly marked as a hypothesis
-
-### Current Problem 2: ROI math can weaken the sale
-
-When ROI numbers are not yet fully defensible, they attract argument instead of trust.
-
-**Risk:**
-The buyer stops discussing the transformation and starts debating arithmetic.
-
-**Fix in v2:**
-- add an `ROI Integrity Ladder`
-- every number must be labeled as `Sourced`, `Estimated`, `Proxy`, or `Excluded`
-- weak finance math can never lead the pitch
-
-### Current Problem 3: The demo can still become a feature tour
-
-Even a personalized demo can look impressive without proving the right thing.
-
-**Risk:**
-The buyer sees polish, but not certainty.
-
-**Fix in v2:**
-- replace loose screen sequencing with a `Proof Sequence`
-- every major claim must have a `Screen`, `Proof Condition`, and `Buyer Doubt Removed`
-
-### Current Problem 4: Multiple stakeholders may silently disagree
-
-The founder, COO, operator, and finance person may all see the same material
-through different filters.
-
-**Risk:**
-One person likes it, but nobody feels safe championing it internally.
-
-**Fix in v2:**
-- add a `Stakeholder Decision Map`
-- capture what each person wants, fears, and needs to see before supporting the deal
-
-### Current Problem 5: Personalization effort can start too early
-
-Custom work is valuable, but expensive.
-
-**Risk:**
-The team spends premium effort on a prospect who has not yet validated the core buying reason.
-
-**Fix in v2:**
-- add `Investment Gates`
-- define exactly when to stop at snapshot, when to run discovery, and when full customization is justified
-
-### Current Problem 6: Sales insight may not survive into delivery
-
-The sales narrative may be strong, but engineering or implementation can lose the
-reason the buyer cared in the first place.
-
-**Risk:**
-The deal closes on one promise and gets delivered like a generic build.
-
-**Fix in v2:**
-- add a `Delivery Intent Brief`
-- carry the bottleneck, required proof, adoption risks, and success criteria into implementation
-
----
-
-## 3. Your Future Problems
-
-If this system works, future problems will appear. A 10/10 framework has to solve
-those before they become expensive.
-
-### Future Problem 1: Customization debt
-
-As more prospects come in, the team may build too many one-off narratives,
-reports, and demos.
-
-**What breaks later:**
-- quality becomes inconsistent
-- the process slows down
-- insights are repeated but never systematized
-
-**Prevention in v2:**
-- create a `Pattern Library`
-- store reusable bottleneck types, proof patterns, objection patterns, and ROI templates
-
-### Future Problem 2: Proof debt
-
-The sales story may move faster than the product's real capabilities.
-
-**What breaks later:**
-- the demo implies features that are not cheap or easy to deliver
-- trust drops after the sale
-
-**Prevention in v2:**
-- add a `Feasibility Gate`
-- no proof claim can be used without a delivery confidence rating
-
-### Future Problem 3: Research drift
-
-As the team scales, public research may become more stale, rushed, or uneven.
-
-**What breaks later:**
-- old claims are repeated
-- assumptions become facts
-- confidence language becomes sloppy
-
-**Prevention in v2:**
-- add an `Evidence Freshness Rule`
-- every claim must show source type, recency, and confidence
-
-### Future Problem 4: Team inconsistency
-
-Different people will interpret the framework differently unless the rules are
-tight enough.
-
-**What breaks later:**
-- one person creates a careful decision case
-- another person creates a flashy but risky pitch
-
-**Prevention in v2:**
-- define strict required outputs
-- use a fixed `Decision Card`, `Proof Ledger`, `Stakeholder Map`, and `Delivery Brief`
-
-### Future Problem 5: Internal learning loss
-
-Without a feedback loop, every new prospect becomes a fresh reinvention.
-
-**What breaks later:**
-- same mistakes repeat
-- same objections surprise the team again and again
-
-**Prevention in v2:**
-- add an `Outcome Feedback Loop`
-- after each deal, record what actually won, what failed, and what proof mattered
-
-### Future Problem 6: Closed deals may still fail in adoption
-
-Winning the sale is not enough if the user team never fully adopts the system.
-
-**What breaks later:**
-- the buyer says yes
-- the operator quietly resists
-- value is never fully realized
-
-**Prevention in v2:**
-- include `Adoption Risk` in pre-sale logic
-- treat usability, training, ownership, and process change as part of decision safety
-
----
-
-## 4. Stronger Principle
-
-The v1 principle was:
-
-```text
-Sell the safest buying decision.
-```
-
-The v2 principle is stronger:
-
-```text
-Make the buyer's desired outcome feel reachable,
-the bottleneck feel undeniable,
-the proof feel visible,
-the change feel safe,
-and the next step feel easy.
-```
-
-That is the full operating standard.
-
----
-
-## 5. The v2 Model: Decision Safety Operating System
-
-The v2 framework upgrades the old Decision Card into a full **Decision Safety OS**.
-
-Every prospect now gets eight required artifacts:
-
-| Artifact | Purpose |
-|---|---|
-| `d0 Decision Card` | Defines the outcome, bottleneck, risk, proof, and next action |
-| `Current Problem Register` | Maps what is broken now in the buyer's reality |
-| `Future Problem Register` | Maps what will break later if they stay with the current model |
-| `Proof Ledger` | Turns claims into visible, testable proof |
-| `Stakeholder Decision Map` | Makes internal buyer politics visible |
-| `ROI Integrity Ladder` | Prevents weak math from leading the case |
-| `Feasibility and Delivery Gate` | Prevents sales promises from outrunning delivery reality |
-| `Delivery Intent Brief` | Transfers sales truth into actual implementation planning |
-
-This is the shift from:
-
-```text
-better narrative system
-```
-
-to:
-
-```text
-decision-safe sales operating system
+Old question:  What is our strongest narrative angle?
+New question:  What does this buyer need to believe, see, and trust to say yes?
 ```
 
 ---
 
-## 6. The New Mandatory Pre-Step: d0 Decision Card v2
+## 2. The Fundamental Principle
 
-Save as:
+Do not optimize first for the best narrative.
+Optimize first for the safest buying decision.
 
-`Phase-0:Decision-Card-{PROSPECT}`
+The real sale is not a messaging problem. It is a decision problem.
 
-```markdown
+Every buyer goes through the same internal sequence before approving a purchase:
+
+```
+1. Do I understand what outcome this produces?
+2. Is the problem it solves real and currently costing me something?
+3. Do I believe this actually works?
+4. Can my team realistically adopt it?
+5. Is the investment defensible to others who will scrutinize it?
+6. What is the right next move for me right now?
+```
+
+This framework answers those six questions in order, using evidence from research
+rather than assumptions from the seller.
+
 ---
-prospect: {PROSPECT}
-provider: {PROVIDER}
-generated: {DATE}
-version: d0_v2
+
+## 3. The Narrative Formula
+
+When building any deliverable — report, demo, proposal, pitch script — structure
+the story in this exact sequence:
+
+```
+Future Outcome → Current Bottleneck → Proof → Safe Change → Strategic Unlock
+```
+
+**Future Outcome** — Where is the buyer trying to go? This gives the story direction
+and makes the solution feel strategic rather than tactical.
+
+**Current Bottleneck** — What is stopping them from getting there right now? This is
+the concrete operational problem the solution removes. It must be observable in their
+current workflows, not inferred from generic industry pain.
+
+**Proof** — What does the buyer see in the demo or report that shows the bottleneck
+is actually removed? Proof converts interest into belief. Without it, the story
+is just a promise.
+
+**Safe Change** — Why is adopting this solution realistic for their team? This
+addresses the adoption risk that kills deals after the demo impresses.
+
+**Strategic Unlock** — What becomes possible once the bottleneck is gone? This
+connects the solved operational problem back to the buyer's bigger ambition.
+
+### The Mission Rule
+
+A buyer's mission or future ambition can be used as the directional anchor for the
+story — but only under this rule:
+
+- If the mission is confirmed or strongly evidenced, use it as the lead anchor.
+- If it is inferred from public signals only, use it as a supporting frame, not
+  the headline.
+- If it is vague or aspirational without operational grounding, do not force it
+  as the lead. Start with the current bottleneck instead.
+
+A mission-led opening that cannot be grounded in a specific operational bottleneck
+sounds inspiring but sells nothing.
+
 ---
 
-# Decision Card - {PROSPECT}
+## 4. Phase 0 — The Decision Card
 
-## 1. Desired Outcome
-[Direct quote / strong inference / not confirmed]
+Before any deliverable is built, a Decision Card must be produced.
 
-## 2. Buying Reason
-[Why this buyer would actually approve change now]
+The Decision Card is a structured analysis document generated from all available
+research. It contains nine sections. Every downstream deliverable — outcome report,
+demo script, proposal, pitch — reads the Decision Card before generating content.
 
-## 3. Current Bottleneck
-[One specific operational bottleneck in plain language]
+If the Decision Card cannot be completed with reasonable confidence, the process
+is not ready for full personalization. In that case, the correct output is a
+lightweight snapshot plus a discovery ask — not a full demo and report.
 
-## 4. Buyer Confirmation Status
-[Confirmed / Partially confirmed / Hypothesis only]
+### The Nine Sections of the Decision Card
 
-## 5. Decision Risk
-[What could stop the buyer from moving]
+**Section 1 — Desired Outcome (Scored Goal Table)**
 
-## 6. Adoption Risk
-[What could stop the team from actually using the solution]
+The system will detect multiple possible future goals across research sources.
+Rather than picking one arbitrarily, every detected goal is scored across five
+dimensions and ranked.
 
-## 7. Required Proof
-| Claim | Proof Needed | Screen / Artifact | Buyer Doubt Removed | Confidence |
+Scoring dimensions:
+
+| Dimension | Weight | Scale | Description |
+|---|---|---|---|
+| Source Weight | 25% | 1–5 | Official docs = 5, founder statements = 4, company posts = 3, blog = 2, inferred = 1 |
+| Frequency | 15% | 1–5 | Goal appears in 5+ independent sources = 5, once = 1 |
+| Recency | 20% | 1–5 | Last 90 days = 5, last year = 3, older = 1 |
+| Specificity | 20% | 1–5 | Has number + deadline = 5, directional only = 2, vague aspiration = 1 |
+| Buying Relevance | 20% | 1–5 | Directly blocked by an identified operational bottleneck = 5, no bottleneck connection = 1 |
+
+Total score = weighted sum, maximum 5.0.
+
+Classification:
+- **4.0–5.0** → Primary Goal — anchor the entire pitch here
+- **2.5–3.9** → Supporting Goal — reference as context, not lead
+- **Below 2.5** → Background Signal — do not use as pitch anchor
+
+The output is a ranked table, not a single winner. Goals ranked 2nd and 3rd feed
+the Stakeholder Decision Map — different stakeholders often care about different goals.
+
+**Confidence Level based on primary goal score:**
+- **High Confidence** (4.0+, buying relevance 4+, confirmed by behavior) — proceed to full build
+- **Medium Confidence** (3.0–3.9, or buying relevance 3 or below) — proceed with flagged assumptions
+- **Low Confidence** (no goal above 2.5, or top two goals within 0.3 of each other) — discovery first
+
+**Section 2 — Buying Reason**
+
+The Buying Reason is distinct from the Desired Outcome.
+
+- Desired Outcome = what the organization wants to achieve
+- Buying Reason = why they would approve a purchase decision *right now*
+
+A company can have a clear desired outcome and still not be in a buying moment.
+The Buying Reason connects the desired outcome to a current operational pressure
+that makes inaction more costly than action.
+
+Example structure:
+```
+Desired Outcome: [what they are trying to achieve]
+Buying Reason: [what makes that goal urgent now, and what operationally blocks it]
+```
+
+If the Buying Reason cannot be identified from research, mark it as
+"Hypothesis only" and route to Gate 1 (Snapshot) or Gate 2 (Discovery).
+
+**Section 3 — Current Bottleneck**
+
+One specific operational bottleneck stated in plain language. Not a category of
+problems — a single concrete process that is currently manual, slow, unreliable,
+or unscalable.
+
+This bottleneck is the foundation for:
+- what the solution must automate or remove
+- what the demo must visually prove
+- what the report must explain in before/after terms
+
+If a bottleneck is not carried into all three of those outputs, it should not be
+presented as the lead problem.
+
+**Section 4 — Buyer Confirmation Status**
+
+Every claim about what the buyer wants must be tagged:
+
+- **Confirmed** — the buyer has stated this directly in a meeting, document, or
+  public statement with sufficient specificity
+- **Partially confirmed** — strong inference from multiple independent signals
+  that point in the same direction
+- **Hypothesis only** — inferred from public signals alone; plausible but not verified
+
+This status determines which Investment Gate applies and how aggressively the
+deliverables should be built.
+
+**Section 5 — Decision Risk**
+
+What could stop this buyer from moving forward even after seeing a strong demo?
+
+Common risk categories:
+- "The ROI math is too estimated — I cannot defend this internally"
+- "I'm not sure our team will actually adopt this"
+- "The timing is wrong — we have other priorities right now"
+- "This solves a problem I have but my stakeholders don't feel urgently"
+- "I believe it works but I'm not the only decision-maker"
+
+State the most likely risk in one sentence. The pitch, proposal, and demo all
+address this risk directly rather than hoping the buyer ignores it.
+
+**Section 6 — Adoption Risk**
+
+Adoption risk is separate from decision risk. The buyer can say yes and the
+implementation can still fail if the team does not use the system.
+
+Assess three areas:
+- Team tech maturity (comfort with digital tools)
+- Process change magnitude (how different is this from current workflow)
+- Training requirement (how much onboarding is realistically needed)
+
+Rate each: High / Medium / Low resistance.
+
+If any area is High resistance, that area cannot be a lead benefit claim in the
+pitch. It must be addressed as an implementation consideration with a concrete
+mitigation plan.
+
+**Section 7 — Required Proof Table**
+
+For every important claim the pitch will make, identify what the buyer must
+actually see to believe it.
+
+| Claim | Why Buyer Might Doubt It | Proof Needed | Screen or Artifact | Confidence Claim Can Be Made |
 |---|---|---|---|---|
-| [claim] | [proof] | [screen] | [doubt removed] | [high/med/low] |
+| [claim] | [doubt] | [what resolves the doubt] | [where it is shown] | High / Med / Low |
 
-## 8. ROI Integrity
-| Metric | Status | Label |
+Rule: Claims with Low confidence cannot lead the pitch. They may appear as
+supporting evidence with appropriate hedging, or they must be moved to a
+future-state section.
+
+If no screen or artifact provides proof for a claim, mark it "No visible proof —
+cannot be lead claim." Do not remove it from research — it may become a discovery
+question.
+
+**Section 8 — ROI Integrity Ladder**
+
+Every metric used in the pitch, report, or proposal must be classified:
+
+| Level | Label | Definition | Usage Rule |
+|---|---|---|---|
+| L1 | Sourced | Directly from the prospect's own data or public filings | May lead the headline |
+| L2 | Estimated | Reasonable calculation from available signals with stated assumptions | May support, must be labelled "Estimated" |
+| L3 | Proxy | Indirect assumption using industry benchmarks; not specific to this prospect | Illustrative only, never headline |
+| L4 | Excluded | Too speculative or unverifiable | Remove from all deliverables |
+
+Rule: No L3 or L4 metric may appear in the hero headline numbers of any deliverable.
+Only L1 metrics may lead. L2 may support with clear labelling.
+
+If the only available metrics are L3 or L4, do not fabricate stronger ones.
+Instead, use the discovery call to gather L1 data before building the full report.
+
+**Section 9 — Delivery Confidence**
+
+Before building the proposal, assess four areas:
+
+| Area | Rating | Notes |
 |---|---|---|
-| [metric] | [sourced / estimated / proxy / exclude] | [how it may be used] |
+| Product fit | High / Med / Low | Does the platform actually solve the bottleneck? |
+| Delivery realism | High / Med / Low | Can the team build and deliver this reliably? |
+| Adoption readiness | High / Med / Low | Will the buyer's team realistically use it? |
+| Stakeholder alignment | High / Med / Low | Are the key decision-makers likely aligned? |
 
-## 9. Delivery Confidence
-| Area | Status | Note |
-|---|---|---|
-| Product fit | [high/med/low] | [...] |
-| Delivery realism | [high/med/low] | [...] |
-| Adoption readiness | [high/med/low] | [...] |
-| Stakeholder alignment | [high/med/low] | [...] |
-
-## 10. Recommended Next Action
-[snapshot / discovery / demo + report / proposal]
-```
-
-### New rule
-
-No full personalized report, demo, or proposal may be created unless the `Buyer
-Confirmation Status` and `Delivery Confidence` are both visible.
+If any area scores Low, that area cannot be a lead claim in the pitch.
+It must be either addressed as a risk with a mitigation plan, or deferred to a
+later phase once more information is available.
 
 ---
 
-## 7. Current Problem Register
+## 5. The Investment Gate System
 
-This is a new required section.
+Not every prospect deserves the same depth of work. The Investment Gate determines
+how much to build before the buyer has confirmed their intent.
 
-It answers:
+**Gate 1 — Snapshot Only**
 
-```text
-What is hurting the buyer today, in operational terms?
-```
+Use when: Buyer Confirmation Status is "Hypothesis only," primary goal confidence
+is Low, or Buying Reason cannot be identified.
 
-Template:
+Deliver: A 24-hour snapshot document identifying one bottleneck hypothesis, one
+proof angle, and a clear discovery ask. No demo. No report. No proposal.
 
-| Current Problem | Evidence | Who Feels It | What It Blocks | Proof Needed |
-|---|---|---|---|---|
-| [problem] | [evidence] | [role] | [outcome blocked] | [screen / artifact] |
+**Gate 2 — Discovery First**
 
-### Rule
+Use when: Desired outcome is partially clear, current bottleneck is visible, but
+decision risk and stakeholder alignment are still unknown.
 
-The demo must solve the top three current problems directly.
+Deliver: Decision Card + discovery questions. Build no heavy deliverables until
+discovery confirms the buying reason.
 
-If a current problem has no visible proof, it cannot be a lead claim.
+**Gate 3 — Personalized Demo and Decision Safety Brief**
+
+Use when: Desired outcome is clear enough, current bottleneck is concrete, proof
+screens exist in the demo, and implementation feels believable to the buyer's
+context.
+
+Deliver: Demo + Decision Safety Brief (outcome report). Reserve full proposal for
+after demo engagement is confirmed.
+
+**Gate 4 — Full Proposal Suite**
+
+Use when: Buying reason is confirmed or partially confirmed, proof ledger is
+viable, ROI is defensible at L1/L2 level, delivery confidence has no Low scores,
+and stakeholder alignment is at least partially confirmed.
+
+Deliver: Full proposal, pitch script, and development blueprint.
+
+**The Gate Rule**
+
+No full deliverable may be produced if the Decision Card's Buyer Confirmation
+Status is "Hypothesis only" and no Discovery has been completed.
+
+This protects the team from spending significant time on prospects who are not yet
+in a real buying situation.
 
 ---
 
-## 8. Future Problem Register
+## 6. The Current Problem Register
 
-This is the section that pushes the model from `9.2` to `10.0`.
+The Current Problem Register is a structured list of operational problems
+observable from research. It is built alongside the Decision Card and feeds
+directly into the demo script and report.
 
-It answers:
+### Template
 
-```text
-If the buyer does nothing, what future operational problems become more painful?
-```
+| Current Problem | Evidence Source | Who Feels It | What It Blocks | Proof Needed | Can Demo Prove It |
+|---|---|---|---|---|---|
+| [problem] | [source] | [role] | [outcome blocked] | [what resolves doubt] | Yes / No / Partial |
 
-Template:
+### Rules
 
-| Future Problem | Why It Will Happen | Leading Indicator | Business Risk | Preventive Narrative |
+- Minimum 4 problems, maximum 8.
+- Every problem must be traceable to specific research data — not invented.
+- Every problem must identify the specific role who experiences it, not just
+  the organization in general.
+- The top 3 problems must each have a viable demo proof entry. If they do not,
+  mark them "No visible proof — cannot be lead claim" and they drop out of the
+  main pitch into discovery questions.
+- Problems without any proof should not be removed from the register — they become
+  the basis for discovery questions that gather stronger evidence.
+
+### The Manual Operations Mapping Rule
+
+For every identified manual operation, three things must be mapped before it
+can appear in any deliverable:
+
+1. Why does this manual operation block the buyer's primary goal?
+2. What does the solution specifically do to remove or automate it?
+3. Which screen in the demo proves the removal has happened?
+
+If all three cannot be answered, the manual operation cannot be a lead claim.
+It may still be referenced as supporting context.
+
+This rule prevents the most common demo failure: identifying one set of pain
+points in research and then demonstrating a different set of features in the
+walkthrough.
+
+---
+
+## 7. The Future Problem Register
+
+The Future Problem Register captures what breaks in the next 12–24 months if
+the buyer makes no change. This is distinct from the Current Problem Register.
+
+Current problems justify action now.
+Future problems justify the scale of investment and the urgency of timing.
+
+### Template
+
+| Future Problem | Why It Will Happen | Leading Indicator Already Visible | Business Risk If Not Solved | Preventive Narrative |
 |---|---|---|---|---|
-| [future issue] | [reason] | [signal] | [risk] | [how platform prevents it] |
+| [problem] | [mechanism] | [signal] | [consequence] | [how platform prevents it] |
 
-### Example
+### Rules
 
-| Future Problem | Why It Will Happen | Leading Indicator | Business Risk | Preventive Narrative |
+- Minimum 3 future problems.
+- Each must be connected to a plausible growth or change trajectory, not invented.
+- Each must include a leading indicator — something already observable that signals
+  the future problem is approaching.
+- The Preventive Narrative must be written in quotable sales language: one sentence
+  that explains how the platform prevents this specific future problem.
+- The report and proposal must reference both the current cost of the bottleneck
+  AND the future cost if no change happens. Showing only the current cost
+  underestimates the value of acting now.
+
+---
+
+## 8. The Stakeholder Decision Map
+
+For any prospect where multiple people are involved in the buying decision,
+a Stakeholder Decision Map must be built before the proposal is written.
+
+### Template
+
+| Stakeholder Role | What They Want | What They Fear | Likely Support Level | Notes |
 |---|---|---|---|---|
-| Pipeline invisibility becomes growth drag | More partners without system visibility creates coordination failure | More manual follow-up and more handoffs | Lost opportunities and slower scale | "This is not just an efficiency fix. It prevents the next stage of growth from breaking operations." |
-| Reporting quality collapses at scale | Manual reporting does not scale linearly | More partners, more exceptions, more manual data movement | Leadership distrusts the numbers | "The analytics view is not cosmetic. It is the control layer required for scale." |
+| [role] | [goal] | [concern] | High / Med / Low | [additional context] |
 
-### Rule
+### Rules
 
-The report and proposal must include both:
-
-- the cost of the current bottleneck
-- the cost of the future bottleneck if no system change happens
-
-This makes urgency more credible.
+- Identify every person who can approve, block, or influence the decision.
+- A stakeholder who is not the primary contact but controls budget or compliance
+  must be identified even if they have not been spoken to directly.
+- If any critical stakeholder has Low support level, the system must recommend
+  a discovery or objection-handling step before the full proposal is sent.
+- The proposal and pitch script should be structured so the primary contact can
+  use them to convince their internal stakeholders — not just themselves.
+- Different deliverable sections should speak to different stakeholder concerns:
+  the operational sections speak to the implementer, the ROI sections speak to
+  the finance stakeholder, the strategic sections speak to the executive.
 
 ---
 
 ## 9. The Proof Ledger
 
-This is the heart of the v2 model.
+The Proof Ledger is the master record of every important claim in the pitch
+and what evidence supports it.
 
-Every important sales claim must be translated into a proof ledger.
+### Template
 
-Template:
-
-| Claim | Evidence | Screen / Artifact | Proof Condition | Remaining Doubt | Backup Language |
+| Claim | Evidence | Proof Condition | Proof Location | Remaining Doubt | Backup Language |
 |---|---|---|---|---|---|
-| [claim] | [why we believe it] | [screen] | [what must be visible] | [what buyer may still doubt] | [safer wording if challenged] |
+| [claim] | [why we believe it] | [what buyer must see] | [screen or artifact] | [what could still create doubt] | [alternative framing if proof is weak] |
 
-### Example
+### Rules
 
-| Claim | Evidence | Screen / Artifact | Proof Condition | Remaining Doubt | Backup Language |
-|---|---|---|---|---|---|
-| Follow-up is manual and inconsistent | Coordinator responsibilities + no automation signal | Communications / Automations | Automated trigger sequence is visible and logically tied to lead stages | "Can the team configure this?" | "This removes the repeated manual follow-up structure, even if final workflow details are tailored." |
-
-### Rule
-
-If the proof condition is not visible in the demo or report, do not make the claim.
-
-This is stricter than v1 and makes the framework much harder to misuse.
+- Every claim that appears in a hero headline, demo opening, or proposal lead
+  must have a Proof Ledger entry.
+- A claim with no Proof Condition that can be shown in a demo or report cannot
+  lead the pitch. It may appear as a supporting claim with appropriate hedging.
+- Backup Language is mandatory for every claim. If the primary proof fails or
+  the buyer challenges it, the salesperson must have a prepared alternative
+  framing that does not abandon the claim entirely but acknowledges the limitation
+  honestly.
+- The Proof Ledger is shared with the demo builder and the proposal writer.
+  They are not permitted to make claims that are not in the Proof Ledger.
 
 ---
 
-## 10. Stakeholder Decision Map
+## 10. Demo Routing — Belief Order
 
-The v1 model recognized stakeholder risk, but v2 formalizes it.
+The demo is not a feature tour. It is a Proof Sequence.
 
-Template:
+The old question was: which priority should the demo lead with?
+The new question is: which screen most directly proves the buyer's main doubt is solved?
 
-| Stakeholder | What They Want | What They Fear | What They Need to See | Likely Support Level |
-|---|---|---|---|---|
-| CEO / Founder | [outcome] | [fear] | [proof] | [high/med/low] |
-| COO / Ops Lead | [outcome] | [fear] | [proof] | [high/med/low] |
-| Operator / Daily User | [outcome] | [fear] | [proof] | [high/med/low] |
-| Finance / Budget Owner | [outcome] | [fear] | [proof] | [high/med/low] |
+### Screen Role Order
 
-### Rule
-
-If the likely support level of a critical stakeholder is `low`, the system must
-recommend discovery or objection-handling before full proposal framing.
-
----
-
-## 11. ROI Integrity Ladder
-
-This is a direct fix for one of your biggest current problems.
-
-Every metric must be classified before being used:
-
-| Level | Meaning | Allowed Use |
+| Position | Screen Role | What It Must Prove |
 |---|---|---|
-| `L1 - Sourced` | Directly supported by evidence | Can be used confidently |
-| `L2 - Estimated` | Reasonable internal estimate | Use only with clear label |
-| `L3 - Proxy` | Indirect assumption | Supporting only, never lead |
-| `L4 - Excluded` | Too weak to defend | Do not use |
+| Screen 1 | Expose the bottleneck | The current problem is real and visible in the system |
+| Screen 2 | Remove the manual work | The specific automation or workflow that replaces the bottleneck |
+| Screen 3 | Operator usability | A daily user can navigate and use this without chaos |
+| Screen 4 | Leadership visibility | Executives can see control, accountability, and data they currently lack |
+| Screen 5 | Future problem prevention | The platform handles the scale or complexity that would break current operations |
+| Screen 6+ | Strategic upside | Growth, revenue, or mission-level outcomes that become possible once the bottleneck is gone |
 
-### Rule
+### Rules
 
-- `L1` may lead.
-- `L2` may support.
-- `L3` may illustrate.
-- `L4` must be removed.
+- Strategic upside (Screen 6+) must be earned by the proof that precedes it.
+  Opening with ambition before showing proof produces skepticism, not excitement.
+- Every screen navigated to in the demo must map to a Proof Ledger entry.
+  If no entry exists, do not show that screen.
+- The same manual operations identified in the Decision Card must be the ones
+  the demo resolves on screen. Research and demo must point at the same problems.
+- If Adoption Risk is rated High in any area, Screen 3 (Operator Usability) must
+  specifically address that area. Do not skip it.
 
-This protects the sale from weak math and keeps the conversation on trust.
+---
+
+## 11. The ROI Integrity Ladder — Enforcement Rules
+
+The ROI Integrity Ladder (defined in Section 4, Decision Card §8) must be actively
+enforced at every deliverable stage, not just assigned once and forgotten.
+
+### Enforcement by deliverable
+
+**Outcome Report / Decision Safety Brief**
+- Hero headline numbers: L1 only
+- Supporting metrics: L1 or L2 with labels
+- Removed: all L3 and L4 metrics
+
+**Demo Script**
+- Time savings stated as specific numbers: must be L1 or L2
+- If only L3 data exists, use directional language: "significantly reduces" not
+  "saves 14 hours per week"
+
+**Proposal**
+- ROI scenarios section: show L1/L2 metrics as "Confident projection"
+- Show L2 assumptions explicitly so the buyer understands the basis
+- Do not include L3 or L4 metrics in any financial table
+
+**Pitch Script**
+- Any number read aloud must be L1 or L2
+- If the salesperson cannot answer "where does that number come from," the number
+  must be removed from the script
+
+### What to do when all metrics are L3 or L4
+
+Do not fabricate stronger metrics. Do not use L3 metrics with L1 confidence language.
+
+Instead: use discovery questions to gather L1 data directly from the buyer.
+"How many hours per week does your team currently spend on [manual process]?"
+That answer becomes L1 data that can be used in the report.
+
+A brief report with honest L1 numbers is more persuasive than a detailed report
+with fabricated precision.
 
 ---
 
 ## 12. Feasibility and Delivery Gate
 
-This is what prevents proof debt.
+Before the proposal is sent, every proposed solution must be scored on four
+feasibility dimensions.
 
-Every proposed automation or feature shown in the sales material must be scored:
+| Dimension | Rating | Definition |
+|---|---|---|
+| Technical feasibility | High / Med / Low | Can this actually be built as described? |
+| Adoption ease | High / Med / Low | Will the buyer's team realistically use it? |
+| Data trust | High / Med / Low | Does the buyer trust the data quality that the system depends on? |
+| Delivery effort | High / Med / Low | Is the delivery timeline realistic given team capacity? |
 
-| Area | High | Medium | Low |
-|---|---|---|---|
-| Feasibility | Clearly buildable with known patterns | Buildable with some uncertainty | Hard, slow, or unclear |
-| Adoption | Easy for end users to understand | Needs workflow adjustment | Likely to confuse or resist |
-| Data trust | Inputs and outputs feel believable | Some assumptions required | High chance of buyer skepticism |
-| Delivery effort | Reasonable for scope | Moderate | Expensive or risky |
+### Rules
 
-### Rule
-
-If any lead proof item scores `Low`, it must either:
-
-- be reframed as future-state vision, or
-- be removed from the core pitch
-
-This protects credibility before and after the sale.
-
----
-
-## 13. Investment Gates
-
-The old gate system is now stronger and stricter.
-
-### Gate 1 - Snapshot
-
-Use when:
-
-- desired outcome is still unclear
-- buying reason is unconfirmed
-- proof is weak
-
-### Gate 2 - Discovery
-
-Use when:
-
-- bottleneck is visible
-- decision risk is still uncertain
-- stakeholder support is unknown
-
-### Gate 3 - Personalized Demo and Decision Report
-
-Use when:
-
-- current problem is concrete
-- proof ledger is viable
-- buyer confirmation is at least partial
-- delivery confidence is not low
-
-### Gate 4 - Proposal
-
-Use when:
-
-- buying reason is confirmed
-- proof exists
-- ROI integrity is defensible
-- implementation path feels believable
-
-This removes wasted effort and makes escalation cleaner.
+- If any lead solution scores Low on any dimension, it must be reframed in one
+  of two ways: (a) moved to a future-state section of the proposal with an honest
+  timeline, or (b) replaced by a different solution that scores higher.
+- A Low feasibility score cannot be hidden behind optimistic language. It must
+  be addressed directly in the Implementation Safety section of the proposal.
+- The buyer's ability to trust the delivery is part of the sale. A technically
+  impressive solution that the buyer cannot imagine their team using will not close.
 
 ---
 
-## 14. How the Deliverables Improve in v2
+## 13. Decision Safety Brief — The Outcome Report Structure
 
-### Outcome Report becomes a Decision Safety Brief
+The deliverable formerly called an "Outcome Report" is more accurately a
+**Decision Safety Brief**. It gives the buyer everything they need to feel
+safe approving the decision, not just everything that makes the solution look
+attractive.
 
-Recommended structure:
+### Recommended structure
 
-1. Desired outcome
-2. Current problem register
-3. Future problem register
-4. What was built to remove the bottleneck
-5. Proof ledger
-6. Stakeholder confidence
-7. ROI integrity summary
-8. Recommended next action
+**Section 1 — Header**
+- Prospect name + "Decision Safety Brief"
+- Three headline numbers — L1 or L2 metrics only
+- Buyer Confirmation Status badge (Confirmed / Partial / Hypothesis)
 
-### Demo becomes a Proof Sequence
+**Section 2 — Desired Outcome**
+- One paragraph: what the buyer is trying to achieve (from ranked goal table)
+- If Buying Reason differs from Desired Outcome, show both explicitly
 
-Recommended order:
+**Section 3 — Current Problem Register**
+- Table showing top 4–6 problems with evidence, affected role, and what each blocks
+- Visual severity indicator for each
 
-1. Expose the current bottleneck
-2. Show the specific workflow that removes it
-3. Show operator usability
-4. Show leadership visibility and control
-5. Show future problem prevention
-6. Show upside only after trust is earned
+**Section 4 — Future Problem Register**
+- Table showing top 3 future problems with preventive narrative for each
 
-### Proposal becomes a Safe Change Case
+**Section 5 — What Was Built to Remove the Bottleneck**
+- Solution cards (4–7 maximum)
+- Each card must reference a specific current problem from Section 3
+- Each card shows: Problem → Solution → Proof Status (Visible in Demo / Described Only / Future State)
+- Metrics with ROI Integrity label on each
 
-Recommended order:
+**Section 6 — Proof Ledger Summary**
+- Table: Claim | Evidence | Proof Condition | Remaining Doubt
+- Only claims with visible proof lead this section
+- Claims with weak proof appear with honest hedging
 
-1. Why act now
-2. What breaks if nothing changes
-3. What proof already exists
-4. What implementation will look like
-5. What adoption support is required
-6. ROI scenarios by integrity level
-7. Recommended commercial step
+**Section 7 — Stakeholder Confidence**
+- If stakeholder data is available: abbreviated Stakeholder Map
+- If not: "Stakeholder mapping recommended during discovery"
+
+**Section 8 — ROI Integrity Summary**
+- All metrics grouped by integrity level
+- L1 metrics shown as confident projections
+- L2 metrics shown with stated assumptions
+- Note confirming L3/L4 metrics were excluded
+
+**Section 9 — Recommended Next Action**
+- Based on the Investment Gate assessment from the Decision Card
+- CTA adjusted to gate level: discovery call, demo, or proposal
+- If gate is 1 or 2, do not push for a proposal — push for a 30-minute call
 
 ---
 
-## 15. Delivery Intent Brief
+## 14. Proposal Structure — The Safe Change Case
 
-This is a new mandatory bridge between sales and implementation.
+The proposal is not a cost document. It is a **Safe Change Case**.
 
-Template:
+It answers five questions in order:
 
-| Section | Required Content |
+1. Why change now — not "why buy this product"
+2. What bottleneck is being removed and what is the proof
+3. What does implementation actually look like
+4. What is the ROI at defensible integrity levels
+5. What is the recommended commitment and path forward
+
+### Section sequence
+
+**Section 0 — Why Act Now**
+- The current bottleneck and its operational cost
+- What breaks in 12–24 months if nothing changes (from Future Problem Register)
+- What proof already exists that the solution works
+
+**Section 1 — What We Built**
+- Plain English description of the platform and who uses it
+
+**Section 2 — Project Team**
+- Team structure, roles, and market rate comparison
+
+**Section 3 — Market Rates Comparison**
+- Benchmark rates across regions with billing rate assignment
+
+**Section 4 — Cost Estimate**
+- Hours, rates, and total — with timeline formula shown explicitly
+
+**Section 5 — Why This Approach Makes Sense**
+- Rationale for team structure, location, and rate tier
+
+**Section 6 — References**
+- Profile benchmarks used for rate validation
+
+**Section 7 — Implementation Safety**
+- Delivery Confidence summary from Decision Card
+- Adoption risk mitigation plan
+- What support and training are included
+- Stakeholder alignment status
+
+**Section 8 — ROI by Integrity Level**
+- L1 Sourced metrics: confident projections
+- L2 Estimated metrics: reasonable projections with assumptions stated
+- Confirmation that L3/L4 metrics were excluded
+
+---
+
+## 15. Post-Deal — Delivery Intent Brief
+
+When a deal closes, a Delivery Intent Brief is produced for the implementation team.
+This ensures the delivery team knows exactly what the buyer cares about and what
+was promised — not just what was scoped.
+
+### Template sections
+
+| Section | Content |
 |---|---|
-| Buyer outcome | What the buyer actually cared about |
-| Bottleneck solved | What manual/process problem was central |
-| Lead proof used | What screens/artifacts won trust |
-| Adoption risks | Where user behavior may fail |
-| Metrics promised | Which metrics were used and at what integrity level |
-| Non-negotiable trust areas | What must feel reliable in delivery |
+| Buyer Outcome | What the buyer actually cared about most — from Decision Card Primary Goal |
+| Bottleneck Solved | The specific manual/process problem that was central to the sale |
+| Lead Proof Used | Which screens or artifacts won trust during the demo |
+| Adoption Risks | Where user behavior may resist the new system |
+| Metrics Promised | Which metrics were used in the pitch and at what integrity level |
+| Non-Negotiable Trust Areas | What must feel reliable in delivery or the buyer will feel deceived |
 
-### Rule
-
-No implementation planning should start without this brief.
-
-This is how the sale stays honest after the proposal.
+This brief is mandatory before development begins. The implementation team cannot
+fully serve the buyer if they only know the feature scope — they need to know
+the decision context that created the sale.
 
 ---
 
-## 16. Pattern Library and Outcome Feedback Loop
+## 16. Post-Deal — Outcome Feedback Record
 
-This is how the framework stays strong over time.
+After every deal closes or dies, a lightweight capture is made. Over time this
+builds a pattern library that improves the accuracy of future Decision Cards.
 
-After each prospect, record:
+### Template
 
 | Field | What to Capture |
 |---|---|
-| Prospect type | nonprofit / SaaS / services / other |
-| Desired outcome | what they cared about most |
-| Current bottleneck | what was visibly broken |
-| Decision risk | what nearly blocked the deal |
-| Winning proof | which screen or artifact created belief |
-| Weak proof | what failed or felt thin |
-| ROI pushback | which numbers were challenged |
-| Result | no reply / discovery / demo / proposal / won / lost |
+| Prospect type | Industry and organization type |
+| Desired outcome | What they cared about most |
+| Current bottleneck | What was visibly broken |
+| Decision risk | What nearly blocked or did block the deal |
+| Winning proof | Which screen or artifact created belief |
+| Weak proof | What felt thin or got challenged |
+| ROI pushback | Which numbers were questioned and how |
+| Result | No reply / Discovery booked / Demo completed / Proposal sent / Won / Lost |
 
-### Rule
-
-The system should improve from evidence, not only opinion.
-
-That is how it remains a 10/10 operating model instead of decaying back to good
-storytelling.
+Results are reviewed monthly. Patterns that emerge — specific proof screens that
+consistently win, specific claims that consistently get challenged, specific
+decision risks that appear across multiple deals — feed back into the Decision Card
+prompt as updated inference rules.
 
 ---
 
-## 17. Scoring the Three Systems
+## 17. The Claim-to-Proof Discipline
 
-The comparison below is for **your current operating context**, not for every
-possible company in the world.
+Every important claim in any deliverable must pass a four-step test before use.
 
-### Weighted comparison
-
-| Criteria | Weight | Current v6 Priority Stack | Decision-Led Proof v1 | Decision-Led Proof v2 |
-|---|---:|---:|---:|---:|
-| Narrative targeting | 10 | 9.0 | 8.7 | 8.8 |
-| Handles incomplete public data | 15 | 7.5 | 9.0 | 9.6 |
-| Prevents wrong assumptions | 15 | 7.5 | 9.2 | 9.8 |
-| Forces visible proof | 15 | 8.4 | 9.5 | 9.9 |
-| Protects against weak ROI math | 10 | 7.4 | 9.3 | 9.9 |
-| Handles multiple stakeholders | 10 | 8.2 | 9.0 | 9.7 |
-| Prevents over-customization | 10 | 7.8 | 9.1 | 9.8 |
-| Protects delivery trust | 10 | 7.0 | 8.8 | 9.9 |
-| Learns over time | 5 | 6.5 | 7.8 | 9.8 |
-
-### Total fit score
-
-- **Current v6 Priority Stack:** `8.0 / 10`
-- **Decision-Led Proof v1:** `9.2 / 10`
-- **Decision-Led Proof v2:** `10.0 / 10`
-
-### Why v2 reaches 10 in your case
-
-Because it closes the exact remaining gaps:
-
-- it solves the current message problem
-- it solves the weak-math problem
-- it solves the proof problem
-- it solves the stakeholder problem
-- it solves the delivery-trust problem
-- it solves the future scaling problem
-
-That makes it the strongest full system for your situation.
-
----
-
-## 18. How the Old System Fails
-
-The current Priority Stack system fails when:
-
-| Failure Mode | Result |
+| Step | Question |
 |---|---|
-| Wrong lead priority | The story is elegant but misaligned |
-| Public goal is stale | The pitch sounds out of touch |
-| Demo is thematic, not evidential | Buyer sees polish without certainty |
-| ROI is weak | Buyer debates numbers instead of believing the case |
-| Stakeholder politics are hidden | Internal support stays soft |
-| Delivery risk is unscored | Trust drops after the sale |
+| Claim | What are we asserting is true? |
+| Evidence | Why do we believe it, and from what source? |
+| Proof | What will the buyer see in the demo or report that confirms it? |
+| Risk | What would make the buyer doubt it, and how do we address that? |
+
+This test is not optional for lead claims. If it cannot be passed, the claim is
+demoted to a supporting claim or removed.
+
+The discipline prevents a failure mode that appears frequently in personalized
+pitches: the research identifies real problems, the narrative is well-constructed,
+but the demo cannot actually show the problems being solved. The result is a buyer
+who is interested but not convinced.
 
 ---
 
-## 19. How v1 Fails
+## 18. How This Compares to the Priority Stack Model
 
-The v1 model still fails when:
+The Priority Stack model is a narrative intelligence system. It answers the question:
+what value angle should lead the story?
 
-| Failure Mode | Result |
-|---|---|
-| No future-problem modeling | It wins the present case but does not build urgency well enough |
-| No delivery trust scoring | A strong demo may still feel risky |
-| No full handoff system | Post-sale alignment can still degrade |
-| No feedback loop | The process does not compound learning fast enough |
-| No strict ROI ladder | Teams may still overuse weak estimates |
+The Decision-Led Proof model is a buying-decision intelligence system. It answers
+the question: what must be proven for the deal to actually move?
 
-That is why v1 was `9.2`, not `10.0`.
+### What the Priority Stack does well
 
----
+- Tailors the story to the buyer's apparent priorities
+- Chooses the strongest value theme
+- Sequences the demo by value angle
+- Avoids generic cost-savings messaging
 
-## 20. How v2 Can Still Fail
+### What the Decision-Led Proof model adds
 
-Even this system can fail if used badly.
+- Forces every claim to have a proof condition
+- Classifies ROI metrics by integrity level before they enter deliverables
+- Identifies future problems, not only current ones
+- Maps stakeholder concerns, not only the primary contact's priorities
+- Determines how much to build before the buyer has confirmed intent
+- Makes the delivery team aware of what was promised and why
 
-| Failure Mode | What Causes It |
-|---|---|
-| Over-engineering | The team treats the framework like paperwork instead of a decision tool |
-| Under-speed | Too much analysis delays momentum |
-| Fake discipline | Fields get filled with generic text instead of real evidence |
-| Weak facilitation | Discovery is run poorly, so the framework receives low-quality inputs |
-| Product gap exposure | The proof standard reveals missing product capability |
+### The recommended operating model
 
-### Anti-failure rule
+Use both. They are not alternatives — they are sequential:
 
-The framework must remain:
-
-- evidence-based
-- fast
-- buyer-relevant
-- proof-first
-- commercially practical
-
-If it becomes heavy, it loses one of the conditions that made it a 10/10 fit.
-
----
-
-## 21. Final Recommendation
-
-Use the systems in this order:
-
-```text
-1. Use Priority Stack internally as a hypothesis engine.
-2. Convert those hypotheses into d0 Decision Card v2.
-3. Build the Current Problem Register and Future Problem Register.
-4. Build the Proof Ledger and Stakeholder Decision Map.
-5. Pass Feasibility, ROI Integrity, and Delivery Confidence gates.
-6. Only then create the demo, report, and proposal.
-7. After the deal, create the Delivery Intent Brief and feedback record.
+```
+Step 1:  Use Priority Stack logic to generate hypotheses about what the
+         buyer cares about most.
+Step 2:  Score those hypotheses using the Goal Scoring Table from Section 4.
+Step 3:  Run the primary goal through the Claim-to-Proof test.
+Step 4:  Build the Decision Card using scored goals and confirmed bottlenecks.
+Step 5:  Build all deliverables from the Decision Card outward.
 ```
 
-This is the strongest version because it does not only help you say the right thing.
+The Priority Stack feeds the hypothesis. The Decision Card validates and structures it.
+The deliverables are built from the validated structure, not from the hypothesis directly.
 
-It helps you:
+---
 
-- know what matters now
-- know what will matter later
-- prove the case visually
-- reduce buying fear
-- protect trust after the sale
-- improve the system every time you use it
+## 19. The Six Anti-Failure Rules
 
-### Final verdict
+These six rules must be enforced across every deliverable in every sales process.
 
-For your current situation, this v2 model is the best main framework in the folder.
+**Rule 1 — Proof before persuasion**
+No lead claim without a confirmed proof condition. Persuasion built on unproven
+claims loses deals at the questions stage, not the story stage.
 
-It is stronger than:
+**Rule 2 — ROI integrity before ROI headlines**
+Classify every metric before it enters a deliverable. L3 and L4 metrics do not
+appear in headlines, tables, or spoken scripts.
 
-- the old Priority Stack system
-- the v1 Decision-Led Proof model
-- a pure Vision-Led model
-- a pure Balanced Value model
+**Rule 3 — Bottleneck before ambition**
+Lead with the operational problem, not the strategic vision. Earn the right to
+talk about strategic upside by first proving the bottleneck is solved.
 
-Because it combines:
+**Rule 4 — Gate before build**
+Do not invest in full personalization before the Investment Gate assessment confirms
+the buyer is ready for it. Snapshot and discovery are legitimate outputs — not
+failures to produce a full deck.
 
-- outcome relevance
-- proof discipline
-- decision safety
-- delivery realism
-- future-risk prevention
-- reusable learning
+**Rule 5 — Stakeholder before proposal**
+If any critical stakeholder is not mapped before the proposal is written, the
+proposal may win the room and lose the building. Map stakeholders first.
+
+**Rule 6 — Stay commercially practical**
+The framework is a tool, not a certification process. If a prospect is clearly
+ready for a proposal and the Decision Card is 80% complete, build the proposal.
+The framework exists to prevent expensive mistakes, not to create process overhead
+that slows good deals.
+
+---
+
+## 20. Score Comparison — Priority Stack vs. Decision-Led Proof
+
+Scored against the real conditions of most B2B sales processes: customized demos,
+incomplete public research, multiple stakeholders, uncertain ROI, and reliance on
+research before live buyer confirmation.
+
+| Criteria | Weight | Priority Stack | Decision-Led Proof v2 |
+|---|---|---|---|
+| Handles multiple buyer motives | 15% | 8.5 | 9.2 |
+| Works with incomplete public data | 15% | 7.5 | 9.3 |
+| Prevents wrong assumptions | 15% | 7.5 | 9.4 |
+| Forces real demo proof | 15% | 8.4 | 9.6 |
+| Survives stakeholder sharing | 10% | 8.2 | 9.1 |
+| Protects against weak ROI math | 10% | 7.4 | 9.5 |
+| Helps decide correct next action | 10% | 7.8 | 9.4 |
+| Operationally reusable by team | 10% | 8.3 | 8.9 |
+| **Weighted total** | | **7.97** | **9.30** |
+
+The Decision-Led Proof model scores higher in every category except operational
+reusability, where the Priority Stack's simplicity gives it a small edge.
+The solution is the hybrid model described in Section 18.
+
+---
+
+## Appendix A — Decision Card Output Template
+
+Use this template when generating the d0 Decision Card for any prospect.
+
+```markdown
+---
+prospect: [PROSPECT NAME]
+provider: [PROVIDER/SELLER NAME]
+generated: [DATE]
+version: d0_v2
+---
+
+# Decision Card — [PROSPECT NAME]
+
+## 1. Desired Outcome — Scored Goal Table
+
+| Goal | Source Weight | Frequency | Recency | Specificity | Buying Relevance | Score | Rank |
+|---|---|---|---|---|---|---|---|
+| [goal 1] | /5 | /5 | /5 | /5 | /5 | [weighted] | #1 |
+| [goal 2] | /5 | /5 | /5 | /5 | /5 | [weighted] | #2 |
+| [goal 3] | /5 | /5 | /5 | /5 | /5 | [weighted] | #3 |
+
+**Primary Goal:** [goal 1 text]
+**Confidence Level:** High / Medium / Low
+**Confirmation basis:** [what makes this confident or uncertain]
+
+## 2. Buying Reason
+
+Desired Outcome: [what they are trying to achieve]
+Buying Reason: [what makes that goal urgent now and what blocks it]
+Status: Confirmed / Partially confirmed / Hypothesis only
+
+## 3. Current Bottleneck
+
+[One specific operational bottleneck in plain language]
+
+## 4. Buyer Confirmation Status
+
+[Confirmed / Partially confirmed / Hypothesis only]
+Basis: [what evidence determines this classification]
+
+## 5. Decision Risk
+
+[Most likely risk in one sentence]
+
+## 6. Adoption Risk
+
+| Area | Risk Level | Notes |
+|---|---|---|
+| Team tech maturity | High / Med / Low | |
+| Process change magnitude | High / Med / Low | |
+| Training requirement | High / Med / Low | |
+
+## 7. Required Proof Table
+
+| Claim | Why Buyer Might Doubt It | Proof Needed | Screen or Artifact | Confidence |
+|---|---|---|---|---|
+| [claim 1] | [doubt] | [proof] | [screen] | High / Med / Low |
+| [claim 2] | [doubt] | [proof] | [screen] | High / Med / Low |
+
+## 8. ROI Integrity
+
+| Metric | Value | Level | Label |
+|---|---|---|---|
+| [metric 1] | [value] | L1/L2/L3/L4 | Sourced / Estimated / Proxy / Excluded |
+| [metric 2] | [value] | L1/L2/L3/L4 | Sourced / Estimated / Proxy / Excluded |
+
+## 9. Delivery Confidence
+
+| Area | Rating | Notes |
+|---|---|---|
+| Product fit | High / Med / Low | |
+| Delivery realism | High / Med / Low | |
+| Adoption readiness | High / Med / Low | |
+| Stakeholder alignment | High / Med / Low | |
+
+## Investment Gate Assessment
+
+Based on the above:
+[ ] Gate 1 — Snapshot Only
+[ ] Gate 2 — Discovery First
+[ ] Gate 3 — Personalized Demo and Decision Safety Brief
+[ ] Gate 4 — Full Proposal Suite
+
+Recommended Next Action: [one sentence]
+```
+
+---
+
+## Appendix B — Failure Mode Reference
+
+| Failure Mode | How It Enters | How the Framework Prevents It |
+|---|---|---|
+| Wrong primary priority | Arbitrary goal selection from multiple signals | Goal Scoring Table with five weighted dimensions |
+| Stale public goal used as confirmed intent | LinkedIn post treated as current priority | Recency dimension penalizes old signals; Buyer Confirmation Status requires classification |
+| Weak ROI numbers in headlines | Estimates presented as precise calculations | ROI Integrity Ladder enforced at every deliverable stage |
+| Demo disconnected from research | Features shown that don't address identified problems | Manual Operations Mapping Rule requires screen-to-bottleneck linkage |
+| Single stakeholder assumption | Pitch written only for the primary contact | Stakeholder Decision Map built before proposal |
+| Over-investing in wrong prospect | Full build produced before buying intent is confirmed | Investment Gates limit output to gate-appropriate deliverables |
+| Adoption failure after a won deal | Delivery team only receives feature scope | Delivery Intent Brief passes decision context to implementers |
+| Framework never improves | Each deal treated as independent | Outcome Feedback Record builds pattern library over time |
+| Framework becomes too heavy | Process overhead slows good deals | Rule 6 (Stay commercially practical) explicitly overrides process |
