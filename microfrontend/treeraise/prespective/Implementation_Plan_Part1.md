@@ -34,6 +34,79 @@ This plan integrates the Decision-Led Proof Perspective v2 framework into the De
 **Folder to CREATE:**
 - `prompts/phase0_decision/`
 
+### 0.2 Prompt Evolution & Concept Integration Engine
+
+Before rewriting any prompt files, the AI must perform an intelligent upgrade review of the current prompt system.
+
+## Objective
+
+Do not mechanically overwrite existing prompts.
+
+The AI must study the old prompts, preserve valuable logic, remove outdated concepts, and integrate the Decision-Led Proof Perspective v2 framework where it creates measurable improvement.
+
+## Mandatory Process
+
+For every prompt selected for rewrite:
+
+### Step 1 — Existing Prompt Analysis
+
+Review and extract:
+
+* original purpose
+* target outcome
+* strengths
+* reusable instructions
+* hidden strategic value
+* weak logic
+* outdated concepts
+* unnecessary rigidity
+* missing leverage
+
+### Step 2 — Classification Engine
+
+Label each section of the old prompt as:
+
+* Preserve → still high-value
+* Upgrade → useful but weak
+* Replace → conflicts with new framework
+* Remove → fluff / redundant / low-value
+
+### Step 3 — Concept Relevance Check
+
+Determine whether the Decision-Led Proof Perspective v2 framework improves:
+
+* clarity
+* persuasion
+* trust
+* decision momentum
+* proof quality
+* CTA strength
+* buyer psychology alignment
+
+If yes, integrate automatically.
+
+### Step 4 — Smart Integration Rules
+
+The AI must:
+
+* merge new concepts naturally
+* retain strong legacy logic
+* avoid duplicate instructions
+* remove contradictions
+* simplify where possible
+* improve output quality over both old and new standalone versions
+
+### Step 5 — Final Standard
+
+The rewritten prompt must feel like an evolved superior system, not a patched document.
+
+## Non-Negotiable Rule
+
+Never force every concept into every prompt.
+
+Only apply concepts that materially improve the prompt’s objective.
+
+
 ---
 
 ## Phase 1 — Create New Folder and Phase 0 Prompts
