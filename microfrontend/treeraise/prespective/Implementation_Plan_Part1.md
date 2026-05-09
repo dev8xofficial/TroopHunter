@@ -16,7 +16,7 @@ This plan integrates the Decision-Led Proof Perspective v2 framework into the De
 - `portals/p4d_partner-portal.html` — demo portal 2
 - `prespective/Decision_Led_Proof_Perspective_v2.md` — the framework being implemented
 
-**Files to MODIFY (prompts):**
+**Files to REWRITE ENTIRELY (prompts):**
 - `prompts/phase3_first_touch/p3a_Outcome_Report.md`
 - `prompts/phase4_demo_scoping/p4e_Demo_Pitch.md`
 - `prompts/phase5_proposal/p5a_Proposal.md`
@@ -57,8 +57,8 @@ produce a complete **Decision Card** as a structured Markdown document.
 
 The Decision Card is the mandatory pre-step before any demo, report, or
 proposal is built. It determines what the buyer needs to believe, see, and
-trust before saying yes — and sets the Investment Gate that controls which
-deliverables are appropriate to build next.
+trust before saying yes — and sets the Confidence Signal that controls the
+tone, precision, and CTA language of every deliverable.
 
 ---
 
@@ -205,6 +205,11 @@ see to believe it. Use only claims that can be traced to research data.
 **Claims with Low confidence cannot lead the pitch.**
 Low-confidence claims listed here: [list or "None"]
 
+**Demo Routing Decision:**
+- **Opening Screen:** [exact first screen to show based on highest-confidence claim for top problem]
+- **Ordered Proof Route:** [ordered sequence of screens the demo will follow]
+- **Fallback Opening Screen:** [backup first screen if primary is weak/unavailable]
+
 ---
 
 ## Section 8 — ROI Integrity Ladder
@@ -240,28 +245,55 @@ Safety section — it cannot be a lead claim.**
 
 ---
 
-## Investment Gate Assessment
+## Section 10 — Decision Emotion Map
 
-Based on all nine sections above, select one gate:
+For this prospect, identify the strongest emotional trigger at each stage.
+These emotions are triggered by research precision and honest presentation —
+not by manipulation.
 
-- [ ] **Gate 1 — Snapshot Only:** Confirmation status is Hypothesis only,
-  primary goal confidence is Low, or Buying Reason cannot be identified.
-  Output: 24-hour snapshot + discovery ask. No demo. No report. No proposal.
+The five Decision Emotions, in order:
+1. **Recognition** — buyer feels seen ("they know my exact problem")
+2. **Relief** — buyer feels understood ("someone can actually fix this")
+3. **Fear of Inaction** — buyer sees future cost ("this gets worse if I wait")
+4. **Trust** — buyer sees integrity ("they're honest about what they don't know")
+5. **Momentum** — buyer sees a safe next step ("this is easy to start")
 
-- [ ] **Gate 2 — Discovery First:** Outcome is partially clear, bottleneck is
-  visible, but decision risk and stakeholder alignment are unknown.
-  Output: Decision Card + discovery questions. No heavy deliverables yet.
+| Emotion | Trigger for THIS Prospect | Deliverable Placement | Strength |
+|---|---|---|---|
+| Recognition | [specific problem statement that makes this buyer feel seen] | Report §2 opening, Demo Hook | High/Med/Low |
+| Relief | [proof screen or solution that resolves their deepest frustration] | Demo Screen 2, Report card #1 | High/Med/Low |
+| Fear of Inaction | [future problem most urgent for this buyer] | Report §4, Demo Before vs After | High/Med/Low |
+| Trust | [honest limitation or L2 metric that shows integrity] | Report §8, Proposal §4B | High/Med/Low |
+| Momentum | [next step that feels easiest for this buyer] | Report §9 CTA, Demo closing | High/Med/Low |
 
-- [ ] **Gate 3 — Personalized Demo and Decision Safety Brief:** Outcome is clear
-  enough, bottleneck is concrete, proof screens exist, implementation is believable.
-  Output: Demo + Decision Safety Brief (outcome report).
+**Strongest emotional lever:** [one sentence — which emotion is strongest and why]
+**Emotional risk:** [one sentence — what could trigger a negative response]
 
-- [ ] **Gate 4 — Full Proposal Suite:** Buying reason is confirmed or partially
-  confirmed, proof ledger is viable, ROI is defensible at L1/L2, delivery
-  confidence has no Low scores, stakeholder alignment is at least partial.
-  Output: Full proposal, pitch script, and development blueprint.
+---
 
-**Selected Gate:** Gate [N]
+## Confidence Signal Assessment
+
+Based on all ten sections above, classify the overall confidence level.
+All deliverables (report, demo, proposal) are always built — the confidence
+level controls tone, precision, and CTA language.
+
+- [ ] **High Confidence:** Primary goal 4.0+, bottleneck concrete, L1/L2
+  metrics available. Use specific numbers and full-confidence framing.
+  CTA: "See exactly how this gets built."
+
+- [ ] **Medium Confidence:** Primary goal 3.0–3.9, bottleneck visible, L2
+  metrics with assumptions. Label estimated metrics, use supported-projection
+  framing. CTA: "Watch the demo — and let us know where we got it right."
+
+- [ ] **Low Confidence:** No goal above 2.5, or hypothesis-only buying
+  reason, or mostly L3 metrics. Use directional language, frame claims as
+  research-based hypotheses. CTA: "Watch the demo — then let us validate
+  these numbers in a 20-minute call."
+
+**Selected Confidence Level:** High / Medium / Low
+
+**Deliverable Tone Adjustments:**
+[State which specific claims or metrics need hedged language based on this level]
 
 **Recommended Next Action:**
 [One sentence. Specific. Tells the team exactly what to do next.]
@@ -395,7 +427,7 @@ Use public research to infer roles. If unknown, flag for discovery.
 
 ## Discovery Questions
 
-List the questions that must be answered before the next investment gate.
+List the questions that must be answered to strengthen the Confidence Signal.
 Prioritize questions that would upgrade L2/L3 metrics to L1.
 
 1. [question that gathers an L1 metric — e.g. "How many hours per week does
@@ -424,588 +456,94 @@ Prioritize questions that would upgrade L2/L3 metrics to L1.
 
 ---
 
-## Phase 2 — Modify Existing Prompts
+## Phase 2 — Fully Rewrite Existing Prompts
 
-### 2.1 Modify `prompts/phase3_first_touch/p3a_Outcome_Report.md`
+To ensure no legacy concepts (Priority Mode, Vision-Led, Investment Gates) bleed into the new system, do not patch the old prompts. **Completely rewrite them** from top to bottom using the Decision-Led Proof Perspective v2 as your sole foundation.
 
-**What changes:** The report becomes a **Decision Safety Brief**. Section structure changes. ROI Integrity enforcement added. Proof Ledger reference added.
+### 2.1 Fully Rewrite `prompts/phase3_first_touch/p3a_Outcome_Report.md`
 
-**Specific edits — find and replace these blocks:**
+**What changes:** The report becomes a **Decision Safety Brief**. The AI must completely rewrite the prompt to mandate the new ROI Integrity and Decision Emotion rules.
 
-**FIND (near top of file, under CONTEXT section):**
+**Rewrite Instructions:**
+1. **Delete** all legacy instructions regarding "conservative industry defaults" ($35/hr), "Priority-Led narratives," or "Gate-based CTA logic."
+2. **Add the Override Block** to the very top:
+```markdown
+## FRAMEWORK OVERRIDE (Applies to entire prompt)
+This prompt operates under the Decision-Led Proof Framework v2.
+1. **ROI Integrity:** Every metric must be classified (L1/L2/L3/L4). L3/L4 metrics must NEVER appear in headlines.
+2. **Decision Emotion:** Structure content to trigger Recognition, Relief, Fear of Inaction, Trust, and Momentum in sequence.
+3. **Always Built:** Adjust tone based on the Confidence Signal.
+4. **Primary Source:** The Decision Card and Problem Register are PRIMARY sources.
 ```
-**What makes this work:**
-Every outcome in the report has a number. Not "save time" — "save 14 hours per
-week." Not "reduce cost" — "reduce campaign admin cost by $2,400/month." The
-CEO should be able to look at any row and immediately understand what changes and
-what it is worth.
+3. **Rewrite the Document Structure:**
+   - **Section 1 (Hero):** L1 metrics only. Add Buyer Confirmation Status badge.
+   - **Section 2 (Current Problems):** Pull directly from Problem Register to trigger RECOGNITION.
+   - **Section 3B (Proof Ledger Summary):** Add a table mapping claims to demo screens so the CEO sees proof exists.
+   - **Section 5 (What Gets Built):** Link each deliverable back to a specific problem number.
+   - **Section 6 (CTA):** Rewrite to adjust dynamically based on the Confidence Signal (High = demo; Med = demo + feedback; Low = demo + discovery call).
+4. **Update 'What To Attach':** Require `p0a_Decision_Card_[ClientName].md` a### 2.2 Fully Rewrite `prompts/phase4_demo_scoping/p4e_Demo_Pitch.md`
+
+**What changes:** The AI must completely rewrite the demo script prompt to enforce Belief Order routing and Manual Operations Mapping.
+
+**Rewrite Instructions:**
+1. **Delete** all legacy instructions regarding "priority-led narratives," feature tours, or "pain point mapping" that lack a proof ledger check.
+2. **Add the Override Block** to the very top:
+```markdown
+## FRAMEWORK OVERRIDE (Applies to entire prompt)
+This prompt operates under the Decision-Led Proof Framework v2.
+1. **Proof Sequence:** The demo must follow the Belief Order from the Proof Ledger. Do not use generic feature tours.
+2. **Decision Emotion:** Structure to trigger Recognition in the first 30 seconds and Relief by the 2-minute mark.
+3. **Always Built:** All deliverables are always built. Adjust tone and precision based on the Confidence Signal.
+4. **Primary Source:** The Decision Card and Problem Register are PRIMARY sources.
 ```
-
-**REPLACE WITH:**
-```
-**What makes this work:**
-Every outcome in the report must pass the Claim-to-Proof test: Claim → Evidence →
-Proof Condition → Remaining Doubt. The CEO should be able to look at any row and
-see not just the number but what research source it came from and what they will
-see in the demo that proves it.
-
-**ROI Integrity Rule (mandatory):**
-Before writing any number, classify it using the ROI Integrity Ladder:
-- L1 (Sourced): directly from prospect data → may lead headlines
-- L2 (Estimated): calculated from available signals → label "Estimated"
-- L3 (Proxy): industry benchmark → "Illustrative only" — never headline
-- L4 (Speculative): too uncertain → remove entirely
-
-Only L1 metrics may appear in hero headline numbers. L2 must be labelled.
-L3 and L4 metrics must not appear in headlines, tables, or spoken scripts.
-If only L3/L4 data is available, use directional language ("significantly
-reduces") rather than specific numbers.
-```
-
-**FIND (Section 1 — Hero, inside Report Structure):**
-```
-#### Section 1 — Hero
-- Prospect company name + "Digital Transformation Impact Report"
-- Prepared by Dev8X, date
-- Three headline outcome numbers pulled from the biggest wins in the report:
-  e.g. "42 hrs/week saved", "$8,400/month impact", "5 manual workflows eliminated"
-- These three numbers must be real — calculated from Section 3 solution cards
-```
-
-**REPLACE WITH:**
-```
-#### Section 1 — Hero
-- Prospect company name + "Decision Safety Brief"
-- Prepared by Dev8X, date
-- Three headline outcome numbers — L1 metrics only from the ROI Integrity
-  classification in the attached Problem Register. If no L1 metrics are
-  available, use L2 with "[Estimated]" label.
-- Add a Buyer Confirmation Status badge below the three numbers:
-  "✓ Confirmed" / "~ Partially confirmed" / "⚠ Hypothesis — discovery
-  recommended"
-- These three numbers must be real and integrity-classified
-```
-
-**FIND (Section 2 — Current State Overview):**
-```
-#### Section 2 — Current State Overview
-A 2-column table: Left = "Current Challenge", Right = "Business Impact".
-List 4–6 rows drawn directly from the attached files.
-This section should make the CEO feel seen — these are their real problems,
-not generic ones.
-```
-
-**REPLACE WITH:**
-```
-#### Section 2 — Current Problem Register Summary
-Pull directly from the attached Problem Register (p0b output). Do not
-invent new problems. Use the exact rows from the Current Problem Register.
-
-A 3-column table:
-- Column 1: Current Problem (from register)
-- Column 2: Who Feels It (role, from register)
-- Column 3: What It Blocks (from register)
-
-Below the table, add one sentence for each of the top 3 problems:
-"[Problem] is evidenced by [research source]."
-
-This section must make the CEO feel seen — these are their documented
-real problems, sourced from research, not generic industry pain.
-```
-
-**FIND (after Section 3 — Solution Cards, before Section 4):**
-```
-#### Section 4 — Projected Annual Impact
-```
-
-**INSERT BEFORE Section 4:**
-```
-#### Section 3B — Proof Ledger Summary
-
-Pull from the Proof Ledger in the attached Problem Register. Show a
-condensed table:
-
-| Claim | Proof Condition | Proof Location | Confidence |
-|---|---|---|---|
-| [claim] | [what buyer sees] | [demo screen] | High/Med/Low |
-
-Label any Low-confidence claim: "[Discovery question — not yet verified]"
-
-This section exists so the CEO can see that every claim has a traceable
-proof source before they watch the demo.
-```
-
-**FIND (Section 5 — What Gets Built):**
-```
-#### Section 5 — What Gets Built
-A clean visual checklist of the specific deliverables Dev8X would build.
-Drawn from the solution cards — not a generic service list.
-Group by: Platform / Automation / Integrations / Reporting
-```
-
-**REPLACE WITH:**
-```
-#### Section 5 — What Gets Built
-A clean visual checklist of the specific deliverables Dev8X would build.
-Drawn from the solution cards — not a generic service list.
-Group by: Platform / Automation / Integrations / Reporting
-
-Each deliverable must link to a specific Current Problem number from
-the Problem Register. Format: "✓ [Deliverable name] — solves Problem #[N]"
-```
-
-**FIND (Section 6 — Next Step CTA):**
-```
-#### Section 6 — Next Step (CTA)
-- Headline: "See exactly how this gets built — in 6 minutes"
-```
-
-**REPLACE WITH:**
-```
-#### Section 6 — Recommended Next Action (CTA)
-
-Read the Investment Gate from the attached Decision Card before writing this section.
-
-- If Gate 1: Headline "One question that would sharpen everything"
-  Body: Explain that one discovery conversation would let Dev8X replace the
-  estimated metrics with real numbers. CTA: "Book a 20-minute call."
-  Do NOT include "Watch the Demo" button.
-
-- If Gate 2: Headline "Before we build the demo — a 30-minute call"
-  Body: Explain what the discovery call will confirm and why building
-  a personalized demo before that call would waste the CEO's time.
-  CTA: "Book a discovery call."
-
-- If Gate 3 or 4: Headline "See exactly how this gets built — in 6 minutes"
-  Body: Plain language description. CTA: "Watch the Demo →" button.
-```
-
-**FIND (WHAT TO ATTACH section at bottom):**
-```
-## WHAT TO ATTACH
-
-| File | Role |
-|------|------|
-| `prompts/9_Outcome_Report.md` | This prompt |
-| `context/5_<Company>_Report.docx` | Pain points and transformation opportunities (primary source) |
-| `context/4_Business_Operations_Manual.docx` | Operational detail for quantification |
-```
-
-**REPLACE WITH:**
-```
-## WHAT TO ATTACH
-
-| File | Role |
-|------|------|
-| `prompts/phase3_first_touch/p3a_Outcome_Report.md` | This prompt |
-| `context/p0a_Decision_Card_[ClientName].md` | Investment Gate, Goal Score, ROI Integrity — PRIMARY SOURCE |
-| `context/p0b_Problem_Register_[ClientName].md` | Current/Future Problem Registers, Proof Ledger — PRIMARY SOURCE |
-| `context/p1a_Website.md` | Research backup |
-| `context/p1b_Linkedin_Company.md` | Research backup |
-
-> The Decision Card and Problem Register are the primary sources.
-> All claims in the report must trace to a row in those documents.
-> Estimated token usage: 30k–60k.
-
-**Save output as:** `context/p3a_Decision_Safety_Brief_[ClientName].html`
-```
+3. **Rewrite the Document Structure:**
+   - **Mapping Rule:** Must enforce that every screen maps to a Current Problem Register row and is listed in the Proof Ledger.
+   - **00 Hook:** Must trigger RECOGNITION by naming the specific problem.
+   - **01/02 Portals:** Must follow the 6-step "Belief Order" (1. expose bottleneck, 2. remove manual work, 3. operator usability, etc.).
+   - **03 Proof Sequence:** Add this new section. It proves the top 3 manual operations are eliminated, referencing the exact demo screens.
+   - **04 Before vs After:** Use the Future Problem Register to trigger FEAR OF INACTION.
+   - **05 Next Step:** Must be no-pressure to trigger MOMENTUM.
+4. **Update 'What To Attach':** Require the Decision Card and Problem Register as PRIMARY SOURCES. Save output as `context/p4e_Demo_Pitch_[ClientName].docx`.
 
 ---
 
-### 2.2 Modify `prompts/phase4_demo_scoping/p4e_Demo_Pitch.md`
+### 2.3 Fully Rewrite `prompts/phase5_proposal/p5a_Proposal.md`
 
-**What changes:** Demo routing changes from "priority-led" to "belief order." Manual Operations Mapping Rule enforced. Proof Ledger referenced.
+**What changes:** The AI must completely rewrite the proposal prompt. It becomes a Safe Change Case, not just a cost estimate document.
 
-**FIND (under WHAT TO READ FIRST, Mapping rule):**
+**Rewrite Instructions:**
+1. **Delete** any legacy references to "Vision-Led", generic cost-saving claims, or unclassified ROI metrics.
+2. **Add the Override Block** to the very top:
+```markdown
+## FRAMEWORK OVERRIDE (Applies to entire prompt)
+This prompt operates under the Decision-Led Proof Framework v2.
+1. **Safe Change Case:** The proposal must explicitly address Implementation Safety.
+2. **Decision Emotion:** Structure to build Trust through honesty and Momentum through a safe next step.
+3. **ROI Integrity:** Every metric must be classified (L1/L2/L3/L4). L3/L4 metrics must NEVER appear in financial tables.
+4. **Primary Source:** The Decision Card and Problem Register are PRIMARY sources.
 ```
-**Mapping rule:** For every screen you plan to demo, write one sentence linking it
-to a specific current pain point from the business context. If no pain point maps
-cleanly, skip that screen. Only demo screens that solve a real identified problem.
-```
-
-**REPLACE WITH:**
-```
-**Mapping rule — Decision-Led Proof enforcement:**
-Before selecting any demo screen, read the Manual Operations Mapping table from
-the attached Problem Register. For every screen you plan to show:
-1. It must correspond to a problem row in the Current Problem Register
-2. The manual operation that screen removes must be documented in the
-   Manual Operations Mapping table
-3. The screen must appear in the Proof Ledger as a "Proof Location"
-
-If a screen does not satisfy all three conditions, do not include it.
-The demo is a Proof Sequence, not a feature tour.
-```
-
-**FIND (Section index line in DOCUMENT STRUCTURE → HEADER BLOCK):**
-```
-`00 Hook  01 [Portal 1 Name]  02 [Portal 2 Name]  03 Before vs After  04 Next Step`
-```
-
-**REPLACE WITH:**
-```
-`00 Hook  01 [Portal 1 Name]  02 [Portal 2 Name]  03 Proof Sequence  04 Before vs After  05 Next Step`
-```
-
-**FIND (01 SECTION rules for sub-block SPEAK):**
-```
-**Rules for each sub-block SPEAK:**
-- Open with the problem the screen solves (one sentence).
-- Describe what is visible on screen — use the real data labels, column headers,
-  or KPI names from the HTML (e.g. "the Pending Approvals queue", "the Revenue chart",
-  "the Payout Queue with 3 items waiting").
-- Close with the outcome: what the user can now do that they couldn't do before.
-- Length: 3–5 sentences per screen.
-```
-
-**REPLACE WITH:**
-```
-**Rules for each sub-block SPEAK — Belief Order:**
-Screen selection must follow the Belief Order from the Problem Register Proof Ledger:
-1. First screen shown: expose the bottleneck (make the problem visible)
-2. Second screen: remove the manual work (show the automation or workflow)
-3. Third screen: operator usability (daily user can navigate without chaos)
-4. Fourth screen: leadership visibility (executive sees control and data)
-5. Fifth+ screens: strategic upside (only after proof is established)
-
-For each screen SPEAK block:
-- OPEN with the problem the screen solves — reference the Problem Register row number.
-  Wrong: "This is the Campaign Dashboard."
-  Right: "Right now [manual operation from Problem Register] is done by hand.
-  This screen eliminates that step entirely."
-- Name what is visible using real data labels from the HTML.
-- Close with: what the user can do that they could not do before.
-- Length: 3–5 sentences per screen.
-
-Do NOT show any screen that does not appear in the Proof Ledger as a Proof Location.
-```
-
-**FIND (the entire 03 SECTION — Before vs After block, lines 164–188 of p4e):**
-```
-### 03 SECTION — Before vs After
-
-**Purpose label:** What actually changes for this business
-
-⏱ TIMING: ~4:30
-
-🖥 SCREEN: Return to the most impressive screen from either portal — the one with the
-most visible data (dashboard, analytics, or main table).
-
-🎙 SPEAK:
-Write a clean Before vs After comparison using the real workflows extracted from the
-business context files. Format as a spoken list — NOT bullet points on screen.
-
-Structure:
-- "Before this platform: [specific manual action 1]."
-- "After: [what the platform does instead — one click or automatic]."
-- Repeat for 2–3 more workflow pairs.
-- Close with: "Every one of these was either a spreadsheet, an email chain, or a
-  manual process. Now it's a screen."
-
-Rules:
-- Use actual screen names from the demo (e.g. "the Payout Queue", "the Campaigns table").
-- Use actual numbers or volumes from the business context where available.
-- Do not say "saves time" or "improves efficiency" — say what specifically changes.
-- Length: ~150 words spoken.
-```
-
-**REPLACE WITH (single combined replacement — creates two new sections):**
-```
-### 03 SECTION — Proof Sequence
-
-**Purpose label:** Showing the exact bottleneck being eliminated — screen by screen
-
-⏱ TIMING: ~4:00
-
-🖥 SCREEN: Show the screen that most directly proves the primary bottleneck is solved.
-
-📌 NOTE block: Pull the top 3 rows from the Manual Operations Mapping table in
-the Problem Register. Each row becomes one Before → After spoken comparison.
-
-🎙 SPEAK:
-For each of the top 3 manual operations:
-- "Before this platform: [exact manual operation from Problem Register]."
-- "After: [what the platform does instead — one click or automatic]."
-- Reference the exact screen name where this is proven.
-
-Close with: "Every one of these was documented in research — not assumed.
-This is your actual workflow, not a generic demo."
-
-Length: ~100 words spoken.
+3. **Rewrite the Document Structure:**
+   - **Section 0 (Why Act Now):** Insert this BEFORE the cover page. Write 2 paragraphs pulling the primary bottleneck and top future problem from the Problem Register to trigger FEAR OF INACTION.
+   - **Cover:** Standard format.
+   - **Section 4B (Implementation Safety):** Insert this after the Cost Estimate. It must pull Delivery Confidence and Adoption Risk ratings directly from the Decision Card. Low ratings MUST be explicitly addressed, building TRUST.
+   - **ROI Integrity Note:** Add a mandatory disclaimer that all projections use only L1 or L2 metrics.
+4. **Update 'What To Attach':** Require Decision Card and Problem Register as PRIMARY SOURCES. Save output as `context/p5a_Proposal_[ClientName].docx`.
 
 ---
 
-### 04 SECTION — Before vs After
+### 2.4 Fully Rewrite `prompts/phase5_proposal/p5b_Proposal_Pitch.md`
 
-**Purpose label:** What actually changes — current and future
+**What changes:** The AI must completely rewrite the pitch script prompt.
 
-⏱ TIMING: ~4:30
-
-🖥 SCREEN: Return to the most impressive screen from either portal — the one with the
-most visible data (dashboard, analytics, or main table).
-
-🎙 SPEAK:
-Pull from the Future Problem Register in the attached Problem Register document.
-Format as a spoken strategic close:
-
-- "Without this platform: [Future Problem #1 from register — in plain language]."
-- "With it: [Preventive Narrative from register — the one quotable sentence]."
-- Repeat for Future Problem #2.
-- Close with: "These are not hypotheticals — they are the predictable next
-  problems for any organization at this stage of growth."
-
-Rules:
-- Use actual screen names from the demo.
-- Reference Future Problem Register row numbers.
-- Length: ~100 words spoken.
-```
-
-> **Note:** This is a single replacement of the entire old Section 03 block.
-> The old Section 03 becomes the new Section 03 (Proof Sequence) + Section 04
-> (Before vs After). The old Section 04 (Next Step) must be renumbered to 05
-> — see the next edit below.
-
-**FIND (04 SECTION — Next Step, the old section that follows):**
-```
-### 04 SECTION — Next Step
-```
-
-**REPLACE WITH:**
-```
-### 05 SECTION — Next Step
-```
-
-**FIND (WHAT TO ATTACH section at bottom of p4e):**
-```
-| File | Role |
-|------|------|
-| `prompts/13_Demo_Pitch.md` | This prompt |
-| `admin.html` or primary portal HTML | Primary demo portal — screens, nav, data labels |
-| `partner-portal.html` or secondary portal HTML | Secondary demo portal |
-| `context/4_Business_Operations_Manual.docx` | Pain points and workflows for Before vs After |
-```
-
-**REPLACE WITH:**
-```
-| File | Role |
-|------|------|
-| `prompts/phase4_demo_scoping/p4e_Demo_Pitch.md` | This prompt |
-| `portals/p4d_admin.html` | Primary demo portal |
-| `portals/p4d_partner-portal.html` | Secondary demo portal |
-| `context/p0a_Decision_Card_[ClientName].md` | Investment Gate, Primary Goal — PRIMARY SOURCE |
-| `context/p0b_Problem_Register_[ClientName].md` | Manual Operations Mapping, Proof Ledger — PRIMARY SOURCE |
-
-> The Problem Register is the primary source for screen selection and demo order.
-> Do not show any screen that is not in the Proof Ledger.
-> Estimated token usage: 30k–65k.
-
-**Save output as:** `context/p4e_Demo_Pitch_[ClientName].docx`
-```
+**Rewrite Instructions:**
+1. **Delete** any unclassified ROI language.
+2. **Rewrite the Cost block (04 SECTION):** Mandate an ROI Integrity statement spoken aloud: "Every number in the proposal is classified... Where we estimated, we stated assumptions. Where we did not have direct data, we said so — rather than padding the numbers."
+3. **Rewrite the QA SECTION:**
+   - Q5 must explicitly address the Decision Risk identified in Section 5 of the Decision Card.
+   - Q6 must address: "How do we know these numbers are real?" and answer by explaining the ROI Integrity Ladder.
+4. **Update 'What To Attach':** Require `p5a_Proposal` and `p0a_Decision_Card` as PRIMARY SOURCES. Save output as `context/p5b_Proposal_Pitch_[ClientName].docx`.
 
 ---
-
-### 2.3 Modify `prompts/phase5_proposal/p5a_Proposal.md`
-
-**What changes:** Add Section 0 (Why Act Now) at the top. Add Implementation Safety section. Add ROI Integrity enforcement. Update WHAT TO ATTACH.
-
-**FIND (DOCUMENT STRUCTURE section, immediately before COVER):**
-```
-## DOCUMENT STRUCTURE
-
-Generate the proposal in this exact section order. No sections may be skipped or reordered.
-
----
-
-### COVER
-```
-
-**REPLACE WITH:**
-```
-## DOCUMENT STRUCTURE
-
-Generate the proposal in this exact section order. No sections may be skipped or reordered.
-
-**Before writing any section, read the attached Decision Card and Problem Register.**
-The proposal is a Safe Change Case, not a cost document. It answers five questions:
-1. Why change now
-2. What bottleneck is being removed and what is the proof
-3. What does implementation actually look like
-4. What is the ROI at defensible integrity levels
-5. What is the recommended commitment and path forward
-
----
-
-### SECTION 0 — Why Act Now
-
-**Heading:** Why Act Now
-
-This section appears BEFORE the cover page narrative. It is the first thing
-the decision-maker reads after the cover.
-
-Write two short paragraphs:
-
-Paragraph 1 — The Current Bottleneck:
-Pull the Primary Bottleneck from Section 3 of the Decision Card. State it
-in plain language. Include the research source. State what it is costing
-the organization right now — using only L1 or L2 metrics from the ROI
-Integrity table in the Decision Card.
-
-Paragraph 2 — The Future Cost:
-Pull the top Future Problem from the Problem Register. State what breaks
-in the next 12–24 months if nothing changes. Include the Leading Indicator
-already observable. Close with: "The platform resolves both the current
-bottleneck and prevents this next problem — before it becomes expensive."
-
-Length: 100–150 words total. No bullet points.
-
----
-
-### COVER
-```
-
-**FIND (SECTION 4 — Cost Estimate, after the table):**
-```
-After the table, add:
-"Additional Costs (not included in labour estimate above): Cloud infrastructure and SaaS
-services — including AWS, dedicated servers, third-party APIs, and integrations — will be
-billed separately based on usage volume."
-```
-
-**REPLACE WITH:**
-```
-After the table, add:
-"Additional Costs (not included in labour estimate above): Cloud infrastructure and SaaS
-services — including AWS, dedicated servers, third-party APIs, and integrations — will be
-billed separately based on usage volume."
-
----
-
-### SECTION 4B — Implementation Safety
-
-**Heading:** Implementation Safety
-
-Pull the Delivery Confidence ratings from Section 9 of the Decision Card
-and the Adoption Risk ratings from Section 6.
-
-Table:
-| Delivery Area | Confidence | Notes |
-|---|---|---|
-| Product fit | [rating] | [one sentence from Decision Card] |
-| Delivery realism | [rating] | [one sentence] |
-| Adoption readiness | [rating] | [one sentence] |
-| Stakeholder alignment | [rating] | [one sentence] |
-
-For any area rated Low: add a paragraph explaining the mitigation plan.
-Do not hide Low ratings behind optimistic language — addressing them
-directly builds more trust than ignoring them.
-
-Add: "ROI Integrity Note — All financial projections in this proposal
-use metrics classified at L1 (Sourced) or L2 (Estimated with stated
-assumptions). No L3 proxy benchmarks appear in financial tables. Where
-L2 metrics are used, assumptions are stated below the table."
-
-List any L2 metrics with their assumptions explicitly.
-```
-
-**FIND (WHAT TO ATTACH section at bottom):**
-```
-## WHAT TO ATTACH
-
-| File | Role |
-|------|------|
-| `prompts/10_Proposal.md` | This prompt |
-| `context/6_Tech_Spec_<Company>.docx` | Platform architecture, screens, portals, team, hours |
-```
-
-**REPLACE WITH:**
-```
-## WHAT TO ATTACH
-
-| File | Role |
-|------|------|
-| `prompts/phase5_proposal/p5a_Proposal.md` | This prompt |
-| `context/p0a_Decision_Card_[ClientName].md` | Section 0, Implementation Safety, ROI Integrity — PRIMARY SOURCE |
-| `context/p0b_Problem_Register_[ClientName].md` | Current/Future Problems, Proof Ledger — PRIMARY SOURCE |
-| `context/p4c_Tech_Spec_TreeRaise.docx` | Screens, portals, team, hours |
-
-> Decision Card and Problem Register are mandatory inputs.
-> No financial table may include L3 or L4 metrics.
-> Estimated token usage: 25k–55k.
-
-**Save output as:** `context/p5a_Proposal_[ClientName].docx`
-```
-
----
-
-### 2.4 Modify `prompts/phase5_proposal/p5b_Proposal_Pitch.md`
-
-**What changes:** Section 04 (Cost) gains ROI Integrity language. Add a new QA item. Update WHAT TO ATTACH.
-
-**FIND (04 SECTION — Cost, SPEAK block):**
-```
-🎙 SPEAK:
-- State the total: "$[X]. That is [Y] hours of real work from [N] people over [Z] months."
-- Add a revenue-context line: if the platform serves a business where one transaction/deal
-  generates significant revenue, note how quickly the platform pays for itself. Adapt this
-  to the actual business from the Proposal (e.g. for real estate: one commission covers the
-  entire investment).
-```
-
-**REPLACE WITH:**
-```
-🎙 SPEAK:
-- State the total: "$[X]. That is [Y] hours of real work from [N] people over [Z] months."
-- Immediately add the ROI Integrity statement: "Every number in the proposal is
-  classified. The headline figure is [L1 Sourced / L2 Estimated]. Where we estimated,
-  we stated our assumptions. Where we did not have direct data, we said so — rather
-  than padding the numbers."
-- Add a revenue-context line adapted to the actual business.
-- Close with: "You can check our math. Every assumption is in the proposal."
-
-Length: ~150 words spoken.
-```
-
-**FIND (QA SECTION — the fifth Q&A block instruction):**
-```
-5. A fifth Q&A that addresses a specific concern relevant to this particular client's
-   business or platform (infer from the Proposal — e.g. data privacy for a legal platform,
-   donor trust for a nonprofit platform, etc.).
-```
-
-**REPLACE WITH:**
-```
-5. A fifth Q&A that addresses the Decision Risk identified in Section 5 of the
-   Decision Card. Use the exact risk category stated there. The answer must directly
-   address the mitigation approach also documented in the Decision Card.
-
-6. "How do we know these numbers are real and not inflated to make the proposal
-   look better?"
-   Answer: Explain the ROI Integrity Ladder — L1 sourced from prospect data,
-   L2 estimated with stated assumptions, L3 proxy benchmarks excluded from
-   headlines. Name specifically which metrics in the proposal are L1 vs L2.
-   Confirm that all L3 data was removed before the proposal was sent.
-```
-
-**FIND (WHAT TO ATTACH at bottom of p5b):**
-```
-| File | Role |
-|------|------|
-| `prompts/11_Proposal_Pitch.md` | This prompt |
-| `context/10_Proposal_<ClientName>.docx` | Source of all numbers, names, phases, and screens |
-```
-
-**REPLACE WITH:**
-```
-| File | Role |
-|------|------|
-| `prompts/phase5_proposal/p5b_Proposal_Pitch.md` | This prompt |
-| `context/p5a_Proposal_[ClientName].docx` | Primary source: all numbers, names, phases, screens |
-| `context/p0a_Decision_Card_[ClientName].md` | Decision Risk for QA #5, ROI Integrity for QA #6 |
-
-> Estimated token usage: 15k–35k.
-
-**Save output as:** `context/p5b_Proposal_Pitch_[ClientName].docx`
-```
 
 ---
 
@@ -1096,8 +634,8 @@ PHASE 5 — Proposal       Decision Card + Problem Register + Tech Spec → Full
 ## Phase 0 — Decision Card
 
 **What this phase does:** Before any deliverable is built, produce a Decision
-Card and Problem Register that determine the Investment Gate — how much work
-is appropriate to build before the prospect has confirmed buying intent.
+Card and Problem Register that set the Confidence Signal — controlling the
+tone, precision, and CTA language of all deliverables based on research quality.
 
 **When to run:** Immediately after Phase 1 research files exist, before
 Phase 3 (Outcome Report) or Phase 4 (Demo) work begins. The Decision Card
@@ -1108,7 +646,7 @@ is the mandatory input to every downstream phase.
 ### p0a — Decision Card
 
 **Purpose:** Score all detected goals, classify the primary bottleneck, assess
-ROI integrity, and determine the Investment Gate.
+ROI integrity, and set the Confidence Signal.
 
 **Attach to Claude:**
 | File | Role |
@@ -1126,11 +664,12 @@ ROI integrity, and determine the Investment Gate.
 
 **Save output as:** `context/p0a_Decision_Card_[ClientName].md`
 
-**Gate rule:** Read the Selected Gate at the bottom of the output.
-- Gate 1 → produce snapshot only, no further deliverables yet
-- Gate 2 → produce discovery questions only, schedule call
-- Gate 3 → proceed to p0b, then p3a and p4e
-- Gate 4 → proceed to p0b, then full Phase 3, 4, and 5 suite
+**Confidence Signal rule:** Read the Selected Confidence Level at the bottom
+of the output. All deliverables are always built — proceed to p0b, then the
+full Phase 3, 4, and 5 suite. The confidence level controls:
+- High → use specific numbers, full-confidence framing
+- Medium → label L2 metrics as estimated, use supported-projection framing
+- Low → use directional language for L3 metrics, add discovery call CTA alongside demo
 
 ---
 
@@ -1171,7 +710,7 @@ Phase 0        Phase 1        Phase 2       Phase 3          Phase 4            
 ──────────     ──────────     ──────────    ────────────     ──────────────────    ────────────────
 p0a_ Card  →  p1_ files  →  p2_ Warming   p3_ Decision     p4a_ Ops Manual       p5a_ Proposal
 p0b_ Reg       (parallel)    (parallel)    Safety Brief     p4b_ Report      →   p5b_ Pitch Script
- ↓                                        (if Gate 3+)      p4c_ Tech Spec        p5c_ Blueprint
+ ↓                                        (always built)     p4c_ Tech Spec        p5c_ Blueprint
  feeds all                                                   p4d_ Portals
  phases 3-5                                                  p4e_ Demo Pitch
 ```
@@ -1199,21 +738,21 @@ p0b_ Reg       (parallel)    (parallel)    Safety Brief     p4b_ Report      →
 After all files are created and modified, verify:
 
 **New files exist:**
-- [ ] `prompts/phase0_decision/p0a_Decision_Card.md` — contains all 9 sections, Goal Scoring Table with 5 dimensions, Investment Gate selector
+- [ ] `prompts/phase0_decision/p0a_Decision_Card.md` — contains all 10 sections (including Decision Emotion Map), Goal Scoring Table with 5 dimensions, Confidence Signal selector
 - [ ] `prompts/phase0_decision/p0b_Problem_Register.md` — contains Current Problem Register, Future Problem Register, Proof Ledger, Stakeholder Map, Discovery Questions
 
 **Modified files — key checks:**
-- [ ] `p3a_Outcome_Report.md` — Section 1 Hero references L1 metrics only, Section 2 pulls from Problem Register, Section 3B Proof Ledger Summary exists, Section 6 CTA varies by Gate
-- [ ] `p4e_Demo_Pitch.md` — Screen selection rule references Proof Ledger, Belief Order (5 positions) is documented, Section 03 Proof Sequence exists before Section 04 Before vs After
+- [ ] `p3a_Outcome_Report.md` — Section 1 Hero references L1 metrics only, Section 2 pulls from Problem Register, Section 3B Proof Ledger Summary exists, Section 9 CTA varies by Confidence Signal, Decision Emotion Rule present
+- [ ] `p4e_Demo_Pitch.md` — Screen selection rule references Proof Ledger, Belief Order (6 positions) is documented, Section 03 Proof Sequence exists before Section 04 Before vs After
 - [ ] `p5a_Proposal.md` — Section 0 (Why Act Now) exists before Cover, Section 4B (Implementation Safety) exists after Section 4, L3/L4 exclusion rule documented
 - [ ] `p5b_Proposal_Pitch.md` — Section 04 SPEAK includes ROI Integrity statement, QA has 6 items including the new ROI integrity question
-- [ ] `README.md` — Phase 0 folder appears in directory tree, Phase 0 section with p0a and p0b documented, Gate rule documented, pipeline diagram updated, token budget updated
+- [ ] `README.md` — Phase 0 folder appears in directory tree, Phase 0 section with p0a and p0b documented, Confidence Signal rule documented, pipeline diagram updated, token budget updated
 
 **Internal consistency checks:**
 - [ ] Every prompt that reads Decision Card references `context/p0a_Decision_Card_[ClientName].md`
 - [ ] Every prompt that reads Problem Register references `context/p0b_Problem_Register_[ClientName].md`
 - [ ] No prompt instructs Claude to use L3/L4 metrics in headlines
-- [ ] The Gate rule is referenced in p3a, p4e, and p5a (all must check the gate before building)
+- [ ] The Confidence Signal is referenced in p3a, p4e, and p5a (all must read the confidence level before writing)
 
 ---
 
@@ -1225,9 +764,9 @@ To run the full updated pipeline on the TreeRaise prospect:
 Step 1:  Run p0a_Decision_Card.md on all p1_ context files
          → produces: context/p0a_Decision_Card_TreeRaise.md
 
-Step 2:  Read the Selected Gate at the bottom of the Decision Card
-         TreeRaise is already at Gate 3/4 (portals exist, demo is built)
-         → proceed to Step 3
+Step 2:  Note the Selected Confidence Level at the bottom of the Decision Card
+         This controls tone/precision of all downstream deliverables
+         → proceed to Step 3 (all deliverables are always built)
 
 Step 3:  Run p0b_Problem_Register.md using p0a output + p1a/p1b/p1c
          → produces: context/p0b_Problem_Register_TreeRaise.md
@@ -1256,10 +795,10 @@ Step 8:  p5c_Blueprint remains unchanged — no modifications needed
 
 | Risk | Likelihood | Impact | Mitigation |
 |---|---|---|---|
-| Decision Card produces Gate 1 for TreeRaise (too much already built) | Low — portals exist | Low — retrospective use only | Run p0a anyway; use it to validate existing deliverables rather than gate them |
+| Decision Card produces Low Confidence for TreeRaise despite existing portals | Low — context is rich | Low — tone adjustment only | Low Confidence still builds all deliverables — it only adjusts language precision and adds discovery CTA alongside demo |
 | ROI Integrity rule forces removal of all current outcome report numbers | Medium — most are L2/L3 | Medium | Label L2 as "Estimated," remove L3 from headlines, keep in body as "Illustrative" |
 | Proof Ledger cannot map to specific admin.html screens | Low — screens are documented | Medium | Use screen names from HTML nav items; partial proof is better than no proof |
-| p0b Problem Register finds fewer than 4 provable problems | Low — TreeRaise context is rich | Low | Document as discovery questions; adjust Gate to 2 if critical proof is missing |
+| p0b Problem Register finds fewer than 4 provable problems | Low — TreeRaise context is rich | Low | Document as discovery questions; set Confidence Signal to Low if critical proof is missing |
 | p5b QA grows to 6 items, extending pitch script past 14 minutes | Medium | Low | Keep each new QA answer to 60 words maximum |
 
 ---

@@ -114,14 +114,14 @@ sounds inspiring but sells nothing.
 Before any deliverable is built, a Decision Card must be produced.
 
 The Decision Card is a structured analysis document generated from all available
-research. It contains nine sections. Every downstream deliverable — outcome report,
+research. It contains ten sections. Every downstream deliverable — outcome report,
 demo script, proposal, pitch — reads the Decision Card before generating content.
 
 If the Decision Card cannot be completed with reasonable confidence, the process
 is not ready for full personalization. In that case, the correct output is a
 lightweight snapshot plus a discovery ask — not a full demo and report.
 
-### The Nine Sections of the Decision Card
+### The Ten Sections of the Decision Card
 
 **Section 1 — Desired Outcome (Scored Goal Table)**
 
@@ -172,7 +172,9 @@ Buying Reason: [what makes that goal urgent now, and what operationally blocks i
 ```
 
 If the Buying Reason cannot be identified from research, mark it as
-"Hypothesis only" and route to Gate 1 (Snapshot) or Gate 2 (Discovery).
+"Hypothesis only." This does not prevent deliverable creation — all
+deliverables are still built. Instead, it sets the Confidence Signal to
+Low, which adjusts the tone, precision, and CTA of every output.
 
 **Section 3 — Current Bottleneck**
 
@@ -198,8 +200,10 @@ Every claim about what the buyer wants must be tagged:
   that point in the same direction
 - **Hypothesis only** — inferred from public signals alone; plausible but not verified
 
-This status determines which Investment Gate applies and how aggressively the
-deliverables should be built.
+This status sets the Confidence Signal that adjusts the tone, precision,
+and CTA language of all deliverables. All deliverables are always built
+regardless of confirmation status — the status controls *how* they are
+framed, not *whether* they are produced.
 
 **Section 5 — Decision Risk**
 
@@ -248,6 +252,14 @@ If no screen or artifact provides proof for a claim, mark it "No visible proof �
 cannot be lead claim." Do not remove it from research — it may become a discovery
 question.
 
+The Required Proof Table also produces the demo routing decision. For every
+prospect, the Decision Card must persist:
+
+- `Opening Screen` — the exact first screen to show
+- `Ordered Proof Route` — the ordered screen sequence the demo will follow
+- `Fallback Opening Screen` — the backup first screen if the primary opener is
+  weak, unavailable, or too dependent on setup context
+
 **Section 8 — ROI Integrity Ladder**
 
 Every metric used in the pitch, report, or proposal must be classified:
@@ -280,53 +292,132 @@ If any area scores Low, that area cannot be a lead claim in the pitch.
 It must be either addressed as a risk with a mitigation plan, or deferred to a
 later phase once more information is available.
 
+**Section 10 — Decision Emotion Map**
+
+Every B2B buyer goes through a predictable emotional sequence before approving
+a purchase. The deliverables must trigger these emotions in order — not by
+manipulation, but by the precision of the research and the honesty of the
+presentation.
+
+The five Decision Emotions, in the order they must be triggered:
+
+| # | Emotion | What Triggers It | Where It Must Appear |
+|---|---|---|---|
+| 1 | **Recognition** | The buyer sees their exact operational pain described with specificity they did not expect from an outsider. Not a category of pain — their specific problem, named in their own terminology. | Outcome Report §2 (opening line), Demo Hook (first 20 seconds) |
+| 2 | **Relief** | The buyer realizes someone already understands their situation deeply enough to have built a solution for it — without needing months of discovery first. | Demo Screens 1–2 (bottleneck shown and solved), Outcome Report solution card #1 |
+| 3 | **Fear of Inaction** | The buyer sees what breaks in 12–24 months if they make no change. The cost of inaction becomes more concrete than the cost of action. | Future Problem Register (Report §4), Demo Before vs After close |
+| 4 | **Trust** | The buyer sees honest labelling of what is estimated vs. sourced, what is proven vs. hypothesized. Integrity creates trust. | ROI Integrity labels, Proof Ledger, "Estimated" markers in report |
+| 5 | **Momentum** | The buyer feels the next step is clear, small, and safe. No big commitment required — just one conversation or one demo. | CTA (Report §9), Demo closing, Proposal Implementation Safety |
+
+### Why This Sequence Matters
+
+When Recognition and Relief are strong enough, the buyer crosses the gap to
+Fear of Inaction without stopping to raise objections. Objections live between
+emotions 2 and 3. If the buyer feels deeply understood (Recognition) and sees
+the solution already exists (Relief), the emotional cost of objecting — which
+means going back to a state where nobody understands their problem — exceeds
+the financial cost of the proposal.
+
+This is not persuasion. This is **decision safety through recognition**. The
+buyer says yes not because they were convinced, but because working with you
+feels like the safest choice — and choosing anyone else means starting the
+understanding process from zero.
+
+### Rules
+
+- Recognition requires extreme specificity. "Your team manages operations
+  manually" triggers nothing. "Your coordinator tracks every new signup by hand
+  — no pipeline, no CRM, just emails and memory" triggers Recognition instantly.
+- Relief requires visible proof. Describing the solution triggers nothing.
+  Showing the screen that replaces the manual process triggers Relief.
+- Fear of Inaction must be earned by Recognition and Relief first. Leading with
+  urgency before the buyer feels understood produces resistance, not action.
+- Trust is built by what you admit you don't know, not by what you claim you do.
+  An honest "Estimated" label builds more trust than a fabricated precise number.
+- Momentum requires the next step to feel smaller than the problem. If the CTA
+  feels like a bigger commitment than the current pain, the buyer stalls.
+
+### For the Decision Card
+
+When producing the Decision Card, identify the strongest emotional trigger for
+this specific prospect at each stage:
+
+| Emotion | Trigger for THIS Prospect | Deliverable Placement | Strength |
+|---|---|---|---|
+| Recognition | [The specific problem statement that will make this buyer feel seen] | Report §2 opening, Demo Hook | High / Med / Low |
+| Relief | [The proof screen or solution that resolves their deepest frustration] | Demo Screen 2, Report solution card #1 | High / Med / Low |
+| Fear of Inaction | [The future problem that is most urgent and visible for them] | Report §4, Demo Before vs After | High / Med / Low |
+| Trust | [The honest limitation or L2 metric that demonstrates integrity] | Report §8, Proposal §4B | High / Med / Low |
+| Momentum | [The next step that feels easiest for this specific buyer] | Report §9 CTA, Demo closing | High / Med / Low |
+
+**Strongest emotional lever for this prospect:**
+[One sentence: which emotion is strongest for this buyer and why]
+
+**Emotional risk:**
+[One sentence: what could trigger a negative emotional response — e.g.,
+"overconfident claims when buyer is skeptical" or "pushing momentum when buyer
+needs processing time"]
+
 ---
 
-## 5. The Investment Gate System
+## 5. The Confidence Signal System
 
-Not every prospect deserves the same depth of work. The Investment Gate determines
-how much to build before the buyer has confirmed their intent.
+Dev8X operates a proof-first cold outreach model. The outcome report, demo, and
+proposal are always built for every prospect — they are the mechanism that creates
+buyer engagement, not a reward for confirmed intent. There is no gating of
+deliverables behind buyer confirmation.
 
-**Gate 1 — Snapshot Only**
+However, not every prospect has the same quality of research behind them. The
+Confidence Signal adjusts the *tone, precision, and CTA* of every deliverable
+based on how strong the research evidence is — without withholding any output.
 
-Use when: Buyer Confirmation Status is "Hypothesis only," primary goal confidence
-is Low, or Buying Reason cannot be identified.
+### The Three Confidence Levels
 
-Deliver: A 24-hour snapshot document identifying one bottleneck hypothesis, one
-proof angle, and a clear discovery ask. No demo. No report. No proposal.
+**High Confidence**
 
-**Gate 2 — Discovery First**
+When: Primary goal scores 4.0+, buying relevance is 4+, bottleneck is concrete
+and traceable, ROI metrics exist at L1 or strong L2 level.
 
-Use when: Desired outcome is partially clear, current bottleneck is visible, but
-decision risk and stakeholder alignment are still unknown.
+Effect on deliverables:
+- Outcome report uses specific L1/L2 numbers in headlines
+- Demo opens with the bottleneck as a known, documented problem
+- Proposal frames investment with full confidence language
+- CTA: "Watch the demo" / "See exactly how this gets built"
 
-Deliver: Decision Card + discovery questions. Build no heavy deliverables until
-discovery confirms the buying reason.
+**Medium Confidence**
 
-**Gate 3 — Personalized Demo and Decision Safety Brief**
+When: Primary goal scores 3.0–3.9, bottleneck is visible but not fully confirmed,
+ROI metrics are mostly L2 with stated assumptions.
 
-Use when: Desired outcome is clear enough, current bottleneck is concrete, proof
-screens exist in the demo, and implementation feels believable to the buyer's
-context.
+Effect on deliverables:
+- Outcome report uses L2 numbers with "[Estimated]" labels in headlines
+- Demo opens with the bottleneck framed as strongly indicated by research
+- Proposal frames investment as a well-supported projection
+- CTA: "Watch the demo — and let us know where we got it right"
 
-Deliver: Demo + Decision Safety Brief (outcome report). Reserve full proposal for
-after demo engagement is confirmed.
+**Low Confidence**
 
-**Gate 4 — Full Proposal Suite**
+When: No goal above 2.5, buying reason is hypothesis only, ROI metrics are
+mostly L3 proxies, or top two goals are within 0.3 of each other.
 
-Use when: Buying reason is confirmed or partially confirmed, proof ledger is
-viable, ROI is defensible at L1/L2 level, delivery confidence has no Low scores,
-and stakeholder alignment is at least partially confirmed.
+Effect on deliverables:
+- Outcome report uses directional language ("significantly reduces") instead
+  of specific numbers for any L3 metrics; L1/L2 metrics still use numbers
+- Demo opens with the bottleneck hypothesis, framed as: "Based on our
+  research, here is what we believe is costing you — and here is how we
+  would solve it"
+- Proposal marks uncertain sections and frames investment as conditional
+- CTA: "Watch the demo — then let us validate these numbers in a 20-minute
+  call"
 
-Deliver: Full proposal, pitch script, and development blueprint.
+### The Confidence Signal Rule
 
-**The Gate Rule**
+All deliverables are always produced. The Confidence Signal does not determine
+*whether* to build — it determines *how precisely* to frame claims and *how
+aggressively* to push for commitment in the CTA.
 
-No full deliverable may be produced if the Decision Card's Buyer Confirmation
-Status is "Hypothesis only" and no Discovery has been completed.
-
-This protects the team from spending significant time on prospects who are not yet
-in a real buying situation.
+A Low Confidence deliverable set that uses honest, directional language is more
+persuasive than a High Confidence set built on fabricated precision.
 
 ---
 
@@ -470,12 +561,60 @@ The new question is: which screen most directly proves the buyer's main doubt is
 | Screen 5 | Future problem prevention | The platform handles the scale or complexity that would break current operations |
 | Screen 6+ | Strategic upside | Growth, revenue, or mission-level outcomes that become possible once the bottleneck is gone |
 
+### Opening Screen Selection Rule
+
+Do not choose the first screen by taste or by whichever screen looks most polished.
+Choose it with this rule:
+
+1. Start with the highest-priority entry in the Current Problem Register that:
+   - blocks the primary goal or buying reason most directly, and
+   - has a viable demo proof path
+2. From the Required Proof Table / Proof Ledger, identify the screen tied to the
+   highest-confidence claim for that problem
+3. Select as `Opening Screen` the exact screen that:
+   - makes the bottleneck visible fastest
+   - removes the buyer's main doubt most directly
+   - requires the least explanatory setup before the buyer can understand the proof
+
+### Tie-breaker Rule
+
+If multiple screens qualify as the opener, choose in this order:
+
+1. The screen that addresses the named `Decision Risk` most directly
+2. The screen with the highest proof confidence
+3. The screen that shows live operational reality before configuration, settings,
+   or secondary analytics
+4. The screen with the shortest path from "this is the problem" to "this is how it is solved"
+
+### Fallback Path
+
+If no screen can credibly open the demo for the top problem:
+
+1. Use the next-highest-confidence screen for the same problem as `Fallback Opening Screen`
+2. If no fallback exists for that problem, move to the next problem in the Current Problem Register
+3. If no top-3 problem has a viable opening proof screen, do not force a personalized
+   demo opener — set the Confidence Signal to Low and use a general capability
+   opener with honest framing: "Based on our research, here is what we believe
+   your team is dealing with." Add a discovery call CTA alongside the demo
+
+### Route Persistence Rule
+
+The analyst must write all three items into the Decision Card:
+
+- `Opening Screen`
+- `Ordered Proof Route`
+- `Fallback Opening Screen`
+
+The demo builder is not allowed to reinterpret these silently.
+
 ### Rules
 
 - Strategic upside (Screen 6+) must be earned by the proof that precedes it.
   Opening with ambition before showing proof produces skepticism, not excitement.
 - Every screen navigated to in the demo must map to a Proof Ledger entry.
   If no entry exists, do not show that screen.
+- The `Opening Screen` must be the first screen in the `Ordered Proof Route`
+  stored in the Decision Card. Do not improvise a different opener later.
 - The same manual operations identified in the Decision Card must be the ones
   the demo resolves on screen. Research and demo must point at the same problems.
 - If Adoption Risk is rated High in any area, Screen 3 (Operator Usability) must
@@ -594,9 +733,12 @@ attractive.
 - Note confirming L3/L4 metrics were excluded
 
 **Section 9 — Recommended Next Action**
-- Based on the Investment Gate assessment from the Decision Card
-- CTA adjusted to gate level: discovery call, demo, or proposal
-- If gate is 1 or 2, do not push for a proposal — push for a 30-minute call
+- Based on the Confidence Signal from the Decision Card
+- CTA adjusted to confidence level:
+  - High: "See exactly how this gets built — in 6 minutes" → Watch Demo button
+  - Medium: "Watch the demo — and let us know where we got it right" → Watch Demo button
+  - Low: "Watch the demo — then let us validate these numbers in a 20-minute call" → Watch Demo + Book Call buttons
+- Always include the demo CTA. Add a discovery call CTA alongside it when confidence is Low
 
 ---
 
@@ -777,10 +919,11 @@ appear in headlines, tables, or spoken scripts.
 Lead with the operational problem, not the strategic vision. Earn the right to
 talk about strategic upside by first proving the bottleneck is solved.
 
-**Rule 4 — Gate before build**
-Do not invest in full personalization before the Investment Gate assessment confirms
-the buyer is ready for it. Snapshot and discovery are legitimate outputs — not
-failures to produce a full deck.
+**Rule 4 — Classify confidence before build**
+Always produce the full deliverable set (report, demo, proposal). But classify
+the Confidence Signal before writing — and let it control precision, tone, and
+CTA language. A deliverable with honest directional language at Low Confidence
+is better than a fabricated High Confidence deliverable.
 
 **Rule 5 — Stakeholder before proposal**
 If any critical stakeholder is not mapped before the proposal is written, the
@@ -878,6 +1021,20 @@ Basis: [what evidence determines this classification]
 | [claim 1] | [doubt] | [proof] | [screen] | High / Med / Low |
 | [claim 2] | [doubt] | [proof] | [screen] | High / Med / Low |
 
+### Demo Route Decision
+
+Opening Screen: [exact screen name]
+Why this opens first: [tie to top current problem + proof confidence + decision risk]
+Fallback Opening Screen: [exact screen name or "None — set Confidence Signal to Low, use general capability opener"]
+
+| Route Position | Screen | Purpose | Linked Claim / Problem |
+|---|---|---|---|
+| 1 | [screen] | Expose bottleneck | [claim/problem] |
+| 2 | [screen] | Remove manual work | [claim/problem] |
+| 3 | [screen] | Operator usability | [claim/problem] |
+| 4 | [screen] | Leadership visibility | [claim/problem] |
+| 5 | [screen] | Future problem prevention | [claim/problem] |
+
 ## 8. ROI Integrity
 
 | Metric | Value | Level | Label |
@@ -894,13 +1051,35 @@ Basis: [what evidence determines this classification]
 | Adoption readiness | High / Med / Low | |
 | Stakeholder alignment | High / Med / Low | |
 
-## Investment Gate Assessment
+## 10. Decision Emotion Map
 
-Based on the above:
-[ ] Gate 1 — Snapshot Only
-[ ] Gate 2 — Discovery First
-[ ] Gate 3 — Personalized Demo and Decision Safety Brief
-[ ] Gate 4 — Full Proposal Suite
+| Emotion | Trigger for THIS Prospect | Deliverable Placement | Strength |
+|---|---|---|---|
+| Recognition | [specific problem that will make this buyer feel seen] | Report §2, Demo Hook | High/Med/Low |
+| Relief | [proof screen that resolves their deepest frustration] | Demo Screen 2, Report card #1 | High/Med/Low |
+| Fear of Inaction | [future problem most urgent for this buyer] | Report §4, Demo Before vs After | High/Med/Low |
+| Trust | [honest limitation that demonstrates integrity] | Report §8, Proposal §4B | High/Med/Low |
+| Momentum | [next step that feels easiest for this buyer] | Report §9 CTA, Demo closing | High/Med/Low |
+
+**Strongest emotional lever:** [one sentence — which emotion is strongest and why]
+**Emotional risk:** [one sentence — what could trigger a negative response]
+
+## Confidence Signal Assessment
+
+Based on the above, classify the overall confidence level:
+
+[ ] **High Confidence** — Primary goal 4.0+, bottleneck concrete, L1/L2 metrics
+    available. Use specific numbers and full-confidence framing in all deliverables.
+[ ] **Medium Confidence** — Primary goal 3.0–3.9, bottleneck visible, L2 metrics
+    with assumptions. Label estimated metrics, use supported-projection framing.
+[ ] **Low Confidence** — No goal above 2.5, or hypothesis-only buying reason,
+    or mostly L3 metrics. Use directional language, frame claims as research-based
+    hypotheses, add discovery call CTA alongside demo CTA.
+
+**Selected Confidence Level:** High / Medium / Low
+
+**Deliverable Tone Adjustments:**
+[State which specific claims or metrics need hedged language based on this level]
 
 Recommended Next Action: [one sentence]
 ```
@@ -916,7 +1095,7 @@ Recommended Next Action: [one sentence]
 | Weak ROI numbers in headlines | Estimates presented as precise calculations | ROI Integrity Ladder enforced at every deliverable stage |
 | Demo disconnected from research | Features shown that don't address identified problems | Manual Operations Mapping Rule requires screen-to-bottleneck linkage |
 | Single stakeholder assumption | Pitch written only for the primary contact | Stakeholder Decision Map built before proposal |
-| Over-investing in wrong prospect | Full build produced before buying intent is confirmed | Investment Gates limit output to gate-appropriate deliverables |
+| Over-investing in wrong prospect with false precision | Estimated metrics presented with full-confidence language for a poorly researched prospect | Confidence Signal adjusts tone and precision of deliverables based on research quality — directional language replaces specific numbers when data is weak |
 | Adoption failure after a won deal | Delivery team only receives feature scope | Delivery Intent Brief passes decision context to implementers |
 | Framework never improves | Each deal treated as independent | Outcome Feedback Record builds pattern library over time |
 | Framework becomes too heavy | Process overhead slows good deals | Rule 6 (Stay commercially practical) explicitly overrides process |
