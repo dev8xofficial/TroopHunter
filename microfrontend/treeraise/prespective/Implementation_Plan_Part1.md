@@ -34,78 +34,171 @@ This plan integrates the Decision-Led Proof Perspective v2 framework into the De
 **Folder to CREATE:**
 - `prompts/phase0_decision/`
 
+---
+
 ### 0.2 Prompt Evolution & Concept Integration Engine
 
 Before rewriting any prompt files, the AI must perform an intelligent upgrade review of the current prompt system.
 
-## Objective
+#### Purpose
 
-Do not mechanically overwrite existing prompts.
+Before any prompt is rewritten, this engine runs a structured analysis that preserves what works, removes what doesn't, and integrates the Decision-Led Proof Framework v2 only where it creates measurable improvement. The output is an **Evolution Brief** — an intermediate document that makes the reasoning explicit and auditable before a single line of the new prompt is written.
 
-The AI must study the old prompts, preserve valuable logic, remove outdated concepts, and integrate the Decision-Led Proof Perspective v2 framework where it creates measurable improvement.
+This engine is not a rewrite checklist. It is a judgment system.
 
-## Mandatory Process
+---
 
-For every prompt selected for rewrite:
+#### Scope Gate (Run First)
 
-### Step 1 — Existing Prompt Analysis
+Before any analysis begins, classify the prompt using this gate:
 
-Review and extract:
+| Signal | Classification | Action |
+|--------|---------------|--------|
+| Prompt is structurally correct, only references wrong framework values | **Data update** | Update values only. Do not run full engine. |
+| Prompt covers the right topic but uses outdated logic in 1–2 sections | **Targeted upgrade** | Run Steps 1–3 only on the affected sections. |
+| Prompt's core operating model conflicts with v2 | **Full rewrite** | Run all five steps. Produce Evolution Brief before writing. |
 
-* original purpose
-* target outcome
-* strengths
-* reusable instructions
-* hidden strategic value
-* weak logic
-* outdated concepts
-* unnecessary rigidity
-* missing leverage
+**Rule:** Overengineering a data update wastes tokens. Underengineering a full rewrite produces contradictions. Classify correctly before proceeding.
 
-### Step 2 — Classification Engine
+---
 
-Label each section of the old prompt as:
+#### Step 1 — Extraction Protocol
 
-* Preserve → still high-value
-* Upgrade → useful but weak
-* Replace → conflicts with new framework
-* Remove → fluff / redundant / low-value
+Read the existing prompt completely. Extract and document in a structured format:
 
-### Step 3 — Concept Relevance Check
+**1A. Stated purpose**
+One sentence: what is this prompt trying to make Claude produce?
 
-Determine whether the Decision-Led Proof Perspective v2 framework improves:
+**1B. Operating assumptions**
+What does the prompt assume about the buyer, the data, the sales stage? List each assumption explicitly. These are the most common source of conflicts with v2.
 
-* clarity
-* persuasion
-* trust
-* decision momentum
-* proof quality
-* CTA strength
-* buyer psychology alignment
+**1C. Instruction inventory**
+List every discrete instruction the prompt contains. Group into:
+- Input rules (what to read, what to extract)
+- Processing rules (how to reason, what to prioritize)
+- Output rules (format, structure, tone, length)
+- Constraint rules (what to avoid, what to never do)
 
-If yes, integrate automatically.
+**1D. Hidden strategic value**
+Identify instructions that look minor but carry significant downstream effect. Example: "End every CTA with a 20-minute call ask" — this is one line but determines the entire close. Flag these explicitly; they are high-risk to accidentally remove.
 
-### Step 4 — Smart Integration Rules
+**1E. Legacy debt**
+Identify instructions that were designed for an earlier version of the system (Priority Modes, Vision-Led framing, Investment Gates, $35/hr defaults). These are candidates for removal — but document them first, because some may have been placed there for a reason that isn't obvious.
 
-The AI must:
+---
 
-* merge new concepts naturally
-* retain strong legacy logic
-* avoid duplicate instructions
-* remove contradictions
-* simplify where possible
-* improve output quality over both old and new standalone versions
+#### Step 2 — Section-Level Classification
 
-### Step 5 — Final Standard
+For every substantive section or instruction block identified in Step 1C, assign exactly one label. Do not assign multiple labels to one section — if it's genuinely ambiguous, flag it explicitly.
 
-The rewritten prompt must feel like an evolved superior system, not a patched document.
+| Label | Meaning | Criteria |
+|-------|---------|----------|
+| **Preserve** | Keep verbatim | Still high-value, compatible with v2, no v2 concept improves it |
+| **Upgrade** | Keep the intent, improve the execution | Right idea, weak implementation — v2 offers a more precise or effective version |
+| **Reconcile** | Genuine conflict — requires judgment call | Old logic has value but directly contradicts v2; cannot coexist without resolving the tension |
+| **Replace** | Discard and substitute | Logic is wrong, outdated, or actively harmful — a v2 equivalent exists and is clearly superior |
+| **Remove** | Discard with no substitute | Redundant, contradicts a more important instruction, or adds noise without value |
 
-## Non-Negotiable Rule
+**On Reconcile:** This is the hardest classification. When a Reconcile situation is identified, document:
+- What the old instruction achieves
+- What the v2 principle achieves
+- The specific tension between them
+- The recommended resolution and its trade-off
 
-Never force every concept into every prompt.
+Do not force a resolution without documenting the trade-off. If the right answer is unclear, flag it for human review rather than guessing.
 
-Only apply concepts that materially improve the prompt’s objective.
+---
 
+#### Step 3 — v2 Concept Relevance Assessment
+
+For each of the seven v2 framework capabilities, assess whether applying it to this specific prompt creates a measurable improvement in the prompt's primary objective.
+
+| v2 Capability | Apply if... | Skip if... |
+|---------------|-------------|------------|
+| Goal scoring & confidence levels | The prompt generates a deliverable where tone or precision should vary by research quality | The prompt is a fixed-format document with no dynamic framing |
+| ROI Integrity Ladder (L1–L4) | The prompt uses or produces financial or time-saving claims | No quantitative claims appear in the output |
+| Decision Emotion sequencing | The prompt produces a buyer-facing document | Internal reference or technical document |
+| Proof Ledger mapping | The prompt claims something will be proven in a demo or report | No claim-to-proof relationship exists in this prompt's output |
+| Adoption Risk filtering | The prompt produces a proposal or implementation document | Pure sales or awareness document |
+| Stakeholder mapping | The prompt addresses a multi-stakeholder decision | Single-buyer context |
+| Future Problem Register | The prompt uses fear-of-inaction framing | No temporal escalation in the output |
+
+**Rule:** Only mark a capability as applicable if applying it would change at least one substantive instruction in the prompt. Cosmetic additions that reference the framework without changing behavior do not count as integration.
+
+---
+
+#### Step 4 — Integration Rules
+
+Apply only the concepts marked applicable in Step 3. Use these rules to govern how each integration is executed:
+
+**Rule 4A — Merge at the instruction level, not the section level**
+Do not add a new "v2 Framework Override" block and leave the old instructions below it. The override pattern creates invisible conflicts — the old instruction runs alongside the new one and Claude must choose between them. Instead, locate the specific instruction being upgraded and rewrite it in place.
+
+**Rule 4B — One source of truth per instruction**
+If the old prompt says "use conservative industry defaults of $35/hr" and the v2 framework says "classify metrics using the ROI Integrity Ladder," there can only be one instruction governing metric use. Remove the old one entirely when the new one supersedes it.
+
+**Rule 4C — Preserve constraint logic**
+Constraints (what Claude must never do) are the most important lines in any prompt and the easiest to accidentally remove during a rewrite. Every "never," "must not," and "do not" from the original prompt must either be explicitly preserved, deliberately removed with a reason documented, or upgraded with a more precise constraint.
+
+**Rule 4D — Sequence before adding**
+Before adding a new instruction, check whether the existing instructions already produce the same behavior in combination. Adding redundant instructions increases prompt length without improving output and creates interpretation conflicts.
+
+**Rule 4E — Tone and format rules are last to change**
+The operating logic (what Claude thinks about and in what order) is higher priority than formatting rules (how the output is structured). Rewrite logic first, then adjust formatting to match.
+
+---
+
+#### Step 5 — Evolution Brief (Output Before Rewriting)
+
+Before writing the rewritten prompt, produce a short Evolution Brief in this format. This brief is the auditable record of the analysis.
+
+```
+EVOLUTION BRIEF — [Prompt Name]
+
+Scope classification: Data update / Targeted upgrade / Full rewrite
+
+Sections classified:
+  Preserve: [list]
+  Upgrade: [list]
+  Reconcile: [list, with resolution notes]
+  Replace: [list]
+  Remove: [list]
+
+v2 capabilities integrated: [list only those applied]
+v2 capabilities skipped: [list with one-line reason each]
+
+Hidden strategic value preserved: [list from Step 1D]
+Legacy debt removed: [list from Step 1E]
+
+Reconcile resolutions:
+  [For each Reconcile section: tension + resolution + trade-off]
+
+Constraint audit:
+  Original constraints: [count]
+  Preserved: [count]
+  Removed: [list with reasons]
+  Upgraded: [list]
+
+Output quality improvement rationale:
+  [One paragraph: why the rewritten prompt produces better outputs
+  than either the old prompt or the raw v2 framework alone]
+```
+
+**Rule:** The Evolution Brief must be produced before the rewritten prompt is written. It is not a post-hoc summary. If the brief cannot be completed — because the analysis reveals unresolved Reconcile conflicts or missing information — resolve those conflicts first.
+
+---
+
+#### Non-Negotiable Rules
+
+1. **Apply only what improves the objective.** If a v2 concept is referenced in the rewritten prompt but does not change any substantive behavior, remove the reference. Cosmetic compliance is worse than no compliance — it adds length and creates the illusion of integration without the substance.
+
+2. **The rewritten prompt must be a complete document.** No "see previous version for sections not shown here." The rewritten prompt is the only version that matters; the old one is archived.
+
+3. **Do not gold-plate.** A prompt that needed a targeted upgrade should not become a full rewrite because the analysis revealed interesting things. Stay within the scope classification from the gate.
+
+4. **Contradictions are always resolved, never left.** If two instructions in the rewritten prompt would lead Claude to different behaviors in the same scenario, one must be removed or rewritten before the prompt is finalized.
+
+5. **The Evolution Brief is not optional for full rewrites.** For data updates and targeted upgrades, the brief may be abbreviated. For full rewrites, it is mandatory.
 
 ---
 
@@ -160,12 +253,12 @@ state what is missing, and classify the field as "Hypothesis only."
 # Decision Card — [PROSPECT NAME]
 
 ## Metadata
-```
+\`\`\`
 prospect: [name]
 provider: Dev8X
 generated: [date]
 version: d0_v2
-```
+\`\`\`
 
 ---
 
@@ -206,12 +299,12 @@ Classification:
 
 ## Section 2 — Buying Reason
 
-```
+\`\`\`
 Desired Outcome: [what they want to achieve — from Section 1 primary goal]
 Buying Reason:   [what makes that goal urgent NOW and what operationally blocks it]
 Status:          Confirmed / Partially confirmed / Hypothesis only
 Evidence:        [specific research data that justifies the status]
-```
+\`\`\`
 
 ---
 
@@ -554,7 +647,11 @@ This prompt operates under the Decision-Led Proof Framework v2.
    - **Section 3B (Proof Ledger Summary):** Add a table mapping claims to demo screens so the CEO sees proof exists.
    - **Section 5 (What Gets Built):** Link each deliverable back to a specific problem number.
    - **Section 6 (CTA):** Rewrite to adjust dynamically based on the Confidence Signal (High = demo; Med = demo + feedback; Low = demo + discovery call).
-4. **Update 'What To Attach':** Require `p0a_Decision_Card_[ClientName].md` a### 2.2 Fully Rewrite `prompts/phase4_demo_scoping/p4e_Demo_Pitch.md`
+4. **Update 'What To Attach':** Require `p0a_Decision_Card_[ClientName].md` and `p0b_Problem_Register_[ClientName].md` as PRIMARY sources.
+
+---
+
+### 2.2 Fully Rewrite `prompts/phase4_demo_scoping/p4e_Demo_Pitch.md`
 
 **What changes:** The AI must completely rewrite the demo script prompt to enforce Belief Order routing and Manual Operations Mapping.
 
@@ -618,8 +715,6 @@ This prompt operates under the Decision-Led Proof Framework v2.
 
 ---
 
----
-
 ## Phase 3 — Update README.md
 
 ### 3.1 Add Phase 0 to the pipeline table and folder structure
@@ -627,13 +722,11 @@ This prompt operates under the Decision-Led Proof Framework v2.
 **FIND in README.md:**
 ```
 ## The 5-Phase Pipeline
-
 ```
 
 **REPLACE WITH:**
 ```
 ## The 6-Phase Pipeline
-
 ```
 
 **FIND:**
@@ -653,17 +746,14 @@ This prompt operates under the Decision-Led Proof Framework v2.
 
 **FIND (Pipeline diagram):**
 ```
-```
 PHASE 1 — Research       Raw data → clean context files
 PHASE 2 — Outreach       Context → LinkedIn warming plan
 PHASE 3 — First Touch    Context → Outcome Report (video sent cold)
 PHASE 4 — Demo & Scoping Full analysis → working demos + demo pitch script
 PHASE 5 — Proposal       Demo outputs → Proposal + Pitch script + Blueprint
 ```
-```
 
 **REPLACE WITH:**
-```
 ```
 PHASE 0 — Decision Card  Research → Decision Card + Problem Register → Gate assessment
 PHASE 1 — Research       Raw data → clean context files
@@ -671,7 +761,6 @@ PHASE 2 — Outreach       Context → LinkedIn warming plan
 PHASE 3 — First Touch    Decision Card + Research → Decision Safety Brief (video sent cold)
 PHASE 4 — Demo & Scoping Problem Register + Portals → Demo pitch script
 PHASE 5 — Proposal       Decision Card + Problem Register + Tech Spec → Full proposal suite
-```
 ```
 
 **FIND (Folder Structure, under `prompts/`):**
@@ -873,6 +962,9 @@ Step 8:  p5c_Blueprint remains unchanged — no modifications needed
 | Proof Ledger cannot map to specific admin.html screens | Low — screens are documented | Medium | Use screen names from HTML nav items; partial proof is better than no proof |
 | p0b Problem Register finds fewer than 4 provable problems | Low — TreeRaise context is rich | Low | Document as discovery questions; set Confidence Signal to Low if critical proof is missing |
 | p5b QA grows to 6 items, extending pitch script past 14 minutes | Medium | Low | Keep each new QA answer to 60 words maximum |
+| Scope Gate misclassified — data update treated as full rewrite | Medium | Medium | Gate classification is the first step and must be documented; reviewer confirms before engine runs |
+| Evolution Brief skipped for a full rewrite | Low | High | Non-negotiable rule 5 enforces this; brief is the gate to writing the prompt |
+| Reconcile conflict left unresolved and both instructions included | Low | High | Rule 4B (one source of truth) and Reconcile documentation in Step 2 prevent this; flag for human review if unclear |
 
 ---
 
