@@ -1,8 +1,22 @@
-You are a senior technical sales consultant at Dev8X writing a video pitch script.
+You are a senior technical sales consultant at Dev8X writing a video pitch script,
+operating under the Decision-Led Proof Framework (v2).
 
-Your task is to read the attached Proposal document and generate a **Project Proposal
-Video Pitch Script** as a `.docx` file. This script is read aloud by Abdul on screen
-while recording a 12–14 minute walkthrough video sent to the client.
+Your task is to read the attached Proposal document and Decision Card, then
+generate a **Project Proposal Video Pitch Script** as a `.docx` file. This script
+is read aloud by Abdul on screen while recording a 12–14 minute walkthrough
+video sent to the client.
+
+---
+
+## FRAMEWORK OVERRIDE (Applies to entire prompt)
+
+This prompt operates under the Decision-Led Proof Framework v2.
+
+1. **Trust through Integrity:** The pitch must include an explicit ROI Integrity
+   statement spoken aloud. Honesty builds more trust than precision.
+2. **Decision Emotion:** Structure to build Trust through honesty and Momentum
+   through a safe next step.
+3. **Primary Source:** The Proposal and Decision Card are PRIMARY sources.
 
 ---
 
@@ -19,6 +33,12 @@ Before writing anything, extract from the attached Proposal:
 - Hourly rates (senior $25/hr, junior $15/hr)
 - Market rate comparison data (US, Europe, South Asia)
 - Total number of portals and total number of screens
+
+Then extract from the Decision Card:
+- Decision Risk (Section 5) — this must be addressed in Q5 of the QA section
+- ROI Integrity Ladder (Section 8) — this must be explained in Q6
+- Confidence Signal level — this controls how aggressively to push for commitment
+- Decision Emotion Map — use the Trust and Momentum triggers to shape tone
 
 ---
 
@@ -194,7 +214,14 @@ Length: ~280 words spoken for this section.
   to the actual business from the Proposal (e.g. for real estate: one commission covers the
   entire investment).
 
-Length: ~150 words spoken for this section.
+**Mandatory ROI Integrity Statement (read aloud verbatim):**
+"Every number in this proposal is classified. Where we used your own data or public filings,
+we labelled it 'Sourced.' Where we estimated from available signals, we stated our assumptions
+and labelled it 'Estimated.' Where we used industry benchmarks, we said so — and we never
+used those as headline numbers. Where we did not have direct data, we said so — rather than
+padding the numbers."
+
+Length: ~200 words spoken for this section.
 
 ---
 
@@ -224,7 +251,7 @@ Length: ~170 words spoken for this section.
 
 **Internal note:** "Use these if [client name(s)] follow up with questions after watching."
 
-Include exactly five ❓ Q / ✅ A blocks covering:
+Include exactly six ❓ Q / ✅ A blocks covering:
 
 1. "The prototype looked finished. Why are we still paying for months of work?"
    — Static visual vs. working system analogy (movie set with no plumbing).
@@ -238,9 +265,22 @@ Include exactly five ❓ Q / ✅ A blocks covering:
 4. "What happens after the platform launches?"
    — Monthly maintenance retainer. New features scoped separately as Phase 2.
 
-5. A fifth Q&A that addresses a specific concern relevant to this particular client's
-   business or platform (infer from the Proposal — e.g. data privacy for a legal platform,
-   donor trust for a nonprofit platform, etc.).
+5. **Decision Risk question:** Pull the Decision Risk from Decision Card Section 5.
+   The question must directly address that risk. Example: if Decision Risk is
+   "I'm not sure our team will actually adopt this," then Q5 is:
+   "How do we know our team will actually use this?"
+   Answer must reference the Implementation Safety section and Adoption Risk mitigation
+   plan from the Proposal.
+
+6. **ROI Integrity question:**
+   "How do we know these numbers are real?"
+   Answer by explaining the ROI Integrity Ladder:
+   - L1 = directly from your data or public filings
+   - L2 = calculated from available signals with stated assumptions
+   - L3 = industry benchmark proxy — illustrative only, never headline
+   - L4 = too speculative — removed from all deliverables
+   "Every metric in the proposal has been classified using this ladder. Nothing in the
+   headline numbers is unverified."
 
 ---
 
@@ -257,6 +297,8 @@ placeholder items such as:
 - 📌 NOTE: VERIFIED — all screen counts match the Proposal totals exactly.
 - 📌 NOTE: VERIFIED — timeline formula is mathematically correct: [formula shown].
 - 📌 NOTE: VERIFIED — hourly rates and total cost match the Cost Estimate table.
+- 📌 NOTE: VERIFIED — ROI Integrity statement is present in Section 04 SPEAK.
+- 📌 NOTE: VERIFIED — Q5 addresses the Decision Risk from the Decision Card.
 - 📌 NOTE: REMINDER — replace [client name(s)] in Sections 00 and QA with actual names
   before recording.
 - 📌 NOTE: REMINDER — replace the `href="#"` on any demo link before sending.
@@ -295,11 +337,12 @@ Follow the SKILL.md docx instructions exactly. Key rules:
 
 | File | Role |
 |------|------|
-| `prompts/11_Proposal_Pitch.md` | This prompt |
-| `context/10_Proposal_<ClientName>.docx` | Source of all numbers, names, phases, and screens |
+| `prompts/phase5_proposal/p5b_Proposal_Pitch.md` | This prompt |
+| `context/p5a_Proposal_[ClientName].docx` | Source of all numbers, names, phases, and screens |
+| `context/p0a_Decision_Card_[ClientName].md` | PRIMARY — Decision Risk, ROI Integrity, Confidence Signal |
 
-> The Proposal is the only source needed — it already contains all team assignments,
-> screen counts, iteration breakdowns, and cost data the script requires.
+> The Proposal is the main source for numbers and structure. The Decision Card
+> is PRIMARY for Q5 (Decision Risk) and the ROI Integrity statement in Section 04.
 > Estimated token usage: 15k–35k.
 
-**Save output as:** `context/11_Proposal_Pitch_<ClientName>.docx`
+**Save output as:** `context/p5b_Proposal_Pitch_[ClientName].docx`

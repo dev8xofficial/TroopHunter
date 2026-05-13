@@ -1,6 +1,6 @@
 # Dev8X — Document Generation Pipeline
 
-This pipeline moves a prospect through five phases: from raw research to a signed
+This pipeline moves a prospect through six phases: from raw research to a signed
 proposal. Every file is named with a phase prefix so its origin and position in
 the pipeline are immediately visible.
 
@@ -30,21 +30,23 @@ e.g. `p4a_Business_Operations_Doc_Generator.md.md` (prompt) → `p4a_Business_Op
 
 ---
 
-## The 5-Phase Pipeline
+## The 6-Phase Pipeline
 
 ```
+PHASE 0 — Decision Card  Research → Decision Card + Problem Register → Gate assessment
 PHASE 1 — Research       Raw data → clean context files
 PHASE 2 — Outreach       Context → LinkedIn warming plan
-PHASE 3 — First Touch    Context → Outcome Report (video sent cold)
-PHASE 4 — Demo & Scoping Full analysis → working demos + demo pitch script
-PHASE 5 — Proposal       Demo outputs → Proposal + Pitch script + Blueprint
+PHASE 3 — First Touch    Decision Card + Research → Decision Safety Brief (video sent cold)
+PHASE 4 — Demo & Scoping Problem Register + Portals → Demo pitch script
+PHASE 5 — Proposal       Decision Card + Problem Register + Tech Spec → Full proposal suite
 ```
 
 | Phase | Dev8X has done... | Prospect has seen... | Goal |
 |-------|-------------------|----------------------|------|
+| 0 | Produced Decision Card + Problem Register | Nothing yet | Gate assessment — decide how much to build |
 | 1 | Researched the prospect | Nothing yet | Build intelligence |
 | 2 | Started LinkedIn comments | First comments from Abdul | Accept connection |
-| 3 | Sent outcome video | A personalised ROI report | Book a call |
+| 3 | Sent outcome video | A personalised Decision Safety Brief | Book a call |
 | 4 | Built and demoed the platform | Working portals + demo video | Agree to proposal |
 | 5 | Delivered full proposal suite | Proposal + pitch video + blueprint | Sign and start |
 
@@ -62,6 +64,9 @@ treeraise/
 │   │   ├── p1c_Linkedin_Owner.md
 │   │   ├── p1d_Document.md
 │   │   └── p1e_Job_Posting.md
+│   ├── phase0_decision/
+│   │   ├── p0a_Decision_Card.md
+│   │   └── p0b_Problem_Register.md
 │   ├── phase2_outreach/
 │   │   └── p2a_Lead_Warming.md
 │   ├── phase3_first_touch/
@@ -86,8 +91,10 @@ treeraise/
 │   ├── p1d_School_Guide.md                     ← output of p1d_Document.md
 │   ├── p1d_TreeRaise_System_Feature_Benefits.md          ← output of p1d_Document.md ← pending
 │   ├── p1e_Job_Posting.md                      ← output of p1e_Job_Posting.md
+│   ├── p0a_Decision_Card_TreeRaise.md          ← output of p0a_Decision_Card.md
+│   ├── p0b_Problem_Register_TreeRaise.md       ← output of p0b_Problem_Register.md
 │   ├── p2a_Lead_Warming.md                     ← output of p2a_Lead_Warming.md
-│   ├── p3a_Outcome_Report.html                 ← output of p3a_Outcome_Report.md
+│   ├── p3a_Decision_Safety_Brief_TreeRaise.html                 ← output of p3a_Outcome_Report.md
 │   ├── p4a_Business_Operations_Manual.docx    ← output of p4a_Business_Operations_Doc_Generator.md.md
 │   ├── p4b_TreeRaise_Company_Report.docx      ← output of p4b_Business_Report_Doc_Generator.md
 │   ├── p4c_Tech_Spec_TreeRaise.docx           ← output of p4c_Tech_Spec_Doc_Generator.md
@@ -110,6 +117,69 @@ treeraise/
 > When running `p1_Linkedin_Person.md` for a target lead CEO (Phase 2 prep),
 > save as `context/p1_Linkedin_<TargetCEOName>.md` to distinguish from the
 > owner file.
+
+---
+
+## Phase 0 — Decision Card
+
+**What this phase does:** Before any deliverable is built, produce a Decision
+Card and Problem Register that set the Confidence Signal — controlling the
+tone, precision, and CTA language of all deliverables based on research quality.
+
+**When to run:** Immediately after Phase 1 research files exist, before
+Phase 3 (Decision Safety Brief) or Phase 4 (Demo) work begins. The Decision Card
+is the mandatory input to every downstream phase.
+
+---
+
+### p0a — Decision Card
+
+**Purpose:** Score all detected goals, classify the primary bottleneck, assess
+ROI integrity, and set the Confidence Signal.
+
+**Attach to Claude:**
+| File | Role |
+|------|------|
+| `prompts/phase0_decision/p0a_Decision_Card.md` | Prompt |
+| `context/p1a_Website.md` | Website research |
+| `context/p1b_Linkedin_Company.md` | Company LinkedIn |
+| `context/p1c_Linkedin_Owner.md` | Owner LinkedIn |
+| `context/p1d_Nonprofit_Guide.md` | Product guide |
+| `context/p1d_School_Guide.md` | Product guide |
+| `context/p1d_Faith_Based_Guide.md` | Product guide |
+| `context/p1e_Job_Posting.md` | Hiring signals |
+
+> Estimated token usage: 40k–80k.
+
+**Save output as:** `context/p0a_Decision_Card_[ClientName].md`
+
+**Confidence Signal rule:** Read the Selected Confidence Level at the bottom
+of the output. All deliverables are always built — proceed to p0b, then the
+full Phase 3, 4, and 5 suite. The confidence level controls:
+- High → use specific numbers, full-confidence framing
+- Medium → label L2 metrics as estimated, use supported-projection framing
+- Low → use directional language for L3 metrics, add discovery call CTA alongside demo
+
+---
+
+### p0b — Problem Register
+
+**Purpose:** Build the Current Problem Register, Future Problem Register,
+Proof Ledger, and Stakeholder Decision Map that feed all downstream demos,
+reports, and proposals.
+
+**Attach to Claude:**
+| File | Role |
+|------|------|
+| `prompts/phase0_decision/p0b_Problem_Register.md` | Prompt |
+| `context/p0a_Decision_Card_[ClientName].md` | Primary input |
+| `context/p1a_Website.md` | Research backup |
+| `context/p1b_Linkedin_Company.md` | Research backup |
+| `context/p1c_Linkedin_Owner.md` | Research backup |
+
+> Estimated token usage: 30k–60k.
+
+**Save output as:** `context/p0b_Problem_Register_[ClientName].md`
 
 ---
 
@@ -249,27 +319,32 @@ and send it as the first direct message after connection is accepted.
 
 ---
 
-### p3a_Outcome_Report.md — Outcome-Based Report
+### p3a_Outcome_Report.md — Decision Safety Brief
 
 **The report includes:**
-- Three headline numbers: hours saved/week, monthly cost impact, workflows automated
-- Current-state challenge table from real operations
-- 4–7 solution cards (Time Saved / Cost Impact / Effort Reduction + before/after)
-- Projected annual impact charts (Chart.js)
-- Deliverables checklist and CTA button (replace `href="#"` before sending)
+- Buyer Confirmation Status badge (Confirmed / Partial / Hypothesis)
+- Three headline numbers — L1 or L2 metrics only; L3/L4 never in hero
+- Current Problem Register table (4–6 rows) drawn from Problem Register
+- Proof Ledger Summary showing claims, evidence, and proof conditions
+- Future Problem Register table (3 rows) triggering Fear of Inaction
+- 4–7 solution cards linked to specific problem numbers, each with ROI Integrity label
+- ROI Integrity Summary grouping all metrics by L1/L2/L3/L4 classification
+- CTA dynamically adjusted to Confidence Signal level
 
 **Attach to Claude:**
 | File | Role |
 |------|------|
 | `prompts/phase3_first_touch/p3a_Outcome_Report.md` | Prompt |
-| `context/p4b_TreeRaise_Company_Report.docx` | Pain points and transformation opportunities |
-| `context/p4a_Business_Operations_Manual.docx` | Workflow detail for quantification |
+| `context/p0a_Decision_Card_[ClientName].md` | PRIMARY — Confidence Signal, goals, bottlenecks, ROI Integrity |
+| `context/p0b_Problem_Register_[ClientName].md` | PRIMARY — Current/Future problems, Proof Ledger |
+| `context/p4b_TreeRaise_Company_Report.docx` | SECONDARY — Pain points and transformation opportunities |
+| `context/p4a_Business_Operations_Manual.docx` | SECONDARY — Workflow detail for quantification |
 
-> If Phase 4 hasn't run yet, substitute `context/p1a_Website.md` and
-> `context/p1b_Linkedin_Company.md` as a fallback — less precise but functional.
+> The Decision Card and Problem Register are PRIMARY sources. The Business Report
+> and Operations Manual are secondary fallbacks.
 > Estimated token usage: 30k–60k.
 
-**Save output as:** `context/p3_Outcome_Report_TreeRaise.html`
+**Save output as:** `context/p3a_Decision_Safety_Brief_[ClientName].html`
 
 > **Before sending:** replace `href="#"` on the "Watch the Demo" button with
 > the real demo video link.
@@ -375,13 +450,17 @@ the discovery call.
 | File | Role |
 |------|------|
 | `prompts/phase4_demo_scoping/p4e_Demo_Pitch.md` | Prompt |
+| `context/p0a_Decision_Card_[ClientName].md` | PRIMARY — Confidence Signal, Demo Routing Decision, Decision Emotion Map |
+| `context/p0b_Problem_Register_[ClientName].md` | PRIMARY — Current/Future problems, Manual Operations Mapping, Proof Ledger |
 | `portals/p4d_admin.html` | Primary demo portal |
-| `portals/p4d_partner_portal.html` | Secondary demo portal |
-| `context/p4a_Business_Operations_Manual.docx` | Pain points for Before vs After framing |
+| `portals/p4d_partner-portal.html` | Secondary demo portal |
 
+> The Decision Card and Problem Register are PRIMARY sources. They determine
+> which screens to show and in what order. Every screen in the script must map
+> to a Problem Register row and a Proof Ledger entry.
 > Estimated token usage: 25k–55k.
 
-**Save output as:** `context/p4e_Demo_Pitch_TreeRaise.docx`
+**Save output as:** `context/p4e_Demo_Pitch_[ClientName].docx`
 
 ---
 
@@ -398,17 +477,23 @@ receive a proposal.
 ### p5a — Proposal Document
 
 **Purpose:** Generate the full project proposal — team, rates, cost estimate,
-market comparison, and references.
+market comparison, references, and Implementation Safety. This is a Safe Change
+Case, not just a cost document.
 
 **Attach to Claude:**
 | File | Role |
 |------|------|
 | `prompts/phase5_proposal/p5a_Proposal.md` | Prompt |
-| `context/p4c_Tech_Spec_TreeRaise.docx` | Screens, portals, phases, team, hours |
+| `context/p0a_Decision_Card_[ClientName].md` | PRIMARY — Confidence Signal, Delivery Confidence, Adoption Risk, ROI Integrity |
+| `context/p0b_Problem_Register_[ClientName].md` | PRIMARY — Current/Future problems, Stakeholder Map |
+| `context/p4c_Tech_Spec_TreeRaise.docx` | SECONDARY — Screens, portals, phases, team, hours |
 
+> The Decision Card and Problem Register are PRIMARY sources. They determine
+> tone, risk disclosure, and Implementation Safety content. The Tech Spec
+> provides the structural data (team, hours, screens).
 > Estimated token usage: 20k–50k.
 
-**Save output as:** `context/p5a_Proposal_TreeRaise.docx`
+**Save output as:** `context/p5a_Proposal_[ClientName].docx`
 
 ---
 
@@ -421,11 +506,14 @@ screen-recording a walkthrough of the Proposal and Blueprint together.
 | File | Role |
 |------|------|
 | `prompts/phase5_proposal/p5b_Proposal_Pitch.md` | Prompt |
-| `context/p5a_Proposal_TreeRaise.docx` | All numbers, names, and phases |
+| `context/p5a_Proposal_[ClientName].docx` | Source of all numbers, names, phases, and screens |
+| `context/p0a_Decision_Card_[ClientName].md` | PRIMARY — Decision Risk, ROI Integrity, Confidence Signal |
 
+> The Proposal is the main source for numbers and structure. The Decision Card
+> is PRIMARY for Q5 (Decision Risk) and the ROI Integrity statement in Section 04.
 > Estimated token usage: 15k–35k.
 
-**Save output as:** `context/p5b_Proposal_Pitch_TreeRaise.docx`
+**Save output as:** `context/p5b_Proposal_Pitch_[ClientName].docx`
 
 ---
 
@@ -451,13 +539,13 @@ Shown on-screen alongside the Proposal during the pitch video.
 ## How the Phases Connect
 
 ```
-Phase 1        Phase 2       Phase 3        Phase 4               Phase 5
-──────────     ──────────    ────────────   ──────────────────    ───────────────────
-p1_ files  →  p2_ Warming   p3_ Outcome    p4a_ Ops Manual       p5a_ Proposal
-               (parallel)    Report         p4b_ Report      →   p5b_ Pitch Script
-                             (parallel)     p4c_ Tech Spec        p5c_ Blueprint
-                                            p4d_ Portals
-                                            p4e_ Demo Pitch
+Phase 0        Phase 1        Phase 2       Phase 3          Phase 4               Phase 5
+──────────     ──────────     ──────────    ────────────     ──────────────────    ────────────────
+p0a_ Card  →  p1_ files  →  p2_ Warming   p3_ Decision     p4a_ Ops Manual       p5a_ Proposal
+p0b_ Reg       (parallel)    (parallel)    Safety Brief     p4b_ Report      →   p5b_ Pitch Script
+ ↓                                        (always built)     p4c_ Tech Spec        p5c_ Blueprint
+ feeds all                                                   p4d_ Portals
+ phases 3-5                                                  p4e_ Demo Pitch
 ```
 
 **Phases 2 and 3 run in parallel** — start LinkedIn comments on Day 1 while
@@ -476,16 +564,18 @@ the blueprint reads both.
 
 | Phase | Prompt | Inputs | Est. tokens |
 |-------|--------|--------|-------------|
+| 0 | p0a_ Decision Card | Prompt + all p1_ context files | 40k–80k |
+| 0 | p0b_ Problem Register | Prompt + p0a_ + 3 p1_ files | 30k–60k |
 | 1 | p1_ (each) | Prompt + one raw file | 10k–40k |
 | 2 | p2_ | Prompt + CEO LinkedIn + Ops Manual | 20k–50k |
-| 3 | p3_ | Prompt + Business Report + Ops Manual | 30k–60k |
+| 3 | p3_ | Prompt + Decision Card + Problem Register | 30k–60k |
 | 4 | p4a_ | Prompt + all p1_ context files | 60k–130k |
 | 4 | p4b_ | Prompt + p4a_ only | 30k–70k |
 | 4 | p4c_ | Prompt + p4a_ + p4b_ | 60k–120k |
 | 4 | p4d_ | Prompt + p4c_ | 40k–100k |
-| 4 | p4e_ | Prompt + 2 portal HTML + p4a_ | 25k–55k |
-| 5 | p5a_ | Prompt + p4c_ | 20k–50k |
-| 5 | p5b_ | Prompt + p5a_ only | 15k–35k |
+| 4 | p4e_ | Prompt + Decision Card + Problem Register + 2 portal HTML | 25k–55k |
+| 5 | p5a_ | Prompt + Decision Card + Problem Register + Tech Spec | 20k–50k |
+| 5 | p5b_ | Prompt + p5a_ + Decision Card | 15k–35k |
 | 5 | p5c_ | Prompt + p4c_ + p5a_ | 20k–50k |
 
 p4a_ is the only step that reads all Phase 1 files.

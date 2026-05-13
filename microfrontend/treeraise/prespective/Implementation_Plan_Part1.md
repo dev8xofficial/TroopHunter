@@ -395,6 +395,31 @@ Classify every metric available from research. Do not fabricate stronger data.
 **Hero Headline Metrics (L1 only — use these in report and demo):**
 [list or "No L1 metrics available — use discovery to gather"]
 
+### ROI Integrity Enforcement Rules (Per Framework §11)
+
+**Hard Constraints — Violations Block Deliverable Build:**
+
+| Level | Rule | Enforcement |
+|-------|------|-------------|
+| **L1 Sourced** | May lead headlines in all deliverables | No restrictions |
+| **L2 Estimated** | May support with explicit "[Estimated]" label | Required in headline: "Saves X hours/week [Estimated]" |
+| **L3 Proxy** | **NEVER in headlines** — illustrative only | If used in body, must state: "Industry benchmark — not specific to [Prospect]" |
+| **L4 Excluded** | **Remove from ALL deliverables** | If only L3/L4 available, pivot to discovery questions |
+
+**Pre-Build Validation Checklist:**
+- [ ] Scanned all metrics in this section
+- [ ] Confirmed NO L3/L4 metrics in hero headline list
+- [ ] All L2 metrics have "[Estimated]" label ready
+- [ ] If hero headline list is empty (no L1), prepared discovery questions to gather L1 data
+
+**If All Metrics Are L3/L4:**
+Do NOT fabricate stronger metrics. Instead, add these discovery questions to Section 9:
+1. "How many hours per week does your team currently spend on [manual process]?"
+2. "What is your current monthly cost for [operation]?"
+3. "How many [units] do you process manually per week?"
+
+These answers become L1 data for the full report build.
+
 ---
 
 ## Section 9 — Delivery Confidence
@@ -547,6 +572,23 @@ For each problem where Can Demo Prove It = Yes, complete this mapping:
 **Problems without proof screen mapping (become discovery questions):**
 [list each as a question the team should ask in discovery]
 
+### Manual Operations Validation Rule
+
+Per the Decision-Led Proof Framework §6, **every manual operation must pass three checks** before it can be a lead claim:
+
+| Check | Required Answer | Validation |
+|-------|-----------------|------------|
+| 1. Why does this manual operation block the primary goal? | Specific operational connection, not generic | Must cite exact goal from Decision Card §1 |
+| 2. What does the solution specifically do to remove/automate it? | Concrete platform capability | Must be verifiable in portal screens |
+| 3. Which screen proves the removal has happened? | Exact screen name | Must match portal HTML navigation |
+
+**Enforcement Rule:** If ANY of the three checks cannot be completed for a manual operation:
+- It CANNOT be a lead claim in the pitch, demo, or report
+- It MAY appear as supporting context with "Partial" proof status
+- It MUST become a discovery question to gather missing proof data
+
+**Cross-Check Before Finalizing:** Verify that every screen listed in "Demo Proof Screen" columns actually exists in the portal HTML files. Mismatches must be flagged and resolved.
+
 ---
 
 ## Future Problem Register
@@ -573,6 +615,24 @@ and backup language.
 | Claim | Evidence | Proof Condition | Proof Location | Remaining Doubt | Backup Language |
 |---|---|---|---|---|---|
 | [claim] | [why we believe it] | [what buyer must see] | [screen/artifact] | [possible doubt] | [alt framing] |
+
+---
+
+## Claim-to-Proof Validation
+
+**Mandatory:** Before finalizing the Problem Register, run every important claim through the four-step test:
+
+| Step | Question | Must Answer |
+|------|----------|-------------|
+| 1. Claim | What are we asserting is true? | One sentence, specific |
+| 2. Evidence | Why do we believe it, and from what source? | Specific research source |
+| 3. Proof | What will the buyer see in the demo or report that confirms it? | Exact screen or artifact name |
+| 4. Risk | What would make the buyer doubt it, and how do we address that? | Specific doubt + backup language |
+
+**Enforcement Rule:** If any claim cannot pass all four steps, it CANNOT be a lead claim in any deliverable. Options:
+- Demote to supporting claim with hedging language
+- Move to Discovery Questions to gather missing proof
+- Remove from all deliverables if unverifiable
 
 ---
 
@@ -638,8 +698,11 @@ To ensure no legacy concepts (Priority Mode, Vision-Led, Investment Gates) bleed
 This prompt operates under the Decision-Led Proof Framework v2.
 1. **ROI Integrity:** Every metric must be classified (L1/L2/L3/L4). L3/L4 metrics must NEVER appear in headlines.
 2. **Decision Emotion:** Structure content to trigger Recognition, Relief, Fear of Inaction, Trust, and Momentum in sequence.
-3. **Always Built:** Adjust tone based on the Confidence Signal.
-4. **Primary Source:** The Decision Card and Problem Register are PRIMARY sources.
+3. **Narrative Formula:** The output MUST follow this exact sequence:
+   - Future Outcome → Current Bottleneck → Proof → Safe Change → Strategic Unlock
+   - Before writing, verify your outline maps to this sequence. Flag any section that doesn't.
+4. **Always Built:** Adjust tone based on the Confidence Signal.
+5. **Primary Source:** The Decision Card and Problem Register are PRIMARY sources.
 ```
 3. **Rewrite the Document Structure:**
    - **Section 1 (Hero):** L1 metrics only. Add Buyer Confirmation Status badge.
@@ -663,8 +726,13 @@ This prompt operates under the Decision-Led Proof Framework v2.
 This prompt operates under the Decision-Led Proof Framework v2.
 1. **Proof Sequence:** The demo must follow the Belief Order from the Proof Ledger. Do not use generic feature tours.
 2. **Decision Emotion:** Structure to trigger Recognition in the first 30 seconds and Relief by the 2-minute mark.
-3. **Always Built:** All deliverables are always built. Adjust tone and precision based on the Confidence Signal.
-4. **Primary Source:** The Decision Card and Problem Register are PRIMARY sources.
+3. **Narrative Formula:** The demo sequence MUST map to: Future Outcome → Current Bottleneck → Proof → Safe Change → Strategic Unlock
+   - Hook (Future Outcome): Where the buyer is trying to go
+   - Screens 1-2 (Current Bottleneck → Proof): Expose the problem, then immediately show the solution
+   - Screens 3-4 (Safe Change): Show adoption is realistic
+   - Screens 5-6 (Strategic Unlock): Earn the right to discuss ambition
+4. **Always Built:** All deliverables are always built. Adjust tone and precision based on the Confidence Signal.
+5. **Primary Source:** The Decision Card and Problem Register are PRIMARY sources.
 ```
 3. **Rewrite the Document Structure:**
    - **Mapping Rule:** Must enforce that every screen maps to a Current Problem Register row and is listed in the Proof Ledger.
@@ -690,7 +758,13 @@ This prompt operates under the Decision-Led Proof Framework v2.
 1. **Safe Change Case:** The proposal must explicitly address Implementation Safety.
 2. **Decision Emotion:** Structure to build Trust through honesty and Momentum through a safe next step.
 3. **ROI Integrity:** Every metric must be classified (L1/L2/L3/L4). L3/L4 metrics must NEVER appear in financial tables.
-4. **Primary Source:** The Decision Card and Problem Register are PRIMARY sources.
+4. **Narrative Formula:** The proposal MUST follow this sequence:
+   - Section 0: Future Outcome (why act now + what breaks if they don't)
+   - Section 1-3: Current Bottleneck + Proof (what we built and why)
+   - Section 4B: Safe Change (Implementation Safety)
+   - Section 5-6: Strategic Unlock (ROI, future possibilities)
+   - CTA: Momentum (safe next step)
+5. **Primary Source:** The Decision Card and Problem Register are PRIMARY sources.
 ```
 3. **Rewrite the Document Structure:**
    - **Section 0 (Why Act Now):** Insert this BEFORE the cover page. Write 2 paragraphs pulling the primary bottleneck and top future problem from the Problem Register to trigger FEAR OF INACTION.

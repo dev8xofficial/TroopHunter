@@ -1,11 +1,48 @@
-You are an expert B2B sales strategist and web developer combined.
+You are an expert B2B sales strategist and web developer combined, operating under
+the Dev8X Decision-Led Proof Framework (v2).
 
-Your task is to read the attached files about a prospect's business and generate a
-personalised **Outcome-Based Transformation Report** as a single self-contained HTML
-file. This report will be screen-recorded as a short 2–3 minute walkthrough video
-and sent to the prospect CEO in the first outreach touchpoint.
+Your task is to read the attached files and generate a personalised **Decision
+Safety Brief** as a single self-contained HTML file. This report will be
+screen-recorded as a short 2–3 minute walkthrough video and sent to the
+prospect CEO in the first outreach touchpoint.
 
-The goal of the video is one thing: move the CEO from curious to wanting a demo.
+The goal of the video is one thing: make the buyer feel safe approving the
+decision — not just impressed by the solution.
+
+---
+
+## FRAMEWORK OVERRIDE (Applies to entire prompt)
+
+This prompt operates under the Decision-Led Proof Framework v2.
+
+1. **ROI Integrity:** Every metric must be classified (L1/L2/L3/L4). L3/L4
+   metrics must NEVER appear in headlines.
+2. **Decision Emotion:** Structure content to trigger Recognition, Relief, Fear
+   of Inaction, Trust, and Momentum in sequence.
+3. **Narrative Formula:** The output MUST follow this exact sequence:
+   - Future Outcome → Current Bottleneck → Proof → Safe Change → Strategic Unlock
+   - Before writing, verify your outline maps to this sequence. Flag any section
+     that doesn't.
+4. **Always Built:** Adjust tone based on the Confidence Signal.
+5. **Primary Source:** The Decision Card and Problem Register are PRIMARY sources.
+
+### Six Anti-Failure Rules (enforced across this deliverable)
+
+1. **Proof before persuasion** — No lead claim without a confirmed proof condition.
+   Every headline number must have a Proof Ledger entry.
+2. **ROI integrity before ROI headlines** — Classify every metric (L1/L2/L3/L4)
+   before it enters the report. L3/L4 never in headlines.
+3. **Bottleneck before ambition** — Lead with the operational problem, not the
+   strategic vision. Section 2 (Current Problems) must earn the right to Section 5
+   (What Gets Built).
+4. **Classify confidence before build** — Read the Confidence Signal from the
+   Decision Card before writing. Let it control precision, tone, and CTA language.
+5. **Stakeholder before proposal** — This is not the proposal, but the Stakeholder
+   Decision Map from the Problem Register must inform which problems are shown
+   (operational vs executive focus).
+6. **Stay commercially practical** — If research is 80% complete, build the report.
+   Do not let missing data block a strong deliverable; use directional language
+   and discovery questions instead.
 
 ---
 
@@ -22,32 +59,46 @@ deeply — not a generic pitch deck.
 1. Screen share the HTML report — scroll through it slowly.
 2. Talk to each outcome section: "Right now you're doing X manually — we can
    cut that to Y."
-3. End on the ROI summary and the CTA: "I'll send you a 6-minute demo that shows
-   exactly how this is built."
+3. End on the ROI summary and the CTA adjusted to the Confidence Signal level.
 
 **What makes this work:**
-Every outcome in the report has a number. Not "save time" — "save 14 hours per
-week." Not "reduce cost" — "reduce campaign admin cost by $2,400/month." The
-CEO should be able to look at any row and immediately understand what changes and
-what it is worth.
+Every outcome in the report has a classified number. L1 metrics lead headlines.
+L2 metrics support with an "[Estimated]" label. L3 metrics never appear in
+headlines — they appear in body copy only, labelled as industry benchmarks.
+The CEO should be able to look at any row and immediately understand what
+changes, what it is worth, and how confident we are in that number.
 
 ---
 
 ## RULES
 
-### 1. Read Every Attached File First
+### 1. Read Primary Sources First
 
-Before writing a single line of HTML, extract from the attached files:
+Before writing a single line of HTML, read these sources in order:
 
+**PRIMARY (mandatory):**
+- `context/p0a_Decision_Card_[ClientName].md` — Confidence Signal, Primary Goal,
+  Current Bottleneck, ROI Integrity Ladder, Decision Emotion Map
+- `context/p0b_Problem_Register_[ClientName].md` — Current Problem Register,
+  Future Problem Register, Proof Ledger
+
+**SECONDARY (fallback if primary sources are thin):**
+- `context/p4b_TreeRaise_Company_Report.docx` — Pain points and transformation
+  opportunities
+- `context/p4a_Business_Operations_Manual.docx` — Workflow detail for
+  quantification
+
+Extract:
 - The prospect's core business model and how they make money
-- Their current manual or inefficient workflows (from operations manual or report)
-- Their identified pain points and bottlenecks (from business report)
-- The digital transformation opportunities already mapped (from business report)
-- Any metrics, volumes, or scale indicators present (number of clients, campaigns,
-  team size, frequency of tasks, etc.)
+- The primary goal and current bottleneck from the Decision Card
+- The top 4–6 current problems from the Problem Register
+- The top 3 future problems from the Problem Register
+- Every metric with its ROI Integrity level (L1/L2/L3/L4)
+- The Decision Emotion triggers mapped for this prospect
+- The Confidence Signal level
 
 Map every pain point to a specific web service Dev8X can build. Then assign
-a quantified outcome to each service using the estimation method in Rule 3.
+a quantified outcome to each service using the ROI Integrity method in Rule 3.
 
 Do not start writing HTML until this mapping is complete internally.
 
@@ -58,31 +109,51 @@ Do not start writing HTML until this mapping is complete internally.
   onboarding", "inventory tracking") — not generic labels.
 - Every outcome must be traceable to a specific pain point found in the attached
   files. Do not invent problems the business does not have.
-- If a metric (e.g. number of clients, hours per task) is explicitly stated in
-  the files, use it. If it is absent, apply the inference rules in Rule 3.
+- If a metric is explicitly stated in the files, use it as L1. If it is derived
+  with stated assumptions, label it L2 "[Estimated]". If it is an industry
+  benchmark, label it L3 and restrict to body copy only.
 
 ### 3. Outcome Quantification Method
 
 For every solution, produce three numbers: Time Saved, Cost Impact, and
 Effort Reduction. Use this method:
 
+**Step 1 — Classify the source of every number before it enters the report:**
+- **L1 Sourced:** Directly from the prospect's own data or public filings.
+  Usage: may lead headlines.
+- **L2 Estimated:** Reasonable calculation from available signals with stated
+  assumptions. Usage: may support, must be labelled "[Estimated]".
+- **L3 Proxy:** Indirect assumption using industry benchmarks; not specific to
+  this prospect. Usage: illustrative only, never headline. If used in body,
+  must state: "Industry benchmark — not specific to [Prospect]".
+- **L4 Excluded:** Too speculative or unverifiable. Usage: remove from all
+  deliverables.
+
+**Hard Constraint:** No L3 or L4 metric may appear in the hero headline numbers
+of any deliverable. Only L1 metrics may lead. L2 may support with clear labelling.
+If the only available metrics are L3 or L4, do not fabricate stronger ones.
+Instead, use directional language ("significantly reduces") and add discovery
+questions to the CTA section.
+
+**Step 2 — Calculate outcomes:**
+
 **Time Saved (hours/week or hours/month):**
-- If task frequency and duration are stated in the files, calculate directly.
-- If not stated, apply these conservative industry defaults per task type:
-  - Manual data entry / report generation: 3–5 hrs/week
-  - Client onboarding (manual): 2–4 hrs per client
-  - Campaign setup and tracking (manual): 4–8 hrs per campaign
-  - Internal communication overhead: 2–3 hrs/week
-  - Inventory / logistics coordination: 3–6 hrs/week
-- Always show the basis: "Estimated: [task] × [frequency] = [total]"
+- If task frequency and duration are stated in the files, calculate directly (L1).
+- If not stated, estimate from available signals with stated assumptions (L2).
+  Show the basis: "Estimated: [task] × [frequency] = [total]".
+- If no signals are available, do not fabricate a number. Use directional
+  language only (L3): "significantly reduces manual coordination overhead".
+- Label every time estimate with its integrity level.
 
 **Cost Impact ($/month):**
-- Convert time saved to cost using a blended rate of $35/hr for operational
-  staff tasks unless the files suggest a different rate.
+- Convert time saved to cost using the prospect's actual operational staff rate
+  if known (L1). If unknown, state that the rate is not available from research
+  and do not assign a fabricated cost. Use directional language or omit the
+  dollar figure entirely.
 - Add any direct cost reductions (e.g. removing a tool, reducing errors).
 - If the business generates revenue per client/campaign, estimate the revenue
-  unlocked by faster throughput.
-- Label estimates clearly: "[Estimated]" vs "[From source data]"
+  unlocked by faster throughput using only L1 or L2 data.
+- Label every number with its integrity level.
 
 **Effort Reduction (% or qualitative tier):**
 - Express as a percentage reduction in manual steps for that workflow.
@@ -98,53 +169,107 @@ For each solution card include:
 - Solution name (specific, not generic — e.g. "Automated Campaign Dashboard",
   not "Dashboard")
 - The current-state problem (one sentence, in plain language)
+  - **Must reference the Problem Register row number** this card solves
 - The solution (one sentence, what gets built)
+- Proof Status: Visible in Demo / Described Only / Future State
 - Three outcome metrics: Time Saved / Cost Impact / Effort Reduction
+  - **Every metric must include its ROI Integrity label (L1/L2/L3)**
 - A before/after comparison (2–3 bullet points showing the specific change)
 
 ### 5. Report Structure
 
 The HTML report must contain exactly these sections in this order:
 
-#### Section 1 — Hero
-- Prospect company name + "Digital Transformation Impact Report"
+#### Section 1 — Header / Hero
+- Prospect company name + "Decision Safety Brief"
 - Prepared by Dev8X, date
+- **Buyer Confirmation Status badge:** Confirmed / Partial / Hypothesis
 - Three headline outcome numbers pulled from the biggest wins in the report:
-  e.g. "42 hrs/week saved", "$8,400/month impact", "5 manual workflows eliminated"
-- These three numbers must be real — calculated from Section 3 solution cards
+  - **L1 metrics only in the hero headline.** If no L1 metrics exist, use
+    directional language in the hero (e.g. "Significantly reduces manual
+    coordination overhead") and place the strongest L2 metric in the subhead
+    with an "[Estimated]" label.
 
-#### Section 2 — Current State Overview
+#### Section 2 — Desired Outcome
+- One paragraph: what the buyer is trying to achieve (from Decision Card
+  Primary Goal).
+- If Buying Reason differs from Desired Outcome, show both explicitly.
+- This section triggers **Recognition** — the buyer sees their ambition named.
+
+#### Section 3 — Current Problem Register
 A 2-column table: Left = "Current Challenge", Right = "Business Impact".
-List 4–6 rows drawn directly from the attached files.
+List 4–6 rows drawn directly from the Problem Register.
+
 This section should make the CEO feel seen — these are their real problems,
-not generic ones.
+not generic ones. Use the exact problem statements from the Problem Register
+where possible. Trigger **Recognition** with extreme specificity.
 
-#### Section 3 — Solution Cards
-One card per solution (4–7 cards).
-See Rule 4 for card structure.
-Each card includes a small bar or stat visual showing the before/after metric.
+#### Section 3B — Proof Ledger Summary
+Add a table mapping the top 3 claims to their proof conditions:
 
-#### Section 4 — Projected Annual Impact
-A summary chart showing the combined impact across all solutions.
-Include:
-- Total hours saved per year (bar chart)
-- Total estimated cost impact per year (bar chart or number card)
-- Number of manual workflows automated (number)
-- Estimated ROI timeline: "Break-even in X months" based on a typical Dev8X
-  project investment range of $15,000–$50,000 depending on scope
+| Claim | Evidence | Proof Condition | Remaining Doubt |
+|---|---|---|---|
+| [claim 1] | [why we believe it] | [what buyer must see] | [possible doubt] |
 
-#### Section 5 — What Gets Built
-A clean visual checklist of the specific deliverables Dev8X would build.
-Drawn from the solution cards — not a generic service list.
-Group by: Platform / Automation / Integrations / Reporting
+This shows the CEO that proof exists and where to find it. Trigger **Trust**.
 
-#### Section 6 — Next Step (CTA)
-- Headline: "See exactly how this gets built — in 6 minutes"
-- One paragraph, plain language, no pressure. Explain that the demo video shows
-  the actual system being built for a similar business.
-- A visually prominent button: "Watch the Demo →"
-  (href="#" — the sender will replace with the real link before sending)
-- Dev8X contact line: name, email, LinkedIn
+#### Section 4 — Future Problem Register
+Table showing top 3 future problems with preventive narrative for each.
+Drawn directly from the Problem Register.
+
+This triggers **Fear of Inaction** — the buyer sees what breaks in 12–24 months
+if no change happens.
+
+#### Section 5 — What Was Built to Remove the Bottleneck
+Solution cards (4–7 maximum).
+Each card must reference a specific current problem from Section 3.
+Each card shows: Problem → Solution → Proof Status (Visible in Demo /
+Described Only / Future State).
+Metrics with ROI Integrity label on each.
+
+This triggers **Relief** — the buyer sees the solution to their deepest
+frustration.
+
+#### Section 6 — ROI Integrity Summary
+All metrics grouped by integrity level:
+- **L1 Sourced:** shown as confident projections
+- **L2 Estimated:** shown with stated assumptions and "[Estimated]" label
+- **L3 Proxy:** shown as "Industry benchmark — not specific to [Prospect]"
+- Note confirming L3/L4 metrics were excluded from headlines
+
+This triggers **Trust** through honest labelling.
+
+#### Section 7 — Stakeholder Confidence
+- If stakeholder data is available: abbreviated Stakeholder Map from the
+  Problem Register.
+- If not: "Stakeholder mapping recommended during discovery."
+
+#### Section 8 — Recommended Next Action (CTA)
+Adjust dynamically based on the Confidence Signal from the Decision Card:
+
+- **High Confidence:**
+  - Headline: "See exactly how this gets built — in 6 minutes"
+  - Button: "Watch the Demo →"
+  - One paragraph, plain language, no pressure.
+
+- **Medium Confidence:**
+  - Headline: "Watch the demo — and let us know where we got it right"
+  - Button: "Watch the Demo →"
+  - One paragraph acknowledging some numbers are estimated and inviting
+    feedback.
+
+- **Low Confidence:**
+  - Headline: "Watch the demo — then let us validate these numbers in a
+    20-minute call"
+  - Button 1: "Watch the Demo →"
+  - Button 2: "Book a 20-Minute Call →"
+  - One paragraph framing the report as research-based hypotheses, not
+    confirmed facts.
+
+Always include the demo CTA. Add a discovery call CTA alongside it when
+confidence is Low.
+
+This triggers **Momentum** — the next step feels smaller than the problem.
 
 ---
 
@@ -163,7 +288,7 @@ inline — no external files except Chart.js loaded from CDN.
 **Charts:**
 - Use Chart.js loaded from:
   `https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js`
-- Section 4 must include at minimum:
+- Section 6 must include at minimum:
   - One horizontal bar chart: "Hours Saved Per Week by Solution"
   - One number/stat card grid: Total Annual Hours / Total Annual Cost Impact /
     Workflows Automated / Break-even Month
@@ -186,6 +311,7 @@ inline — no external files except Chart.js loaded from CDN.
 │                                         │
 │  ⏱ 14 hrs/week    💰 $1,960/mo   ↓ 75% │
 │  saved             impact         effort │
+│  L1 / L2 / L3      L1 / L2              │
 │                                         │
 │ Before → After                          │
 │ • Manual CSV exports → Auto dashboard  │
@@ -195,7 +321,8 @@ inline — no external files except Chart.js loaded from CDN.
 
 **No placeholder text in the final output.** Every section must be populated with
 real content drawn from the attached files. If a number must be estimated, show
-the estimate label — do not leave template brackets like [INSERT NAME].
+the estimate label and integrity level — do not leave template brackets like
+[INSERT NAME].
 
 ---
 
@@ -214,14 +341,16 @@ To run this prompt, attach the following files:
 
 | File | Role |
 |------|------|
-| `prompts/9_Outcome_Report.md` | This prompt |
-| `context/5_<Company>_Report.docx` | Pain points and transformation opportunities (primary source) |
-| `context/4_Business_Operations_Manual.docx` | Operational detail for quantification |
+| `prompts/phase3_first_touch/p3a_Outcome_Report.md` | This prompt |
+| `context/p0a_Decision_Card_[ClientName].md` | PRIMARY — Confidence Signal, goals, bottlenecks, ROI Integrity |
+| `context/p0b_Problem_Register_[ClientName].md` | PRIMARY — Current/Future problems, Proof Ledger |
+| `context/p4b_TreeRaise_Company_Report.docx` | SECONDARY — Pain points and transformation opportunities |
+| `context/p4a_Business_Operations_Manual.docx` | SECONDARY — Workflow detail for quantification |
 
-> The Business Report (Step 5) is the primary source — it already maps pain
-> points to digital opportunities. The Operations Manual provides the workflow
-> detail needed to put real numbers on each outcome.
+> The Decision Card and Problem Register are the PRIMARY sources. They control
+> tone, precision, and CTA language. The Business Report and Operations Manual
+> are secondary sources used when the primary sources need enrichment.
 > Estimated token usage: 30k–60k.
 
 **Save output as:**
-`context/9_Outcome_Report_<CompanyName>.html`
+`context/p3a_Decision_Safety_Brief_[ClientName].html`

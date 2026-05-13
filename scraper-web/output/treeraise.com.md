@@ -1,14 +1,14 @@
 # Scrape Results — treeraise.com
 
 - **Start URL**: https://treeraise.com/
-- **Scraped at**: 2026-03-11 20:26:10 UTC
-- **Total pages**: 77
+- **Scraped at**: 2026-05-11 11:17:39 UTC
+- **Total pages**: 100
 
 ## Page 1 — Fundraising Insights for Schools, Nonprofits & Communities
 
 **🔗 URL:** https://treeraise.com/blog/
 
-> Explore modern fundraising insights, sustainable strategies, and transparent impact ideas for schools, nonprofits, and faith-based communities.
+> Unlock essential fundraising insights to improve your strategy and maximize donations for your organization.
 
 - hello@treeraise.com
 
@@ -30,9 +30,9 @@ Explore what’s replacing product sales, pressure tactics, and burnout-driven f
 
 #### Featured Insight
 
-##### Purpose Based Fundraising: Inspiring a New Generation in 2026
+##### 10 Earth Day Activities for Kids That Make a Difference
 
-#### School Fundraising Leadership: Redesigning Systems in 2026
+#### Purpose Based Fundraising: Inspiring a New Generation in 2026
 
 #### Raise Funds Without Burning Out Your Community
 
@@ -40,11 +40,13 @@ Discover modern fundraising approaches that reduce fatigue, protect trust, and c
 
 "*" indicates required fields
 
+#### School Fundraising Leadership: Redesigning Systems in 2026
+
 #### Parent Fundraiser Burnout: When Parents Quietly Give Up
 
-#### School Fundraising Trends 2026: The Future Every PTA Must Know
+#### School Fundraising Trends 2026: The Future for PTAs
 
-#### School Fundraiser 2026: The Five Hidden Frictions Killing Participation
+#### School Fundraiser 2026: The 5 Hidden Frictions
 
 #### School Fundraising Ideas 2026: Why Simplicity Wins
 
@@ -56,15 +58,15 @@ Discover modern fundraising approaches that reduce fatigue, protect trust, and c
 
 #### School Fundraiser Hidden Costs: Why Schools Are Switching
 
-#### Fundraising Ideas for School Clubs in North Carolina
-
 #### Most Popular Reads
 
 Our most-read posts highlight proven strategies and inspiring stories. These resources help schools and PTAs make fundraising simpler, more engaging, and more impactful.
 
-##### Fundraising Ideas for Kids in Georgia to End Donor Fatigue
+##### The Eco Friendly Children’s Fundraising Ideas
 
-##### Better Fundraising Strategy for Schools & Eliminate Problems
+##### The School Fundraising Crisis & Eco Fundraising Ideas for School
+
+##### Ways to Raise Money for School Fast: How to Do It in 30 Days
 
 #### Explore Fundraising Insights That Actually Help
 
@@ -95,470 +97,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 2 — School Fundraiser 2026: The Five Hidden Frictions Killing Participation - TreeRaise
-
-**🔗 URL:** https://treeraise.com/school-fundraiser-2026-hidden-frictions/
-
-> Why is your school fundraiser 2026 failing? Invisible barriers are stopping participation. Learn the five frictions families face and how to fix them.
-
-- hello@treeraise.com
-
-- 407-710-2345
-
-- How It Works
-- Pricing
-- Impact
-- FAQ
-- About
-- Blog
-- Contact
-
-### School Fundraiser 2026: The Five Hidden Frictions Killing Participation
-
-- January 27, 2026
-
-#### The Fundraiser That Looked Perfect But Broke Anyway
-
-A school in the Midwest launched a fundraiser in March with every advantage. They had a polished kickoff video, student incentives, colorful posters, and a coordinated PTA push. Yet two weeks later participation had collapsed.
-
-It did not fail because families were unwilling to help. It did not fail because the school did anything wrong. It failed because of something almost no one in education talks about: invisible behavioral frictions.
-
-As the typical school fundraiser 2026 model falls further out of sync with how families live, these frictions have become the leading cause of poor results. Here is what the data, psychology, and lived experience reveal.
-
-###### 1. Cognitive Overload in the School Fundraiser 2026
-
-Parents today live in a constant stream of notifications, decisions, and digital noise. A fundraiser that introduces one more choice or one more flyer is already losing.
-A report from the Harvard Business Review explains that decision fatigue sharply reduces participation in optional tasks. You can read the decision fatigue research here.
-Catalogs, forms, and QR codes all drain the mental bandwidth families protect furiously. TreeRaise removes cognitive overload entirely by simplifying the action to a single meaningful step. Learn how TreeRaise simplifies fundraising.
-
-###### 2. Emotional Friction Blocks Participation
-
-Families avoid fundraisers that feel like pressure instead of purpose. Claire Axelrad, one of the most respected donor psychology voices, writes that guilt-based fundraising erodes trust. Emotional friction pushes people away even if the financial ask is small. Students, parents, and teachers all feel this friction when a school fundraiser 2026 resembles sales more than support. TreeRaise eliminates this by replacing selling with visible environmental impact.
-
-###### 3. Time Scarcity is the New Reality
-
-The number one reason families say no to fundraising is not money. It is time. In 2026, parents are balancing multi-job households, long commutes, and demanding schedules.
-Behavioral scientist Ashley Whillans shows that time-cost is the strongest predictor of participation. Read the time scarcity insights from her research. Traditional fundraisers require time-heavy steps that families cannot absorb. A modern school fundraiser 2026 must reduce the time demand to nearly zero to succeed.
-
-###### 4. Identity Mismatch
-
-People participate when an action reflects who they believe they are. Marketing expert Seth Godin describes identity-driven behavior as the core engine of community participation. Parents do not see themselves as catalog sellers. But families do see themselves as environmental stewards and advocates for their school. TreeRaise aligns directly with this identity by turning every contribution into real-world impact visible on the Impact Dashboard.
-
-###### 5. Low Transparency
-
-In the landscape of a school fundraiser 2026, donors expect complete clarity. Where does the money go? What difference did it make? The Charity Navigator transparency advisory notes that donors overwhelmingly support organizations with clear, verifiable impact. You can read the charity transparency research here. Traditional fundraisers rarely provide this visibility. TreeRaise builds transparency into the core experience so donors never have to guess.
-
-#### The Schools That Will Win in 2026
-
-Schools that remove friction will raise more money and restore the emotional climate of their campuses. Schools that ignore behavioral friction will continue to see declining participation.
-
-Fundraising in 2026 must be psychologically aligned, time-light, and transparently impactful. TreeRaise was built for this new reality.
-
-Start your TreeRaise today.
-
-Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
-
-#### Fundraising
-
-- Faith-Based Fundraising
-- Nonprofit Fundraising
-- School Fundraising
-- Begin Your Impact
-
-#### Company
-
-- About TreeRaise
-
-#### Stay Connected
-
-Phone: 407-710-2345
-
-Email: hello@treeraise.com
-
-- View Trees Planted
-
-© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
-
----
-
-## Page 3 — Purpose Based Fundraising: Inspiring a New Generation in 2026 - TreeRaise
-
-**🔗 URL:** https://treeraise.com/purpose-based-fundraising-inspiring-students-2026/
-
-> Students want meaning, not pressure. Discover why purpose based fundraising is shaping a new culture of student pride and engagement in 2026.
-
-- hello@treeraise.com
-
-- 407-710-2345
-
-- How It Works
-- Pricing
-- Impact
-- FAQ
-- About
-- Blog
-- Contact
-
-### Purpose Based Fundraising: Inspiring a New Generation in 2026
-
-- February 24, 2026
-
-#### Students Are Hungry for Meaning
-
-Walk through any school in 2026 and you can feel it. Students are not motivated by product sales or gimmicks. They are hungry for purpose based fundraising.
-
-They want connection. They want to feel proud of how they contribute to their school and the world around them. A recent report from Education Week shows that today’s students prioritize meaning and impact over prizes or incentives. See the findings at the student motivation research here.
-
-The fundraising world has not caught up to this reality. But the students have. They are ready for something better.
-
-#### Pressure Is Out. Purpose Is In.
-
-Traditional fundraising asks students to knock on doors, sell items people do not need, and compete with their peers. These tasks rarely inspire pride. They create anxiety, comparison, and stress between students and families.
-
-Claire Axelrad’s donor psychology work confirms that people crave emotional alignment more than transactional activity. When giving feels out of alignment with identity, motivation collapses.
-
-Students are no different. They want to see the impact of their effort, not the size of their prize. This is why purpose based fundraising is the only model that truly engages them.
-
-#### How TreeRaise Matches What Students Crave in 2026
-
-TreeRaise flips the cultural script by giving students a message they can carry with pride. Instead of selling, they share a purpose. Instead of pressure, they offer participation. Instead of competition, they inspire contribution.
-
-When students say their school is helping plant trees around the world, the pride is genuine. It feels like something they want to represent. Students can visit the Impact Dashboard and see the growing forest tied to their school.
-
-That feeling matters. It shapes how they view themselves and their role in their community.
-
-#### This Generation Wants to Do Something Bigger
-
-Look at any youth-led movement today. Environmental restoration. Climate awareness. Community service. Mental health advocacy. Students want to be part of something meaningful.
-
-The Pew Research Center found that Gen Z and younger Gen Alpha place an unprecedented value on social good and environmental contribution. You can explore this in the youth purpose research here.
-
-TreeRaise taps directly into these values. It gives students a way to contribute to a global mission without stress, selling, or guilt. A world where students grow more confident by contributing to purpose based fundraising is a world worth building.
-
-#### The Ripple Effect of Purpose Based Fundraising
-
-When fundraising aligns with meaning, something shifts. Students feel proud. Teachers feel uplifted. Parents feel relieved.
-The culture of the school changes. Purpose creates a ripple effect that product sales never will. It strengthens community identity and inspires leadership. It teaches students that giving can feel good, not heavy.
-
-#### Students Deserve a Fundraiser That Reflects Who They Are
-
-Students today are not passive participants. They are thoughtful, aware, and driven by values more than rewards. When fundraising honors their identity, they rise to the moment.
-TreeRaise gives students a model they can believe in. 2026 is the year purpose based fundraising becomes the new standard. Not because it raises money. But because it raises students.
-
-Start your TreeRaise today.
-
-Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
-
-#### Fundraising
-
-- Faith-Based Fundraising
-- Nonprofit Fundraising
-- School Fundraising
-- Begin Your Impact
-
-#### Company
-
-- About TreeRaise
-
-#### Stay Connected
-
-Phone: 407-710-2345
-
-Email: hello@treeraise.com
-
-- View Trees Planted
-
-© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
-
----
-
-## Page 4 — School Fundraising Leadership: Redesigning Systems in 2026 - TreeRaise
-
-**🔗 URL:** https://treeraise.com/school-fundraising-leadership-redesigning-systems-in-2026/
-
-> Is school fundraising leadership facing a crisis? Principals are rebuilding systems to stop burnout. Discover the reform strategies for 2026.
-
-- hello@treeraise.com
-
-- 407-710-2345
-
-- How It Works
-- Pricing
-- Impact
-- FAQ
-- About
-- Blog
-- Contact
-
-### School Fundraising Leadership: Redesigning Systems in 2026
-
-- February 17, 2026
-
-#### A Quiet Crisis Facing School Fundraising Leadership
-
-A quiet crisis is facing school fundraising leadership today. School leaders rarely talk openly about the emotional and operational strain caused by outdated fundraising models.
-They talk about enrollment. They talk about curriculum. They talk about safety. But fundraising lives in the shadows. It drains staff time, increases family frustration, and diminishes volunteer capacity.
-
-And yet schools continue using models that were created for a world that no longer exists. In administrative offices across the country, principals are asking the same question. How do we keep raising what we need without overloading the people we serve?
-
-#### Teachers Are Carrying Workloads That Were Never Theirs
-
-A study from the National Education Association revealed a massive increase in non-instructional tasks placed on teachers. You can read the full teacher workload study here.
-Fundraising-related tasks rank among the most unwanted:
-
-- tracking payments
-- managing product orders
-- distributing goods
-- handling mistakes
-- answering parent questions
-
-These tasks pull teachers away from preparation, emotional recovery time, and connection with students. Effective school fundraising leadership recognizes that this is unsustainable in 2026.
-
-#### PTA Leaders Are Burning Out Faster Than Schools Can Replace Them
-
-PTA presidents describe their roles as full-time jobs stacked on top of full-time jobs. When the same five volunteers are recruited year after year, burnout becomes inevitable.
-The State of Volunteerism Report from VolunteerMatch documents a nationwide volunteer participation decline.
-
-Principals report that PTA turnover is higher than ever. Experienced leaders are retiring from volunteer roles because the load has become too heavy. A fundraising system that depends on volunteer stamina is a system destined to fail.
-
-#### Parents Are Telling Schools the Truth Through Their Silence
-
-Parent participation in product-based fundraisers continues to fall. Not because parents do not care. But because they are out of time, out of mental bandwidth, and out of tolerance for complex steps that take more than they give.
-
-Nonprofit donor insight from Nonprofit Quarterly notes that disengagement often comes silently. It is not a complaint. It is silent donor disengagement.
-When parents stop participating, the fundraising model, not the parent, needs to change.
-
-#### The Leadership Shift Happening Now
-
-Schools across the country are beginning to rebuild their entire fundraising architecture. This shift in school fundraising leadership is rooted in three principles:
-
-1. Reduce Friction Families do not have time for multi-step processes. Teachers do not have bandwidth for extra administrative loads. Volunteers do not have capacity for logistical coordination.
-
-2. Increase Transparency Parents and donors want visible impact, real numbers, and meaningful outcomes. Hidden fees and vague profit margins break trust.
-
-3. Align Fundraising With Identity Families respond to purpose. Students respond to meaning. Communities respond to environmental stewardship and social good.
-TreeRaise aligns directly with these leadership principles by removing nearly every barrier that causes burnout or disengagement.
-
-- No selling
-- No deliveries
-- No product management
-- No guilt-based pressure
-- Real-time environmental impact
-
-Instant launch setup through the Start Your Drive page.
-
-#### A Message School Leaders Need to Hear
-
-You are not failing. Your families are not failing. Your teachers are not failing. Your volunteers are not failing. The system is failing.
-
-And 2026 is the year school fundraising leadership is finally rewriting it.
-
-Start your TreeRaise today.
-
-Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
-
-#### Fundraising
-
-- Faith-Based Fundraising
-- Nonprofit Fundraising
-- School Fundraising
-- Begin Your Impact
-
-#### Company
-
-- About TreeRaise
-
-#### Stay Connected
-
-Phone: 407-710-2345
-
-Email: hello@treeraise.com
-
-- View Trees Planted
-
-© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
-
----
-
-## Page 5 — Parent Fundraiser Burnout: When Parents Quietly Give Up - TreeRaise
-
-**🔗 URL:** https://treeraise.com/parent-fundraiser-burnout-schools-miss/
-
-> Is parent fundraiser burnout real? Parents are not quitting because they do not care. They are quitting because the model is broken. Find the solution.
-
-- hello@treeraise.com
-
-- 407-710-2345
-
-- How It Works
-- Pricing
-- Impact
-- FAQ
-- About
-- Blog
-- Contact
-
-### Parent Fundraiser Burnout: When Parents Quietly Give Up
-
-- February 10, 2026
-
-#### I Used to Be the First One to Volunteer
-
-There was a time when I signed every PTA form without hesitation. When the flyer came home with my kid, I taped it to the refrigerator like a badge of honor. When the school needed volunteers, I shifted meetings or stayed up late to make it work.
-
-Then one year became another. Suddenly I was volunteering for everything because no one else would. The fundraisers multiplied. Each “quick task” was another drop in a bucket already overflowing.
-
-Finally, I stopped. It was a classic case of parent fundraiser burnout. I did not stop because I stopped caring about my child’s school. I stepped back because the way we fundraise is disconnected from the way families actually live.
-
-#### The Moment Parent Fundraiser Burnout Hit Me
-
-It was a Tuesday night. My son had soccer practice. My daughter had a science project due. Dinner was rushed. My work emails were still buzzing.
-
-Somewhere between packing lunches and proofreading homework, I found the envelope sitting under the mail pile. Unopened. Untouched.
-
-I knew I did not have it in me. For the first time in five years, I told my child, “We are not doing this one.” He shrugged, but I felt a sting of guilt I did not expect. A guilt that should never exist between a school and a parent.]
-
-#### It Is Not Parents Who Are Failing
-
-Traditional fundraisers assume parents have time, energy, and a desire to sell. Most do not.
-
-Donor psychologist Claire Axelrad wrote that families disengage when giving becomes a task instead of a connection. She calls this “the emotional break.” It is the moment the experience no longer fits the identity of the person asked to participate.
-
-Parents want to support their schools. They just cannot support systems that cause parent fundraiser burnout.
-
-#### Social Pressure Creates Silent Withdrawal
-
-Parents stop answering the group chat. They avoid eye contact at pickup. They do not open the emails. Not because they do not want to help, but because they do not want to disappoint.
-
-A Nonprofit Quarterly study on donor retreat found that people withdraw quietly rather than complain. You can read the donor retreat analysis here.
-
-That is exactly what is happening in school communities across the country. Schools often misinterpret this withdrawal as apathy. It is exhaustion. It is a model built for a world that no longer exists.
-
-#### Solving Parent Fundraiser Burnout with Real Support
-
-Real support is simple. Real support respects time. Real support strengthens community instead of fracturing it.
-
-TreeRaise fits real life because it removes friction entirely. Parents share a link. Supporters plant verified trees. No selling. No deadlines. No guilt. Every supporter sees the impact on the Impact Dashboard.
-
-It is the kind of fundraiser I wish existed years ago.
-
-#### Parents Are Not the Problem
-
-Parents love their schools. Parents show up for their kids. But what they will not support in 2026 is a model that ignores their lived experience.
-
-This is the moment to shift. This is the moment to move from pressure to purpose. This is the only way to solve parent fundraiser burnout for good.
-
-Start your TreeRaise today.
-
-Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
-
-#### Fundraising
-
-- Faith-Based Fundraising
-- Nonprofit Fundraising
-- School Fundraising
-- Begin Your Impact
-
-#### Company
-
-- About TreeRaise
-
-#### Stay Connected
-
-Phone: 407-710-2345
-
-Email: hello@treeraise.com
-
-- View Trees Planted
-
-© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
-
----
-
-## Page 6 — School Fundraising Trends 2026: The Future Every PTA Must Know - TreeRaise
-
-**🔗 URL:** https://treeraise.com/school-fundraising-trends-2026-future-pta/
-
-> Are you ready for the major school fundraising trends 2026? Participation and trust are shifting. Learn the five trends shaping the future of PTAs.
-
-- hello@treeraise.com
-
-- 407-710-2345
-
-- How It Works
-- Pricing
-- Impact
-- FAQ
-- About
-- Blog
-- Contact
-
-### School Fundraising Trends 2026: The Future Every PTA Must Know
-
-- February 3, 2026
-
-#### The Shift No One Expected
-
-For the past decade, school fundraising has followed the same familiar cycle. Product drives. Catalog sales. Booster events. But in the last two years, something changed.
-Participation dropped. Volunteer numbers fell. Donor trust shifted. Schools across the country began asking the same question: Why is the old model collapsing?
-
-A recent report revealed exactly that. You can read the national fundraising trend report from We Raise Together here.
-
-Schools are entering a new landscape. Understanding the school fundraising trends 2026 brings is the only way PTAs will thrive in this new era.
-
-###### 1. Donors Demand Transparency
-
-Parents and supporters want to see where money goes and how much reaches the school. Traditional fundraisers rarely offer that clarity. A Charity Navigator transparency advisory shows donors overwhelmingly support organizations with verifiable impact. You can read about donor transparency expectations here. Schools that show impact win trust. Schools that hide results lose it. TreeRaise solves this through the Impact Dashboard.
-
-###### 2. Time Scarcity Shapes School Fundraising Trends 2026
-
-Time scarcity is the number one barrier to participation. Behavioral scientist Ashley Whillans explains that people avoid activities that feel time heavy even when the financial cost is low. Read the time scarcity research here. Fundraisers that require sales, forms, deliveries, and inventory handling will continue to decline. The biggest of the school fundraising trends 2026 is that models reducing time to zero will surge.
-
-###### 3. Product Sales Are Losing Cultural Relevance
-
-Families no longer want to buy items they do not need. In fact, a Nonprofit Quarterly study found that transactional giving reduces long-term engagement. See the donor behavior analysis here. Families want impact, not items. Students want meaning, not pressure. This is why environmental and mission-based fundraisers are winning.
-
-###### 4. Volunteers Are Disappearing
-
-Volunteerism nationwide has dropped sharply. According to the VolunteerMatch report, linked via this volunteer decline report, PTAs are operating with fewer hands.
-The old model assumes volunteers will always exist. In 2026, that is no longer true. Schools need fundraisers that do not overwhelm the few volunteers they have left.
-
-###### 5. Purpose Based Fundraising Will Define 2026
-
-Marketing expert Seth Godin writes about “tribes” and how people participate because it reflects who they are. Purpose-based fundraising aligns directly with identity. Environmental pride. Community stewardship. Helping students without pressure. TreeRaise taps into these motivations.
-
-#### Adapting to School Fundraising Trends 2026
-
-TreeRaise allows supporters to plant verified trees while families share a simple link. Impact is visible. No selling. No pressure. No burnout.
-
-Start your TreeRaise and enter 2026 with a model that finally fits real life.
-
-Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
-
-#### Fundraising
-
-- Faith-Based Fundraising
-- Nonprofit Fundraising
-- School Fundraising
-- Begin Your Impact
-
-#### Company
-
-- About TreeRaise
-
-#### Stay Connected
-
-Phone: 407-710-2345
-
-Email: hello@treeraise.com
-
-- View Trees Planted
-
-© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
-
----
-
-## Page 7 — School Fundraising Ideas 2026: Why Simplicity Wins - TreeRaise
+## Page 2 — School Fundraising Ideas 2026: Why Simplicity Wins - TreeRaise
 
 **🔗 URL:** https://treeraise.com/school-fundraising-ideas-2026-simplicity-wins/
 
@@ -646,7 +185,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 8 — School Fundraiser Burnout: When the Community Spirit Breaks - TreeRaise
+## Page 3 — School Fundraiser Burnout: When the Community Spirit Breaks - TreeRaise
 
 **🔗 URL:** https://treeraise.com/school-fundraiser-burnout-community-spirit/
 
@@ -740,7 +279,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 9 — Why School Fundraisers Keep Failing: The Hidden Psychology - TreeRaise
+## Page 4 — Why School Fundraisers Keep Failing: The Hidden Psychology - TreeRaise
 
 **🔗 URL:** https://treeraise.com/why-school-fundraisers-keep-failing-psychology/
 
@@ -823,7 +362,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 10 — Donor Trust Fundraiser Crisis: Why Buy & Sell Models Fail - TreeRaise
+## Page 5 — Donor Trust Fundraiser Crisis: Why Buy & Sell Models Fail - TreeRaise
 
 **🔗 URL:** https://treeraise.com/donor-trust-fundraiser/
 
@@ -904,7 +443,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 11 — School Fundraiser Hidden Costs: Why Schools Are Switching - TreeRaise
+## Page 6 — School Fundraiser Hidden Costs: Why Schools Are Switching - TreeRaise
 
 **🔗 URL:** https://treeraise.com/school-fundraiser-hidden-costs/
 
@@ -989,90 +528,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 12 — Fundraising Ideas for School Clubs in North Carolina - TreeRaise
-
-**🔗 URL:** https://treeraise.com/fundraising-ideas-for-school-clubs/
-
-> Do your North Carolina fundraising ideas for school clubs and programs disrupt families? Discover TreeRaise, the purpose-based alternative.
-
-- hello@treeraise.com
-
-- 407-710-2345
-
-- How It Works
-- Pricing
-- Impact
-- FAQ
-- About
-- Blog
-- Contact
-
-### Fundraising Ideas for School Clubs in North Carolina
-
-- December 26, 2025
-
-There is a rhythm to family life in North Carolina. Mornings begin before the sun rises over the pines. Parents make long commutes along highways that twist through fog-covered hills. Afternoons belong to homework, team practices, and dinner squeezed in between obligations. In so many homes across the state, life relies on a fragile balance. And year after year, the traditional North Carolina fundraising ideas for school clubs and programs balance in the wrong direction.
-
-#### The Moment the North Carolina School Fundraiser Tips the Scale
-
-In Wake County last fall, a mother shared in a community group that she had forgotten, for the third time, to send in her child’s packet. Not out of neglect, but out of reality. She said, “My commute is an hour. I help my mom with errands after work. The fundraiser is not the priority. Survival is.”
-
-Hundreds of comments flooded in from parents in Boone, Fayetteville, Asheville, and Wilmington. The theme was identical. It is not that families do not care; it is that the old model is out of sync with how we live. A North Carolina school fundraiser should not add chaos to an already busy week.
-
-#### The Emotional Cost No One Talks About
-
-Traditional product fundraisers carry an invisible emotional toll. Kids feel responsible for selling, and parents feel pressured to buy. Communities feel awkward being asked for the hundredth time to support something they do not believe in.
-
-Claire Axelrad, a leading voice in donor psychology, teaches that donors want meaning, not guilt. North Carolina parents want the same thing: something that reflects their values and makes their families feel proud. According to recent studies on family stress, reducing external pressures is key to household well-being.
-
-#### Why Impact-Based School Fundraising Fits North Carolina Culture
-
-North Carolina is a state that understands stewardship. Families hike mountain trails, students learn about conservation, and communities rally around service.
-
-This is why TreeRaise resonates so deeply as a modern North Carolina school fundraiser. Instead of selling products, families invite supporters to plant verified trees. The Impact Dashboard shows exactly where those trees grow. Support becomes visible, giving becomes meaningful, and participation becomes effortless. No selling, pressure, or disruption.
-
-#### The Simplicity That Restores Space in the School Fundraising Day
-
-TreeRaise is not another task; it is the removal of tasks. PTAs launch a campaign in minutes at the Start Your Drive page. Families share a link between responsibilities, and supporters contribute in seconds.
-
-No forms, deliveries, or guilt. This is the kind of North Carolina school fundraiser that fits the culture here. One that honors time, restores margin, and strengthens the community instead of draining it.
-
-#### Where Purpose Replaces School Fundraising Pressure
-
-North Carolina families do not need one more thing pulling them out of rhythm. They need a fundraiser that respects the pace of their lives.
-
-TreeRaise offers exactly that for fundraising ideas for school clubs and programs. It’s not a trend. It is a shift toward a North Carolina school fundraiser that matches who we really are.
-
-Start your North Carolina TreeRaise today.
-
-© 2026 TreeRaise. All Rights Reserved.
-
-Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
-
-#### Fundraising
-
-- Faith-Based Fundraising
-- Nonprofit Fundraising
-- School Fundraising
-- Begin Your Impact
-
-#### Company
-
-- About TreeRaise
-
-#### Stay Connected
-
-Phone: 407-710-2345
-
-Email: hello@treeraise.com
-
-- View Trees Planted
-
-© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
-
----
-
-## Page 13 — Fundraising Ideas for Kids in Georgia to End Donor Fatigue - TreeRaise
+## Page 7 — Fundraising Ideas for Kids in Georgia to End Donor Fatigue - TreeRaise
 
 **🔗 URL:** https://treeraise.com/fundraising-ideas-for-kids/
 
@@ -1159,7 +615,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 14 — Ohio School Fundraiser Ideas: Why Families Deserve Better - TreeRaise
+## Page 8 — Ohio School Fundraiser Ideas: Why Families Deserve Better - TreeRaise
 
 **🔗 URL:** https://treeraise.com/school-fundraiser-ideas/
 
@@ -1246,7 +702,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 15 — Texas Fundraising Ideas for Students to Stop Family Fatigue - TreeRaise
+## Page 9 — Texas Fundraising Ideas for Students to Stop Family Fatigue - TreeRaise
 
 **🔗 URL:** https://treeraise.com/fundraising-ideas-for-students/
 
@@ -1337,7 +793,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 16 — The Perfect Elementary School Fundraiser for Florida - TreeRaise
+## Page 10 — The Perfect Elementary School Fundraiser for Florida - TreeRaise
 
 **🔗 URL:** https://treeraise.com/the-perfect-elementary-school-fundraiser/
 
@@ -1422,7 +878,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 17 — School Fundraisers That Make the Most Money with TreeRaise - TreeRaise
+## Page 11 — School Fundraisers That Make the Most Money with TreeRaise - TreeRaise
 
 **🔗 URL:** https://treeraise.com/school-fundraisers-that-make-the-most-money/
 
@@ -1507,7 +963,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 18 — Better Fundraising Strategy for Schools & Eliminate Problems - TreeRaise
+## Page 12 — Better Fundraising Strategy for Schools & Eliminate Problems - TreeRaise
 
 **🔗 URL:** https://treeraise.com/fundraising-strategy/
 
@@ -1592,7 +1048,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 19 — Ways to Raise Money for School Fast: How to Do It in 30 Days - TreeRaise
+## Page 13 — Ways to Raise Money for School Fast: How to Do It in 30 Days - TreeRaise
 
 **🔗 URL:** https://treeraise.com/raise-money-for-school-fast/
 
@@ -1677,7 +1133,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 20 — The Eco Friendly Children's Fundraising Ideas - TreeRaise
+## Page 14 — The Eco Friendly Children's Fundraising Ideas - TreeRaise
 
 **🔗 URL:** https://treeraise.com/childrens-fundraising-ideas/
 
@@ -1764,7 +1220,646 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 21 — The School Fundraising Crisis & Eco Fundraising Ideas for School - TreeRaise
+## Page 15 — Purpose Based Fundraising: Inspiring a New Generation in 2026 - TreeRaise
+
+**🔗 URL:** https://treeraise.com/purpose-based-fundraising-inspiring-students-2026/
+
+> Students want meaning, not pressure. Discover why purpose based fundraising is shaping a new culture of student pride and engagement in 2026.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Purpose Based Fundraising: Inspiring a New Generation in 2026
+
+- February 24, 2026
+
+#### Students Are Hungry for Meaning
+
+Walk through any school in 2026 and you can feel it. Students are not motivated by product sales or gimmicks. They are hungry for purpose based fundraising, and want connection.
+
+They want to feel proud of how they contribute to their school and the world around them. A recent report from Education Week shows that today’s students prioritize meaning and impact over prizes or incentives. See the findings at the student motivation research here.
+
+The fundraising world has not caught up to this reality. But the students have. They are ready for something better.
+
+#### Pressure Is Out. Purpose Is In.
+
+Traditional fundraising asks students to knock on doors, sell items people do not need, and compete with their peers. These tasks rarely inspire pride. They create anxiety, comparison, and stress between students and families.
+
+Claire Axelrad’s donor psychology work confirms that people crave emotional alignment more than transactional activity. When giving feels out of alignment with identity, motivation collapses.
+
+Students are no different. They want to see the impact of their effort, not the size of their prize. This is why purpose based fundraising is the only model that truly engages them.
+
+#### How TreeRaise Matches What Students Crave in 2026
+
+TreeRaise flips the cultural script by giving students a message they can carry with pride. Instead of selling, they share a purpose, and instead of pressure, they offer participation. Instead of competition, they inspire contribution.
+
+When students say their school is helping plant trees around the world, the pride is genuine. It feels like something they want to represent. Students can visit the Impact Dashboard and see the growing forest tied to their school.
+
+That feeling matters. It shapes how they view themselves and their role in their community.
+
+#### This Generation Wants to Do Something Bigger
+
+Look at any youth-led movement today. Environmental restoration. Climate awareness. Community service. Mental health advocacy. Students want to be part of something meaningful.
+
+The Pew Research Center found that Gen Z and younger Gen Alpha place an unprecedented value on social good and environmental contribution. You can explore this in the youth purpose research here.
+
+TreeRaise taps directly into these values. It gives students a way to contribute to a global mission without stress, selling, or guilt. A world where students grow more confident by contributing to purpose based fundraising is a world worth building.
+
+#### The Ripple Effect of Purpose Based Fundraising
+
+When fundraising aligns with meaning, something shifts. Students feel proud. Teachers feel uplifted. Parents feel relieved.
+The culture of the school changes. Purpose creates a ripple effect that product sales never will. It strengthens community identity and inspires leadership. It teaches students that giving can feel good, not heavy.
+
+#### Students Deserve a Fundraiser That Reflects Who They Are
+
+Students today are not passive participants. They are thoughtful, aware, and driven by values more than rewards. When fundraising honors their identity, they rise to the moment.
+TreeRaise gives students a model they can believe in. 2026 is the year purpose based fundraising becomes the new standard. Not because it raises money. But because it raises students.
+
+Start your TreeRaise today.
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 16 — School Fundraiser 2026: The 5 Hidden Frictions - TreeRaise
+
+**🔗 URL:** https://treeraise.com/school-fundraiser-2026/
+
+> Why is your school fundraiser 2026 failing? Barriers are stopping participation. Learn the 5 frictions families face and how to fix them.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### School Fundraiser 2026: The 5 Hidden Frictions
+
+- January 27, 2026
+
+#### But The Fundraiser That Looked Perfect But Broke Anyway
+
+A school in the Midwest launched a school fundraiser 2026 in March with every advantage. They had a polished kickoff video, student incentives, colorful posters, and a coordinated PTA push. Yet two weeks later participation collapsed.
+
+It didn’t fail because families were unwilling to help, or because the school did anything wrong. It failed because of something almost no one in education talks about: invisible behavioral frictions.
+
+As the typical school fundraiser 2026 model falls further out of sync with how families live, these frictions have become the leading cause of poor results. Here is what the data, psychology, and lived experience reveal.
+
+###### 1. Cognitive Overload in the School Fundraiser 2026
+
+Parents today live in a constant stream of notifications, decisions, and digital noise. A fundraiser that introduces one more choice or one more flyer is already losing. A report from the Harvard Business Review states that adults make between 33,000 and 35,000 a day. Clearly, that’s a lot. Decision fatigue sharply reduces participation in optional tasks.
+
+Catalogs, forms, and QR codes all drain the mental bandwidth families protect furiously. TreeRaise removes cognitive overload entirely by simplifying the action to a single meaningful step. In other words, there are 4 simple steps with TreeRaise for fundraising.
+
+###### 2. Emotional Friction Blocks Participation
+
+Families avoid fundraisers that feel like pressure instead of purpose. Claire Axelrad, one of the most respected donor psychology voices, writes that guilt-based fundraising erodes trust. Emotional friction pushes people away even if the financial ask is small. Students, parents, and teachers all feel this friction when a school fundraiser 2026 resembles sales more than support. TreeRaise eliminates this by replacing selling with visible environmental impact.
+
+###### 3. Time Scarcity is the New Reality
+
+The number one reason families say no to fundraising is not money. It is time. In 2026, parents are balancing multi-job households, long commutes, and demanding schedules. Behavioral scientist Ashley Whillans shows that time-cost is the strongest predictor of participation. Read the time scarcity insights from her research. Traditional fundraisers require time-heavy steps that families cannot absorb. A modern school fundraiser 2026 must reduce the time demand to nearly zero to succeed.
+
+###### 4. Identity Mismatch
+
+People participate when an action reflects who they believe they are. Marketing expert Seth Godin describes identity-driven behavior as the core engine of community participation. Parents do not see themselves as catalog sellers. But families do see themselves as environmental stewards and advocates for their school. TreeRaise aligns directly with this identity by turning every contribution into real-world impact visible on the Impact Dashboard.
+
+###### 5. Low Transparency
+
+In the landscape of a school fundraiser 2026, donors expect complete clarity. Where does the money go? What difference did it make? The Charity Navigator transparency advisory notes that donors overwhelmingly support organizations with clear, verifiable impact. You can read the charity transparency research here. Traditional fundraisers rarely provide this visibility. But TreeRaise builds transparency into the core experience so donors never have to guess.
+
+#### The Schools That Will Win in 2026
+
+Schools that remove friction will raise more money and restore the emotional climate of their campuses. Schools that ignore behavioral friction will continue to see declining participation.
+
+Fundraising in 2026 must be psychologically aligned, time-light, and transparently impactful. TreeRaise was built for this new reality.
+
+Start your TreeRaise today.
+
+© 2026 TreeRaise. All Rights Reserved.
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 17 — School Fundraising Trends 2026: The Future for PTAs - TreeRaise
+
+**🔗 URL:** https://treeraise.com/school-fundraising-trends-2026/
+
+> Are you ready for the major school fundraising trends 2026? Participation and trust are shifting. Learn the 5 trends shaping PTAs.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### School Fundraising Trends 2026: The Future for PTAs
+
+- February 3, 2026
+
+For the past decade, school fundraising has followed the same familiar cycle. Product drives. Catalog sales. Booster events. But in the last two years, something changed, and it’s impacting school fundraising trends 2026. For instance, participation’s dropped and volunteer numbers have fallen. Further, donor trust shifted. Schools across the country began asking the same question: Why is the old model collapsing?
+
+A national fundraising trend report from We Raise Together revealed the shift.
+
+In short, schools are entering a new landscape. So, understanding the school fundraising trends 2026 is the only way PTAs will thrive in this new era.
+
+###### 1. Donors Demand Transparency
+
+Parents and supporters want to see where money goes and how much reaches the school. Traditional fundraisers rarely offer that clarity. Charity Navigator transparency advisory shows donors overwhelmingly support organizations with verifiable impact. So, schools that show impact win trust, and schools that hide results lose it. TreeRaise solves impact through the Impact Dashboard.
+
+###### 2. Time Scarcity Shapes School Fundraising Trends 2026
+
+Time scarcity is the number one barrier to participation. Behavioral scientist, Ashley Whillans, explains that people avoid activities that feel time heavy even when the financial cost is low. In short, fundraisers that require sales, forms, deliveries, and inventory handling will continue to decline. Therefore, the biggest of the school fundraising trends 2026 is reducing time to nearly zero.
+
+###### 3. Product Sales Are Losing Cultural Relevance
+
+Families no longer want to buy items they do not need. In fact, a Nonprofit Quarterly study found that transactional giving reduces long-term engagement. In other words, students want meaning, not pressure. And that’s why environmental and mission-based fundraisers are winning.
+
+###### 4. Volunteers Are Disappearing
+
+Volunteerism nationwide has dropped, according to the Points of Light reporting. Therefore, PTAs are operating with fewer hands because the old model assumes volunteers will always exist. In 2026, that’s no longer true. Schools need fundraisers that do not overwhelm the few volunteers they have left.
+
+###### 5. Purpose Based Fundraising Will Define 2026
+
+Marketing expert Seth Godin writes about “tribes” and how people participate because it reflects who they are. Purpose-based fundraising aligns directly with identity. Environmental pride. Community stewardship. Helping students without pressure. TreeRaise taps into these motivations.
+
+#### Adapting to School Fundraising Trends 2026
+
+TreeRaise allows supporters to plant verified trees while families share a simple link. Impact is visible. No selling, pressure, or burnout.
+
+Start your TreeRaise and enter 2026 with a model that finally fits real life.
+
+© 2026 TreeRaise. All Rights Reserved.
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 18 — Parent Fundraiser Burnout: When Parents Quietly Give Up - TreeRaise
+
+**🔗 URL:** https://treeraise.com/parent-fundraiser-burnout/
+
+> Is parent fundraiser burnout real? Parents aren't quitting because they don't care. They're quitting because the model is broken. Learn why.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Parent Fundraiser Burnout: When Parents Quietly Give Up
+
+- February 10, 2026
+
+I used to be the first one to volunteer, and I know about parent fundraiser burnout. There was a time when I signed every PTA form without hesitation. When the flyer came home with my kid, I taped it to the refrigerator like a badge of honor. And when the school needed volunteers, I shifted meetings or stayed up late to make it work.
+
+Then one year became another. Suddenly, I was volunteering for everything because no one else would, and the fundraisers multiplied. Each “quick task” was another drop in a bucket already overflowing. Finally, I stopped. It was a classic case of parent fundraiser burnout. I didn’t quit because I stopped caring. It was because the way we fundraise is disconnected from the way families live.
+
+#### The Moment Parent Fundraiser Burnout Hit Me
+
+It was a Tuesday night. My son had soccer practice. My daughter had a science project due. Dinner was rushed. And my work emails were still buzzing.
+
+Somewhere between packing lunches and proofreading homework, I found the envelope sitting under the mail pile. Unopened. Untouched.
+
+Right then, I knew I did not have it in me. And for the first time in five years, I told my child, “We are not doing this one.” He shrugged, but I felt a sting of guilt I did not expect. In short, it was guilt that should never exist between a school and a parent.
+
+#### It Is Not Parents Who Are Failing
+
+Traditional fundraisers assume parents have time, energy, and a desire to sell. But most do not.
+
+Donor psychologist Claire Axelrad wrote that families disengage when giving becomes a task instead of a connection. She calls this “the emotional break.” It is the moment the experience no longer fits the identity of the person asked to participate.
+
+Parents want to support their schools. But they just can’t support systems that cause parent fundraiser burnout.
+
+#### Social Pressure Creates Silent Withdrawal
+
+Parents stop answering the group chat. And they avoid eye contact at pickup. They do not open the emails. And it’s not because they do not want to help, but because they do not want to disappoint.
+
+A Nonprofit Quarterly study on donor retreat found that people withdraw quietly rather than complain. You can read the donor retreat analysis here.
+
+That is exactly what is happening in school communities across the country. Schools often misinterpret this withdrawal as apathy. In short, it is exhaustion. It is a model built for a world that no longer exists.
+
+#### Solving Parent Fundraiser Burnout with Real Support
+
+Real support is simple, and it support respects time. Further, real support strengthens community instead of fracturing it.
+
+TreeRaise fits real life because it removes friction entirely. In short, parents share a link, and that’s it. In turn, supporters plant verified trees. There’s no selling, deadlines, or guilt, and every supporter sees the impact on the Impact Dashboard.
+
+It’s the kind of fundraiser I wish existed years ago.
+
+#### Parents Are Not the Problem
+
+Parents love their schools, and they want to show up for their kids. But what they will not support in 2026 is a model that ignores their lived experience.
+
+This is the moment to shift. This is the moment to move from pressure to purpose. This is the only way to solve parent fundraiser burnout for good.
+
+Start your TreeRaise today.
+
+© 2026 TreeRaise. All Rights Reserved.
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 19 — 10 Earth Day Activities for Kids That Make a Difference - TreeRaise
+
+**🔗 URL:** https://treeraise.com/earth-day-activities-for-kids/
+
+> Are you a parent or educator looking for Earth Day activities for kids. Discover these 10 ideas that will impact youth and beyond.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### 10 Earth Day Activities for Kids That Make a Difference
+
+- April 16, 2026
+
+What is Earth Day at your school could last longer than a display on a bulletin board? It’s not just any day on a calendar. Since it was founded it’s become one of the biggest events on the planet with hundreds of millions, if not over a billion people, participating across most countries. To us, that seems to be more than a calendar day. It’s a broad movement. That’s why we created this list of earth day activities for kids for parents, families, and schools to support the next generation.
+
+#### 1. Plant a Tree Together for Earth Day (And Raise Funds!)
+
+There’s no better way to do Earth Day than celebrating it with a double win. Here’s the reality: a tree can absorb about 48 pounds of carbon dioxide each year. For Earth Day activities for kids in a classroom or at home, imagine raising funds for a good cause by planting those trees. Moreover, with TreeRaise fundraiser, your school, kids group, or club can organize a tree planting event that also raises funds for a good cause. All you do is share a tree planting link!
+
+#### 2. Zero-Waste Lunch Challenge
+
+A great activity for parents and school families looking to promote Earth Day is to create a zero-waste lunch challenge. What does that mean? It means you challenge yourself and others to ensure that school and parent lunches have no plastic wraps, disposable utensils, or single-use bags. Further, as a parent or educator, it’s a great opportunity to speak about food packaging waste, sustainable choices, and why environmental sustainability is essential.
+
+#### 3. Schoolyard Earth Day Nature Walk and Scavenger Hunt
+
+If you want to have fun with one of your Earth Day activities for kids, make the school yard or a local part a natural scavenger hunt area. It’s a chance to get kids outside to play and also pay attention. When you do a structured nature walk and scavenger hunt, you create a checklist of nature. For instance, you ask participants to look for birds or specific plants. It’s a great activity for kids because it teaches them to observe and connects them to nature.
+
+#### 4. Community Cleanup for Earth Day
+
+Another excellent activity for Earth Day is to host a community cleanup event. You can do it on a schoolyard, park, beach, or in an area in your neighborhood. When you organize a cleanup event for your community, get volunteers to bring gloves and waste bags. A community cleanup event is a way to develop community pride and provide kids an experience where they’ll see their efforts for taking the time to cleanup.
+
+#### 5. Recycled Earth Day Art Projects
+
+Parents and schools are looking for ways to “disconnect” children and youth from mobile devices. Another excellent choice on our list of Earth Day activities for kids is to have children create art projects. Invite students to repurpose items such as milk jugs to create bird feeders, make cardboard sculptures, and to design posters from various materials. Doing art projects is a tangible and creative way to keep the sustainability conversation going beyond Earth Day.
+
+#### 6. Pollution Experiments for Earth Day
+
+If science is your thing, or that of your children or students, create science experiments with them. For example, you can build with them a solar updraft tower, which shows them how to make a propeller spin with the sun’s heat. You can also do the classic potato battery experiment so they can see how a potato can generate energy. With a search on the internet, you can find hundreds of experiments to do for Earth Day and beyond!
+
+#### 7. Earth Day Environmental Pledge Wall
+
+Parents and students can commit and pledge to do one thing differently. In other words, to make a choice in support of the environment. Ask children and students to personally pledge to do something for the environment. For instance, they could turn off the lights when leaving a room or take a shorter shower. Post the pledges on a board, and revisit the pledges regularly, and ask children how they feel about committing to the pledge.
+
+#### 8. Earth Day Green Habits Tracker
+
+Another one of the activities on our list of Earth Day activities for kids is to challenge them to keep track of their habits. They have to do it for one week and simply check off every time they turn off lights, save water, or make a sustainable choice. A tracker makes the abstract concrete, and it helps to develop good environmental habits. Want to do more than one week? Do it weekly. All it takes is 21 to form a short term habit and 66 days to form a long term habit.
+
+#### 9. Student Presentations on Environmental Issues
+
+Educators can assign students in the classroom age-appropriate project presentations to make regarding different environmental topics for Earth Day and beyond. For example, teachers can ask students to present on deforestation, plastics in the oceans, or endangered species. If you want the impact to go beyond the classroom, ask parents to attend the presentations and use Earth Day as a jumping off point for the projects and presentations.
+
+#### 10. Name a Tree Fundraising Campaign
+
+While similar to the plant a tree fundraiser for Earth Day, this idea allows your PTA, PTO, booster club, school or club to spin planting trees. For example, you can partner with TreeRaise to fundraise for your cause. But, you can also add a naming opportunity. You see, TreeRaise allows you to track your impact. Consider it a chance to get young minds to research the tree species, track growth, and even name their tree(s) to report on it throughout the year.
+
+#### Why This Year’s Earth Day Matters More Than Usual
+
+When children and students learn through creative Earth Day activities for kids, it turns the abstract to tangible opportunities for learning. In addition, these activities allow for sustainability to become part of a young person’s life and they develop environmental habits they can carry for a lifetime. All of these activities are investments parents and educators can make for a future where, someday, these young people will lead the planet.
+
+So, if you’re ready to turn Earth Day into something that lasts beyond just the April 22nd, make this one special. Align your environmental values with the day itself, and beyond. One of the easiest, no risk, no selling fundraisers is fundraiser with TreeRaise. This is your opportunity to become a TreeRaiser and help the children and students in your life to connect sustainability, trees, and Earth Day with lifelong habits and learning.
+
+© 2026 TreeRaise. All Rights Reserved.
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 20 — Fundraising Ideas for School Clubs in North Carolina - TreeRaise
+
+**🔗 URL:** https://treeraise.com/fundraising-ideas-for-school-clubs/
+
+> Do your North Carolina fundraising ideas for school clubs and programs disrupt families? Discover TreeRaise, the purpose-based alternative.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Fundraising Ideas for School Clubs in North Carolina
+
+- December 26, 2025
+
+There is a rhythm to family life in North Carolina. Mornings begin before the sun rises over the pines. Parents make long commutes along highways that twist through fog-covered hills. Afternoons belong to homework, team practices, and dinner squeezed in between obligations. In so many homes across the state, life relies on a fragile balance. And year after year, the traditional North Carolina fundraising ideas for school clubs and programs balance in the wrong direction.
+
+#### The Moment the North Carolina School Fundraiser Tips the Scale
+
+In Wake County last fall, a mother shared in a community group that she had forgotten, for the third time, to send in her child’s packet. Not out of neglect, but out of reality. She said, “My commute is an hour. I help my mom with errands after work. The fundraiser is not the priority. Survival is.”
+
+Hundreds of comments flooded in from parents in Boone, Fayetteville, Asheville, and Wilmington. The theme was identical. It is not that families do not care; it is that the old model is out of sync with how we live. A North Carolina school fundraiser should not add chaos to an already busy week.
+
+#### The Emotional Cost No One Talks About
+
+Traditional product fundraisers carry an invisible emotional toll. Kids feel responsible for selling, and parents feel pressured to buy. Communities feel awkward being asked for the hundredth time to support something they do not believe in.
+
+Claire Axelrad, a leading voice in donor psychology, teaches that donors want meaning, not guilt. North Carolina parents want the same thing: something that reflects their values and makes their families feel proud. According to recent studies on family stress, reducing external pressures is key to household well-being.
+
+#### Why Impact-Based School Fundraising Fits North Carolina Culture
+
+North Carolina is a state that understands stewardship. Families hike mountain trails, students learn about conservation, and communities rally around service.
+
+This is why TreeRaise resonates so deeply as a modern North Carolina school fundraiser. Instead of selling products, families invite supporters to plant verified trees. The Impact Dashboard shows exactly where those trees grow. Support becomes visible, giving becomes meaningful, and participation becomes effortless. No selling, pressure, or disruption.
+
+#### The Simplicity That Restores Space in the School Fundraising Day
+
+TreeRaise is not another task; it is the removal of tasks. PTAs launch a campaign in minutes at the Start Your Drive page. Families share a link between responsibilities, and supporters contribute in seconds.
+
+No forms, deliveries, or guilt. This is the kind of North Carolina school fundraiser that fits the culture here. One that honors time, restores margin, and strengthens the community instead of draining it.
+
+#### Where Purpose Replaces School Fundraising Pressure
+
+North Carolina families do not need one more thing pulling them out of rhythm. They need a fundraiser that respects the pace of their lives.
+
+TreeRaise offers exactly that for fundraising ideas for school clubs and programs. It’s not a trend. It is a shift toward a North Carolina school fundraiser that matches who we really are.
+
+Start your North Carolina TreeRaise today.
+
+© 2026 TreeRaise. All Rights Reserved.
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 21 — School Fundraising Leadership: Redesigning Systems in 2026 - TreeRaise
+
+**🔗 URL:** https://treeraise.com/school-fundraising-leadership/
+
+> Is school fundraising leadership facing a crisis? Principals are rebuilding systems to stop burnout. Discover the reform strategies for 2026.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### School Fundraising Leadership: Redesigning Systems in 2026
+
+- February 17, 2026
+
+#### A Quiet Crisis Facing School Fundraising Leadership
+
+A quiet crisis is facing school fundraising leadership today. School leaders rarely talk openly about the emotional and operational strain caused by outdated fundraising models. They talk about enrollment, curriculum, or safety. But fundraising lives in the shadows. And it drains staff time, increases family frustration, and diminishes volunteer capacity.
+
+Still, schools continue using models that were created for a world that no longer exists. In administrative offices across the country, principals are asking the same question. How do we keep raising what we need without overloading the people we serve?
+
+#### Teachers Are Carrying Workloads That Were Never Theirs
+
+Reporting from Education Week revealed a massive increase in non-instructional tasks placed on teachers. And fundraising-related tasks rank among the most unwanted:
+
+- tracking payments
+- managing product orders
+- distributing goods
+- handling mistakes
+- answering parent questions
+
+These tasks pull teachers away from preparation, emotional recovery time, and connection with students. In short, effective school fundraising leadership recognizes that this is unsustainable in 2026.
+
+#### PTA Leaders Are Burning Out Faster Than Schools Can Replace Them
+
+PTA presidents describe their roles as full-time jobs stacked on top of full-time jobs. And when the same five volunteers are recruited year after year, burnout becomes inevitable. So, it’s no surprise volunteerism is declining.
+
+Further, principals report that PTA turnover is higher than ever. Experienced leaders are retiring from volunteer roles because the load has become too heavy. So, a fundraising system that depends on volunteer stamina is a system destined to fail.
+
+#### Parents Are Telling Schools the Truth Through Their Silence
+
+Parent participation in product-based fundraisers continues to fall. But it’s not because parents do not care. It’s because they are out of time, out of mental bandwidth, and out of tolerance for complex steps that take more than they give.
+
+Unfortunately, disengagement often comes silently. In other words, it doesn’t come in a complaint. Instead, it happens with silence in volunteerism and donor engagement. Further, when parents stop participating, the fundraising model, not the parent, needs to change.
+
+#### The Leadership Shift Happening Now
+
+Schools across the country are beginning to rebuild their entire fundraising architecture. And this shift in school fundraising leadership is rooted in three principles:
+
+1. Reduce Friction Families do not have time for multi-step processes. In short, teachers do not have bandwidth for extra administrative loads. Volunteers do not have capacity for logistical coordination.
+
+2. Increase Transparency Parents and donors want visible impact, real numbers, and meaningful outcomes. Hidden fees and vague profit margins break trust.
+
+3. Align Fundraising With Identity Families respond to purpose. In other words, students respond to meaning, and communities respond to environmental stewardship and social good.
+
+TreeRaise aligns directly with these leadership principles by removing nearly every barrier that causes burnout or disengagement.
+
+- No selling
+- No deliveries
+- No product management
+- No guilt-based pressure
+- Real-time environmental impact
+
+Instant launch setup through the Start Your Drive page.
+
+#### A Message School Leaders Need to Hear
+
+You are not failing and your families are not failing. Your teachers are not failing. And your volunteers are not failing. But, the school fundraising system is failing.
+
+And 2026 is the year school fundraising leadership is finally rewriting it.
+
+Start your TreeRaise today.
+
+© 2026 TreeRaise. All Rights Reserved.
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 22 — Fundraising Ideas for School That Really Work
 
 **🔗 URL:** https://treeraise.com/fundraising-ideas-for-school/
 
@@ -1849,7 +1944,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 22 — Eco-Friendly Fundraising - Where Giving Grows™ | TreeRaise
+## Page 23 — Eco-Friendly Fundraising - Where Giving Grows™ | TreeRaise
 
 **🔗 URL:** https://treeraise.com/
 
@@ -1979,7 +2074,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 23 — Eco-Friendly Fundraising Platform for Schools & Nonprofits | TreeRaise
+## Page 24 — Eco-Friendly Fundraising Platform for Schools & Nonprofits | TreeRaise
 
 **🔗 URL:** https://treeraise.com/tree-purchase-confirmation/
 
@@ -2026,7 +2121,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 24 — Eco-Friendly Fundraising Platform for Schools & Nonprofits | TreeRaise
+## Page 25 — Eco-Friendly Fundraising Platform for Schools & Nonprofits | TreeRaise
 
 **🔗 URL:** https://treeraise.com/tree-raiser-dashboard/
 
@@ -2071,469 +2166,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 25 — Eco-Friendly Fundraising Platform for Schools & Nonprofits | TreeRaise
-
-**🔗 URL:** https://treeraise.com/cookie-policy/
-
-> TreeRaise is a modern fundraising platform helping schools, nonprofits, and faith-based organizations raise funds with verified environmental impact.
-
-- hello@treeraise.com
-
-- 407-710-2345
-
-- How It Works
-- Pricing
-- Impact
-- FAQ
-- About
-- Blog
-- Contact
-
-### Cookie Policy
-
-Home page consent statement: Our website uses cookie technology to improve your user experience. By clicking the “I accept” button, you consent to our use of cookies. For more information, please read our Cookie Policy.
-
-At TreeRaise, LLC, we are committed to transparent communication about the way our website collects information from users. Our Privacy Policy, located at www.treeraise.com/privacypolicy, describes and governs our data collection and processing practices. This Cookie Policy specifically addresses how we use various technologies. The cookie technologies covered in this policy include cookies, flash cookies, pixels, web beacons, and other related data files customarily used by most websites today.
-
-###### Cookies Explained
-
-Cookies are small, encrypted data files stored on your computer’s hard drive when you visit a website. They allow a site to capture data you provide on the site and store it for later retrieval. Cookies are most often used to capture information about things like your user preferences and decisions. By storing cookies, website owners are able to understand your online practices and create time-saving options to enhance your overall browsing experience. For example, if you opt out of signing up for our email list, the cookies that our website has stored on your computer recall that information so that you do not receive another request to join our list moments after your initial refusal.
-
-We use cookies on our site for the following purposes:
-
-- To remember your and your activities;
-- Enable personalized experiences; and
-- Saving preferences.
-
-###### Third-Party Cookies
-
-The cookies stored when you visit our site may also include third-party cookies. Third-party cookies are stored by other parties and are used primarily to track a user’s browsing history. Third parties may also use cookies to provide advertising to you across various sites.
-
-###### Disabling and Deleting Cookies
-
-You can manage, block, or delete cookies by adjusting your cookie preferences in your browser settings. However, please note that disabling certain cookies could significantly impact your user experience. Specific instructions for managing cookies in your particular browser are provided at the links below:
-
-- Google Chrome, https://support.google.com/chrome/answer/95647?co=GENIE.Platform%3DDesktop&hl=en
-- Firefox, https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer
-- Internet Explorer, https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies
-- Safari, https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac
-
-###### Updates to This Policy
-
-We may update this policy from time to time. Please check this page frequently for updates.
-
-###### Contact Us
-
-If you have any questions, comments, or concerns about this Privacy Policy or our services, please contact us via email at hello@treeraise.com, or by mail at 6457 Hazeltine National Drive, STE 120, Orlando, Florida 32822.
-
-Effective Date: December 17, 2025
-
-Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
-
-#### Fundraising
-
-- Faith-Based Fundraising
-- Nonprofit Fundraising
-- School Fundraising
-- Begin Your Impact
-
-#### Company
-
-- About TreeRaise
-
-#### Stay Connected
-
-Phone: 407-710-2345
-
-Email: hello@treeraise.com
-
-- View Trees Planted
-
-© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
-
----
-
 ## Page 26 — Eco-Friendly Fundraising Platform for Schools & Nonprofits | TreeRaise
-
-**🔗 URL:** https://treeraise.com/privacy-policy/
-
-> TreeRaise is a modern fundraising platform helping schools, nonprofits, and faith-based organizations raise funds with verified environmental impact.
-
-- hello@treeraise.com
-
-- 407-710-2345
-
-- How It Works
-- Pricing
-- Impact
-- FAQ
-- About
-- Blog
-- Contact
-
-### Privacy Policy
-
-###### Introduction
-
-Welcome to www.TreeRaise.com. This site is owned and operated by TreeRaise, LLC (“TreeRaise,” “we,” or “us”). This Privacy Policy governs your use of our website and text messaging, hereafter referred to as the “Site.” This policy does not govern
-
-- communications that occur via our nonbrowser mobile app
-- any information collected from a third party, including information gathered by third-party links on the Site.
-
-We understand that your data is important to you and that you care about how your information is collected and used. We have compiled the information below to explain how we gather, use, and store your information. Please read through this policy carefully. Your use of this Site indicates your consent.
-
-This Privacy Policy is organized into the following sections:
-
-1. Information we collect
-
-2. How we collect your information
-
-3. How we use your information
-
-4. How we share your information
-
-5. How we protect your information
-
-6. Age limits for children
-
-7. Correcting or updating your information
-
-8. Specific California resident rights
-
-9. Updates to this policy
-
-10. Contact information
-
-###### Information We Collect
-
-Defining Personally Identifiable Information
-
-Personally identifiable information is any information collected by us or provided by you that with reasonable efforts could be used to identify you. Personally identifiable information includes the information you give to us directly, the information we automatically collect, and when applicable, information supplied to us by third parties.
-
-Specifically, we may collect the following types of information:
-
-- information that directly identifies you such as your name, age, postal address, email address, and phone number;
-- information about your geographic location;
-- information about your purchases on our Site; and
-- analytics about you as a user such as the type of device you use, your internet connection, and your preferences.
-
-Please note that the Site does access geolocation information about where you are when using the device.
-
-###### How We Collect Your Information
-
-We collect this information in the following ways: directly from you and automatically using technology like cookies, web bugs, and other web technologies.
-
-Information Directly From You
-
-As you use the Site, information we collect directly from you includes information provided in response to our direct request for your name, age, postal address, email address, and phone number. In addition, when you fill out a form, complete a survey, sign up for an email list, make a purchase, share content, leave a comment on one of our boards, or engage in other similar interactions, you are directly providing us with your personal information.
-
-If you decide to register for an account with us to access additional resources, services, and goods on our Site, you will be asked to complete a form requesting information such as your name and email address in order to create a user account. You will be given the option to upload a photograph for your account.
-
-Information Automatically Collected Using Technology
-
-Our Site uses cookies, web beacons, log files, and similar technologies to automatically collect information about who you are and how you use our Site. Cookies are small files stored on your computer that contain information and are used to track information as you navigate different sites. These technologies work together and collect information about
-
-- the type of device you are using,
-- browsers you prefer,
-- domain names you may access,
-- your activities on the device, and
-- your IP address.
-
-These technologies do not collect personally identifiable information but may be used in conjunction with other information gathered. Over time, we may also collect information about your other activities online and combine this information for the purposes of behavioral profiling.
-
-Do Not Track
-
-Browsers and devices allow individuals to send “do not track” signals to websites. If you would like to refuse some or all of the browser cookies, you can set your browser preferences accordingly. Please note that disabling cookies may cause portions of the site to be inaccessible or function incorrectly.
-
-Information From Third Parties
-
-In some instances, we may receive information from our third-party partners and vendors about our users. We may also incorporate third-party marketing and analytic services, such as Google Analytics, to help us analyze how our Site is being used.
-
-Our Privacy Policy only governs TreeRaise’s use of your information; however, we may use these third-party services to analyze and enhance your experience.
-
-###### How We Use Your Information
-
-We collect and use information from you for the following purposes:
-
-- to operate and maintain our site
-- to present our content to you through our site
-- to communicate with you
-- to fulfill our obligations to you as presented when you provided the information
-- to notify you about changes to our site
-- to enhance and optimize your experience
-- for any other purpose within your consent
-
-In some instances, we also use information to contact you about goods and services that you may find valuable; however, if you would not like to receive information about ongoing promotions or tools we believe are relevant to you, please contact us at info@treeraise.com or update your user preferences accordingly.
-
-###### How We Share Your Information
-
-Though we do not sell or disclose the personal information we collect in the ordinary course of our business, we may share your data with third parties in accordance with the purposes described above. At this time, we have not employed any third-party tools in the course of providing our service to you. Additionally, in the course of business, if we buy or sell business assets or participate in a company sale, merger, reorganization, or dissolution, the data we have collected may be part of such business transfers.
-
-###### How We Protect Your Information
-
-As a company, the protection of your information is important to us. We have designed and adopted technological and organizational procedures to safeguard your data. It is important to note that while we make efforts to protect your data, security measures are not impenetrable. As a result, we cannot guarantee the absolute security of any information collected or transmitted to our Site. By using our Site, you consent to the transmission of your data at your own risk.
-
-Additionally, if you have registered for an account on our Site, you should not share your password or username with any other third parties. It is your responsibility to keep this information confidential.
-
-###### Age Limits for Children
-
-Children under the age of none are prohibited from accessing the Site. Additionally, we do not use our site to knowingly collect personal information from children. Please contact us if you learn or have reason to suspect that a child under the age of none is using the Site. We will take prompt action to delete any personal information about the child.
-
-###### Correcting or Updating Your Information
-
-If you discover that inaccurate information about you has been collected, or if you would like to update the information we currently have, please contact us via email at info@treeraise.com, or by mail at TreeRaise, LLC, 6457 Hazeltine National Drive, STE 120, Orlando, Florida 32822.
-
-###### Specific California Resident Rights
-
-This section is only applicable for individuals who reside in California and should be read in conjunction with our entire Privacy Policy. If you are a California resident, you have the right to
-• obtain additional information about “personal information” (as defined in the California Consumer Privacy Act (CCPA));
-
-• request that we disclose certain information collected, used, disclosed, and sold about you;
-
-• request deletion of your personal information; and
-
-• opt out of the sale of your personal information.
-
-The information covered by these specific rights is information that could be reasonably linked to you. It excludes information that cannot be reasonably linked to you.
-
-To help you better understand our practices, the chart below describes the categories of personal information collected, the sources of this information, how we use this information, and with which third parties we have shared this information within the past twelve months.
-
-To enhance and optimize your personal experience
-
-To inform you of goods and services you may find valuable
-
-For marketing and advertising purposes
-
-To exercise your right to make requests regarding your personal information, please contact us via email at info@treeraise.com, or by mail at TreeRaise, LLC, 6457 Hazeltine National Drive, STE 120, Orlando, Florida 32822. We may take steps to verify your identity before providing the requested information.
-
-###### Updates to This Policy
-
-We may update this policy from time to time. If any updates are made to this policy, they will be posted here. Additionally, if material changes are made to this policy, we will notify you via a notice to this Site, and registered users will receive an additional email. Please check this page frequently for updates.
-
-###### Contact Us
-
-If you have any questions, comments, or concerns about this Privacy Policy or our services, please contact us via email at hello@treeraise.com, or by mail at 6457 Hazeltine National Drive, STE 120, Orlando, Florida 32822.
-
-Effective Date: December 17, 2025
-
-Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
-
-#### Fundraising
-
-- Faith-Based Fundraising
-- Nonprofit Fundraising
-- School Fundraising
-- Begin Your Impact
-
-#### Company
-
-- About TreeRaise
-
-#### Stay Connected
-
-Phone: 407-710-2345
-
-Email: hello@treeraise.com
-
-- View Trees Planted
-
-© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
-
----
-
-## Page 27 — Eco-Friendly Fundraising Platform for Schools & Nonprofits | TreeRaise
-
-**🔗 URL:** https://treeraise.com/terms-and-conditions/
-
-> TreeRaise is a modern fundraising platform helping schools, nonprofits, and faith-based organizations raise funds with verified environmental impact.
-
-- hello@treeraise.com
-
-- 407-710-2345
-
-- How It Works
-- Pricing
-- Impact
-- FAQ
-- About
-- Blog
-- Contact
-
-### Terms and Conditions
-
-1. Introduction
-2. Consent and Capacity
-3. Intellectual Property Rights
-4. User Responsibilities
-5. Disclaimer
-6. Limitation of Liability
-7. Indemnification
-8. Choice of Law
-9. Severability
-10. Changes to These Terms
-11. Contact Us
-
-###### Introduction
-
-Welcome to www.TreeRaise.com. This Site is owned and operated by TreeRaise, LLC (“TreeRaise,” “we,” or “us”). These Terms of Use (“Terms″) govern your use of our Site,, hereafter referred to as “the Site”. These Terms include information about usage, licensing, and intellectual property. Please read these Terms carefully. By using the Site, you consent to these legally binding Terms as well as our Privacy Policy, which is hereby incorporated.
-
-###### Consent and Capacity
-
-In order to use our services, you must be at least none. Your use of our services is conditioned on your acceptance of these Terms. If you do not agree with these Terms, please discontinue your use of the Site. By using our services, you warrant that you are entering into a binding contract with TreeRaise, LLC. Areas of the Site may also be subject to additional terms. Any additional terms are not intended to replace or supersede these Terms, but rather supplement these Terms in those specific areas. Please take the time to familiarize yourself with the additional conditions of those areas before accessing them.
-
-###### Intellectual Property Rights
-
-TreeRaise’s trademarks, trade names, logos, and other intellectual property incorporated into the Site are the sole property of TreeRaise, LLC or its licensors and are protected under copyright, trademark, trade secret, and other intellectual property laws. Copying or distributing any material, illustrations, photographs, video, or content from the Site without consent is strictly prohibited. Additionally, any use that constitutes an infringement of any of the above-stated intellectual property rights is prohibited. We, in our sole discretion, reserve the right to remove any content or take any steps deemed appropriate to protect such rights.
-
-###### User Responsibilities
-
-Users of the Site agree to the following guidelines:
-
-- You will keep your username and password confidential. You will not share this information with any other person.
-- You will not use another user’s login and registration information.
-- You will not create fake accounts for the purpose of spamming users or visitors, collecting personal information with or without consent, or any other deceptive practices.
-- You will not circumvent, evade, disable, or otherwise interfere with the security of the Site.
-- You will not infringe the intellectual property rights of others.
-
-Additionally, to access certain portions of the Site, you may be required to provide information. The information you provide must be truthful, accurate, and complete. The information you provide is subject to our Privacy Policy, which is hereby incorporated into these Terms.
-
-###### Disclaimer
-
-THE SITE, ITS CONTENT, AND ALL THE MATERIALS ARE “AS IS” AND “AS AVAILABLE” WITHOUT WARRANTY OR GUARANTEE. YOU ACCESS THE SITE AT YOUR OWN RISK UNDERSTANDING THAT TREERAISE, LLC DISCLAIMS ANY AND ALL WARRANTIES, INCLUDING, BUT NOT LIMITED TO, EXPRESS OR IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NONINFRINGEMENT. TREERAISE, LLC WILL NOT BE RESPONSIBLE FOR OR LIABLE FOR ANY DAMAGE THAT MAY ARISE FROM YOUR USE OF THIS SITE. TREERAISE, LLC DISCLAIMS ANY AND ALL WARRANTIES PERTAINING TO THE ACCURACY AND USEFULNESS OF THE MATERIALS, CONTENT, SOFTWARE, OR SERVICES PROVIDED VIA THE SITE. TREERAISE, LLC MAKES NO PROMISES OR REPRESENTATIONS THAT OUR SOFTWARE IS FREE FROM VIRUSES, MALWARE, OR ANY OTHER HARMFUL COMPONENTS, OR THAT THE SITE WILL BE AVAILABLE WITHOUT INTERRUPTION.
-
-THIS SECTION APPLIES TO YOU TO THE FULL EXTENT ALLOWED BY APPLICABLE LAW.
-
-###### Limitation of Liability
-
-TO THE MAXIMUM EXTENT PROVIDED BY APPLICABLE LAW, TREERAISE, LLC DOES NOT ACCEPT LIABILITY FOR LOSS OR DAMAGE OF ANY KIND GREATER THAN $100 OR THE AMOUNT YOU PAID TO TREERAISE, LLC, BE IT DIRECT, INDIRECT, CONSEQUENTIAL, SPECIAL, EXEMPLARY, INCIDENTAL, ACTUAL, PUNITIVE, OR OTHERWISE, WHETHER IT ARISES FROM PERSONAL INJURY, FINANCIAL LOSS, DATA LOSS, OPPORTUNITY LOSS, THIRD-PARTY USE OR MISUSE, AGGREGATE SERVICE, PERSONAL DISSATISFACTION, OR ANY OTHER DAMAGE RESULTING FROM YOUR USE OF THE SITE.
-
-###### Indemnification
-
-You agree to indemnify and hold harmless TreeRaise, LLC, its directors, shareholders, employees, representatives, agents, subsidiaries, assignors, and licensors from and against any lawsuits, disputes, claims, proceedings, demands, costs, or expenses related to or stemming from any use of the Site or your breach of these Terms and any other policies incorporated into this agreement.
-
-###### Choice of Law
-
-These Terms and any disputes arising from the use of THE SITE are governed by and construed according to the law of the state of Florida. Each party agrees to submit to the courts of the state of Florida and that the state of Florida has personal jurisdiction over the matter.
-
-###### Severability
-
-If any portion of these Terms is deemed unenforceable, void, or invalid for any reason, the remaining provisions of these Terms will remain unaffected and will not be considered unenforceable, void, or invalid. They will maintain the full force of law to the extent possible.
-
-###### Changes to These TermsWe may update these Terms from time to time. If any updates are made to these Terms, they will be posted here. Additionally, if material changes are made, we will notify you via a notice posted on the Site, and registered users will receive an additional email. Please check this page frequently for updates.
-
-###### Contact Us
-
-If you have any questions, comments, or concerns about these Terms or our services, please contact us via email at hello@treeraise.com, or by mail at 6457 Hazeltine National Drive, STE 120, Orlando, Florida 32822.
-
-Effective Date: December 17, 2025
-
-Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
-
-#### Fundraising
-
-- Faith-Based Fundraising
-- Nonprofit Fundraising
-- School Fundraising
-- Begin Your Impact
-
-#### Company
-
-- About TreeRaise
-
-#### Stay Connected
-
-Phone: 407-710-2345
-
-Email: hello@treeraise.com
-
-- View Trees Planted
-
-© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
-
----
-
-## Page 28 — Contact TreeRaise | Get Support or Book a Demo
-
-**🔗 URL:** https://treeraise.com/contact/
-
-> Reach our U.S.-based team for support, partnerships, or fundraising demos. Empower your school to grow impact.
-
-- hello@treeraise.com
-
-- 407-710-2345
-
-- How It Works
-- Pricing
-- Impact
-- FAQ
-- About
-- Blog
-- Contact
-
-#### Contact the TreeRaise Team
-
-##### We’re here to support schools, nonprofits, and faith-based organizations. Whether you’re launching a campaign, exploring partnerships, or have a question, our team typically responds within one business day.
-
-#### Get in Touch
-
-##### Fundraising Support
-
-Need help launching or managing a TreeRaise campaign? Our support team is here to answer questions and guide you through next steps.
-
-##### Partnership Opportunities
-
-Interested in partnering with TreeRaise as a nonprofit, faith-based organization, or mission-aligned group? Let’s explore how we can work together.
-
-##### General Inquiries
-
-For press, media, or general questions, email us directly and we’ll route your message to the right team.
-
-#### Send Us a Message
-
-Tell us a bit about your organization and how we can help. A member of our team will follow up shortly.
-
-"*" indicates required fields
-
-##### Our Location
-
-TreeRaise supports organizations nationwide. Our headquarters are based in Orlando, Florida, while our environmental impact extends globally through verified restoration partners.
-
-TreeRaise, LLC
-6457 Hazeltine National Dr, STE 100
-Orlando, FL 32822
-
-407-710-2345
-
-#### We Are Here To Help Your School Succeed
-
-##### Whether you’re launching your first campaign, exploring a new fundraising approach, or considering a partnership, the TreeRaise team is here to help you move forward with clarity and confidence.
-
-Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
-
-#### Fundraising
-
-- Faith-Based Fundraising
-- Nonprofit Fundraising
-- School Fundraising
-- Begin Your Impact
-
-#### Company
-
-- About TreeRaise
-
-#### Stay Connected
-
-Phone: 407-710-2345
-
-Email: hello@treeraise.com
-
-- View Trees Planted
-
-© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
-
----
-
-## Page 29 — Eco-Friendly Fundraising Platform for Schools & Nonprofits | TreeRaise
 
 **🔗 URL:** https://treeraise.com/contributor-dashboard/
 
@@ -2578,7 +2211,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 30 — TreeRaise Press & Media Kit | Brand Assets & Impact Data
+## Page 27 — TreeRaise Press & Media Kit | Brand Assets & Impact Data
 
 **🔗 URL:** https://treeraise.com/press-media-kit/
 
@@ -2713,7 +2346,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 31 — Thank You for Starting a Better Fundraiser | TreeRaise
+## Page 28 — Thank You for Starting a Better Fundraiser | TreeRaise
 
 **🔗 URL:** https://treeraise.com/thank-you/
 
@@ -2802,7 +2435,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 32 — TreeRaise Pricing. Transparent Eco-Friendly Fundraising
+## Page 29 — TreeRaise Pricing. Transparent Eco-Friendly Fundraising
 
 **🔗 URL:** https://treeraise.com/pricing/
 
@@ -2938,7 +2571,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 33 — TreeRaise Impact Hub | Real-Time Fundraising Results
+## Page 30 — TreeRaise Impact Hub | Real-Time Fundraising Results
 
 **🔗 URL:** https://treeraise.com/impact/
 
@@ -3054,7 +2687,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 34 — Start a Fundraising Campaign with Verified Impact
+## Page 31 — Start a Fundraising Campaign with Verified Impact
 
 **🔗 URL:** https://treeraise.com/begin-your-impact/
 
@@ -3138,7 +2771,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 35 — Faith-Based Fundraising Platform with Verified Impact
+## Page 32 — Faith-Based Fundraising Platform with Verified Impact
 
 **🔗 URL:** https://treeraise.com/faith-based-fundraising/
 
@@ -3217,7 +2850,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 36 — How TreeRaise Works | Eco-Friendly Fundraising Made Simple
+## Page 33 — How TreeRaise Works | Eco-Friendly Fundraising Made Simple
 
 **🔗 URL:** https://treeraise.com/how-it-works/
 
@@ -3363,7 +2996,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 37 — Nonprofit Fundraising Platform with Verified Impact
+## Page 34 — Nonprofit Fundraising Platform with Verified Impact
 
 **🔗 URL:** https://treeraise.com/nonprofit-fundraising/
 
@@ -3436,7 +3069,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 38 — School Fundraising Platform with Verified Environmental Impact
+## Page 35 — School Fundraising Platform with Verified Environmental Impact
 
 **🔗 URL:** https://treeraise.com/school-fundraising/
 
@@ -3563,11 +3196,11 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 39 — Eco Friendly School Fundraising in Texas | TreeRaise
+## Page 36 — TreeRaise FAQ | Everything You Need to Know
 
-**🔗 URL:** https://treeraise.com/texas/
+**🔗 URL:** https://treeraise.com/faq/
 
-> Texas schools are switching to no selling fundraisers that plant verified trees. Raise money simply and meaningfully with TreeRaise.
+> Get answers on setup, pricing, impact tracking, and school engagement. Learn how TreeRaise fundraisers work.
 
 - hello@treeraise.com
 
@@ -3581,29 +3214,61 @@ Email: hello@treeraise.com
 - Blog
 - Contact
 
-### A Better Fundraiser for Texas Schools
+### Frequently Asked Questions
 
-#### Raise money quickly. Plant verified trees with every donation. Bring purpose into classrooms and communities across Texas.
+#### Everything you need to know about TreeRaise, from launching your fundraiser to tracking verified impact.
 
-#### 50% BACK TO YOUR SCHOOL!
+#### Getting Started with TreeRaise
 
-##### NO PRODUCT SALES!
+##### How do we start a campaign with TreeRaise?
 
-### Why Texas Needs a New Fundraiser
+##### Do we need upfront money to launch?
 
-Texas families are tired of repeated product sales and pressure based fundraising. Schools across the state want a model that is simple, transparent, and aligned with student values. TreeRaise replaces selling with meaningful environmental impact families can be proud of.
+##### Can small organizations use TreeRaise?
 
-### How TreeRaise Works in Texas
+##### How quickly can we launch a fundraiser?
 
-Share your fundraiser link. Supporters plant trees. Your school receives the funds you need. No selling. No deliveries. No stress placed on families.
+##### How much does our organization receive from each contribution?
 
-### Impact You Can See and Trust
+##### Can I start a fundraiser at any time?
 
-Every contribution plants real trees in verified restoration sites. Families and donors can track progress through the TreeRaise impact dashboard, creating a sense of pride and transparency across Texas communities.
+##### Are there minimum fundraising requirements?
 
-#### Start a Texas Fundraiser That Families Believe In
+#### Verification and Impact Tracking
 
-A fundraiser should lift your community, not weigh it down. Raise funds, grow forests, and bring purpose driven giving into your school or organization.
+##### How do we know the trees are actually planted?
+
+##### How do we track impact?
+
+##### Can supporters see the impact?
+
+##### Where are the trees planted?
+
+##### How does veritree ensure the trees that are planted are protected?
+
+##### What do veritree's 3 levels of verification mean?
+
+##### How does veritree estimate its carbon sequestration rate?
+
+##### How much of an Impact can TreeRaise make?
+
+#### Program FAQs
+
+##### How does TreeRaise work for nonprofits?
+
+##### Can TreeRaise support different nonprofit missions?
+
+##### How does TreeRaise work for faith communities?
+
+##### Can faith communities involve multiple ministries?
+
+##### How quickly can a school launch a TreeRaise fundraiser
+
+##### How does TreeRaise support educators and reduce workload?
+
+##### Does TreeRaise include curriculum?
+
+##### Can schools run friendly challenges or competitions?
 
 Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
 
@@ -3630,11 +3295,11 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 40 — Eco-Friendly Fundraising Platform for Schools & Nonprofits | TreeRaise
+## Page 37 — Help To Build A Village Inc.​ raise funds and help the planet!
 
-**🔗 URL:** https://treeraise.com/guard-against-trafficking/
+**🔗 URL:** https://treeraise.com/to-build-a-village/
 
-> TreeRaise is a modern fundraising platform helping schools, nonprofits, and faith-based organizations raise funds with verified environmental impact.
+> To Build a Village has partnered with TreeRaise to help us earn funds to provide seed packets for families in Haiti. TreeRaise helps organizations like ours raise funds by planting trees with each contribution. Help us make a global impact!
 
 - hello@treeraise.com
 
@@ -3648,37 +3313,31 @@ Email: hello@treeraise.com
 - Blog
 - Contact
 
-GUARD Against Trafficking disrupts trafficking networks and protects vulnerable populations through research, prevention, policy advocacy, and strategic partnerships. Our integrated approach turns intelligence into education, education into policy, policy into systemic change, and working to combat exploitation before it begins.
+#### To Build A Village Inc.
 
-###### Learn More...
+Help us raise funds and help the planet!
 
-##### 50% of the gross proceeds go to Guard Against Trafficking
+To Build a Village has partnered with TreeRaise to help us earn funds to provide seed packets for families in Haiti. TreeRaise helps organizations like ours raise funds by planting trees with each contribution. Help us make a global impact!
+
+#### Share Our Fundraiser
 
 #### Recent Contributions
 
+- Teri contributed $50.00
+4 weeks ago
+- Marie contributed $20.00
+1 month ago
 - Anonymous contributed $15.00
-1 day ago
-- Anonymous contributed $15.00
-2 days ago
-- Jeff contributed $45.00
-5 days ago
-- Anonymous contributed $15.00
-5 days ago
-- Anonymous contributed $15.00
-2 weeks ago
+1 month ago
 
 #### Top Tree Raisers
 
-- Wayne
-$599.00
+- Teri
+$50.00
+- Marie
+$20.00
 - Anonymous
-$545.00
-- Anonymous
-$156.00
-- Anthony
-$84.00
-- Laurie & Bruce
-$84.00
+$15.00
 
 Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
 
@@ -3705,7 +3364,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 41 — About TreeRaise | Eco-Friendly Fundraising with Verified Impact
+## Page 38 — About TreeRaise | Eco-Friendly Fundraising with Verified Impact
 
 **🔗 URL:** https://treeraise.com/about-treeraise/
 
@@ -3809,6 +3468,8 @@ Compliance & Operations Manager
 
 Sustainability Specialist
 
+##### Mac Rogers
+
 #### Be Part of the Story Where Giving Grows
 
 Join organizations across the country raising funds transparently while supporting verified environmental restoration.
@@ -3836,11 +3497,11 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 42 — TreeRaise FAQ | Everything You Need to Know
+## Page 39 — Help Fraternal Order of Eagles, Orlando #3496 raise funds
 
-**🔗 URL:** https://treeraise.com/faq/
+**🔗 URL:** https://treeraise.com/foe3496/
 
-> Get answers on setup, pricing, impact tracking, and school engagement. Learn how TreeRaise fundraisers work.
+> Help Fraternal Order of Eagles, Orlando #3496 raise funds to make human life more desirable by lessening its ills and promoting peace, prosperity, and hope!
 
 - hello@treeraise.com
 
@@ -3854,61 +3515,37 @@ Email: hello@treeraise.com
 - Blog
 - Contact
 
-### Frequently Asked Questions
+#### Fraternal Order of Eagles, Orlando #3496
 
-#### Everything you need to know about TreeRaise, from launching your fundraiser to tracking verified impact.
+Every year, we conduct major charity functions to raise funds to fight ailments related to the heart, diabetes, cancer, kidney, children, Alzheimer’s, Muscular Dystrophy and Parkinsons. We are partnering with TreeRaise to raise funds to help with this fight. Help us make an impact by planting trees and earning funds for Eagles #3496.
 
-#### Getting Started with TreeRaise
+#### Share Our Fundraiser
 
-##### How do we start a campaign with TreeRaise?
+#### Recent Contributions
 
-##### Do we need upfront money to launch?
+- Sharon contributed $45.00
+2 weeks ago
+- Rob contributed $30.00
+2 weeks ago
+- Anonymous contributed $15.00
+3 weeks ago
+- Courtney contributed $15.00
+3 weeks ago
+- Wayne contributed $45.00
+3 weeks ago
 
-##### Can small organizations use TreeRaise?
+#### Top Tree Raisers
 
-##### How quickly can we launch a fundraiser?
-
-##### How much does our organization receive from each contribution?
-
-##### Can I start a fundraiser at any time?
-
-##### Are there minimum fundraising requirements?
-
-#### Verification and Impact Tracking
-
-##### How do we know the trees are actually planted?
-
-##### How do we track impact?
-
-##### Can supporters see the impact?
-
-##### Where are the trees planted?
-
-##### How does veritree ensure the trees that are planted are protected?
-
-##### What do veritree's 3 levels of verification mean?
-
-##### How does veritree estimate its carbon sequestration rate?
-
-##### How much of an Impact can TreeRaise make?
-
-#### Program FAQs
-
-##### How does TreeRaise work for nonprofits?
-
-##### Can TreeRaise support different nonprofit missions?
-
-##### How does TreeRaise work for faith communities?
-
-##### Can faith communities involve multiple ministries?
-
-##### How quickly can a school launch a TreeRaise fundraiser
-
-##### How does TreeRaise support educators and reduce workload?
-
-##### Does TreeRaise include curriculum?
-
-##### Can schools run friendly challenges or competitions?
+- Deborah
+$65.00
+- Ben
+$45.00
+- Wayne
+$45.00
+- Sharon
+$45.00
+- Rob
+$30.00
 
 Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
 
@@ -3935,9 +3572,11 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 43 — Donation Forms Archive - TreeRaise
+## Page 40 — Edgewater High School FFA | TreeRaise
 
-**🔗 URL:** https://treeraise.com/donations/
+**🔗 URL:** https://treeraise.com/edgewater-high-ffa/
+
+> Edgewater High School FFA has partnered with TreeRaise to help us earn funds for our school projects June 2026 FFA State Convention. Plant a tree for everyone you know and help us earn funds and make a global impact!
 
 - hello@treeraise.com
 
@@ -3951,9 +3590,23 @@ Email: hello@treeraise.com
 - Blog
 - Contact
 
-### The page can’t be found.
+#### Edgewater High School FFA
 
-It looks like nothing was found at this location.
+Edgewater High School FFA has partnered with TreeRaise to help us earn funds for our school projects and our June 2026 FFA State Convention. Plant a tree for everyone you know and help us earn funds and make a global impact!
+
+#### Share Our Fundraiser
+
+#### Recent Contributions
+
+##### Every campaign starts with one Tree Raiser!
+
+Be the one to make it happen!
+
+#### Top Tree Raisers
+
+##### No top tree raisers listed yet.
+
+Be one of the first to make an impact!
 
 Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
 
@@ -3980,9 +3633,11 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 44 — Donation Form - TreeRaise
+## Page 41 — Coastal Christian Chamber | TreeRaise
 
-**🔗 URL:** https://treeraise.com/donations/valley-middle-school/
+**🔗 URL:** https://treeraise.com/caccc/
+
+> Plant Seeds. Advance the Kingdom. Grow Our Mission. CACCC has partnered with TreeRaise to help us earn funds to create both financial impact and eternal significance. This is more than a fundraiser—it’s a movement of sowing and reaping. As seeds are planted in the natural, lives are impacted in the spiritual. Make an impact by planting trees and earning meaningful funds.
 
 - hello@treeraise.com
 
@@ -3995,6 +3650,26 @@ Email: hello@treeraise.com
 - About
 - Blog
 - Contact
+
+#### Coastal Christian Chamber
+
+Plant Seeds. Advance the Kingdom. Grow Our Mission.
+
+CACCC has partnered with TreeRaise to help us earn funds to create both financial impact and eternal significance. This is more than a fundraiser—it’s a movement of sowing and reaping. As seeds are planted in the natural, lives are impacted in the spiritual. Make an impact by planting trees and earning meaningful funds.
+
+#### Share Our Fundraiser
+
+#### Recent Contributions
+
+##### Every campaign starts with one Tree Raiser!
+
+Be the one to make it happen!
+
+#### Top Tree Raisers
+
+##### No top tree raisers listed yet.
+
+Be one of the first to make an impact!
 
 Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
 
@@ -4021,9 +3696,11 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 45 — Tree Purchase - TreeRaise
+## Page 42 — Cookie Policy: Understanding Our Data Practices
 
-**🔗 URL:** https://treeraise.com/donations/tree-purchase-2/
+**🔗 URL:** https://treeraise.com/cookie-policy/
+
+> Read our cookie policy to understand how we use cookies to improve your experience and ensure transparency in data collection.
 
 - hello@treeraise.com
 
@@ -4036,6 +3713,45 @@ Email: hello@treeraise.com
 - About
 - Blog
 - Contact
+
+### Cookie Policy
+
+Home page consent statement: Our website uses cookie technology to improve your user experience. By clicking the “I accept” button, you consent to our use of cookies. For more information, please read our Cookie Policy.
+
+At TreeRaise, LLC, we are committed to transparent communication about the way our website collects information from users. Our Privacy Policy, located at www.treeraise.com/privacypolicy, describes and governs our data collection and processing practices. This Cookie Policy specifically addresses how we use various technologies. The cookie technologies covered in this policy include cookies, flash cookies, pixels, web beacons, and other related data files customarily used by most websites today.
+
+###### Cookies Explained
+
+Cookies are small, encrypted data files stored on your computer’s hard drive when you visit a website. They allow a site to capture data you provide on the site and store it for later retrieval. Cookies are most often used to capture information about things like your user preferences and decisions. By storing cookies, website owners are able to understand your online practices and create time-saving options to enhance your overall browsing experience. For example, if you opt out of signing up for our email list, the cookies that our website has stored on your computer recall that information so that you do not receive another request to join our list moments after your initial refusal.
+
+We use cookies on our site for the following purposes:
+
+- To remember your and your activities;
+- Enable personalized experiences; and
+- Saving preferences.
+
+###### Third-Party Cookies
+
+The cookies stored when you visit our site may also include third-party cookies. Third-party cookies are stored by other parties and are used primarily to track a user’s browsing history. Third parties may also use cookies to provide advertising to you across various sites.
+
+###### Disabling and Deleting Cookies
+
+You can manage, block, or delete cookies by adjusting your cookie preferences in your browser settings. However, please note that disabling certain cookies could significantly impact your user experience. Specific instructions for managing cookies in your particular browser are provided at the links below:
+
+- Google Chrome, https://support.google.com/chrome/answer/95647?co=GENIE.Platform%3DDesktop&hl=en
+- Firefox, https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer
+- Internet Explorer, https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies
+- Safari, https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac
+
+###### Updates to This Policy
+
+We may update this policy from time to time. Please check this page frequently for updates.
+
+###### Contact Us
+
+If you have any questions, comments, or concerns about this Privacy Policy or our services, please contact us via email at hello@treeraise.com, or by mail at 6457 Hazeltine National Drive, STE 120, Orlando, Florida 32822.
+
+Effective Date: December 17, 2025
 
 Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
 
@@ -4062,9 +3778,11 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 46 — Tree Purchase - TreeRaise
+## Page 43 — Contact TreeRaise to Start Your Fundraising Journey
 
-**🔗 URL:** https://treeraise.com/donations/tree-purchase/
+**🔗 URL:** https://treeraise.com/contact/
+
+> Need assistance? Contact TreeRaise for help with your fundraising campaign and explore partnership opportunities today.
 
 - hello@treeraise.com
 
@@ -4077,6 +3795,44 @@ Email: hello@treeraise.com
 - About
 - Blog
 - Contact
+
+### Contact the TreeRaise Team
+
+##### We’re here to support schools, nonprofits, and faith-based organizations. Whether you’re launching a campaign, exploring partnerships, or have a question, our team typically responds within one business day.
+
+#### Get in Touch
+
+##### Fundraising Support
+
+Need help launching or managing a TreeRaise campaign? Our support team is here to answer questions and guide you through next steps.
+
+##### Partnership Opportunities
+
+Interested in partnering with TreeRaise as a nonprofit, faith-based organization, or mission-aligned group? Let’s explore how we can work together.
+
+##### General Inquiries
+
+For press, media, or general questions, email us directly and we’ll route your message to the right team.
+
+#### Send Us a Message
+
+Tell us a bit about your organization and how we can help. A member of our team will follow up shortly.
+
+"*" indicates required fields
+
+##### Our Location
+
+TreeRaise supports organizations nationwide. Our headquarters are based in Orlando, Florida, while our environmental impact extends globally through verified restoration partners.
+
+TreeRaise, LLC
+6457 Hazeltine National Dr, STE 100
+Orlando, FL 32822
+
+407-710-2345
+
+#### We Are Here To Help Your School Succeed
+
+##### Whether you’re launching your first campaign, exploring a new fundraising approach, or considering a partnership, the TreeRaise team is here to help you move forward with clarity and confidence.
 
 Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
 
@@ -4103,9 +3859,11 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 47 — Guard Against Trafficking - TreeRaise
+## Page 44 — Eco Friendly School Fundraising in Ohio | TreeRaise
 
-**🔗 URL:** https://treeraise.com/donations/guard-against-trafficking/
+**🔗 URL:** https://treeraise.com/ohio/
+
+> Families face fundraising burnout. TreeRaise offers a no selling, high impact Ohio school fundraiser to raise money and plants trees.
 
 - hello@treeraise.com
 
@@ -4118,6 +3876,30 @@ Email: hello@treeraise.com
 - About
 - Blog
 - Contact
+
+### A Better Fundraiser for Ohio Schools
+
+#### Raise money without selling. Plant real trees with every donation. Support Ohio families feeling financial strain and fundraising burnout.
+
+#### 50% BACK TO YOUR SCHOOL!
+
+##### NO PRODUCT SALES!
+
+### Why Ohio Needs a New Fundraiser
+
+Families across Ohio are carrying the weight of repeated product fundraisers. Rising costs make participation stressful. Emotional burnout makes each new packet feel heavier than the last. Schools want a fundraiser that respects families while still meeting real classroom needs. TreeRaise replaces sales pressure with purpose, simplicity, and measurable environmental impact.
+
+### How TreeRaise Works in Ohio
+
+Share your fundraiser link. Supporters plant verified trees. Your school keeps the funds. No selling. No deliveries. No financial guilt placed on parents.
+
+### Impact You Can See and Trust
+
+Every contribution plants trees through monitored restoration sites. Parents and donors can see exactly what their support created through the verified impact dashboard. In a state where trust and transparency matter, this clarity builds confidence and pride.
+
+#### Start an Ohio Fundraiser That Supports Families and Students
+
+A fundraiser should not drain your community. It should restore it. Raise what your school needs with a simple, impact driven model that reduces stress for parents and teachers.
 
 Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
 
@@ -4144,9 +3926,11 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 48 — Guard Against Trafficking 2026 - TreeRaise
+## Page 45 — Eco Friendly School Fundraising in North Carolina | TreeRaise
 
-**🔗 URL:** https://treeraise.com/donations/guard-against-trafficking-2026/
+**🔗 URL:** https://treeraise.com/north-carolina/
+
+> Families need simple, meaningful fundraisers. TreeRaise helps schools raise money by planting trees in a North Carolina school fundraiser.
 
 - hello@treeraise.com
 
@@ -4159,6 +3943,30 @@ Email: hello@treeraise.com
 - About
 - Blog
 - Contact
+
+### A Better Fundraiser for North Carolina Schools
+
+#### Raise money simply. Plant real trees with every donation. Support families across North Carolina with a fundraiser that respects their time and energy.
+
+#### 50% BACK TO YOUR SCHOOL!
+
+##### NO PRODUCT SALES!
+
+### Why North Carolina Needs a New Fundraiser
+
+Many North Carolina families juggle long commutes, after school responsibilities, and limited time. Traditional fundraisers add unwanted pressure, especially for parents balancing rural distances or demanding work schedules. Emotional burnout rises with every product drive. Schools want something simple, meaningful, and respectful of families. TreeRaise removes the burden and replaces it with purpose.
+
+### How TreeRaise Works in North Carolina
+
+Share your campaign link. Supporters plant verified trees. Your school receives the funds. No selling. No deliveries. No strain on parents or teachers.
+
+### Impact You Can See and Trust
+
+Every contribution plants real trees in monitored restoration sites. Families can track their environmental impact on the verified dashboard, bringing clarity and confidence to fundraisers across the state.
+
+#### Start a North Carolina Fundraiser That Fits Real Family Life
+
+Fundraising should not add stress to overwhelmed parents and educators. Raise what your school needs with a simple, impact driven model that works for every corner of North Carolina.
 
 Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
 
@@ -4185,33 +3993,2082 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 49 — WordPress › Error
+## Page 46 — Eco Friendly School Fundraising in Texas | TreeRaise
+
+**🔗 URL:** https://treeraise.com/texas/
+
+> Texas schools are switching to no selling fundraisers that plant verified trees. Raise money simply with a TreeRaise Texas school fundraiser.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### A Better Fundraiser for Texas Schools
+
+#### Raise money quickly. Plant verified trees with every donation. Bring purpose into classrooms and communities across Texas.
+
+#### 50% BACK TO YOUR SCHOOL!
+
+##### NO PRODUCT SALES!
+
+### Why Texas Needs a New Fundraiser
+
+Texas families are tired of repeated product sales and pressure based fundraising. Schools across the state want a model that is simple, transparent, and aligned with student values. TreeRaise replaces selling with meaningful environmental impact families can be proud of.
+
+### How TreeRaise Works in Texas
+
+Share your fundraiser link. Supporters plant trees. Your school receives the funds you need. No selling. No deliveries. No stress placed on families.
+
+### Impact You Can See and Trust
+
+Every contribution plants real trees in verified restoration sites. Families and donors can track progress through the TreeRaise impact dashboard, creating a sense of pride and transparency across Texas communities.
+
+#### Start a Texas Fundraiser That Families Believe In
+
+A fundraiser should lift your community, not weigh it down. Raise funds, grow forests, and bring purpose driven giving into your school or organization.
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 47 — Eco Friendly School Fundraising in Florida | TreeRaise
+
+**🔗 URL:** https://treeraise.com/florida/
+
+> Schools are choosing simple, no selling fundraisers that plant trees. Raise funds with ease through a TreeRaise Florida school fundraiser.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### A Better Fundraiser for Florida Schools
+
+#### Raise money with ease. Plant trees with every donation. Bring purpose into classrooms and communities across Florida.
+
+#### 50% BACK TO YOUR SCHOOL!
+
+##### NO PRODUCT SALES!
+
+### Why Florida Needs a New Fundraiser
+
+Florida families are worn out by product sales that create pressure without purpose. PTAs and teachers want fundraising that is simple, transparent, and meaningful.
+
+### How TreeRaise Works in Florida
+
+Share your fundraiser link. Supporters plant verified trees. Your school keeps the funds. No selling. No inventory. No pressure.
+
+### Impact You Can See and Trust
+
+Every contribution plants real trees in monitored restoration sites. Track results through the verified impact dashboard.
+
+#### Start a Florida Fundraiser That Families Believe In
+
+Fundraising should feel inspiring, not exhausting. Raise funds with purpose and clarity.
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 48 — Cardington-Lincoln High School Fundraiser
+
+**🔗 URL:** https://treeraise.com/cardington-lincoln-high-school-fundraiser/
+
+> We are raising funds for the Class of 2029 for Junior Prom and Senior Year--let's benefit the environment too!
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+#### Cardington-Lincoln High School Fundraiser
+
+We’re raising funds for the Class of 2029! We have partnered with TreeRaise to help us earn funds to create an unforgettable junior prom and senior year! TreeRaise helps schools like ours raise funds by planting trees with each contribution. Help us make an impact on our school and the planet with your contribution!
+
+#### Recent Contributions
+
+- Anonymous contributed $15.00
+3 weeks ago
+- Kelly contributed $15.00
+3 weeks ago
+- Hannah contributed $15.00
+4 weeks ago
+- Jonus contributed $15.00
+1 month ago
+- Nichole contributed $15.00
+1 month ago
+
+#### Top Tree Raisers
+
+- Cory
+$100.00
+- tiffani
+$84.00
+- Anonymous
+$25.00
+- Donna
+$15.00
+- Angela
+$15.00
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 49 — Eco Friendly School Fundraising in Georgia | TreeRaise
+
+**🔗 URL:** https://treeraise.com/georgia/
+
+> Schools and families want simple, meaningful fundraisers. TreeRaise provides a Georgia school fundraiser that plants trees! Simple.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### A Better Fundraiser for Georgia Schools
+
+#### Raise money with ease. Plant real trees with every donation. Strengthen communities across Georgia.
+
+#### 50% BACK TO YOUR SCHOOL!
+
+##### NO PRODUCT SALES!
+
+### Why Georgia Needs a New Fundraiser
+
+Georgia families carry a heavy load. Between work, caregiving, extended family responsibilities, and school expectations, traditional product fundraisers feel exhausting. Many parents feel stretched thin emotionally and financially. Schools across the state want a model that makes life easier, not harder. TreeRaise replaces selling with purpose and transparency that families can trust.
+
+### How TreeRaise Works in Georgia
+
+Share your fundraiser link. Supporters plant verified trees. Your school receives the funds you need. No selling. No deliveries. No pressure placed on families or teachers.
+
+### Impact You Can See and Trust
+
+Every contribution plants real trees in verified restoration sites. Georgia families and donors can see the exact environmental impact through the TreeRaise impact dashboard, creating pride and connection.
+
+#### Start a Georgia Fundraiser That Brings Your Community Together
+
+A fundraiser should uplift your school and your families. Raise what you need with a simple, meaningful model that fits Georgia’s community values.
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 50 — Help Kids to Love build a FOREST of “forever families” for children who are waiting to be adopted. | TreeRaise
+
+**🔗 URL:** https://treeraise.com/kidstolove/
+
+> Let Love Grow. Through your support, Kids to Love is able to reach out even more and wrap loving arms around children through every step of their time in foster care.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+#### The Kids to Love Foundation
+
+Help us build a FOREST of “forever families” for children who are waiting to be adopted.
+
+The Kids to Love Foundation has partnered with TreeRaise to further impact your contribution. Plant a tree and grow a Childs future.
+
+#### Share Our Fundraiser
+
+#### Recent Contributions
+
+##### Every campaign starts with one Tree Raiser!
+
+Be the one to make it happen!
+
+#### Top Tree Raisers
+
+##### No top tree raisers listed yet.
+
+Be one of the first to make an impact!
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 51 — Help Colonial High School PTSA raise funds and help the planet!
+
+**🔗 URL:** https://treeraise.com/chsptsa/
+
+> Colonial High PTSA believes in serving our community as well as our school. This fundraiser is the perfect venue to serve by raising funds that will help our school.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+#### Colonial High School PTSA
+
+#### Share Our Fundraiser
+
+#### Recent Contributions
+
+- Anonymous contributed $15.00
+3 weeks ago
+- Kelly contributed $15.00
+3 weeks ago
+- Hannah contributed $15.00
+4 weeks ago
+- Jonus contributed $15.00
+1 month ago
+- Nichole contributed $15.00
+1 month ago
+
+#### Top Tree Raisers
+
+- Cory
+$100.00
+- tiffani
+$84.00
+- Anonymous
+$25.00
+- Donna
+$15.00
+- Angela
+$15.00
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 52 — HUNTSVILLE PROMENADERS
+
+**🔗 URL:** https://treeraise.com/huntsville-promenaders-fundraiser/
+
+> HUNTSVILLE PROMENADERS PROUDLY SUPPORT THE ENVIRONMENTAL GROWTH OF OUR NATION.PLEASE HELP US REACH OUR GOAL OF PLANTING 500 TREES
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+#### Huntsville Promenaders
+
+We have partnered with TreeRaise to help us raise funds for Huntsville Promenaders!
+
+TreeRaise helps organizations like ours raise funds by planting trees with each contribution. Help us make an impact on the planet with your contribution!
+
+We have a goal of planting 500 trees!
+
+#### Recent Contributions
+
+- Anonymous contributed $15.00
+2 weeks ago
+- Cheris contributed $45.00
+2 weeks ago
+- Nicholas contributed $15.00
+2 weeks ago
+- Kyle contributed $30.00
+2 weeks ago
+- Brett contributed $45.00
+2 weeks ago
+
+#### Top Tree Raisers
+
+- Regina
+$60.00
+- George
+$45.00
+- Teresa
+$45.00
+- Shirley
+$45.00
+- Jim & Kathy
+$45.00
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 53 — Eco-Friendly Fundraising - Where Giving Grows™ | TreeRaise
+
+**🔗 URL:** https://treeraise.com/
+
+> Raise funds! No selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Eco-Friendly Fundraising Where Giving Grows™
+
+Raise funds without selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees and tracking real impact.
+
+#### 50% Back to Your Organization
+
+##### No Product Sales
+
+##### Verified Environmental Impact
+
+#### Built for Every Community That Gives
+
+Schools fund classroom programs, nonprofits advance their missions, congregations support ministries—
+one fundraising platform that plants verified trees and returns 50% of contributions.
+
+##### Schools and PTAs
+
+Raise funds without product sales or order fulfillment. Inspire students through real-world environmental impact.
+
+##### Nonprofits
+
+Turn donor contributions into program funding and verified tree planting—no products, no hassle.
+
+##### Faith-Based Organizations
+
+Bring congregations together around stewardship, generosity, and meaningful community action.
+
+#### How TreeRaise Works: Four Simple Steps
+
+##### Sign Up and Set Your Goal
+
+Submit your information and set your fundraising target. Our team handles setup within a few days.
+
+##### Launch Your Fundraiser
+
+Share your campaign link via email, social media, and digital channels. No door-to-door, no product orders.
+
+##### Track Your Impact
+
+Monitor funds raised in real time. Access veritree for GPS locations, photos, and CO₂ tracking.
+
+##### Receive Your Funds
+
+Get 50% of contributions directly to your organization while trees get planted globally.
+
+#### See How It Works
+
+Get our free guide with everything you need to know—pricing, setup timeline, and what your organization earns.
+
+#### Verified Impact You Can Trust
+
+Every TreeRaise campaign plants trees through verified restoration partners and provides transparent reporting with GPS data and photos.
+
+##### Verified by veritree
+
+#### veritree has planted 100M+ verified trees globally with GPS tracking and photo documentation.
+
+##### Environmental Impact
+
+#### One mature tree absorbs 48 pounds of CO₂ annually and produces enough oxygen for two people.
+
+##### No Traditional Fundraising
+
+#### Product fundraisers require 30-40 volunteer hours and keep only 30-50% for organizations.
+
+##### Five Global Planting Regions
+
+#### Trees are planted in the United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast through our verified restoration partner.
+
+#### The Power of Diversity
+
+At TreeRaise, we believe that true strength comes from diversity, both in our ecosystems and our communities.
+
+#### Global Impact. Local Change.
+
+Trees planted through veritree in five verified regions: United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast.
+
+##### USA
+
+##### Haiti
+
+##### East Africa
+
+##### Brazil
+
+##### Canada
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 54 — Eco-Friendly Fundraising - Where Giving Grows™ | TreeRaise
+
+**🔗 URL:** https://treeraise.com/
+
+> Raise funds! No selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Eco-Friendly Fundraising Where Giving Grows™
+
+Raise funds without selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees and tracking real impact.
+
+#### 50% Back to Your Organization
+
+##### No Product Sales
+
+##### Verified Environmental Impact
+
+#### Built for Every Community That Gives
+
+Schools fund classroom programs, nonprofits advance their missions, congregations support ministries—
+one fundraising platform that plants verified trees and returns 50% of contributions.
+
+##### Schools and PTAs
+
+Raise funds without product sales or order fulfillment. Inspire students through real-world environmental impact.
+
+##### Nonprofits
+
+Turn donor contributions into program funding and verified tree planting—no products, no hassle.
+
+##### Faith-Based Organizations
+
+Bring congregations together around stewardship, generosity, and meaningful community action.
+
+#### How TreeRaise Works: Four Simple Steps
+
+##### Sign Up and Set Your Goal
+
+Submit your information and set your fundraising target. Our team handles setup within a few days.
+
+##### Launch Your Fundraiser
+
+Share your campaign link via email, social media, and digital channels. No door-to-door, no product orders.
+
+##### Track Your Impact
+
+Monitor funds raised in real time. Access veritree for GPS locations, photos, and CO₂ tracking.
+
+##### Receive Your Funds
+
+Get 50% of contributions directly to your organization while trees get planted globally.
+
+#### See How It Works
+
+Get our free guide with everything you need to know—pricing, setup timeline, and what your organization earns.
+
+#### Verified Impact You Can Trust
+
+Every TreeRaise campaign plants trees through verified restoration partners and provides transparent reporting with GPS data and photos.
+
+##### Verified by veritree
+
+#### veritree has planted 100M+ verified trees globally with GPS tracking and photo documentation.
+
+##### Environmental Impact
+
+#### One mature tree absorbs 48 pounds of CO₂ annually and produces enough oxygen for two people.
+
+##### No Traditional Fundraising
+
+#### Product fundraisers require 30-40 volunteer hours and keep only 30-50% for organizations.
+
+##### Five Global Planting Regions
+
+#### Trees are planted in the United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast through our verified restoration partner.
+
+#### The Power of Diversity
+
+At TreeRaise, we believe that true strength comes from diversity, both in our ecosystems and our communities.
+
+#### Global Impact. Local Change.
+
+Trees planted through veritree in five verified regions: United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast.
+
+##### USA
+
+##### Haiti
+
+##### East Africa
+
+##### Brazil
+
+##### Canada
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 55 — Eco-Friendly Fundraising - Where Giving Grows™ | TreeRaise
+
+**🔗 URL:** https://treeraise.com/
+
+> Raise funds! No selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Eco-Friendly Fundraising Where Giving Grows™
+
+Raise funds without selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees and tracking real impact.
+
+#### 50% Back to Your Organization
+
+##### No Product Sales
+
+##### Verified Environmental Impact
+
+#### Built for Every Community That Gives
+
+Schools fund classroom programs, nonprofits advance their missions, congregations support ministries—
+one fundraising platform that plants verified trees and returns 50% of contributions.
+
+##### Schools and PTAs
+
+Raise funds without product sales or order fulfillment. Inspire students through real-world environmental impact.
+
+##### Nonprofits
+
+Turn donor contributions into program funding and verified tree planting—no products, no hassle.
+
+##### Faith-Based Organizations
+
+Bring congregations together around stewardship, generosity, and meaningful community action.
+
+#### How TreeRaise Works: Four Simple Steps
+
+##### Sign Up and Set Your Goal
+
+Submit your information and set your fundraising target. Our team handles setup within a few days.
+
+##### Launch Your Fundraiser
+
+Share your campaign link via email, social media, and digital channels. No door-to-door, no product orders.
+
+##### Track Your Impact
+
+Monitor funds raised in real time. Access veritree for GPS locations, photos, and CO₂ tracking.
+
+##### Receive Your Funds
+
+Get 50% of contributions directly to your organization while trees get planted globally.
+
+#### See How It Works
+
+Get our free guide with everything you need to know—pricing, setup timeline, and what your organization earns.
+
+#### Verified Impact You Can Trust
+
+Every TreeRaise campaign plants trees through verified restoration partners and provides transparent reporting with GPS data and photos.
+
+##### Verified by veritree
+
+#### veritree has planted 100M+ verified trees globally with GPS tracking and photo documentation.
+
+##### Environmental Impact
+
+#### One mature tree absorbs 48 pounds of CO₂ annually and produces enough oxygen for two people.
+
+##### No Traditional Fundraising
+
+#### Product fundraisers require 30-40 volunteer hours and keep only 30-50% for organizations.
+
+##### Five Global Planting Regions
+
+#### Trees are planted in the United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast through our verified restoration partner.
+
+#### The Power of Diversity
+
+At TreeRaise, we believe that true strength comes from diversity, both in our ecosystems and our communities.
+
+#### Global Impact. Local Change.
+
+Trees planted through veritree in five verified regions: United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast.
+
+##### USA
+
+##### Haiti
+
+##### East Africa
+
+##### Brazil
+
+##### Canada
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 56 — Eco-Friendly Fundraising - Where Giving Grows™ | TreeRaise
+
+**🔗 URL:** https://treeraise.com/
+
+> Raise funds! No selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Eco-Friendly Fundraising Where Giving Grows™
+
+Raise funds without selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees and tracking real impact.
+
+#### 50% Back to Your Organization
+
+##### No Product Sales
+
+##### Verified Environmental Impact
+
+#### Built for Every Community That Gives
+
+Schools fund classroom programs, nonprofits advance their missions, congregations support ministries—
+one fundraising platform that plants verified trees and returns 50% of contributions.
+
+##### Schools and PTAs
+
+Raise funds without product sales or order fulfillment. Inspire students through real-world environmental impact.
+
+##### Nonprofits
+
+Turn donor contributions into program funding and verified tree planting—no products, no hassle.
+
+##### Faith-Based Organizations
+
+Bring congregations together around stewardship, generosity, and meaningful community action.
+
+#### How TreeRaise Works: Four Simple Steps
+
+##### Sign Up and Set Your Goal
+
+Submit your information and set your fundraising target. Our team handles setup within a few days.
+
+##### Launch Your Fundraiser
+
+Share your campaign link via email, social media, and digital channels. No door-to-door, no product orders.
+
+##### Track Your Impact
+
+Monitor funds raised in real time. Access veritree for GPS locations, photos, and CO₂ tracking.
+
+##### Receive Your Funds
+
+Get 50% of contributions directly to your organization while trees get planted globally.
+
+#### See How It Works
+
+Get our free guide with everything you need to know—pricing, setup timeline, and what your organization earns.
+
+#### Verified Impact You Can Trust
+
+Every TreeRaise campaign plants trees through verified restoration partners and provides transparent reporting with GPS data and photos.
+
+##### Verified by veritree
+
+#### veritree has planted 100M+ verified trees globally with GPS tracking and photo documentation.
+
+##### Environmental Impact
+
+#### One mature tree absorbs 48 pounds of CO₂ annually and produces enough oxygen for two people.
+
+##### No Traditional Fundraising
+
+#### Product fundraisers require 30-40 volunteer hours and keep only 30-50% for organizations.
+
+##### Five Global Planting Regions
+
+#### Trees are planted in the United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast through our verified restoration partner.
+
+#### The Power of Diversity
+
+At TreeRaise, we believe that true strength comes from diversity, both in our ecosystems and our communities.
+
+#### Global Impact. Local Change.
+
+Trees planted through veritree in five verified regions: United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast.
+
+##### USA
+
+##### Haiti
+
+##### East Africa
+
+##### Brazil
+
+##### Canada
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 57 — Eco-Friendly Fundraising - Where Giving Grows™ | TreeRaise
+
+**🔗 URL:** https://treeraise.com/
+
+> Raise funds! No selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Eco-Friendly Fundraising Where Giving Grows™
+
+Raise funds without selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees and tracking real impact.
+
+#### 50% Back to Your Organization
+
+##### No Product Sales
+
+##### Verified Environmental Impact
+
+#### Built for Every Community That Gives
+
+Schools fund classroom programs, nonprofits advance their missions, congregations support ministries—
+one fundraising platform that plants verified trees and returns 50% of contributions.
+
+##### Schools and PTAs
+
+Raise funds without product sales or order fulfillment. Inspire students through real-world environmental impact.
+
+##### Nonprofits
+
+Turn donor contributions into program funding and verified tree planting—no products, no hassle.
+
+##### Faith-Based Organizations
+
+Bring congregations together around stewardship, generosity, and meaningful community action.
+
+#### How TreeRaise Works: Four Simple Steps
+
+##### Sign Up and Set Your Goal
+
+Submit your information and set your fundraising target. Our team handles setup within a few days.
+
+##### Launch Your Fundraiser
+
+Share your campaign link via email, social media, and digital channels. No door-to-door, no product orders.
+
+##### Track Your Impact
+
+Monitor funds raised in real time. Access veritree for GPS locations, photos, and CO₂ tracking.
+
+##### Receive Your Funds
+
+Get 50% of contributions directly to your organization while trees get planted globally.
+
+#### See How It Works
+
+Get our free guide with everything you need to know—pricing, setup timeline, and what your organization earns.
+
+#### Verified Impact You Can Trust
+
+Every TreeRaise campaign plants trees through verified restoration partners and provides transparent reporting with GPS data and photos.
+
+##### Verified by veritree
+
+#### veritree has planted 100M+ verified trees globally with GPS tracking and photo documentation.
+
+##### Environmental Impact
+
+#### One mature tree absorbs 48 pounds of CO₂ annually and produces enough oxygen for two people.
+
+##### No Traditional Fundraising
+
+#### Product fundraisers require 30-40 volunteer hours and keep only 30-50% for organizations.
+
+##### Five Global Planting Regions
+
+#### Trees are planted in the United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast through our verified restoration partner.
+
+#### The Power of Diversity
+
+At TreeRaise, we believe that true strength comes from diversity, both in our ecosystems and our communities.
+
+#### Global Impact. Local Change.
+
+Trees planted through veritree in five verified regions: United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast.
+
+##### USA
+
+##### Haiti
+
+##### East Africa
+
+##### Brazil
+
+##### Canada
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 58 — Eco-Friendly Fundraising - Where Giving Grows™ | TreeRaise
+
+**🔗 URL:** https://treeraise.com/
+
+> Raise funds! No selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Eco-Friendly Fundraising Where Giving Grows™
+
+Raise funds without selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees and tracking real impact.
+
+#### 50% Back to Your Organization
+
+##### No Product Sales
+
+##### Verified Environmental Impact
+
+#### Built for Every Community That Gives
+
+Schools fund classroom programs, nonprofits advance their missions, congregations support ministries—
+one fundraising platform that plants verified trees and returns 50% of contributions.
+
+##### Schools and PTAs
+
+Raise funds without product sales or order fulfillment. Inspire students through real-world environmental impact.
+
+##### Nonprofits
+
+Turn donor contributions into program funding and verified tree planting—no products, no hassle.
+
+##### Faith-Based Organizations
+
+Bring congregations together around stewardship, generosity, and meaningful community action.
+
+#### How TreeRaise Works: Four Simple Steps
+
+##### Sign Up and Set Your Goal
+
+Submit your information and set your fundraising target. Our team handles setup within a few days.
+
+##### Launch Your Fundraiser
+
+Share your campaign link via email, social media, and digital channels. No door-to-door, no product orders.
+
+##### Track Your Impact
+
+Monitor funds raised in real time. Access veritree for GPS locations, photos, and CO₂ tracking.
+
+##### Receive Your Funds
+
+Get 50% of contributions directly to your organization while trees get planted globally.
+
+#### See How It Works
+
+Get our free guide with everything you need to know—pricing, setup timeline, and what your organization earns.
+
+#### Verified Impact You Can Trust
+
+Every TreeRaise campaign plants trees through verified restoration partners and provides transparent reporting with GPS data and photos.
+
+##### Verified by veritree
+
+#### veritree has planted 100M+ verified trees globally with GPS tracking and photo documentation.
+
+##### Environmental Impact
+
+#### One mature tree absorbs 48 pounds of CO₂ annually and produces enough oxygen for two people.
+
+##### No Traditional Fundraising
+
+#### Product fundraisers require 30-40 volunteer hours and keep only 30-50% for organizations.
+
+##### Five Global Planting Regions
+
+#### Trees are planted in the United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast through our verified restoration partner.
+
+#### The Power of Diversity
+
+At TreeRaise, we believe that true strength comes from diversity, both in our ecosystems and our communities.
+
+#### Global Impact. Local Change.
+
+Trees planted through veritree in five verified regions: United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast.
+
+##### USA
+
+##### Haiti
+
+##### East Africa
+
+##### Brazil
+
+##### Canada
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 59 — Eco-Friendly Fundraising - Where Giving Grows™ | TreeRaise
+
+**🔗 URL:** https://treeraise.com/
+
+> Raise funds! No selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Eco-Friendly Fundraising Where Giving Grows™
+
+Raise funds without selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees and tracking real impact.
+
+#### 50% Back to Your Organization
+
+##### No Product Sales
+
+##### Verified Environmental Impact
+
+#### Built for Every Community That Gives
+
+Schools fund classroom programs, nonprofits advance their missions, congregations support ministries—
+one fundraising platform that plants verified trees and returns 50% of contributions.
+
+##### Schools and PTAs
+
+Raise funds without product sales or order fulfillment. Inspire students through real-world environmental impact.
+
+##### Nonprofits
+
+Turn donor contributions into program funding and verified tree planting—no products, no hassle.
+
+##### Faith-Based Organizations
+
+Bring congregations together around stewardship, generosity, and meaningful community action.
+
+#### How TreeRaise Works: Four Simple Steps
+
+##### Sign Up and Set Your Goal
+
+Submit your information and set your fundraising target. Our team handles setup within a few days.
+
+##### Launch Your Fundraiser
+
+Share your campaign link via email, social media, and digital channels. No door-to-door, no product orders.
+
+##### Track Your Impact
+
+Monitor funds raised in real time. Access veritree for GPS locations, photos, and CO₂ tracking.
+
+##### Receive Your Funds
+
+Get 50% of contributions directly to your organization while trees get planted globally.
+
+#### See How It Works
+
+Get our free guide with everything you need to know—pricing, setup timeline, and what your organization earns.
+
+#### Verified Impact You Can Trust
+
+Every TreeRaise campaign plants trees through verified restoration partners and provides transparent reporting with GPS data and photos.
+
+##### Verified by veritree
+
+#### veritree has planted 100M+ verified trees globally with GPS tracking and photo documentation.
+
+##### Environmental Impact
+
+#### One mature tree absorbs 48 pounds of CO₂ annually and produces enough oxygen for two people.
+
+##### No Traditional Fundraising
+
+#### Product fundraisers require 30-40 volunteer hours and keep only 30-50% for organizations.
+
+##### Five Global Planting Regions
+
+#### Trees are planted in the United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast through our verified restoration partner.
+
+#### The Power of Diversity
+
+At TreeRaise, we believe that true strength comes from diversity, both in our ecosystems and our communities.
+
+#### Global Impact. Local Change.
+
+Trees planted through veritree in five verified regions: United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast.
+
+##### USA
+
+##### Haiti
+
+##### East Africa
+
+##### Brazil
+
+##### Canada
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 60 — Eco-Friendly Fundraising - Where Giving Grows™ | TreeRaise
+
+**🔗 URL:** https://treeraise.com/
+
+> Raise funds! No selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Eco-Friendly Fundraising Where Giving Grows™
+
+Raise funds without selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees and tracking real impact.
+
+#### 50% Back to Your Organization
+
+##### No Product Sales
+
+##### Verified Environmental Impact
+
+#### Built for Every Community That Gives
+
+Schools fund classroom programs, nonprofits advance their missions, congregations support ministries—
+one fundraising platform that plants verified trees and returns 50% of contributions.
+
+##### Schools and PTAs
+
+Raise funds without product sales or order fulfillment. Inspire students through real-world environmental impact.
+
+##### Nonprofits
+
+Turn donor contributions into program funding and verified tree planting—no products, no hassle.
+
+##### Faith-Based Organizations
+
+Bring congregations together around stewardship, generosity, and meaningful community action.
+
+#### How TreeRaise Works: Four Simple Steps
+
+##### Sign Up and Set Your Goal
+
+Submit your information and set your fundraising target. Our team handles setup within a few days.
+
+##### Launch Your Fundraiser
+
+Share your campaign link via email, social media, and digital channels. No door-to-door, no product orders.
+
+##### Track Your Impact
+
+Monitor funds raised in real time. Access veritree for GPS locations, photos, and CO₂ tracking.
+
+##### Receive Your Funds
+
+Get 50% of contributions directly to your organization while trees get planted globally.
+
+#### See How It Works
+
+Get our free guide with everything you need to know—pricing, setup timeline, and what your organization earns.
+
+#### Verified Impact You Can Trust
+
+Every TreeRaise campaign plants trees through verified restoration partners and provides transparent reporting with GPS data and photos.
+
+##### Verified by veritree
+
+#### veritree has planted 100M+ verified trees globally with GPS tracking and photo documentation.
+
+##### Environmental Impact
+
+#### One mature tree absorbs 48 pounds of CO₂ annually and produces enough oxygen for two people.
+
+##### No Traditional Fundraising
+
+#### Product fundraisers require 30-40 volunteer hours and keep only 30-50% for organizations.
+
+##### Five Global Planting Regions
+
+#### Trees are planted in the United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast through our verified restoration partner.
+
+#### The Power of Diversity
+
+At TreeRaise, we believe that true strength comes from diversity, both in our ecosystems and our communities.
+
+#### Global Impact. Local Change.
+
+Trees planted through veritree in five verified regions: United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast.
+
+##### USA
+
+##### Haiti
+
+##### East Africa
+
+##### Brazil
+
+##### Canada
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 61 — Eco-Friendly Fundraising - Where Giving Grows™ | TreeRaise
+
+**🔗 URL:** https://treeraise.com/
+
+> Raise funds! No selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Eco-Friendly Fundraising Where Giving Grows™
+
+Raise funds without selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees and tracking real impact.
+
+#### 50% Back to Your Organization
+
+##### No Product Sales
+
+##### Verified Environmental Impact
+
+#### Built for Every Community That Gives
+
+Schools fund classroom programs, nonprofits advance their missions, congregations support ministries—
+one fundraising platform that plants verified trees and returns 50% of contributions.
+
+##### Schools and PTAs
+
+Raise funds without product sales or order fulfillment. Inspire students through real-world environmental impact.
+
+##### Nonprofits
+
+Turn donor contributions into program funding and verified tree planting—no products, no hassle.
+
+##### Faith-Based Organizations
+
+Bring congregations together around stewardship, generosity, and meaningful community action.
+
+#### How TreeRaise Works: Four Simple Steps
+
+##### Sign Up and Set Your Goal
+
+Submit your information and set your fundraising target. Our team handles setup within a few days.
+
+##### Launch Your Fundraiser
+
+Share your campaign link via email, social media, and digital channels. No door-to-door, no product orders.
+
+##### Track Your Impact
+
+Monitor funds raised in real time. Access veritree for GPS locations, photos, and CO₂ tracking.
+
+##### Receive Your Funds
+
+Get 50% of contributions directly to your organization while trees get planted globally.
+
+#### See How It Works
+
+Get our free guide with everything you need to know—pricing, setup timeline, and what your organization earns.
+
+#### Verified Impact You Can Trust
+
+Every TreeRaise campaign plants trees through verified restoration partners and provides transparent reporting with GPS data and photos.
+
+##### Verified by veritree
+
+#### veritree has planted 100M+ verified trees globally with GPS tracking and photo documentation.
+
+##### Environmental Impact
+
+#### One mature tree absorbs 48 pounds of CO₂ annually and produces enough oxygen for two people.
+
+##### No Traditional Fundraising
+
+#### Product fundraisers require 30-40 volunteer hours and keep only 30-50% for organizations.
+
+##### Five Global Planting Regions
+
+#### Trees are planted in the United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast through our verified restoration partner.
+
+#### The Power of Diversity
+
+At TreeRaise, we believe that true strength comes from diversity, both in our ecosystems and our communities.
+
+#### Global Impact. Local Change.
+
+Trees planted through veritree in five verified regions: United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast.
+
+##### USA
+
+##### Haiti
+
+##### East Africa
+
+##### Brazil
+
+##### Canada
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 62 — Eco-Friendly Fundraising - Where Giving Grows™ | TreeRaise
+
+**🔗 URL:** https://treeraise.com/
+
+> Raise funds! No selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Eco-Friendly Fundraising Where Giving Grows™
+
+Raise funds without selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees and tracking real impact.
+
+#### 50% Back to Your Organization
+
+##### No Product Sales
+
+##### Verified Environmental Impact
+
+#### Built for Every Community That Gives
+
+Schools fund classroom programs, nonprofits advance their missions, congregations support ministries—
+one fundraising platform that plants verified trees and returns 50% of contributions.
+
+##### Schools and PTAs
+
+Raise funds without product sales or order fulfillment. Inspire students through real-world environmental impact.
+
+##### Nonprofits
+
+Turn donor contributions into program funding and verified tree planting—no products, no hassle.
+
+##### Faith-Based Organizations
+
+Bring congregations together around stewardship, generosity, and meaningful community action.
+
+#### How TreeRaise Works: Four Simple Steps
+
+##### Sign Up and Set Your Goal
+
+Submit your information and set your fundraising target. Our team handles setup within a few days.
+
+##### Launch Your Fundraiser
+
+Share your campaign link via email, social media, and digital channels. No door-to-door, no product orders.
+
+##### Track Your Impact
+
+Monitor funds raised in real time. Access veritree for GPS locations, photos, and CO₂ tracking.
+
+##### Receive Your Funds
+
+Get 50% of contributions directly to your organization while trees get planted globally.
+
+#### See How It Works
+
+Get our free guide with everything you need to know—pricing, setup timeline, and what your organization earns.
+
+#### Verified Impact You Can Trust
+
+Every TreeRaise campaign plants trees through verified restoration partners and provides transparent reporting with GPS data and photos.
+
+##### Verified by veritree
+
+#### veritree has planted 100M+ verified trees globally with GPS tracking and photo documentation.
+
+##### Environmental Impact
+
+#### One mature tree absorbs 48 pounds of CO₂ annually and produces enough oxygen for two people.
+
+##### No Traditional Fundraising
+
+#### Product fundraisers require 30-40 volunteer hours and keep only 30-50% for organizations.
+
+##### Five Global Planting Regions
+
+#### Trees are planted in the United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast through our verified restoration partner.
+
+#### The Power of Diversity
+
+At TreeRaise, we believe that true strength comes from diversity, both in our ecosystems and our communities.
+
+#### Global Impact. Local Change.
+
+Trees planted through veritree in five verified regions: United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast.
+
+##### USA
+
+##### Haiti
+
+##### East Africa
+
+##### Brazil
+
+##### Canada
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 63 — Eco-Friendly Fundraising - Where Giving Grows™ | TreeRaise
+
+**🔗 URL:** https://treeraise.com/
+
+> Raise funds! No selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Eco-Friendly Fundraising Where Giving Grows™
+
+Raise funds without selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees and tracking real impact.
+
+#### 50% Back to Your Organization
+
+##### No Product Sales
+
+##### Verified Environmental Impact
+
+#### Built for Every Community That Gives
+
+Schools fund classroom programs, nonprofits advance their missions, congregations support ministries—
+one fundraising platform that plants verified trees and returns 50% of contributions.
+
+##### Schools and PTAs
+
+Raise funds without product sales or order fulfillment. Inspire students through real-world environmental impact.
+
+##### Nonprofits
+
+Turn donor contributions into program funding and verified tree planting—no products, no hassle.
+
+##### Faith-Based Organizations
+
+Bring congregations together around stewardship, generosity, and meaningful community action.
+
+#### How TreeRaise Works: Four Simple Steps
+
+##### Sign Up and Set Your Goal
+
+Submit your information and set your fundraising target. Our team handles setup within a few days.
+
+##### Launch Your Fundraiser
+
+Share your campaign link via email, social media, and digital channels. No door-to-door, no product orders.
+
+##### Track Your Impact
+
+Monitor funds raised in real time. Access veritree for GPS locations, photos, and CO₂ tracking.
+
+##### Receive Your Funds
+
+Get 50% of contributions directly to your organization while trees get planted globally.
+
+#### See How It Works
+
+Get our free guide with everything you need to know—pricing, setup timeline, and what your organization earns.
+
+#### Verified Impact You Can Trust
+
+Every TreeRaise campaign plants trees through verified restoration partners and provides transparent reporting with GPS data and photos.
+
+##### Verified by veritree
+
+#### veritree has planted 100M+ verified trees globally with GPS tracking and photo documentation.
+
+##### Environmental Impact
+
+#### One mature tree absorbs 48 pounds of CO₂ annually and produces enough oxygen for two people.
+
+##### No Traditional Fundraising
+
+#### Product fundraisers require 30-40 volunteer hours and keep only 30-50% for organizations.
+
+##### Five Global Planting Regions
+
+#### Trees are planted in the United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast through our verified restoration partner.
+
+#### The Power of Diversity
+
+At TreeRaise, we believe that true strength comes from diversity, both in our ecosystems and our communities.
+
+#### Global Impact. Local Change.
+
+Trees planted through veritree in five verified regions: United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast.
+
+##### USA
+
+##### Haiti
+
+##### East Africa
+
+##### Brazil
+
+##### Canada
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 64 — Eco-Friendly Fundraising - Where Giving Grows™ | TreeRaise
+
+**🔗 URL:** https://treeraise.com/
+
+> Raise funds! No selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Eco-Friendly Fundraising Where Giving Grows™
+
+Raise funds without selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees and tracking real impact.
+
+#### 50% Back to Your Organization
+
+##### No Product Sales
+
+##### Verified Environmental Impact
+
+#### Built for Every Community That Gives
+
+Schools fund classroom programs, nonprofits advance their missions, congregations support ministries—
+one fundraising platform that plants verified trees and returns 50% of contributions.
+
+##### Schools and PTAs
+
+Raise funds without product sales or order fulfillment. Inspire students through real-world environmental impact.
+
+##### Nonprofits
+
+Turn donor contributions into program funding and verified tree planting—no products, no hassle.
+
+##### Faith-Based Organizations
+
+Bring congregations together around stewardship, generosity, and meaningful community action.
+
+#### How TreeRaise Works: Four Simple Steps
+
+##### Sign Up and Set Your Goal
+
+Submit your information and set your fundraising target. Our team handles setup within a few days.
+
+##### Launch Your Fundraiser
+
+Share your campaign link via email, social media, and digital channels. No door-to-door, no product orders.
+
+##### Track Your Impact
+
+Monitor funds raised in real time. Access veritree for GPS locations, photos, and CO₂ tracking.
+
+##### Receive Your Funds
+
+Get 50% of contributions directly to your organization while trees get planted globally.
+
+#### See How It Works
+
+Get our free guide with everything you need to know—pricing, setup timeline, and what your organization earns.
+
+#### Verified Impact You Can Trust
+
+Every TreeRaise campaign plants trees through verified restoration partners and provides transparent reporting with GPS data and photos.
+
+##### Verified by veritree
+
+#### veritree has planted 100M+ verified trees globally with GPS tracking and photo documentation.
+
+##### Environmental Impact
+
+#### One mature tree absorbs 48 pounds of CO₂ annually and produces enough oxygen for two people.
+
+##### No Traditional Fundraising
+
+#### Product fundraisers require 30-40 volunteer hours and keep only 30-50% for organizations.
+
+##### Five Global Planting Regions
+
+#### Trees are planted in the United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast through our verified restoration partner.
+
+#### The Power of Diversity
+
+At TreeRaise, we believe that true strength comes from diversity, both in our ecosystems and our communities.
+
+#### Global Impact. Local Change.
+
+Trees planted through veritree in five verified regions: United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast.
+
+##### USA
+
+##### Haiti
+
+##### East Africa
+
+##### Brazil
+
+##### Canada
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 65 — WordPress › Error
 
 **🔗 URL:** https://treeraise.com/campaign/cocoa-high-school/
 
 ---
 
-## Page 50 — WordPress › Error
+## Page 66 — WordPress › Error
 
 **🔗 URL:** https://treeraise.com/campaign/valley-middle-school/
 
 ---
 
-## Page 51 — WordPress › Error
+## Page 67 — WordPress › Error
 
 **🔗 URL:** https://treeraise.com/campaign/guard-against-trafficking/
 
 ---
 
-## Page 52 — WordPress › Error
+## Page 68 — WordPress › Error
 
 **🔗 URL:** https://treeraise.com/campaign/cocoa-high-school-copy/
 
 ---
 
-## Page 53 — Fundraising Tips Archives - TreeRaise
+## Page 69 — Fundraising Tips for Effective Fundraising Strategies
 
 **🔗 URL:** https://treeraise.com/category/fundraising-tips/
+
+> Learn practical fundraising tips tailored for school groups and nonprofits. Fundraise successfully without selling and with minimal effort.
 
 - hello@treeraise.com
 
@@ -4227,15 +6084,17 @@ Email: hello@treeraise.com
 
 ### Fundraising Tips
 
+#### 10 Earth Day Activities for Kids That Make a Difference
+
 #### Purpose Based Fundraising: Inspiring a New Generation in 2026
 
 #### School Fundraising Leadership: Redesigning Systems in 2026
 
 #### Parent Fundraiser Burnout: When Parents Quietly Give Up
 
-#### School Fundraising Trends 2026: The Future Every PTA Must Know
+#### School Fundraising Trends 2026: The Future for PTAs
 
-#### School Fundraiser 2026: The Five Hidden Frictions Killing Participation
+#### School Fundraiser 2026: The 5 Hidden Frictions
 
 #### School Fundraising Ideas 2026: Why Simplicity Wins
 
@@ -4244,8 +6103,6 @@ Email: hello@treeraise.com
 #### Why School Fundraisers Keep Failing: The Hidden Psychology
 
 #### Donor Trust Fundraiser Crisis: Why Buy & Sell Models Fail
-
-#### School Fundraiser Hidden Costs: Why Schools Are Switching
 
 Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
 
@@ -4272,7 +6129,103 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 54 — costs Archives - TreeRaise
+## Page 70 — School Stories of Community and Tree Planting
+
+**🔗 URL:** https://treeraise.com/category/school-stories/
+
+> Join us in celebrating School Stories that feature communities uniting for a cause. Learn how fundraising efforts led to tree planting initiatives.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### School Stories
+
+#### 10 Earth Day Activities for Kids That Make a Difference
+
+#### Purpose Based Fundraising: Inspiring a New Generation in 2026
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 71 — Sustainability & Impact of Tree Planting Campaigns
+
+**🔗 URL:** https://treeraise.com/category/sustainability-impact/
+
+> Learn about Sustainability & Impact through effective fundraising campaigns. Discover the real influence of eco-friendly initiatives today.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Sustainability & Impact
+
+#### 10 Earth Day Activities for Kids That Make a Difference
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 72 — costs Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/costs/
 
@@ -4317,7 +6270,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 55 — donor trust Archives - TreeRaise
+## Page 73 — donor trust Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/donor-trust/
 
@@ -4362,7 +6315,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 56 — donors Archives - TreeRaise
+## Page 74 — donors Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/donors/
 
@@ -4407,7 +6360,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 57 — eco-friendly Archives - TreeRaise
+## Page 75 — eco-friendly Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/eco-friendly/
 
@@ -4452,7 +6405,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 58 — Florida school fundraiser Archives - TreeRaise
+## Page 76 — Florida school fundraiser Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/florida-school-fundraiser/
 
@@ -4497,7 +6450,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 59 — fundraiser burnout Archives - TreeRaise
+## Page 77 — fundraiser burnout Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/fundraiser-burnout/
 
@@ -4542,7 +6495,52 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 60 — fundraising tips Archives - TreeRaise
+## Page 78 — fundraising Archives - TreeRaise
+
+**🔗 URL:** https://treeraise.com/tag/fundraising/
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### fundraising
+
+#### Purpose Based Fundraising: Inspiring a New Generation in 2026
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 79 — fundraising tips Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/fundraising-tips/
 
@@ -4587,7 +6585,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 61 — Georgia school fundraising Archives - TreeRaise
+## Page 80 — Georgia school fundraising Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/georgia-school-fundraising/
 
@@ -4632,7 +6630,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 62 — green fundraiser Archives - TreeRaise
+## Page 81 — green fundraiser Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/green-fundraiser/
 
@@ -4649,6 +6647,8 @@ Email: hello@treeraise.com
 - Contact
 
 ### green fundraiser
+
+#### 10 Earth Day Activities for Kids That Make a Difference
 
 #### The Eco Friendly Children’s Fundraising Ideas
 
@@ -4677,7 +6677,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 63 — impact Archives - TreeRaise
+## Page 82 — impact Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/impact/
 
@@ -4722,7 +6722,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 64 — parent fundraiser burnout Archives - TreeRaise
+## Page 83 — parent fundraiser burnout Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/parent-fundraiser-burnout/
 
@@ -4767,7 +6767,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 65 — PTA fundraising Archives - TreeRaise
+## Page 84 — PTA fundraising Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/pta-fundraising/
 
@@ -4812,7 +6812,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 66 — PTA fundraising trends Archives - TreeRaise
+## Page 85 — PTA fundraising trends Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/pta-fundraising-trends/
 
@@ -4830,7 +6830,7 @@ Email: hello@treeraise.com
 
 ### PTA fundraising trends
 
-#### School Fundraising Trends 2026: The Future Every PTA Must Know
+#### School Fundraising Trends 2026: The Future for PTAs
 
 Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
 
@@ -4857,52 +6857,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 67 — purpose based fundraising Archives - TreeRaise
-
-**🔗 URL:** https://treeraise.com/tag/purpose-based-fundraising/
-
-- hello@treeraise.com
-
-- 407-710-2345
-
-- How It Works
-- Pricing
-- Impact
-- FAQ
-- About
-- Blog
-- Contact
-
-### purpose based fundraising
-
-#### Purpose Based Fundraising: Inspiring a New Generation in 2026
-
-Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
-
-#### Fundraising
-
-- Faith-Based Fundraising
-- Nonprofit Fundraising
-- School Fundraising
-- Begin Your Impact
-
-#### Company
-
-- About TreeRaise
-
-#### Stay Connected
-
-Phone: 407-710-2345
-
-Email: hello@treeraise.com
-
-- View Trees Planted
-
-© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
-
----
-
-## Page 68 — school fundraiser Archives - TreeRaise
+## Page 86 — school fundraiser Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/school-fundraiser/
 
@@ -4919,6 +6874,12 @@ Email: hello@treeraise.com
 - Contact
 
 ### school fundraiser
+
+#### 10 Earth Day Activities for Kids That Make a Difference
+
+#### Parent Fundraiser Burnout: When Parents Quietly Give Up
+
+#### School Fundraising Trends 2026: The Future for PTAs
 
 #### Fundraising Ideas for School Clubs in North Carolina
 
@@ -4947,7 +6908,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 69 — school fundraiser friction Archives - TreeRaise
+## Page 87 — school fundraiser friction Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/school-fundraiser-friction/
 
@@ -4965,7 +6926,7 @@ Email: hello@treeraise.com
 
 ### school fundraiser friction
 
-#### School Fundraiser 2026: The Five Hidden Frictions Killing Participation
+#### School Fundraiser 2026: The 5 Hidden Frictions
 
 Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
 
@@ -4992,7 +6953,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 70 — school fundraisers Archives - TreeRaise
+## Page 88 — school fundraisers Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/school-fundraisers/
 
@@ -5041,7 +7002,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 71 — school fundraising Archives - TreeRaise
+## Page 89 — school fundraising Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/school-fundraising/
 
@@ -5058,6 +7019,12 @@ Email: hello@treeraise.com
 - Contact
 
 ### school fundraising
+
+#### 10 Earth Day Activities for Kids That Make a Difference
+
+#### School Fundraising Leadership: Redesigning Systems in 2026
+
+#### School Fundraising Trends 2026: The Future for PTAs
 
 #### School Fundraiser Hidden Costs: Why Schools Are Switching
 
@@ -5098,7 +7065,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 72 — school fundraising leadership Archives - TreeRaise
+## Page 90 — school fundraising leadership Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/school-fundraising-leadership/
 
@@ -5143,7 +7110,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 73 — simple fundraiser Archives - TreeRaise
+## Page 91 — simple fundraiser Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/simple-fundraiser/
 
@@ -5188,7 +7155,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 74 — sustainable Archives - TreeRaise
+## Page 92 — sustainable Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/sustainable/
 
@@ -5233,7 +7200,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 75 — Texas school fundraiser Archives - TreeRaise
+## Page 93 — Texas school fundraiser Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/texas-school-fundraiser/
 
@@ -5278,7 +7245,7 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 76 — zero calorie fundraiser Archives - TreeRaise
+## Page 94 — zero calorie fundraiser Archives - TreeRaise
 
 **🔗 URL:** https://treeraise.com/tag/zero-calorie-fundraiser/
 
@@ -5323,7 +7290,74 @@ Email: hello@treeraise.com
 
 ---
 
-## Page 77 — Jeff Schenck, Author at TreeRaise
+## Page 95 — Linda N. Spencer - Fundraising Expert & Author | TreeRaise
+
+**🔗 URL:** https://treeraise.com/author/linda-n-spencer/
+
+> Linda N. Spencer, fundraising expert and co-author of ‘How to Dominate Your Fundraising,’ shares strategies for nonprofit success and sustainable fundraising.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+##### About Linda
+
+From Million-Dollar Campaigns to Million-Word Stories: Where Philanthropy Meets Powerful Storytelling
+
+I’m a global content strategist and storytelling catalyst who bridges the worlds of philanthropy and narrative creation. With over two decades of senior-level experience raising more than $200 million for causes that matter—from inner-city education to international humanitarian work—I found that the heart of both fundraising and storytelling is the same: the power of story to move people to action.
+
+After successfully leading development efforts for organizations like Covenant House International (where I exceeded a $55 million annual goal, raising over $62 million), the Inner-City Scholarship Fund, and the Archdiocese of New York, I transitioned my passion for impact into the world of professional storytelling. I’ve written and edited over 16 million words across books, thought leadership articles, GEO/SEO/AEO content, speeches, and multimedia narratives for purpose-driven leaders and brands worldwide.
+
+My superpower? I understand that whether you ask someone to give $100,000 or buy your book, you ask them to believe in something bigger than themselves. This personal philanthropic foundation and ethos infuse everything I do for strategic impact.
+
+My cross-cultural perspective—having lived or worked in the United States, France, Spain, Greece, Argentina, Brazil, the UK, Mexico, and Central America—brings a global lens to my portfolio career. I’m fluent in Spanish and skilled at crafting narratives that resonate across cultures and contexts.
+
+My expertise includes legacy and thought leadership writing for executives and social entrepreneurs, writing, editing, and coaching full-length books that capture authentic voice and vision, GEO/SEO/AEO-optimized content that drives both engagement and search visibility, social impact storytelling that moves hearts and minds, and cross-cultural content strategy for global brands and leaders.
+
+My client portfolio reflects my commitment to purpose-driven work, including long-term partnerships with Funds2Orgs, Sneakers4Good, Green Sneakers, Chapel & York, High Impact Nonprofit Advisors, and others. Notably, my work with Chapel & York extends beyond content creation—due to my strategic management experience, I serve as a project consultant for their IT/Operations team, streamlining systems and implementing AI and automation solutions for this global international philanthropy firm.
+
+I’ve also advised major nonprofits, including affiliates of Make-A-Wish, United Way, Catholic Charities, and dozens of other impact organizations. When I’m not adding to my portfolio career, I explore life, legacy, and human connection on my Substack, My Red Sneakers, where my philanthropic heart and storytelling skills come together to examine the stories that bind us.
+
+I have a Master’s in Social & Organizational Psychology from Columbia University’s Teachers College and a Bachelor’s in English from St. John’s University. I believe in human-to-human connections and that every story—whether it’s a fundraising case statement or a memoir—can change the world.
+
+##### Linda's latest articles
+
+#### 10 Earth Day Activities for Kids That Make a Difference
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 96 — Jeff Schenck, Author at TreeRaise
 
 **🔗 URL:** https://treeraise.com/author/jeff/
 
@@ -5339,7 +7373,29 @@ Email: hello@treeraise.com
 - Blog
 - Contact
 
-### Jeff Schenck
+##### About Jeff
+
+From Brand Architecture to the Written Word: Where Strategic Thinking Meets Story
+
+I spent over twenty years building the kind of content most people never notice until it's gone: the brand voice that makes a cause feel urgent, the narrative that turns a donor into a believer, the words that make a mission land. As a Chief Global Growth Strategist, and Fractional: CMO and Chief Brand Officer, I have built and rebuilt brand systems across healthcare, education, SaaS, music and entertainment, global events, and nonprofit fundraising. Along the way, I kept writing.
+
+That is the thread that runs through all of it.
+
+I have contributed to publications and platforms ranging from HEAVY Magazine, one of the most recognized voices in the global metal and music press, to Planet Engagement, to LinkedIn's The Creative Shift, where I write weekly on brand strategy, AI ethics, and the future of creative work. I have written brand manifestos, campaign narratives, thought leadership content, and blog ecosystems for organizations from Wacom to Valet Custom Cabinets, and from the Edison Awards to the care economy startups I currently help scale.
+
+My connection to the Funds2Orgs world runs deeper than content. As Chief Global Growth Strategist for Elsey Enterprises, I have been at the center of the brand architecture behind the TreeRaise ecosystem since 2025. I helped develop the core identity for TreeRaise, built the omnichannel narrative for Sneakster, the official Funds2Orgs mascot, and directed the behavioral and visual strategy across their other brand portfolios. Writing for this platform is not a gig. It is a continuation of work I am already doing.
+
+My superpower? I understand that in fundraising and in brand content, you are always asking someone to believe in something larger than a transaction. That instinct shapes every word I write, whether it is a campaign headline or a 2,000-word explainer on why shoe drives change schools.
+
+My background spans industries most writers pick one of: music journalism, interior design, cannabis policy, Olympic Swim Team, sports journalism, career development, environmental advocacy, and executive brand strategy. That range is not an accident. It reflects a genuine curiosity about how people make decisions and what moves them to act. That same curiosity informs my work in behavioral science-informed marketing, a discipline I apply to content strategy the same way I apply it to growth architecture and data insights.
+
+My writing expertise includes thought leadership and executive voice content for founders and nonprofit leaders, long-form brand storytelling for mission-driven organizations, SEO and audience-first blog content across diverse verticals, campaign and social narrative development, and content strategy for multi-brand ecosystems.
+
+I hold an MBA in International Marketing, a B.S. in Information Technology, and a Broadcasting and Media Certificate from the College of San Mateo. I have also studied animation and interactive media at the Academy of Art University, and some undergrad at San Francisco State in there Broadcasting and Film Schools.
+
+When I am not building brand systems or writing The Creative Shift, I am thinking about how to make complex ideas feel simple and how to make simple causes feel necessary.
+
+##### Jeff's latest articles
 
 #### Purpose Based Fundraising: Inspiring a New Generation in 2026
 
@@ -5347,9 +7403,9 @@ Email: hello@treeraise.com
 
 #### Parent Fundraiser Burnout: When Parents Quietly Give Up
 
-#### School Fundraising Trends 2026: The Future Every PTA Must Know
+#### School Fundraising Trends 2026: The Future for PTAs
 
-#### School Fundraiser 2026: The Five Hidden Frictions Killing Participation
+#### School Fundraiser 2026: The 5 Hidden Frictions
 
 #### School Fundraising Ideas 2026: Why Simplicity Wins
 
@@ -5360,6 +7416,434 @@ Email: hello@treeraise.com
 #### Donor Trust Fundraiser Crisis: Why Buy & Sell Models Fail
 
 #### School Fundraiser Hidden Costs: Why Schools Are Switching
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 97 — Eco-Friendly Fundraising - Where Giving Grows™ | TreeRaise
+
+**🔗 URL:** https://treeraise.com/
+
+> Raise funds! No selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Eco-Friendly Fundraising Where Giving Grows™
+
+Raise funds without selling products. TreeRaise helps schools, nonprofits, and faith-based organizations fundraise by planting verified trees and tracking real impact.
+
+#### 50% Back to Your Organization
+
+##### No Product Sales
+
+##### Verified Environmental Impact
+
+#### Built for Every Community That Gives
+
+Schools fund classroom programs, nonprofits advance their missions, congregations support ministries—
+one fundraising platform that plants verified trees and returns 50% of contributions.
+
+##### Schools and PTAs
+
+Raise funds without product sales or order fulfillment. Inspire students through real-world environmental impact.
+
+##### Nonprofits
+
+Turn donor contributions into program funding and verified tree planting—no products, no hassle.
+
+##### Faith-Based Organizations
+
+Bring congregations together around stewardship, generosity, and meaningful community action.
+
+#### How TreeRaise Works: Four Simple Steps
+
+##### Sign Up and Set Your Goal
+
+Submit your information and set your fundraising target. Our team handles setup within a few days.
+
+##### Launch Your Fundraiser
+
+Share your campaign link via email, social media, and digital channels. No door-to-door, no product orders.
+
+##### Track Your Impact
+
+Monitor funds raised in real time. Access veritree for GPS locations, photos, and CO₂ tracking.
+
+##### Receive Your Funds
+
+Get 50% of contributions directly to your organization while trees get planted globally.
+
+#### See How It Works
+
+Get our free guide with everything you need to know—pricing, setup timeline, and what your organization earns.
+
+#### Verified Impact You Can Trust
+
+Every TreeRaise campaign plants trees through verified restoration partners and provides transparent reporting with GPS data and photos.
+
+##### Verified by veritree
+
+#### veritree has planted 100M+ verified trees globally with GPS tracking and photo documentation.
+
+##### Environmental Impact
+
+#### One mature tree absorbs 48 pounds of CO₂ annually and produces enough oxygen for two people.
+
+##### No Traditional Fundraising
+
+#### Product fundraisers require 30-40 volunteer hours and keep only 30-50% for organizations.
+
+##### Five Global Planting Regions
+
+#### Trees are planted in the United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast through our verified restoration partner.
+
+#### The Power of Diversity
+
+At TreeRaise, we believe that true strength comes from diversity, both in our ecosystems and our communities.
+
+#### Global Impact. Local Change.
+
+Trees planted through veritree in five verified regions: United States, Haiti, East Africa, Brazil, and Canada's Pacific Coast.
+
+##### USA
+
+##### Haiti
+
+##### East Africa
+
+##### Brazil
+
+##### Canada
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 98 — How TreeRaise Works | Eco-Friendly Fundraising Made Simple
+
+**🔗 URL:** https://treeraise.com/how-it-works/
+
+> Learn how TreeRaise helps schools, nonprofits, and faith communities raise funds without product sales using transparent, eco-friendly fundraising tools.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### How TreeRaise Works
+
+#### Launch an eco-friendly fundraiser, rally your community, and track verified environmental impact in real time.
+
+#### A Simple Platform Built for Real Communities
+
+TreeRaise is a digital fundraising platform designed to help schools, nonprofits, and faith communities raise funds without selling products. Campaigns are easy to launch, simple to share, and transparent to track.
+
+Instead of managing inventory or coordinating deliveries, organizations focus on engaging their community. Supporters contribute directly online, and every campaign funds verified environmental restoration projects that can be tracked in real time.
+
+#### What You Do:
+
+- Set your goal
+- Share your campaign link
+- Encourage families to participate
+
+#### What We Handle:
+
+- Tracking trees planted
+- Reforestation verification
+- Dashboard updates
+- Impact reporting you can share with parents
+
+#### Launch Fundraising in Four Simple Steps
+
+##### Step 1: Set Your Goal
+
+Set your fundraising target and customize your campaign to reflect your organization’s mission and community.
+
+##### Step 2: Share with Your Community
+
+Share your fundraiser digitally with families, supporters, donors, or congregations. No products. No logistics.
+
+##### Step 3: Track Your Impact
+
+Watch funds raised, trees planted, and carbon impact update in real time through your live dashboard.
+
+##### Step 4: Celebrate and Share Results
+
+Show your community the difference they helped create with verified impact reporting and updates.
+
+#### Trust and Verification You Can Count On
+
+##### GPS-Verified Planting
+
+Every tree planted through TreeRaise is verified with GPS data and on-site documentation.
+
+##### Real-Time Dashboards
+
+Track fundraising progress and environmental impact in one transparent dashboard.
+
+##### Global Restoration Network
+
+TreeRaise partners with trusted reforestation organizations supporting long-term ecosystem restoration worldwide.
+
+#### Engagement Tools That Bring Communities Together
+
+TreeRaise offers optional engagement features that help organizations keep supporters involved throughout their campaign. From progress tracking to milestone celebrations, these tools turn fundraising into a shared experience without adding complexity.
+
+##### "Impact grows when communities can see the difference they are making."
+
+#### See Results in Real Time
+
+Every TreeRaise campaign includes a live impact dashboard showing exactly how much has been raised, how many trees have been planted, and the measurable environmental impact created.
+
+##### Example of the Live Impact Dashboard
+
+Real-time tracking for your fundraising campaign
+
+$12,450
+
+Funds Raised
+
+2,490
+
+Trees Planted
+
+62.3
+
+Tons CO₂ Offset
+
+#### What Communities Are Saying
+
+“Our students loved watching the impact update in real time. It turned fundraising into something meaningful, not just another obligation.”
+
+PTA President
+
+“TreeRaise aligned perfectly with our mission. It helped us raise funds while staying true to our values.”
+
+Nonprofit Director
+
+“Our congregation appreciated that this fundraiser focused on stewardship and real impact, not selling products.”
+
+Faith Community Leader
+
+“Transparency was what mattered most to us. TreeRaise delivered that at every step.”
+
+School Administrator
+
+#### Ready to See TreeRaise in Action?
+
+Launch an eco-friendly fundraiser that respects your community, your time, and your mission.
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 99 — Faith-Based Fundraising Platform with Verified Impact
+
+**🔗 URL:** https://treeraise.com/faith-based-fundraising/
+
+> TreeRaise helps faith communities fund missions without product sales. Transparent fundraising, verified environmental impact, and stewardship aligned with your values.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Faith-Based Fundraising Where Stewardship Grows
+
+#### Raise funds for your mission while caring for creation. TreeRaise helps faith communities launch transparent, values-aligned fundraisers that create real environmental impact.
+
+#### Fundraising Aligned With Your Values
+
+Faith communities are built on trust, generosity, and shared purpose. TreeRaise replaces outdated fundraising methods with a transparent model that honors your mission while inviting your community to care for the world you serve.
+
+#### Tools for Faith Leaders and Ministry Teams
+
+##### Impact & Stewardship Reports
+
+Share transparent impact updates with leadership and your community.
+
+##### Digital Giving Resources
+
+Simple tools to help supporters participate easily and confidently.
+
+#### Community Challenges & Collective Giving
+
+##### Congregation Giving Milestones
+
+Celebrate shared goals reached together as a community.
+
+##### Seasonal Stewardship Campaigns
+
+Align giving with holidays, service weeks, or special initiatives.
+
+##### Legacy Impact Projects
+
+Build long-term impact campaigns that reflect your faith’s values.
+
+#### Everything You Need to Get Started
+
+Every fundraiser includes guides, and toolkits so you can launch quickly and succeed.
+
+Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
+
+#### Fundraising
+
+- Faith-Based Fundraising
+- Nonprofit Fundraising
+- School Fundraising
+- Begin Your Impact
+
+#### Company
+
+- About TreeRaise
+
+#### Stay Connected
+
+Phone: 407-710-2345
+
+Email: hello@treeraise.com
+
+- View Trees Planted
+
+© 2026 TreeRaise. All rights reserved. | Terms of Service | Privacy Policy | Cookie Policy | Created by Wayne Elsey Enterprises.
+
+---
+
+## Page 100 — Nonprofit Fundraising Platform with Verified Impact
+
+**🔗 URL:** https://treeraise.com/nonprofit-fundraising/
+
+> TreeRaise helps nonprofits raise funds without product sales. Transparent fundraising, verified environmental impact, and real-time reporting donors trust.
+
+- hello@treeraise.com
+
+- 407-710-2345
+
+- How It Works
+- Pricing
+- Impact
+- FAQ
+- About
+- Blog
+- Contact
+
+### Fundraising Built for Nonprofits
+
+#### Raise funds for your mission while creating verified environmental impact your supporters can see and trust.
+
+#### Designed for nonprofit leaders, development teams, and community partners.
+
+#### Fundraising That Strengthens Your Mission
+
+Fundraising should reinforce your mission, not distract from it. TreeRaise helps nonprofits replace product sales and administrative burden with transparent, impact-driven fundraising that supporters can trust. Every contribution funds your programs and restores verified forests.
+
+#### Resources for Nonprofit Teams
+
+Practical tools to launch, manage, and report on your fundraiser with confidence.
+
+##### Partner Communication Toolkit
+
+Ready-to-use messaging to explain impact clearly to supporters and boards.
+
+##### Impact Reporting Templates
+
+Verified tree data, CO₂ metrics, and transparency reports you can share with stakeholders.
+
+##### Campaign Planning Worksheets
+
+Simple planning tools for setting goals and timelines.
+
+#### Everything You Need to Get Started
+
+Every fundraiser includes guides, and toolkits so you can launch quickly and succeed.
 
 Empowering schools, nonprofits, and faith communities to raise funds while growing verified forests. Every campaign delivers verified environmental impact and builds a sustainable future for the next generation.
 
