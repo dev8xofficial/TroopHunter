@@ -177,8 +177,8 @@ Do not start writing HTML until this mapping is complete internally.
 
 ### 3. Outcome Quantification Method
 
-For every solution, produce three numbers: Time Saved, Cost Impact, and
-Effort Reduction. Use this method:
+For every solution, produce the most defensible quantified outcome set available.
+Do **not** force `hours saved` if the underlying data is weak. Use this method:
 
 **Step 1 — Classify the source of every number before it enters the report
 (internal only):**
@@ -201,30 +201,73 @@ If the only available metrics are L3 or L4, do not fabricate stronger ones.
 Instead, use directional language ("significantly reduces") and add discovery
 questions to the CTA section.
 
-**Step 2 — Calculate outcomes:**
+**Step 2 — Choose the KPI type before calculating the outcome:**
 
-**Time Saved (hours/week or hours/month):**
+Pick the strongest KPI based on evidence quality, not habit. Use this hierarchy:
+
+1. **Directly observable operational KPIs**  
+   Examples: tasks automated per week, manual steps eliminated, response time
+   reduced, process completion speed improvement, errors reduced, output capacity
+   increased, self-serve resolution rate, revenue opportunities unlocked.
+2. **Workflow-structure KPIs**  
+   Examples: percentage of process automated, approval handoffs removed, queue
+   reduction, number of tools consolidated, fewer support contacts required.
+3. **Time-based KPIs**  
+   Use hours/week or hours/month only when task duration and frequency are
+   supported strongly enough to defend the estimate.
+4. **Directional language only**  
+   If no trustworthy quantification is available, use plain directional business
+   language instead of a weak number.
+
+**Important rule:** `Hours saved` is optional, not mandatory. Use it only when at
+least one of these is true:
+- The current workflow time is explicitly stated in the files
+- The task frequency is clearly observable
+- The future-state process is concrete enough to compare fairly
+
+If those conditions are not met, choose a stronger KPI instead.
+
+**Step 3 — Calculate the selected outcome metrics:**
+
+**Operational KPI options (preferred when evidence is stronger than time data):**
+- **Tasks automated per week / month:** Use when task volume is visible even if
+  duration is not.
+- **Manual steps eliminated:** Use when the current and future workflow steps can
+  be compared clearly.
+- **Process completion speed improvement (%):** Use when before/after process
+  speed can be compared without pretending to know exact labor hours.
+- **Response time reduced:** Use for onboarding, support, approvals, or campaign
+  launch workflows.
+- **Output capacity increased:** Use when the core value is supporting more
+  campaigns, clients, or transactions without adding headcount.
+- **Errors reduced / conversion reliability improved:** Use when broken pages,
+  failed flows, or manual rework are directly observable.
+- **Revenue opportunities unlocked:** Use when a visible bottleneck delays
+  launches, campaigns, reminders, or donation completion.
+- **Team workload reduced:** Use only when it can be expressed credibly through
+  steps, queue volume, or support load.
+
+**Time-based KPI (use only when defensible):**
 - If task frequency and duration are stated in the files, calculate directly (L1).
 - If not stated, estimate from available signals with stated assumptions (L2).
   Show the basis: "Estimated: [task] × [frequency] = [total]".
-- If no signals are available, do not fabricate a number. Use directional
-  language only (L3): "significantly reduces manual coordination overhead".
+- If no signals are available, do not fabricate a number. Use a stronger
+  operational KPI or directional language instead.
 - Label every time estimate with client-facing source language, not the internal
   integrity code.
 
-**Cost Impact ($/month):**
-- Convert time saved to cost using the prospect's actual operational staff rate
-  if known (L1). If unknown, state that the rate is not available from research
-  and do not assign a fabricated cost. Use directional language or omit the
-  dollar figure entirely.
+**Cost / revenue impact (use when defensible):**
+- Convert time saved to cost only if the prospect's actual operational staff rate
+  is known (L1). If unknown, do not fabricate a dollar figure.
 - Add any direct cost reductions (e.g. removing a tool, reducing errors).
 - If the business generates revenue per client/campaign, estimate the revenue
   unlocked by faster throughput using only L1 or L2 data.
 - Label every number with client-facing source language, not the internal
   integrity code.
 
-**Effort Reduction (% or qualitative tier):**
-- Express as a percentage reduction in manual steps for that workflow.
+**Effort / automation level:**
+- Express as a percentage reduction in manual steps for that workflow when that
+  comparison is defensible.
 - Use: Minimal (< 25%), Moderate (25–60%), Significant (60–80%), Near-Full (> 80%)
 
 ### 4. Solutions to Include
@@ -240,7 +283,12 @@ For each solution card include:
   - **Must reference the Problem Register row number** this card solves
 - The solution (one sentence, what gets built)
 - Proof Status: Visible in Demo / Described Only / Future State
-- Three outcome metrics: Time Saved / Cost Impact / Effort Reduction
+- Three outcome metrics:
+  - One **primary operational KPI** chosen from the most defensible metric type
+    for that workflow
+  - Up to two supporting metrics such as cost impact, effort reduction,
+    capacity increase, response-time reduction, tasks automated, or hours saved
+    when justified
   - **Every metric must include a client-facing source note** such as
     "from [Prospect]'s own published materials", "[Estimated]", "calculated
     estimate", or "industry reference point". Do not show L1/L2/L3 labels.
@@ -373,9 +421,13 @@ frustration. Do not name the emotion.
 #### Section 6 — Projected Operational Impact
 - This section must feel like an executive summary dashboard, not a text block.
 - Include:
-  - A stat card grid: Total Annual Hours / Total Annual Cost Impact /
-    Workflows Automated / Break-even Month
-  - One horizontal bar chart: "Hours Saved Per Week by Solution"
+  - A stat card grid using the **most defensible summary KPIs available** for
+    this prospect. Examples: tasks automated, workflows automated, process speed
+    improvement, response-time reduction, output capacity increase, revenue
+    opportunities unlocked, error reduction, break-even month, or annual hours
+    only when hours are defensible
+  - One horizontal bar chart based on the **strongest comparable KPI available
+    across the chosen solutions**
   - One compact "How We Treated Every Number in This Report" panel
 - Group the visible explanations by client-facing source basis:
   - **From [Prospect]'s own published materials:** shown as confident projections
@@ -386,6 +438,9 @@ frustration. Do not name the emotion.
 - Do not include a note saying L3/L4 metrics were excluded from headlines.
   Instead, say plainly that headline figures are limited to numbers that can be
   tied directly to the prospect's materials.
+
+If hours cannot be measured confidently, do not force an hours-based chart or
+hours-based summary cards. Replace them with a more credible KPI family.
 
 Use a client-readable subheading such as "How We Treated Every Number in This
 Report". Internally, this creates Trust through honest labelling; do not name the
@@ -498,11 +553,13 @@ inline — no external files except Chart.js loaded from CDN.
 - Use Chart.js loaded from:
   `https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js`
 - Section 6 must include at minimum:
-  - One horizontal bar chart: "Hours Saved Per Week by Solution"
-  - One number/stat card grid: Total Annual Hours / Total Annual Cost Impact /
-    Workflows Automated / Break-even Month
+  - One horizontal bar chart using the most defensible comparable KPI across the
+    chosen solutions
+  - One number/stat card grid using the most defensible summary KPIs available
 - Charts must use real numbers calculated from the solution cards — no placeholder
   data
+- If `hours saved` is weak or speculative, do not use it as the chart axis or
+  as the lead stat card. Use a stronger KPI instead.
 
 **Visual modules required across the page:**
 - Hero stat cards
