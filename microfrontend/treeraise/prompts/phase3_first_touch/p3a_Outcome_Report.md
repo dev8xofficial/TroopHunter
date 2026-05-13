@@ -258,12 +258,41 @@ The HTML report must contain exactly these sections in this order:
   a visible label.
 - The hero must work as a 15-second executive scan:
   - One strong headline
-  - One short subhead (maximum 2 sentences)
+  - One short subhead (maximum 1 sentence)
   - Three headline outcome stat cards pulled from the biggest wins in the report
   - One compact "At a Glance" strip showing:
     - Current bottleneck
     - Strongest operational unlock
     - Recommended next step
+- The hero must feel calm, spacious, and premium. Avoid a crowded first screen.
+- Do not stack multiple equally loud elements on top of each other. The visual
+  hierarchy must be:
+  1. Headline
+  2. Key quantified proof
+  3. Short context
+  4. Recommended next step
+- Do not use both a loud brand badge and a second eyebrow that repeat the same
+  context. Keep top metadata to one quiet line only.
+- Do not insert manual line breaks inside the headline. Let the layout wrap
+  naturally.
+- Keep headline copy tight:
+  - Maximum 2 lines on desktop
+  - Maximum 16 words where possible
+  - No slogan-style triples or dramatic copywriting formulas
+- Keep the hero subhead tight:
+  - Maximum 24 words where possible
+  - Clarify the bottleneck and what the brief covers
+- Hero stat cards must be concise:
+  - Stat value should be prominent
+  - Stat label should be short, ideally under 12 words
+  - Source note should be brief, ideally under 5 words
+  - If explanation is needed, move it below the fold
+- The "At a Glance" strip must stay compact:
+  - Each item should read in one quick glance
+  - Prefer phrases over sentences
+  - Each value should stay under 18 words where possible
+- Do not repeat the same idea in the headline, subhead, stat cards, and glance
+  strip. Each layer should add a different level of understanding.
 - Directly sourced metrics only in the hero headline. If no directly sourced
   metrics exist, use directional language in the hero (e.g. "Significantly
   reduces manual coordination overhead") and place the strongest calculated
@@ -443,11 +472,27 @@ inline — no external files except Chart.js loaded from CDN.
 - Clean, minimal, professional — dark navy header (`#0f1c2e`), white body,
   accent colour `#2563eb` (blue), success green `#16a34a` for positive metrics
 - Font: system-ui stack — no Google Fonts (avoids loading delay during recording)
+- Use one clean sans-serif type system across the whole report. Do not use
+  Georgia, Times New Roman, or mixed serif/sans pairings.
 - Cards with subtle box shadows and `border-radius: 12px`
 - The report should look like a premium SaaS dashboard, not a Word document
 - The page must feel executive-facing: high signal, low clutter, easy to scan
 - Use strong typographic hierarchy and compact summary modules so the page reads
   well in both silent scanning and narrated walkthrough mode
+
+**Hero-specific visual rules:**
+- The hero should feel composed, not busy.
+- Avoid too many boxed elements competing for attention in the first viewport.
+- Use restrained contrast: one dominant headline area, then quieter supporting
+  modules.
+- Keep hero card borders, fills, and accent colors subtle.
+- Do not let hero stat labels become mini paragraphs.
+- Do not make the hero feel like a sales landing page. It should feel like an
+  executive brief cover with quantified proof.
+- Prefer whitespace and alignment over decorative devices.
+- Avoid redundant badges, pills, or top-level labels that do not add meaning.
+- The first viewport should look clean enough to pause on during a screen
+  recording without feeling cramped.
 
 **Charts:**
 - Use Chart.js loaded from:
@@ -492,6 +537,9 @@ inline — no external files except Chart.js loaded from CDN.
 - The first viewport should contain the headline, the top value case, and enough
   summary information that a busy executive understands the direction before
   scrolling
+- The first viewport must not feel overloaded. If the hero becomes visually dense,
+  move supporting explanation lower on the page rather than compressing more into
+  the top section.
 - Design for scan paths: left-to-right, top-to-bottom, with clear visual anchors
   at regular intervals
 - Do not bury the most important insight inside a paragraph
