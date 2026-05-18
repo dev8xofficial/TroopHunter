@@ -1,0 +1,1214 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+
+<head>
+  <script>document.documentElement.setAttribute("data-theme","light");</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carini Group — NYC Buyer's Guide</title>
+
+  <style>
+    :root {
+      --dark: #ffffff;
+      --dark2: #f8f7f5;
+      --dark3: #f1efeb;
+      --dark4: #e8e4de;
+      --dark5: #ddd8d0;
+
+      --gold: #c49a2e;
+      --gold-light: #d4a843;
+      --gold-l: #d4a843;
+      --gold-soft: #b08a24;
+      --gold-dim: rgba(196, 154, 46, 0.10);
+      --gold-glow: rgba(196, 154, 46, 0.16);
+
+      --cream: #1a1510;
+      --text: #1a1510;
+      --text-muted: rgba(26, 21, 16, 0.60);
+      --muted: rgba(26, 21, 16, 0.46);
+      --body: rgba(26, 21, 16, 0.74);
+
+      --border: rgba(212, 168, 67, 0.26);
+      --border-soft: rgba(212, 168, 67, 0.14);
+      --border-hard: rgba(212, 168, 67, 0.48);
+
+      --success: #3fd68a;
+      --success-dim: rgba(63, 214, 138, 0.14);
+      --warn: #f5a623;
+      --warn-dim: rgba(245, 166, 35, 0.14);
+      --danger: #f05252;
+      --danger-dim: rgba(240, 82, 82, 0.14);
+      --blue: #4dc8ff;
+      --blue-dim: rgba(77, 200, 255, 0.13);
+      --green: #4dd98a;
+      --green-dim: rgba(77, 217, 138, 0.13);
+      --red: #f06060;
+      --red-dim: rgba(240, 96, 96, 0.13);
+      --amber: #e8b24a;
+      --amber-dim: rgba(232, 178, 74, 0.13);
+
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'DM Sans', sans-serif;
+      --font-cormorant: 'Cormorant Garamond', serif;
+
+      --r: 5px;
+      --radius: 5px;
+      --t: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+
+      --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+      --shadow-gold: 0 0 28px rgba(212, 168, 67, 0.14);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--dark);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 60px;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      background: rgba(12, 11, 9, 0.85);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+    }
+
+    .nav-back {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-back:hover {
+      color: var(--gold);
+    }
+
+    /* GUIDE HERO */
+    .guide-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 88vh;
+      position: relative;
+    }
+
+    .gh-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 60px 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .gh-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: radial-gradient(ellipse 80% 80% at 20% 50%, rgba(201, 168, 76, 0.06), transparent 65%);
+    }
+
+    .guide-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 52px;
+      border: 1px solid rgba(212, 168, 67, 0.16);
+      width: fit-content;
+    }
+
+    .gtab {
+      padding: 10px 24px;
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      color: var(--muted);
+      background: transparent;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .gtab.active {
+      background: var(--gold);
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    .guide-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .guide-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .guide-h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(38px, 5vw, 72px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .guide-h1 em {
+      font-style: italic;
+      color: var(--gold-l);
+    }
+
+    .guide-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--body);
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: 40px;
+    }
+
+    .guide-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .preview-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 13.5px;
+      color: var(--body);
+    }
+
+    .preview-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 1px solid rgba(201, 168, 76, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    /* PDF PREVIEW */
+    .pdf-preview {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--dark2);
+    }
+
+    .pdf-mock {
+      width: 340px;
+      height: 460px;
+      background: var(--dark3);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      box-shadow:
+        30px 30px 80px rgba(0, 0, 0, 0.7),
+        -10px -10px 40px rgba(201, 168, 76, 0.04);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pdf-top {
+      height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pdf-top::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 80% at 30% 40%, rgba(201, 168, 76, 0.1), transparent);
+    }
+
+    .pdf-g-line {
+      height: 3px;
+      background: linear-gradient(to right, var(--gold), rgba(201, 168, 76, 0.3));
+      width: 40px;
+      margin-bottom: 10px;
+    }
+
+    .pdf-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .pdf-sub {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.8;
+    }
+
+    .pdf-body {
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pdf-section {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .pdf-s-title {
+      height: 8px;
+      background: rgba(201, 168, 76, 0.4);
+      border-radius: 2px;
+      width: 55%;
+    }
+
+    .pdf-line {
+      height: 5px;
+      background: rgba(245, 240, 232, 0.1);
+      border-radius: 2px;
+    }
+
+    .pdf-line-s {
+      height: 5px;
+      background: rgba(245, 240, 232, 0.07);
+      border-radius: 2px;
+      width: 75%;
+    }
+
+    .pdf-lock {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .lock-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 168, 76, 0.35);
+      background: var(--gold-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+
+    .lock-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .lock-sub {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .pdf-stack {
+      position: absolute;
+      bottom: -6px;
+      right: -6px;
+      left: 6px;
+      top: 6px;
+      background: var(--dark2);
+      border: 1px solid rgba(201, 168, 76, 0.1);
+      z-index: -1;
+    }
+
+    .pdf-stack2 {
+      position: absolute;
+      bottom: -12px;
+      right: -12px;
+      left: 12px;
+      top: 12px;
+      background: #13120e;
+      border: 1px solid rgba(201, 168, 76, 0.06);
+      z-index: -2;
+    }
+
+    /* GATE SECTION */
+    .gate-section {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 100px 40px;
+      text-align: center;
+    }
+
+    .gate-header {
+      margin-bottom: 48px;
+    }
+
+    .gate-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .gate-header h2 em {
+      font-style: italic;
+      color: var(--gold-l);
+    }
+
+    .gate-header p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      color: var(--body);
+      line-height: 1.7;
+    }
+
+    /* FORM */
+    .lead-form {
+      background: var(--dark2);
+      border: 1px solid rgba(212, 168, 67, 0.16);
+      padding: 44px 48px;
+      text-align: left;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group.full {
+      grid-column: span 2;
+    }
+
+    label {
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    input,
+    select {
+      background: var(--dark3);
+      border: 1px solid rgba(212, 168, 67, 0.16);
+      color: var(--cream);
+      padding: 14px 18px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.3s;
+      width: 100%;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: rgba(201, 168, 76, 0.5);
+    }
+
+    input::placeholder {
+      color: var(--muted);
+    }
+
+    select option {
+      background: var(--dark3);
+      color: var(--cream);
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 18px;
+      background: var(--gold);
+      color: #ffffff;
+      font-size: 11.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      margin-top: 24px;
+      transition: background 0.3s;
+    }
+
+    .form-submit:hover {
+      background: var(--gold-l);
+    }
+
+    .form-note {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 14px;
+      line-height: 1.6;
+    }
+
+    .privacy-icon {
+      display: inline;
+      margin-right: 5px;
+    }
+
+    /* QUIZ SECTION */
+    .quiz-section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px 40px 120px;
+    }
+
+    .quiz-header {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .quiz-header .sec-label {
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .quiz-progress {
+      height: 3px;
+      background: rgba(212, 168, 67, 0.14);
+      margin-bottom: 48px;
+      position: relative;
+    }
+
+    .quiz-bar {
+      height: 3px;
+      background: var(--gold);
+      transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 0%;
+    }
+
+    .quiz-step {
+      display: none;
+    }
+
+    .quiz-step.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .quiz-q {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: 36px;
+      text-align: center;
+    }
+
+    .quiz-q em {
+      font-style: italic;
+      color: var(--gold-l);
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .qopt {
+      padding: 24px 28px;
+      background: var(--dark2);
+      border: 1px solid rgba(212, 168, 67, 0.14);
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: left;
+    }
+
+    .qopt:hover {
+      background: var(--dark3);
+      border-color: rgba(201, 168, 76, 0.4);
+    }
+
+    .qopt.selected {
+      border-color: var(--gold);
+      background: rgba(212, 168, 67, 0.09);
+    }
+
+    .qopt-icon {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .qopt-label {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 5px;
+      color: var(--cream);
+    }
+
+    .qopt-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .quiz-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+    }
+
+    .quiz-btn {
+      padding: 14px 32px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+    }
+
+    .qb-back {
+      background: transparent;
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      color: var(--muted);
+    }
+
+    .qb-back:hover {
+      border-color: rgba(201, 168, 76, 0.5);
+      color: var(--cream);
+    }
+
+    .qb-next {
+      background: var(--gold);
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    .qb-next:hover {
+      background: var(--gold-l);
+    }
+
+    .quiz-step-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* RESULT */
+    .result-card {
+      background: var(--dark2);
+      border: 1px solid rgba(201, 168, 76, 0.25);
+      padding: 52px 48px;
+      text-align: center;
+    }
+
+    .result-type {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .result-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+
+    .result-name em {
+      font-style: italic;
+      color: var(--gold-l);
+    }
+
+    .result-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      color: var(--body);
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto 36px;
+    }
+
+    .result-recs {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .rec-item {
+      padding: 18px;
+      background: var(--dark3);
+      border: 1px solid rgba(201, 168, 76, 0.1);
+      font-size: 12.5px;
+      color: var(--body);
+      text-align: left;
+    }
+
+    .rec-item strong {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .result-cta {
+      padding: 18px 48px;
+      background: var(--gold);
+      color: #ffffff;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .result-cta:hover {
+      background: var(--gold-l);
+    }
+
+    /* TABS */
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+
+    /* ── LEAD CAPTURE ENHANCEMENTS ── */
+    .quiz-card {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.20) !important;
+    }
+
+    .quiz-option {
+      
+      border-color: rgba(212, 168, 67, 0.16) !important;
+      color: rgba(240, 235, 224, 0.70) !important;
+    }
+
+    .quiz-option:hover,
+    .quiz-option.selected {
+      border-color: #d4a843 !important;
+      background: rgba(212, 168, 67, 0.12) !important;
+      color: #d4a843 !important;
+    }
+
+    .step-indicator-dot {
+      background: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .step-indicator-dot.active {
+      background: #d4a843 !important;
+      box-shadow: 0 0 10px rgba(212, 168, 67, 0.40) !important;
+    }
+
+    .step-indicator-dot.done {
+      background: #3fd68a !important;
+    }
+
+    .form-input {
+      
+      border-color: rgba(212, 168, 67, 0.22) !important;
+      color: #f0ebe0 !important;
+    }
+
+    .progress-bar {
+      background: rgba(212, 168, 67, 0.10) !important;
+    }
+
+    .progress-fill {
+      background: linear-gradient(90deg, #d4a843, #f0c55a) !important;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/shared.css">
+  <script src="assets/shared.js" defer></script>
+</head>
+
+<body>
+  <nav>
+    <div class="logo">Carini Group</div>
+    <div class="nav-back" onclick="showPage('guide')">← Back to Guides</div>
+  </nav>
+
+  <!-- GUIDE LANDING PAGE -->
+  <div id="page-guide" class="page active">
+    <div class="guide-hero">
+      <div class="gh-bg"></div>
+      <div class="gh-content">
+        <div class="guide-tabs">
+          <button class="gtab active" onclick="switchGuide(this,'Buyer')">Buyer</button>
+          <button class="gtab" onclick="switchGuide(this,'Seller')">Seller</button>
+          <button class="gtab" onclick="switchGuide(this,'Rental')">Rental</button>
+        </div>
+        <div class="guide-eyebrow">Carini Group · Expert Guide</div>
+        <h1 class="guide-h1" id="guide-title">The <em>NYC Buyer's</em><br />Complete Guide</h1>
+        <p class="guide-desc" id="guide-desc">Everything you need to navigate New York City's luxury property market —
+          from pre-approval to closing day. Distilled from 18 years of high-net-worth advisory experience.</p>
+        <div class="guide-preview">
+          <div class="preview-item">
+            <div class="preview-icon">📋</div>
+            Closing process explained step-by-step
+          </div>
+          <div class="preview-item">
+            <div class="preview-icon">💰</div>
+            Real estate terms & financial structures
+          </div>
+          <div class="preview-item">
+            <div class="preview-icon">🏙️</div>
+            Neighborhood-by-neighborhood analysis
+          </div>
+          <div class="preview-item">
+            <div class="preview-icon">📊</div>
+            Market timing & negotiation strategies
+          </div>
+        </div>
+        <button class="form-submit" style="width: auto; padding: 16px 40px; font-size: 11px"
+          onclick="showPage('gate')">Download Free Guide →</button>
+      </div>
+      <div class="pdf-preview">
+        <div class="pdf-stack2"></div>
+        <div class="pdf-stack"></div>
+        <div class="pdf-mock">
+          <div class="pdf-top">
+            <div class="pdf-g-line"></div>
+            <div class="pdf-title" id="pdf-mock-title">The NYC Buyer's<br />Complete Guide</div>
+            <div class="pdf-sub">Carini Group · 2025 Edition</div>
+          </div>
+          <div class="pdf-body">
+            <div class="pdf-section">
+              <div class="pdf-s-title"></div>
+              <div class="pdf-line"></div>
+              <div class="pdf-line"></div>
+              <div class="pdf-line-s"></div>
+            </div>
+            <div class="pdf-section">
+              <div class="pdf-s-title" style="width: 45%"></div>
+              <div class="pdf-line"></div>
+              <div class="pdf-line-s"></div>
+            </div>
+            <div class="pdf-section">
+              <div class="pdf-s-title" style="width: 60%"></div>
+              <div class="pdf-line"></div>
+              <div class="pdf-line"></div>
+            </div>
+          </div>
+          <div class="pdf-lock">
+            <div class="lock-icon">🔒</div>
+            <div class="lock-text">Unlock the Full Guide</div>
+            <div class="lock-sub">Enter your details to receive the complete<br />guide directly to your inbox.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GATE: LEAD CAPTURE FORM -->
+  <div id="page-gate" class="page">
+    <div class="gate-section">
+      <div class="gate-header">
+        <div
+          style="font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 12px">
+          <span style="width: 24px; height: 1px; background: var(--gold); display: inline-block"></span>One Last Step
+        </div>
+        <h2>You're moments from<br /><em>expert knowledge.</em></h2>
+        <p style="margin-top: 14px">Tell us where to send your guide — and we'll tailor our follow-up to exactly what
+          you need.</p>
+      </div>
+      <div class="lead-form">
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" placeholder="Alessandro" /></div>
+          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Rossi" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com" /></div>
+          <div class="form-group"><label>Phone (Optional)</label><input type="tel" placeholder="+1 212 000 0000" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>I Am A</label>
+            <select>
+              <option>First-time NYC buyer</option>
+              <option>Experienced NYC buyer</option>
+              <option>International investor</option>
+              <option>Portfolio builder</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Timeline</label>
+            <select>
+              <option>Within 3 months</option>
+              <option>3–6 months</option>
+              <option>6–12 months</option>
+              <option>Just researching</option>
+            </select>
+          </div>
+        </div>
+        <button class="form-submit" onclick="showPage('quiz')">Send Me the Guide & Take the Investor Quiz →</button>
+        <p class="form-note"><span class="privacy-icon">🔒</span>Your details are private. No spam. One guide delivery +
+          relevant market insights only.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ: INVESTOR TYPE -->
+  <div id="page-quiz" class="page">
+    <div class="quiz-section">
+      <div class="quiz-header">
+        <div class="sec-label"
+          style="display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 12px"><span
+            style="width: 24px; height: 1px; background: var(--gold); display: inline-block"></span>Investor Profile
+          Quiz</div>
+        <h2
+          style="font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.5vw, 42px); font-weight: 400; line-height: 1.15; margin-bottom: 12px">
+          What type of NYC investor<br /><em style="font-style: italic; color: var(--gold-l)">are you?</em></h2>
+        <p style="font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--body); line-height: 1.65">
+          Answer 4 quick questions. We'll match you to the properties, strategies, and advisor approach that fit your
+          goals.</p>
+      </div>
+
+      <div class="quiz-progress">
+        <div class="quiz-bar" id="qbar"></div>
+      </div>
+      <div
+        style="display: flex; justify-content: space-between; margin-bottom: 32px; font-size: 11px; color: var(--muted)">
+        <span id="step-label">Question 1 of 4</span>
+        <span id="step-pct">0% complete</span>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="quiz-step active" id="qs1">
+        <div class="quiz-q">What best describes your<br /><em>primary investment goal?</em></div>
+        <div class="quiz-options">
+          <div class="qopt" onclick="selectOpt(this,'wealth')">
+            <div class="qopt-icon">📈</div>
+            <div class="qopt-label">Long-term Wealth Building</div>
+            <div class="qopt-desc">Acquiring and holding appreciating assets over 5–10+ years</div>
+          </div>
+          <div class="qopt" onclick="selectOpt(this,'income')">
+            <div class="qopt-icon">💵</div>
+            <div class="qopt-label">Rental Income Generation</div>
+            <div class="qopt-desc">Cash-flowing properties with strong yield from day one</div>
+          </div>
+          <div class="qopt" onclick="selectOpt(this,'lifestyle')">
+            <div class="qopt-icon">🌆</div>
+            <div class="qopt-label">Lifestyle + Investment</div>
+            <div class="qopt-desc">Primary or secondary residence with investment upside</div>
+          </div>
+          <div class="qopt" onclick="selectOpt(this,'portfolio')">
+            <div class="qopt-icon">🏛️</div>
+            <div class="qopt-label">Portfolio Diversification</div>
+            <div class="qopt-desc">Adding real estate to an existing multi-asset portfolio</div>
+          </div>
+        </div>
+        <div class="quiz-nav">
+          <span class="quiz-step-label">Select one option to continue</span>
+          <button class="quiz-btn qb-next" onclick="nextStep(2)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="quiz-step" id="qs2">
+        <div class="quiz-q">What is your <em>investment horizon</em><br />for this acquisition?</div>
+        <div class="quiz-options">
+          <div class="qopt" onclick="selectOpt(this,'short')">
+            <div class="qopt-icon">⚡</div>
+            <div class="qopt-label">1–3 Years</div>
+            <div class="qopt-desc">Value-add, flip, or short repositioning play</div>
+          </div>
+          <div class="qopt" onclick="selectOpt(this,'mid')">
+            <div class="qopt-icon">📅</div>
+            <div class="qopt-label">3–7 Years</div>
+            <div class="qopt-desc">Medium-term hold with appreciation and income</div>
+          </div>
+          <div class="qopt" onclick="selectOpt(this,'long')">
+            <div class="qopt-icon">🌳</div>
+            <div class="qopt-label">7+ Years</div>
+            <div class="qopt-desc">Generational wealth and estate planning asset</div>
+          </div>
+          <div class="qopt" onclick="selectOpt(this,'open')">
+            <div class="qopt-icon">🔭</div>
+            <div class="qopt-label">Open / Undecided</div>
+            <div class="qopt-desc">Flexible — I'll follow the market opportunity</div>
+          </div>
+        </div>
+        <div class="quiz-nav">
+          <button class="quiz-btn qb-back" onclick="prevStep(1)">← Back</button>
+          <button class="quiz-btn qb-next" onclick="nextStep(3)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="quiz-step" id="qs3">
+        <div class="quiz-q">Where are you based<br /><em>geographically?</em></div>
+        <div class="quiz-options">
+          <div class="qopt" onclick="selectOpt(this,'nyc')">
+            <div class="qopt-icon">🗽</div>
+            <div class="qopt-label">New York City / Tri-State</div>
+            <div class="qopt-desc">Local buyer, familiar with the NYC market</div>
+          </div>
+          <div class="qopt" onclick="selectOpt(this,'us')">
+            <div class="qopt-icon">🇺🇸</div>
+            <div class="qopt-label">Elsewhere in the USA</div>
+            <div class="qopt-desc">Domestic buyer investing in the NYC market</div>
+          </div>
+          <div class="qopt" onclick="selectOpt(this,'eu')">
+            <div class="qopt-icon">🇪🇺</div>
+            <div class="qopt-label">Europe (Italy / Spain / Other)</div>
+            <div class="qopt-desc">International investor with cross-border considerations</div>
+          </div>
+          <div class="qopt" onclick="selectOpt(this,'global')">
+            <div class="qopt-icon">🌏</div>
+            <div class="qopt-label">Asia / Latin America / Other</div>
+            <div class="qopt-desc">Global investor diversifying into US real estate</div>
+          </div>
+        </div>
+        <div class="quiz-nav">
+          <button class="quiz-btn qb-back" onclick="prevStep(2)">← Back</button>
+          <button class="quiz-btn qb-next" onclick="nextStep(4)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="quiz-step" id="qs4">
+        <div class="quiz-q">What is your <em>acquisition budget</em><br />for this investment?</div>
+        <div class="quiz-options">
+          <div class="qopt" onclick="selectOpt(this,'u2m')">
+            <div class="qopt-icon">💼</div>
+            <div class="qopt-label">Under $2M</div>
+            <div class="qopt-desc">Entry-level luxury — Brooklyn, Uptown, Astoria</div>
+          </div>
+          <div class="qopt" onclick="selectOpt(this,'2to5m')">
+            <div class="qopt-icon">🏢</div>
+            <div class="qopt-label">$2M – $5M</div>
+            <div class="qopt-desc">Core Manhattan — Tribeca, Chelsea, Upper East Side</div>
+          </div>
+          <div class="qopt" onclick="selectOpt(this,'5to15m')">
+            <div class="qopt-icon">🏛️</div>
+            <div class="qopt-label">$5M – $15M</div>
+            <div class="qopt-desc">Premium positioning — Park Avenue, Central Park West</div>
+          </div>
+          <div class="qopt" onclick="selectOpt(this,'o15m')">
+            <div class="qopt-icon">👑</div>
+            <div class="qopt-label">$15M+</div>
+            <div class="qopt-desc">Ultra-luxury — Billionaires' Row, full-floor residences</div>
+          </div>
+        </div>
+        <div class="quiz-nav">
+          <button class="quiz-btn qb-back" onclick="prevStep(3)">← Back</button>
+          <button class="quiz-btn qb-next" onclick="showResult()">See My Investor Profile →</button>
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div class="quiz-step" id="qs-result">
+        <div class="result-card">
+          <div class="result-type">Your Investor Profile</div>
+          <div class="result-name" id="result-name">The <em>Strategic Wealth Builder</em></div>
+          <p class="result-desc" id="result-desc">You're a long-term thinker with a portfolio mindset. Your best play in
+            NYC is acquiring prime-location assets in transitioning neighborhoods — capturing both appreciation and
+            rental yield over a 7+ year horizon.</p>
+          <div class="result-recs" id="result-recs">
+            <div class="rec-item"><strong>Best Neighborhoods</strong>Tribeca, Hudson Yards, Long Island City</div>
+            <div class="rec-item"><strong>Property Type</strong>1–2BR luxury condos, pre-construction</div>
+            <div class="rec-item"><strong>Strategy</strong>Buy-and-hold with 1031 exchange optimization</div>
+          </div>
+          <div
+            style="margin-bottom: 24px; padding: 20px; background: var(--dark3); border: 1px solid rgba(212, 168, 67, 0.14); font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--body); line-height: 1.65">
+            ✦ Your guide has been sent. Alex Carini's team will reach out within 24 hours to discuss your profile and
+            schedule a complimentary strategy session.</div>
+          <button class="result-cta">Schedule My Consultation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentAnswers = {};
+    let currentStep = 1;
+
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach((p) => p.classList.remove('active'));
+      document.getElementById('page-' + id).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    function switchGuide(btn, type) {
+      document.querySelectorAll('.gtab').forEach((t) => t.classList.remove('active'));
+      btn.classList.add('active');
+      const titles = {
+        Buyer: ["The <em>NYC Buyer's</em><br>Complete Guide", "Everything you need to navigate New York City's luxury property market — from pre-approval to closing day.", "The NYC Buyer's<br>Complete Guide"],
+        Seller: ["The <em>NYC Seller's</em><br>Definitive Guide", 'Maximise your property value in a competitive market. Pricing, timing, staging, and negotiation — all covered.', "The NYC Seller's<br>Definitive Guide"],
+        Rental: ['The <em>NYC Rental</em><br>Investor Playbook', "Unlock reliable income streams from Manhattan and Brooklyn's strongest rental submarkets.", 'The NYC Rental<br>Investor Playbook'],
+      };
+      document.getElementById('guide-title').innerHTML = titles[type][0];
+      document.getElementById('guide-desc').textContent = titles[type][1];
+      document.getElementById('pdf-mock-title').innerHTML = titles[type][2];
+    }
+
+    function selectOpt(el, val) {
+      el.closest('.quiz-step')
+        .querySelectorAll('.qopt')
+        .forEach((o) => o.classList.remove('selected'));
+      el.classList.add('selected');
+      currentAnswers['step' + currentStep] = val;
+    }
+
+    function nextStep(n) {
+      goStep(n);
+    }
+    function prevStep(n) {
+      goStep(n);
+    }
+
+    function goStep(n) {
+      document.querySelectorAll('.quiz-step').forEach((s) => s.classList.remove('active'));
+      document.getElementById('qs' + n).classList.add('active');
+      currentStep = n;
+      const pct = Math.round(((n - 1) / 4) * 100);
+      document.getElementById('qbar').style.width = pct + '%';
+      document.getElementById('step-label').textContent = 'Question ' + n + ' of 4';
+      document.getElementById('step-pct').textContent = pct + '% complete';
+    }
+
+    function showResult() {
+      document.getElementById('qbar').style.width = '100%';
+      document.getElementById('step-label').textContent = 'Complete';
+      document.getElementById('step-pct').textContent = '100% complete';
+      document.querySelectorAll('.quiz-step').forEach((s) => s.classList.remove('active'));
+
+      // Determine profile
+      const g1 = currentAnswers['step1'] || 'wealth';
+      const g4 = currentAnswers['step4'] || '5to15m';
+      const g3 = currentAnswers['step3'] || 'nyc';
+
+      let name, desc, recs;
+      if (g3 === 'eu' || g3 === 'global') {
+        name = 'The <em>Global Portfolio Investor</em>';
+        desc = "You're an international investor with a sophisticated view of USD-denominated assets. Your priorities are currency efficiency, 1031 exchange structuring, and accessing NYC's most stable appreciation corridors.";
+        recs = ['<strong>Best Neighborhoods</strong>Midtown, Upper East Side, Financial District', '<strong>Focus</strong>1031 exchange optimization, foreign fund structuring', '<strong>Next Step</strong>International investor consultation in your language'];
+      } else if (g1 === 'income') {
+        name = 'The <em>Cash-Flow Strategist</em>';
+        desc = "You're income-first. Your edge in NYC is identifying properties with strong rental demand — focusing on supply-constrained submarkets where vacancy stays low and rents grow reliably year-over-year.";
+        recs = ['<strong>Best Neighborhoods</strong>Long Island City, Williamsburg, Midtown East', '<strong>Property Type</strong>Multi-unit, rental-stabilized, high-yield condos', '<strong>Strategy</strong>Cash-flow first, appreciation second'];
+      } else if (g4 === 'o15m' || g4 === '5to15m') {
+        name = 'The <em>Ultra-Luxury Acquirer</em>';
+        desc = 'You operate at the top of the market where discretion, access, and timing are everything. Your best opportunities come through off-market networks — not public listings.';
+        recs = ["<strong>Best Properties</strong>Billionaires' Row, Park Ave, full-floor condos", '<strong>Access</strong>Pre-market and off-market opportunities only', '<strong>Advisory</strong>Direct relationship with Alex Carini'];
+      } else {
+        name = 'The <em>Strategic Wealth Builder</em>';
+        desc = "You're a long-term thinker with a portfolio mindset. Your best play in NYC is acquiring prime-location assets in transitioning neighborhoods — capturing appreciation and rental yield over a 7+ year horizon.";
+        recs = ['<strong>Best Neighborhoods</strong>Tribeca, Hudson Yards, Long Island City', '<strong>Property Type</strong>1–2BR luxury condos, pre-construction', '<strong>Strategy</strong>Buy-and-hold with 1031 exchange optimization'];
+      }
+
+      document.getElementById('result-name').innerHTML = name;
+      document.getElementById('result-desc').textContent = desc;
+      document.getElementById('result-recs').innerHTML = recs.map((r) => `<div class="rec-item">${r}</div>`).join('');
+      document.getElementById('qs-result').classList.add('active');
+    }
+  </script>
+  </div>
+
+
+</body>
+
+</html>

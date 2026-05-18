@@ -2,7 +2,7 @@
 <html lang="en" data-theme="light">
 
 <head>
-  <script>document.documentElement.setAttribute("data-theme", "light");</script>
+  <script>document.documentElement.setAttribute("data-theme","light");</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carini Group — Client & Agent Dashboards</title>
@@ -1229,6 +1229,102 @@
       border-color: var(--gold);
       color: var(--gold)
     }
+
+
+    /* ── DASHBOARDS ENHANCEMENTS ── */
+    .sidebar-logo-text {
+      color: #d4a843 !important;
+      text-shadow: 0 0 20px rgba(212, 168, 67, 0.30) !important;
+    }
+
+    .sidebar-logo-sub {
+      color: rgba(240, 235, 224, 0.40) !important;
+    }
+
+    .user-name {
+      color: #f0ebe0 !important;
+    }
+
+    .user-role {
+      color: #d4a843 !important;
+    }
+
+    .user-avatar {
+      border-color: #d4a843 !important;
+      color: #d4a843 !important;
+      background: rgba(212, 168, 67, 0.12) !important;
+    }
+
+    .sidebar-nav-link {
+      color: rgba(240, 235, 224, 0.52) !important;
+    }
+
+    .sidebar-nav-link:hover {
+      color: #f0ebe0 !important;
+      background: rgba(212, 168, 67, 0.09) !important;
+    }
+
+    .sidebar-nav-link.active {
+      color: #d4a843 !important;
+      background: rgba(212, 168, 67, 0.14) !important;
+      border-left-color: #d4a843 !important;
+    }
+
+    .nav-section-title {
+      color: rgba(240, 235, 224, 0.35) !important;
+    }
+
+    .metric-card {
+      background: #0d0c10 !important;
+      border-color: rgba(212, 168, 67, 0.18) !important;
+    }
+
+    .metric-value {
+      color: #d4a843 !important;
+      font-size: 28px !important;
+    }
+
+    .metric-label {
+      color: rgba(240, 235, 224, 0.55) !important;
+    }
+
+    .metric-delta.up {
+      color: #3fd68a !important;
+    }
+
+    .metric-delta.down {
+      color: #f05252 !important;
+    }
+
+    .role-switcher {
+      
+      border-color: rgba(212, 168, 67, 0.20) !important;
+    }
+
+    .role-tab {
+      color: rgba(240, 235, 224, 0.50) !important;
+    }
+
+    .role-tab.active {
+      background: rgba(212, 168, 67, 0.14) !important;
+      color: #d4a843 !important;
+    }
+
+    .deal-milestone {
+      border-color: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .milestone-done {
+      color: #3fd68a !important;
+    }
+
+    .milestone-active {
+      color: #d4a843 !important;
+    }
+
+    .milestone-pending {
+      color: rgba(240, 235, 224, 0.38) !important;
+    }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1239,7 +1335,7 @@
   <script src="assets/shared.js" defer></script>
 </head>
 
-<body data-page="phase3_dashboards">
+<body>
 
   <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
@@ -2614,12 +2710,10 @@
               <thead>
                 <tr>
                   <th>Property</th>
-                  <th>Client</th>
-                  <th>Stage</th>
                   <th>Price</th>
                   <th>Est. Close</th>
                   <th>Commission</th>
-                  <th></th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -2773,6 +2867,7 @@
     setInterval(updateClock, 1000);
     updateClock();
   </script>
+  </div>
 
 
 </body>

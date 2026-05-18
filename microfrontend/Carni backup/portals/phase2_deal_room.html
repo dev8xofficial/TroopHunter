@@ -1,0 +1,1653 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+
+<head>
+  <script>document.documentElement.setAttribute("data-theme","light");</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carini Group — Deal Room</title>
+
+  <style>
+    :root {
+      --dark: #ffffff;
+      --dark2: #f8f7f5;
+      --dark3: #f1efeb;
+      --dark4: #e8e4de;
+      --dark5: #ddd8d0;
+
+      --gold: #c49a2e;
+      --gold-light: #d4a843;
+      --gold-l: #d4a843;
+      --gold-soft: #b08a24;
+      --gold-dim: rgba(196, 154, 46, 0.10);
+      --gold-glow: rgba(196, 154, 46, 0.16);
+
+      --cream: #1a1510;
+      --text: #1a1510;
+      --text-muted: rgba(26, 21, 16, 0.60);
+      --muted: rgba(26, 21, 16, 0.46);
+      --body: rgba(26, 21, 16, 0.74);
+
+      --border: rgba(212, 168, 67, 0.26);
+      --border-soft: rgba(212, 168, 67, 0.14);
+      --border-hard: rgba(212, 168, 67, 0.48);
+
+      --success: #3fd68a;
+      --success-dim: rgba(63, 214, 138, 0.14);
+      --warn: #f5a623;
+      --warn-dim: rgba(245, 166, 35, 0.14);
+      --danger: #f05252;
+      --danger-dim: rgba(240, 82, 82, 0.14);
+      --blue: #4dc8ff;
+      --blue-dim: rgba(77, 200, 255, 0.13);
+      --green: #4dd98a;
+      --green-dim: rgba(77, 217, 138, 0.13);
+      --red: #f06060;
+      --red-dim: rgba(240, 96, 96, 0.13);
+      --amber: #e8b24a;
+      --amber-dim: rgba(232, 178, 74, 0.13);
+
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'DM Sans', sans-serif;
+      --font-cormorant: 'Cormorant Garamond', serif;
+
+      --r: 5px;
+      --radius: 5px;
+      --t: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+
+      --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+      --shadow-gold: 0 0 28px rgba(212, 168, 67, 0.14);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      background: var(--dark2);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .35
+    }
+
+    /* ── LAYOUT ── */
+    .app {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 100vh
+    }
+
+    /* ── SIDEBAR ── */
+    .sb {
+      background: var(--dark);
+      border-right: 1px solid rgba(201, 168, 76, .08);
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto
+    }
+
+    .sb-head {
+      padding: 24px 20px;
+      border-bottom: 1px solid rgba(201, 168, 76, .08)
+    }
+
+    .sb-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: var(--gold)
+    }
+
+    .sb-sub {
+      font-size: 8.5px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 1px
+    }
+
+    .deal-list {
+      padding: 12px 0
+    }
+
+    .deal-section {
+      padding: 12px 16px 6px;
+      font-size: 8.5px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .deal-item {
+      padding: 10px 16px;
+      cursor: pointer;
+      border-left: 2px solid transparent;
+      transition: all .2s;
+      margin: 2px 8px;
+      border-radius: 2px
+    }
+
+    .deal-item:hover {
+      background: var(--gold-dim)
+    }
+
+    .deal-item.active {
+      background: var(--gold-dim);
+      border-left-color: var(--gold)
+    }
+
+    .di-name {
+      font-size: 12.5px;
+      color: var(--cream);
+      margin-bottom: 2px
+    }
+
+    .di-meta {
+      font-size: 10px;
+      color: var(--muted)
+    }
+
+    .di-badge {
+      display: inline-block;
+      padding: 1px 6px;
+      font-size: 8.5px;
+      border-radius: 10px;
+      margin-left: 6px;
+      vertical-align: middle
+    }
+
+    .badge-active {
+      background: var(--gold-dim);
+      color: var(--gold)
+    }
+
+    .badge-close {
+      background: var(--green-dim);
+      color: var(--green)
+    }
+
+    .sb-footer {
+      margin-top: auto;
+      padding: 16px;
+      border-top: 1px solid rgba(201, 168, 76, .08)
+    }
+
+    .sb-user {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .sb-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 1px solid rgba(201, 168, 76, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      flex-shrink: 0
+    }
+
+    .sb-uname {
+      font-size: 12.5px;
+      color: var(--cream)
+    }
+
+    .sb-urole {
+      font-size: 9.5px;
+      color: var(--muted)
+    }
+
+    /* ── MAIN ── */
+    .main {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh
+    }
+
+    /* ── DEAL HEADER ── */
+    .deal-header {
+      padding: 20px 32px;
+      background: var(--dark);
+      border-bottom: 1px solid rgba(201, 168, 76, .08);
+      display: flex;
+      align-items: flex-start;
+      gap: 20px
+    }
+
+    .dh-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(201, 168, 76, .25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0
+    }
+
+    .dh-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--cream)
+    }
+
+    .dh-meta {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-top: 3px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap
+    }
+
+    .dh-meta span {
+      display: flex;
+      align-items: center;
+      gap: 5px
+    }
+
+    .dh-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0
+    }
+
+    .dh-status {
+      padding: 6px 14px;
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      border: 1px solid rgba(107, 191, 107, .35);
+      color: var(--green);
+      background: var(--green-dim)
+    }
+
+    .dh-btn {
+      padding: 8px 16px;
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--dark);
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      transition: background .2s
+    }
+
+    .dh-btn:hover {
+      background: var(--gold-l)
+    }
+
+    .dh-btn.outline {
+      background: transparent;
+      border: 1px solid rgba(201, 168, 76, .3);
+      color: var(--gold)
+    }
+
+    .dh-btn.outline:hover {
+      background: var(--gold-dim)
+    }
+
+    /* ── PARTICIPANTS ── */
+    .participants {
+      padding: 12px 32px;
+      background: var(--dark);
+      border-bottom: 1px solid rgba(201, 168, 76, .06);
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .part-label {
+      font-size: 9.5px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-right: 4px
+    }
+
+    .part-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: var(--dark3);
+      border: 1px solid rgba(201, 168, 76, .1);
+      font-size: 11px
+    }
+
+    .part-avatar {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 1px solid rgba(201, 168, 76, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      color: var(--gold)
+    }
+
+    .part-name {
+      color: var(--cream)
+    }
+
+    .part-role {
+      color: var(--muted);
+      font-size: 9px
+    }
+
+    .part-add {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border: 1px dashed rgba(201, 168, 76, .2);
+      color: var(--muted);
+      font-size: 11px;
+      cursor: pointer;
+      transition: all .2s
+    }
+
+    .part-add:hover {
+      border-color: rgba(201, 168, 76, .4);
+      color: var(--gold)
+    }
+
+    /* ── TABS ── */
+    .deal-tabs {
+      display: flex;
+      gap: 0;
+      padding: 0 32px;
+      background: var(--dark);
+      border-bottom: 1px solid rgba(201, 168, 76, .1)
+    }
+
+    .d-tab {
+      padding: 14px 0;
+      margin-right: 28px;
+      font-size: 10.5px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all .2s;
+      background: none;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      font-family: 'DM Sans', sans-serif;
+      white-space: nowrap
+    }
+
+    .d-tab:hover {
+      color: var(--cream)
+    }
+
+    .d-tab.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold)
+    }
+
+    .d-tab .notif {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background: var(--red);
+      color: white;
+      border-radius: 50%;
+      font-size: 8px;
+      line-height: 16px;
+      text-align: center;
+      margin-left: 5px;
+      vertical-align: middle
+    }
+
+    /* ── PANEL CONTENT ── */
+    .d-panel {
+      display: none;
+      padding: 28px 32px;
+      flex: 1;
+      animation: fadeIn .25s ease
+    }
+
+    .d-panel.active {
+      display: block
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    .panel-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px
+    }
+
+    .panel-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px
+    }
+
+    /* ── SECTION CARD ── */
+    .s-card {
+      background: var(--dark3);
+      border: 1px solid rgba(201, 168, 76, .1);
+      padding: 20px 22px
+    }
+
+    .s-card-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(201, 168, 76, .08)
+    }
+
+    .s-card-title {
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      flex: 1
+    }
+
+    .s-card-action {
+      font-size: 10px;
+      color: var(--muted);
+      cursor: pointer;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: color .2s
+    }
+
+    .s-card-action:hover {
+      color: var(--gold)
+    }
+
+    /* ── MILESTONE TRACKER ── */
+    .milestone-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0
+    }
+
+    .milestone {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 12px 0;
+      cursor: pointer;
+      transition: background .2s
+    }
+
+    .milestone:hover {
+      background: var(--gold-dim);
+      margin: 0 -22px;
+      padding: 12px 22px
+    }
+
+    .ms-track {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      flex-shrink: 0
+    }
+
+    .ms-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid rgba(201, 168, 76, .25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      transition: all .3s;
+      background: var(--dark2)
+    }
+
+    .ms-dot.done {
+      background: var(--green-dim);
+      border-color: var(--green);
+      color: var(--green)
+    }
+
+    .ms-dot.current {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+      color: var(--gold);
+      box-shadow: 0 0 0 4px rgba(201, 168, 76, .1)
+    }
+
+    .ms-dot.future {
+      color: var(--muted)
+    }
+
+    .ms-line {
+      width: 1px;
+      height: 24px;
+      background: rgba(201, 168, 76, .1);
+      flex-shrink: 0
+    }
+
+    .ms-content {
+      flex: 1;
+      padding-top: 4px
+    }
+
+    .ms-name {
+      font-size: 13px;
+      color: var(--cream);
+      margin-bottom: 2px
+    }
+
+    .ms-date {
+      font-size: 10.5px;
+      color: var(--muted)
+    }
+
+    .ms-note {
+      font-size: 11.5px;
+      color: var(--body);
+      margin-top: 4px;
+      line-height: 1.5
+    }
+
+    /* ── DOCUMENT VAULT ── */
+    .doc-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+      flex-wrap: wrap
+    }
+
+    .doc-tab {
+      padding: 5px 12px;
+      font-size: 9.5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      background: var(--dark4);
+      border: 1px solid rgba(201, 168, 76, .1);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .2s
+    }
+
+    .doc-tab:hover,
+    .doc-tab.active {
+      background: var(--gold-dim);
+      border-color: rgba(201, 168, 76, .3);
+      color: var(--gold)
+    }
+
+    .doc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px
+    }
+
+    .doc-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      background: var(--dark4);
+      border: 1px solid rgba(201, 168, 76, .06);
+      transition: border-color .2s;
+      cursor: pointer
+    }
+
+    .doc-item:hover {
+      border-color: rgba(201, 168, 76, .2)
+    }
+
+    .doc-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--gold-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0
+    }
+
+    .doc-name {
+      font-size: 12.5px;
+      color: var(--cream);
+      flex: 1
+    }
+
+    .doc-meta {
+      font-size: 10px;
+      color: var(--muted)
+    }
+
+    .doc-badge {
+      padding: 2px 8px;
+      font-size: 8.5px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border-radius: 2px
+    }
+
+    .doc-badge.new {
+      background: var(--gold-dim);
+      color: var(--gold)
+    }
+
+    .doc-badge.signed {
+      background: var(--green-dim);
+      color: var(--green)
+    }
+
+    .doc-badge.pending {
+      background: rgba(207, 170, 107, .15);
+      color: var(--amber, #cfaa6b)
+    }
+
+    .doc-upload {
+      margin-top: 12px;
+      padding: 14px;
+      border: 1.5px dashed rgba(201, 168, 76, .2);
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .25s
+    }
+
+    .doc-upload:hover {
+      border-color: rgba(201, 168, 76, .4);
+      color: var(--gold);
+      background: var(--gold-dim)
+    }
+
+    /* ── TASK BOARD ── */
+    .task-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px
+    }
+
+    .task-col {
+      background: var(--dark4);
+      border: 1px solid rgba(201, 168, 76, .06);
+      padding: 14px
+    }
+
+    .tc-head {
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(201, 168, 76, .08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .tc-count {
+      background: rgba(201, 168, 76, .12);
+      color: var(--gold);
+      padding: 2px 7px;
+      border-radius: 10px;
+      font-size: 9px
+    }
+
+    .task-card {
+      background: var(--dark3);
+      border: 1px solid rgba(201, 168, 76, .08);
+      padding: 10px 12px;
+      margin-bottom: 7px;
+      cursor: pointer;
+      transition: all .2s
+    }
+
+    .task-card:hover {
+      border-color: rgba(201, 168, 76, .25);
+      transform: translateY(-1px)
+    }
+
+    .task-card.overdue {
+      border-left: 2.5px solid var(--red)
+    }
+
+    .task-title {
+      font-size: 12.5px;
+      color: var(--cream);
+      margin-bottom: 4px
+    }
+
+    .task-assignee {
+      font-size: 10.5px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 5px
+    }
+
+    .task-due {
+      font-size: 10px;
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      gap: 4px
+    }
+
+    .task-due.overdue {
+      color: var(--red)
+    }
+
+    .task-due.soon {
+      color: var(--amber, #cfaa6b)
+    }
+
+    .task-due.ok {
+      color: var(--green)
+    }
+
+    .tc-add {
+      width: 100%;
+      padding: 7px;
+      background: none;
+      border: 1px dashed rgba(201, 168, 76, .1);
+      color: var(--muted);
+      font-size: 11px;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: all .2s
+    }
+
+    .tc-add:hover {
+      border-color: rgba(201, 168, 76, .3);
+      color: var(--gold)
+    }
+
+    /* ── CALENDAR ── */
+    .cal-dates {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px
+    }
+
+    .cal-event {
+      padding: 10px 14px;
+      background: var(--dark4);
+      border: 1px solid rgba(201, 168, 76, .1);
+      flex: 1;
+      min-width: 160px
+    }
+
+    .ce-label {
+      font-size: 9.5px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px
+    }
+
+    .ce-date {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: var(--gold)
+    }
+
+    .ce-desc {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px
+    }
+
+    .countdown-wrap {
+      background: var(--dark4);
+      border: 1px solid rgba(201, 168, 76, .12);
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 24px
+    }
+
+    .cd-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--gold)
+    }
+
+    .cd-label {
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .cd-details {
+      flex: 1
+    }
+
+    .cd-title {
+      font-size: 15px;
+      color: var(--cream);
+      margin-bottom: 3px
+    }
+
+    .cd-sub {
+      font-size: 12px;
+      color: var(--muted)
+    }
+
+    .ics-btn {
+      padding: 8px 16px;
+      background: transparent;
+      border: 1px solid rgba(201, 168, 76, .25);
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all .2s
+    }
+
+    .ics-btn:hover {
+      background: var(--gold-dim)
+    }
+
+    /* ── MESSAGES ── */
+    .msg-wrap {
+      display: flex;
+      flex-direction: column;
+      height: 480px;
+      background: var(--dark3);
+      border: 1px solid rgba(201, 168, 76, .1)
+    }
+
+    .msg-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .msg-item {
+      display: flex;
+      gap: 10px
+    }
+
+    .msg-item.mine {
+      flex-direction: row-reverse
+    }
+
+    .msg-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 1px solid rgba(201, 168, 76, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--gold);
+      flex-shrink: 0
+    }
+
+    .msg-bubble {
+      max-width: 65%;
+      background: var(--dark4);
+      border: 1px solid rgba(201, 168, 76, .1);
+      padding: 10px 13px
+    }
+
+    .msg-item.mine .msg-bubble {
+      background: var(--gold-dim);
+      border-color: rgba(201, 168, 76, .25)
+    }
+
+    .msg-sender {
+      font-size: 10px;
+      color: var(--muted);
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px
+    }
+
+    .msg-text {
+      font-size: 12.5px;
+      color: var(--body);
+      line-height: 1.5
+    }
+
+    .msg-input-wrap {
+      padding: 12px 14px;
+      border-top: 1px solid rgba(201, 168, 76, .1);
+      display: flex;
+      gap: 8px
+    }
+
+    .msg-input {
+      flex: 1;
+      background: var(--dark4);
+      border: 1px solid rgba(201, 168, 76, .12);
+      color: var(--cream);
+      padding: 10px 13px;
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+      outline: none
+    }
+
+    .msg-input::placeholder {
+      color: var(--muted)
+    }
+
+    .msg-send {
+      padding: 10px 18px;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 10.5px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      transition: background .2s;
+      flex-shrink: 0
+    }
+
+    .msg-send:hover {
+      background: var(--gold-l)
+    }
+
+    .msg-immutable {
+      font-size: 9.5px;
+      color: var(--muted);
+      text-align: center;
+      padding: 4px 0
+    }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      padding: 12px 18px;
+      background: var(--dark3);
+      border: 1px solid rgba(201, 168, 76, .25);
+      font-size: 12px;
+      color: var(--cream);
+      z-index: 10000;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all .35s;
+      max-width: 320px;
+      box-shadow: 0 16px 32px rgba(0, 0, 0, .5)
+    }
+
+    #toast.show {
+      transform: none;
+      opacity: 1
+    }
+
+    /* ── DEAL SELECTOR ── */
+    .deal-selector {
+      padding: 14px 20px;
+      background: rgba(201, 168, 76, .05);
+      border-bottom: 1px solid rgba(201, 168, 76, .1);
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center
+    }
+
+    .ds-label {
+      font-size: 9.5px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .ds-deal {
+      padding: 5px 12px;
+      font-size: 11px;
+      border: 1px solid rgba(201, 168, 76, .15);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .2s
+    }
+
+    .ds-deal:hover,
+    .ds-deal.active {
+      background: var(--gold-dim);
+      border-color: rgba(201, 168, 76, .4);
+      color: var(--gold)
+    }
+
+    .ds-new {
+      padding: 5px 12px;
+      font-size: 11px;
+      border: 1px dashed rgba(201, 168, 76, .2);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .2s
+    }
+
+    .ds-new:hover {
+      border-color: rgba(201, 168, 76, .4);
+      color: var(--gold)
+    }
+
+
+    /* ── DEAL ROOM ENHANCEMENTS ── */
+    .deal-header {
+      background: linear-gradient(135deg, #0d0c10, #151318) !important;
+    }
+
+    .deal-title {
+      color: #f5efe3 !important;
+    }
+
+    .deal-address {
+      color: rgba(240, 235, 224, 0.68) !important;
+    }
+
+    .deal-price {
+      color: #d4a843 !important;
+    }
+
+    .milestone-track {
+      background: rgba(212, 168, 67, 0.08) !important;
+    }
+
+    .milestone-fill {
+      background: linear-gradient(90deg, #d4a843, #f0c55a) !important;
+    }
+
+    .doc-item {
+      
+      border-color: rgba(212, 168, 67, 0.16) !important;
+    }
+
+    .doc-item:hover {
+      border-color: rgba(212, 168, 67, 0.36) !important;
+    }
+
+    .doc-name {
+      color: #f0ebe0 !important;
+    }
+
+    .doc-meta {
+      color: rgba(240, 235, 224, 0.52) !important;
+    }
+
+    .msg-bubble {
+      
+      border-color: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .msg-text {
+      color: rgba(240, 235, 224, 0.82) !important;
+    }
+
+    .msg-sender {
+      color: #d4a843 !important;
+    }
+
+    .task-item {
+      
+      border-color: rgba(212, 168, 67, 0.14) !important;
+    }
+
+    .task-title {
+      color: #f0ebe0 !important;
+    }
+
+    .task-done .task-title {
+      color: rgba(240, 235, 224, 0.45) !important;
+      text-decoration: line-through !important;
+    }
+
+    .countdown-val {
+      color: #d4a843 !important;
+    }
+
+    .countdown-unit {
+      color: rgba(240, 235, 224, 0.50) !important;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/shared.css">
+  <script src="assets/shared.js" defer></script>
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sb">
+      <div class="sb-head">
+        <div class="sb-logo">Carini Group</div>
+        <div class="sb-sub">Deal Room · FR-027–033</div>
+      </div>
+      <div class="deal-list">
+        <div class="deal-section">Active Deals</div>
+        <div class="deal-item active" onclick="loadDeal(0)">
+          <div class="di-name">220 W 20th St #8D <span class="di-badge badge-active">Active</span></div>
+          <div class="di-meta">Amanda Torres · $6.05M · Contract</div>
+        </div>
+        <div class="deal-item" onclick="loadDeal(1)">
+          <div class="di-name">48 Bond St #4A <span class="di-badge badge-active">Active</span></div>
+          <div class="di-meta">Giulia Romano · $2.55M · Offer</div>
+        </div>
+        <div class="deal-item" onclick="loadDeal(2)">
+          <div class="di-name">320 Canal St PH <span class="di-badge badge-active">Active</span></div>
+          <div class="di-meta">Sarah Chen · $2.1M · Viewings</div>
+        </div>
+        <div class="deal-section">Closed</div>
+        <div class="deal-item" onclick="loadDeal(3)">
+          <div class="di-name">52 Garfield Pl <span class="di-badge badge-close">Closed</span></div>
+          <div class="di-meta">Anna Kowalski · $1.595M · Mar 2026</div>
+        </div>
+        <div class="deal-item" onclick="loadDeal(4)">
+          <div class="di-name">Midtown Portfolio <span class="di-badge badge-close">Closed</span></div>
+          <div class="di-meta">Henry Liu · $8.45M · Feb 2026</div>
+        </div>
+        <div style="padding:12px 16px;margin-top:4px">
+          <button
+            style="width:100%;padding:9px;background:transparent;border:1px dashed rgba(201,168,76,.2);color:var(--muted);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s"
+            onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--muted)'"
+            onclick="showToast('Deal room creation wizard — add from CRM lead','info')">+ New Deal Room</button>
+        </div>
+      </div>
+      <div class="sb-footer">
+        <div class="sb-user">
+          <div class="sb-avatar">AC</div>
+          <div>
+            <div class="sb-uname">Alex Carini</div>
+            <div class="sb-urole">Agent · Access: Full</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main" id="main-content">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script>
+    const DEALS = [
+      {
+        id: 'DR-001', address: '220 West 20th Street #8D, Chelsea, NYC',
+        client: 'Amanda Torres', type: 'Buyer Purchase', price: '$6,050,000',
+        status: 'Contract', template: 'Buyer Purchase', lang: 'EN',
+        closing: 'April 14, 2026', daysToClose: 28,
+        participants: [
+          { initials: 'AT', name: 'Amanda Torres', role: 'Buyer' },
+          { initials: 'AC', name: 'Alex Carini', role: 'Agent' },
+          { initials: 'JR', name: 'James Rivera, Esq.', role: 'Attorney' },
+          { initials: 'CF', name: 'City Financial', role: 'Lender' },
+        ],
+        milestones: [
+          { name: 'Offer Accepted', date: 'Feb 28, 2026', status: 'done', note: 'Accepted at $6.05M, $150K below ask.', icon: '✅' },
+          { name: 'Contract Signed', date: 'Mar 8, 2026', status: 'done', note: 'Both parties executed. Fully executed copy in vault.', icon: '✅' },
+          { name: 'Home Inspection', date: 'Mar 12, 2026', status: 'done', note: 'Inspector: all systems functional. Minor HVAC note.', icon: '✅' },
+          { name: 'Board Application', date: 'Mar 20, 2026', status: 'current', note: 'Package submitted. Board interview TBD.', icon: '⏳' },
+          { name: 'Financing Commitment', date: 'Mar 28, 2026', status: 'future', note: 'Awaiting bank commitment letter.', icon: '○' },
+          { name: 'Closing Scheduled', date: 'Apr 7, 2026', status: 'future', note: '', icon: '○' },
+          { name: 'Closed', date: 'Apr 14, 2026', status: 'future', note: '', icon: '○' },
+        ],
+        docs: [
+          { icon: '📄', name: 'Purchase & Sale Agreement v2.pdf', cat: 'Contract', date: 'Mar 8, 2026', size: '2.4 MB', badge: 'signed' },
+          { icon: '📋', name: 'Home Inspection Report.pdf', cat: 'Inspection', date: 'Mar 12, 2026', size: '5.1 MB', badge: 'signed' },
+          { icon: '🏢', name: 'Board Application Package.pdf', cat: 'Board Application', date: 'Mar 20, 2026', size: '8.3 MB', badge: 'pending' },
+          { icon: '💰', name: 'Pre-Approval Letter.pdf', cat: 'Financial Approval', date: 'Feb 15, 2026', size: '0.9 MB', badge: 'signed' },
+          { icon: '📝', name: 'Counter-Offer Correspondence.pdf', cat: 'Correspondence', date: 'Feb 26, 2026', size: '0.4 MB', badge: 'signed' },
+        ],
+        tasks: [
+          { title: 'Submit Board Application', assignee: 'James Rivera, Esq.', due: 'Mar 20, 2026', status: 'done' },
+          { title: 'Obtain Mortgage Commitment Letter', assignee: 'City Financial', due: 'Mar 28, 2026', status: 'in-progress' },
+          { title: 'Schedule Board Interview', assignee: 'Alex Carini', due: 'Mar 25, 2026', status: 'in-progress' },
+          { title: 'Final Walk-Through', assignee: 'Amanda Torres', due: 'Apr 12, 2026', status: 'open' },
+          { title: 'Wire Closing Funds', assignee: 'Amanda Torres', due: 'Apr 13, 2026', status: 'open' },
+          { title: 'Transfer Title & Record Deed', assignee: 'James Rivera, Esq.', due: 'Apr 14, 2026', status: 'open' },
+        ],
+        messages: [
+          { sender: 'Alex Carini', initials: 'AC', text: 'Amanda — the board package is submitted. Expect to hear about the interview date within 5 business days.', time: 'Mar 20, 10:32 AM', mine: true },
+          { sender: 'Amanda Torres', initials: 'AT', text: 'Thank you Alex! What should I expect for the board interview process?', time: 'Mar 20, 11:14 AM', mine: false },
+          { sender: 'James Rivera, Esq.', initials: 'JR', text: 'The interview typically lasts 30 minutes. I\'ll send you a prep guide this afternoon.', time: 'Mar 20, 11:45 AM', mine: false },
+          { sender: 'Alex Carini', initials: 'AC', text: 'Fantastic. City Financial confirmed the commitment letter is on track for the 28th.', time: 'Mar 20, 3:20 PM', mine: true },
+        ],
+        dates: [
+          { label: 'Contract Signed', date: 'March 8, 2026', desc: 'Fully executed' },
+          { label: 'Board Approval', date: '~April 1, 2026', desc: 'Pending interview' },
+          { label: 'Financing Commitment', date: 'March 28, 2026', desc: 'In progress' },
+          { label: 'Estimated Closing', date: 'April 14, 2026', desc: 'Target date' },
+        ]
+      },
+      {
+        id: 'DR-002', address: '48 Bond Street #4A, NoHo, NYC',
+        client: 'Giulia Romano', type: 'Buyer Purchase', price: '$2,550,000',
+        status: 'Offer', template: 'Buyer Purchase', lang: 'IT',
+        closing: 'May 2, 2026', daysToClose: 46,
+        participants: [
+          { initials: 'GR', name: 'Giulia Romano', role: 'Buyer' },
+          { initials: 'AC', name: 'Alex Carini', role: 'Agent' },
+          { initials: 'MV', name: 'Marco Venezia, Esq.', role: 'Attorney' },
+        ],
+        milestones: [
+          { name: 'Offer Accepted', date: 'Pending', status: 'current', note: 'Offer at $2.55M submitted Mar 17. Awaiting seller response.', icon: '⏳' },
+          { name: 'Contract Signed', date: 'TBD', status: 'future', note: '', icon: '○' },
+          { name: 'Home Inspection', date: 'TBD', status: 'future', note: '', icon: '○' },
+          { name: 'Board Application', date: 'TBD', status: 'future', note: '', icon: '○' },
+          { name: 'Financing Commitment', date: 'TBD', status: 'future', note: '', icon: '○' },
+          { name: 'Closing Scheduled', date: 'TBD', status: 'future', note: '', icon: '○' },
+          { name: 'Closed', date: '~May 2, 2026', status: 'future', note: '', icon: '○' },
+        ],
+        docs: [
+          { icon: '📄', name: 'Offer Letter — $2,550,000.pdf', cat: 'Contract', date: 'Mar 17, 2026', size: '0.8 MB', badge: 'new' },
+          { icon: '💰', name: 'Proof of Funds.pdf', cat: 'Financial Approval', date: 'Mar 15, 2026', size: '1.2 MB', badge: 'signed' },
+        ],
+        tasks: [
+          { title: 'Await Seller Response on Offer', assignee: 'Alex Carini', due: 'Mar 19, 2026', status: 'in-progress' },
+          { title: 'Schedule Inspection (Upon Acceptance)', assignee: 'Alex Carini', due: 'TBD', status: 'open' },
+        ],
+        messages: [
+          { sender: 'Alex Carini', initials: 'AC', text: 'Giulia — offer at $2.55M submitted today. Seller has 48 hours to respond. I\'ll call you as soon as we hear back. / Giulia — offerta di $2.55M inviata oggi. Il venditore ha 48 ore per rispondere.', time: 'Mar 17, 9:45 AM', mine: true },
+          { sender: 'Giulia Romano', initials: 'GR', text: 'Grazie Alex! Incrociamo le dita. Quando potremo sapere qualcosa?', time: 'Mar 17, 10:12 AM', mine: false },
+        ],
+        dates: [
+          { label: 'Offer Submitted', date: 'March 17, 2026', desc: '$2,550,000' },
+          { label: 'Response Deadline', date: 'March 19, 2026', desc: '48-hour window' },
+          { label: 'Target Closing', date: '~May 2, 2026', desc: 'Estimated' },
+        ]
+      }
+    ];
+
+    let currentDeal = DEALS[0];
+    let activeDealTab = 'overview';
+    let docFilter = 'All';
+
+    function loadDeal(idx) {
+      if (idx >= DEALS.length) {
+        showToast(`Loading deal ${idx + 1} — demo data available for deals 1 & 2`, 'info');
+        if (idx < DEALS.length) currentDeal = DEALS[idx]; else return;
+      } else {
+        currentDeal = DEALS[idx];
+      }
+      document.querySelectorAll('.deal-item').forEach((el, i) => el.classList.toggle('active', i === idx));
+      activeDealTab = 'overview';
+      renderDeal();
+    }
+
+    function renderDeal() {
+      const d = currentDeal;
+      const doneCount = d.milestones.filter(m => m.status === 'done').length;
+      const progress = Math.round(doneCount / d.milestones.length * 100);
+
+      document.getElementById('main-content').innerHTML = `
+    <div class="deal-header">
+      <div class="dh-icon">🏢</div>
+      <div>
+        <div class="dh-title">${d.address}</div>
+        <div class="dh-meta">
+          <span>👤 ${d.client}</span>
+          <span>💰 ${d.price}</span>
+          <span>📋 ${d.template}</span>
+          <span>🌐 ${d.lang === 'IT' ? '🇮🇹 IT' : d.lang === 'ES' ? '🇪🇸 ES' : '🇺🇸 EN'}</span>
+          <span>Deal ID: ${d.id}</span>
+        </div>
+        <div style="margin-top:10px">
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:5px">
+            <span>PROGRESS</span><span style="color:var(--gold)">${progress}% · ${doneCount}/${d.milestones.length} Milestones</span>
+          </div>
+          <div style="height:4px;background:rgba(201,168,76,.12);width:400px;border-radius:2px;overflow:hidden">
+            <div style="height:100%;width:${progress}%;background:linear-gradient(90deg,var(--gold),var(--green));border-radius:2px;transition:width .8s ease"></div>
+          </div>
+        </div>
+      </div>
+      <div class="dh-right">
+        <div class="dh-status">${d.status}</div>
+        <button class="dh-btn outline" onclick="showToast('Sending access token to all participants…','info')">Invite Party</button>
+        <button class="dh-btn" onclick="showToast('ICS file downloaded: ${d.address.split(',')[0]}.ics','success')">↓ ICS</button>
+      </div>
+    </div>
+    <div class="participants">
+      <span class="part-label">Participants:</span>
+      ${d.participants.map(p => `
+        <div class="part-chip">
+          <div class="part-avatar">${p.initials}</div>
+          <span class="part-name">${p.name}</span>
+          <span class="part-role">· ${p.role}</span>
+        </div>
+      `).join('')}
+      <div class="part-add" onclick="showToast('Send secure access token to external party by email','info')">+ Add Party</div>
+    </div>
+    <div class="deal-tabs">
+      <button class="d-tab ${activeDealTab === 'overview' ? 'active' : ''}" onclick="switchTab('overview',this)">Overview</button>
+      <button class="d-tab ${activeDealTab === 'milestones' ? 'active' : ''}" onclick="switchTab('milestones',this)">Milestones</button>
+      <button class="d-tab ${activeDealTab === 'docs' ? 'active' : ''}" onclick="switchTab('docs',this)">
+        Documents <span class="notif">${d.docs.filter(doc => doc.badge === 'new').length || ''}</span>
+      </button>
+      <button class="d-tab ${activeDealTab === 'tasks' ? 'active' : ''}" onclick="switchTab('tasks',this)">Tasks</button>
+      <button class="d-tab ${activeDealTab === 'calendar' ? 'active' : ''}" onclick="switchTab('calendar',this)">Calendar</button>
+      <button class="d-tab ${activeDealTab === 'messages' ? 'active' : ''}" onclick="switchTab('messages',this)">
+        Messages <span class="notif">${d.messages.length}</span>
+      </button>
+    </div>
+    <div id="tab-content" style="flex:1;overflow:auto">
+      ${renderTab(activeDealTab)}
+    </div>
+  `;
+    }
+
+    function renderTab(tab) {
+      const d = currentDeal;
+      if (tab === 'overview') return `
+    <div class="d-panel active">
+      <div class="panel-grid" style="margin-bottom:20px">
+        <div class="s-card">
+          <div class="s-card-head"><span class="s-card-title">Milestone Progress</span><span class="s-card-action" onclick="switchTab('milestones')">View All →</span></div>
+          <div class="milestone-list">
+            ${d.milestones.map((m, i) => `
+              <div class="milestone" onclick="switchTab('milestones')">
+                <div class="ms-track">
+                  <div class="ms-dot ${m.status}">${m.status === 'done' ? '✓' : m.status === 'current' ? '●' : '○'}</div>
+                  ${i < d.milestones.length - 1 ? '<div class="ms-line"></div>' : ''}
+                </div>
+                <div class="ms-content">
+                  <div class="ms-name" style="color:${m.status === 'done' ? 'var(--green)' : m.status === 'current' ? 'var(--gold)' : 'var(--muted)'}">${m.name}</div>
+                  <div class="ms-date">${m.date}</div>
+                  ${m.note ? `<div class="ms-note">${m.note}</div>` : ''}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div class="s-card" style="flex:0">
+            <div class="s-card-head"><span class="s-card-title">Closing Countdown</span></div>
+            <div style="display:flex;align-items:center;gap:20px">
+              <div style="text-align:center">
+                <div style="font-family:'Playfair Display',serif;font-size:48px;color:var(--gold);line-height:1">${d.daysToClose}</div>
+                <div style="font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">Days to Close</div>
+              </div>
+              <div>
+                <div style="font-size:13px;color:var(--cream);margin-bottom:3px">Target: ${d.closing}</div>
+                <div style="font-size:11.5px;color:var(--muted)">Price: ${d.price}</div>
+                <div style="font-size:11.5px;color:var(--muted)">Type: ${d.template}</div>
+              </div>
+            </div>
+          </div>
+          <div class="s-card">
+            <div class="s-card-head"><span class="s-card-title">Recent Activity</span></div>
+            ${d.messages.slice(-3).map(m => `
+              <div style="display:flex;gap:9px;padding:7px 0;border-bottom:1px solid rgba(201,168,76,.06)">
+                <div style="width:24px;height:24px;border-radius:50%;background:var(--gold-dim);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--gold);flex-shrink:0">${m.initials}</div>
+                <div>
+                  <div style="font-size:11.5px;color:var(--body);line-height:1.4">${m.text.length > 80 ? m.text.slice(0, 80) + '…' : m.text}</div>
+                  <div style="font-size:10px;color:var(--muted);margin-top:2px">${m.sender} · ${m.time}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+      if (tab === 'milestones') return `
+    <div class="d-panel active">
+      <div style="max-width:640px">
+        <div class="s-card">
+          <div class="s-card-head"><span class="s-card-title">Milestone Tracker — ${d.template}</span><span class="s-card-action">+ Add Milestone</span></div>
+          <div class="milestone-list">
+            ${d.milestones.map((m, i) => `
+              <div class="milestone" onclick="markMilestone(${i})">
+                <div class="ms-track">
+                  <div class="ms-dot ${m.status}">${m.status === 'done' ? '✓' : m.status === 'current' ? '●' : '○'}</div>
+                  ${i < d.milestones.length - 1 ? '<div class="ms-line" style="height:40px"></div>' : ''}
+                </div>
+                <div class="ms-content">
+                  <div class="ms-name" style="font-size:14px;color:${m.status === 'done' ? 'var(--green)' : m.status === 'current' ? 'var(--gold)' : 'var(--cream)'}">${m.name}</div>
+                  <div class="ms-date">${m.date}</div>
+                  ${m.note ? `<div class="ms-note">${m.note}</div>` : ''}
+                  ${m.status === 'current' ? `<div style="margin-top:6px"><button style="padding:5px 12px;background:var(--gold);color:var(--dark);border:none;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif" onclick="event.stopPropagation();completeMilestone(${i})">Mark Complete</button></div>` : ''}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+      if (tab === 'docs') return `
+    <div class="d-panel active">
+      <div class="s-card">
+        <div class="s-card-head"><span class="s-card-title">Document Vault · AES-256 Encrypted</span><span class="s-card-action">Upload Document</span></div>
+        <div class="doc-tabs">
+          ${['All', 'Contract', 'Inspection', 'Board Application', 'Financial Approval', 'Correspondence'].map(cat => `
+            <div class="doc-tab ${cat === docFilter ? 'active' : ''}" onclick="setDocFilter('${cat}')">${cat}</div>
+          `).join('')}
+        </div>
+        <div class="doc-list">
+          ${d.docs.filter(doc => docFilter === 'All' || doc.cat === docFilter).map(doc => `
+            <div class="doc-item" onclick="showToast('Downloading ${doc.name} — AES-256 decryption in progress','success')">
+              <div class="doc-icon">${doc.icon}</div>
+              <div style="flex:1">
+                <div class="doc-name">${doc.name}</div>
+                <div class="doc-meta">${doc.cat} · ${doc.date} · ${doc.size}</div>
+              </div>
+              <span class="doc-badge ${doc.badge}">${doc.badge}</span>
+            </div>
+          `).join('')}
+        </div>
+        <div class="doc-upload" onclick="showToast('Upload UI — PDF/JPG/PNG/DOCX, max 20MB. Pre-signed S3 URL generated.','info')">
+          <span style="font-size:18px">↑</span><br>
+          Drag & drop files or click to upload<br>
+          <span style="font-size:10.5px;color:var(--muted)">PDF, JPG, PNG, DOCX · Max 20MB · AES-256 at rest</span>
+        </div>
+      </div>
+    </div>`;
+
+      if (tab === 'tasks') return `
+    <div class="d-panel active">
+      <div class="task-cols">
+        ${['open', 'in-progress', 'done'].map(status => {
+        const labels = { open: 'Open', ['in-progress']: 'In Progress', done: 'Complete' };
+        const tasks = d.tasks.filter(t => t.status === status);
+        return `
+            <div class="task-col">
+              <div class="tc-head">${labels[status]} <span class="tc-count">${tasks.length}</span></div>
+              ${tasks.map(t => `
+                <div class="task-card${t.due === 'Mar 19, 2026' ? ' overdue' : ''}" onclick="showToast('Task detail: ${t.title}','info')">
+                  <div class="task-title">${t.title}</div>
+                  <div class="task-assignee">
+                    <div style="width:18px;height:18px;border-radius:50%;background:var(--gold-dim);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--gold)">${t.assignee.split(' ').map(n => n[0]).join('').slice(0, 2)}</div>
+                    ${t.assignee}
+                  </div>
+                  <div class="task-due ${t.due === 'Mar 19, 2026' ? 'overdue' : t.due.includes('Mar 20') || t.due.includes('Mar 25') ? 'soon' : 'ok'}">
+                    📅 Due: ${t.due}
+                  </div>
+                </div>
+              `).join('')}
+              <button class="tc-add" onclick="showToast('Task creation — assign to deal room participant with due date and 48h/24h email reminders','info')">+ Add Task</button>
+            </div>`;
+      }).join('')}
+      </div>
+      <div style="margin-top:16px;padding:12px 16px;background:var(--dark3);border:1px solid rgba(207,107,107,.2);font-size:12px;color:var(--red)">
+        ⚠ 1 task overdue: <strong>Await Seller Response</strong> (Mar 19) · Reminder emails sent at 48h and 24h · Flagged in agent dashboard
+      </div>
+    </div>`;
+
+      if (tab === 'calendar') return `
+    <div class="d-panel active">
+      <div style="max-width:700px">
+        <div class="countdown-wrap">
+          <div>
+            <div class="cd-num">${d.daysToClose}</div>
+            <div class="cd-label">Days</div>
+          </div>
+          <div class="cd-details">
+            <div class="cd-title">Estimated Closing: ${d.closing}</div>
+            <div class="cd-sub">${d.address}</div>
+          </div>
+          <button class="ics-btn" onclick="showToast('ICS calendar file downloaded — sync with Google Calendar / Outlook','success')">↓ Download ICS</button>
+          <button class="ics-btn" onclick="showToast('Google Calendar invite sent to all participants','success')">Sync Calendar</button>
+        </div>
+        <div class="s-card">
+          <div class="s-card-head"><span class="s-card-title">Key Dates</span><span class="s-card-action">+ Add Date</span></div>
+          <div class="cal-dates">
+            ${d.dates.map(ev => `
+              <div class="cal-event">
+                <div class="ce-label">${ev.label}</div>
+                <div class="ce-date">${ev.date}</div>
+                <div class="ce-desc">${ev.desc}</div>
+              </div>
+            `).join('')}
+          </div>
+          <div style="font-size:11.5px;color:var(--muted);padding:8px;background:var(--dark4);border:1px solid rgba(201,168,76,.06)">
+            📅 Date changes notify all deal room participants in their preferred language. ICS invite updated automatically.
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+      if (tab === 'messages') return `
+    <div class="d-panel active" style="max-width:700px">
+      <div class="msg-immutable" style="font-size:10px;color:var(--muted);text-align:center;padding:8px 0;margin-bottom:8px">
+        All messages are immutable and retained for 7 years · Deal Room ${d.id}
+      </div>
+      <div class="msg-wrap">
+        <div class="msg-list" id="msg-list">
+          ${d.messages.map(m => `
+            <div class="msg-item ${m.mine ? 'mine' : ''}">
+              <div class="msg-avatar">${m.initials}</div>
+              <div class="msg-bubble">
+                <div class="msg-sender"><span>${m.sender}</span><span>${m.time}</span></div>
+                <div class="msg-text">${m.text}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="msg-input-wrap">
+          <input class="msg-input" id="msg-input" placeholder="Message all deal room participants…" onkeydown="if(event.key==='Enter')sendMsg()"/>
+          <button class="msg-send" onclick="sendMsg()">Send</button>
+        </div>
+      </div>
+      <div style="font-size:10.5px;color:var(--muted);margin-top:8px">New messages send email notifications to all participants in their preferred language.</div>
+    </div>`;
+
+      return '';
+    }
+
+    function switchTab(tab, btn) {
+      activeDealTab = tab;
+      document.getElementById('tab-content').innerHTML = renderTab(tab);
+      document.querySelectorAll('.d-tab').forEach(t => t.classList.toggle('active', t.textContent.trim().startsWith(tab.charAt(0).toUpperCase() + tab.slice(1))));
+      if (btn) { document.querySelectorAll('.d-tab').forEach(t => t.classList.remove('active')); btn.classList.add('active'); }
+    }
+
+    function completeMilestone(idx) {
+      const d = currentDeal;
+      d.milestones[idx].status = 'done';
+      d.milestones[idx].date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      if (idx + 1 < d.milestones.length) d.milestones[idx + 1].status = 'current';
+      showToast(`Milestone "${d.milestones[idx].name}" completed · Notifications sent to all ${d.participants.length} participants`, 'success');
+      activeDealTab = 'milestones';
+      renderDeal();
+    }
+    function markMilestone(idx) { /* opens detail */ }
+
+    function setDocFilter(cat) { docFilter = cat; document.getElementById('tab-content').innerHTML = renderTab('docs'); }
+
+    function sendMsg() {
+      const input = document.getElementById('msg-input');
+      const text = input.value.trim();
+      if (!text) return;
+      currentDeal.messages.push({ sender: 'Alex Carini', initials: 'AC', text, time: 'Just now', mine: true });
+      input.value = '';
+      document.getElementById('tab-content').innerHTML = renderTab('messages');
+      showToast('Message sent · Email notification queued for all participants', 'success');
+      const list = document.getElementById('msg-list');
+      if (list) list.scrollTop = list.scrollHeight;
+    }
+
+    function showToast(msg, type = 'info') {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.borderColor = type === 'success' ? 'rgba(107,191,107,.4)' : type === 'error' ? 'rgba(207,107,107,.4)' : 'rgba(201,168,76,.25)';
+      t.classList.add('show');
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => t.classList.remove('show'), 3500);
+    }
+
+    loadDeal(0);
+  </script>
+  </div>
+
+
+</body>
+
+</html>
