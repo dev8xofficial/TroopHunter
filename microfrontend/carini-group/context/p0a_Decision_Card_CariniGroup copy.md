@@ -11,7 +11,7 @@ version: d0_v2
 ---
 
 ## Section 1 — Desired Outcome: Scored Goal Table
-
+-
 **Research extraction summary before scoring:**
 
 | Signal | Source |
