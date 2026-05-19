@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Germany CS Study Abroad — Complete Roadmap</title>
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --gray-50: #f9f9f9;
+      --gray-100: #f0f0f0;
+      --gray-200: #e0e0e0;
+      --gray-400: #999;
+      --gray-600: #555;
+      --gray-800: #222;
+      --accent: #1a1a1a;
+      --border: #d0d0d0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* ── COVER PAGE ── */
+    .cover {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 80px;
+      border-bottom: 2px solid var(--black);
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .cover-tag {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 32px;
+    }
+
+    .cover h1 {
+      font-size: clamp(32px, 5vw, 64px);
+      font-weight: 800;
+      line-height: 1.1;
+      max-width: 700px;
+      margin-bottom: 32px;
+    }
+
+    .cover-sub {
+      font-size: 18px;
+      color: var(--gray-400);
+      max-width: 500px;
+      margin-bottom: 48px;
+      line-height: 1.6;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .cover-meta-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray-400);
+    }
+
+    .cover-meta-value {
+      font-size: 15px;
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* ── LAYOUT ── */
+    .wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+
+    /* ── TABLE OF CONTENTS ── */
+    .toc {
+      background: var(--gray-50);
+      border: 1px solid var(--border);
+      padding: 40px;
+      margin-bottom: 60px;
+    }
+
+    .toc-title {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 24px;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 40px;
+    }
+
+    .toc-list li a {
+      color: var(--gray-800);
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toc-list li a:hover { color: var(--black); text-decoration: underline; }
+
+    .toc-num {
+      font-size: 11px;
+      color: var(--gray-400);
+      min-width: 24px;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .part-header {
+      border-top: 2px solid var(--black);
+      padding-top: 40px;
+      margin-top: 80px;
+      margin-bottom: 40px;
+    }
+
+    .part-tag {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 12px;
+    }
+
+    .part-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--black);
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 40px 0 16px;
+      color: var(--black);
+      border-left: 3px solid var(--black);
+      padding-left: 14px;
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 28px 0 10px;
+      color: var(--gray-800);
+    }
+
+    p { margin-bottom: 14px; color: var(--gray-800); }
+
+    ul, ol {
+      margin: 12px 0 16px 20px;
+      color: var(--gray-800);
+    }
+
+    li { margin-bottom: 6px; }
+
+    strong { color: var(--black); }
+
+    /* ── TABLES ── */
+    .table-wrap { overflow-x: auto; margin: 20px 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    thead tr { background: var(--black); color: var(--white); }
+    thead th { padding: 12px 14px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.5px; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:nth-child(even) { background: var(--gray-50); }
+    tbody td { padding: 11px 14px; vertical-align: top; }
+
+    /* ── CALLOUT BOXES ── */
+    .callout {
+      border-left: 4px solid var(--black);
+      background: var(--gray-50);
+      padding: 18px 22px;
+      margin: 20px 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .callout.warn {
+      border-left-color: #c0392b;
+      background: #fff5f5;
+    }
+
+    .callout.tip {
+      border-left-color: #27ae60;
+      background: #f0fff4;
+    }
+
+    .callout-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--gray-600);
+    }
+
+    .callout p { margin: 0; font-size: 14px; }
+
+    /* ── PHASE TIMELINE ── */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+      margin: 24px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -28px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--black);
+      border: 2px solid var(--black);
+    }
+
+    .timeline-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 4px;
+    }
+
+    .timeline-title { font-weight: 700; font-size: 16px; margin-bottom: 8px; }
+
+    .timeline-body { font-size: 14px; color: var(--gray-600); }
+
+    /* ── SCORE GRID ── */
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .score-card {
+      border: 1px solid var(--border);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .score-card-label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--gray-400); margin-bottom: 8px; }
+    .score-card-value { font-size: 28px; font-weight: 800; }
+
+    /* ── PILL TAGS ── */
+    .tag {
+      display: inline-block;
+      padding: 3px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border-radius: 2px;
+      margin: 2px;
+    }
+
+    .tag-black { background: var(--black); color: var(--white); }
+    .tag-outline { background: transparent; border: 1px solid var(--black); color: var(--black); }
+    .tag-gray { background: var(--gray-100); color: var(--gray-800); }
+
+    /* ── FOOTER ── */
+    .doc-footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      margin-top: 80px;
+      font-size: 12px;
+      color: var(--gray-400);
+      text-align: center;
+    }
+
+    @media print {
+      .cover { min-height: auto; padding: 40px; }
+      .part-header { page-break-before: always; }
+    }
+
+    @media (max-width: 600px) {
+      .cover { padding: 40px 24px; }
+      .wrapper { padding: 40px 20px; }
+      .toc-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════ COVER ══════════════════ -->
+<div class="cover">
+  <div class="cover-tag">Complete Guide · Pakistan to Germany</div>
+  <h1>Germany CS Study Abroad Roadmap</h1>
+  <p class="cover-sub">
+    A full long-term preparation system for a Pakistani student planning to study Computer Science in Germany — from 10th grade to university enrollment.
+  </p>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">Student Level</span>
+      <span class="cover-meta-value">10th Grade (Moving to 11th, Aug 2026)</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">Target</span>
+      <span class="cover-meta-value">CS Bachelor — Germany</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">Estimated Arrival</span>
+      <span class="cover-meta-value">2029</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">Version</span>
+      <span class="cover-meta-value">2.0 — Complete</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ MAIN CONTENT ══════════════════ -->
+<div class="wrapper">
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list">
+      <li><a href="#part0"><span class="toc-num">00</span> The Big Picture</a></li>
+      <li><a href="#part1"><span class="toc-num">01</span> Pakistan-Specific Foundation</a></li>
+      <li><a href="#part2"><span class="toc-num">02</span> The Three University Systems</a></li>
+      <li><a href="#part3"><span class="toc-num">03</span> Language Requirements</a></li>
+      <li><a href="#part4"><span class="toc-num">04</span> Studienkolleg</a></li>
+      <li><a href="#part5"><span class="toc-num">05</span> Application System</a></li>
+      <li><a href="#part6"><span class="toc-num">06</span> Scholarships</a></li>
+      <li><a href="#part7"><span class="toc-num">07</span> Finances &amp; Visa</a></li>
+      <li><a href="#part8"><span class="toc-num">08</span> After Arriving in Germany</a></li>
+      <li><a href="#part9"><span class="toc-num">09</span> Technical Skills Roadmap</a></li>
+      <li><a href="#part10"><span class="toc-num">10</span> Research Spreadsheet System</a></li>
+      <li><a href="#part11"><span class="toc-num">11</span> University Selection Strategy</a></li>
+      <li><a href="#part12"><span class="toc-num">12</span> Full Timeline: Now → Arrival</a></li>
+      <li><a href="#part13"><span class="toc-num">13</span> Hidden Requirements</a></li>
+      <li><a href="#part14"><span class="toc-num">14</span> Resources to Bookmark</a></li>
+    </ul>
+  </div>
+
+  <!-- ══ PART 0 ══ -->
+  <div id="part0" class="part-header">
+    <div class="part-tag">Part 00</div>
+    <div class="part-title">The Big Picture — Understand This First</div>
+  </div>
+
+  <p>Before any planning, internalize these three truths. Most students who fail to study in Germany fail because they misunderstood the structure at the beginning.</p>
+
+  <h2>The Three Parallel Systems</h2>
+  <p>Germany does not have one university system. It has three distinct pipelines that run in parallel:</p>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>System</th><th>German Name</th><th>Focus</th><th>Best For</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Research University</strong></td><td>Universität</td><td>Theory, AI, Math, Academic Research</td><td>PhD / Masters track</td></tr>
+      <tr><td><strong>Applied Sciences University</strong></td><td>Fachhochschule (FH)</td><td>Practical coding, industry, internships</td><td>Software engineering jobs</td></tr>
+      <tr><td><strong>Dual Study Program</strong></td><td>Duales Studium</td><td>Work + Study simultaneously</td><td>Career-first, very competitive</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Three Fundamental Truths</h2>
+
+  <div class="callout warn">
+    <div class="callout-label">Truth 1 — Your Qualification Is Not Automatic</div>
+    <p>Germany does not automatically accept Pakistani documents. There is a formal verification system (APS). This is where most Pakistani students get surprised and delayed. You must know about this from day one.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Truth 2 — Language Opens Doors</div>
+    <p>English-only IELTS gets you into some programs. German B1–B2 multiplies your options by 3–4x and is critical for long-term career integration. Start both languages early.</p>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-label">Truth 3 — Your Head Start Is Your Biggest Advantage</div>
+    <p>Most Pakistani students start preparing 6 months before applications. You are starting 4+ years early. This document exists to help you use that advantage fully.</p>
+  </div>
+
+  <h2>The Four Systems That Must Work Together</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>System</th><th>What It Involves</th><th>Your Action Now</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Academic Eligibility</strong></td><td>FSc/A-Level grades, APS, Studienkolleg prep</td><td>Choose 11th grade subjects carefully</td></tr>
+      <tr><td><strong>Language Ability</strong></td><td>IELTS 6.5+ AND German B1 minimum</td><td>Start both now — not later</td></tr>
+      <tr><td><strong>Structured Research</strong></td><td>Spreadsheet with 15 universities, fully filled</td><td>Build this during 11th grade</td></tr>
+      <tr><td><strong>Timing + Documentation</strong></td><td>Attestation, APS, blocked account, visa</td><td>Understand steps now, execute in Phase 4</td></tr>
+    </tbody>
+  </table></div>
+
+
+  <!-- ══ PART 1 ══ -->
+  <div id="part1" class="part-header">
+    <div class="part-tag">Part 01</div>
+    <div class="part-title">Pakistan-Specific Foundation</div>
+  </div>
+
+  <h2>1.1 — Your Qualification and What Germany Accepts</h2>
+
+  <p>Germany checks all foreign qualifications through a government database called <strong>anabin</strong>. Every Pakistani qualification has a recognition status:</p>
+
+  <ul>
+    <li><strong>H+</strong> = Directly accepted</li>
+    <li><strong>H+/−</strong> = Partially accepted — may need Studienkolleg</li>
+    <li><strong>H−</strong> = Not accepted without additional steps</li>
+  </ul>
+
+  <h3>FSc vs A-Levels — This Decision Matters</h3>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Qualification</th><th>Germany Recognition</th><th>Studienkolleg Needed?</th></tr></thead>
+    <tbody>
+      <tr><td>Matric + FSc (Pre-Eng / Pre-Med)</td><td>Partially recognized</td><td>Often yes</td></tr>
+      <tr><td>O-Levels + A-Levels (3 subjects)</td><td>Better recognized</td><td>Sometimes no</td></tr>
+      <tr><td>O-Levels + FSc</td><td>Mixed — varies by university</td><td>Depends</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout">
+    <div class="callout-label">Action Now (10th Grade)</div>
+    <p>Confirm with your parents which path you will take in 11th and 12th grade. If FSc: acceptable, but expect Studienkolleg requirement. If A-Levels: stronger international recognition but more expensive.</p>
+  </div>
+
+  <h2>1.2 — APS Certificate: The Most Important Step</h2>
+
+  <p>APS (Akademische Prüfstelle) is the German government office in Islamabad that verifies Pakistani academic documents. <strong>Without an APS certificate, most German universities will not process your application.</strong></p>
+
+  <h3>What APS Involves</h3>
+  <ol>
+    <li>Document submission (transcripts, certificates, national ID)</li>
+    <li>An in-person interview in Islamabad — conducted in English or German</li>
+    <li>Evaluation of your documents by German officials</li>
+    <li>Issuance of APS certificate if successful</li>
+  </ol>
+
+  <h3>Key Facts</h3>
+  <ul>
+    <li><strong>Fee:</strong> Approximately PKR 25,000–30,000 (check current rate)</li>
+    <li><strong>Processing time:</strong> 4–8 weeks after submission</li>
+    <li><strong>Interview language:</strong> Usually English, sometimes German</li>
+    <li><strong>When to apply:</strong> After completing FSc/A-Levels — you cannot apply earlier</li>
+  </ul>
+
+  <div class="callout warn">
+    <div class="callout-label">Important</div>
+    <p>You cannot do APS now. But knowing it exists means you will not be surprised later. Plan for it as your first official step after completing FSc.</p>
+  </div>
+
+  <h2>1.3 — Document Attestation Chain</h2>
+
+  <p>Pakistani documents must go through a specific attestation process before they are accepted by German universities or the visa office. This chain takes weeks — do not leave it last-minute.</p>
+
+  <p><strong>Required chain:</strong><br>
+  School → Board of Education → Ministry of Education → Ministry of Foreign Affairs → German Embassy Islamabad</p>
+
+  <p>Any document in Urdu must also be translated by a certified translator (Staatlich anerkannter Übersetzer). Only certified translations are accepted — not just any English translation.</p>
+
+
+  <!-- ══ PART 2 ══ -->
+  <div id="part2" class="part-header">
+    <div class="part-tag">Part 02</div>
+    <div class="part-title">The Three University Systems</div>
+  </div>
+
+  <h2>2.1 — Research Universities (Universität)</h2>
+
+  <p>Research universities are designed for theoretical Computer Science, AI and ML foundations, academic research, and postgraduate pathways (Masters, PhD).</p>
+
+  <h3>What You Will Actually Study</h3>
+  <ul>
+    <li>Heavy mathematics — Calculus, Linear Algebra, Statistics, Discrete Math</li>
+    <li>Theoretical CS — Algorithms, Automata Theory, Complexity Theory</li>
+    <li>Formal programming — not just building apps, but proofs and formal methods</li>
+    <li>Physics — required in many programs for the first 2 semesters</li>
+    <li>Systems design at a theoretical level</li>
+  </ul>
+
+  <div class="callout warn">
+    <div class="callout-label">Honest Reality Check</div>
+    <p>Research universities have a high dropout rate even among German students. The first 2 years are mathematics-dominated. This path is concept-heavy and academically strict — it is NOT primarily job-oriented in the short term. If you prefer building software and entering the industry quickly, consider FH instead.</p>
+  </div>
+
+  <h3>Numerus Clausus (NC) — A Hidden Filter</h3>
+  <p>Many German CS programs have an NC — a GPA cutoff. For German students this is based on Abitur grades. For international students, this translates into a minimum grade requirement and sometimes a ranking system. Programs with "open admission" (no NC) are easier to access. Always check: does the program have NC?</p>
+
+  <h3>Application Steps</h3>
+  <ol>
+    <li>Check anabin database for your qualification status</li>
+    <li>Determine if Studienkolleg is required</li>
+    <li>Meet IELTS and/or German language requirements</li>
+    <li>Complete APS (after FSc)</li>
+    <li>Apply via Uni-Assist or direct university portal</li>
+  </ol>
+
+  <h3>Top Research Universities for CS</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>University</th><th>City</th><th>Difficulty</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>TU Munich (TUM)</td><td>Munich</td><td>Very High</td><td>World-ranked, extremely competitive</td></tr>
+      <tr><td>RWTH Aachen</td><td>Aachen</td><td>High</td><td>Top engineering + CS</td></tr>
+      <tr><td>TU Berlin</td><td>Berlin</td><td>High</td><td>More accessible than TUM</td></tr>
+      <tr><td>University of Stuttgart</td><td>Stuttgart</td><td>Medium-High</td><td>Solid CS, industry connections</td></tr>
+      <tr><td>University of Freiburg</td><td>Freiburg</td><td>Medium</td><td>Good for international students</td></tr>
+      <tr><td>University of Bonn</td><td>Bonn</td><td>Medium</td><td>Growing CS faculty</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Outcome Pathway</h3>
+  <p>Bachelor (3 years) → Master (2 years, strongly recommended) → Research or senior industry roles</p>
+
+  <p><strong>Key strategy:</strong> Focus heavily on Math, build programming fundamentals early, maintain a strong academic record, and build a structured research spreadsheet.</p>
+
+  <hr style="border:none;border-top:1px solid var(--border);margin:40px 0;">
+
+  <h2>2.2 — Universities of Applied Sciences (FH / Fachhochschule)</h2>
+
+  <p>Applied universities are designed for software engineering, industry jobs, practical CS skills, and integrated internships.</p>
+
+  <h3>What Makes FH Different</h3>
+  <ul>
+    <li>Semester 5 or 6 is almost always a mandatory internship (Praxissemester) — 5–6 months in a real company</li>
+    <li>Final thesis is often done with a company partner</li>
+    <li>Professors are usually industry professionals, not pure academics</li>
+    <li>Class sizes are smaller than research universities</li>
+    <li>English-taught programs are significantly more common here</li>
+    <li>Core principle: <em>"Learn by building, not just studying theory."</em></li>
+  </ul>
+
+  <h3>What You Will Study</h3>
+  <ul>
+    <li>Software development — practical programming, frameworks</li>
+    <li>Databases — design and implementation</li>
+    <li>Networking — applied protocols and systems</li>
+    <li>Applied machine learning — focused on tools and pipelines</li>
+    <li>Project-based learning from Semester 1</li>
+  </ul>
+
+  <h3>Why FH May Be the Better Choice for Pakistani Students</h3>
+  <ul>
+    <li>More English-taught programs available</li>
+    <li>Lower NC competition in most programs</li>
+    <li>Faster route to employment after graduation</li>
+    <li>Internship built into the degree — automatic work experience</li>
+    <li>Admission requirements are slightly more accessible</li>
+  </ul>
+
+  <h3>Top FH Universities for CS</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>University</th><th>City</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Hochschule München</td><td>Munich</td><td>Strong industry network, large city</td></tr>
+      <tr><td>Hochschule Rhein-Waal</td><td>Kleve / Kamp-Lintfort</td><td>Very international, many English programs</td></tr>
+      <tr><td>Frankfurt UAS</td><td>Frankfurt</td><td>Finance + tech city connections</td></tr>
+      <tr><td>Hochschule Darmstadt</td><td>Darmstadt</td><td>Near Frankfurt, strong CS</td></tr>
+      <tr><td>HTWG Konstanz</td><td>Konstanz</td><td>Beautiful location, solid FH</td></tr>
+      <tr><td>Hochschule Fulda</td><td>Fulda</td><td>Very affordable city</td></tr>
+      <tr><td>Hochschule Mannheim</td><td>Mannheim</td><td>Good CS programs</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Admission Requirements (Typical)</h3>
+  <ul>
+    <li>IELTS 6.0–6.5</li>
+    <li>Medium GPA requirement</li>
+    <li>APS certificate (for Pakistan)</li>
+    <li>Some require basic German (A2–B1)</li>
+  </ul>
+
+  <h3>Outcome Pathway</h3>
+  <p>Bachelor (3.5 years including internship) → immediate job readiness → optional Masters later</p>
+
+  <p><strong>Key strategy:</strong> Build coding skills early, create a GitHub portfolio, develop an internship mindset, and build project experience before applying.</p>
+
+  <hr style="border:none;border-top:1px solid var(--border);margin:40px 0;">
+
+  <h2>2.3 — Dual Study Programs (Duales Studium)</h2>
+
+  <p>Dual study is the most career-integrated system in Germany. You study at a university and work in a company simultaneously, earn a salary, and graduate with real work experience.</p>
+
+  <h3>How the Structure Works</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Component</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>University Learning</td><td>Academic CS curriculum at a partner university</td></tr>
+      <tr><td>Company Training</td><td>Practical work in a partner company</td></tr>
+      <tr><td>Paid Contract</td><td>Salary paid by company throughout the program</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Application Flow — Very Different from Normal</h3>
+  <ol>
+    <li><strong>Apply to company first</strong> — not the university</li>
+    <li>Company accepts you and offers a training contract</li>
+    <li>Company enrolls you at their partner university</li>
+  </ol>
+
+  <h3>Study Format</h3>
+  <p>Alternating blocks — typically 3 months at university, then 3 months at the company (or weekly alternation depending on the model).</p>
+
+  <h3>Salary Structure</h3>
+  <ul>
+    <li>Monthly salary paid throughout the program (€800–1,200/month typical)</li>
+    <li>Tuition often covered by the company</li>
+    <li>Full employee benefits in many cases</li>
+  </ul>
+
+  <h3>Outcome Pathway</h3>
+  <p>Graduation → guaranteed work experience → very high employability → frequent job offers from the same company.</p>
+
+  <div class="callout warn">
+    <div class="callout-label">Honest Advice for Pakistani Students</div>
+    <p>This system is NOT recommended as a primary target right now. It requires strong German (B2+ preferred, C1 ideal), finding a company partner before university enrollment, and German students are strongly favored. Treat this as a Phase 4 option if your German becomes very strong after arriving in Germany.</p>
+  </div>
+
+  <h3>Comparison of All Three Systems</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Feature</th><th>Research Uni</th><th>Applied Uni (FH)</th><th>Dual Study</th></tr></thead>
+    <tbody>
+      <tr><td>Focus</td><td>Theory</td><td>Practical</td><td>Work + Study</td></tr>
+      <tr><td>Difficulty</td><td>High</td><td>Medium</td><td>High (competitive)</td></tr>
+      <tr><td>Language</td><td>English/German</td><td>Mostly English available</td><td>Mostly German</td></tr>
+      <tr><td>Job Readiness</td><td>Medium</td><td>High</td><td>Very High</td></tr>
+      <tr><td>Salary During Study</td><td>No</td><td>No</td><td>Yes</td></tr>
+      <tr><td>Best For</td><td>AI, research, PhD track</td><td>Software engineering</td><td>Industry career</td></tr>
+      <tr><td>Recommended as Primary?</td><td>If Math-strong</td><td>Yes — best starting target</td><td>Only with strong German</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Recommended Strategy</h2>
+  <ul>
+    <li><strong>Primary Target:</strong> Universities of Applied Sciences (FH) — more English programs, practical focus, internship included</li>
+    <li><strong>Secondary Target:</strong> Research universities — apply to medium-difficulty ones alongside FH</li>
+    <li><strong>Advanced Option:</strong> Dual study programs — only if German improves significantly</li>
+  </ul>
+
+
+  <!-- ══ PART 3 ══ -->
+  <div id="part3" class="part-header">
+    <div class="part-tag">Part 03</div>
+    <div class="part-title">Language Requirements</div>
+  </div>
+
+  <h2>3.1 — English Path (IELTS)</h2>
+
+  <h3>Score Requirements by University Type</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>University Type</th><th>Minimum IELTS</th><th>Recommended</th></tr></thead>
+    <tbody>
+      <tr><td>Research University</td><td>6.5</td><td>7.0+</td></tr>
+      <tr><td>FH / Applied University</td><td>6.0</td><td>6.5</td></tr>
+      <tr><td>Dual Study</td><td>6.0</td><td>German C1 preferred</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout warn">
+    <div class="callout-label">Critical</div>
+    <p>You must take <strong>IELTS Academic</strong> — NOT IELTS General Training. IELTS General is for immigration. Universities require Academic. Taking the wrong test wastes money and delays you.</p>
+  </div>
+
+  <h3>Cost and Logistics</h3>
+  <ul>
+    <li>Fee: approximately PKR 35,000–45,000 per attempt</li>
+    <li>Score validity: 2 years</li>
+    <li>Retakes allowed — plan for at least 1 possible retake in your budget</li>
+    <li>Alternative: TOEFL iBT (score 80–90+) accepted at most German universities</li>
+  </ul>
+
+  <h3>IELTS Preparation Timeline</h3>
+  <ul>
+    <li><strong>11th Grade:</strong> Begin structured prep — vocabulary, academic reading, essay writing</li>
+    <li><strong>12th Grade (October–December):</strong> Give the exam — allows time for one retake before application deadlines</li>
+  </ul>
+
+  <h2>3.2 — German Language Path</h2>
+
+  <p>German is not required for many English-taught programs. But it multiplies your university options, significantly improves your daily life and integration, and is essential for the job market after graduation.</p>
+
+  <h3>The German Certificate System</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Level</th><th>Certificate</th><th>Where to Get It in Pakistan</th></tr></thead>
+    <tbody>
+      <tr><td>A1</td><td>Goethe-Zertifikat A1</td><td>Goethe Institut Lahore / Karachi / Islamabad</td></tr>
+      <tr><td>A2</td><td>Goethe-Zertifikat A2</td><td>Same</td></tr>
+      <tr><td>B1</td><td>Goethe-Zertifikat B1</td><td>Same</td></tr>
+      <tr><td>B2</td><td>Goethe-Zertifikat B2 or TestDaF</td><td>Same / TestDaF centers in Pakistan</td></tr>
+      <tr><td>C1</td><td>DSH or TestDaF TDN 4</td><td>DSH usually done in Germany after arrival</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>TestDaF vs DSH — Know the Difference</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Exam</th><th>Full Name</th><th>Where Taken</th><th>Accepted By</th></tr></thead>
+    <tbody>
+      <tr><td><strong>TestDaF</strong></td><td>Test Deutsch als Fremdsprache</td><td>Outside Germany — Pakistan</td><td>Almost all German universities</td></tr>
+      <tr><td><strong>DSH</strong></td><td>Deutsche Sprachprüfung für den Hochschulzugang</td><td>At a German university, after arriving</td><td>The specific university offering it</td></tr>
+    </tbody>
+  </table></div>
+
+  <p><strong>For Pakistani students: TestDaF is your route.</strong> You take it before leaving Pakistan. DSH is a backup you may take after arriving.</p>
+
+  <h3>What Level You Need for What</h3>
+  <ul>
+    <li><strong>A2:</strong> Can apply to some FH programs; helps with daily life in Germany</li>
+    <li><strong>B1:</strong> Minimum for most German-taught programs; Goethe B1 acceptable for some applications</li>
+    <li><strong>B2:</strong> Required for most German-taught research universities; strongly preferred for Dual Study</li>
+    <li><strong>C1 / DSH / TestDaF TDN 4:</strong> Required for some competitive programs; best for full integration</li>
+  </ul>
+
+  <h3>Where to Learn German in Pakistan</h3>
+  <ul>
+    <li><strong>Goethe Institut:</strong> Most recognized certificates; courses in Lahore (Gulberg), Karachi, Islamabad</li>
+    <li><strong>DW Learn German (dw.com/learn-german):</strong> Free, excellent A1–B1 curriculum online</li>
+    <li><strong>Duolingo:</strong> Good for habits and basics — not sufficient alone for certification</li>
+    <li><strong>Anki:</strong> Excellent flashcard app for vocabulary building</li>
+  </ul>
+
+  <div class="callout tip">
+    <div class="callout-label">Strategic Recommendation</div>
+    <p>Start German A1 informally now, even 20 minutes a day using DW. By the time you apply, reaching B1 or B2 will multiply your university options by 3–4x and dramatically improve your quality of life after arrival.</p>
+  </div>
+
+  <h2>3.3 — Language Decision Framework</h2>
+
+  <h3>Option A: English-Taught Programs Only</h3>
+  <p><strong>Pros:</strong> Easier transition, IELTS-based, faster to start<br>
+  <strong>Cons:</strong> Limited number of programs, very competitive, harder job integration after graduation</p>
+
+  <h3>Option B: German-Taught Programs</h3>
+  <p><strong>Pros:</strong> Far more universities available, better job market integration, stronger career pathway<br>
+  <strong>Cons:</strong> Requires German B2–C1 certification before enrollment</p>
+
+  <p><strong>Recommended path:</strong> Target English bachelor's programs, then actively improve German during your studies in Germany. This gives you the best of both.</p>
+
+
+  <!-- ══ PART 4 ══ -->
+  <div id="part4" class="part-header">
+    <div class="part-tag">Part 04</div>
+    <div class="part-title">Studienkolleg — The Foundation Year</div>
+  </div>
+
+  <h2>What is Studienkolleg?</h2>
+
+  <p>If German universities determine your Pakistani qualification is not equivalent to the German Abitur (high school leaving certificate), you must complete a 1-year preparatory program called Studienkolleg before your bachelor's degree. Think of it as a German foundation year.</p>
+
+  <h2>Types of Studienkolleg Courses</h2>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Course</th><th>For</th><th>Subjects Covered</th></tr></thead>
+    <tbody>
+      <tr><td><strong>T-Kurs</strong> (Technik)</td><td>Engineering, Computer Science, Math, Natural Sciences</td><td>Math, Physics, Chemistry, IT</td></tr>
+      <tr><td><strong>W-Kurs</strong> (Wirtschaft)</td><td>Business, Economics, Social Sciences</td><td>Math, Economics, German, Politics</td></tr>
+      <tr><td><strong>M-Kurs</strong> (Medizin)</td><td>Medicine, Biology, Pharmacy</td><td>Biology, Chemistry, Math, German</td></tr>
+      <tr><td><strong>G-Kurs</strong></td><td>Humanities, Languages, Arts</td><td>History, German, Literature, Social Studies</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout tip">
+    <div class="callout-label">For CS Students</div>
+    <p>T-Kurs is your course. It covers Math, Physics, and IT — directly aligned with Computer Science bachelor entry requirements.</p>
+  </div>
+
+  <h2>The FSP Exit Exam</h2>
+
+  <p>At the end of Studienkolleg, you take the <strong>Feststellungsprüfung (FSP)</strong> — a comprehensive exit examination. Passing it qualifies you to apply to German universities at bachelor's level. You get one retake if you fail.</p>
+
+  <h2>Key Facts</h2>
+  <ul>
+    <li><strong>Duration:</strong> 1 academic year (2 semesters)</li>
+    <li><strong>Language of instruction:</strong> Mostly German — B1/B2 is required to attend</li>
+    <li><strong>Cost:</strong> Usually free or a small administrative fee</li>
+    <li><strong>Application:</strong> Apply through Uni-Assist, same as university applications</li>
+    <li><strong>Location:</strong> Studienkollegs are located at specific universities across Germany</li>
+  </ul>
+
+  <h2>Do You Need Studienkolleg?</h2>
+
+  <p>Not necessarily. Some universities — especially FH programs — accept Pakistani FSc or A-Levels directly, provided you have an APS certificate. Always check per university individually. Do not assume you need Studienkolleg; but also do not assume you are exempt.</p>
+
+  <div class="callout">
+    <div class="callout-label">Check This Per University</div>
+    <p>Add a column to your research spreadsheet: "Studienkolleg Required? (Yes/No/Check)". Some universities state this clearly on their website. For those that don't, email the admissions office directly.</p>
+  </div>
+
+
+  <!-- ══ PART 5 ══ -->
+  <div id="part5" class="part-header">
+    <div class="part-tag">Part 05</div>
+    <div class="part-title">The Application System</div>
+  </div>
+
+  <h2>5.1 — Uni-Assist</h2>
+
+  <p>Uni-Assist is a central service that evaluates international documents for approximately 170 German universities. Most universities use it; a few top ones (TU Munich, RWTH Aachen) have their own direct portals.</p>
+
+  <h3>How Uni-Assist Works</h3>
+  <ol>
+    <li>Create an account at uni-assist.de</li>
+    <li>Submit documents for each university application (fee: approximately €75 per university)</li>
+    <li>Uni-Assist evaluates your documents and forwards to the university</li>
+    <li>University makes the admission decision</li>
+  </ol>
+
+  <h2>5.2 — Application Deadlines</h2>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Semester</th><th>Start Month</th><th>Typical Application Window</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Winter Semester</strong></td><td>October</td><td>Apply: May 15 – July 15 (varies by university)</td></tr>
+      <tr><td><strong>Summer Semester</strong></td><td>April</td><td>Apply: November 15 – January 15 (varies)</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Most international students target the Winter Semester. Always verify exact deadlines on each university's official website.</p>
+
+  <h2>5.3 — Documents Required</h2>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Document</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>APS Certificate</td><td>Obtained after completing FSc — mandatory</td></tr>
+      <tr><td>IELTS / TOEFL Certificate</td><td>Must be valid (within 2 years) at time of application</td></tr>
+      <tr><td>Academic Transcripts</td><td>Matric + FSc — attested and translated if in Urdu</td></tr>
+      <tr><td>Statement of Purpose (SOP)</td><td>500–800 words — university-specific</td></tr>
+      <tr><td>CV / Resume</td><td>Academic format, no photo needed for most universities</td></tr>
+      <tr><td>Letters of Recommendation (LOR)</td><td>1–2 letters from teachers — on official letterhead</td></tr>
+      <tr><td>Passport (valid)</td><td>At least 2 years validity from application date</td></tr>
+      <tr><td>German Certificate</td><td>If applying to German-taught programs</td></tr>
+      <tr><td>Passport Photos</td><td>Biometric standard, white background</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>5.4 — Statement of Purpose (SOP)</h2>
+
+  <p>Your SOP must answer these five questions clearly:</p>
+  <ol>
+    <li>Why Computer Science specifically?</li>
+    <li>Why Germany, not another country?</li>
+    <li>Why this university specifically (mention their program, professors, or features)?</li>
+    <li>What have you done to prepare? (projects, courses, skills)</li>
+    <li>What are your long-term goals after graduation?</li>
+  </ol>
+
+  <div class="callout warn">
+    <div class="callout-label">Common Mistake</div>
+    <p>Generic SOPs that say "I have always loved computers since childhood" are ineffective. Admissions teams read hundreds. Be specific — mention a project you built, a problem you solved, or a concept in CS that genuinely interests you and why.</p>
+  </div>
+
+  <h2>5.5 — Letters of Recommendation (LOR)</h2>
+  <ul>
+    <li>Ask your Computer Science, Mathematics, or Physics teacher</li>
+    <li>Give them at least 3–4 weeks notice before any deadline</li>
+    <li>Tell them what skills and qualities the letter should highlight</li>
+    <li>Must be on official school letterhead with a stamp and signature</li>
+    <li>Should describe your academic ability, work ethic, and character with specific examples</li>
+  </ul>
+
+
+  <!-- ══ PART 6 ══ -->
+  <div id="part6" class="part-header">
+    <div class="part-tag">Part 06</div>
+    <div class="part-title">Scholarships</div>
+  </div>
+
+  <h2>6.1 — DAAD (Most Important Scholarship Body)</h2>
+
+  <p>DAAD (Deutscher Akademischer Austauschdienst — German Academic Exchange Service) is the largest scholarship organization for international students in Germany. Bookmark daad.de immediately.</p>
+
+  <div class="callout">
+    <div class="callout-label">Honest Reality About DAAD for Bachelor's</div>
+    <p>DAAD scholarships for bachelor's level are very limited. Most DAAD funding is for Masters and PhD students. Plan your bachelor's studies without relying on DAAD. Aim for DAAD scholarships at Masters level, once you are already in Germany.</p>
+  </div>
+
+  <h3>Relevant DAAD Programs</h3>
+  <ul>
+    <li><strong>DAAD Study Scholarships:</strong> For postgraduate students (Masters) — very competitive</li>
+    <li><strong>Development-Related Postgraduate Courses:</strong> For students from developing countries including Pakistan</li>
+    <li><strong>DAAD-funded university programs:</strong> Some universities embed DAAD funding into specific programs — check per university</li>
+  </ul>
+
+  <h2>6.2 — University-Specific Scholarships</h2>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Scholarship</th><th>Where Available</th><th>Amount</th><th>Basis</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Deutschlandstipendium</strong></td><td>Most German universities</td><td>€300/month</td><td>Merit-based — apply after enrollment</td></tr>
+      <tr><td>RWTH Excellence Scholarship</td><td>RWTH Aachen</td><td>Varies</td><td>Academic merit</td></tr>
+      <tr><td>TUM Scholarships</td><td>TU Munich</td><td>Varies</td><td>Multiple criteria</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>6.3 — Pakistani Government Scholarships</h2>
+  <ul>
+    <li><strong>HEC (Higher Education Commission):</strong> Check hec.gov.pk for overseas scholarship programs — these change regularly</li>
+    <li><strong>Prime Minister's Study Abroad Scheme:</strong> Announced periodically — monitor official government channels</li>
+  </ul>
+
+  <h2>6.4 — The Real Financial Solution: Part-Time Work</h2>
+
+  <p>Most Pakistani students self-fund their studies through part-time work in Germany. This is legal, common, and sufficient if managed well.</p>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Item</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td>Legal Work Hours</td><td>120 full days OR 240 half-days per year (approximately 20 hours/week)</td></tr>
+      <tr><td>Typical Wage</td><td>€12–16/hour depending on job type</td></tr>
+      <tr><td>Minimum Wage</td><td>€12.82/hour (2025 — check current rate)</td></tr>
+      <tr><td>Common Student Jobs</td><td>Warehouse work, IT support, teaching assistant, Hiwi (student helper at university), café/restaurant</td></tr>
+      <tr><td>Werkstudent Jobs</td><td>Part-time industry jobs related to your field — best option, adds to CV</td></tr>
+    </tbody>
+  </table></div>
+
+
+  <!-- ══ PART 7 ══ -->
+  <div id="part7" class="part-header">
+    <div class="part-tag">Part 07</div>
+    <div class="part-title">Finances &amp; Visa</div>
+  </div>
+
+  <h2>7.1 — Blocked Account (Sperrkonto) — Non-Negotiable</h2>
+
+  <p>Germany requires proof that you can support yourself financially before granting a student visa. You must deposit approximately <strong>€11,208</strong> (amount updated yearly — always check current requirement) into a special blocked account in Germany. This money is then released to you in monthly installments (~€934/month) after you arrive.</p>
+
+  <div class="callout warn">
+    <div class="callout-label">This Is Non-Negotiable</div>
+    <p>No blocked account = no student visa. This is the single biggest financial planning requirement. Inform your family about this as early as possible.</p>
+  </div>
+
+  <h3>How to Open a Blocked Account from Pakistan</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Provider</th><th>Website</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Fintiba</strong></td><td>fintiba.com</td><td>Most recommended for Pakistani students — fully online process</td></tr>
+      <tr><td><strong>Expatrio</strong></td><td>expatrio.com</td><td>Also popular and online</td></tr>
+      <tr><td>Deutsche Bank</td><td>—</td><td>More paperwork, harder from abroad</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Process: Open account online → Transfer money from Pakistan → Receive certificate → Include certificate in visa application. Allow 2–3 weeks for the full process.</p>
+
+  <h2>7.2 — Health Insurance — Mandatory by Law</h2>
+
+  <p>German law requires all students to have health insurance. You cannot enroll at a university without it, and the embassy requires proof of coverage for the visa.</p>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Type</th><th>Cost</th><th>Recommended?</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Public Insurance (GKV)</strong></td><td>~€120–130/month</td><td>Yes — best for students</td></tr>
+      <tr><td>Private Insurance</td><td>Higher long-term</td><td>Not recommended for students</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Best public insurance providers: TK (Techniker Krankenkasse), AOK, Barmer. They have English support and are student-friendly.</p>
+
+  <h2>7.3 — Semester Fee (Not Tuition)</h2>
+
+  <p>German public universities charge <strong>no tuition</strong>. However, every university charges a semester fee (Semesterbeitrag) each semester:</p>
+  <ul>
+    <li>Typical range: €200–450 per semester</li>
+    <li>Covers: Administration, student union (AStA), and usually a <strong>Semesterticket</strong> (free or heavily discounted public transport across the city/region)</li>
+    <li>This is not optional — it must be paid to enroll each semester</li>
+  </ul>
+
+  <h2>7.4 — Monthly Budget by City</h2>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>City</th><th>Rent</th><th>Food</th><th>Transport</th><th>Insurance</th><th>Total/Month</th></tr></thead>
+    <tbody>
+      <tr><td>Munich</td><td>€700–900</td><td>€200</td><td>€50–90</td><td>€130</td><td>~€1,100–1,300</td></tr>
+      <tr><td>Berlin</td><td>€600–800</td><td>€180</td><td>€40–80</td><td>€130</td><td>~€950–1,200</td></tr>
+      <tr><td>Aachen</td><td>€450–600</td><td>€160</td><td>€30–60</td><td>€130</td><td>~€780–950</td></tr>
+      <tr><td>Freiburg / Darmstadt</td><td>€500–650</td><td>€170</td><td>€40–70</td><td>€130</td><td>~€840–1,020</td></tr>
+      <tr><td>Smaller cities (Fulda, Kleve)</td><td>€350–500</td><td>€150</td><td>€30–50</td><td>€130</td><td>~€660–830</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>7.5 — Student Visa Process</h2>
+
+  <h3>Types of Student Visa</h3>
+  <ul>
+    <li><strong>Student Applicant Visa:</strong> If you are still waiting for university admission — valid for 6 months, allows you to come to Germany to finalize applications</li>
+    <li><strong>Student Visa:</strong> Once you have an admission letter — valid 1–2 years, renewable</li>
+  </ul>
+
+  <h3>Steps to Get a Student Visa</h3>
+  <ol>
+    <li>Receive admission letter from a German university</li>
+    <li>Open blocked account (Sperrkonto) — transfer €11,208+</li>
+    <li>Arrange health insurance confirmation letter</li>
+    <li>Book appointment at German Embassy in Islamabad or Consulate in Karachi (book early — waiting times can be 2–3 months)</li>
+    <li>Submit complete document package at the appointment</li>
+    <li>Wait 4–8 weeks for visa decision</li>
+  </ol>
+
+  <h3>Visa Documents Checklist</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Document</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Valid passport (6+ months validity)</td><td></td></tr>
+      <tr><td>University admission letter</td><td></td></tr>
+      <tr><td>APS certificate</td><td></td></tr>
+      <tr><td>Blocked account certificate</td><td></td></tr>
+      <tr><td>Health insurance confirmation</td><td></td></tr>
+      <tr><td>IELTS / language certificate</td><td></td></tr>
+      <tr><td>Academic transcripts (attested)</td><td></td></tr>
+      <tr><td>Biometric passport photos</td><td></td></tr>
+      <tr><td>Completed visa application form</td><td></td></tr>
+    </tbody>
+  </table></div>
+
+
+  <!-- ══ PART 8 ══ -->
+  <div id="part8" class="part-header">
+    <div class="part-tag">Part 08</div>
+    <div class="part-title">After Arriving in Germany</div>
+  </div>
+
+  <h2>8.1 — Anmeldung (City Registration) — Do This First</h2>
+
+  <p>Within <strong>14 days of arriving</strong> in Germany, you must register your address at the local registration office (Einwohnermeldeamt or Bürgeramt). This produces a document called Anmeldebestätigung (registration confirmation). You will need this for almost everything: bank account, university enrollment, insurance, and residence permit.</p>
+
+  <h2>8.2 — Opening a German Bank Account</h2>
+
+  <p>You need a German bank account to receive your monthly blocked account release and pay rent.</p>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Bank</th><th>Type</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><strong>N26</strong></td><td>Online / App-based</td><td>Easy setup for foreigners, English interface, recommended first option</td></tr>
+      <tr><td>Deutsche Bank</td><td>Traditional</td><td>More paperwork, but widely trusted</td></tr>
+      <tr><td>Sparkasse</td><td>Local / Traditional</td><td>Varies by city — good for local integrations</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>8.3 — University Enrollment (Immatrikulation)</h2>
+
+  <p>Receiving an admission letter does not mean you are enrolled. You must complete a formal enrollment process:</p>
+  <ol>
+    <li>Submit original documents to the university's enrollment office (Immatrikulationsamt)</li>
+    <li>Pay the semester fee</li>
+    <li>Receive student ID (Studentenausweis) and university login credentials</li>
+    <li>Activate access to university systems, library, portal, and email</li>
+  </ol>
+
+  <p><strong>There is a strict enrollment deadline — missing it means you lose your spot.</strong></p>
+
+  <h2>8.4 — Student Housing (Wohnheim)</h2>
+
+  <p>Student dormitories (Studentenwohnheim) are managed by Studentenwerk — the student services organization in each German city. They are the cheapest and safest housing option.</p>
+
+  <ul>
+    <li>Cost: €200–450/month</li>
+    <li>Waiting list: Often 6–12 months long</li>
+    <li><strong>Apply for housing as soon as you receive your admission letter — not after arrival</strong></li>
+  </ul>
+
+  <h3>Private Housing Options</h3>
+  <ul>
+    <li><strong>WG (Wohngemeinschaft):</strong> Shared apartment — most common student option; find at wg-gesucht.de</li>
+    <li>immobilienscout24.de — larger private rentals</li>
+  </ul>
+
+  <h2>8.5 — Residence Permit (Aufenthaltserlaubnis)</h2>
+
+  <p>Your student visa is valid for limited time. Within its validity, you must apply for a Residence Permit at the local Ausländerbehörde (Foreigners' Authority). This is typically straightforward with valid enrollment and blocked account documentation.</p>
+
+
+  <!-- ══ PART 9 ══ -->
+  <div id="part9" class="part-header">
+    <div class="part-tag">Part 09</div>
+    <div class="part-title">Technical Skills Roadmap</div>
+  </div>
+
+  <h2>Phase 1 — Now (10th Grade, 2025–2026)</h2>
+
+  <h3>Programming</h3>
+  <ul>
+    <li>Python basics: variables, loops, functions, lists, basic input/output</li>
+    <li>Resource: freeCodeCamp Python course (free on YouTube)</li>
+    <li>Complete at least 30 small coding exercises — practice every day, not just theory</li>
+    <li>Optional intro: CS50 on YouTube (Harvard's free course) — start watching, do not worry if it is hard</li>
+  </ul>
+
+  <h3>Math Foundation</h3>
+  <ul>
+    <li>Strengthen Algebra and Trigonometry — your FSc will cover these, but practice extra</li>
+    <li>Begin logical thinking exercises: simple puzzles, pattern recognition, basic problem-solving</li>
+  </ul>
+
+  <h3>English</h3>
+  <ul>
+    <li>Read English articles daily — BBC, simple science/tech blogs</li>
+    <li>Watch English content with subtitles — tech YouTube channels</li>
+  </ul>
+
+  <h3>Germany Understanding</h3>
+  <ul>
+    <li>Read this document fully and understand each part</li>
+    <li>Begin understanding the university system structure</li>
+  </ul>
+
+  <p><strong>Milestone:</strong> Basic Python coding ability + clear understanding of Germany's three university systems</p>
+
+  <hr style="border:none;border-top:1px solid var(--border);margin:40px 0;">
+
+  <h2>Phase 2 — 11th Grade (2026–2027)</h2>
+
+  <h3>Programming</h3>
+  <ul>
+    <li>Python intermediate: Object-Oriented Programming (OOP), file handling, basic data structures</li>
+    <li>HTML + CSS basics — builds web development foundation</li>
+    <li>Git and GitHub: Learn version control, create a profile, push projects publicly</li>
+    <li>Complete 2–3 small projects: a calculator app, a to-do list, a simple quiz game</li>
+    <li>Start building your GitHub portfolio — this can be mentioned in your SOP</li>
+  </ul>
+
+  <h3>Math</h3>
+  <ul>
+    <li>Pre-Calculus: limits, introduction to derivatives</li>
+    <li>Linear Algebra basics: matrices, vectors — critical for CS and AI later</li>
+    <li>Discrete Mathematics introduction: logic, sets, functions, basic proofs</li>
+  </ul>
+
+  <h3>German Language</h3>
+  <ul>
+    <li>Complete A1 course (Goethe Institut or DW online)</li>
+    <li>Begin A2 preparation by end of 11th grade</li>
+    <li>Daily practice: minimum 20–30 minutes</li>
+  </ul>
+
+  <h3>IELTS Preparation</h3>
+  <ul>
+    <li>Begin structured IELTS Academic prep: vocabulary building, academic reading practice</li>
+    <li>Start writing academic essays — Task 1 (data description) and Task 2 (argument essays)</li>
+    <li>Use official Cambridge IELTS preparation books</li>
+  </ul>
+
+  <h3>University Research</h3>
+  <ul>
+    <li>Begin building your research spreadsheet (see Part 10)</li>
+    <li>Target: 30–50 universities researched, 15 shortlisted by end of 11th grade</li>
+  </ul>
+
+  <p><strong>Milestone:</strong> 2 GitHub projects + German A2 level + university list drafted + IELTS prep underway</p>
+
+  <hr style="border:none;border-top:1px solid var(--border);margin:40px 0;">
+
+  <h2>Phase 3 — 12th Grade (2027–2028)</h2>
+
+  <h3>Programming</h3>
+  <ul>
+    <li>Data Structures: arrays, linked lists, stacks, queues, trees, hash maps</li>
+    <li>Algorithms: sorting (bubble, merge, quick), searching, basic complexity analysis (Big O notation)</li>
+    <li>1 meaningful project on GitHub — something you can explain confidently in your SOP</li>
+    <li>Optional: Basic web app using Python + Flask or a simple game in Python</li>
+  </ul>
+
+  <h3>Math</h3>
+  <ul>
+    <li>Calculus: derivatives and integrals (FSc covers this — go deeper)</li>
+    <li>Practice university-level problem-solving style questions</li>
+  </ul>
+
+  <h3>German Language</h3>
+  <ul>
+    <li>A2 → B1 progression</li>
+    <li>Take Goethe B1 exam and obtain certificate</li>
+    <li>Begin B2 preparation if possible</li>
+  </ul>
+
+  <h3>IELTS</h3>
+  <ul>
+    <li>Give IELTS Academic exam by October–December of 12th grade</li>
+    <li>This gives time for one retake before Winter Semester application deadlines</li>
+    <li>Target: 6.5+ overall (6.0 minimum for each band if possible)</li>
+  </ul>
+
+  <h3>University Finalization</h3>
+  <ul>
+    <li>Final shortlist: 10–15 universities</li>
+    <li>Spreadsheet complete with all tabs filled</li>
+    <li>Admission requirements verified individually for each university</li>
+    <li>SOP drafts begun</li>
+  </ul>
+
+  <p><strong>Milestone:</strong> IELTS 6.5+ certificate + German B1 certificate + GitHub portfolio with 3+ projects + finalized 15-university list</p>
+
+  <hr style="border:none;border-top:1px solid var(--border);margin:40px 0;">
+
+  <h2>Phase 4 — Post FSc / Application Year (2028–2029)</h2>
+
+  <ul>
+    <li>APS appointment in Islamabad — book 2–3 months in advance</li>
+    <li>Document attestation chain completed</li>
+    <li>SOP finalized for each university (customize per university)</li>
+    <li>LOR letters collected from teachers</li>
+    <li>Apply via Uni-Assist and direct portals</li>
+    <li>Open Sperrkonto (blocked account) — plan for this financially well in advance</li>
+    <li>Visa application and appointment booking</li>
+    <li>Housing application submitted (Studentenwerk) immediately after admission letter</li>
+    <li>Arrival planning: Anmeldung, bank account, health insurance, enrollment</li>
+  </ul>
+
+  <p><strong>Milestone:</strong> Admitted, visa received, booked flight, enrolled at German university</p>
+
+
+  <!-- ══ PART 10 ══ -->
+  <div id="part10" class="part-header">
+    <div class="part-tag">Part 10</div>
+    <div class="part-title">Research Spreadsheet System</div>
+  </div>
+
+  <p>Build this spreadsheet during 11th grade. It is your most important organizational tool. Use Google Sheets so it is accessible from anywhere.</p>
+
+  <h2>Tab 1 — University Master List</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Column</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>University Name</td><td>e.g., TU Munich, Hochschule Rhein-Waal</td></tr>
+      <tr><td>City</td><td>Location</td></tr>
+      <tr><td>Type</td><td>Uni / FH / Dual</td></tr>
+      <tr><td>Global Ranking</td><td>Optional — QS or THE ranking</td></tr>
+      <tr><td>Tuition</td><td>Usually €0 for public universities</td></tr>
+      <tr><td>Semester Fee</td><td>€ amount per semester</td></tr>
+      <tr><td>Website</td><td>Official link</td></tr>
+      <tr><td>Language</td><td>English / German / Both</td></tr>
+      <tr><td>CS Program Available</td><td>Yes / No</td></tr>
+      <tr><td>NC Restricted?</td><td>Yes / No / Unknown — important for planning</td></tr>
+      <tr><td>Studienkolleg Required?</td><td>Yes / No / Check — Pakistan-specific</td></tr>
+      <tr><td>APS Explicitly Required?</td><td>Yes / No / Check</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Tab 2 — Program Details (CS Focus)</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Column</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>University</td><td>Link to Tab 1</td></tr>
+      <tr><td>Program Name</td><td>e.g., BSc Computer Science</td></tr>
+      <tr><td>Degree Type</td><td>Bachelor</td></tr>
+      <tr><td>Intake</td><td>Winter / Summer / Both</td></tr>
+      <tr><td>Duration</td><td>Years (usually 3–3.5)</td></tr>
+      <tr><td>ECTS Credits</td><td>Usually 180</td></tr>
+      <tr><td>Curriculum Type</td><td>Theory-heavy / Applied / Mixed</td></tr>
+      <tr><td>Internship Required</td><td>Yes / No / Semester</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Tab 3 — Admission Requirements</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Column</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>IELTS Required</td><td>Yes / No</td></tr>
+      <tr><td>IELTS Score</td><td>6.0 / 6.5 / 7.0</td></tr>
+      <tr><td>German Required</td><td>A2 / B1 / B2 / Not required</td></tr>
+      <tr><td>TestDaF Required?</td><td>Yes / No — for German-taught programs</td></tr>
+      <tr><td>APS Required</td><td>Yes / No</td></tr>
+      <tr><td>Entrance Exam</td><td>If applicable</td></tr>
+      <tr><td>GPA Requirement</td><td>If mentioned</td></tr>
+      <tr><td>Direct Acceptance of FSc?</td><td>Yes / No / Unknown</td></tr>
+      <tr><td>Eligibility Notes</td><td>Any Pakistan-specific notes</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Tab 4 — Application System</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Column</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Application Portal</td><td>Uni-Assist / Direct / Both</td></tr>
+      <tr><td>Deadline Winter</td><td>Specific date</td></tr>
+      <tr><td>Deadline Summer</td><td>Specific date</td></tr>
+      <tr><td>Documents Required</td><td>List for this specific university</td></tr>
+      <tr><td>SOP Required</td><td>Yes / No</td></tr>
+      <tr><td>LOR Required</td><td>Yes / No / How many</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Tab 5 — Scholarships</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Column</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>University</td><td>Link</td></tr>
+      <tr><td>Scholarship Available</td><td>Yes / No / Deutschlandstipendium</td></tr>
+      <tr><td>Type</td><td>Merit / Need-based / DAAD</td></tr>
+      <tr><td>Amount</td><td>€/month or total</td></tr>
+      <tr><td>Eligibility</td><td>Conditions and requirements</td></tr>
+      <tr><td>Application Deadline</td><td>Date — usually after enrollment</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Tab 6 — Cost and Living</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Column</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>City</td><td>Location</td></tr>
+      <tr><td>Rent Estimate</td><td>€/month (student dorm vs private)</td></tr>
+      <tr><td>Food Cost</td><td>€/month</td></tr>
+      <tr><td>Transport Cost</td><td>€/month (may be included in semester fee)</td></tr>
+      <tr><td>Health Insurance</td><td>€/month (~€130)</td></tr>
+      <tr><td>Total Monthly Cost</td><td>€/month</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Tab 7 — Admission Difficulty Score</h2>
+  <p>Score each factor from 1–5. Total score determines category:</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Factor</th><th>Score 1–5</th></tr></thead>
+    <tbody>
+      <tr><td>Ranking difficulty (higher rank = higher score)</td><td></td></tr>
+      <tr><td>IELTS requirement (higher score needed = higher number)</td><td></td></tr>
+      <tr><td>Competition level (international applicants)</td><td></td></tr>
+      <tr><td>Language barrier (German-taught = higher score)</td><td></td></tr>
+      <tr><td>Acceptance probability for Pakistani students</td><td></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Total Score</th><th>Category</th></tr></thead>
+    <tbody>
+      <tr><td>5–10</td><td>Safe — high probability</td></tr>
+      <tr><td>11–15</td><td>Target — realistic with good preparation</td></tr>
+      <tr><td>16–25</td><td>Dream — apply but do not rely on</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Tab 8 — Personal Status Tracker</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Column</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>University</td><td>Name</td></tr>
+      <tr><td>Priority Rank</td><td>1–15 your personal preference</td></tr>
+      <tr><td>Status</td><td>Not started / Researching / SOP drafted / Applied / Accepted / Rejected</td></tr>
+      <tr><td>Documents Ready</td><td>Yes / No / Partial</td></tr>
+      <tr><td>Application Submitted</td><td>Date</td></tr>
+      <tr><td>Response Received</td><td>Date + outcome</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Tab 9 — Visa and Financial Checklist (New)</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Item</th><th>Done?</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>APS Certificate obtained</td><td></td><td></td></tr>
+      <tr><td>Document attestation chain completed</td><td></td><td></td></tr>
+      <tr><td>Blocked account (Sperrkonto) opened</td><td></td><td></td></tr>
+      <tr><td>€11,208+ transferred to blocked account</td><td></td><td></td></tr>
+      <tr><td>Health insurance confirmation letter</td><td></td><td></td></tr>
+      <tr><td>German Embassy appointment booked</td><td></td><td></td></tr>
+      <tr><td>Visa application form completed</td><td></td><td></td></tr>
+      <tr><td>Visa received</td><td></td><td></td></tr>
+      <tr><td>Student housing applied for</td><td></td><td></td></tr>
+      <tr><td>Flight booked</td><td></td><td></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Tab 10 — German Language Progress (New)</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Level</th><th>Target Date</th><th>Certificate Obtained</th><th>Score</th></tr></thead>
+    <tbody>
+      <tr><td>A1</td><td></td><td></td><td></td></tr>
+      <tr><td>A2</td><td></td><td></td><td></td></tr>
+      <tr><td>B1</td><td></td><td></td><td></td></tr>
+      <tr><td>B2</td><td></td><td></td><td></td></tr>
+      <tr><td>TestDaF</td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table></div>
+
+
+  <!-- ══ PART 11 ══ -->
+  <div id="part11" class="part-header">
+    <div class="part-tag">Part 11</div>
+    <div class="part-title">University Selection Strategy</div>
+  </div>
+
+  <h2>The 40-30-30 Rule</h2>
+
+  <p>Build your final list of 12–15 universities this way:</p>
+
+  <div class="score-grid">
+    <div class="score-card">
+      <div class="score-card-label">Safe</div>
+      <div class="score-card-value">40%</div>
+      <p style="font-size:13px;margin-top:8px;color:var(--gray-600)">High acceptance probability, open admission FH programs</p>
+    </div>
+    <div class="score-card">
+      <div class="score-card-label">Target</div>
+      <div class="score-card-value">30%</div>
+      <p style="font-size:13px;margin-top:8px;color:var(--gray-600)">Realistic with strong IELTS, good grades, solid preparation</p>
+    </div>
+    <div class="score-card">
+      <div class="score-card-label">Dream</div>
+      <div class="score-card-value">30%</div>
+      <p style="font-size:13px;margin-top:8px;color:var(--gray-600)">Competitive research universities — apply but do not rely on</p>
+    </div>
+  </div>
+
+  <h2>City Strategy</h2>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>City</th><th>Pros</th><th>Cons</th><th>Best For</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Munich</strong></td><td>Best tech jobs, TUM, BMW, Siemens nearby</td><td>Most expensive, highest competition</td><td>Dream university applications</td></tr>
+      <tr><td><strong>Berlin</strong></td><td>Startup culture, affordable, vibrant</td><td>Less traditional industry, high competition</td><td>Entrepreneurial CS students</td></tr>
+      <tr><td><strong>Aachen</strong></td><td>RWTH (world-class CS), student-friendly city</td><td>Smaller city, limited nightlife</td><td>Research university aspirants</td></tr>
+      <tr><td><strong>Stuttgart</strong></td><td>Automotive industry (Bosch, Porsche), affordable</td><td>Moderate competition</td><td>Industry-focused students</td></tr>
+      <tr><td><strong>Darmstadt</strong></td><td>Near Frankfurt, TU Darmstadt strong CS</td><td>High cost near Frankfurt</td><td>Target applications</td></tr>
+      <tr><td><strong>Freiburg</strong></td><td>Beautiful city, good university, FH options</td><td>Less industry connections</td><td>Quality of life + good university</td></tr>
+      <tr><td><strong>Kleve / Fulda</strong></td><td>Very affordable, international FH programs</td><td>Very small cities</td><td>Safe applications</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout tip">
+    <div class="callout-label">Recommendation</div>
+    <p>Target medium-sized cities (Aachen, Darmstadt, Stuttgart, Freiburg) — better balance of affordability, university quality, and career opportunities compared to Munich or Berlin.</p>
+  </div>
+
+  <h2>Language Path Decision Impact</h2>
+  <p>Your German language level directly controls how many universities you can access:</p>
+  <ul>
+    <li><strong>IELTS only, no German:</strong> ~50–80 programs available</li>
+    <li><strong>IELTS + German A2:</strong> ~100–150 programs</li>
+    <li><strong>IELTS + German B1:</strong> ~200–300 programs</li>
+    <li><strong>IELTS + German B2:</strong> ~400+ programs — the full German system opens up</li>
+  </ul>
+
+
+  <!-- ══ PART 12 ══ -->
+  <div id="part12" class="part-header">
+    <div class="part-tag">Part 12</div>
+    <div class="part-title">Full Timeline: Now to Arrival</div>
+  </div>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-label">Phase A · 2025–2026</div>
+      <div class="timeline-title">10th Grade — Foundation</div>
+      <div class="timeline-body">
+        <strong>Focus:</strong> English improvement, basic Python, Germany system understanding, German A1 start<br><br>
+        <strong>Tasks:</strong>
+        <ul>
+          <li>Complete Python basics (freeCodeCamp or CS50)</li>
+          <li>Begin German informally (DW online — free)</li>
+          <li>Read this full roadmap document and understand each part</li>
+          <li>Strengthen Math (Algebra, Trigonometry)</li>
+          <li>Start reading English articles daily</li>
+        </ul>
+        <strong>Milestone:</strong> You understand Germany's full system + can write basic Python code
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-label">Phase B · 2026–2027</div>
+      <div class="timeline-title">11th Grade — Build Systems</div>
+      <div class="timeline-body">
+        <strong>Focus:</strong> Python intermediate, IELTS prep begins, German A1→A2, university database (30–50 universities)<br><br>
+        <strong>Tasks:</strong>
+        <ul>
+          <li>Python OOP, file handling, 2–3 GitHub projects</li>
+          <li>Create GitHub account and portfolio</li>
+          <li>Start IELTS structured prep (vocabulary, reading, writing)</li>
+          <li>German A1 certificate (Goethe) — begin A2</li>
+          <li>Build university spreadsheet: 30–50 universities researched, 15 shortlisted</li>
+          <li>Understand APS process in detail</li>
+        </ul>
+        <strong>Milestone:</strong> GitHub portfolio (2 projects) + German A2 + university list drafted
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-label">Phase C · 2027–2028</div>
+      <div class="timeline-title">12th Grade — Application-Ready</div>
+      <div class="timeline-body">
+        <strong>Focus:</strong> IELTS exam, German B1 certificate, final university shortlist (10–15), SOP drafting<br><br>
+        <strong>Tasks:</strong>
+        <ul>
+          <li>Data Structures + Algorithms in Python</li>
+          <li>1 meaningful GitHub project you can explain in your SOP</li>
+          <li>IELTS exam: October–December — target 6.5+</li>
+          <li>Goethe B1 certificate</li>
+          <li>Final university list with all spreadsheet tabs complete</li>
+          <li>SOP first drafts</li>
+          <li>Begin document attestation awareness</li>
+        </ul>
+        <strong>Milestone:</strong> IELTS 6.5+ certificate + German B1 + 3 GitHub projects + 15-university list
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-label">Phase D · 2028–2029</div>
+      <div class="timeline-title">Post FSc — Application Year</div>
+      <div class="timeline-body">
+        <strong>Focus:</strong> APS, applications, blocked account, visa, scholarship applications<br><br>
+        <strong>Tasks:</strong>
+        <ul>
+          <li>Complete document attestation chain (start this 3–4 months before APS)</li>
+          <li>APS appointment in Islamabad — book 2–3 months in advance</li>
+          <li>Finalize SOP for each university</li>
+          <li>Collect LOR letters from teachers</li>
+          <li>Submit applications via Uni-Assist and direct portals</li>
+          <li>Open Sperrkonto (blocked account) — Fintiba recommended</li>
+          <li>Book German Embassy visa appointment</li>
+          <li>Apply for student housing (Studentenwerk) immediately after admission</li>
+        </ul>
+        <strong>Milestone:</strong> APS certificate + multiple university applications submitted + blocked account open
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-label">Phase E · 2029</div>
+      <div class="timeline-title">Arrival in Germany</div>
+      <div class="timeline-body">
+        <strong>Focus:</strong> Enrollment, settlement, language improvement, first semester<br><br>
+        <strong>Tasks:</strong>
+        <ul>
+          <li>Register address (Anmeldung) within 14 days of arrival</li>
+          <li>Open German bank account (N26 recommended)</li>
+          <li>Complete university enrollment (Immatrikulation)</li>
+          <li>Set up health insurance</li>
+          <li>Apply for residence permit at Ausländerbehörde</li>
+          <li>Continue German language improvement</li>
+          <li>Begin looking for Werkstudent (student job) after first semester settles</li>
+        </ul>
+        <strong>Milestone:</strong> Enrolled at German university, settled in Germany
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ══ PART 13 ══ -->
+  <div id="part13" class="part-header">
+    <div class="part-tag">Part 13</div>
+    <div class="part-title">Hidden Requirements Most Students Miss</div>
+  </div>
+
+  <p>These are the things that cause Pakistani students to be delayed or rejected — not because of their grades, but because of these administrative and technical gaps discovered too late.</p>
+
+  <ol style="margin-left:20px;">
+    <li style="margin-bottom:16px;">
+      <strong>Document attestation is a multi-week chain.</strong><br>
+      School → Board of Education → Ministry of Education → Ministry of Foreign Affairs → German Embassy. This takes weeks. Do not leave it for the month before your visa appointment.
+    </li>
+    <li style="margin-bottom:16px;">
+      <strong>Urdu documents need certified translation.</strong><br>
+      Any document in Urdu must be translated by a Staatlich anerkannter Übersetzer (state-recognized translator). This is not just any English translation — it must be certified. Budget time and money for this.
+    </li>
+    <li style="margin-bottom:16px;">
+      <strong>IELTS Academic, not General.</strong><br>
+      Universities require IELTS Academic. IELTS General Training is for immigration purposes only. Taking the wrong test wastes PKR 40,000+ and delays your application.
+    </li>
+    <li style="margin-bottom:16px;">
+      <strong>FSc subject match matters.</strong><br>
+      Some CS programs require Physics and/or Mathematics in your secondary qualification. If your FSc does not include these, certain programs may reject your application regardless of your IELTS score.
+    </li>
+    <li style="margin-bottom:16px;">
+      <strong>Blocked account timing.</strong><br>
+      Opening a Sperrkonto takes 1–2 weeks; the bank transfer from Pakistan can take 3–5 additional business days. Allow a full month. Arriving at your embassy appointment without this certificate results in immediate rejection.
+    </li>
+    <li style="margin-bottom:16px;">
+      <strong>Health insurance must be confirmed before the visa appointment — not after arrival.</strong><br>
+      The German Embassy requires proof of health insurance coverage during the interview. Get this sorted before booking your appointment.
+    </li>
+    <li style="margin-bottom:16px;">
+      <strong>University enrollment has a deadline.</strong><br>
+      Receiving an admission letter does not mean you are enrolled. You must submit documents, pay the semester fee, and complete Immatrikulation within the stated enrollment deadline. Missing this means losing your spot.
+    </li>
+    <li style="margin-bottom:16px;">
+      <strong>Apply for housing the day you get your admission letter.</strong><br>
+      Studentenwerk (student dormitory) waiting lists are 6–12 months in most cities. Students who wait until after the visa is approved routinely spend their first semester in expensive private accommodation or temporary housing.
+    </li>
+    <li style="margin-bottom:16px;">
+      <strong>Online-only programs do not qualify for a student visa.</strong><br>
+      Germany does not issue student visas for fully online programs. You must be enrolled in a campus-based program with physical attendance.
+    </li>
+    <li style="margin-bottom:16px;">
+      <strong>Gap year explanation may be required.</strong><br>
+      If there is a significant gap between completing your FSc and submitting your application, some universities will ask for a formal written explanation. Prepare this in advance and frame it positively (language study, coding projects, etc.).
+    </li>
+    <li style="margin-bottom:16px;">
+      <strong>Photograph standards are strict.</strong><br>
+      German visa and university photos must meet biometric standards: white background, neutral expression, no glasses in some cases. Use a professional photographer. Casual photos will not be accepted.
+    </li>
+    <li style="margin-bottom:16px;">
+      <strong>Embassy appointment waiting times can be 2–3 months.</strong><br>
+      German Embassy Islamabad and Consulate Karachi are heavily booked. Book your appointment as soon as you have your admission letter and blocked account. Do not wait until you have gathered every single document.
+    </li>
+  </ol>
+
+
+  <!-- ══ PART 14 ══ -->
+  <div id="part14" class="part-header">
+    <div class="part-tag">Part 14</div>
+    <div class="part-title">Resources to Bookmark Now</div>
+  </div>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Resource</th><th>URL / Where to Find</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td><strong>DAAD</strong></td><td>daad.de</td><td>Official German scholarship database, university finder, program search</td></tr>
+      <tr><td><strong>Study in Germany</strong></td><td>study-in-germany.de</td><td>German government's official international student guide</td></tr>
+      <tr><td><strong>Uni-Assist</strong></td><td>uni-assist.de</td><td>Central application portal for most German universities</td></tr>
+      <tr><td><strong>anabin</strong></td><td>anabin.kmk.org</td><td>Check recognition status of Pakistani qualifications</td></tr>
+      <tr><td><strong>Studying in Germany (blog)</strong></td><td>studying-in-germany.org</td><td>Unofficial but very practical guide written for international students</td></tr>
+      <tr><td><strong>DW Learn German</strong></td><td>dw.com/learn-german</td><td>Free German A1–B1 courses — start here</td></tr>
+      <tr><td><strong>Fintiba</strong></td><td>fintiba.com</td><td>Blocked account (Sperrkonto) — open from Pakistan online</td></tr>
+      <tr><td><strong>Expatrio</strong></td><td>expatrio.com</td><td>Alternative blocked account provider</td></tr>
+      <tr><td><strong>CS50 Harvard</strong></td><td>cs50.harvard.edu</td><td>Free intro CS course — excellent programming foundation</td></tr>
+      <tr><td><strong>Goethe Institut Pakistan</strong></td><td>goethe.de/pakistan</td><td>German language courses and official Goethe exams in Pakistan</td></tr>
+      <tr><td><strong>APS Pakistan</strong></td><td>pakistan.diplo.de/pk-en/service/aps</td><td>Official APS Pakistan page — document verification for Germany</td></tr>
+      <tr><td><strong>HEC Pakistan</strong></td><td>hec.gov.pk</td><td>Pakistan government overseas scholarship programs</td></tr>
+      <tr><td><strong>WG-Gesucht</strong></td><td>wg-gesucht.de</td><td>Find shared apartments (WG) in Germany — private housing search</td></tr>
+      <tr><td><strong>freeCodeCamp Python</strong></td><td>YouTube: freeCodeCamp.org</td><td>Free Python programming course for beginners</td></tr>
+      <tr><td><strong>GitHub</strong></td><td>github.com</td><td>Create your portfolio — start pushing projects here now</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout tip">
+    <div class="callout-label">Action This Week</div>
+    <p>Create accounts on GitHub and DAAD right now. On GitHub: set up a profile with your real name and start a first basic Python project. On DAAD: browse the scholarship and university finder to understand what is available.</p>
+  </div>
+
+
+  <!-- ══ CLOSING ══ -->
+  <div class="part-header" style="margin-top:80px;">
+    <div class="part-tag">Final Note</div>
+    <div class="part-title">What Makes This Achievable</div>
+  </div>
+
+  <p>The original roadmap said: <em>"Most students only focus on academic eligibility. You are building all four systems."</em> This remains the most important insight.</p>
+
+  <p>Germany does not reject students because they are not smart enough. Germany rejects applications because of:</p>
+  <ul>
+    <li>Missing APS certificate</li>
+    <li>Wrong IELTS test type or expired score</li>
+    <li>Incomplete document attestation</li>
+    <li>Missing blocked account at visa interview</li>
+    <li>Late applications after NC deadline</li>
+    <li>No German language certificate when required</li>
+  </ul>
+
+  <p>Every one of these is a procedural failure, not an academic one. And every one of them is completely preventable with early planning — which is exactly what you are doing right now.</p>
+
+  <p>You have 3–4 years of preparation time. Students who arrive at German universities from Pakistan and succeed are not necessarily the ones with the highest grades. They are the ones who treated the application process as seriously as the academic preparation.</p>
+
+  <p>Build your spreadsheet. Learn German early. Code every day. And come back to this document at the start of every school year to track your progress.</p>
+
+  <div class="doc-footer">
+    Germany CS Study Abroad — Complete Roadmap · Version 2.0 · Prepared 2026
+  </div>
+
+</div>
+</body>
+</html>

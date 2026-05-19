@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carini Group — Decision Safety Brief | Dev8X</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --navy: #0c1b2e;
+    --navy-mid: #162840;
+    --navy-light: #1e3a55;
+    --gold: #b8966a;
+    --gold-light: #d4b483;
+    --gold-pale: #f5edd9;
+    --white: #ffffff;
+    --off-white: #f8f6f2;
+    --text-primary: #1a1a2e;
+    --text-secondary: #4a5568;
+    --text-muted: #8a95a3;
+    --blue-accent: #2563eb;
+    --green: #15803d;
+    --green-pale: #f0fdf4;
+    --red-pale: #fff5f5;
+    --red: #dc2626;
+    --border: #e8e0d4;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
+    --radius: 10px;
+    --radius-lg: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--off-white);
+    color: var(--text-primary);
+    line-height: 1.65;
+  }
+
+  .sans { font-family: 'Trebuchet MS', 'Gill Sans', 'Century Gothic', sans-serif; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(145deg, #0a1520 0%, #0f2035 45%, #162840 100%);
+    color: var(--white);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -15%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(184,150,106,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(184,150,106,0.4), transparent);
+  }
+
+  .hero-meta {
+    padding: 28px 60px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0.7;
+  }
+
+  .hero-meta span {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(212,180,131,0.8);
+  }
+
+  .hero-body {
+    padding: 48px 60px 56px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    max-width: 680px;
+    margin-bottom: 14px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    color: rgba(255,255,255,0.62);
+    max-width: 520px;
+    margin-bottom: 44px;
+    line-height: 1.6;
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .stat-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(184,150,106,0.18);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    backdrop-filter: blur(4px);
+  }
+
+  .stat-card .val {
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .stat-card .label {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.72);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+
+  .stat-card .source {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    color: rgba(184,150,106,0.6);
+    letter-spacing: 0.04em;
+  }
+
+  .glance-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border: 1px solid rgba(184,150,106,0.2);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .glance-item {
+    padding: 16px 20px;
+    border-right: 1px solid rgba(184,150,106,0.15);
+  }
+
+  .glance-item:last-child { border-right: none; }
+
+  .glance-item .g-label {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .glance-item .g-val {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.4;
+  }
+
+  /* ── LAYOUT ── */
+  .wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .section {
+    padding: 56px 40px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section h2 {
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--navy);
+    margin-bottom: 28px;
+    line-height: 1.3;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+    margin: 0 40px;
+  }
+
+  /* ── DESIRED OUTCOME ── */
+  .outcome-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .outcome-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 30px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .outcome-card .oc-label {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .outcome-card p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  .timing-callout {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    border-radius: var(--radius);
+    padding: 20px 26px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .timing-callout .tc-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .timing-callout .tc-text {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+  }
+
+  .timing-callout strong { color: var(--gold-light); }
+
+  /* ── PROBLEM REGISTER ── */
+  .problem-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    font-family: 'Trebuchet MS', sans-serif;
+  }
+
+  .problem-table thead tr {
+    background: var(--navy);
+  }
+
+  .problem-table th {
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(184,150,106,0.8);
+    font-weight: 400;
+  }
+
+  .problem-table td {
+    padding: 16px 20px;
+    font-size: 13px;
+    vertical-align: top;
+    border-top: 1px solid var(--border);
+    line-height: 1.55;
+  }
+
+  .problem-table tr:hover td { background: var(--off-white); }
+
+  .prob-badge {
+    display: inline-block;
+    background: var(--gold-pale);
+    color: var(--gold);
+    border: 1px solid rgba(184,150,106,0.3);
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    margin-bottom: 6px;
+    letter-spacing: 0.06em;
+  }
+
+  .impact-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--red-pale);
+    color: var(--red);
+    border-radius: 4px;
+    font-size: 10px;
+    padding: 3px 8px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  /* ── RESEARCH TRANSPARENCY ── */
+  .rt-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 13px;
+  }
+
+  .rt-table thead tr { background: #f4f0ea; }
+  .rt-table th {
+    padding: 12px 18px;
+    text-align: left;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .rt-table td {
+    padding: 14px 18px;
+    vertical-align: top;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .rt-table tr:first-child td { border-top: none; }
+  .rt-table td:first-child { color: var(--text-primary); font-weight: 500; }
+
+  .confirm-tag {
+    display: inline-block;
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    border-radius: 4px;
+    font-size: 10px;
+    padding: 2px 7px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-top: 4px;
+  }
+
+  /* ── FUTURE RISKS ── */
+  .risk-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .risk-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .risk-card .risk-time {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .risk-card h4 {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .risk-card .risk-body {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .risk-card .risk-prevent {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 11px;
+    color: var(--green);
+    background: var(--green-pale);
+    border-radius: 4px;
+    padding: 8px 10px;
+    line-height: 1.5;
+  }
+
+  /* ── SOLUTION CARDS ── */
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .sol-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .sol-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  }
+
+  .sol-header {
+    padding: 22px 24px 0;
+  }
+
+  .sol-tag {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .sol-name {
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1.3;
+    margin-bottom: 14px;
+  }
+
+  .sol-proof {
+    display: inline-block;
+    background: var(--green-pale);
+    color: var(--green);
+    border: 1px solid #bbf7d0;
+    border-radius: 4px;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    padding: 3px 8px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+  }
+
+  .sol-proof.partial {
+    background: #fffbeb;
+    color: #92400e;
+    border-color: #fde68a;
+  }
+
+  .sol-pb {
+    background: var(--off-white);
+    border-top: 1px solid var(--border);
+    padding: 14px 24px;
+  }
+
+  .sol-pb .pb-label {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .sol-pb p {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .sol-metrics {
+    padding: 16px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: #fdfcfa;
+  }
+
+  .metric-cell { text-align: center; }
+
+  .metric-cell .m-val {
+    font-size: 22px;
+    color: var(--navy);
+    display: block;
+    line-height: 1.1;
+    margin-bottom: 3px;
+  }
+
+  .metric-cell .m-label {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+
+  .metric-cell .m-source {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 9px;
+    color: var(--text-muted);
+    line-height: 1.3;
+  }
+
+  .metric-div {
+    border-right: 1px solid var(--border);
+  }
+
+  .before-after {
+    padding: 16px 24px 20px;
+  }
+
+  .ba-label {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .ba-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .ba-row:last-child { margin-bottom: 0; }
+
+  .ba-before {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 11.5px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    padding: 6px 10px;
+    background: var(--red-pale);
+    border-radius: 4px;
+    border-left: 2px solid #fca5a5;
+  }
+
+  .ba-arrow {
+    font-size: 12px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .ba-after {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 11.5px;
+    color: #166534;
+    line-height: 1.4;
+    padding: 6px 10px;
+    background: var(--green-pale);
+    border-radius: 4px;
+    border-left: 2px solid #86efac;
+  }
+
+  /* ── IMPACT DASHBOARD ── */
+  .impact-section {
+    background: var(--navy);
+    color: var(--white);
+    padding: 56px 40px;
+  }
+
+  .impact-section .section-label { color: var(--gold); }
+  .impact-section h2 { color: var(--white); margin-bottom: 32px; }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .kpi-grid-row2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .kpi-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(184,150,106,0.2);
+    border-radius: var(--radius);
+    padding: 20px 18px;
+    text-align: center;
+  }
+
+  .kpi-card .k-val {
+    font-size: 28px;
+    color: var(--gold-light);
+    display: block;
+    margin-bottom: 6px;
+    line-height: 1;
+  }
+
+  .kpi-card .k-label {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+
+  .kpi-card .k-source {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 9px;
+    color: rgba(184,150,106,0.5);
+    letter-spacing: 0.04em;
+  }
+
+  .chart-container {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(184,150,106,0.15);
+    border-radius: var(--radius-lg);
+    padding: 28px 28px 20px;
+    margin-bottom: 28px;
+  }
+
+  .chart-title {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(184,150,106,0.7);
+    margin-bottom: 20px;
+  }
+
+  .numbers-panel {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(184,150,106,0.12);
+    border-radius: var(--radius);
+    padding: 22px 26px;
+  }
+
+  .np-title {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(184,150,106,0.7);
+    margin-bottom: 16px;
+  }
+
+  .np-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 12px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+  }
+
+  .np-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .np-row .np-basis { color: rgba(255,255,255,0.5); }
+  .np-row .np-desc { color: rgba(255,255,255,0.78); line-height: 1.5; }
+
+  /* ── STAKEHOLDER ── */
+  .stakeholder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+
+  .sh-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sh-name {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .sh-role {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+
+  .sh-row {
+    margin-bottom: 10px;
+  }
+
+  .sh-row .sh-cat {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 3px;
+  }
+
+  .sh-row p {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .sh-support {
+    display: inline-block;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 3px 9px;
+    border-radius: 4px;
+    margin-top: 8px;
+  }
+
+  .sh-support.high { background: var(--green-pale); color: var(--green); border: 1px solid #86efac; }
+  .sh-support.med { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--navy) 0%, #0e2540 100%);
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(184,150,106,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-section h2 {
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 14px;
+    line-height: 1.35;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-section p {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    max-width: 480px;
+    margin: 0 auto 32px;
+    line-height: 1.65;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    color: var(--navy);
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 14px 30px;
+    border-radius: 6px;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(184,150,106,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 22px rgba(184,150,106,0.45);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.25);
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 14px 30px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  .cta-note {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    margin-top: 20px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: #070f1a;
+    padding: 28px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer span {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── UTILITIES ── */
+  .gold-text { color: var(--gold); }
+  .mt-6 { margin-top: 6px; }
+  .mt-12 { margin-top: 12px; }
+  .mt-20 { margin-top: 20px; }
+  .mt-28 { margin-top: 28px; }
+
+  canvas { max-height: 240px; }
+
+  @media (max-width: 768px) {
+    .hero-body, .section { padding: 36px 20px; }
+    .hero-meta { padding: 20px 20px 0; }
+    .stat-row, .kpi-grid, .kpi-grid-row2, .risk-grid, .stakeholder-grid { grid-template-columns: 1fr; }
+    .solutions-grid { grid-template-columns: 1fr; }
+    .glance-strip { grid-template-columns: 1fr; }
+    .glance-item { border-right: none; border-top: 1px solid rgba(184,150,106,0.15); }
+    .glance-item:first-child { border-top: none; }
+    .outcome-grid { grid-template-columns: 1fr; }
+    .impact-section { padding: 40px 20px; }
+    .cta-section { padding: 48px 20px; }
+    .footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     SECTION 1 — HERO
+══════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-meta sans">
+    <span>Prepared by Dev8X &nbsp;·&nbsp; 18 May 2026</span>
+    <span>Decision Safety Brief</span>
+  </div>
+
+  <div class="hero-body">
+    <div class="eyebrow sans">Carini Group · New York</div>
+
+    <h1>Your media reach is growing.<br><em>Your intake system is not.</em></h1>
+
+    <p class="hero-sub sans">
+      Four international press appearances in 90 days. Fifty percent international clientele. One contact form — English only.
+      This brief maps what the gap costs, and what closes it.
+    </p>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <span class="val">50%</span>
+        <div class="label">Of Carini Group's current business is international</div>
+        <div class="source">From Carini Group's own published materials</div>
+      </div>
+      <div class="stat-card">
+        <span class="val">4</span>
+        <div class="label">International press appearances in the last 90 days — RAI, La7, Newsmax, Azione</div>
+        <div class="source">From Carini Group's own published materials</div>
+      </div>
+      <div class="stat-card">
+        <span class="val">3</span>
+        <div class="label">Team members visible — all intake and follow-up runs through Alex personally</div>
+        <div class="source">From Carini Group's own published materials</div>
+      </div>
+    </div>
+
+    <div class="glance-strip sans">
+      <div class="glance-item">
+        <span class="g-label">Current Bottleneck</span>
+        <span class="g-val">Alex is the intake system — every lead, every language, every follow-up</span>
+      </div>
+      <div class="glance-item">
+        <span class="g-label">Strongest Unlock</span>
+        <span class="g-val">Multilingual lead capture that works while Alex closes deals</span>
+      </div>
+      <div class="glance-item">
+        <span class="g-label">Recommended Next Step</span>
+        <span class="g-val">Watch the product walkthrough, then share where we got it right</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 2 — DESIRED OUTCOME
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label sans">Desired Outcome</div>
+  <h2>What Carini Group Is Building Toward</h2>
+
+  <div class="outcome-grid">
+    <div class="outcome-card">
+      <div class="oc-label sans">Strategic Goal</div>
+      <p>
+        Attract and convert high-net-worth international clients through multilingual brand authority —
+        growing deal volume without growing the team proportionally. The media investment Alex is making
+        in Italian, American, and Swiss press is designed to do exactly this. The missing layer is the
+        infrastructure to receive what that investment generates.
+      </p>
+    </div>
+    <div class="outcome-card">
+      <div class="oc-label sans">Why It Matters Now</div>
+      <p>
+        Alex is actively hiring agents and expanding the commercial division simultaneously.
+        The decisions made about systems in the next 60–90 days will determine whether new hires
+        amplify his capacity — or compete for the same bottlenecked hours.
+      </p>
+    </div>
+  </div>
+
+  <div class="timing-callout">
+    <div class="tc-icon">◈</div>
+    <div class="tc-text sans">
+      <strong>Why the timing matters:</strong> Media appearances create a finite attention window.
+      The leads generated by a RAI or La7 segment are live for 48–72 hours.
+      Without an automated intake path, every appearance is a promise the firm cannot yet keep at scale.
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 3 — CURRENT PROBLEM REGISTER
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label sans">Current Challenges</div>
+  <h2>What Is Actively Limiting International Growth</h2>
+
+  <table class="problem-table sans">
+    <thead>
+      <tr>
+        <th style="width:42%">Current Challenge</th>
+        <th>Business Impact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="prob-badge">#1 — Lead Capture</div><br>
+          No automated intake path exists for the international audience Carini Group's media appearances reach.
+          Inquiries from RAI and La7 viewers land on a static English-only contact form — or reach Alex's personal phone.
+        </td>
+        <td>
+          <div class="impact-pill">⚠ High</div>
+          <p style="margin-top:8px; font-size:13px; line-height:1.55; color:#4a5568;">
+            Every international lead that cannot reach Alex in real time is permanently lost.
+            Media brand investment does not compound into revenue without a system to receive and qualify what it generates.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="prob-badge">#2 — Multilingual Gap</div><br>
+          The firm serves a 50% international clientele and Alex speaks four languages — but the digital intake layer is English-only.
+          No language toggle, no Italian or Spanish auto-response, no multilingual landing page.
+        </td>
+        <td>
+          <div class="impact-pill">⚠ High</div>
+          <p style="margin-top:8px; font-size:13px; line-height:1.55; color:#4a5568;">
+            Language friction at the highest-intent moment — immediately after an Italian-language media appearance —
+            causes drop-off before Alex can even engage. The gap between RAI brand promise and English-only form undermines conversion.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="prob-badge">#3 — Pipeline Ceiling</div><br>
+          All client follow-up, qualification, and relationship management runs through Alex personally.
+          Testimonials confirm he individually vetted tenants, reviewed leases, and remained available through every transaction.
+        </td>
+        <td>
+          <div class="impact-pill">⚠ High</div>
+          <p style="margin-top:8px; font-size:13px; line-height:1.55; color:#4a5568;">
+            The maximum number of international deals the firm can close is bounded by Alex's available hours — not market opportunity.
+            A 3-person team without a shared pipeline cannot scale.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="prob-badge">#4 — Agent Onboarding</div><br>
+          The firm is actively hiring real estate agents but has no documented workflow, shared CRM, or onboarding playbook.
+          Every new hire requires Alex to transfer knowledge manually — one conversation at a time.
+        </td>
+        <td>
+          <div class="impact-pill">⚠ Medium</div>
+          <p style="margin-top:8px; font-size:13px; line-height:1.55; color:#4a5568;">
+            Each new agent hire adds Alex-time cost before generating any revenue contribution.
+            Without a system, hiring more people intensifies the bottleneck rather than relieving it.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="prob-badge">#5 — Commercial Differentiation</div><br>
+
+          The commercial division — including a $10.5M warehouse and retail listings — funnels through the same
+          intake process as luxury residential. No segmented pipeline or deal-type differentiation is visible.
+        </td>
+        <td>
+          <div class="impact-pill">◎ Discovery</div>
+          <p style="margin-top:8px; font-size:13px; line-height:1.55; color:#4a5568;">
+            Commercial and residential buyers have different qualification criteria, due diligence timelines,
+            and expectations. Serving both through one channel risks misalignment for both client types.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="prob-badge">#6 — Transaction Coordination</div><br>
+          All coordination across attorneys, title companies, banks, inspectors, and contractors is managed manually by the agent via email and phone. There is no confirmed transaction management platform or deal room. Each of the eight documented transaction stages requires the agent to act as a manual relay between every external party.
+        </td>
+        <td>
+          <div class="impact-pill">⚠ High</div>
+          <p style="margin-top:8px; font-size:13px; line-height:1.55; color:#4a5568;">
+            With 5–7 external parties per transaction, manual coordination creates delays, miscommunications, and heavy time expenditure per deal — hours that Alex cannot simultaneously spend on new international client acquisition or deal origination. As deal volume grows, this overhead compounds.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="prob-badge">#7 — No Follow-Up System</div><br>
+          Client communication is entirely personal and manual. The firm has no systematic way to re-engage past clients, nurture warm leads, or maintain presence with the international referral network between transactions. Every re-engagement requires Alex's direct time and initiative.
+        </td>
+        <td>
+          <div class="impact-pill">⚠ Medium</div>
+          <p style="margin-top:8px; font-size:13px; line-height:1.55; color:#4a5568;">
+            Repeat clients and international referrals are Carini Group's highest-quality lead sources — but without a systematic nurture layer, those relationships go dormant between transactions. Warm leads that don't close immediately are permanently lost without structured follow-up.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="prob-badge">#8 — Investor Advisory Gap</div><br>
+          The website positions Alex as a wealth advisor for real estate investors and explicitly lists Investment Advisory, 1031 Exchanges, and Comparable Reporting as services — but there is no investor-facing dashboard, portfolio tracker, or report delivery system. Every advisory deliverable is produced and distributed manually by Alex.
+        </td>
+        <td>
+          <div class="impact-pill">◎ Discovery</div>
+          <p style="margin-top:8px; font-size:13px; line-height:1.55; color:#4a5568;">
+            Without a client-facing reporting layer, investor advisory remains a labor-intensive, non-scalable service. Alex produces every comparable analysis and investment report manually — which limits how many investor clients the firm can serve simultaneously and adds to the same bottlenecked hours.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 3B — RESEARCH TRANSPARENCY
+══════════════════════════════════════════ -->
+<div class="section" style="padding-top:0">
+  <div class="section-label sans">Research Transparency</div>
+  <h2>What We Know — and What We'd Like Your Confirmation On</h2>
+
+  <table class="rt-table">
+    <thead>
+      <tr>
+        <th style="width:26%">Claim</th>
+        <th style="width:32%">Evidence We Used</th>
+        <th style="width:28%">What We'd Like to Confirm With You</th>
+        <th>Open Question</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Media appearances are generating international leads that the current setup cannot capture</td>
+        <td>4 press appearances confirmed within 90 days via LinkedIn posts (RAI, La7, Newsmax, Azione). Website shows a single English-only contact form with no routing or auto-response.</td>
+        <td>How many inquiries typically arrive after an appearance — and how are you responding to them today?
+          <br><span class="confirm-tag">Confirm in discovery</span>
+        </td>
+        <td style="font-size:12px; color:#6b7280;">Alex may say he responds personally and quickly — which confirms the bottleneck rather than contradicting it.</td>
+      </tr>
+      <tr>
+        <td>Alex Carini is the firm's sole intake and relationship layer</td>
+        <td>All LinkedIn company posts are reposts of Alex's personal content. Website testimonials describe Alex personally handling every step of every transaction. Only 3 employees visible with no other named client-facing roles.</td>
+        <td>Does any other team member handle first contact, triage, or follow-up — or does everything flow through you personally?
+          <br><span class="confirm-tag">Confirm in discovery</span>
+        </td>
+        <td style="font-size:12px; color:#6b7280;">Alex may have informal systems (email folders, WhatsApp threads) that function as a light CRM and that he does not perceive as a gap.</td>
+      </tr>
+      <tr>
+        <td>New agents hired without a system will remain operationally dependent on Alex</td>
+        <td>Active hiring confirmed via LinkedIn headline. No documented onboarding process, shared CRM, or playbook visible anywhere in public research. Services described as firm capabilities, not agent-distributed workflows.</td>
+        <td>When you bring on a new agent, could they run a deal from first inquiry to close without calling you? If not — where do they typically get stuck?
+          <br><span class="confirm-tag">Confirm in discovery</span>
+        </td>
+        <td style="font-size:12px; color:#6b7280;">Alex may have undocumented internal onboarding materials. We want to build on what already works — not replace it.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 4 — FUTURE PROBLEM REGISTER
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label sans">12–24 Month Horizon</div>
+  <h2>What Breaks If the Bottleneck Remains</h2>
+
+  <div class="risk-grid">
+    <div class="risk-card">
+      <div class="risk-time sans">Risk #1 · Accelerating Now</div>
+      <h4>Media reach outgrows the firm's ability to serve the leads it generates</h4>
+      <p class="risk-body sans">
+        Four appearances in 90 days across four countries. Each new segment reaches an audience
+        with no intake path, no response SLA, and no service layer other than Alex.
+        As inbound volume grows, response delays become visible — and in HNW international networks,
+        word of inaccessibility travels as fast as word of excellence.
+      </p>
+      <div class="risk-prevent sans">
+        ✓ Prevented by: automated multilingual lead capture that works when Alex is unavailable
+      </div>
+    </div>
+
+    <div class="risk-card">
+      <div class="risk-time sans">Risk #2 · 6–12 Months</div>
+      <h4>Agent hiring compounds the bottleneck rather than relieving it</h4>
+      <p class="risk-body sans">
+        New agents joining a firm with no CRM, no playbook, and no deal pipeline
+        will be operationally dependent on Alex for every client interaction —
+        meaning more headcount equals more Alex-time consumed in coordination.
+        Agents who cannot operate independently within 60–90 days will underperform or leave.
+      </p>
+      <div class="risk-prevent sans">
+        ✓ Prevented by: structured agent onboarding flow and shared pipeline view
+      </div>
+    </div>
+
+    <div class="risk-card">
+      <div class="risk-time sans">Risk #3 · 12–24 Months</div>
+      <h4>Commercial expansion fragments brand perception without operational separation</h4>
+      <p class="risk-body sans">
+        "Carini Group Commercial" is already a named brand signal on LinkedIn.
+        But commercial and residential buyers have different qualification criteria,
+        due diligence timelines, and stakeholder structures. Both flowing through one intake
+        channel will create misalignment in experience and dilute both brand propositions.
+      </p>
+      <div class="risk-prevent sans">
+        ✓ Prevented by: segmented deal pipelines — one operating lane per division
+      </div>
+    </div>
+
+    <div class="risk-card">
+      <div class="risk-time sans">Risk #4 · 6–18 Months</div>
+      <h4>Manual coordination overhead and absent follow-up system cap revenue even after the intake bottleneck is solved</h4>
+      <p class="risk-body sans">
+        Solving lead capture without solving transaction coordination and client re-engagement creates a partial fix.
+        As deal volume grows, the coordination overhead per transaction compounds — attorneys, banks, title companies,
+        and inspectors still require a manual relay. And every closed deal with no automated follow-up is a referral
+        and repeat opportunity left dormant. The firm's highest-quality lead sources dry up without a nurture engine.
+      </p>
+      <div class="risk-prevent sans">
+        ✓ Prevented by: branded deal room eliminating per-party coordination + automated multilingual re-engagement at 6, 12, and 24 months post-close
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 5 — WHAT GETS BUILT
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label sans">The Build</div>
+  <h2>What Gets Built to Remove the Bottleneck <span style="font-size:16px; color:var(--text-muted); font-weight:400;">(6 Solutions)</span></h2>
+
+  <div class="solutions-grid">
+
+    <!-- CARD 1 -->
+    <div class="sol-card">
+      <div class="sol-header">
+        <div class="sol-tag sans">Solves Challenge #1 — Lead Capture</div>
+        <div class="sol-name">International Lead Capture System</div>
+        <div class="sol-proof">● Visible in Demo</div>
+      </div>
+
+      <div class="sol-pb">
+        <div class="pb-label sans">Problem</div>
+        <p>Inbound international inquiries from media audiences have no automated path — they land on a static English-only form or are lost entirely when Alex is unavailable.</p>
+      </div>
+      <div class="sol-pb" style="border-top: none; padding-top:0;">
+        <div class="pb-label sans">What Gets Built</div>
+        <p>An automated multilingual intake form that captures prospect data, routes it to a qualification workflow, and holds each lead in the pipeline — without requiring Alex's real-time availability.</p>
+      </div>
+
+      <div class="sol-metrics">
+        <div class="metric-cell metric-div">
+          <span class="m-val">0→∞</span>
+          <div class="m-label">Leads captured while Alex is in a closing</div>
+          <div class="m-source">Currently zero — no async intake path exists</div>
+        </div>
+        <div class="metric-cell metric-div">
+          <span class="m-val">24/7</span>
+          <div class="m-label">Intake availability across time zones</div>
+          <div class="m-source">From published materials</div>
+        </div>
+        <div class="metric-cell">
+          <span class="m-val">~72h</span>
+          <div class="m-label">Media lead window — captured vs. lost</div>
+          <div class="m-source">Estimated from observable signals</div>
+        </div>
+      </div>
+
+      <div class="before-after">
+        <div class="ba-label sans">Before → After</div>
+        <div class="ba-row">
+          <div class="ba-before sans">RAI viewer reaches English form → no response → gone</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after sans">Multilingual form → instant confirmation → qualified lead in pipeline</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-before sans">Alex must triage every inquiry personally in real time</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after sans">Alex reviews a prioritized pipeline when he's available</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="sol-card">
+      <div class="sol-header">
+        <div class="sol-tag sans">Solves Challenge #2 — Multilingual Gap</div>
+        <div class="sol-name">Multilingual Intake & Auto-Response Layer</div>
+        <div class="sol-proof">● Visible in Demo</div>
+      </div>
+
+      <div class="sol-pb">
+        <div class="pb-label sans">Problem</div>
+        <p>A prospect arriving via Italian national TV hits an English-only form. Alex's four-language capability exists only after personal contact — the digital layer offers no equivalent.</p>
+      </div>
+      <div class="sol-pb" style="border-top: none; padding-top:0;">
+        <div class="pb-label sans">What Gets Built</div>
+        <p>An intake form rendered in the prospect's language — Italian, Spanish, or Portuguese — with a language-matched automated response sent immediately upon submission, pre-loading the CRM record in English for Alex's review.</p>
+      </div>
+
+      <div class="sol-metrics">
+        <div class="metric-cell metric-div">
+          <span class="m-val">4</span>
+          <div class="m-label">Languages served — English, Italian, Spanish (fluent) + Portuguese (conversational)</div>
+          <div class="m-source">Operations Manual: 3 fluent; LinkedIn: Portuguese conversational</div>
+        </div>
+        <div class="metric-cell metric-div">
+          <span class="m-val">50%</span>
+          <div class="m-label">Of client base benefits directly from multilingual intake</div>
+          <div class="m-source">From published materials</div>
+        </div>
+        <div class="metric-cell">
+          <span class="m-val">0→4</span>
+          <div class="m-label">Language-matched intake paths that exist today vs. after build</div>
+          <div class="m-source">From published materials — current form is English-only</div>
+        </div>
+      </div>
+
+      <div class="before-after">
+        <div class="ba-label sans">Before → After</div>
+        <div class="ba-row">
+          <div class="ba-before sans">Italian-speaking prospect → English form → friction → drop-off</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after sans">Italian form → Italian auto-response → trust established before first call</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-before sans">Alex writes every international response manually from scratch</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after sans">First response automated; Alex focuses on qualified conversations</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="sol-card">
+      <div class="sol-header">
+        <div class="sol-tag sans">Solves Challenge #3 — Pipeline Ceiling</div>
+        <div class="sol-name">Branded Client Portal & Shared Pipeline</div>
+        <div class="sol-proof">● Visible in Demo</div>
+      </div>
+
+      <div class="sol-pb">
+        <div class="pb-label sans">Problem</div>
+        <p>All relationship tracking and follow-up runs through Alex's personal memory. There is no shared pipeline, no assigned-task view, and no way to hand off a client context without a full briefing call.</p>
+      </div>
+      <div class="sol-pb" style="border-top: none; padding-top:0;">
+        <div class="pb-label sans">What Gets Built</div>
+        <p>A branded client portal and shared pipeline view showing deal stage, last contact date, assigned team member, and next scheduled action — visible to any team member without requiring Alex to brief them verbally.</p>
+      </div>
+
+      <div class="sol-metrics">
+        <div class="metric-cell metric-div">
+          <span class="m-val">3→∞</span>
+          <div class="m-label">Team members who can take action on a deal without a briefing call</div>
+          <div class="m-source">From published materials</div>
+        </div>
+        <div class="metric-cell metric-div">
+          <span class="m-val">100%</span>
+          <div class="m-label">Client touchpoints remain branded as the Alex Carini experience</div>
+          <div class="m-source">By design</div>
+        </div>
+        <div class="metric-cell">
+          <span class="m-val">↑</span>
+          <div class="m-label">Deal capacity without proportional headcount increase</div>
+          <div class="m-source">Estimated from observable workflow signals</div>
+        </div>
+      </div>
+
+      <div class="before-after">
+        <div class="ba-label sans">Before → After</div>
+        <div class="ba-row">
+          <div class="ba-before sans">Alex must brief Eddie before every client interaction</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after sans">Eddie opens the portal — full context already there</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-before sans">Deal count ceiling = Alex's available hours</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after sans">Deal count ceiling = team capacity + pipeline visibility</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="sol-card">
+      <div class="sol-header">
+        <div class="sol-tag sans">Solves Challenge #4 — Agent Onboarding</div>
+        <div class="sol-name">Agent Onboarding & First-Deal Workflow</div>
+        <div class="sol-proof partial">◎ Partial — Confirm Module Availability</div>
+      </div>
+
+      <div class="sol-pb">
+        <div class="pb-label sans">Problem</div>
+        <p>New agents are onboarded verbally by Alex, one conversation at a time. There is no documented playbook or first-deal workflow — each hire adds Alex-time cost before generating any revenue contribution.</p>
+      </div>
+      <div class="sol-pb" style="border-top: none; padding-top:0;">
+        <div class="pb-label sans">What Gets Built</div>
+        <p>A structured onboarding flow: firm standards checklist, listing assignments, contact handoff records, and a first-deal workflow so a new agent can begin operating independently within days — not weeks — after hire.</p>
+      </div>
+
+      <div class="sol-metrics">
+        <div class="metric-cell metric-div">
+          <span class="m-val">Days</span>
+          <div class="m-label">To first independent deal — vs. weeks with verbal onboarding</div>
+          <div class="m-source">Estimated from observable signals</div>
+        </div>
+        <div class="metric-cell metric-div">
+          <span class="m-val">0</span>
+          <div class="m-label">Briefing calls from Alex required for a new agent's first showing</div>
+          <div class="m-source">By design</div>
+        </div>
+        <div class="metric-cell">
+          <span class="m-val">↓</span>
+          <div class="m-label">Alex-hours consumed per new hire before first revenue contribution</div>
+          <div class="m-source">Estimated from observable signals</div>
+        </div>
+      </div>
+
+      <div class="before-after">
+        <div class="ba-label sans">Before → After</div>
+        <div class="ba-row">
+          <div class="ba-before sans">New agent waits on Alex to explain process, listings, standards</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after sans">New agent follows structured workflow from day one</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-before sans">Knowledge lives in Alex's head — lost when he's unavailable</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after sans">Firm standards documented and persistent across all hires</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="sol-card">
+      <div class="sol-header">
+        <div class="sol-tag sans">Solves Challenge #6 — Transaction Coordination</div>
+        <div class="sol-name">Branded Deal Room &amp; Transaction Tracker</div>
+        <div class="sol-proof">● Visible in Demo</div>
+      </div>
+
+      <div class="sol-pb">
+        <div class="pb-label sans">Problem</div>
+        <p>Coordination across attorneys, title companies, banks, and inspectors is managed manually via email and phone for every transaction. There is no confirmed deal room or transaction management layer — the agent is the manual relay for all 5–7 external parties per deal.</p>
+      </div>
+      <div class="sol-pb" style="border-top: none; padding-top:0;">
+        <div class="pb-label sans">What Gets Built</div>
+        <p>A branded, per-transaction workspace: milestone tracker from Offer to Close, a document vault for contracts and approvals, a task board with automated reminders, and a closing countdown — accessible to the client, agent, attorney, and title company without requiring the agent to chase each party manually.</p>
+      </div>
+
+      <div class="sol-metrics">
+        <div class="metric-cell metric-div">
+          <span class="m-val">Very High</span>
+          <div class="m-label">Time saved — coordination overhead per deal eliminated</div>
+          <div class="m-source">From Carini Group Digital Transformation Report</div>
+        </div>
+        <div class="metric-cell metric-div">
+          <span class="m-val">5–7</span>
+          <div class="m-label">External parties per transaction currently coordinated manually</div>
+          <div class="m-source">From Operations Manual — confirmed external partner list</div>
+        </div>
+        <div class="metric-cell">
+          <span class="m-val">↑</span>
+          <div class="m-label">Deals per year possible when coordination overhead is systematized</div>
+          <div class="m-source">Estimated from workflow signals</div>
+        </div>
+      </div>
+
+      <div class="before-after">
+        <div class="ba-label sans">Before → After</div>
+        <div class="ba-row">
+          <div class="ba-before sans">Agent chases attorneys, title, and bank via email for every update</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after sans">All parties log into the deal room — updates are automatic</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-before sans">Delays and miscommunications slow every transaction close</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after sans">Milestone tracker and automated reminders keep every deal on schedule</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 6 -->
+    <div class="sol-card">
+      <div class="sol-header">
+        <div class="sol-tag sans">Solves Challenge #7 — No Follow-Up System</div>
+        <div class="sol-name">Automated Multilingual Re-Engagement Engine</div>
+        <div class="sol-proof partial">◎ Partial — Confirm Outreach Module Availability</div>
+      </div>
+
+      <div class="sol-pb">
+        <div class="pb-label sans">Problem</div>
+        <p>Repeat clients and international referrals are the firm's highest-quality lead sources — but there is no systematic re-engagement layer. Every follow-up after a closed deal depends entirely on Alex's personal initiative. Warm leads that don't close immediately go dark.</p>
+      </div>
+      <div class="sol-pb" style="border-top: none; padding-top:0;">
+        <div class="pb-label sans">What Gets Built</div>
+        <p>A proprietary email and WhatsApp outreach engine: post-closing re-engagement sequences at 6, 12, and 24 months (in the client's language), new listing alerts matched against stored preferences, and multilingual newsletter distribution to the international referral network — all automated and branded as Carini Group.</p>
+      </div>
+
+      <div class="sol-metrics">
+        <div class="metric-cell metric-div">
+          <span class="m-val">3</span>
+          <div class="m-label">Languages for automated outreach — English, Italian, Spanish</div>
+          <div class="m-source">From Operations Manual — confirmed fluent languages</div>
+        </div>
+        <div class="metric-cell metric-div">
+          <span class="m-val">0</span>
+          <div class="m-label">Systematic re-engagement touchpoints that exist today</div>
+          <div class="m-source">From published materials — no confirmed nurture system</div>
+        </div>
+        <div class="metric-cell">
+          <span class="m-val">↑</span>
+          <div class="m-label">Repeat and referral rate — highest-value lead sources systematized</div>
+          <div class="m-source">From Carini Group Digital Transformation Report</div>
+        </div>
+      </div>
+
+      <div class="before-after">
+        <div class="ba-label sans">Before → After</div>
+        <div class="ba-row">
+          <div class="ba-before sans">Past client receives nothing after close — relationship goes dormant</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after sans">Branded re-engagement at 6, 12, 24 months — in their language</div>
+        </div>
+        <div class="ba-row">
+          <div class="ba-before sans">International referral network hears from Alex only when he has time</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after sans">Automated multilingual newsletter keeps the network warm year-round</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 6 — PROJECTED OPERATIONAL IMPACT
+══════════════════════════════════════════ -->
+<div class="impact-section">
+  <div class="wrapper">
+    <div class="section-label sans">Projected Operational Impact</div>
+    <h2 style="color:var(--white); font-size:24px; margin-bottom:28px;">What the Build Changes — and How We Treated Every Number</h2>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <span class="k-val">0 → 4</span>
+        <div class="k-label">Language-matched intake paths built — up from zero (current form is English-only)</div>
+        <div class="k-source">From published materials — current state confirmed</div>
+      </div>
+      <div class="kpi-card">
+        <span class="k-val">50%</span>
+        <div class="k-label">Of current client base immediately served by multilingual intake layer</div>
+        <div class="k-source">From published materials</div>
+      </div>
+      <div class="kpi-card">
+        <span class="k-val">24/7</span>
+        <div class="k-label">Lead capture availability across all time zones — without Alex's direct involvement</div>
+        <div class="k-source">By design</div>
+      </div>
+      <div class="kpi-card">
+        <span class="k-val">3→∞</span>
+        <div class="k-label">Team members who can act on a deal with full client context — no briefing required</div>
+        <div class="k-source">Estimated from workflow signals</div>
+      </div>
+    </div>
+    <div class="kpi-grid-row2">
+      <div class="kpi-card">
+        <span class="k-val">30–40%</span>
+        <div class="k-label">Projected increase in annual transaction volume — without proportional headcount growth</div>
+        <div class="k-source">Carini Group Digital Transformation Report, March 2026</div>
+      </div>
+      <div class="kpi-card">
+        <span class="k-val">0 → 6</span>
+        <div class="k-label">Systematic re-engagement touchpoints per past client — currently zero post-close follow-up exists</div>
+        <div class="k-source">From published materials — no confirmed nurture system</div>
+      </div>
+      <div class="kpi-card">
+        <span class="k-val">5–7</span>
+        <div class="k-label">External parties per transaction currently coordinated manually — eliminated by deal room</div>
+        <div class="k-source">From Operations Manual — confirmed partner list</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title sans">Manual Steps Eliminated per Workflow — Before vs. After Build <span style="font-size:10px; opacity:0.55; text-transform:none; letter-spacing:0;">[Estimated from documented workflow analysis — exact counts to be validated in discovery]</span></div>
+      <canvas id="impactChart"></canvas>
+    </div>
+
+    <div class="numbers-panel">
+      <div class="np-title sans">How We Treated Every Number in This Brief</div>
+      <div class="np-row">
+        <div class="np-basis sans">From Carini Group's own published materials</div>
+        <div class="np-desc sans">50% international clientele · 4 press appearances in 90 days · 3-person team · active agent hiring · $10.5M commercial listing — all confirmed from website and LinkedIn without estimation.</div>
+      </div>
+      <div class="np-row">
+        <div class="np-basis sans">Calculated estimates</div>
+        <div class="np-desc sans">Operational impact metrics (lead window timing, onboarding duration, deal capacity increase) are directional estimates based on observable workflow signals. They are labelled "[Estimated]" or described as "estimated from observable signals" wherever used. Exact figures require discovery-call data.</div>
+      </div>
+      <div class="np-row">
+        <div class="np-basis sans">Projected transaction volume outcome</div>
+        <div class="np-desc sans">When the full suite of digital solutions is implemented — CRM, multilingual intake, deal room, automated outreach, and agent tooling — the projected outcome is a <strong style="color:var(--gold-light);">30–40% increase in annual transaction volume</strong> without a proportional increase in headcount. Source: Carini Group Digital Transformation &amp; Web Services Report (March 2026). This is the firm's own analysis, not a Dev8X estimate.</div>
+      </div>
+      <div class="np-row">
+        <div class="np-basis sans">What we held back</div>
+        <div class="np-desc sans">We did not produce dollar-value ROI headlines because the required inputs — inquiry volume per appearance, conversion rate, hours spent on intake — have not yet been gathered. Those inputs are the four questions we'd like to ask in a 20-minute discovery call, and they are the only thing standing between this brief and a fully quantified ROI projection.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 7 — STAKEHOLDER MAP
+══════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label sans">Decision Context</div>
+  <h2>Who This Decision Involves</h2>
+
+  <div class="stakeholder-grid">
+    <div class="sh-card">
+      <div class="sh-name">Alex Carini</div>
+      <div class="sh-role sans">Founder & CEO · Sole Budget Authority</div>
+      <div class="sh-row">
+        <div class="sh-cat sans">What matters most</div>
+        <p>Growing international deal volume while preserving the boutique, relationship-first brand that every testimonial confirms is Carini Group's core differentiator.</p>
+      </div>
+      <div class="sh-row">
+        <div class="sh-cat sans">Key concern</div>
+        <p>Any system that makes his service feel generic, commoditized, or corporate — rather than a direct extension of his personal brand.</p>
+      </div>
+      <span class="sh-support high sans">High Alignment — if framed as amplification</span>
+    </div>
+
+    <div class="sh-card">
+      <div class="sh-name">Eddie Lopez</div>
+      <div class="sh-role sans">Team Member · Role to Confirm</div>
+      <div class="sh-row">
+        <div class="sh-cat sans">What matters most</div>
+        <p>Clarity on his responsibilities and tools that help him serve clients at the Carini Group standard — without constant check-ins with Alex.</p>
+      </div>
+      <div class="sh-row">
+        <div class="sh-cat sans">Key concern</div>
+        <p>Being held accountable for a system he was not trained on, or technology that adds to his workload before reducing it.</p>
+      </div>
+      <span class="sh-support med sans">Medium — Role unconfirmed; verify in discovery</span>
+    </div>
+
+    <div class="sh-card">
+      <div class="sh-name">Vivek s m</div>
+      <div class="sh-role sans">Team Member · Role to Confirm</div>
+      <div class="sh-row">
+        <div class="sh-cat sans">What matters most</div>
+        <p>Operational clarity and tools that make client service at the Carini Group standard achievable independently — without Alex as the relay for every interaction.</p>
+      </div>
+      <div class="sh-row">
+        <div class="sh-cat sans">Key concern</div>
+        <p>Technology that disrupts existing informal workflows before it provides a clear improvement.</p>
+      </div>
+      <span class="sh-support med sans">Medium — Role unconfirmed; verify in discovery</span>
+    </div>
+  </div>
+
+  <div class="timing-callout mt-20" style="background: rgba(12,27,46,0.06); border: 1px solid var(--border);">
+    <div class="tc-icon" style="font-size:16px;">◇</div>
+    <div class="tc-text sans" style="color: var(--text-secondary);">
+      <strong style="color: var(--navy);">One decision-maker, no committee.</strong>
+      Alex holds budget authority as founder and CEO — no board or procurement layer required.
+      The approval path is a single conversation. The question is whether the demo earns it.
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 8 — CTA
+══════════════════════════════════════════ -->
+<div class="cta-section">
+  <h2>Watch the demo — and tell us where we got it right</h2>
+  <p class="sans">
+    The numbers in this brief are grounded in what Carini Group has already published.
+    Four discovery questions would let us replace the estimates with your actual figures — and produce
+    a fully quantified projection before any decision is made. We'd rather earn the number than guess at it.
+  </p>
+  <div class="cta-buttons">
+    <a href="file:///d%3A/Arham/Dev8X/TroopHunter/microfrontend/carini-group/portals/index.html" class="btn-primary sans">Watch the Demo →</a>
+  </div>
+  <div class="cta-note sans">No commitment required · Prepared exclusively for Carini Group · Dev8X · 2026</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<div class="footer">
+  <span class="sans">CARINI GROUP · DECISION SAFETY BRIEF</span>
+  <span class="sans">Prepared by Dev8X · May 2026 · Confidential</span>
+</div>
+
+<!-- ══════════════════════════════════════════
+     CHART
+══════════════════════════════════════════ -->
+<script>
+  const ctx = document.getElementById('impactChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [
+        'International Lead Intake',
+        'Multilingual First Response',
+        'Client Relationship Tracking',
+        'Agent Onboarding',
+        'Transaction Coordination',
+        'Client Re-Engagement'
+      ],
+      datasets: [
+        {
+          label: 'Manual Steps — Current [Estimated]',
+          data: [6, 5, 7, 8, 9, 6],
+          backgroundColor: 'rgba(220, 38, 38, 0.25)',
+          borderColor: 'rgba(220, 38, 38, 0.6)',
+          borderWidth: 1.5,
+          borderRadius: 4,
+        },
+        {
+          label: 'Manual Steps — After Build [Estimated]',
+          data: [1, 0, 1, 2, 1, 0],
+          backgroundColor: 'rgba(21, 128, 61, 0.25)',
+          borderColor: 'rgba(21, 128, 61, 0.6)',
+          borderWidth: 1.5,
+          borderRadius: 4,
+        }
+      ]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: {
+          labels: {
+            font: { family: "'Trebuchet MS', sans-serif", size: 12 },
+            color: 'rgba(255,255,255,0.65)',
+            padding: 20,
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return ' ' + ctx.dataset.label + ': ' + ctx.raw + ' steps';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(255,255,255,0.07)' },
+          ticks: {
+            font: { family: "'Trebuchet MS', sans-serif", size: 11 },
+            color: 'rgba(255,255,255,0.45)',
+            stepSize: 1,
+          },
+          title: {
+            display: true,
+            text: 'Number of Manual Steps Required',
+            font: { family: "'Trebuchet MS', sans-serif", size: 11 },
+            color: 'rgba(184,150,106,0.6)',
+          }
+        },
+        y: {
+          grid: { color: 'rgba(255,255,255,0.05)' },
+          ticks: {
+            font: { family: "'Trebuchet MS', sans-serif", size: 12 },
+            color: 'rgba(255,255,255,0.7)',
+          }
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>
