@@ -1,285 +1,291 @@
-# Carini Group UI/UX Redesign & Restructuring — Implementation Plan v2.0
+# Carini Group — UI/UX Redesign & Restructuring Plan v3.1
 
-> **Revised:** 2026-05-19 · Incorporates gap analysis against all 14 HTML files, `shared.css` (2,444 lines), `shared.js` (327 lines), and 6 patching scripts.
+> **Revised:** 2026-05-20 · Re-audited *and stress-tested* against the actual current state of all
+> 14 HTML files, `assets/shared.css`, `assets/components.css`, `assets/structures.css`, and `assets/shared.js`.
+> v3.1 corrects the migration *sequencing* in v3.0 after verifying that the originally proposed
+> "link the new CSS globally, then reconcile" step would have **broken or blanked multiple pages**.
+>
+> **Scope guarantee:** Visual, structural, and design-system redesign only. No feature, business
+> logic, data, or interactive behaviour changes. Where a class must be renamed for consistency, the
+> rename is an *identifier-only* change applied in lockstep across HTML, CSS, **and JS** so behaviour
+> is byte-for-byte preserved.
+
+---
+
+## 0. The Central Finding: a Migration Stuck Half-Way
+
+A clean semantic design system was already authored, then orphaned. **The half-finished state is itself
+the biggest driver of inconsistency**, and naïvely "finishing" it the obvious way is unsafe.
+
+| Discovery | Evidence |
+|---|---|
+| Semantic component library already exists | `assets/components.css` (btn, card, kpi, badge, input, grid utils) |
+| Semantic structural library already exists | `assets/structures.css` (app shell, sidebar, kanban, modal, auth, hero, footer, tables) |
+| **Both new files are orphaned — linked by ZERO pages** | All 14 HTML link `assets/shared.css` *only*; nothing references `components.css`/`structures.css` |
+| **The new files reference tokens that don't exist** | `--bg-primary`, `--accent-gold`, `--text-tertiary`, `--border-light`, `--space-4`, `--text-xs` → **0** occurrences in `shared.css`. The new CSS is dead code pointing at undefined variables. |
+| New CSS class names don't match real markup | `structures.css` uses `.sb-section`/`.sb-badge`; HTML uses `.sb-sec`/`.si-badge`/`.sb-nav`/`.si-icon` |
+| One page partially refactored as a "reference" | `investor_portfolio.html` — the only file with no `<style>` block, yet still 164 element `style=""` attrs |
+
+We don't need to *invent* a design system — we need to **finish wiring up the one that exists**.
+But (see §1.13) it cannot simply be linked globally: its generic class names collide destructively
+with the per-page markup that is currently styled by inline `<style>` blocks.
 
 ---
 
 ## 1. Complete Problem Analysis
 
-### 1.1. Root Causes Behind Current UI/UX and System Issues
+### 1.1 Three competing style layers fighting in the cascade
+1. **Element `style=""` attributes** — **937 total** across 14 files (highest specificity, always wins).
+2. **Per-page inline `<style>` blocks** — in **13 of 14** files; each redeclares the entire `:root`, resets, and bespoke components (~400–800 lines each).
+3. **`assets/shared.css`** — ~2,444 lines / 70 KB, linked everywhere, with **418 `!important`** and **585 `body[data-page="…"]`** override selectors.
 
-The core issue stems from the platform being manipulated via automated patching scripts rather than a holistic CSS architecture.
+The orphaned `components.css`/`structures.css` would form an inert 4th layer.
 
-- **Automated Patching Scripts:** Six scripts exist (`_remove_dark_theme.py`, `_fix_overrides.ps1`, `_fix_light_theme.py`, `_fix_overrides.py`, `_fix_portals.ps1`, `_replace_lines.ps1`). These stripped global dark theme blocks but left page-specific inline styles untouched, creating a fragmented hybrid.
-- **Inverted Semantic Variables:** The dark-to-light migration resulted in semantically inverted token names — `--dark` maps to `#ffffff`, `--cream` maps to `#1a1510`. These inverted names are used in **every single file**.
-- **Lack of a Central Design System:** Developers hardcoded styles per file rather than relying on a global component library or token system.
-- **Copy-Paste Architecture:** Base styles, variables, and CSS resets were duplicated into the `<style>` block of every new screen (~400-800 lines each). As designs evolved and scripts ran, older files were left behind.
-- **Massive shared.css Override Layer:** `shared.css` grew to 2,444 lines / 68KB with 150+ `!important` declarations and ~1,600 lines of `body[data-page="..."]` page-specific overrides, creating a parallel specificity war.
-- **Token Value Divergence:** The same CSS variable names have **different values** between inline `<style>` blocks and `shared.css` (e.g., `--success`: `#3fd68a` inline vs `#1a9e5a` in shared.css; `--border`: `rgba(212,168,67,0.26)` inline vs `rgba(180,140,50,0.18)` in shared.css).
-- **No Shared Component Abstraction:** UI elements like buttons, cards, KPI tiles, tables, and sidebars are built structurally differently across pages.
+**Cascade order verified:** in every page the inline `<style>` opens early (e.g. `index.html:11`) and
+`<link href="shared.css">` is far below the closing `</style>` (e.g. `index.html:655`). So `shared.css`'s
+`:root` wins variable *values*, but each page's inline `<style>` *rules* still win wherever `shared.css`
+doesn't override them, and `style=""` beats both — visually unpredictable per page.
 
-### 1.2. Affected Screens, Portals, and Flows
-
-**All 14 HTML files** in `demo_prototypes` are affected:
-
-- **Public & Lead Generation Flow (6 files):** `index.html`, `boutique-redesign.html`, `international_hub.html`, `neighbourhood_hub.html`, `lead_capture.html`, `phase3_property_search.html`
-- **Internal CRM & Operations Flow (3 files):** `phase1_crm_pipeline.html`, `phase2_admin_dashboard.html`, `phase2_deal_room.html`
-- **Client, Agent & Investor Portal Flow (3 files):** `phase3_dashboards.html`, `phase3_ai_generator.html`, `investor_portfolio.html`
-- **Authentication & Outreach (2 files):** `phase0_auth.html`, `outreach_engine.html`
-
-### 1.3. Design Inconsistencies
-
-- **Colors:** `:root` variables map `--dark` to `#ffffff` (white), creating semantic confusion. Color token values diverge between inline definitions and `shared.css` — status colors like `--success`, `--danger`, `--blue` have completely different hex values in each layer.
-- **Typography:** Three font families loaded (`Playfair Display`, `DM Sans`, `Cormorant Garamond`), but `shared.css` line 44 maps `--font-cormorant` to `"Playfair Display"` — not Cormorant at all. HTML files load all 3 via Google Fonts while `shared.css` only imports 2.
-- **Spacing & Layouts:** Navbar padding, sidebar widths, and main content grids use arbitrary values. Sidebars range from 240px (inline) to 280px (`shared.css` override) to 248px (dashboards).
-- **Cards & Elements:** Drop shadows, border radii (`--r: 5px` inline vs `--radius: 8px` in shared.css), and hover transitions are not standardized. Some buttons use `translateY(-1px)`, others `-2px`, others `-4px`, others `scale(1.06)`.
-- **Contrast:** Gold (`#c49a2e`) on white (`#ffffff`) produces a 3.3:1 contrast ratio — **fails WCAG AA** (minimum 4.5:1 for normal text).
-
-### 1.4. User Flow & Experience Problems
-
-- **Dead Ends:** Users cannot seamlessly navigate from public pages → property search → lead capture → client portal. Some links are broken or non-existent.
-- **Jarring Transitions:** Moving between the dark boutique hero and the stark white CRM portals breaks the mental model.
-- **Unclear Navigation Hierarchy:** Some portals use a left sidebar, others rely on a top-level navbar. Three different sidebar implementation patterns coexist.
-- **Auth Dark-Mode Remnants:** `phase0_auth.html` still contains an "ENHANCEMENTS" block forcing dark backgrounds (`#0d0c10`) with `!important`, creating an inconsistent dark auth experience despite the light-mode migration.
-
-### 1.5. Structural & Architectural Issues
-
-- **CSS Specificity War:** Three conflicting layers exist — (1) element-level `style=""` attributes, (2) inline `<style>` blocks, (3) `shared.css` with `!important`. The cascade is unpredictable.
-- **Duplication:** ~80% of CSS in each file is boilerplate variable declarations and resets (~400-800 lines per file).
-- **Element-Level Inline Styles:** Beyond `<style>` blocks, hundreds of `style=""` attributes on individual HTML elements (especially in admin dashboard commission forecasts, team activity, and CRM config sections).
-- **Body Noise Overlay:** Every file adds `body::after` with a fractalNoise SVG at `z-index: 9999`, which overlays modals and toasts.
-- **Dual Toast Systems:** `shared.js` creates toasts at `z-index: 10001` / `bottom: 78px`, while several pages define their own `#toast` element at `z-index: 10000` / `bottom: 28px`.
-
-### 1.6. Existing Shared Infrastructure (Previously Unacknowledged)
-
-`shared.js` already implements critical global features that must be preserved:
-
-| Feature | Implementation |
-|---|---|
-| Page metadata | Auto-applies `data-page` and `data-page-group` to `<body>` |
-| Global floating nav | Complete `#cg-nav` bottom bar with all 14 page links |
-| Page transitions | Fade-out animation on all internal `<a>` clicks |
-| Scroll reveal | IntersectionObserver-based staggered reveal for cards/panels |
-| Toast system | `window.CG.toast()` and `window.showToast()` APIs |
-
-`shared.css` already provides:
-- Responsive breakpoints at 1180px, 960px, 720px
-- Page-specific layout rules via `body[data-page="..."]` selectors
-- Global form input, table, and scrollbar styling
-- `#cg-nav` floating navigation styles
-
-### 1.7. Sidebar Implementation Divergence
-
-| Portal | Class | Width | Pattern |
-|---|---|---|---|
-| CRM Pipeline | `.sb` | 240px → 280px (override) | CSS Grid column |
-| Admin Dashboard | `.sb` | 240px → 280px (override) | CSS Grid column |
-| Deal Room | `.sb` | 240px → 280px (override) | CSS Grid column |
-| Dashboards | `.sidebar` | 248px | `position: fixed` + `margin-left` |
-| Investor Portfolio | `.sb` | 240px | `position: fixed` + `margin-left` |
-| Outreach Engine | `.sb` | 240px | `position: fixed` + `margin-left` |
-
-### 1.8. Visual Hierarchy & Branding Problems
-
-- The "Luxury" branding is lost in internal tools, which feel generic.
-- Primary actions (CTAs) compete with secondary actions because button hierarchies are not enforced.
-- The boutique-redesign inline nav is dark (`rgba(12,11,9,0.75)`) but `shared.css` overrides it to white — the dark aesthetic is hidden, not removed.
-
-### 1.9. Reusability & Component Consistency Issues
-
-Identical patterns are written with completely different markup:
-
-| Pattern | Files Using It | Different Class Names |
+### 1.2 Token divergence — same names, different values
+| Token | Inline `<style>` (e.g. `index.html`) | `shared.css` (wins values) |
 |---|---|---|
-| KPI tiles | 5 files | `.kpi-tile`, `.kpi`, `.metric` |
-| Data tables | 4 files | `table`, `.data-table`, `.tbl` |
-| Section cards | 3 files | `.s-card`, `.panel`, `.briefing-card` |
-| Sidebar items | 6 files | `.sb-item`, `.nav-item`, `.deal-item` |
-| Form inputs | 4 files | `.f-input`, `.form-input`, inline `<input style="...">` |
+| `--success` | `#3fd68a` (neon) | `#1a9e5a` (muted) |
+| `--blue` | `#4dc8ff` (neon) | `#1c7ac4` |
+| `--danger` | `#f05252` | `#d63030` |
+| `--warn` | `#f5a623` | `#c47a10` |
+| `--border` | `rgba(212,168,67,0.26)` | `rgba(180,140,50,0.18)` |
+| `--radius`/`--r` | `5px` | `8px` |
+| `--font-cormorant` | `'Cormorant Garamond'` | `'Playfair Display'` (re-mapped) |
 
-### 1.10. Accessibility & Responsiveness Concerns
+### 1.3 Semantic inversion in live tokens
+`shared.css` keeps `--dark:#ffffff`, `--cream:#1a1510`, `--text:#1a1510` — names mean the opposite of
+their value. The *new* files were written with intent-based names, but the rename was never finished in `shared.css`.
 
-- **Responsive Design:** Many grids are hardcoded with fixed widths. On smaller viewports, sidebars overlap content, tables overflow, and navbars break. `shared.css` has partial responsive fixes but they're incomplete.
-- **Accessibility:** Missing `aria-labels`, gold-on-white contrast fails WCAG AA (3.3:1 ratio), lack of keyboard focus states, and the noise overlay at z-index 9999 visually degrades modals.
+### 1.4 Typography
+- **3 fonts requested, 2 ever used.** 13 pages load **Cormorant Garamond**, but `shared.css` re-maps `--font-cormorant`→Playfair and never imports Cormorant → it is downloaded on every page and **never rendered**.
+- **26 duplicate Google Fonts `<link>`s** (2 per page × 13) duplicate the `@import` in `shared.css`.
+- No shared type scale.
 
-### 1.11. Developer & Maintainability Problems
+### 1.5 Colour & contrast
+- Gold `#c49a2e` on white ≈ **3.3:1 — fails WCAG AA** (needs 4.5:1) for normal text.
+- The neon inline palette fails contrast on white where it applies.
 
-- **High Maintenance Overhead:** Updating the brand color requires editing 14+ separate HTML files.
-- **Fragility:** Any change to `shared.css` risks breaking pages due to unpredictable specificity and `!important` chains.
-- **6 Dead Patching Scripts:** The `_*.py` and `_*.ps1` scripts are no longer needed but remain in the directory.
+### 1.6 Spacing, radius & layout
+- Radius `5px` (inline) vs `8px` (`shared.css`); no spacing scale; arbitrary literal padding/margins.
+
+### 1.7 Component duplication
+| Pattern | Divergent implementations |
+|---|---|
+| KPI tiles | `.kpi-tile` vs `.kpi` vs `.metric` |
+| Tables | `.data-table` vs raw `table` vs `.tbl` |
+| Section cards | `.panel` vs `.s-card` vs `.briefing-card` |
+| Sidebar items | `.sb-item` vs `.nav-item` vs `.si-icon`/`.sb-sec` |
+| Inputs | `.input-field` vs `.f-input` vs `.form-input` vs bare `<input>` vs inline `<input style>` |
+
+### 1.8 Structural / shell divergence (the 8 portal pages)
+| Page | Wrapper | Sidebar | Technique |
+|---|---|---|---|
+| `phase1_crm_pipeline` | `.app` | `.sb` | CSS Grid |
+| `phase2_admin_dashboard` | `.app` | `.sb` | CSS Grid |
+| `phase2_deal_room` | `.app` | `.sb` | CSS Grid |
+| `investor_portfolio` | none | `.sb` | standalone/fixed |
+| `outreach_engine` | none | `.sb` | standalone/fixed |
+| `phase3_dashboards` | none | `.sidebar`(`#sidebar`) | `position:fixed` + margin |
+| `phase3_ai_generator` | `.page` | **none** | top `<nav>` only |
+| `phase0_auth` | `.auth-wrap` | **none** | centered card |
+
+So there are **three** shell archetypes (sidebar-app, topbar-only, centered-auth) and **two** sidebar class names — a single "unify all portals on a sidebar" rule would be wrong for auth and AI generator.
+
+### 1.9 Active rendering bugs (verified)
+- **Noise overlay covers modals:** `shared.css:286` sets `body::after{z-index:9999}`. `structures.css` lowered it to `100`, but it isn't linked, so **9999 renders** and sits above modals/toasts.
+- **Dual toast systems:** `shared.js` toasts at `z-index:10001/bottom:78px`; pages also ship `#toast` (`.show` class; `structures.css` defines it at `z-index:500/bottom:32px`). `shared.js` defers when a page already defines `window.showToast`, so both coexist with different positions.
+
+### 1.10 Navigation & flow
+- `shared.js` injects a global `#cg-nav` bottom bar (14 links: **public** group of 6, **portal** group of 8) — the de-facto site map; **preserve it.**
+- No shared public navbar/footer; portal sidebars link inconsistently; no enforced login→role→dashboard routing.
+
+### 1.11 Maintainability
+- Brand colour change = editing 14 inline `:root` blocks **plus** `shared.css`. 418 `!important` make `shared.css` edits risky.
+- 7 dead automation scripts remain (`_remove_dark_theme.py`, `_fix_light_theme.py`, `_fix_overrides.py`, `_fix_overrides.ps1`, `_fix_portals.ps1`, `_replace_lines.ps1`, `_debug.ps1`).
+
+### 1.12 Must-preserve logic (do NOT alter behaviour)
+| Behaviour | Where |
+|---|---|
+| `show('tab',this)` panel switching | dashboards (62), investor (41), outreach (35), admin (30), deal room, CRM |
+| Kanban drag-and-drop | `phase1_crm_pipeline` (`.card[draggable]`, `.dragging`, `.drag-over`, `.col-cards`) |
+| Auth role select + reg steps | `phase0_auth` (`.role-opt.selected`, `.rs-dot`, `.auth-tab`) |
+| Role-based nav toggling | `phase3_dashboards` (`clientNav`/`agentNav` `style.display`) |
+| Global nav / transitions / reveal / toast | `shared.js` (`#cg-nav`, `REVEAL_SELECTOR`, `window.CG.toast`) |
+
+### 1.13 Class-name collisions — why global linking is unsafe *(new in v3.1)*
+Generic class names appear **580 times** across the 14 files (`index.html` alone: 117) and are currently
+styled by each page's inline `<style>`. The orphaned files reuse those same names with *different*
+meaning, so linking them globally overrides per-page rules destructively:
+
+- **`.content` is default-hidden and overloaded.** `structures.css` and several pages define `.content{display:none}` / `.content.active{display:block}` for tab panels. But `.content` is also used as a *generic wrapper* on public pages — **59 uses across 10 files**, including `international_hub`(5), `phase3_property_search`(5), `neighbourhood_hub`(2), `lead_capture`(1). Linking `structures.css` globally would set those wrappers to `display:none` and **blank the page**.
+- **`.card` is overloaded.** In CRM/`structures.css`, `.card` is a *draggable kanban lead card* (gold left-bar, `.dragging`/`.drag-over`). In `index.html` it's a static module card. Global `structures.css` would graft drag styling onto static cards.
+- **`.panel`, `.metric`, `.nav-item`, `.sidebar`, `.btn`** similarly differ page-to-page.
+
+**Implication:** the v3.0 "Phase 2 = link globally, then reconcile" step is wrong. Reconciliation
+must come *first* (define one taxonomy, resolve overloads), and adoption must be **per-page atomic**.
+
+### 1.14 JS-generated markup *(new in v3.1)*
+Much of the DOM is built in **JS template literals**, not static HTML — e.g. kanban cards at
+`phase1_crm_pipeline.html:1375` (`` `<div class="card" draggable="true" id="card-${lead.id}">` ``).
+Static-HTML edits never reach these nodes, and any class rename or structural change **must also be
+applied inside the JS template strings** or the rendered DOM diverges from the stylesheet.
+
+### 1.15 JS-driven dynamic inline styles — must NOT be stripped *(new in v3.1)*
+**39 occurrences across 8 files** (admin 13, CRM 9, AI generator 6, auth 4) set styles dynamically:
+`element.style.display = …` for role nav (`phase3_dashboards.html:2711`), progress-bar `style="width:${…}"`,
+chart sizing, etc. Phase 4's inline-style purge must **exclude** any `style=""` that is JS-written or
+contains `${…}`, and must preserve any element whose `.style` is read/written by JS.
+
+### 1.16 shared.js ↔ class-taxonomy coupling *(new in v3.1)*
+`shared.js` `REVEAL_SELECTOR` hard-codes `.module-card, .panel, .s-card, .listing-card, .tool-panel,
+.qopt, .role-opt, .card, [data-reveal]`. If migration renames any of these (e.g. generic `.card`→`.module-card`),
+`REVEAL_SELECTOR` must be updated in lockstep or those elements lose (or gain) the scroll-reveal animation.
+
+### 1.17 Bare / element-selector inputs *(new in v3.1)*
+Several pages (e.g. `phase3_ai_generator`) use unclassed `<input>` styled only by `shared.css`'s element
+selector. Unifying onto `.input-field` requires *adding* the class to bare inputs — it won't apply automatically.
+
+### 1.18 Out of scope (explicitly noted)
+`data-theme="light"` is hard-set on `<html>` with no dark-mode toggle; there are no print/RTL styles.
+These are intentionally **out of scope** unless requested, but recorded so they aren't mistaken for gaps.
 
 ---
 
-## 2. Solution Strategy & Architecture
+## 2. Target Architecture & Strategy
 
-### 2.1. Standardizing the Design System
+**Finish the existing migration — but reconcile the taxonomy first, then migrate page-by-page.**
 
-We will **refactor** (not wipe) `assets/shared.css` into a semantic Design Token Architecture. All inline styles will be stripped.
+Final per-page load order:
+```
+shared.css     → tokens + base reset + (shrinking) page overrides
+structures.css → layout shells (app, sidebar, topbar, hero, kanban, modal, auth, footer, tables)
+components.css → reusable components (btn, card-base, kpi, badge, input, grid utils)
+```
 
-- **Semantic Variable Rename:** Replace inverted names with intent-based tokens:
-  - `--dark` → `--bg-primary` · `--dark2` → `--bg-surface` · `--dark3` → `--bg-elevated`
-  - `--cream` → `--text-primary` · `--muted` → `--text-muted` · `--body` → `--text-body`
-  - `--gold` → `--accent-gold` · `--border` → `--border-default`
-- **Unified Color Values:** Reconcile divergent values between inline and shared.css — choose one canonical set (the light-mode-optimized `shared.css` values).
-- **Typography Decision:** Keep 2 fonts (Playfair Display for headings, DM Sans for body). Fix `--font-cormorant` mapping. If Cormorant Garamond is needed for specific sections, restore it correctly.
-- **Typography Scale:** `--text-xs` through `--text-2xl` with consistent line heights.
-- **Spacing System:** Standard 8px grid (`--space-1`: 4px, `--space-2`: 8px, `--space-4`: 16px, etc.).
-- **Contrast Fix:** Darken gold accent to at least `#9a7a1e` for text use, or only use gold on tinted backgrounds.
-
-### 2.2. Unifying Portals & Screens
-
-- **Public Shell:** Unified top navigation (transparent to solid on scroll) and brand-rich footer. Decision required: dark-luxury nav (original boutique) or light-modern nav (current shared.css override).
-- **App Shell (Internal):** Unified 280px sidebar + topbar layout using CSS Grid (`.app { grid-template-columns: 280px 1fr }`). Background: cohesive warm off-white (`#f8f7f5`) maintaining luxury feel.
-- **Sidebar Unification:** Standardize on the CSS Grid pattern (used by CRM, Admin, Deal Room). Migrate dashboards, investor, and outreach from `position: fixed` + `margin-left` to grid.
-- **Bottom Nav:** Keep `#cg-nav` as a demo navigation aid but lower its visual priority and ensure it doesn't conflict with mobile layouts.
-
-### 2.3. Reusable Components
-
-Abstract into shared utility classes in `shared.css`:
-
-- **Buttons:** `.btn`, `.btn-primary`, `.btn-outline`, `.btn-ghost`
-- **Cards:** `.card`, `.card-interactive` (standardized hover elevation)
-- **KPI Tiles:** `.kpi-tile` (one component, replaces `.kpi`, `.metric`)
-- **Tables:** `.data-table` (one component, replaces `table`, `.tbl`)
-- **Inputs:** `.input-field`, `.select-field`, `.textarea-field`, `.form-group`
-- **Badges/Tags:** `.badge`, `.badge-success`, `.badge-warning`, `.badge-danger`
-- **Layouts:** `.grid-2`, `.grid-3`, `.grid-4`, `.flex-between`, `.flex-center`
-- **Toasts:** Consolidate to `shared.js` toast only — remove page-level `#toast` elements
-
-### 2.4. Files, Folders & Modules to Change
-
-- **Modify:** All **14** `.html` files (strip inline styles, rewrite to shared components, fix structural layout wrappers).
-- **Modify:** `assets/shared.css` (refactor into semantic tokens + component library; preserve working systems).
-- **Modify:** `assets/shared.js` (add responsive sidebar toggling; consolidate toast; preserve existing nav/transition/reveal systems).
-- **Delete:** All 6 patching scripts (`_remove_dark_theme.py`, `_fix_overrides.ps1`, `_fix_light_theme.py`, `_fix_overrides.py`, `_fix_portals.ps1`, `_replace_lines.ps1`, `_debug.ps1`).
-
-### 2.5. Screen Flow Restructuring
-
-- **Platform Hub:** `index.html` is the root entry point (not `boutique-redesign.html`).
-- **Public Entry:** `boutique-redesign.html` is the brand homepage. Navigation connects to Neighbourhoods and Properties.
-- **Conversion:** All "Contact" or "Inquire" buttons route to `lead_capture.html`.
-- **Authentication:** All "Portal Login" buttons route to `phase0_auth.html`.
-- **Routing Logic (Mocked):** From `phase0_auth.html`:
-  - Login as Admin → `phase2_admin_dashboard.html`
-  - Login as Agent → `phase1_crm_pipeline.html`
-  - Login as Client → `phase3_dashboards.html`
-  - Login as Investor → `investor_portfolio.html`
+1. **Single token source.** Add the semantic tokens the new files expect to `shared.css :root`
+   (canonical light values); keep legacy names (`--dark`, `--cream`, `--gold`, `--border`, `--r`) as
+   **aliases** (`--gold: var(--accent-gold)`) so nothing breaks during migration.
+2. **One canonical palette** — the muted professional set, not the neon inline set.
+3. **Typography** — Playfair (headings) + DM Sans (body); **remove Cormorant** (never rendered); one type scale + spacing scale.
+4. **One taxonomy, overloads resolved (before any global link):**
+   - Kanban lead card stays `.card`; **generic static cards → `.module-card`/`.card-base`** (and update `REVEAL_SELECTOR`).
+   - Tab-panel `.content` keeps `display:none`; **generic content wrappers → `.page-content`** (no hidden default) before adopting `structures.css`.
+   - Sidebar taxonomy unified (`.sb-sec`/`.si-badge`/`.sb-nav`/`.si-icon` ↔ `structures.css`) — pick one, apply to HTML+CSS+JS.
+5. **Three shell archetypes, not one:** sidebar-app (6 pages), topbar-only (AI generator), centered-auth (auth). Unify *within* each archetype.
+6. **Fix live bugs:** noise overlay z-index; single toast system.
+7. **Connect the flow:** shared public navbar/footer + mocked auth role routing.
 
 ---
 
-## 3. Phased Execution Roadmap
+## 3. Phased Roadmap
 
-### Phase 0: Discovery & Dependency Mapping
-*Goal: Prevent breaking changes by understanding what depends on what. ~1 day.*
+> Every phase is independently shippable and visually verifiable. No phase changes behaviour or data.
+> Migration is **per-page atomic** (Phase 4) to avoid the broken intermediate states global linking would cause.
 
-| Task | Description |
-|---|---|
-| **0.1** | **JS-CSS Dependency Audit** — For each of the 14 files, catalog every JS function that references CSS class names, IDs, or inline styles. Produce a protected-names list (e.g., `.dragging`, `.drag-over`, `.col-cards` in CRM; `.active` tab classes in Deal Room) |
-| **0.2** | **Specificity Map** — Document the cascade chain per file: inline `style=""` → inline `<style>` → `shared.css` → `shared.css !important`. Note which visual properties are won at each level |
-| **0.3** | **Design Decision Matrix** — Explicitly decide and document: (a) Auth dark vs. light? (b) Bottom nav kept or removed? (c) 2 or 3 fonts? (d) Boutique nav dark or light? (e) Public pages dark hero or light? |
+### Phase 0 — Discovery & safety net *(0.5 day)*
+- **0.1** Freeze the protected-names list (§1.12) and the JS-generated-markup map (§1.14): kanban template, dashboards role nav, any `innerHTML`/template strings that emit styled classes.
+- **0.2** Settle the open decisions in §5.
+- **0.3** Capture a before/after screenshot baseline of all 14 pages at 5 breakpoints; re-shoot after each page migrates.
 
-### Phase 1: Design Token Architecture
-*Goal: Refactor shared.css into a semantic token system without breaking pages. ~2 days.*
+### Phase 1 — Token unification in `shared.css` *(1.5 days)*
+- **1.1** Add semantic tokens to `:root` with canonical values; alias legacy names to them.
+- **1.2** Collapse divergent colour values to the one canonical palette.
+- **1.3** Remove Cormorant; add a single type scale (`--text-xs … --text-2xl`) + spacing scale (`--space-1 … --space-8`).
+- **1.4** Unify radius (`--radius-sm/--radius/--radius-lg`).
+- *Outcome:* `components.css`/`structures.css` now resolve against real tokens (but are still not linked).
 
-| Task | Description |
-|---|---|
-| **1.1** | **Semantic Variable Rename** — Create migration map from inverted names to semantic names. Update `shared.css` `:root` block |
-| **1.2** | **Unify Color Values** — Pick one canonical set of color values. Remove duplicates |
-| **1.3** | **Typography System** — Decide font count, fix `--font-cormorant` mapping, create typography scale tokens |
-| **1.4** | **Spacing & Radius System** — Standardize to 8px grid. Unify `--r`/`--radius` to a single set |
-| **1.5** | **Component Library CSS** — Define buttons, inputs, badges, cards, KPI tiles, tables as reusable classes in `shared.css` |
-| **1.6** | **Layout Utilities** — Define grids, flexbox helpers, containers |
-| **1.7** | **Preserve Working Systems** — Extract and protect: `#cg-nav` styles, page transitions, scroll reveals, toast system, responsive breakpoints |
+### Phase 2 — Taxonomy & collision resolution *(1 day)* — **MUST precede any global link**
+- **2.1** Author the canonical class map (§2.4): `.card` (kanban) vs `.module-card`/`.card-base` (generic); `.content` (tab-panel) vs `.page-content` (generic wrapper); unified sidebar classes; `.input-field` for inputs.
+- **2.2** Reconcile `structures.css`/`components.css` to that map (rename their selectors where they currently mismatch the chosen names).
+- **2.3** Update `shared.js` `REVEAL_SELECTOR` to match the final card/panel class names (§1.16).
+- **2.4** Document, per page, which generic `.content`/`.card`/`.panel` instances must be renamed before that page adopts the new CSS.
 
-### Phase 2: HTML Refactoring & Inline Style Eradication
-*Goal: Apply the design system to all 14 files, removing tech debt. ~3 days.*
+### Phase 3 — Reference page hardening *(0.5 day)*
+- **3.1** Bring `investor_portfolio.html` fully onto the new system (link the 3 stylesheets for this page; remove its remaining 164 element `style=""`; apply the taxonomy). Use it as the proven template and checklist for Phase 4.
 
-| Task | Description |
-|---|---|
-| **2.1** | **Standalone Coverage Check** — Before removing inline styles, verify `shared.css` defines every component needed. Test each page with inline `<style>` temporarily disabled (use browser devtools) |
-| **2.2** | **Strip inline `<style>` blocks** — Systematically go through each `.html` file, delete the inline `<style>` blocks |
-| **2.3** | **Replace element-level `style=""` attributes** — Create utility classes for the ~200+ `style=""` attributes (priority: admin dashboard, deal room, outreach engine) |
-| **2.4** | **Replace hardcoded classes** — Update arbitrary class names to standardized component classes from `shared.css` |
-| **2.5** | **Fix semantic HTML** — Proper heading hierarchy (`h1` → `h2` → `h3`), `aria-*` labels |
-| **2.6** | **Remove auth dark-mode remnants** — Clean up the "AUTH PAGE ENHANCEMENTS" block based on Phase 0.3 design decision |
+### Phase 4 — Per-page atomic migration *(4 days, file-by-file)*
+For **each** page, in one atomic change, then verify before moving on:
+- **4.a** Rename that page's overloaded generic classes (`.content`→`.page-content`, generic `.card`→`.module-card`, etc.) **in HTML and in any JS template strings** (§1.14).
+- **4.b** Add `<link>`s for `structures.css` + `components.css` after `shared.css`.
+- **4.c** Delete the page's inline `<style>` block and its duplicate Google Fonts `<link>`s (§1.4).
+- **4.d** Replace element `style=""` with utility/component classes — **excluding** JS-driven/`${…}` dynamic styles (§1.15).
+- **4.e** Verify: render at 5 breakpoints; exercise the page's JS (tabs, drag, role switch, modals, toasts).
+- *Order (least→most risky):* international → neighbourhood → lead_capture → boutique → index → property_search → ai_generator → auth → deal_room → crm → outreach → admin → dashboards.
+- *Rationale:* per-page atomicity means a page is never in the half-styled state that simultaneous global-link-then-strip would create, and the neon-vs-muted token split (§1.2) is resolved the instant a page's inline `:root` is removed.
 
-### Phase 3: Global Shells & Navigation Unification
-*Goal: Consistent structural layout across all pages. ~2 days.*
+### Phase 5 — Shell unification *(1.5 days)*
+- **5.1** Sidebar-app archetype: standardize the 6 sidebar pages on `.app` Grid + one sidebar class; migrate dashboards (`.sidebar`/fixed), investor, outreach onto it.
+- **5.2** Keep the topbar-only (AI generator) and centered-auth (auth) archetypes; standardize their topbar/card, **don't force a sidebar**.
+- **5.3** Add one responsive sidebar toggle (<960px) in `shared.js` — additive, no behaviour change. Verify it doesn't conflict with `body{padding-bottom:72px}` + `#cg-nav`.
 
-| Task | Description |
-|---|---|
-| **3.1** | **Public Shell** — Implement standard navbar + footer across `index.html`, `boutique-redesign.html`, `international_hub.html`, `neighbourhood_hub.html`, `lead_capture.html`, `phase3_property_search.html` |
-| **3.2** | **App Shell — Sidebar Migration** — Standardize all 6 portal pages to CSS Grid sidebar pattern (280px + 1fr). Migrate `phase3_dashboards.html`, `investor_portfolio.html`, `outreach_engine.html` from `position: fixed` to grid |
-| **3.3** | **Sidebar Class Unification** — Merge `.sb` and `.sidebar` into one class name with one HTML structure across all 6 portal files |
-| **3.4** | **Responsive Sidebar** — Implement hamburger toggle for <960px via `shared.js` |
+### Phase 6 — Component standardization *(1.5 days)*
+- KPI tiles → one `.kpi-tile`; tables → `.data-table`; cards → `.card-base`/`.card-interactive`; **add `.input-field` to bare inputs** (§1.17); badges → `.badge-*`. Standardize hover to `translateY(-2px)+shadow`.
 
-### Phase 4: Component Refinement & Standardization
-*Goal: Identical patterns use identical code. ~2 days.*
+### Phase 7 — Flow connection & routing *(0.5 day)*
+- **7.1** Shared public navbar + footer across the 6 public pages with correct `href`s.
+- **7.2** "Sign In" CTAs → `phase0_auth.html`.
+- **7.3** Mock auth routing (additive demo wiring, no logic removed): Admin→`phase2_admin_dashboard`, Agent→`phase1_crm_pipeline`, Client→`phase3_dashboards`, Investor→`investor_portfolio`.
 
-| Task | Description |
-|---|---|
-| **4.1** | **KPI Tiles** — Unify `.kpi-tile` + `.kpi` + `.metric` into one component |
-| **4.2** | **Data Tables** — Unify `table` + `.data-table` + `.tbl` into one component |
-| **4.3** | **Kanban/Task Boards** — Standardize CRM `.col`+`.card` and Deal Room `.task-col`+`.task-card` |
-| **4.4** | **Form Inputs** — Unify `.f-input`, `.form-input`, and inline input styles |
-| **4.5** | **Toast Consolidation** — Remove page-level `#toast` elements; use `shared.js` toast exclusively |
-| **4.6** | **Modal Standardization** — Unify `.modal-overlay`/`.modal` across CRM and property search |
-
-### Phase 5: Flow Connection & Routing
-*Goal: Link the entire system into a realistic application journey. ~0.5 day.*
-
-| Task | Description |
-|---|---|
-| **5.1** | Update all `href` attributes in Public Shell navbars to point to correct files |
-| **5.2** | Add clear "Sign In" CTAs to the Public Shell linking to `phase0_auth.html` |
-| **5.3** | Create mock routing from `phase0_auth.html` — Admin → admin dashboard, Agent → CRM, Client → dashboards, Investor → investor portfolio |
-| **5.4** | Update App Shell sidebar links so admin can navigate between Dashboard, CRM, Deal Rooms, Investor, and Outreach |
-
-### Phase 6: QA, Polish & Final Optimization
-*Goal: Final validation, responsiveness checks, and visual enhancement. ~1.5 days.*
-
-| Task | Description |
-|---|---|
-| **6.1** | **Responsiveness QA** — Test at 375px, 768px, 960px, 1180px, 1440px. Fix sidebar collapse, kanban scroll, property search layout |
-| **6.2** | **Accessibility QA** — WCAG AA contrast ratios (fix gold-on-white), keyboard focus outlines, `aria-labels`, `cursor: pointer` |
-| **6.3** | **Micro-Interactions** — Standardize hover transforms to consistent `translateY(-2px)` + `box-shadow` pattern |
-| **6.4** | **Noise Overlay Fix** — Lower `body::after` z-index from 9999 to below modals |
-| **6.5** | **`!important` Purge** — Remove all 150+ `!important` declarations by fixing specificity properly |
-| **6.6** | **Dead Code Cleanup** — Remove unused classes, empty comment blocks, dark-mode references, and all 6 patching scripts |
-| **6.7** | **Font Loading Optimization** — Remove duplicate Google Fonts `<link>` tags from HTML (shared.css already imports them) |
+### Phase 8 — QA, accessibility & cleanup *(1.5 days)*
+- **8.1** Fix noise overlay z-index in `shared.css` (9999→below modals); consolidate to a single toast (route page `showToast`→`CG.toast`, retire the duplicate `#toast`).
+- **8.2** WCAG AA: darken gold for text (≥`#9a7a1e`) or restrict gold to tinted backgrounds; add focus outlines + `aria-label`s. **Optional (needs sign-off, §5):** make `onclick` `<div>` tabs/role options keyboard-operable via `role`/`tabindex`/`keydown` — additive only.
+- **8.3** Responsive QA at 375/768/960/1180/1440px.
+- **8.4** Purge `!important` where specificity now allows; remove dead `body[data-page]` overrides made redundant by the components.
+- **8.5** Delete the 7 dead automation scripts.
 
 ---
 
-## 4. Risks, Dependencies, and Mitigation
+## 4. Risks & Mitigation
 
 | Risk | Severity | Mitigation |
 |---|---|---|
-| Breaking Kanban drag-and-drop JS | 🔴 High | Phase 0.1 JS-CSS audit; preserve all `drag*`, `.card`, `.col-cards` classes |
-| Breaking auth registration wizard | 🔴 High | Phase 0.1 audit of auth JS; preserve step/tab/role-selection logic |
-| `shared.css` refactor destroys working nav/transitions | 🔴 High | Phase 1.7 extraction; refactor incrementally, not wipe |
-| 2 portal files missed entirely | 🔴 High | Both `investor_portfolio.html` and `outreach_engine.html` now included in all phases |
-| Dual toast system confusion | 🟡 Medium | Phase 4.5 consolidation to `shared.js` toast only |
-| Gold-on-white contrast failure (3.3:1 ratio) | 🟡 Medium | Phase 6.2 — darken gold to `#9a7a1e` for text, or use on tinted backgrounds |
-| Auth dark-mode remnants resurface | 🟡 Medium | Phase 0.3 design decision; Phase 2.6 explicit cleanup |
-| Noise overlay blocks modal interactions | 🟢 Low | Phase 6.4 z-index fix |
-| All HTML files must reference same `shared.css` and `shared.js` | 🟡 Medium | Ensure relative paths are correct after refactoring |
+| Global-linking the new CSS blanks pages via `.content{display:none}` | 🔴 High | Phase 2 taxonomy + Phase 4 per-page atomic adoption; rename generic `.content`→`.page-content` first |
+| Generic `.card`/`.panel` corrupted by kanban/structural styles | 🔴 High | Phase 2 overload resolution before any link |
+| Class rename misses JS-generated markup | 🔴 High | §1.14 map; rename in JS template strings in the same change |
+| Stripping a JS-driven dynamic `style=""` breaks charts/progress/role-nav | 🔴 High | §1.15 — exclude `${…}` and `.style`-targeted elements from Phase 4.d |
+| Breaking kanban drag / auth wizard / `show()` tabs / role nav | 🔴 High | §1.12 protected list; identifier-only renames in lockstep |
+| `REVEAL_SELECTOR` out of sync after card rename → lost/extra reveals | 🟡 Med | Phase 2.3 updates `shared.js` with the rename |
+| Token aliases create a mixed palette on a page mid-migration | 🟡 Med | Per-page atomicity removes inline `:root` and adopts components together |
+| Forcing a sidebar onto auth / AI generator | 🟡 Med | §1.8 three archetypes; Phase 5.2 |
+| Cormorant removal changes a heading that actually used it | 🟢 Low | It's re-mapped to Playfair already; visually a no-op |
+| Dual toast / noise overlay regressions | 🟢 Low | Phase 8.1 |
 
 ---
 
-## 5. Execution Timeline
+## 5. Decisions Needed Before Phase 1
+1. **Card taxonomy:** keep `.card` for kanban and rename generic cards to `.module-card`/`.card-base` (recommended — avoids touching drag JS), or rename the kanban card and update its drag selectors?
+2. **`.content` wrappers:** rename generic content wrappers to `.page-content` (recommended), or scope the hidden-default rule so it can't hit them?
+3. **Sidebar taxonomy:** rename markup to match `structures.css` (`.sb-section`/`.sb-badge`), or adjust the CSS to existing markup (`.sb-sec`/`.si-badge`)?
+4. **Auth page:** keep light (consistent) or restore dark luxury?
+5. **Public hero:** light-modern (current `shared.css`) or dark-luxury (original boutique)?
+6. **Bottom `#cg-nav`:** keep as a demo aid, or hide behind a toggle for a more "real product" feel?
+7. **Keyboard a11y for `onclick` divs (§8.2):** in scope (additive) or defer?
 
+---
+
+## 6. Timeline
 ```
-Phase 0 (Discovery)     → 1 day    — MUST do first, prevents cascade failures
-Phase 1 (Tokens)        → 2 days   — Foundation for everything else
-Phase 2 (HTML Refactor) → 3 days   — Largest effort, file-by-file
-Phase 3 (Shells)        → 2 days   — Structural unification
-Phase 4 (Components)    → 2 days   — Visual consistency
-Phase 5 (Routing)       → 0.5 day  — Quick linking pass
-Phase 6 (QA/Polish)     → 1.5 days — Final validation
-                          ──────────
-                          12 days total
+Phase 0  Discovery & decisions        0.5d
+Phase 1  Token unification            1.5d   ← makes the orphaned CSS resolvable
+Phase 2  Taxonomy & collision resolve 1.0d   ← MUST precede any global link
+Phase 3  Reference page hardening     0.5d
+Phase 4  Per-page atomic migration    4.0d   ← inline <style>, fonts, element styles, class renames
+Phase 5  Shell unification (3 types)  1.5d
+Phase 6  Component standardization    1.5d
+Phase 7  Flow & routing               0.5d
+Phase 8  QA / a11y / cleanup          1.5d
+                                     ──────
+                                     12.5d
 ```
 
-> **Critical Note:** The original plan had no Discovery phase and suggested wiping `shared.css` as the first action. This would immediately break all 14 pages. This revised plan adds Phase 0 and changes Phase 1 from "wipe" to "refactor" to prevent cascading failures.
-
-This roadmap ensures no logic or data is destroyed, while fundamentally curing the architectural and visual debt of the platform.
+> **Defining insight:** the project isn't missing a design system — it has one that was authored but
+> never connected, and whose generic class names *collide* with the markup they were meant to replace.
+> Phases 1–2 make that system resolvable and collision-free; Phases 3–4 migrate the pages onto it one
+> at a time (never leaving a page half-styled); Phases 5–8 unify structure, flow, and quality — all
+> without altering a single feature, data value, or interactive behaviour.
+</content>

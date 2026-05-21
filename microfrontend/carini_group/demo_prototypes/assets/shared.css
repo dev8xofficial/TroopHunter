@@ -1,29 +1,32 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap");
 
 :root {
-  --dark: #ffffff;
-  --dark2: #f8f7f5;
-  --dark3: #f1efeb;
-  --dark4: #e8e4de;
-  --dark5: #ddd8d0;
+  /* ===== SEMANTIC PALETTE — canonical source of truth (light theme) ===== */
+  /* Surfaces */
+  --bg-primary: #ffffff;   /* page / sidebar / topbar base */
+  --bg-surface: #f8f7f5;   /* panels, modals, cards */
+  --bg-elevated: #f1efeb;  /* inputs, raised tiles, lead cards */
+  --bg-sunken: #e8e4de;
 
-  --gold: #c49a2e;
-  --gold-light: #d4a843;
-  --gold-l: #d4a843;
-  --gold-soft: #b08a24;
-  --gold-dim: rgba(196, 154, 46, 0.1);
-  --gold-glow: rgba(196, 154, 46, 0.16);
+  /* Accent — gold */
+  --accent-gold: #c49a2e;
+  --accent-gold-hover: #b08a24;
+  --accent-gold-light: #d4a843;
+  --accent-gold-dim: rgba(196, 154, 46, 0.1);
+  --accent-gold-glow: rgba(196, 154, 46, 0.16);
 
-  --cream: #1a1510;
-  --text: #1a1510;
-  --text-muted: rgba(26, 21, 16, 0.6);
-  --muted: rgba(26, 21, 16, 0.46);
-  --body: rgba(26, 21, 16, 0.74);
+  /* Text (intent-based names; values are dark-on-light) */
+  --text-primary: #1a1510;
+  --text-secondary: rgba(26, 21, 16, 0.6);
+  --text-tertiary: rgba(26, 21, 16, 0.46);
+  --text-body: rgba(26, 21, 16, 0.74);
 
+  /* Borders */
   --border: rgba(180, 140, 50, 0.18);
-  --border-soft: rgba(180, 140, 50, 0.1);
-  --border-hard: rgba(180, 140, 50, 0.34);
+  --border-light: rgba(180, 140, 50, 0.1);
+  --border-strong: rgba(180, 140, 50, 0.34);
 
+  /* Status */
   --success: #1a9e5a;
   --success-dim: rgba(26, 158, 90, 0.1);
   --warn: #c47a10;
@@ -32,24 +35,74 @@
   --danger-dim: rgba(214, 48, 48, 0.1);
   --blue: #1c7ac4;
   --blue-dim: rgba(28, 122, 196, 0.1);
-  --green: #1a9e5a;
-  --green-dim: rgba(26, 158, 90, 0.1);
-  --red: #d63030;
-  --red-dim: rgba(214, 48, 48, 0.1);
-  --amber: #c47a10;
-  --amber-dim: rgba(196, 122, 16, 0.1);
 
+  /* ===== LEGACY ALIASES — point at semantic tokens so existing markup,
+     inline styles, and JS keep resolving to identical values during migration ===== */
+  --dark: var(--bg-primary);
+  --dark2: var(--bg-surface);
+  --dark3: var(--bg-elevated);
+  --dark4: var(--bg-sunken);
+  --dark5: #ddd8d0;
+
+  --gold: var(--accent-gold);
+  --gold-light: var(--accent-gold-light);
+  --gold-l: var(--accent-gold-light);
+  --gold-soft: var(--accent-gold-hover);
+  --gold-dim: var(--accent-gold-dim);
+  --gold-glow: var(--accent-gold-glow);
+
+  --cream: var(--text-primary);
+  --text: var(--text-primary);
+  --text-muted: var(--text-secondary);
+  --muted: var(--text-tertiary);
+  --body: var(--text-body);
+
+  --border-soft: var(--border-light);
+  --border-hard: var(--border-strong);
+
+  --green: var(--success);
+  --green-dim: var(--success-dim);
+  --red: var(--danger);
+  --red-dim: var(--danger-dim);
+  --amber: var(--warn);
+  --amber-dim: var(--warn-dim);
+
+  /* ===== TYPOGRAPHY ===== */
   --font-serif: "Playfair Display", serif;
   --font-sans: "DM Sans", sans-serif;
-  --font-cormorant: "Playfair Display", serif;
+  --font-cormorant: "Playfair Display", serif; /* legacy alias → Playfair (Cormorant removed; never rendered) */
 
+  /* Type scale */
+  --text-xs: 11px;
+  --text-sm: 12.5px;
+  --text-base: 14px;
+  --text-md: 16px;
+  --text-lg: 18px;
+  --text-xl: 22px;
+  --text-2xl: 28px;
+
+  /* ===== SPACING SCALE (4px base) ===== */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* ===== RADIUS ===== */
   --radius-sm: 6px;
   --radius: 8px;
   --radius-lg: 8px;
+
+  /* ===== LAYOUT ===== */
+  --sidebar-width: 248px;
   --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
   --page-max: 1380px;
   --page-padding: clamp(20px, 3vw, 40px);
 
+  /* ===== SHADOWS ===== */
   --shadow-sm: 0 2px 10px rgba(17, 12, 4, 0.04);
   --shadow-md: 0 12px 36px rgba(17, 12, 4, 0.08);
   --shadow-lg: 0 24px 64px rgba(17, 12, 4, 0.12);
