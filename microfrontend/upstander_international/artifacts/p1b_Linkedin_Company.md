@@ -1,102 +1,34 @@
-# Scrape Results — upstanderinternational
+---
+platform: LinkedIn
+profile_type: company
+name: UPstander International
+url: https://www.linkedin.com/company/upstanderinternational/
+tagline: "Helping organizations & individuals become upstanders and not bystanders through leadership and diversity training."
+industry: Book and Periodical Publishing
+location: Washington, DC 20020, US
+followers: 119
+employees: 2
+scraped_at: 2026-05-20 11:49:23 UTC
+linkedin_footer: [About, Accessibility, User Agreement, Privacy Policy, Cookie Policy,
+                  Copyright Policy, Brand Policy, Guest Controls, Community Guidelines]
+---
 
-- **Start URL**: https://www.linkedin.com/company/upstanderinternational/
-- **Scraped at**: 2026-05-20 11:49:23 UTC
-- **Total pages**: 1
+# UPstander International — LinkedIn Profile
 
-## Page 1 — UPstander International | LinkedIn
+## About
+Helping organizations & individuals become upstanders and not bystanders through leadership and diversity training.
 
-**🔗 URL:** https://www.linkedin.com/company/upstanderinternational/
-
-> UPstander International | 119 followers on LinkedIn. Helping organizations &amp; individuals become upstanders and not bystanders through leadership and diversity training. | Helping organizations &amp; individuals become upstanders and not bystanders through leadership and diversity training.
-
-- Top Content
-- People
-- Learning
-- Jobs
-- Games
-- Get the app
-
-### UPstander International
-
-#### Book and Periodical Publishing
-
-##### Washington, DC 119 followers
-
-###### Helping organizations & individuals become upstanders and not bystanders through leadership and diversity training.
-
-- View all 2 employees
-
-#### About us
-
-#### Locations
-
-- Primary
-Washington, DC 20020, US
-Get directions
-- Get directions
-- Washington, US
-Get directions
-
-Washington, DC 20020, US
-
-Washington, US
-
-#### Employees at UPstander International
-
+## Employees
 - Dr. Omekongo Dibinga, CSP
 
-#### Updates
+## Posts
 
-- UPstander International
-119 followers
-2mo
-Dr. Omekongo Dibinga, CSP
-2mo
-Pennsylvania! I'm so excited to be the keynote speaker for the Presidential Symposium on Diversity later this month! I'll also be doing a book signing for my second book "G.R.O.W. Towards Your Greatness!" This event is open to the public. See you there! https://lnkd.in/e29AX2Vs #upstander #DEI #deispeaker #diversityequityinclusion BigSpeak Speakers BureauWashington Speakers BureauAAE Speakers BureauKeppler Speakers BureauSpeakers Bureau of CanadaSpeakers MagazineSpeaker BureauCAA Speakers
-MCCC’s Presidential Symposium on Diversity Features Dr. Omékongo Dibinga March 24
-mc3.edu
-Like
-Comment
-Share
+#### Post 1
+type: repost
+timestamp: 2mo
+author: Reposted from Dr. Omekongo Dibinga, CSP
+hashtags: [#upstander, #DEI, #deispeaker, #diversityequityinclusion]
 
-119 followers
+Pennsylvania! I'm so excited to be the keynote speaker for the Presidential Symposium on Diversity later this month! I'll also be doing a book signing for my second book "G.R.O.W. Towards Your Greatness!" This event is open to the public. See you there!
 
-Pennsylvania! I'm so excited to be the keynote speaker for the Presidential Symposium on Diversity later this month! I'll also be doing a book signing for my second book "G.R.O.W. Towards Your Greatness!" This event is open to the public. See you there! https://lnkd.in/e29AX2Vs #upstander #DEI #deispeaker #diversityequityinclusion BigSpeak Speakers BureauWashington Speakers BureauAAE Speakers BureauKeppler Speakers BureauSpeakers Bureau of CanadaSpeakers MagazineSpeaker BureauCAA Speakers
-
-#### Join now to see what you are missing
-
-- Find people you know at UPstander International
-- Browse recommended jobs for you
-- View all updates, news, and articles
-
-#### Similar pages
-
-- Aimbridge Hospitality
-Hospitality
-Plano, TX
-
-##### Aimbridge Hospitality
-
-Hospitality
-
-Plano, TX
-
-- LinkedIn
-© 2026
-- About
-- Accessibility
-- User Agreement
-- Privacy Policy
-- Cookie Policy
-- Copyright Policy
-- Brand Policy
-- Guest Controls
-- Community Guidelines
-- Language
-
-LINKEDIN
-
-LinkedIn is better on the app
-
-Don’t have the app? Get it in the Microsoft Store.
+external_link: https://lnkd.in/e29AX2Vs
