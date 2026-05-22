@@ -1,0 +1,436 @@
+﻿Business Operations Manual
+Cobra Hydro UK Ltd
+Odour Control · Dust Suppression · FOG Management · Noise Control
+This document explains how Cobra Hydro UK operates day to day. It is written for B2B partners, BDRs, marketing agencies, consultants, automation engineers, and vendors who need to understand the business clearly.
+1. Company Overview
+1.1 Business Name
+Name
+Cobra Hydro UK Ltd
+Registered No.
+05471006 (England)
+VAT No.
+862 1043 53
+Head Office
+Unit 9, Greatbridge Business Park, Budds Lane, Romsey, Hampshire, SO51 0HA
+Phone
+01794 522 672
+Email
+info@cobrahydro.co.uk | sales@cobrahydrouk.co.uk
+Website
+https://cobrahydrouk.co.uk
+1.2 Industry
+Cobra Hydro UK operates in the environmental utilities sector. The company specialises in managing odour, dust, fat/oil/grease (FOG), and noise at industrial and wastewater sites.
+1.3 Core Products or Services
+The company does four main things:
+Odour control — stops bad smells escaping from industrial sites
+Dust suppression — prevents dust clouds on construction, quarry, and waste sites
+FOG management — breaks down fat, oil, and grease in sewers and wet wells
+Noise control — reduces sound levels on construction or engineering sites
+Products and systems are sold or hired. The company also designs and installs bespoke systems, provides service contracts, and sells chemical treatment products such as Atom Neutraliser.
+1.4 Target Customers
+Cobra Hydro UK serves B2B clients only. Typical buyers include:
+Water utilities (Yorkshire Water, Southern Water, South West Water)
+Waste management and recycling companies (Biffa, Veolia, Yellowstone Environmental)
+Construction and demolition firms
+Quarry operators
+Local authorities and highways contractors
+Theme parks, leisure facilities, and food industry sites
+1.5 Value Proposition
+Cobra Hydro UK designs its own equipment and blends its own chemical treatments. This means it can offer bespoke, site-specific solutions instead of off-the-shelf products. The company provides a full service from initial survey through installation and ongoing maintenance. Clients get one supplier for equipment, chemicals, and servicing.
+Award credentials: 2026 Global Recognition Award for Innovation (Bio Block technology); Test Valley Business Awards 2025 — 1st in Business Innovations & Technology and Sustainability; Highly Commended in Corporate Business.
+1.6 Business Model
+Revenue comes from three main streams:
+Equipment sales — customers buy products and systems outright
+Equipment hire — customers rent equipment, typically for projects or short-term needs
+Chemical consumables — Atom Neutraliser, ANL, Bio Block, Oxi Max, and Oxi Foam are sold on an ongoing basis
+Service contracts — scheduled maintenance and inspection plans (details on request)
+Pricing is not publicly listed. Enquiries are handled by the sales team who provide tailored quotes.
+2. Customer Segments
+2.1 Ideal Customer Profile
+The ideal client runs a site that produces odour, dust, or FOG as a by-product of its operations. The site is subject to environmental regulations or neighbour complaints. The client needs a reliable, compliant solution and values expert support over the cheapest option.
+2.2 Customer Industries
+Water and wastewater treatment (utilities)
+Waste transfer, recycling, and materials recovery
+Construction and demolition
+Quarrying and aggregate processing
+Food processing and hospitality (kitchen grease management)
+Agriculture and fisheries
+Leisure and theme parks (odour and cooling)
+Local government and highways maintenance
+2.3 Customer Size
+Clients range from small independent contractors to large national utilities such as Yorkshire Water and Southern Water. The common factor is a site-based operation where odour, dust, or FOG is a compliance or operational problem.
+2.4 Common Customer Problems
+Bad smells escaping the site and causing neighbour complaints
+Dust clouds breaching legal limits or creating health and safety risks
+FOG blocking sewer pipes, pumping stations, or drainage systems
+Regulatory inspection risk due to non-compliance with odour management plans
+High cost and disruption of reactive maintenance after a blockage or complaint
+Equipment downtime caused by nozzle blockages or system failures
+2.5 Typical Customer Goals
+Stay compliant with environmental regulations and avoid Ofwat or EA penalties
+Reduce maintenance costs by preventing FOG build-up and system failures
+Protect neighbouring communities from odour and dust
+Extend operating hours on construction sites by managing noise and dust
+Find a single trusted supplier who handles design, installation, and servicing
+3. Product / Service Breakdown
+3.1 Core Services
+The company provides a complete solution in four areas:
+Odour control system design, installation, and maintenance
+Dust suppression system design, installation, and maintenance
+FOG (fat, oil, grease) management and prevention in wastewater networks
+Noise control barrier installation on construction or utility worksites
+3.2 Optional Services
+Free no-obligation site survey to assess the problem and recommend a solution
+Equipment hire (short-term or long-term)
+Service contract plans for ongoing maintenance
+Bespoke chemical formulations on request
+User manuals and daily checklists provided with equipment
+3.3 Product Features
+CHEMICAL PRODUCTS:
+Atom Neutraliser — organic, non-toxic odour neutraliser. Available in 12 scents and 4 strengths. Breaks down odour molecules rather than masking them. Used in misting systems, Odourmasters, and dry vapour units.
+Anaerobic Neutralising Liquid (ANL) — microbial liquid that converts sulphides (H2S, rotten egg smell) into harmless elemental sulphur. Dosed directly into sewage.
+Bio Block — a solid block that hangs in a wet well. Water turbulence erodes it slowly and doses the whole system 24/7. No power, no storage tank, no dosing equipment needed. Full effect after 3–4 weeks.
+Oxi Max — food-grade, non-toxic neutralising liquid for use with dry vapour systems.
+Oxi Foam — foam layer for short-term odour and dust control. Ideal for waste stockpiles and remediated ground. Available in biodegradable scents.
+SYSTEMS AND EQUIPMENT:
+High Pressure Misting System (fixed) — perimeter nozzle ring around a site boundary. Dosing system injects Atom Neutraliser into water supply. Fine mist neutralises airborne odours up to 20m. Self-cleaning nozzles. Optional wind sensor.
+Mobile High Pressure Misting System — same as above but on a self-contained 2000L bowser. 50m or 100m of nozzle pipework included.
+Odourmaster / Mobile Odourmaster — rotary atomiser on a steel mast. Oscillates 100 degrees. 30–45m throw. Available wall-mounted, ceiling-mounted, or mobile (1000L bowser with generator).
+Cobra HydroJet — 3-in-1 dust and odour unit. 2000L self-contained bowser. 30–40m throw mast, road spray bar, and high-pressure jet wash. Towable.
+Dust Suppression Fans (DS50 / DS100) — large oscillating fans with water misting. DS50: 50m throw, 4500m² coverage. DS100: up to 100m throw. Remote-controlled. Wind speed/direction sensor option.
+Dry Vapour System — waterless odour control. Fluid evaporates through perforated pipework. No water supply needed. Emergency response capable. Can be used in buildings, open yards, exhaust stacks, and ventilation systems.
+Foam Master — industrial 2000L diesel-powered bowser with 20m fire hose. Sprays foam 20–25m. Road-towable.
+Odour Control Units (OCU) / 'Big Bobby' — large HDPE carbon filter units. ATEX-rated extraction fans (150–30,000 m³/hr). Modbus/RS/GSM control panel. CE-certified gas sensors for H2S, methane, ammonia.
+Anti Odour Carbon Filter — passive or fan-drawn manhole/vent stack filter. Up to 5-year life. Quick installation.
+Acoustic Sound Barrier — sound-absorbing composite panels. Clips to temporary fencing. Up to 30dB noise reduction.
+3.4 Deliverables Clients Receive
+A site survey report with recommended solution
+Bespoke system design (for installed systems)
+Physical equipment (purchased or hired)
+Chemical products in the correct strength and scent
+Professional installation by Cobra's field team
+User manual and daily checklist
+Commissioning report (for fixed installations)
+Ongoing service visits and maintenance reports
+3.5 What Makes the Service Different
+Cobra designs and manufactures its own equipment in-house
+It blends its own chemical treatments — not a reseller
+Solutions are tailored to each site, not standard packages
+One supplier for equipment, chemicals, installation, and servicing
+Strong relationships with major water utilities and waste companies
+Sustainability focus: organic, non-toxic products; tree planting programme; GRP (non-corroding) enclosures for harsh environments
+4. Customer Journey
+4.1 Lead Generation
+Leads come from:
+Inbound enquiries via phone (01794 522672) or email (info@cobrahydro.co.uk)
+LinkedIn company page (1,782 followers) with regular posts
+Word of mouth from existing clients (water utilities, waste companies)
+Trade association networks and industry events
+BBC Morning Live feature on Bio Block (Yorkshire Water case study)
+Test Valley Business Awards network (local business community)
+Free survey offers promoted via LinkedIn posts and website CTAs
+4.2 Lead Qualification
+A lead is a good fit if the prospect:
+Runs an industrial or infrastructure site with odour, dust, FOG, or noise problems
+Is subject to environmental regulations or has received complaints
+Has budget for a proper solution (not the cheapest option)
+Needs a bespoke or ongoing managed solution, not a one-off product
+There is no publicly visible formal qualification scorecard. Likely handled by the sales and business development team in a discovery conversation.
+4.3 Sales Process
+Prospect contacts Cobra by phone or email
+Sales team (Alys Sayer, Mandy Barnes-Jackson, or Clint Jackson) has a discovery call
+Free no-obligation site survey is offered and arranged
+Michael King (Technical Operations & Projects Manager) or the field team visits site
+Survey report produced with recommended solution and indicative pricing
+Proposal submitted by the office team
+Client accepts and signs — onboarding begins
+4.4 Onboarding Process
+Service contract or hire agreement is formalised
+Installation date agreed with field team
+Site-specific system configured (nozzle layout, chemical strength, wind sensor settings)
+Equipment delivered to site
+Field team installs and commissions the system
+Client handover: user manual and daily checklist provided
+Client shown how to operate the system
+4.5 Service Delivery
+For installed systems:
+Cobra's field team (Richard Wilkinson and Cameron Lane) visits for scheduled service
+Service includes nozzle cleaning, filter changes, pump servicing
+Reports provided after each visit
+Gas sensor and ATEX fan checks for OCU units
+Chemical consumable orders managed by the office team
+For hire equipment:
+Equipment delivered to site, set up, and collected when the hire period ends
+Client uses daily checklist to monitor performance
+Office team available for support during hire
+4.6 Client Communication
+Main contact: office team in Romsey (phone and email)
+Holly Templeton handles day-to-day office coordination and social media
+Georgia Ayres and Kate Fretwell manage business operations
+Field team (Richard Wilkinson, Cameron Lane) is the on-site contact
+Reports sent after service visits
+South West Water review noted: 'Communication regular; reports thorough and comprehensive.'
+4.7 Retention and Upselling
+Service contract plans keep clients on a regular visit schedule
+Consumable sales (Atom Neutraliser, Bio Block) create recurring revenue
+Long-term clients (Yellowstone Environmental, Southern Water) show multi-year relationships
+Upgrade opportunities: GRP enclosures for older systems, wind sensors, extended nozzle runs
+Sustainability initiatives (tree planting, Easter egg donations) build brand loyalty
+Maintenance reminder posts on LinkedIn prompt clients to book servicing
+5. Daily Business Operations
+5.1 Daily Activities
+Handle incoming calls and emails (enquiries, orders, support requests)
+Process chemical product orders (Atom Neutraliser, Bio Block, etc.)
+Coordinate field team schedules (Richard Wilkinson, Cameron Lane)
+Respond to hire equipment requests and arrange logistics
+Update LinkedIn and social media (Holly Templeton)
+Monitor field service jobs in progress
+5.2 Weekly Activities
+Review active service contract schedules
+Produce and send post-service reports to clients
+Sales follow-up calls on open enquiries and proposals
+Publish LinkedIn content (posts, product features, case studies)
+Warehouse and stock check (Richard Wilkinson)
+Team coordination meetings
+5.3 Monthly Activities
+Review service contract renewal dates and upcoming visits
+Review chemical stock levels and place supplier orders
+Finance review (Mark Reeves)
+HR and compliance check (Lisa Reeves)
+Performance review of ongoing site installations
+Tree planting count update (tracked per IBC of Atom Neutraliser sold)
+5.4 Key Operational Workflows
+Enquiry to Quote:
+Inbound enquiry received → allocated to sales team → discovery call → free survey booked → survey completed → proposal drafted → quote sent
+Chemical Order Fulfilment:
+Order received by office → warehouse picks stock → dispatched → invoice raised by finance
+Service Visit:
+Scheduled visit date confirmed with client → field team prepares tools and parts → travel to site → service work completed → report written → sent to client → invoice raised
+Hire Equipment:
+Hire request received → equipment availability checked → agreement signed → delivery to site → daily checklist issued to client → end of hire: collection arranged → equipment inspected and returned to warehouse
+6. Team Structure
+6.1 Leadership
+Cara King — Managing Director. Leads strategy, approves policy, signs off on key contracts. Likely the primary escalation point for major client issues.
+Mandy Barnes-Jackson — Business Development Director. External facing. Co-attends industry events and award ceremonies with Clint Jackson.
+Clint Jackson — Business Development Director (formerly Metropolitan Police Detective Constable). External facing sales and partnership development. LinkedIn presence.
+Michael King — Technical Operations & Projects Manager. Leads system design, site surveys, and installation oversight.
+Mark Reeves — Finance Director. Manages invoicing, financial controls, and reporting.
+6.2 Sales Team
+Alys Sayer — Junior Sales Representative. Handles inbound leads and outbound prospecting.
+Mandy Barnes-Jackson and Clint Jackson — senior business development for larger accounts and new sector entry.
+Primary sales tools: phone (01794 522672), email (info@cobrahydro.co.uk), LinkedIn.
+6.3 Marketing Team
+Holly Templeton — Office Manager & Social Media Coordinator. Runs day-to-day LinkedIn presence and content.
+Marketing appears to be handled in-house. External PR support has been evidenced via the BBC Morning Live feature and award nominations (Absolar nominated Cobra for Test Valley Business Awards).
+6.4 Operations Team
+Georgia Ayres and Kate Fretwell — Business Operations Managers. Handle process coordination, client admin, and operational management (Kate is on maternity leave).
+Holly Templeton — Office Manager. Runs day-to-day office, including coordination of hire logistics and client communication.
+Charlie-lee G. — Administration Assistant.
+6.5 Technical / Field Team
+Michael King — Technical Operations & Projects Manager. Designs bespoke systems, oversees installations, conducts site surveys.
+Richard Wilkinson — Field Service & Warehouse Supervisor. Manages field service schedule, warehouse stock, and technician supervision.
+Cameron Lane — Field Service Technician. On-site installation, commissioning, servicing.
+6.6 Support / Compliance
+Lisa Reeves TechIOSH — HR, HSEQ & Compliance Manager. Handles health, safety, environment, quality, and human resources. TechIOSH qualified.
+7. Tools and Technology
+7.1 CRM Systems
+No specific CRM is publicly identified. Client relationships and enquiry tracking are likely managed through email and a basic system. This is an opportunity for B2B technology providers.
+7.2 Marketing Tools
+LinkedIn (company page and personal profiles of key staff)
+Website: cobrahydrouk.co.uk (product pages, CTA forms, reviews, user manuals)
+No visible use of marketing automation, paid social, or email marketing platform identified from public data.
+7.3 Communication Tools
+Phone: 01794 522672 (main line)
+Email: info@cobrahydro.co.uk / sales@cobrahydrouk.co.uk
+Fax: 01794 522647 (listed on website)
+7.4 Project Management Tools
+No specific project management software is publicly visible. Operations appear to be coordinated by the office team via email and phone.
+7.5 Internal Automation Systems
+OCU systems use Modbus, RS, and GSM signals for remote monitoring and control
+Wind speed and direction sensors can automate activation of misting systems
+Timing systems allow on/off scheduling for economical operation
+There is potential for further automation in CRM, scheduling, and service reporting.
+7.6 Data Systems
+Mass tensometers on OCU units measure carbon media mass and report efficiency data
+CE-certified gas sensors monitor H2S, methane, and ammonia on OCU installations
+Service reports are produced after each field visit and sent to clients
+8. Sales System
+8.1 Lead Sources
+Inbound: website enquiry form, phone, email
+LinkedIn: inbound messages from LinkedIn posts and company page
+Referrals: existing clients (water utilities, waste companies)
+Industry awards and events (Test Valley Business Awards, trade shows)
+Media coverage (BBC Morning Live — Bio Block feature)
+8.2 Prospecting Methods
+LinkedIn posts targeting site managers, compliance officers, and operations managers in water, waste, and construction sectors
+Free survey offer promoted via LinkedIn and website — a low-friction entry point
+Engagement with comments on industry-relevant posts
+Attendance at local business events and award ceremonies
+Outbound cold prospecting methods (email sequences, cold calling lists) are not publicly confirmed but are likely conducted by Alys Sayer and the BDDs.
+8.3 Outreach Channels
+Phone (primary inbound channel)
+Email
+LinkedIn (primarily content-led, with some direct message outreach)
+8.4 Sales Messaging
+Core messages used across LinkedIn and the website:
+'Tailored solutions — designed around your site, not off-the-shelf systems'
+'End-to-end support — from design to installation and ongoing optimisation'
+'Results focused — we solve problems, not just supply equipment'
+'Free, no-obligation survey' — used as a low-friction entry point
+Compliance angle: 'Stay compliant, protect your community, keep your site running'
+Sustainability angle: organic, non-toxic products; tree planting per IBC sold
+8.5 Sales Pipeline Stages
+Stage 1: Inbound enquiry or outreach contact
+Stage 2: Discovery call / needs assessment
+Stage 3: Free site survey scheduled and completed
+Stage 4: Proposal / quote prepared and sent
+Stage 5: Negotiation and closing
+Stage 6: Contract or hire agreement signed
+Stage 7: Onboarding and installation
+Stage 8: Ongoing service contract and consumable supply
+8.6 Demo Process
+Cobra's primary 'demo' is the free on-site survey. The technical team visits the client's site, assesses the problem first-hand, and produces a report with a recommended solution. This demonstrates expertise before any money is spent.
+Video content on LinkedIn also serves as a visual demo of systems in action (installations, commissioned units, before/after results).
+8.7 Closing Process
+Closing typically follows the proposal sent after a site survey. The proposal includes a recommended system, pricing, and expected outcomes. The BDDs and MD manage the close for larger accounts. Hire agreements have lower friction than full system purchases.
+9. Marketing System
+9.1 Marketing Channels
+LinkedIn — primary social channel (company page + personal profiles of Clint Jackson, Cara King, Mandy Barnes-Jackson)
+Website — product pages, CTA forms, reviews, user manuals, odour management resource page
+PR / media — BBC Morning Live feature; award nominations and wins
+Community events — Test Valley Business Awards; charity initiatives (Easter egg donation to Stop Domestic Abuse)
+9.2 Content Strategy
+LinkedIn content follows a regular cadence of:
+Product and system showcase posts (photos and videos of installations)
+Educational posts (how systems work, compliance updates, maintenance tips)
+Team spotlights and behind-the-scenes content
+Sustainability updates (tree planting, environmental policy)
+Award and recognition announcements
+Promotional posts tied to seasons (spring odour warning, summer flies)
+Community and charity posts (Easter eggs, donations)
+Engagement posts (polls, Q&A invites)
+9.3 Advertising Strategy
+No paid advertising (Google Ads, paid social) is evidenced in public data. Marketing appears to be organic and relationship-driven.
+9.4 SEO Strategy
+The website has individual pages for each product and system, each with a distinct meta description optimised for product-specific search terms (e.g. 'Dust Control Suppression Systems', 'Anti Odour Control Carbon Filter'). An odour management resource page adds educational content for SEO purposes.
+9.5 Social Media Strategy
+LinkedIn is the only confirmed active social channel. Posts are produced by Holly Templeton and focus on:
+Demonstrating real-world results (case studies, installation videos)
+Positioning the company as an expert in odour, dust, and FOG management
+Building brand recognition among water utility and waste management professionals
+Driving inbound enquiries via CTAs in posts (phone number and email in every post)
+10. Delivery System
+10.1 Project Kickoff
+Client agreement or hire contract signed
+Michael King briefs the technical plan for the installation
+Office team coordinates delivery logistics with Richard Wilkinson
+Site visit date confirmed with client
+10.2 Task Allocation
+Richard Wilkinson supervises field work and warehouse preparation
+Cameron Lane is the primary on-site installation technician
+Michael King oversees technical quality and attends complex installations
+Office team handles scheduling, client communication, and documentation
+10.3 Work Execution
+Equipment delivered to site by field team
+System installed per the bespoke design
+For misting systems: nozzle pipework laid, pump unit connected, chemical dosing system set up
+For OCU units: ATEX fan installed, carbon media loaded, control panel configured, gas sensors connected
+For hire units: positioned on site, filled with water and chemical, started and confirmed working
+For Bio Block: initial shock dose applied, block hung in wet well
+10.4 Quality Control
+Commissioning test run completed before client handover
+Gas sensor calibration confirmed (OCU units)
+Nozzle coverage and spray pattern checked (misting systems)
+Daily checklist provided for client operator
+Service reports document condition of system at each visit
+South West Water review noted: 'Operator-friendly; reliable and effective ... Communication regular, reports comprehensive.'
+10.5 Final Delivery
+System commissioned and handed over to client operator
+User manual and daily checklist provided
+Ongoing service schedule agreed
+Chemical consumable supply set up
+11. Customer Success
+11.1 Client Communication
+Office team in Romsey is the primary point of contact for all client queries
+Field team communicates directly with site operators during visits
+Service reports sent after each visit provide a written record
+Phone and email are the primary communication channels
+11.2 Support Channels
+Phone: 01794 522672
+Email: info@cobrahydro.co.uk
+User manuals and daily checklists available on the website
+LinkedIn used for public updates on maintenance tips and compliance changes
+11.3 Issue Resolution
+Field team is dispatched for on-site issues. Richard Wilkinson (Field Service Supervisor) coordinates response. For chemical issues, the technical team advises on dosing adjustments.
+Biffa Waste Services review noted: 'Office staff responsive and helpful; engineers professional and knowledgeable.' No formal SLA is publicly stated.
+11.4 Long-Term Account Management
+Service contract plans provide regular scheduled visits
+Chemical consumable reorders create ongoing touchpoints
+BDDs (Mandy Barnes-Jackson, Clint Jackson) manage key account relationships
+Upgrade opportunities identified during service visits (new GRP enclosures, extended nozzle runs, additional zones)
+Long-term relationships evidenced with Yellowstone Environmental, Southern Water, South West Water, Biffa, and Veolia
+12. Key Metrics
+12.1 Sales Metrics
+Number of inbound enquiries per week / month
+Survey-to-proposal conversion rate
+Proposal-to-close conversion rate
+Average deal value (purchase vs hire vs consumables)
+Revenue split: equipment sales vs hire vs consumables vs service contracts
+12.2 Marketing Metrics
+LinkedIn follower growth (current: 1,782)
+Post engagement rate (likes, comments, shares)
+Website traffic and enquiry form submissions
+Number of free surveys booked per month
+Inbound leads from media coverage (BBC Morning Live, award wins)
+12.3 Operational Metrics
+Number of active service contracts
+Field service visit capacity per week
+Equipment hire utilisation rate
+Warehouse stock levels for key chemical products
+Tree planting count (linked to Atom Neutraliser IBC sales — currently 322 trees)
+12.4 Customer Success Metrics
+Client retention rate (multi-year service contract renewals)
+Number of 5-star reviews and referrals
+System uptime and service response times
+Compliance outcomes for clients (avoided regulatory penalties)
+Volume of Atom Neutraliser and consumables reordered per client
+13. Opportunities for B2B Service Providers
+13.1 Sales Partnerships
+BDR agencies to scale outbound prospecting in water utilities, waste management, and construction sectors
+Lead generation services targeting compliance managers, site managers, and environmental officers
+Referral partners in the water sector (other suppliers to Yorkshire Water, Southern Water, etc.)
+Trade association sponsorships to reach new buyers in target sectors
+13.2 Marketing Partnerships
+LinkedIn content and social media management agencies (currently managed in-house by one person)
+SEO and content marketing agencies to improve organic search presence
+PR agencies for trade media placement and award nominations (Absolar nominated Cobra for the Test Valley Awards)
+Video production for system installation case studies
+Email marketing platform setup and campaign management
+Paid search (Google Ads) for product-specific and competitor keywords
+13.3 Technology Integrations
+CRM system (e.g. HubSpot or Salesforce) to manage enquiries, proposals, and client records
+Field service management software (e.g. Jobber, ServiceM8) to schedule and report on field visits
+Remote monitoring integration for OCU systems (already use Modbus/GSM — opportunity to feed into a dashboard)
+E-commerce setup for consumable reordering (Atom Neutraliser, Bio Block, Oxi Foam)
+Quoting and proposal software to speed up the survey-to-quote workflow
+13.4 Outsourcing Opportunities
+Hire equipment logistics management (collection, delivery, maintenance between hires)
+Chemical manufacturing or blending partnerships (for scale-up)
+Training and certification programmes for client site operators
+Sustainability reporting (tree planting programme data, carbon capture reporting)
+Finance / invoice factoring (for capital equipment purchase deals)
+14. Summary of Business Operations
+Cobra Hydro UK is a small, specialist environmental services company based in Romsey, Hampshire. It has about 14 staff. The company has been operating for over 20 years.
+The company solves four problems for industrial and infrastructure sites:
+Bad smells (odour control)
+Dust clouds (dust suppression)
+Fat and grease blocking sewers (FOG management)
+Noise on construction sites (acoustic barriers)
+It designs its own equipment, blends its own chemicals, and does its own installations. This is unusual. Most competitors either make equipment or sell chemicals. Cobra does both — and adds installation and servicing too.
+Its main customers are water utilities, waste companies, and construction firms. These are B2B clients with compliance obligations. They need solutions that work reliably and hold up to regulatory scrutiny.
+Sales start with a free site survey. The technical team visits the site, assesses the problem, and writes a recommended solution. This is the main way the company wins business. The pipeline is: enquiry → survey → proposal → contract → installation → ongoing servicing.
+After installation, clients stay with Cobra through service contracts (regular maintenance visits) and ongoing chemical purchases (Atom Neutraliser, Bio Block, etc.). These recurring revenues keep the business stable.
+The company is growing. It won a Global Recognition Award for Innovation in 2026. It has been featured on BBC Morning Live. It won two awards at the Test Valley Business Awards in 2025.
+The team is small but experienced. The Managing Director (Cara King) and two Business Development Directors (Mandy Barnes-Jackson and Clint Jackson) lead strategy and sales. A field team of two handles all installation and servicing. The office team manages operations, admin, and customer communication.
+External service providers can add most value in: CRM and sales technology, outbound prospecting support, digital marketing, field service software, e-commerce for consumables, and remote monitoring systems.
+Cobra Hydro UK Ltd · Unit 9, Greatbridge Business Park, Budds Lane, Romsey, Hampshire, SO51 0HA · 01794 522672 · info@cobrahydro.co.uk

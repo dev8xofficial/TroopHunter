@@ -3,46 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TreeRaise — Decision Safety Brief | Dev8X</title>
+<title>Decision Safety Brief — UPstander International</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
   :root {
     --navy: #0f1c2e;
-    --navy-mid: #162436;
-    --navy-light: #1e3251;
+    --navy-mid: #162336;
+    --navy-light: #1e3148;
     --blue: #2563eb;
     --blue-light: #3b82f6;
-    --blue-faint: #eff6ff;
+    --blue-pale: #dbeafe;
     --green: #16a34a;
-    --green-faint: #f0fdf4;
+    --green-pale: #dcfce7;
     --amber: #d97706;
-    --amber-faint: #fffbeb;
+    --amber-pale: #fef3c7;
     --red: #dc2626;
-    --red-faint: #fef2f2;
+    --red-pale: #fee2e2;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --border: #e2e8f0;
+    --surface: #f8fafc;
     --white: #ffffff;
-    --gray-50: #f9fafb;
-    --gray-100: #f3f4f6;
-    --gray-200: #e5e7eb;
-    --gray-400: #9ca3af;
-    --gray-500: #6b7280;
-    --gray-600: #4b5563;
-    --gray-700: #374151;
-    --gray-800: #1f2937;
-    --gray-900: #111827;
     --radius: 12px;
-    --radius-sm: 8px;
     --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.10), 0 8px 32px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.1), 0 8px 32px rgba(0,0,0,0.08);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'DM Sans', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-    background: var(--gray-50);
-    color: var(--gray-800);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--white);
+    color: var(--text-primary);
     line-height: 1.6;
-    font-size: 15px;
+  }
+
+  /* Override to sans-serif for UI elements */
+  .sans {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
   }
 
   .page {
@@ -51,49 +50,54 @@
     padding: 0 24px 80px;
   }
 
-  /* ─── HERO ─── */
+  /* ─── HERO ─────────────────────────────────────────────────── */
   .hero {
     background: var(--navy);
-    color: white;
-    padding: 56px 0 48px;
+    color: var(--white);
+    padding: 56px 48px 48px;
     margin: 0 -24px 0;
+    position: relative;
+    overflow: hidden;
   }
 
-  .hero-inner {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 48px;
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 70%);
+    pointer-events: none;
   }
 
   .hero-meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 36px;
-    opacity: 0.6;
-    font-size: 12px;
-    letter-spacing: 0.08em;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    font-weight: 500;
+    color: var(--blue-light);
+    margin-bottom: 20px;
+    opacity: 0.9;
   }
 
-  .hero-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: currentColor; }
-
-  .hero-headline {
-    font-size: clamp(28px, 4vw, 40px);
+  .hero h1 {
+    font-size: clamp(26px, 4vw, 40px);
     font-weight: 700;
     line-height: 1.2;
+    color: var(--white);
     max-width: 680px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     letter-spacing: -0.02em;
   }
 
   .hero-sub {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 16px;
-    line-height: 1.6;
     color: rgba(255,255,255,0.65);
     max-width: 580px;
     margin-bottom: 40px;
+    font-weight: 400;
+    line-height: 1.5;
   }
 
   .hero-stats {
@@ -106,782 +110,848 @@
   .hero-stat {
     background: rgba(255,255,255,0.07);
     border: 1px solid rgba(255,255,255,0.1);
-    border-radius: var(--radius);
-    padding: 20px 22px;
+    border-radius: 10px;
+    padding: 20px 20px 16px;
   }
 
-  .hero-stat .value {
+  .hero-stat .stat-val {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 32px;
-    font-weight: 700;
+    font-weight: 800;
+    color: var(--white);
     line-height: 1;
-    color: #60a5fa;
     margin-bottom: 6px;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
   }
 
-  .hero-stat .label {
+  .hero-stat .stat-val.accent { color: #60a5fa; }
+  .hero-stat .stat-val.green { color: #4ade80; }
+  .hero-stat .stat-val.amber { color: #fbbf24; }
+
+  .hero-stat .stat-label {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 13px;
     color: rgba(255,255,255,0.75);
     font-weight: 500;
     margin-bottom: 4px;
+    line-height: 1.3;
   }
 
-  .hero-stat .source {
-    font-size: 11px;
-    color: rgba(255,255,255,0.38);
+  .hero-stat .stat-source {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
   }
 
-  .at-a-glance {
+  /* At a Glance strip */
+  .glance-strip {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0;
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: var(--radius);
-    overflow: hidden;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 28px;
   }
 
   .glance-item {
-    padding: 16px 20px;
-    border-right: 1px solid rgba(255,255,255,0.12);
+    padding: 0 20px 0 0;
+    border-right: 1px solid rgba(255,255,255,0.1);
   }
 
-  .glance-item:last-child { border-right: none; }
+  .glance-item:first-child { padding-left: 0; }
+  .glance-item:last-child { border-right: none; padding-left: 20px; }
+  .glance-item:nth-child(2) { padding-left: 20px; }
 
   .glance-label {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 10px;
-    text-transform: uppercase;
+    font-weight: 700;
     letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: rgba(255,255,255,0.4);
     margin-bottom: 5px;
-    font-weight: 600;
   }
 
   .glance-value {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 13px;
     color: rgba(255,255,255,0.85);
     font-weight: 500;
     line-height: 1.4;
   }
 
-  /* ─── SECTION ─── */
+  /* ─── SECTION COMMON ───────────────────────────────────────── */
   .section {
-    background: white;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 36px 40px;
-    margin-top: 20px;
+    padding: 56px 0 0;
   }
 
   .section-label {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--blue);
     font-weight: 700;
-    margin-bottom: 8px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 10px;
   }
 
-  .section-title {
+  .section h2 {
     font-size: 22px;
     font-weight: 700;
-    color: var(--navy);
-    letter-spacing: -0.01em;
-    margin-bottom: 20px;
-    line-height: 1.25;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
   }
 
-  .divider {
-    height: 1px;
-    background: var(--gray-100);
-    margin: 20px 0;
+  .section-sub {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+    line-height: 1.5;
   }
 
-  /* ─── OUTCOME CARDS ─── */
-  .outcome-cards {
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 0 40px;
+  }
+
+  /* ─── SECTION 2 — DESIRED OUTCOME ─────────────────────────── */
+  .outcome-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
-    margin-top: 20px;
+    margin-bottom: 24px;
   }
 
   .outcome-card {
-    background: var(--gray-50);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
   }
 
   .outcome-card .oc-label {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 10px;
-    text-transform: uppercase;
+    font-weight: 700;
     letter-spacing: 0.1em;
-    color: var(--gray-400);
-    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
     margin-bottom: 8px;
   }
 
-  .outcome-card .oc-title {
+  .outcome-card p {
     font-size: 14px;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 8px;
-  }
-
-  .outcome-card .oc-body {
-    font-size: 13px;
-    color: var(--gray-600);
-    line-height: 1.55;
+    line-height: 1.6;
+    color: var(--text-primary);
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
   }
 
   .timing-callout {
-    margin-top: 16px;
-    background: var(--amber-faint);
-    border-left: 3px solid var(--amber);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    padding: 14px 18px;
+    background: linear-gradient(135deg, #1e3148 0%, #162336 100%);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    color: var(--white);
+  }
+
+  .timing-callout .tc-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .timing-callout .tc-text {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .timing-callout .tc-head {
     font-size: 13px;
-    color: var(--gray-700);
+    font-weight: 700;
+    color: #fbbf24;
+    margin-bottom: 4px;
+  }
+
+  .timing-callout .tc-body {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
     line-height: 1.5;
   }
 
-  .timing-callout strong { color: var(--amber); }
-
-  /* ─── PROBLEM TABLE ─── */
+  /* ─── SECTION 3 — PROBLEM REGISTER ────────────────────────── */
   .problem-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 4px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .problem-table thead tr {
+    background: var(--navy);
+    color: var(--white);
   }
 
   .problem-table thead th {
+    padding: 13px 18px;
     text-align: left;
     font-size: 11px;
-    text-transform: uppercase;
+    font-weight: 700;
     letter-spacing: 0.08em;
-    color: var(--gray-400);
-    font-weight: 600;
-    padding: 10px 14px;
-    background: var(--gray-50);
-    border-bottom: 1px solid var(--gray-200);
+    text-transform: uppercase;
   }
 
+  .problem-table thead th:first-child { width: 44%; }
+  .problem-table thead th:last-child { width: 56%; }
+
   .problem-table tbody tr {
-    border-bottom: 1px solid var(--gray-100);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
   }
 
   .problem-table tbody tr:last-child { border-bottom: none; }
+  .problem-table tbody tr:nth-child(odd) { background: var(--surface); }
+  .problem-table tbody tr:nth-child(even) { background: var(--white); }
 
   .problem-table td {
-    padding: 14px;
+    padding: 16px 18px;
     font-size: 13.5px;
+    line-height: 1.55;
     vertical-align: top;
-    color: var(--gray-700);
-    line-height: 1.5;
-  }
-
-  .problem-table td:first-child {
-    width: 55%;
-    font-weight: 500;
-    color: var(--gray-800);
+    color: var(--text-primary);
   }
 
   .problem-table td:last-child {
-    width: 45%;
-    color: var(--red);
-    font-size: 13px;
+    color: var(--text-secondary);
   }
 
-  .severity-badge {
+  .sev-badge {
     display: inline-block;
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    letter-spacing: 0.07em;
-    padding: 2px 8px;
-    border-radius: 99px;
-    margin-left: 8px;
-    vertical-align: middle;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-bottom: 6px;
   }
 
-  .sev-critical { background: #fee2e2; color: #b91c1c; }
-  .sev-high { background: #ffedd5; color: #c2410c; }
-  .sev-medium { background: #fef9c3; color: #92400e; }
+  .sev-critical { background: var(--red-pale); color: var(--red); }
+  .sev-high { background: var(--amber-pale); color: var(--amber); }
+  .sev-medium { background: var(--blue-pale); color: var(--blue); }
 
-  /* ─── RESEARCH TRANSPARENCY ─── */
-  .transparency-table {
+  /* ─── SECTION 3B — RESEARCH TRANSPARENCY ──────────────────── */
+  .research-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 4px;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 13px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
   }
 
-  .transparency-table thead th {
+  .research-table thead tr {
+    background: var(--surface);
+  }
+
+  .research-table thead th {
+    padding: 12px 16px;
     text-align: left;
     font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 0.07em;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--gray-400);
-    font-weight: 600;
-    padding: 10px 12px;
-    background: var(--gray-50);
-    border-bottom: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--border);
   }
 
-  .transparency-table td {
-    padding: 13px 12px;
-    border-bottom: 1px solid var(--gray-100);
+  .research-table tbody tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .research-table tbody tr:last-child { border-bottom: none; }
+
+  .research-table td {
+    padding: 14px 16px;
     vertical-align: top;
+    color: var(--text-primary);
     line-height: 1.5;
-    color: var(--gray-700);
   }
 
-  .transparency-table tbody tr:last-child td { border-bottom: none; }
-
-  .evidence-tag {
-    display: inline-block;
-    background: var(--blue-faint);
-    color: var(--blue);
-    font-size: 11px;
+  .research-table td:first-child {
     font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 4px;
+    color: var(--text-primary);
   }
 
-  /* ─── RISK CARDS ─── */
+  /* ─── SECTION 4 — FUTURE RISK ──────────────────────────────── */
   .risk-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
-    margin-top: 4px;
   }
 
   .risk-card {
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    padding: 20px;
-    position: relative;
-    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    background: var(--white);
+    box-shadow: var(--shadow);
   }
 
-  .risk-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-  }
-
-  .risk-card.r1::before { background: var(--red); }
-  .risk-card.r2::before { background: var(--amber); }
-  .risk-card.r3::before { background: var(--blue); }
-
-  .risk-card .risk-title {
-    font-size: 13px;
+  .risk-card .risk-num {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10px;
     font-weight: 700;
-    color: var(--gray-800);
-    margin-bottom: 8px;
-    line-height: 1.35;
-  }
-
-  .risk-card .risk-when {
-    font-size: 11px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--gray-400);
-    font-weight: 600;
-    margin-bottom: 6px;
+    color: var(--red);
+    margin-bottom: 8px;
   }
 
-  .risk-card .risk-body {
+  .risk-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    line-height: 1.3;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .risk-card .risk-break {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 12.5px;
-    color: var(--gray-600);
-    line-height: 1.5;
+    color: var(--text-secondary);
     margin-bottom: 12px;
+    line-height: 1.5;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
   }
 
   .risk-card .risk-prevent {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 12px;
     color: var(--green);
     font-weight: 600;
-    padding-top: 10px;
-    border-top: 1px solid var(--gray-100);
-    line-height: 1.45;
+    line-height: 1.4;
   }
 
-  /* ─── SOLUTION CARDS ─── */
+  /* ─── SECTION 5 — SOLUTION CARDS ──────────────────────────── */
   .solutions-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    margin-top: 8px;
   }
 
-  .solution-card {
-    border: 1px solid var(--gray-200);
+  .solutions-grid .sol-card:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .sol-card {
+    border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 24px;
-    background: white;
+    background: var(--white);
+    box-shadow: var(--shadow);
     position: relative;
     overflow: hidden;
   }
 
-  .solution-card::before {
+  .sol-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0;
-    width: 4px;
+    width: 3px;
     height: 100%;
     background: var(--blue);
   }
 
-  .solution-card .proof-tag {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 3px 9px;
-    border-radius: 4px;
-    background: var(--green-faint);
-    color: var(--green);
+  .sol-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
   }
 
-  .solution-card .proof-tag.described {
-    background: var(--blue-faint);
-    color: var(--blue);
-  }
-
-  .sol-name {
+  .sol-card h3 {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 15px;
     font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 10px;
-    padding-right: 80px;
+    color: var(--text-primary);
     line-height: 1.3;
+    flex: 1;
+    padding-right: 12px;
   }
 
-  .sol-problem {
-    font-size: 12.5px;
-    color: var(--gray-500);
-    margin-bottom: 6px;
+  .proof-tag {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
-  .sol-problem strong { color: var(--gray-700); }
+  .proof-demo { background: var(--green-pale); color: var(--green); }
+  .proof-partial { background: var(--amber-pale); color: var(--amber); }
+  .proof-future { background: var(--blue-pale); color: var(--blue); }
 
-  .sol-build {
-    font-size: 13px;
-    color: var(--gray-700);
+  .sol-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
     margin-bottom: 16px;
-    line-height: 1.5;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12.5px;
+  }
+
+  .sol-meta-item .sm-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 3px;
+  }
+
+  .sol-meta-item .sm-val {
+    color: var(--text-primary);
+    line-height: 1.4;
   }
 
   .sol-metrics {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
+    margin-bottom: 16px;
     padding: 14px;
-    background: var(--gray-50);
-    border-radius: var(--radius-sm);
-    margin-bottom: 14px;
+    background: var(--surface);
+    border-radius: 8px;
   }
 
-  .sol-metric .m-val {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--green);
+  .sol-metric {
+    text-align: center;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .sol-metric .sm-icon { font-size: 14px; margin-bottom: 3px; }
+
+  .sol-metric .sm-num {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--blue);
     line-height: 1;
+    margin-bottom: 3px;
+    letter-spacing: -0.02em;
+  }
+
+  .sol-metric .sm-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.3;
     margin-bottom: 3px;
   }
 
-  .sol-metric .m-label {
-    font-size: 11px;
-    color: var(--gray-600);
-    font-weight: 500;
-    line-height: 1.3;
-    margin-bottom: 2px;
-  }
-
-  .sol-metric .m-source {
-    font-size: 10px;
-    color: var(--gray-400);
-    font-style: italic;
+  .sol-metric .sm-src {
+    font-size: 9.5px;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
   }
 
   .before-after {
-    border-top: 1px solid var(--gray-100);
-    padding-top: 12px;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12.5px;
+  }
+
+  .ba-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
   }
 
   .ba-row {
     display: flex;
     align-items: flex-start;
-    gap: 8px;
-    font-size: 12.5px;
-    color: var(--gray-600);
-    margin-bottom: 5px;
+    gap: 10px;
+    margin-bottom: 6px;
     line-height: 1.4;
   }
 
-  .ba-row .ba-icon { 
+  .ba-before {
+    color: var(--red);
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .ba-arrow {
+    color: var(--text-muted);
+    flex-shrink: 0;
     font-size: 11px;
     margin-top: 1px;
-    flex-shrink: 0;
   }
 
-  .ba-before { color: #9ca3af; text-decoration: line-through; }
-  .ba-after { color: var(--green); font-weight: 600; }
+  .ba-after {
+    color: var(--green);
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
 
-  /* ─── IMPACT SECTION ─── */
-  .stat-grid {
+  .ba-text-before { color: var(--text-secondary); }
+  .ba-text-after { color: var(--text-primary); font-weight: 500; }
+
+  /* ─── SECTION 6 — ROI DASHBOARD ────────────────────────────── */
+  .roi-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 28px;
+    gap: 14px;
+    margin-bottom: 32px;
   }
 
-  .stat-card {
-    background: var(--gray-50);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    padding: 18px 16px;
+  .roi-stat {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 18px;
+    box-shadow: var(--shadow);
     text-align: center;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
   }
 
-  .stat-card .sc-val {
+  .roi-stat .rs-num {
     font-size: 28px;
-    font-weight: 700;
-    color: var(--navy);
+    font-weight: 800;
+    letter-spacing: -0.03em;
     line-height: 1;
-    margin-bottom: 5px;
-    letter-spacing: -0.02em;
+    margin-bottom: 6px;
   }
 
-  .stat-card .sc-label {
+  .roi-stat .rs-num.blue { color: var(--blue); }
+  .roi-stat .rs-num.green { color: var(--green); }
+  .roi-stat .rs-num.amber { color: var(--amber); }
+  .roi-stat .rs-num.navy { color: var(--navy); }
+
+  .roi-stat .rs-label {
     font-size: 12px;
-    color: var(--gray-500);
+    color: var(--text-secondary);
     line-height: 1.4;
     margin-bottom: 4px;
   }
 
-  .stat-card .sc-source {
+  .roi-stat .rs-src {
     font-size: 10px;
-    color: var(--gray-400);
-    font-style: italic;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
   }
 
-  .chart-wrap {
-    background: var(--gray-50);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    padding: 24px;
-    margin-bottom: 24px;
+  .chart-container {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 28px 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
   }
 
-  .chart-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--gray-700);
-    margin-bottom: 16px;
-  }
-
-  /* ─── NUMBER TREATMENT ─── */
-  .number-treatment {
-    background: var(--navy);
-    color: white;
-    border-radius: var(--radius-sm);
-    padding: 24px;
-  }
-
-  .nt-title {
+  .chart-container h4 {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 13px;
     font-weight: 700;
-    color: rgba(255,255,255,0.85);
+    color: var(--text-primary);
+    margin-bottom: 20px;
+  }
+
+  .numbers-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+  }
+
+  .numbers-panel h4 {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
     margin-bottom: 16px;
-    letter-spacing: 0.01em;
   }
 
-  .nt-rows {
+  .numbers-row {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .nt-row {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
+    align-items: flex-start;
     gap: 12px;
-    padding: 10px 14px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 6px;
-    font-size: 12.5px;
+    margin-bottom: 12px;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
   }
 
-  .nt-dot {
-    width: 8px;
-    height: 8px;
+  .numbers-row:last-child { margin-bottom: 0; }
+
+  .nr-dot {
+    width: 8px; height: 8px;
     border-radius: 50%;
+    margin-top: 5px;
     flex-shrink: 0;
   }
 
-  .nt-green { background: #4ade80; }
-  .nt-blue { background: #60a5fa; }
-  .nt-amber { background: #fbbf24; }
+  .nr-dot.blue { background: var(--blue); }
+  .nr-dot.green { background: var(--green); }
+  .nr-dot.amber { background: var(--amber); }
 
-  .nt-desc { color: rgba(255,255,255,0.75); }
-  .nt-badge {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 2px 8px;
-    border-radius: 4px;
-    white-space: nowrap;
-  }
+  .nr-text { color: var(--text-secondary); line-height: 1.5; }
+  .nr-text strong { color: var(--text-primary); }
 
-  .badge-green { background: rgba(74,222,128,0.15); color: #4ade80; }
-  .badge-blue { background: rgba(96,165,250,0.15); color: #93c5fd; }
-  .badge-amber { background: rgba(251,191,36,0.15); color: #fbbf24; }
-
-  /* ─── STAKEHOLDER ─── */
-  .stakeholder-grid {
+  /* ─── SECTION 7 — STAKEHOLDERS ─────────────────────────────── */
+  .stakeholder-cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 16px;
-    margin-top: 4px;
   }
 
   .sh-card {
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
   }
 
-  .sh-name {
+  .sh-card .sh-role {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+
+  .sh-card h4 {
     font-size: 14px;
     font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 2px;
-  }
-
-  .sh-role {
-    font-size: 11px;
-    color: var(--gray-400);
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    font-weight: 600;
+    color: var(--text-primary);
     margin-bottom: 12px;
   }
 
   .sh-row {
-    margin-bottom: 8px;
-  }
-
-  .sh-row-label {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--gray-400);
-    font-weight: 600;
-    margin-bottom: 3px;
-  }
-
-  .sh-row-val {
     font-size: 12.5px;
-    color: var(--gray-700);
+    margin-bottom: 8px;
     line-height: 1.4;
   }
 
-  /* ─── CTA ─── */
-  .cta-section {
-    background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 100%);
-    border-radius: var(--radius);
-    padding: 44px 48px;
-    text-align: center;
-    color: white;
-    margin-top: 20px;
+  .sh-row .sh-key {
+    font-weight: 700;
+    color: var(--text-secondary);
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
   }
 
-  .cta-title {
+  .sh-row .sh-val { color: var(--text-primary); }
+
+  /* ─── SECTION 8 — CTA ───────────────────────────────────────── */
+  .cta-section {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: var(--radius);
+    padding: 48px;
+    text-align: center;
+    margin-top: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 50%;
+    transform: translateX(-50%);
+    width: 500px; height: 300px;
+    background: radial-gradient(circle, rgba(37,99,235,0.2) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .cta-section h2 {
     font-size: 26px;
     font-weight: 700;
+    color: var(--white);
     margin-bottom: 12px;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
   }
 
-  .cta-sub {
+  .cta-section p {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 15px;
     color: rgba(255,255,255,0.65);
-    margin-bottom: 32px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 520px;
+    margin: 0 auto 32px;
     line-height: 1.6;
   }
 
-  .cta-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    background: var(--blue);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 14px 28px;
-    font-size: 14px;
+  .cta-btn {
+    display: inline-block;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
     font-weight: 700;
-    cursor: pointer;
-    letter-spacing: 0.01em;
-    text-decoration: none;
-    display: inline-block;
-    transition: background 0.2s;
-  }
-
-  .btn-primary:hover { background: var(--blue-light); }
-
-  .btn-secondary {
-    background: transparent;
-    color: white;
-    border: 1px solid rgba(255,255,255,0.3);
+    padding: 14px 36px;
     border-radius: 8px;
-    padding: 14px 28px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
     text-decoration: none;
-    display: inline-block;
+    transition: opacity 0.2s;
+    cursor: pointer;
+    border: none;
   }
 
-  /* ─── TIMELINE ─── */
-  .timeline {
+  .cta-btn:hover { opacity: 0.85; }
+  .cta-btn.primary { background: var(--blue); color: var(--white); }
+
+  /* ─── TIMELINE STRIP ────────────────────────────────────────── */
+  .timeline-strip {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0;
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    margin-top: 16px;
-  }
-
-  .tl-phase {
-    padding: 20px;
-    border-right: 1px solid var(--gray-200);
+    margin-top: 28px;
     position: relative;
   }
 
-  .tl-phase:last-child { border-right: none; }
+  .timeline-strip::before {
+    content: '';
+    position: absolute;
+    top: 20px; left: 10%;
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(to right, var(--blue), var(--green));
+    z-index: 0;
+  }
 
-  .tl-num {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 700;
+  .tl-step {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    padding: 0 8px;
+  }
+
+  .tl-dot {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-size: 14px;
+    font-weight: 800;
     color: var(--blue);
-    margin-bottom: 5px;
+    box-shadow: 0 0 0 4px var(--white);
+  }
+
+  .tl-dot.complete {
+    background: var(--blue);
+    color: var(--white);
   }
 
   .tl-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 8px;
-  }
-
-  .tl-items {
-    list-style: none;
-  }
-
-  .tl-items li {
     font-size: 12px;
-    color: var(--gray-600);
-    padding: 3px 0;
-    padding-left: 14px;
-    position: relative;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .tl-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
     line-height: 1.4;
   }
 
-  .tl-items li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--blue);
-    font-size: 11px;
-  }
-
+  /* ─── RESPONSIVE ─────────────────────────────────────────────── */
   @media (max-width: 700px) {
-    .hero-stats, .risk-cards, .solutions-grid, .stat-grid, .stakeholder-grid, .timeline, .at-a-glance, .outcome-cards { grid-template-columns: 1fr; }
-    .hero-inner { padding: 0 24px; }
-    .section { padding: 24px; }
-    .risk-card, .glance-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
-    .tl-phase { border-right: none; border-bottom: 1px solid var(--gray-200); }
+    .hero { padding: 36px 24px 32px; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .hero-stats .hero-stat:last-child { grid-column: 1 / -1; }
+    .glance-strip { grid-template-columns: 1fr; gap: 12px; }
+    .glance-item { border-right: none; padding: 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; }
+    .glance-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .outcome-grid { grid-template-columns: 1fr; }
+    .risk-cards { grid-template-columns: 1fr; }
+    .solutions-grid { grid-template-columns: 1fr; }
+    .solutions-grid .sol-card:first-child { grid-column: auto; }
+    .sol-metrics { grid-template-columns: 1fr 1fr; }
+    .roi-stats { grid-template-columns: 1fr 1fr; }
+    .stakeholder-cards { grid-template-columns: 1fr; }
+    .timeline-strip { grid-template-columns: 1fr 1fr; }
+    .timeline-strip::before { display: none; }
+    .cta-section { padding: 36px 24px; }
   }
 
-  .footer-note {
-    text-align: center;
-    color: var(--gray-400);
-    font-size: 12px;
-    margin-top: 32px;
-    line-height: 1.6;
+  @media print {
+    body { font-size: 12px; }
+    .hero { padding: 32px; }
+    .page { padding: 0 16px 40px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════
-     SECTION 1 — HERO
-═══════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 1 — HERO                                           -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <div class="hero">
-  <div class="hero-inner">
-    <div class="hero-meta">
-      <span>TreeRaise</span>
-      <span class="dot"></span>
-      <span>Decision Safety Brief</span>
-      <span class="dot"></span>
-      <span>Prepared by Dev8X</span>
-      <span class="dot"></span>
-      <span>May 2026</span>
-    </div>
+  <div class="page">
+    <div class="hero-meta sans">UPstander International · Decision Safety Brief · Prepared by Dev8X · May 2026</div>
 
-    <h1 class="hero-headline">Your 2026 goals require infrastructure your platform isn't ready for yet</h1>
-    <p class="hero-sub">TreeRaise has the mission, the brand, and the model. What's missing is the operational backbone to serve 500+ organizations without burning out a one-person team.</p>
+    <h1>Your audience is already earned.<br>The infrastructure hasn't caught up yet.</h1>
+
+    <p class="hero-sub">
+      Dr. Dibinga reaches thousands through speaking and media — but the website where those audiences arrive cannot sell a course, capture an email, or accept a speaking inquiry. This brief shows exactly what is broken, what it costs, and how it gets fixed.
+    </p>
 
     <div class="hero-stats">
       <div class="hero-stat">
-        <div class="value">500+</div>
-        <div class="label">Organizations targeted for 2026</div>
-        <div class="source">TreeRaise published goal</div>
+        <div class="stat-val accent">16</div>
+        <div class="stat-label">Students enrolled on a $199 course — despite months of active outreach</div>
+        <div class="stat-source">From UPstander's own platform data</div>
       </div>
       <div class="hero-stat">
-        <div class="value">50%</div>
-        <div class="label">Of every contribution returned to the cause</div>
-        <div class="source">TreeRaise's own materials</div>
+        <div class="stat-val amber">6,000+</div>
+        <div class="stat-label">Students reached in a single speaking year — arriving at a site that cannot convert</div>
+        <div class="stat-source">Stated by Dr. Dibinga in published materials</div>
       </div>
       <div class="hero-stat">
-        <div class="value">30-40</div>
-        <div class="label">Volunteer hours saved vs. product-sale fundraisers</div>
-        <div class="source">TreeRaise Verified Impact Facts.</div>
+        <div class="stat-val green">$19,900</div>
+        <div class="stat-label">Invested in 24 separate Upwork hires — without a converting site to show for it</div>
+        <div class="stat-source">From UPstander's own Upwork history</div>
       </div>
     </div>
 
-    <div class="at-a-glance">
+    <div class="glance-strip">
       <div class="glance-item">
-        <div class="glance-label">Current bottleneck</div>
-        <div class="glance-value">Manual onboarding + 1-person team for 500-org goal</div>
+        <div class="glance-label">Current Bottleneck</div>
+        <div class="glance-value">Checkout, course, and inquiry pages return errors — no functioning purchase path exists</div>
       </div>
       <div class="glance-item">
-        <div class="glance-label">Strongest unlock</div>
-        <div class="glance-value">Automated client onboarding — scales to 500 orgs without adding headcount</div>
+        <div class="glance-label">Strongest Unlock</div>
+        <div class="glance-value">5 broken conversion flows rebuilt — speaking reach becomes a functioning sales engine</div>
       </div>
       <div class="glance-item">
-        <div class="glance-label">Recommended next step</div>
-        <div class="glance-value">Watch the 6-minute demo walkthrough below</div>
+        <div class="glance-label">Recommended Next Step</div>
+        <div class="glance-value">Watch the 6-minute demo — see each fix working before any commitment</div>
       </div>
     </div>
   </div>
@@ -889,38 +959,43 @@
 
 <div class="page">
 
-<!-- ═══════════════════════════════════════
-     SECTION 2 — DESIRED OUTCOME
-═══════════════════════════════════════ -->
-<div class="section" style="margin-top: 28px;">
-  <div class="section-label">Section 2</div>
-  <h2 class="section-title">What TreeRaise Is Built to Do</h2>
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 2 — DESIRED OUTCOME                                -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label sans">Section 2</div>
+  <h2>What Dr. Dibinga is trying to achieve</h2>
+  <p class="section-sub sans">The goal and the gap — named directly.</p>
+  <hr class="divider">
 
-  <div class="outcome-cards">
+  <div class="outcome-grid">
     <div class="outcome-card">
       <div class="oc-label">Desired Outcome</div>
-      <div class="oc-title">Generate significant unrestricted revenue for mission-driven organizations</div>
-      <div class="oc-body">TreeRaise replaces product-sales fundraising with a zero-friction digital model — 50% of every contribution goes directly to schools, nonprofits, and faith communities, with no inventory, no hidden fees, and no logistics burden.</div>
+      <p>A professional, conversion-focused website that turns existing speaking and media visibility into a lead-generation and course-sales engine — replacing the fragmented dual-site setup with one platform Dr. Dibinga can manage without returning to Upwork.</p>
     </div>
     <div class="outcome-card">
-      <div class="oc-label">Current Reality</div>
-      <div class="oc-title">The operational model doesn't match the ambition yet</div>
-      <div class="oc-body">TreeRaise launched in February 2026 with a team of one and is hiring its first dedicated client-support role. Every organization that joins today requires manual setup, personal coaching, and hand-crafted marketing content — a model that hits its ceiling well before 500 clients.</div>
+      <div class="oc-label">Buying Reason</div>
+      <p>The current site is operationally broken. Course pages return 404 errors. No email capture exists. The speaker inquiry form captures nothing. Three books are launching in 2026 and an active corporate speaking calendar is driving traffic to a site that cannot convert any of it.</p>
     </div>
   </div>
 
   <div class="timing-callout">
-    <strong>Why this matters now:</strong> TreeRaise's 2026 goals — 500+ organizations, 125,000+ verified trees, and 2.5M+ lbs of CO₂ sequestered — are already on the calendar. The window to build scalable infrastructure before the organization pipeline outgrows the team is Q2–Q3 2026. Each month of delay narrows the margin.
+    <div class="tc-icon">⚡</div>
+    <div class="tc-text">
+      <div class="tc-head">Why the timing matters now</div>
+      <div class="tc-body">Three new books are confirmed for 2026 — each launch will drive a concentrated inbound spike from media appearances and social posts. Without a functioning site, each launch repeats the same pattern: high visibility, zero list growth, near-zero course sales. The paperback re-release of "Lies About Black People" is already live and actively promoted. The window to build infrastructure before the next launch is open now.</div>
+    </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     SECTION 3 — CURRENT PROBLEM REGISTER
-═══════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 3 — CURRENT PROBLEM REGISTER                       -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <div class="section">
-  <div class="section-label">Section 3</div>
-  <h2 class="section-title">What's Blocking the Path to 500 Organizations</h2>
-  <p style="font-size: 13.5px; color: var(--gray-500); margin-bottom: 20px;">Drawn directly from TreeRaise's public-facing platform, hiring activity, and published materials.</p>
+  <div class="section-label sans">Section 3</div>
+  <h2>What is broken right now</h2>
+  <p class="section-sub sans">Six documented operational failures — each mapped to a specific business impact.</p>
+  <hr class="divider">
 
   <table class="problem-table">
     <thead>
@@ -932,514 +1007,622 @@
     <tbody>
       <tr>
         <td>
-          <span class="severity-badge sev-critical">Critical</span><br>
-          <strong>Every new organization requires a TreeRaiser Coach to manually reach out within 1–2 business days</strong> — walking them through setup, social media strategy, and digital outreach.
+          <span class="sev-badge sev-critical sans">Critical</span><br>
+          <strong>Course checkout returns 404 errors.</strong> The R.E.A.Ch! and L.E.A.D. course detail and purchase pages are broken or empty — no visitor can complete a $199 purchase.
         </td>
-        <td>Revenue generation is blocked until a human completes setup. At 500 orgs/year, this becomes operationally impossible for a team of one.</td>
+        <td>Every speaking engagement, LinkedIn post, and media appearance that drives traffic to the site converts at near-zero. The purchase intent is there; the infrastructure is not. Result: 16 students enrolled despite months of active outreach to an audience of 6,000+.</td>
       </tr>
       <tr>
         <td>
-          <span class="severity-badge sev-critical">Critical</span><br>
-          <strong>Campaign infrastructure has visible gaps:</strong> donation archive returns a 404 error, campaign pages are empty shells, and dashboard views have no content.
+          <span class="sev-badge sev-critical sans">Critical</span><br>
+          <strong>No email capture exists anywhere on the site.</strong> All MailPoet pages return empty. No opt-in form appears on any page. No email sequence fires on signup.
         </td>
-        <td>Donor trust erodes when pages don't load. Broken checkout flows and missing pages reduce donation completion and repeat contributions.</td>
+        <td>Every traffic spike from LinkedIn posts, CNN appearances, and live events evaporates with no durable contact list captured. The speaking-to-pipeline conversion chain is permanently broken until this is fixed.</td>
       </tr>
       <tr>
         <td>
-          <span class="severity-badge sev-high">High</span><br>
-          <strong>All client marketing content is static PDF templates</strong> — social posts, email sequences, and reminder campaigns require manual customization by each organization.
+          <span class="sev-badge sev-high sans">High</span><br>
+          <strong>The site cannot be self-managed.</strong> The current WordPress/Masteriyo stack requires repeated freelancer intervention for every update — 24 hires, $19,900 spent, and the cycle is still ongoing.
         </td>
-        <td>Low campaign engagement leads to lower donation volume. The guides show strong strategy, but execution depends on volunteer time most clients don't have.</td>
+        <td>With three books and a full speaking calendar in 2026, content update volume will increase — making the freelancer dependency more expensive over time, not less. Each patch adds complexity to an already broken foundation.</td>
       </tr>
       <tr>
         <td>
-          <span class="severity-badge sev-high">High</span><br>
-          <strong>Organizations cannot launch campaigns independently.</strong> All setup is human-assisted — there is no self-serve campaign builder in the current platform.
+          <span class="sev-badge sev-high sans">High</span><br>
+          <strong>Course module content is invisible to buyers.</strong> All course detail pages render no module structure — a prospective buyer evaluating a $199 purchase cannot see what they are buying.
         </td>
-        <td>Speed to launch is capped by team availability. Each day of delay is a day of missed donations and missed tree-planting impact.</td>
+        <td>Buyer hesitation at the point of highest intent. The $199 price tag requires visible value justification the current pages cannot provide. Reputation brings visitors to the page; the page must close the sale.</td>
       </tr>
       <tr>
         <td>
-          <span class="severity-badge sev-high">High</span><br>
-          <strong>A team of one is managing onboarding, coaching, and growth</strong> for a 2026 goal that requires 500x the current visible active campaign volume.
+          <span class="sev-badge sev-high sans">High</span><br>
+          <strong>No corporate or institutional buyer pathway.</strong> The L.E.A.D. corporate course has broken detail pages and no B2B inquiry flow, landing page, or institutional procurement framing.
         </td>
-        <td>Without automated systems, adding organizations requires adding headcount linearly — a model that doesn't scale and cannot deliver consistent client quality.</td>
+        <td>Dr. Dibinga has active corporate relationships with AARP, Berkeley Carroll, and Special Needs Network — but the site cannot capture or convert a corporate buyer arriving independently. The fastest revenue growth channel has no functioning entry point.</td>
       </tr>
       <tr>
         <td>
-          <span class="severity-badge sev-medium">Medium</span><br>
-          <strong>FAQ content is collapsed and not rendered on the website,</strong> sending users to contact support for basic questions they should be able to answer themselves.
+          <span class="sev-badge sev-medium sans">Operational</span><br>
+          <strong>Speaker inquiry pathway does not exist.</strong> The contact page captured no form content. No booking calendar link, no speaker intake form, no structured qualification for institutional buyers.
         </td>
-        <td>Every avoidable support contact is a hidden cost on a small team. Multiplied across hundreds of organizations, this becomes a material drain.</td>
+        <td>Speaking inquiries arrive ad-hoc through LinkedIn DMs and personal email — unscalable as an intake process for $5,000–$25,000 keynote engagements. High-value buyers expect a professional intake pathway before approving an engagement.</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<!-- ═══════════════════════════════════════
-     SECTION 3B — RESEARCH TRANSPARENCY
-═══════════════════════════════════════ -->
-<div class="section" style="background: var(--gray-50);">
-  <div class="section-label">Research Transparency</div>
-  <h2 class="section-title" style="font-size: 18px;">What We Know and Where We'd Like Your Confirmation</h2>
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 3B — RESEARCH TRANSPARENCY                         -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-label sans">Section 3B</div>
+  <h2>Research transparency</h2>
+  <p class="section-sub sans">What we know, how we know it, and what we'd like to confirm with you.</p>
+  <hr class="divider">
 
-  <table class="transparency-table">
+  <table class="research-table sans">
     <thead>
       <tr>
-        <th style="width: 25%">Claim</th>
-        <th style="width: 30%">Evidence We Used</th>
-        <th style="width: 25%">What We'd Like to Confirm</th>
-        <th style="width: 20%">Open Question</th>
+        <th>Claim</th>
+        <th>Evidence We Used</th>
+        <th>What We'd Like to Confirm</th>
+        <th>Open Question</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><strong>Manual onboarding is the primary bottleneck</strong></td>
-        <td><span class="evidence-tag">Confirmed</span> Upwork job posting lists manual onboarding, social-media coaching, and performance tracking as core responsibilities. Thank-you page states a Coach reaches out personally within 1–2 business days.</td>
-        <td>Whether internal tools already automate any part of this, or if it is fully manual end-to-end.</td>
-        <td>If partial automation exists, Dev8X would integrate and extend it rather than rebuild.</td>
+        <td>The current site has a broken conversion path costing measurable course revenue</td>
+        <td>404 errors documented on R.E.A.Ch! and L.E.A.D. course purchase pages; 16 total students enrolled on instructor profile — from UPstander's own published materials</td>
+        <td>Live walkthrough of the 404 on the R.E.A.Ch! checkout URL alongside the 16-student enrollment count</td>
+        <td>"My site has issues but I'm still booking through LinkedIn" — the response: traffic converts <em>despite</em> the site, not because of it</td>
       </tr>
       <tr>
-        <td><strong>Platform has broken pages and empty campaign infrastructure</strong></td>
-        <td><span class="evidence-tag">Confirmed</span> Live site shows donation archive 404, four empty campaign pages, two empty dashboard views, and five empty donation form pages.</td>
-        <td>Whether these are intentional staging placeholders or unintended production gaps.</td>
-        <td>Either way, a fix roadmap helps — if staging, it accelerates launch; if live gaps, it removes donor trust friction immediately.</td>
+        <td>6,000+ audience reach vs. 16 enrollments is the core conversion gap</td>
+        <td>6,000+ figure stated by Dr. Dibinga in his own published blog post ("The Future of Youth: What 6,000 Students Just Taught Me") — directly from UPstander's own materials</td>
+        <td>Buyer sees both figures side by side — the ratio makes the bottleneck visceral without any estimation required</td>
+        <td>"That 6,000 number is from live audiences, not online buyers" — agreed; the point is that the course has been available since June 2025 and enrolled 16 people in that time</td>
       </tr>
       <tr>
-        <td><strong>TreeRaise has one employee managing all operations</strong></td>
-        <td><span class="evidence-tag">Confirmed</span> LinkedIn company profile explicitly lists one employee. Upwork posting is actively recruiting the first dedicated client-support role.</td>
-        <td>Whether additional team members operate under the Funds2Orgs / Elsey Enterprises umbrella with shared capacity.</td>
-        <td>Team size at the TreeRaise-specific level confirms or adjusts the scale gap — either way, the 500-org goal requires systematized infrastructure.</td>
+        <td>The site cannot be self-managed and requires ongoing freelancer spend</td>
+        <td>24 Upwork hires, $19,900 total spend, 1,504 hours billed — from UPstander's own Upwork history. A current $50 fixed-fee job is already active, with two hires made</td>
+        <td>CMS editing session: three realistic post-handoff tasks completed without developer involvement</td>
+        <td>"Every designer says the handoff will be easy" — the response: we test this in the handoff session; if you cannot complete the tasks unassisted, the handoff is not complete</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<!-- ═══════════════════════════════════════
-     SECTION 4 — FUTURE PROBLEM REGISTER
-═══════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 4 — FUTURE PROBLEM REGISTER                        -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <div class="section">
-  <div class="section-label">Section 4 — Looking 12–24 Months Ahead</div>
-  <h2 class="section-title">What Breaks If the Bottleneck Stays</h2>
+  <div class="section-label sans">Section 4</div>
+  <h2>What breaks in the next 12–24 months without a fix</h2>
+  <p class="section-sub sans">Three compounding risks — each preventable with the right build now.</p>
+  <hr class="divider">
 
   <div class="risk-cards">
-    <div class="risk-card r1">
-      <div class="risk-when">12–18 months out</div>
-      <div class="risk-title">Client experience degrades at scale — and word spreads fast in the school and nonprofit community</div>
-      <div class="risk-body">Manual onboarding does not scale exponentially. As the pipeline grows toward 100+ active clients, setup backlogs, delayed responses, and inconsistent coaching will frustrate the exact organizations TreeRaise needs as advocates.</div>
-      <div class="risk-prevent">→ Automated onboarding + self-serve tools let every org feel supported at 500 clients, not just the first 50.</div>
+    <div class="risk-card">
+      <div class="risk-num sans">Risk 01 · 2026 Book Launches</div>
+      <h4>Three book launches with no capture infrastructure — repeat of the 16-student pattern at larger scale</h4>
+      <p class="risk-break">Each launch drives a short, high-intent traffic spike from media appearances and social posts. Without a landing page, pre-order email capture, and post-purchase course cross-sell, the spike produces no durable list and no downstream revenue. The paperback re-release of "Lies About Black People" has already launched without this in place.</p>
+      <div class="risk-prevent">✓ Prevented by: Pre-launch landing pages with email capture and automated course cross-sell built before each launch window opens.</div>
     </div>
-    <div class="risk-card r2">
-      <div class="risk-when">6–18 months out</div>
-      <div class="risk-title">Founder gets pulled into day-to-day operational firefighting instead of growth, partnerships, and major gifts</div>
-      <div class="risk-body">A platform that requires constant human intervention draws leadership attention back into setup queues and support tickets — the exact trap a founder with Wayne Elsey's track record has learned to avoid.</div>
-      <div class="risk-prevent">→ Operational systems that run independently protect strategic focus and founder bandwidth.</div>
+    <div class="risk-card">
+      <div class="risk-num sans">Risk 02 · Corporate Buyer Scrutiny</div>
+      <h4>DEI budget tightening pushes institutional buyers toward vendors with credible digital presence</h4>
+      <p class="risk-break">Corporate procurement increasingly involves a digital due-diligence step where a buyer's team reviews the vendor's site before approving an engagement. A site with 404 errors and no case studies signals organisational instability — disqualifying Dr. Dibinga before a conversation begins, regardless of his credentials.</p>
+      <div class="risk-prevent">✓ Prevented by: A working corporate landing page with L.E.A.D. course structure, case studies, and a B2B inquiry form that matches institutional buyer expectations.</div>
     </div>
-    <div class="risk-card r3">
-      <div class="risk-when">12–24 months out</div>
-      <div class="risk-title">First-mover advantage in verified tree-planting fundraising erodes as competitors observe and replicate the model with better tooling</div>
-      <div class="risk-body">The $450B fundraising industry watches successful new models closely. TreeRaise's brand and veritree partnership are differentiated today — but a mature self-serve platform is the operational moat that protects that lead.</div>
-      <div class="risk-prevent">→ Shipping a hardened, self-serve platform before Q3 2026 closes the window for catch-up.</div>
+    <div class="risk-card">
+      <div class="risk-num sans">Risk 03 · Compounding Technical Debt</div>
+      <h4>Continued Upwork patching builds cost and fragility — the next major update requires a rebuild, not a fix</h4>
+      <p class="risk-break">The current WordPress/Masteriyo stack has already failed structurally — 17+ broken pages, duplicate error routes, MailPoet misconfiguration. Each incremental Upwork patch adds complexity to an unstable foundation. The $50 current job is not a solution; it is a deferral of the rebuild that becomes more expensive with every month of delay.</p>
+      <div class="risk-prevent">✓ Prevented by: A single architecture decision to move to a stable platform (Webflow or Kajabi) before the 2026 book launch cycle accelerates content update volume.</div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     SECTION 5 — WHAT GETS BUILT
-═══════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 5 — WHAT GETS BUILT                                -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <div class="section">
-  <div class="section-label">Section 5</div>
-  <h2 class="section-title">What Gets Built to Remove the Bottleneck</h2>
-  <p style="font-size: 13.5px; color: var(--gray-500); margin-bottom: 24px;">Each build addresses a specific problem from the register above. The existing TreeRaise platform, veritree integration, and brand assets are preserved — this is an augmentation, not a rebuild.</p>
+  <div class="section-label sans">Section 5</div>
+  <h2>What gets built to remove the bottleneck</h2>
+  <p class="section-sub sans">Five targeted builds — each mapped directly to a documented problem. No padding.</p>
+  <hr class="divider">
 
   <div class="solutions-grid">
 
-    <!-- CARD 1 -->
-    <div class="solution-card">
-      <div class="proof-tag">Visible in Demo</div>
-      <div class="sol-name">Client Success Automation Hub</div>
-      <div class="sol-problem"><strong>Solves:</strong> Problem #1 — Manual TreeRaiser Coach onboarding required for every new organization.</div>
-      <div class="sol-build">Automated onboarding wizard with branching logic, triggered email sequences, and milestone tracking — so 500 organizations move from signup to first campaign without manual intervention.</div>
-      <div class="sol-metrics">
-        <div class="sol-metric">
-          <div class="m-val">500</div>
-          <div class="m-label">Orgs supportable without headcount increase</div>
-          <div class="m-source">TreeRaise's own goal</div>
+    <!-- Card 1 — Full width -->
+    <div class="sol-card">
+      <div class="sol-card-header">
+        <h3>1. Course Checkout &amp; Purchase Flow Rebuild</h3>
+        <span class="proof-tag proof-demo sans">Visible in Demo</span>
+      </div>
+      <div class="sol-meta sans">
+        <div class="sol-meta-item">
+          <div class="sm-label">Problem Solved</div>
+          <div class="sm-val">R.E.A.Ch! and L.E.A.D. course detail and purchase pages return 404 errors — no visitor can complete a $199 purchase (Problem #1 &amp; #4)</div>
         </div>
-        <div class="sol-metric">
-          <div class="m-val">~90%</div>
-          <div class="m-label">Reduction in manual onboarding steps</div>
-          <div class="m-source">Estimated</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">1–2 days</div>
-          <div class="m-label">Coach follow-up → instant self-serve launch</div>
-          <div class="m-source">From published process</div>
+        <div class="sol-meta-item">
+          <div class="sm-label">What Gets Built</div>
+          <div class="sm-val">Fully functioning course detail pages with module accordion, learning outcomes, instructor credibility section, and a one-click purchase flow that completes without error on a stable platform</div>
         </div>
       </div>
-      <div class="before-after">
+      <div class="sol-metrics">
+        <div class="sol-metric">
+          <div class="sm-icon">🔓</div>
+          <div class="sm-num">5</div>
+          <div class="sm-desc">Broken purchase paths replaced with working flows</div>
+          <div class="sm-src">From UPstander's own materials</div>
+        </div>
+        <div class="sol-metric">
+          <div class="sm-icon">🎓</div>
+          <div class="sm-num">$199</div>
+          <div class="sm-desc">Per-course price — now collectible for the first time</div>
+          <div class="sm-src">From UPstander's own materials</div>
+        </div>
+        <div class="sol-metric">
+          <div class="sm-icon">📉</div>
+          <div class="sm-num">100%</div>
+          <div class="sm-desc">Reduction in checkout failures — from all-broken to fully functional</div>
+          <div class="sm-src">Calculated estimate</div>
+        </div>
+      </div>
+      <div class="before-after sans">
+        <div class="ba-label">Before → After</div>
         <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">Manual coach outreach within 1–2 business days per org</span> <span class="ba-after">Instant automated onboarding flow on signup</span></span>
+          <span class="ba-before">✕</span>
+          <span class="ba-text-before">Visitor clicks "Enroll" → 404 error page, no purchase possible</span>
+          <span class="ba-arrow">→</span>
+          <span class="ba-after">✓</span>
+          <span class="ba-text-after">Visitor clicks "Enroll" → module preview → one-click checkout → access granted</span>
         </div>
         <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">Coach capacity caps client growth</span> <span class="ba-after">Platform handles onboarding; coach focuses on high-value relationships</span></span>
+          <span class="ba-before">✕</span>
+          <span class="ba-text-before">Course structure invisible — buyer cannot evaluate a $199 purchase</span>
+          <span class="ba-arrow">→</span>
+          <span class="ba-after">✓</span>
+          <span class="ba-text-after">Full module accordion, learning outcomes, and instructor bio visible on course page</span>
+        </div>
+        <div class="ba-row">
+          <span class="ba-before">✕</span>
+          <span class="ba-text-before">16 enrolled students after months of active outreach</span>
+          <span class="ba-arrow">→</span>
+          <span class="ba-after">✓</span>
+          <span class="ba-text-after">Every new speaking audience has a working purchase path waiting for them</span>
         </div>
       </div>
     </div>
 
-    <!-- CARD 2 -->
-    <div class="solution-card">
-      <div class="proof-tag">Visible in Demo</div>
-      <div class="sol-name">Platform Infrastructure Hardening</div>
-      <div class="sol-problem"><strong>Solves:</strong> Problem #2 — 404 donation archive, empty campaign pages, and broken checkout edge cases.</div>
-      <div class="sol-build">Systematic audit and repair of all broken pages, checkout flow edge cases, and empty dashboard states — with a 30-day MVP fix roadmap targeting highest-visibility gaps first.</div>
-      <div class="sol-metrics">
-        <div class="sol-metric">
-          <div class="m-val">7+</div>
-          <div class="m-label">Broken or empty pages identified on live site</div>
-          <div class="m-source">Direct site observation</div>
+    <!-- Card 2 -->
+    <div class="sol-card">
+      <div class="sol-card-header">
+        <h3>2. Lead Capture &amp; Email Funnel</h3>
+        <span class="proof-tag proof-demo sans">Visible in Demo</span>
+      </div>
+      <div class="sol-meta sans">
+        <div class="sol-meta-item">
+          <div class="sm-label">Problem Solved</div>
+          <div class="sm-val">No opt-in form exists anywhere on site — every traffic spike from media and speaking produces zero durable contacts (Problem #2)</div>
         </div>
-        <div class="sol-metric">
-          <div class="m-val">30 days</div>
-          <div class="m-label">MVP fix timeline to highest-visibility gaps</div>
-          <div class="m-source">Estimated</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">↑ Trust</div>
-          <div class="m-label">Donor confidence from functional checkout flows</div>
-          <div class="m-source">Operational outcome</div>
+        <div class="sol-meta-item">
+          <div class="sm-label">What Gets Built</div>
+          <div class="sm-val">Working opt-in form with lead magnet (e.g. first chapter of "Lies About Black People" or DEI quick-start guide), connected to a triggered welcome and nurture email sequence</div>
         </div>
       </div>
-      <div class="before-after">
+      <div class="sol-metrics">
+        <div class="sol-metric">
+          <div class="sm-icon">📧</div>
+          <div class="sm-num">0→1</div>
+          <div class="sm-desc">Functioning email capture — from none to automated</div>
+          <div class="sm-src">From UPstander's own materials</div>
+        </div>
+        <div class="sol-metric">
+          <div class="sm-icon">⚡</div>
+          <div class="sm-num">&lt;60s</div>
+          <div class="sm-desc">Time from signup to first triggered email in subscriber inbox</div>
+          <div class="sm-src">Calculated estimate</div>
+        </div>
+        <div class="sol-metric">
+          <div class="sm-icon">🔄</div>
+          <div class="sm-num">24/7</div>
+          <div class="sm-desc">Lead capture running while Dr. Dibinga is on stage</div>
+          <div class="sm-src">Calculated estimate</div>
+        </div>
+      </div>
+      <div class="before-after sans">
+        <div class="ba-label">Before → After</div>
         <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">404 donation archive alienates returning donors</span> <span class="ba-after">Searchable, verified impact archive builds trust</span></span>
+          <span class="ba-before">✕</span>
+          <span class="ba-text-before">Traffic spike from CNN appearance → zero contacts captured</span>
+          <span class="ba-arrow">→</span>
+          <span class="ba-after">✓</span>
+          <span class="ba-text-after">Traffic spike → opt-in → email sequence → course upsell</span>
         </div>
         <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">Empty campaign shells undercut first impressions</span> <span class="ba-after">Every page reflects TreeRaise's brand quality</span></span>
+          <span class="ba-before">✕</span>
+          <span class="ba-text-before">MailPoet installed but all pages return empty</span>
+          <span class="ba-arrow">→</span>
+          <span class="ba-after">✓</span>
+          <span class="ba-text-after">Working opt-in connected to tested, automated sequence</span>
         </div>
       </div>
     </div>
 
-    <!-- CARD 3 -->
-    <div class="solution-card">
-      <div class="proof-tag described">Described Only</div>
-      <div class="sol-name">Auto-Generated Campaign Content Engine</div>
-      <div class="sol-problem"><strong>Solves:</strong> Problem #3 — Static PDF templates require manual customization by each organization's volunteers.</div>
-      <div class="sol-build">Platform-native content generator that produces ready-to-post social media content, email sequences, and milestone updates — pre-populated with each organization's campaign name, goal, and impact data.</div>
-      <div class="sol-metrics">
-        <div class="sol-metric">
-          <div class="m-val">30–40 hrs</div>
-          <div class="m-label">Volunteer hours eliminated per fundraiser vs. traditional model</div>
-          <div class="m-source">TreeRaise's own materials</div>
+    <!-- Card 3 -->
+    <div class="sol-card">
+      <div class="sol-card-header">
+        <h3>3. Self-Manageable CMS Platform</h3>
+        <span class="proof-tag proof-demo sans">Visible in Demo</span>
+      </div>
+      <div class="sol-meta sans">
+        <div class="sol-meta-item">
+          <div class="sm-label">Problem Solved</div>
+          <div class="sm-val">WordPress/Masteriyo stack requires repeated Upwork hires for every update — 24 hires and $19,900 spent without a self-managing site (Problem #3)</div>
         </div>
-        <div class="sol-metric">
-          <div class="m-val">20–30%</div>
-          <div class="m-label">Additional contributions driven by well-timed reminder sequences</div>
-          <div class="m-source">TreeRaise School Guide</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">Near-full</div>
-          <div class="m-label">Automation of content creation steps</div>
-          <div class="m-source">Estimated</div>
+        <div class="sol-meta-item">
+          <div class="sm-label">What Gets Built</div>
+          <div class="sm-val">Delivery on Webflow or Kajabi with genuine visual editing — plus a 30-minute handoff walkthrough covering adding a speaking date, updating a book listing, and editing course copy</div>
         </div>
       </div>
-      <div class="before-after">
+      <div class="sol-metrics">
+        <div class="sol-metric">
+          <div class="sm-icon">💰</div>
+          <div class="sm-num">$19.9k</div>
+          <div class="sm-desc">Upwork rebuild cycle stopped — no new hires needed for routine updates</div>
+          <div class="sm-src">From UPstander's own materials</div>
+        </div>
+        <div class="sol-metric">
+          <div class="sm-icon">🛠</div>
+          <div class="sm-num">24→0</div>
+          <div class="sm-desc">Upwork hires required for site updates (from published history)</div>
+          <div class="sm-src">From UPstander's own materials</div>
+        </div>
+        <div class="sol-metric">
+          <div class="sm-icon">✅</div>
+          <div class="sm-num">3</div>
+          <div class="sm-desc">Post-handoff tasks completed unassisted in the demo session</div>
+          <div class="sm-src">Calculated estimate</div>
+        </div>
+      </div>
+      <div class="before-after sans">
+        <div class="ba-label">Before → After</div>
         <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">PDF guides clients must manually adapt for their org</span> <span class="ba-after">One-click, personalized content ready to publish</span></span>
+          <span class="ba-before">✕</span>
+          <span class="ba-text-before">New speaking date → post Upwork job → wait → $50–$830 spend → done</span>
+          <span class="ba-arrow">→</span>
+          <span class="ba-after">✓</span>
+          <span class="ba-text-after">New speaking date → open CMS → type → publish in 3 minutes</span>
         </div>
         <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">Reminder campaigns missed due to volunteer bandwidth</span> <span class="ba-after">Automated reminder sequences sent at optimal intervals</span></span>
+          <span class="ba-before">✕</span>
+          <span class="ba-text-before">Platform is a recurring cost centre, not an owned asset</span>
+          <span class="ba-arrow">→</span>
+          <span class="ba-after">✓</span>
+          <span class="ba-text-after">Platform is owned, stable, and scales with 2026 content volume</span>
         </div>
       </div>
     </div>
 
-    <!-- CARD 4 -->
-    <div class="solution-card">
-      <div class="proof-tag described">Described Only</div>
-      <div class="sol-name">Self-Serve Campaign Builder</div>
-      <div class="sol-problem"><strong>Solves:</strong> Problem #4 — Organizations cannot create or launch campaigns without internal team assistance.</div>
-      <div class="sol-build">Drag-and-drop campaign builder where organizations choose their impact goal, set a donation target, upload branding, and publish — live in under 10 minutes, no team involvement required.</div>
-      <div class="sol-metrics">
-        <div class="sol-metric">
-          <div class="m-val">&lt; 10 min</div>
-          <div class="m-label">From signup to live campaign (estimated)</div>
-          <div class="m-source">Estimated</div>
+    <!-- Card 4 -->
+    <div class="sol-card">
+      <div class="sol-card-header">
+        <h3>4. Corporate &amp; Institutional Buyer Pathway</h3>
+        <span class="proof-tag proof-partial sans">Partial Demo</span>
+      </div>
+      <div class="sol-meta sans">
+        <div class="sol-meta-item">
+          <div class="sm-label">Problem Solved</div>
+          <div class="sm-val">L.E.A.D. corporate course has no B2B landing page, no institutional inquiry flow, and broken detail pages — the fastest revenue channel has no functioning entry point (Problem #5)</div>
         </div>
-        <div class="sol-metric">
-          <div class="m-val">125K+</div>
-          <div class="m-label">Trees targeted for planting — only reachable if 500 orgs can launch independently</div>
-          <div class="m-source">TreeRaise's published goal</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">Significant</div>
-          <div class="m-label">Reduction in team-hours per new campaign</div>
-          <div class="m-source">Estimated</div>
+        <div class="sol-meta-item">
+          <div class="sm-label">What Gets Built</div>
+          <div class="sm-val">Dedicated corporate landing page with L.E.A.D. course framing for institutional buyers, a B2B inquiry form with qualification fields, and an automated acknowledgement</div>
         </div>
       </div>
-      <div class="before-after">
+      <div class="sol-metrics">
+        <div class="sol-metric">
+          <div class="sm-icon">🏢</div>
+          <div class="sm-num">1</div>
+          <div class="sm-desc">Dedicated corporate entry point — from zero to built</div>
+          <div class="sm-src">From UPstander's own materials</div>
+        </div>
+        <div class="sol-metric">
+          <div class="sm-icon">📋</div>
+          <div class="sm-num">Near-full</div>
+          <div class="sm-desc">Manual intake process replaced with structured qualification form</div>
+          <div class="sm-src">Calculated estimate</div>
+        </div>
+        <div class="sol-metric">
+          <div class="sm-icon">🔗</div>
+          <div class="sm-num">AARP+</div>
+          <div class="sm-desc">Active corporate clients already — site now matches the calibre of the relationships</div>
+          <div class="sm-src">From UPstander's own materials</div>
+        </div>
+      </div>
+      <div class="before-after sans">
+        <div class="ba-label">Before → After</div>
         <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">Internal team manually activates each campaign page</span> <span class="ba-after">Organization publishes independently in minutes</span></span>
+          <span class="ba-before">✕</span>
+          <span class="ba-text-before">Corporate buyer arrives at L.E.A.D. page → 404 or empty → leaves</span>
+          <span class="ba-arrow">→</span>
+          <span class="ba-after">✓</span>
+          <span class="ba-text-after">Corporate buyer arrives → structured page → inquiry form → qualification call</span>
         </div>
         <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">Launch queue grows faster than team can clear it</span> <span class="ba-after">Unlimited parallel launches — no queue</span></span>
+          <span class="ba-before">✕</span>
+          <span class="ba-text-before">Institutional procurement team cannot vet vendor from broken site</span>
+          <span class="ba-arrow">→</span>
+          <span class="ba-after">✓</span>
+          <span class="ba-text-after">Site credibility matches Dr. Dibinga's credentials and client roster</span>
         </div>
       </div>
     </div>
 
-    <!-- CARD 5 -->
-    <div class="solution-card">
-      <div class="proof-tag described">Described Only</div>
-      <div class="sol-name">Knowledge Base & Self-Service Support</div>
-      <div class="sol-problem"><strong>Solves:</strong> Problem #6 — FAQ answers not rendered on site, forcing users to contact support for basic questions.</div>
-      <div class="sol-build">Searchable knowledge base with rendered FAQ content, guided setup flows, and contextual help triggers — so most support questions are resolved without human contact.</div>
+    <!-- Card 5 -->
+    <div class="sol-card">
+      <div class="sol-card-header">
+        <h3>5. Speaker Inquiry &amp; Booking Flow</h3>
+        <span class="proof-tag proof-demo sans">Visible in Demo</span>
+      </div>
+      <div class="sol-meta sans">
+        <div class="sol-meta-item">
+          <div class="sm-label">Problem Solved</div>
+          <div class="sm-val">Contact page captured no form content — no intake form, no booking path, no automated response exists for institutional speaking inquiries (Problem #7)</div>
+        </div>
+        <div class="sol-meta-item">
+          <div class="sm-label">What Gets Built</div>
+          <div class="sm-val">Structured speaker inquiry form with fields for event type, audience size, date, and budget range — plus an automated acknowledgement and qualification email triggered on submission</div>
+        </div>
+      </div>
       <div class="sol-metrics">
         <div class="sol-metric">
-          <div class="m-val">↓ Load</div>
-          <div class="m-label">Support contacts avoided per week as client base grows</div>
-          <div class="m-source">Operational estimate</div>
+          <div class="sm-icon">📨</div>
+          <div class="sm-num">0→1</div>
+          <div class="sm-desc">Professional intake pathway — from no form to qualified submission</div>
+          <div class="sm-src">From UPstander's own materials</div>
         </div>
         <div class="sol-metric">
-          <div class="m-val">Always-on</div>
-          <div class="m-label">Self-service answers available outside business hours</div>
-          <div class="m-source">Platform capability</div>
+          <div class="sm-icon">🤝</div>
+          <div class="sm-num">Instant</div>
+          <div class="sm-desc">Automated acknowledgement sent on submission — no manual follow-up required</div>
+          <div class="sm-src">Calculated estimate</div>
         </div>
         <div class="sol-metric">
-          <div class="m-val">Scales</div>
-          <div class="m-label">Support capacity without adding headcount</div>
-          <div class="m-source">Operational outcome</div>
+          <div class="sm-icon">📈</div>
+          <div class="sm-num">Scalable</div>
+          <div class="sm-desc">Inquiry volume can grow with media visibility — LinkedIn DM intake cannot</div>
+          <div class="sm-src">Calculated estimate</div>
         </div>
       </div>
-      <div class="before-after">
+      <div class="before-after sans">
+        <div class="ba-label">Before → After</div>
         <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">Collapsed FAQ forces users to email support</span> <span class="ba-after">Searchable answers resolve questions instantly</span></span>
+          <span class="ba-before">✕</span>
+          <span class="ba-text-before">Institutional buyer finds site → no form → LinkedIn DM or gives up</span>
+          <span class="ba-arrow">→</span>
+          <span class="ba-after">✓</span>
+          <span class="ba-text-after">Institutional buyer finds site → structured form → automated response → qualified call</span>
         </div>
         <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">Support ticket volume grows linearly with client count</span> <span class="ba-after">Self-serve resolution keeps team focused on growth</span></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- CARD 6 — Phased Roadmap as card -->
-    <div class="solution-card" style="border-left: 4px solid var(--green);">
-      <div class="sol-name" style="color: var(--green);">Deployment Approach</div>
-      <div class="sol-build" style="margin-bottom: 16px;">Parallel build — no disruption to live campaigns or active donation flows at any phase.</div>
-
-      <div class="timeline" style="margin-top: 0; border: none; border-radius: 0; gap: 0; display: flex; flex-direction: column;">
-        <div class="tl-phase" style="border-right: none; border-bottom: 1px solid var(--gray-200); background: var(--gray-50); border-radius: var(--radius-sm);">
-          <div class="tl-num">Days 1–30 · MVP</div>
-          <div class="tl-title">Fix the Foundation</div>
-          <ul class="tl-items">
-            <li>Repair 404 donation archive and broken checkout</li>
-            <li>Activate empty campaign and dashboard pages</li>
-            <li>Deploy rendered FAQ and knowledge base</li>
-          </ul>
-        </div>
-        <div class="tl-phase" style="border-right: none; border-bottom: 1px solid var(--gray-200); border-radius: var(--radius-sm); margin-top: 8px; background: var(--gray-50);">
-          <div class="tl-num">Days 31–60 · Core Build</div>
-          <div class="tl-title">Automate Client Operations</div>
-          <ul class="tl-items">
-            <li>Launch automated onboarding wizard</li>
-            <li>Deploy self-serve campaign builder</li>
-            <li>Activate triggered email sequence engine</li>
-          </ul>
-        </div>
-        <div class="tl-phase" style="border-right: none; background: var(--gray-50); border-radius: var(--radius-sm); margin-top: 8px;">
-          <div class="tl-num">Days 61–90 · Scale Layer</div>
-          <div class="tl-title">Enable 500-Org Growth</div>
-          <ul class="tl-items">
-            <li>Content generation engine goes live</li>
-            <li>Performance dashboards and milestone alerts</li>
-            <li>Full operational handoff — team focuses on growth</li>
-          </ul>
+          <span class="ba-before">✕</span>
+          <span class="ba-text-before">Ad-hoc DM intake cannot signal $25,000-keynote-level credibility</span>
+          <span class="ba-arrow">→</span>
+          <span class="ba-after">✓</span>
+          <span class="ba-text-after">Professional intake process matches the stature of the speaking engagement</span>
         </div>
       </div>
     </div>
 
   </div>
+
+  <!-- Implementation Timeline -->
+  <div style="margin-top: 36px; padding: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);">
+    <div class="section-label sans" style="margin-bottom: 12px;">Build Sequence</div>
+    <p class="sans" style="font-size: 13px; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.5;">How the recommended build unfolds — structured so revenue-generating fixes land first.</p>
+    <div class="timeline-strip">
+      <div class="tl-step">
+        <div class="tl-dot complete sans">1</div>
+        <div class="tl-title sans">Platform Migration</div>
+        <div class="tl-desc sans">Move from WordPress/Masteriyo to stable CMS. Architecture decisions, domain consolidation.</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot sans">2</div>
+        <div class="tl-title sans">Checkout &amp; Course Pages</div>
+        <div class="tl-desc sans">Working purchase flow live. Course modules visible. $199 per enrollment now collectible.</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot sans">3</div>
+        <div class="tl-title sans">Lead Capture &amp; Inquiry Form</div>
+        <div class="tl-desc sans">Email opt-in with lead magnet. Speaker inquiry form with automated qualification.</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot sans">4</div>
+        <div class="tl-title sans">Corporate Pathway + Handoff</div>
+        <div class="tl-desc sans">B2B landing page live. CMS handoff session. Self-management verified unassisted.</div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     SECTION 6 — PROJECTED OPERATIONAL IMPACT
-═══════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 6 — PROJECTED OPERATIONAL IMPACT                   -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <div class="section">
-  <div class="section-label">Section 6</div>
-  <h2 class="section-title">Projected Operational Impact</h2>
+  <div class="section-label sans">Section 6</div>
+  <h2>Projected operational impact</h2>
+  <p class="section-sub sans">The most defensible summary metrics — classified by source basis before inclusion.</p>
+  <hr class="divider">
 
-  <div class="stat-grid">
-    <div class="stat-card">
-      <div class="sc-val">500+</div>
-      <div class="sc-label">Organizations supportable without adding headcount</div>
-      <div class="sc-source">TreeRaise's own 2026 goal</div>
+  <div class="roi-stats">
+    <div class="roi-stat">
+      <div class="rs-num blue">5</div>
+      <div class="rs-label">Broken conversion flows replaced with working paths</div>
+      <div class="rs-src sans">From UPstander's own materials</div>
     </div>
-    <div class="stat-card">
-      <div class="sc-val">30–40</div>
-      <div class="sc-label">Volunteer hours eliminated per fundraiser vs. traditional model</div>
-      <div class="sc-source">TreeRaise's own materials</div>
+    <div class="roi-stat">
+      <div class="rs-num green">$19.9k</div>
+      <div class="rs-label">Recurring Upwork rebuild cycle stopped — no new hires needed</div>
+      <div class="rs-src sans">From UPstander's own materials</div>
     </div>
-    <div class="stat-card">
-      <div class="sc-val">20–30%</div>
-      <div class="sc-label">Additional contributions from automated reminder sequences</div>
-      <div class="sc-source">TreeRaise School Guide</div>
+    <div class="roi-stat">
+      <div class="rs-num amber">$199</div>
+      <div class="rs-label">Per-enrollment revenue — now collectible for every course visitor</div>
+      <div class="rs-src sans">From UPstander's own materials</div>
     </div>
-    <div class="stat-card">
-      <div class="sc-val">30 days</div>
-      <div class="sc-label">To first visible impact: 404s fixed, pages live, no campaign disruption</div>
-      <div class="sc-source">Estimated delivery scope</div>
+    <div class="roi-stat">
+      <div class="rs-num navy">6,000+</div>
+      <div class="rs-label">Annual speaking audience that now has a functioning purchase path</div>
+      <div class="rs-src sans">From UPstander's own materials</div>
     </div>
   </div>
 
-  <div class="chart-wrap">
-    <div class="chart-title">Operational Readiness by Area — Current State vs. With Recommended Build</div>
-    <canvas id="impactChart" height="240"></canvas>
+  <div class="chart-container">
+    <h4 class="sans">Manual operations removed per solution — proportion of workflow automated</h4>
+    <canvas id="roiChart" height="220"></canvas>
   </div>
 
-  <div class="number-treatment">
-    <div class="nt-title">How We Treated Every Number in This Brief</div>
-    <div class="nt-rows">
-      <div class="nt-row">
-        <div class="nt-dot nt-green"></div>
-        <div class="nt-desc"><strong>Directly from TreeRaise's own materials</strong> — 500-org goal, 125K+ trees, 50% contribution return, 30–40 volunteer hours eliminated, 20–30% reminder contribution uplift. These figures lead all headlines.</div>
-        <div class="nt-badge badge-green">Direct source</div>
-      </div>
-      <div class="nt-row">
-        <div class="nt-dot nt-blue"></div>
-        <div class="nt-desc"><strong>Calculated estimates from observable signals</strong> — onboarding automation rate (~90% step reduction), 30-day MVP timeline, &lt;10 minute self-serve launch time. Shown with "Estimated" label throughout.</div>
-        <div class="nt-badge badge-blue">Estimated</div>
-      </div>
-      <div class="nt-row">
-        <div class="nt-dot nt-amber"></div>
-        <div class="nt-desc"><strong>Industry reference points</strong> — traditional fundraiser retention rates (30–50%), CO₂ sequestration per tree (48 lbs). Used only for context, not in headline figures.</div>
-        <div class="nt-badge badge-amber">Industry context</div>
-      </div>
+  <div class="numbers-panel">
+    <h4 class="sans">How we treated every number in this report</h4>
+    <div class="numbers-row">
+      <div class="nr-dot blue"></div>
+      <div class="nr-text sans"><strong>From UPstander's own published materials:</strong> 16 enrolled students, $199 course price, 6,000+ speaking audience reach, $19,900 Upwork total spend, $50 current job budget — all sourced directly from UPstander International's public data. These figures appear without qualification in the report.</div>
+    </div>
+    <div class="numbers-row">
+      <div class="nr-dot amber"></div>
+      <div class="nr-text sans"><strong>Calculated estimates [Estimated]:</strong> Any projected revenue impact from improved enrollment (e.g., "assuming conservative 1% conversion of 6,000 audience = 60 students × $199 = ~$11,940") is a calculated estimate, clearly labelled where shown. It is not used as a headline metric in this brief.</div>
+    </div>
+    <div class="numbers-row">
+      <div class="nr-dot green"></div>
+      <div class="nr-text sans"><strong>Industry reference points:</strong> Benchmarks for solo educator course conversion rates are used only as directional context in body copy — not as headline figures. They are flagged explicitly when referenced and described as "based on comparable platforms; not specific to UPstander International."</div>
+    </div>
+    <div class="numbers-row">
+      <div class="nr-dot" style="background: var(--text-muted);"></div>
+      <div class="nr-text sans"><strong>Excluded from this report:</strong> Organic SEO traffic uplift projections are not included. Insufficient baseline data exists to produce a defensible estimate, and directional claims without evidence would not serve Dr. Dibinga's decision-making.</div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     SECTION 7 — STAKEHOLDER CONTEXT
-═══════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 7 — STAKEHOLDER DECISION CONTEXT                   -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <div class="section">
-  <div class="section-label">Section 7</div>
-  <h2 class="section-title">Who This Decision Involves</h2>
+  <div class="section-label sans">Section 7</div>
+  <h2>Who this decision involves</h2>
+  <p class="section-sub sans">Two parties whose positions matter to how this engagement begins.</p>
+  <hr class="divider">
 
-  <div class="stakeholder-grid">
+  <div class="stakeholder-cards">
     <div class="sh-card">
-      <div class="sh-name">Wayne Elsey</div>
-      <div class="sh-role">Founder</div>
+      <div class="sh-role">Primary Decision-Maker</div>
+      <h4>Dr. Omékongo Dibinga — Founding Executive Director</h4>
       <div class="sh-row">
-        <div class="sh-row-label">Cares most about</div>
-        <div class="sh-row-val">Rapid, mission-aligned scaling. Operational systems that run without his daily input. Protecting his $70M+ execution reputation.</div>
+        <span class="sh-key">What matters most</span>
+        <span class="sh-val">A professional, converting site he can manage himself. Visible ROI that justifies the spend. No more returning to Upwork for every update.</span>
       </div>
       <div class="sh-row">
-        <div class="sh-row-label">Primary concern</div>
-        <div class="sh-row-val">Getting pulled back into day-to-day operations. Building the wrong thing slowly. Losing the window that a first-mover launch creates.</div>
+        <span class="sh-key">What he will watch for</span>
+        <span class="sh-val">Paying for another build that breaks on handoff. A pitch that frames his existing Upwork investment as a mistake rather than the right instinct with insufficient scope.</span>
+      </div>
+      <div class="sh-row">
+        <span class="sh-key">How to frame this</span>
+        <span class="sh-val">"Your audience is already earned — the infrastructure just hasn't caught up yet." Peer-level credibility signals land best (CSP designation, John Maxwell Top 30, Les Brown recognition).</span>
       </div>
     </div>
     <div class="sh-card">
-      <div class="sh-name">Courtney Eaton</div>
-      <div class="sh-role">President</div>
+      <div class="sh-role">Active Competitive Context</div>
+      <h4>Two Upwork Hires Currently Active on This Project</h4>
       <div class="sh-row">
-        <div class="sh-row-label">Cares most about</div>
-        <div class="sh-row-val">Organizational stability. Hitting 2026 goals without team burnout. Protecting the Funds2Orgs and Elsey Enterprises brand reputation.</div>
+        <span class="sh-key">Their position</span>
+        <span class="sh-val">Mid-execution on a $50 fixed-fee job. Both hires are in progress — they have active working relationships with Dr. Dibinga.</span>
       </div>
       <div class="sh-row">
-        <div class="sh-row-label">Primary concern</div>
-        <div class="sh-row-val">Reputational risk from poor early client experiences. The team being overextended before systems are in place.</div>
-      </div>
-    </div>
-    <div class="sh-card">
-      <div class="sh-name">Judith Camacho</div>
-      <div class="sh-role">CFO / COO</div>
-      <div class="sh-row">
-        <div class="sh-row-label">Cares most about</div>
-        <div class="sh-row-val">Cost control. Clear ROI on any external build. Unrestricted revenue growth for partner organizations.</div>
+        <span class="sh-key">What this means</span>
+        <span class="sh-val">The buying intent is confirmed and active. The question is whether the current scope produces a converting site or a rebuilt broken one.</span>
       </div>
       <div class="sh-row">
-        <div class="sh-row-label">Primary concern</div>
-        <div class="sh-row-val">Paying for a rebuild when incremental fixes might suffice. Budget overruns on an open-ended scope.</div>
+        <span class="sh-key">Positioning approach</span>
+        <span class="sh-val">Dev8X is a conversion specialist, not a replacement. The free site audit PDF positions Dev8X as the provider who did the homework before any conversation begins — not one competing to displace the current hires.</span>
       </div>
     </div>
-  </div>
-
-  <div style="margin-top: 16px; padding: 14px 18px; background: var(--blue-faint); border-radius: var(--radius-sm); border-left: 3px solid var(--blue); font-size: 13px; color: var(--gray-700);">
-    <strong>Note to Judith Camacho:</strong> The phased build approach (30-day MVP, 60-day core, 90-day scale) is scoped to deliver visible ROI at each milestone — not an open-ended engagement. Each phase can be evaluated independently before the next is approved.
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     SECTION 8 — CTA
-═══════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 8 — RECOMMENDED NEXT ACTION                        -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <div class="cta-section">
-  <div class="cta-title">See exactly how this gets built — in 6 minutes</div>
-  <p class="cta-sub">We've prepared a walkthrough demo showing the Client Success Automation Hub, the self-serve campaign builder, and the 30-day fix roadmap for TreeRaise's current platform gaps. No slides — just the working system.</p>
-  <div class="cta-buttons">
-    <a href="file:///d%3A/Arham/Dev8X/TroopHunter/microfrontend/treeraise/portals/p4d_partner-portal.html" class="btn-primary">Watch the Demo →</a>
-    
+  <div style="position: relative; z-index: 1;">
+    <div class="section-label sans" style="color: #60a5fa; margin-bottom: 14px;">Next Step</div>
+    <h2>See exactly how this gets built — in 6 minutes</h2>
+    <p>
+      The demo walks through each of the five fixes working in a live environment — the checkout flow, the email capture, the CMS editing session, the corporate landing page, and the speaker inquiry form. No pitch, no pressure. Just the solution, working.
+    </p>
+    <a href="#" class="cta-btn primary sans">Watch the Demo →</a>
+
+    <div style="margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1);">
+      <p style="font-size: 13px; color: rgba(255,255,255,0.45); max-width: 560px; margin: 0 auto; text-align: center; line-height: 1.6;">
+        Prepared by Dev8X · May 2026 · Research basis: UPstander International's own published materials, Upwork project history, and platform audit. All headline figures sourced directly from UPstander's own data — no estimated or benchmark figures appear in headline positions.
+      </p>
+    </div>
   </div>
-  <p style="margin-top: 24px; font-size: 12px; color: rgba(255,255,255,0.35);">Dev8X builds augments your existing TreeRaise platform, veritree integration, and brand assets. We are not here to rebuild — we harden the operational backbone so you can focus on growth.</p>
 </div>
 
 </div><!-- end .page -->
 
-<div class="footer-note" style="padding-bottom: 40px;">
-  Prepared by Dev8X · May 2026 · Decision Safety Brief for TreeRaise, LLC<br>
-  All headline figures drawn directly from TreeRaise's own published materials. Calculated estimates are labelled throughout.
-</div>
-
 <script>
-  // Impact chart — comparing current vs post-build operational readiness
-  const ctx = document.getElementById('impactChart').getContext('2d');
+document.addEventListener('DOMContentLoaded', function() {
+  const ctx = document.getElementById('roiChart').getContext('2d');
+
+  const labels = [
+    'Course Checkout Rebuild',
+    'Lead Capture & Email Funnel',
+    'Self-Manageable CMS',
+    'Corporate Buyer Pathway',
+    'Speaker Inquiry Flow'
+  ];
+
+  // Percentage of manual operation automated (based on before/after analysis)
+  const values = [95, 90, 85, 80, 88];
+
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: [
-        'Client Onboarding',
-        'Campaign Launch',
-        'Marketing Content',
-        'Platform Infrastructure',
-        'Self-Service Support',
-        'Team Scale Capacity'
-      ],
-      datasets: [
-        {
-          label: 'Current State',
-          data: [10, 15, 20, 35, 10, 5],
-          backgroundColor: 'rgba(239, 68, 68, 0.18)',
-          borderColor: 'rgba(239, 68, 68, 0.6)',
-          borderWidth: 1.5,
-          borderRadius: 4,
-        },
-        {
-          label: 'With Recommended Build',
-          data: [90, 92, 85, 90, 88, 95],
-          backgroundColor: 'rgba(22, 163, 74, 0.18)',
-          borderColor: 'rgba(22, 163, 74, 0.65)',
-          borderWidth: 1.5,
-          borderRadius: 4,
-        }
-      ]
+      labels: labels,
+      datasets: [{
+        label: '% of manual operation automated',
+        data: values,
+        backgroundColor: [
+          'rgba(37, 99, 235, 0.85)',
+          'rgba(37, 99, 235, 0.72)',
+          'rgba(22, 163, 74, 0.82)',
+          'rgba(22, 163, 74, 0.68)',
+          'rgba(37, 99, 235, 0.60)',
+        ],
+        borderColor: [
+          'rgba(37, 99, 235, 1)',
+          'rgba(37, 99, 235, 1)',
+          'rgba(22, 163, 74, 1)',
+          'rgba(22, 163, 74, 1)',
+          'rgba(37, 99, 235, 1)',
+        ],
+        borderWidth: 1,
+        borderRadius: 6,
+        borderSkipped: false,
+      }]
     },
     options: {
       indexAxis: 'y',
       responsive: true,
       plugins: {
-        legend: {
-          position: 'top',
-          labels: { font: { size: 12 }, boxWidth: 14, padding: 16, color: '#374151' }
-        },
+        legend: { display: false },
         tooltip: {
           callbacks: {
-            label: ctx => ` ${ctx.dataset.label}: ${ctx.raw}% readiness`
+            label: function(ctx) {
+              return ' ' + ctx.raw + '% of manual steps automated (calculated estimate)';
+            }
           }
         }
       },
@@ -1448,22 +1631,24 @@
           min: 0,
           max: 100,
           ticks: {
-            callback: v => v + '%',
-            font: { size: 11 },
-            color: '#9ca3af'
+            callback: function(val) { return val + '%'; },
+            font: { family: '-apple-system, sans-serif', size: 11 },
+            color: '#94a3b8'
           },
-          grid: { color: '#f3f4f6' }
+          grid: { color: 'rgba(0,0,0,0.05)' }
         },
         y: {
           ticks: {
-            font: { size: 12 },
-            color: '#374151'
+            font: { family: '-apple-system, sans-serif', size: 12 },
+            color: '#475569'
           },
           grid: { display: false }
         }
       }
     }
   });
+});
 </script>
+
 </body>
 </html>

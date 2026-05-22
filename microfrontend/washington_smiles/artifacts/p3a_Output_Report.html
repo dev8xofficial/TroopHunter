@@ -1,0 +1,2079 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Washington Smiles — Decision Safety Brief | Dev8X</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --navy: #0f1c2e;
+      --navy-mid: #162338;
+      --navy-light: #1e3352;
+      --blue: #2563eb;
+      --blue-light: #3b82f6;
+      --blue-pale: #dbeafe;
+      --green: #16a34a;
+      --green-pale: #dcfce7;
+      --amber: #d97706;
+      --amber-pale: #fef3c7;
+      --red: #dc2626;
+      --red-pale: #fee2e2;
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-400: #94a3b8;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1e293b;
+      --text: #1e293b;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--gray-50);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ─── LAYOUT ─── */
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    section {
+      padding: 56px 40px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    section:last-child {
+      border-bottom: none;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: var(--gray-700);
+      line-height: 1.65;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: 0;
+      border-bottom: none;
+    }
+
+    .hero-inner {
+      padding: 48px 40px 0;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 44px;
+    }
+
+    .hero-meta-brand {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .hero-meta-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .hero-meta-date {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .hero-headline {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      max-width: 680px;
+      margin-bottom: 16px;
+    }
+
+    .hero-headline em {
+      font-style: normal;
+      color: #60a5fa;
+    }
+
+    .hero-subhead {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.6);
+      max-width: 580px;
+      margin-bottom: 44px;
+      line-height: 1.6;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 0;
+    }
+
+    .hero-stat {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+    }
+
+    .hero-stat-value {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .hero-stat-label {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+
+    .hero-stat-source {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.3);
+      font-style: italic;
+    }
+
+    /* Glance strip */
+    .glance-strip {
+      background: rgba(255, 255, 255, 0.04);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 20px 40px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 36px;
+    }
+
+    .glance-item {
+      padding: 0 24px 0 0;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glance-item:first-child {
+      padding-left: 0;
+    }
+
+    .glance-item:last-child {
+      border-right: none;
+      padding-right: 0;
+      padding-left: 24px;
+    }
+
+    .glance-item:nth-child(2) {
+      padding-left: 24px;
+    }
+
+    .glance-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.3);
+      margin-bottom: 5px;
+    }
+
+    .glance-value {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    /* ─── CARDS ─── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .card-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    /* ─── SECTION 2 ─── */
+    .outcome-section {
+      background: var(--white);
+    }
+
+    .two-col-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .outcome-card {
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      border-left: 4px solid var(--blue);
+      background: var(--blue-pale);
+    }
+
+    .outcome-card h3 {
+      color: var(--navy);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .outcome-card p {
+      color: var(--gray-700);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .timing-callout {
+      background: var(--amber-pale);
+      border: 1px solid #fde68a;
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .timing-callout-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .timing-callout-text {
+      font-size: 14px;
+      color: #92400e;
+      line-height: 1.5;
+    }
+
+    .timing-callout-text strong {
+      color: #78350f;
+    }
+
+    /* ─── PROBLEM TABLE ─── */
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 16px;
+    }
+
+    .problem-table,
+    .research-table {
+      min-width: 720px;
+      width: 100%;
+    }
+
+    .problem-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .problem-table th {
+      background: var(--gray-100);
+      text-align: left;
+      padding: 11px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-600);
+      border-bottom: 2px solid var(--gray-200);
+    }
+
+    .problem-table td {
+      padding: 14px 16px;
+      vertical-align: top;
+      border-bottom: 1px solid var(--gray-100);
+      line-height: 1.5;
+      color: var(--gray-700);
+    }
+
+    .problem-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .problem-table tr:hover td {
+      background: var(--gray-50);
+    }
+
+    .problem-num {
+      display: inline-flex;
+      width: 22px;
+      height: 22px;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .impact-badge {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .impact-high {
+      background: var(--red-pale);
+      color: #991b1b;
+    }
+
+    .impact-med {
+      background: var(--amber-pale);
+      color: #92400e;
+    }
+
+    /* ─── RESEARCH TRANSPARENCY ─── */
+    .transparency-section {
+      background: var(--gray-50);
+    }
+
+    .research-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .research-table th {
+      background: var(--navy);
+      color: rgba(255, 255, 255, 0.8);
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .research-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--gray-100);
+      vertical-align: top;
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+
+    .research-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .research-table td:first-child {
+      font-weight: 600;
+      color: var(--navy);
+      width: 22%;
+    }
+
+    /* ─── FUTURE RISK CARDS ─── */
+    .risk-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .risk-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      border-top: 3px solid var(--red);
+    }
+
+    .risk-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .risk-card-break {
+      font-size: 13px;
+      color: var(--gray-600);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .risk-card-prevent {
+      font-size: 12.5px;
+      color: var(--green);
+      background: var(--green-pale);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      line-height: 1.4;
+    }
+
+    .risk-card-prevent strong {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 2px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── SOLUTION CARDS ─── */
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .sol-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .sol-card-header {
+      background: var(--navy);
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .sol-card-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    .proof-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border-radius: 20px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .proof-visible {
+      background: #166534;
+      color: #bbf7d0;
+    }
+
+    .proof-partial {
+      background: #92400e;
+      color: #fde68a;
+    }
+
+    .sol-card-body {
+      padding: 18px 20px;
+    }
+
+    .sol-field-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 4px;
+      margin-top: 12px;
+    }
+
+    .sol-field-label:first-child {
+      margin-top: 0;
+    }
+
+    .sol-field-text {
+      font-size: 13.5px;
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+
+    .sol-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 16px 0;
+      padding: 14px;
+      background: var(--gray-50);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--gray-100);
+    }
+
+    .sol-metric {
+      text-align: center;
+    }
+
+    .sol-metric-val {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .sol-metric-val.green {
+      color: var(--green);
+    }
+
+    .sol-metric-val.blue {
+      color: var(--blue);
+    }
+
+    .sol-metric-label {
+      font-size: 11px;
+      color: var(--gray-600);
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+
+    .sol-metric-source {
+      font-size: 10px;
+      color: var(--gray-400);
+      font-style: italic;
+      line-height: 1.2;
+    }
+
+    .sol-divider {
+      height: 1px;
+      background: var(--gray-100);
+      margin: 14px 0;
+    }
+
+    .before-after {}
+
+    .ba-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--gray-600);
+      margin-bottom: 7px;
+      line-height: 1.4;
+    }
+
+    .ba-arrow {
+      color: var(--blue);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .ba-before {
+      color: var(--gray-400);
+      text-decoration: none;
+    }
+
+    .ba-after {
+      color: var(--navy);
+      font-weight: 500;
+    }
+
+    /* ─── ROI SECTION ─── */
+    .roi-section {
+      background: var(--navy);
+    }
+
+    .roi-section h2 {
+      color: var(--white);
+    }
+
+    .roi-section .section-label {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .roi-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+
+    .roi-stat {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      text-align: center;
+    }
+
+    .roi-stat-val {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 5px;
+      line-height: 1;
+    }
+
+    .roi-stat-val.green {
+      color: #4ade80;
+    }
+
+    .roi-stat-val.blue {
+      color: #60a5fa;
+    }
+
+    .roi-stat-label {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.4;
+    }
+
+    .chart-container {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 28px;
+    }
+
+    .chart-container canvas {
+      display: block;
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    .chart-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 16px;
+      letter-spacing: 0.03em;
+    }
+
+    .numbers-panel {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+
+    .numbers-panel-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .numbers-group {
+      margin-bottom: 16px;
+    }
+
+    .numbers-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .numbers-group-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .numbers-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 6px;
+      gap: 16px;
+      line-height: 1.4;
+    }
+
+    .numbers-row-label {
+      flex: 1;
+    }
+
+    .numbers-row-basis {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.3);
+      font-style: italic;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ─── STAKEHOLDER ─── */
+    .stakeholder-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .sh-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .sh-role {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 4px;
+    }
+
+    .sh-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .sh-row {
+      margin-bottom: 9px;
+    }
+
+    .sh-row-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gray-400);
+      margin-bottom: 2px;
+    }
+
+    .sh-row-text {
+      font-size: 12.5px;
+      color: var(--gray-700);
+      line-height: 1.4;
+    }
+
+    .sh-support {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    .support-high {
+      background: var(--green-pale);
+      color: #166534;
+    }
+
+    .support-med {
+      background: var(--amber-pale);
+      color: #92400e;
+    }
+
+    .support-medhi {
+      background: #e0f2fe;
+      color: #0c4a6e;
+    }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      background: var(--gray-50);
+    }
+
+    .cta-box {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .cta-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+
+    .cta-headline {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .cta-body {
+      font-size: 14px;
+      color: var(--gray-600);
+      line-height: 1.65;
+      margin-bottom: 28px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--blue);
+      color: var(--white);
+      padding: 13px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: background 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: var(--blue-light);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      background: var(--white);
+      color: var(--navy);
+      border: 1px solid var(--gray-300);
+      padding: 13px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: border-color 0.15s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    /* ─── TIMELINE STRIP ─── */
+    .timeline-strip {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      padding: 28px 0 0;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    .timeline-phase {
+      flex: 1;
+      position: relative;
+      padding-right: 20px;
+      min-width: 220px;
+    }
+
+    .timeline-phase:last-child {
+      padding-right: 0;
+    }
+
+    .timeline-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline-phase::after {
+      content: '';
+      position: absolute;
+      top: 16px;
+      left: 32px;
+      right: 20px;
+      height: 1px;
+      background: var(--gray-200);
+    }
+
+    .timeline-phase:last-child::after {
+      display: none;
+    }
+
+    .timeline-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+
+    .timeline-desc {
+      font-size: 12.5px;
+      color: var(--gray-600);
+      line-height: 1.4;
+    }
+
+    /* ─── UTILITIES ─── */
+    .divider {
+      height: 1px;
+      background: var(--gray-200);
+      margin: 32px 0;
+    }
+
+    .mt-8 {
+      margin-top: 8px;
+    }
+
+    .mt-16 {
+      margin-top: 16px;
+    }
+
+    .mt-24 {
+      margin-top: 24px;
+    }
+
+    .mt-32 {
+      margin-top: 32px;
+    }
+
+    .mb-0 {
+      margin-bottom: 0;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: var(--navy);
+      padding: 24px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-brand {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 0.04em;
+    }
+
+    .footer-note {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 720px) {
+      section {
+        padding: 40px 24px;
+      }
+
+      .hero-inner {
+        padding: 36px 24px 0;
+      }
+
+      .glance-strip {
+        padding: 18px 24px;
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .glance-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 0 0 16px 0 !important;
+      }
+
+      .glance-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0 !important;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .two-col-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .card-grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .card-grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .card-grid-4 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .risk-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .solutions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .roi-stat-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stakeholder-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-phase {
+        flex: 1 1 100%;
+        padding-right: 0;
+      }
+
+      .timeline-phase::after {
+        display: none;
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+    }
+
+    @media print {
+      .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 1 — HERO                                        -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="hero-inner">
+
+        <div class="hero-meta">
+          <span class="hero-meta-brand">Dev8X · Decision Safety Brief</span>
+          <div class="hero-meta-dot"></div>
+          <span class="hero-meta-date">Prepared for Washington Smiles / Integrity Dental Group — May 2026</span>
+        </div>
+
+        <h1 class="hero-headline">
+          5 Locations Running on<br><em>Manual Playbooks</em><br>Is a Scaling Plan — Not a System
+        </h1>
+
+        <p class="hero-subhead">
+          Integrity Dental Group has the vision, the culture, and the playbook framework. This brief outlines how a
+          unified operations platform transforms that framework from a document into a live command center — across
+          every location, every day.
+        </p>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-value">5+</div>
+            <div class="hero-stat-label">Locations now coordinating operations manually, without a shared digital system
+            </div>
+            <div class="hero-stat-source">From Washington Smiles / IDG published materials</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">21+ yrs</div>
+            <div class="hero-stat-label">Of operational excellence built at Washington Smiles — worth protecting at
+              scale</div>
+            <div class="hero-stat-source">From Washington Smiles published materials</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">3 Pillars</div>
+            <div class="hero-stat-label">Of the Office Manager Playbook that this platform digitizes and automates in
+              real time</div>
+            <div class="hero-stat-source">From Dr. Smith's own published framework</div>
+          </div>
+        </div>
+
+      </div><!-- /hero-inner -->
+
+      <div class="glance-strip">
+        <div class="glance-item">
+          <div class="glance-label">Current Bottleneck</div>
+          <div class="glance-value">Manual playbooks + EOS scorecards across 5 locations — no unified system for
+            real-time visibility</div>
+        </div>
+        <div class="glance-item">
+          <div class="glance-label">Strongest Unlock</div>
+          <div class="glance-value">One operations dashboard that mirrors the Scheduling · Day-to-Day · Collections
+            framework — live, automated, cross-location</div>
+        </div>
+        <div class="glance-item">
+          <div class="glance-label">Recommended Next Step</div>
+          <div class="glance-value">Watch the 6-minute demo — then share where we got it right and where we need your
+            numbers</div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 2 — DESIRED OUTCOME                             -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="outcome-section">
+      <div class="section-label">Section 02 — Where Integrity Dental Group Is Headed</div>
+      <h2>The Outcome Dr. Smith Is Building Toward</h2>
+
+      <div class="two-col-cards">
+        <div class="outcome-card">
+          <h3>Strategic Goal</h3>
+          <p>Scale Integrity Dental Group's multi-location operations by replacing manual, ad-hoc management with
+            systemized, measurable workflows — so office managers are empowered, doctors stay focused on clinical care,
+            and every location runs with consistency regardless of who's in the room.</p>
+        </div>
+        <div class="outcome-card">
+          <h3>Why Now</h3>
+          <p>IDG has grown from 1 to 5+ locations. EOS is adopted. The Office Manager Playbook is being written today.
+            Associate Manager roles are being hired. This is the window — when processes are still being defined — where
+            a platform shapes operations rather than disrupting them. Six months from now, manual habits harden into
+            infrastructure.</p>
+        </div>
+      </div>
+
+      <div class="timing-callout">
+        <div class="timing-callout-icon">⏱</div>
+        <div class="timing-callout-text">
+          <strong>Timing signal:</strong> IDG is in an active systemization phase right now. The EOS rocks are being
+          set. The playbook is being written. New Associate Managers are being onboarded. A platform introduced today
+          shapes how those systems form — it arrives too late once they've been built manually and hardened into daily
+          habit.
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 3 — CURRENT PROBLEM REGISTER                    -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section>
+      <div class="section-label">Section 03 — What's Blocking the Primary Goal</div>
+      <h2>Current Operating Challenges</h2>
+      <p style="margin-bottom: 24px; color: var(--gray-600); font-size: 14px;">Each problem below was identified
+        directly from Dr. Smith's own public statements and operational signals. These are not generic dental practice
+        challenges — they are the specific friction points IDG is experiencing right now.</p>
+
+      <div class="table-scroll">
+        <table class="problem-table">
+          <thead>
+            <tr>
+              <th style="width: 40px;">#</th>
+              <th>Current Challenge</th>
+              <th>Business Impact</th>
+              <th style="width: 110px;">Severity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="problem-num">1</span></td>
+              <td><strong>No unified operations platform.</strong> Office managers coordinate scheduling, collections,
+                and daily operations using a manual playbook and EOS scorecards — performance data is siloed in each
+                location.</td>
+              <td>Every new location adds a separate management stream. Complexity grows linearly instead of being
+                absorbed by a central system — the primary barrier to scalable growth.</td>
+              <td><span class="impact-badge impact-high">Primary Block</span></td>
+            </tr>
+            <tr>
+              <td><span class="problem-num">2</span></td>
+              <td><strong>Scheduling is busy, not productive.</strong> Chairs fill without data on procedure mix,
+                provider utilization, or gap patterns — schedulers optimize on instinct across five locations.</td>
+              <td>Provider time is suboptimally allocated at every location. The same inefficiency replicates across all
+                offices because there's no data-driven baseline to improve from.</td>
+              <td><span class="impact-badge impact-high">Revenue Risk</span></td>
+            </tr>
+            <tr>
+              <td><span class="problem-num">3</span></td>
+              <td><strong>Collections accountability is manual.</strong> Daily targets, aging reports, and insurance
+                follow-up are tracked location-by-location without automated prioritization or escalation.</td>
+              <td>Collections discipline at each office depends entirely on individual manager effort. Leakage is
+                invisible until month-end — and compounds across five locations simultaneously.</td>
+              <td><span class="impact-badge impact-high">Cash Flow Risk</span></td>
+            </tr>
+            <tr>
+              <td><span class="problem-num">4</span></td>
+              <td><strong>Leadership visibility is fragmented.</strong> Dr. Smith and regional leadership have no
+                unified, real-time view of KPIs, scorecards, or performance data across all offices.</td>
+              <td>Strategic decisions — where to invest, which location needs support, where to expand — rely on
+                delayed, manually compiled data gathered office by office.</td>
+              <td><span class="impact-badge impact-high">Growth Risk</span></td>
+            </tr>
+            <tr>
+              <td><span class="problem-num">5</span></td>
+              <td><strong>Morning huddle prep is manual and inconsistent.</strong> Office managers assemble agendas from
+                scratch each morning — some days are well-prepared, others are reactive.</td>
+              <td>Inconsistent huddle quality cascades into daily misalignment. The tone of the office day is set by how
+                much time the manager had to prepare rather than by a reliable system.</td>
+              <td><span class="impact-badge impact-med">Daily Friction</span></td>
+            </tr>
+            <tr>
+              <td><span class="problem-num">6</span></td>
+              <td><strong>Onboarding for new doctors and managers is ad-hoc.</strong> Dr. Smith is building the
+                onboarding curriculum from scratch — no structured digital path exists for new hires to follow
+                independently.</td>
+              <td>New Associate Managers and early-career doctors depend on in-person shadowing and personal guidance.
+                Time-to-productivity is long, and the knowledge lives with individuals, not the organization.</td>
+              <td><span class="impact-badge impact-med">Capacity Risk</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 3B — RESEARCH TRANSPARENCY                      -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="transparency-section">
+      <div class="section-label">Section 03B — How We Built This Brief</div>
+      <h2>Research Transparency — What We Know and Where We'd Like Your Confirmation</h2>
+      <p style="margin-bottom: 20px; color: var(--gray-600); font-size: 14px;">Every claim in this brief is grounded in
+        evidence. The table below shows the three lead claims, what we used to support them, and what we'd want to
+        validate with you directly.</p>
+
+      <div class="table-scroll">
+        <table class="research-table">
+          <thead>
+            <tr>
+              <th>Claim</th>
+              <th>Evidence We Used</th>
+              <th>What We'd Like to Confirm With You</th>
+              <th>Open Question</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>No unified digital platform exists for cross-location operations</td>
+              <td>Dr. Smith's posts describe building the playbook manually; no technology vendor appears anywhere in
+                publicly available materials</td>
+              <td>What format does the current playbook live in today — document, spreadsheet, app, or verbal?</td>
+              <td>Could a tool already be in use that wasn't visible in our research?</td>
+            </tr>
+            <tr>
+              <td>Office managers are experiencing operational overwhelm</td>
+              <td>Dr. Smith's own words: "without clarity, they get overwhelmed… it shows up in the schedule, the team,
+                the patient experience"</td>
+              <td>Is overwhelm still the primary friction point, or has recent hiring of Associate Managers shifted it?
+              </td>
+              <td>The Associate Manager hires may have already relieved some of this pressure</td>
+            </tr>
+            <tr>
+              <td>The platform would accelerate what IDG is already building — not replace it</td>
+              <td>The 3-pillar framework (Scheduling, Day-to-Day, Collections) was extracted verbatim from Dr. Smith's
+                published post about the Office Manager Playbook</td>
+              <td>Has the playbook evolved beyond these three pillars since it was first published?</td>
+              <td>The demo is built around this framework — confirming it's current ensures the demo lands correctly
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="margin-top: 16px; font-size: 13px; color: var(--gray-500); font-style: italic;">Note: Headline figures
+        in this brief are limited to structural facts sourced directly from IDG's own published materials. Operational
+        metrics — hours, costs, volumes — require your actual numbers to quantify accurately. We'll gather those in a
+        20-minute call.</p>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 4 — FUTURE PROBLEM REGISTER                     -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section>
+      <div class="section-label">Section 04 — What Breaks in 12–24 Months Without a Change</div>
+      <h2>Three Risks That Grow With Every New Location</h2>
+
+      <div class="risk-cards">
+        <div class="risk-card">
+          <div class="risk-card-title">Management burden scales with you — not for you</div>
+          <div class="risk-card-break">Opening location #6, #7, or #8 without a centralized system means each new office
+            requires proportionally more of Dr. Smith's personal time to train, monitor, and support. Growth stalls at
+            the threshold of her personal bandwidth.</div>
+          <div class="risk-card-prevent">
+            <strong>How the platform prevents this</strong>
+            One system trains every new manager on the same framework. Dr. Smith's attention expands the group — it
+            doesn't manage each office.
+          </div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-card-title">Key manager departure = operational setback</div>
+          <div class="risk-card-break">When playbooks are personal rather than digital, a single manager leaving takes
+            the knowledge with them. Recovery after a key departure takes months — and patients notice before leadership
+            does.</div>
+          <div class="risk-card-prevent">
+            <strong>How the platform prevents this</strong>
+            When the playbook lives in the system, not in a person's head, any departure is a staffing event — not an
+            operational crisis.
+          </div>
+        </div>
+        <div class="risk-card">
+          <div class="risk-card-title">Inconsistent experience erodes 21 years of brand equity</div>
+          <div class="risk-card-break">As IDG adds locations, each develops its own shortcuts and its own definition of
+            "good enough." Google reviews and word-of-mouth — the group's strongest growth engine — become inconsistent
+            across offices.</div>
+          <div class="risk-card-prevent">
+            <strong>How the platform prevents this</strong>
+            Standardized daily workflows, huddle prep, and KPI thresholds mean every patient at every location
+            experiences the same standard of care — not the one they happen to get.
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 5 — WHAT GETS BUILT                             -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section>
+      <div class="section-label">Section 05 — The Recommended Build</div>
+      <h2>What Gets Built to Remove the Bottleneck</h2>
+      <p style="margin-bottom: 28px; color: var(--gray-600); font-size: 14px;">Six focused builds — each solving a
+        specific current problem and designed to interlock as one unified operations platform for Integrity Dental
+        Group.</p>
+
+      <div class="solutions-grid">
+
+        <!-- Card 1 -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-card-name">Operations Command Center</div>
+            <span class="proof-tag proof-visible">Visible in Demo</span>
+          </div>
+          <div class="sol-card-body">
+            <div class="sol-field-label">Problem Solved (Challenge #1)</div>
+            <div class="sol-field-text">Office managers coordinate 5+ locations using a manual playbook with no live
+              digital visibility or cross-location consistency check.</div>
+
+            <div class="sol-field-label">What Gets Built</div>
+            <div class="sol-field-text">A live operations dashboard structured around IDG's exact 3-pillar framework —
+              Scheduling, Day-to-Day, Collections — with automated task flows, real-time KPI visibility, and
+              cross-location comparison in one view.</div>
+
+            <div class="sol-metrics">
+              <div class="sol-metric">
+                <div class="sol-metric-val green">5→1</div>
+                <div class="sol-metric-label">Locations in a single real-time command view</div>
+                <div class="sol-metric-source">From IDG's own location structure</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-val blue">Near-Full</div>
+                <div class="sol-metric-label">Automation of daily task tracking &amp; KPI reporting</div>
+                <div class="sol-metric-source">Calculated estimate</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-val">Day 1</div>
+                <div class="sol-metric-label">Visibility across all offices from first deployment</div>
+                <div class="sol-metric-source">Platform capability</div>
+              </div>
+            </div>
+
+            <div class="sol-divider"></div>
+            <div class="before-after">
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">Manual task lists rebuilt daily per location</span> → <span
+                    class="ba-after">Automated task flows live across all 5 offices</span></span>
+              </div>
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">KPIs compiled from individual manager reports</span> → <span
+                    class="ba-after">Real-time scorecard visible to leadership instantly</span></span>
+              </div>
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">Playbook lives in a document</span> → <span class="ba-after">Playbook
+                    executes automatically every morning</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-card-name">Scheduling Intelligence Screen</div>
+            <span class="proof-tag proof-visible">Visible in Demo</span>
+          </div>
+          <div class="sol-card-body">
+            <div class="sol-field-label">Problem Solved (Challenge #2)</div>
+            <div class="sol-field-text">Scheduling fills chairs based on instinct rather than procedure mix, provider
+              utilization data, or gap-fill optimization — "busy, not productive" across every location.</div>
+
+            <div class="sol-field-label">What Gets Built</div>
+            <div class="sol-field-text">A scheduling intelligence view showing procedure-mix distribution, provider
+              utilization percentages, gap patterns, and real-time fill-rate metrics — per location and across all
+              offices combined.</div>
+
+            <div class="sol-metrics">
+              <div class="sol-metric">
+                <div class="sol-metric-val green">Significant</div>
+                <div class="sol-metric-label">Reduction in scheduling gaps and low-value fill patterns</div>
+                <div class="sol-metric-source">Calculated estimate</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-val blue">Live</div>
+                <div class="sol-metric-label">Procedure-mix &amp; utilization data per provider per day</div>
+                <div class="sol-metric-source">Platform capability</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-val">5×</div>
+                <div class="sol-metric-label">Locations with consistent scheduling visibility</div>
+                <div class="sol-metric-source">From IDG's own structure</div>
+              </div>
+            </div>
+
+            <div class="sol-divider"></div>
+            <div class="before-after">
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">Procedure mix optimized by scheduler memory</span> → <span
+                    class="ba-after">Balanced daily template informed by utilization data</span></span>
+              </div>
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">Gap tracking: end-of-day manual review</span> → <span
+                    class="ba-after">Real-time gap alerts with fill suggestions</span></span>
+              </div>
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">Provider utilization unknown across locations</span> → <span
+                    class="ba-after">Side-by-side provider efficiency visible daily</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-card-name">Collections Accountability Dashboard</div>
+            <span class="proof-tag proof-visible">Visible in Demo</span>
+          </div>
+          <div class="sol-card-body">
+            <div class="sol-field-label">Problem Solved (Challenge #3)</div>
+            <div class="sol-field-text">Daily collections targets, aging reports, and insurance follow-up are tracked
+              manually at each location — financial discipline depends on individual manager effort rather than an
+              automated system.</div>
+
+            <div class="sol-field-label">What Gets Built</div>
+            <div class="sol-field-text">A collections dashboard showing daily targets vs. actuals, automated aging
+              report generation, insurance follow-up queues with priority scoring, and patient financial conversation
+              guides — across all locations in one view.</div>
+
+            <div class="sol-metrics">
+              <div class="sol-metric">
+                <div class="sol-metric-val green">Automated</div>
+                <div class="sol-metric-label">Daily targets vs. actuals — no manual tracking</div>
+                <div class="sol-metric-source">Platform capability</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-val blue">Real-time</div>
+                <div class="sol-metric-label">Aging visibility across all 5 locations simultaneously</div>
+                <div class="sol-metric-source">From IDG's own structure</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-val">≤24h</div>
+                <div class="sol-metric-label">Insurance follow-up response cycle — [Estimated]</div>
+                <div class="sol-metric-source">Calculated estimate</div>
+              </div>
+            </div>
+
+            <div class="sol-divider"></div>
+            <div class="before-after">
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">Aging reports pulled manually from practice mgmt system</span> → <span
+                    class="ba-after">Aging generated automatically, surfaced with priority order</span></span>
+              </div>
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">Collections leakage invisible until month-end review</span> → <span
+                    class="ba-after">Daily shortfall flagged before close of business</span></span>
+              </div>
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">Insurance follow-up: who calls when left to manager judgment</span> →
+                  <span class="ba-after">Prioritized follow-up queue automatically generated daily</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-card-name">Multi-Location KPI Dashboard</div>
+            <span class="proof-tag proof-visible">Visible in Demo</span>
+          </div>
+          <div class="sol-card-body">
+            <div class="sol-field-label">Problem Solved (Challenge #4)</div>
+            <div class="sol-field-text">Dr. Smith and regional leadership have no real-time unified view of KPIs across
+              all offices — performance data is gathered through individual manager conversations, not a shared system.
+            </div>
+
+            <div class="sol-field-label">What Gets Built</div>
+            <div class="sol-field-text">A multi-location dashboard showing all offices' scheduling fill rates,
+              production vs. collections, daily output, and team performance in a single view — updated in real time,
+              organized by location and by metric.</div>
+
+            <div class="sol-metrics">
+              <div class="sol-metric">
+                <div class="sol-metric-val green">One View</div>
+                <div class="sol-metric-label">All 5 locations compared in a single real-time screen</div>
+                <div class="sol-metric-source">From IDG's own location structure</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-val blue">Same-Day</div>
+                <div class="sol-metric-label">Visibility of performance issues — [Estimated] vs. end-of-week</div>
+                <div class="sol-metric-source">Calculated estimate</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-val">Auto</div>
+                <div class="sol-metric-label">EOS scorecard generation — no manual compilation</div>
+                <div class="sol-metric-source">Platform capability</div>
+              </div>
+            </div>
+
+            <div class="sol-divider"></div>
+            <div class="before-after">
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">Performance insight: phone calls with each office manager</span> → <span
+                    class="ba-after">All-location dashboard open on any device, any time</span></span>
+              </div>
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">EOS scorecards: manually compiled for quarterly sessions</span> → <span
+                    class="ba-after">Scorecards auto-populated weekly from live data</span></span>
+              </div>
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">Underperforming location identified after pattern develops</span> → <span
+                    class="ba-after">Drift flagged within the same business day</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-card-name">Automated Huddle Prep &amp; Daily Workflow</div>
+            <span class="proof-tag proof-visible">Visible in Demo</span>
+          </div>
+          <div class="sol-card-body">
+            <div class="sol-field-label">Problem Solved (Challenge #5)</div>
+            <div class="sol-field-text">Office managers manually assemble morning huddle agendas each day — preparation
+              quality and team alignment vary based on how much time each manager had to prepare.</div>
+
+            <div class="sol-field-label">What Gets Built</div>
+            <div class="sol-field-text">An automated daily preparation screen that surfaces today's critical patients,
+              outstanding tasks, schedule gaps, collections priorities, and team alerts — ready before the manager
+              arrives, every day, at every location.</div>
+
+            <div class="sol-metrics">
+              <div class="sol-metric">
+                <div class="sol-metric-val green">Consistent</div>
+                <div class="sol-metric-label">Every huddle starts with the same quality of prep</div>
+                <div class="sol-metric-source">Platform capability</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-val blue">Significant</div>
+                <div class="sol-metric-label">Reduction in manual morning prep time — [Estimated]</div>
+                <div class="sol-metric-source">Calculated estimate</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-val">5 loc</div>
+                <div class="sol-metric-label">With identical huddle prep standard from day one</div>
+                <div class="sol-metric-source">From IDG's own structure</div>
+              </div>
+            </div>
+
+            <div class="sol-divider"></div>
+            <div class="before-after">
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">Agenda manually assembled each morning from memory</span> → <span
+                    class="ba-after">Priority-sorted agenda ready automatically before open</span></span>
+              </div>
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">Huddle quality varies by how busy yesterday was</span> → <span
+                    class="ba-after">Every morning starts with the same structured brief</span></span>
+              </div>
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">Outstanding items surface reactively during the day</span> → <span
+                    class="ba-after">Escalation alerts surface before the first patient arrives</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-card-name">Structured Onboarding Module</div>
+            <span class="proof-tag proof-partial">Partial — Content Customizable</span>
+          </div>
+          <div class="sol-card-body">
+            <div class="sol-field-label">Problem Solved (Challenge #6)</div>
+            <div class="sol-field-text">No structured digital onboarding path exists for new doctors or Associate
+              Managers — the curriculum is currently being built from scratch, with new hires depending on in-person
+              shadowing.</div>
+
+            <div class="sol-field-label">What Gets Built</div>
+            <div class="sol-field-text">A structured onboarding module with role-specific learning paths, progress
+              tracking, and milestone checklists — built around IDG's clinical and operational standards, with content
+              customized during implementation.</div>
+
+            <div class="sol-metrics">
+              <div class="sol-metric">
+                <div class="sol-metric-val green">Structured</div>
+                <div class="sol-metric-label">Role-specific paths for doctors, managers, and coordinators</div>
+                <div class="sol-metric-source">Platform capability</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-val blue">Reduced</div>
+                <div class="sol-metric-label">Time-to-productivity for every new hire — [Estimated]</div>
+                <div class="sol-metric-source">Calculated estimate</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-val">Digital</div>
+                <div class="sol-metric-label">Knowledge lives in the platform — not with one person</div>
+                <div class="sol-metric-source">Platform capability</div>
+              </div>
+            </div>
+
+            <div class="sol-divider"></div>
+            <div class="before-after">
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">Onboarding = shadowing + verbal guidance, location by location</span> →
+                  <span class="ba-after">Structured path with milestones, tracked automatically</span></span>
+              </div>
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">Curriculum being built from scratch on LinkedIn crowdsourcing</span> →
+                  <span class="ba-after">Curriculum housed in platform, iterated and improved centrally</span></span>
+              </div>
+              <div class="ba-item">
+                <span class="ba-arrow">→</span>
+                <span><span class="ba-before">Manager departure = knowledge loss and restart</span> → <span
+                    class="ba-after">Knowledge lives in system — handover in days, not months</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /solutions-grid -->
+
+      <!-- TIMELINE STRIP -->
+      <div class="divider" style="margin-top: 36px;"></div>
+      <h3 style="margin-bottom: 0;">Recommended Rollout Sequence</h3>
+      <div class="timeline-strip">
+        <div class="timeline-phase">
+          <div class="timeline-dot">1</div>
+          <div class="timeline-label">Days 1–30</div>
+          <div class="timeline-desc">Launch Operations Command Center + Multi-Location KPI Dashboard at Washington
+            Smiles. Pilot with your most experienced office manager.</div>
+        </div>
+        <div class="timeline-phase">
+          <div class="timeline-dot">2</div>
+          <div class="timeline-label">Days 30–60</div>
+          <div class="timeline-desc">Activate Scheduling Intelligence + Collections Dashboard at pilot location.
+            Validate KPIs against your actual numbers.</div>
+        </div>
+        <div class="timeline-phase">
+          <div class="timeline-dot">3</div>
+          <div class="timeline-label">Days 60–90</div>
+          <div class="timeline-desc">Automated Huddle Prep goes live. All systems extend to remaining 4 locations based
+            on pilot learnings.</div>
+        </div>
+        <div class="timeline-phase">
+          <div class="timeline-dot">4</div>
+          <div class="timeline-label">Day 90+</div>
+          <div class="timeline-desc">Structured Onboarding Module deployed. Every future location and new hire enters a
+            fully systemized environment from day one.</div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 6 — PROJECTED OPERATIONAL IMPACT                -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="roi-section">
+      <div class="section-label" style="color: rgba(255,255,255,0.35);">Section 06 — Projected Impact</div>
+      <h2>What Changes Operationally Across Integrity Dental Group</h2>
+
+      <div class="roi-stat-grid">
+        <div class="roi-stat">
+          <div class="roi-stat-val green">5 → 1</div>
+          <div class="roi-stat-label">Locations consolidated into one live command center</div>
+        </div>
+        <div class="roi-stat">
+          <div class="roi-stat-val blue">6</div>
+          <div class="roi-stat-label">Manual workflows replaced with automated systems</div>
+        </div>
+        <div class="roi-stat">
+          <div class="roi-stat-val green">Same Day</div>
+          <div class="roi-stat-label">Visibility into location-level performance drift</div>
+        </div>
+        <div class="roi-stat">
+          <div class="roi-stat-val blue">Day 30</div>
+          <div class="roi-stat-label">Pilot location fully live — expansion to remaining 4 by Day 90</div>
+        </div>
+      </div>
+
+      <div class="chart-container">
+        <div class="chart-title">Automation level by workflow area — from fully manual today to target state</div>
+        <canvas id="impactChart" height="200"></canvas>
+      </div>
+
+      <div class="numbers-panel">
+        <div class="numbers-panel-title">How We Treated Every Number in This Report</div>
+
+        <div class="numbers-group">
+          <div class="numbers-group-label">From IDG's own published materials</div>
+          <div class="numbers-row">
+            <span class="numbers-row-label">5+ locations in the Integrity Dental Group portfolio</span>
+            <span class="numbers-row-basis">Washington Smiles site &amp; LinkedIn</span>
+          </div>
+          <div class="numbers-row">
+            <span class="numbers-row-label">21+ years of Washington Smiles operations (since July 2004)</span>
+            <span class="numbers-row-basis">Washington Smiles published materials</span>
+          </div>
+          <div class="numbers-row">
+            <span class="numbers-row-label">3-pillar playbook framework: Scheduling · Day-to-Day · Collections</span>
+            <span class="numbers-row-basis">Dr. Smith LinkedIn Post #7</span>
+          </div>
+          <div class="numbers-row">
+            <span class="numbers-row-label">$400K+ donated in community dental services over 13 years</span>
+            <span class="numbers-row-basis">Washington Smiles published materials</span>
+          </div>
+        </div>
+
+        <div class="numbers-group">
+          <div class="numbers-group-label">Calculated estimates — require your actual numbers to confirm</div>
+          <div class="numbers-row">
+            <span class="numbers-row-label">Automation level improvements per workflow area (shown in chart)</span>
+            <span class="numbers-row-basis">Based on platform capabilities vs. described manual process</span>
+          </div>
+          <div class="numbers-row">
+            <span class="numbers-row-label">Reduction in manual morning huddle prep time</span>
+            <span class="numbers-row-basis">Estimated from typical manager workflow patterns</span>
+          </div>
+          <div class="numbers-row">
+            <span class="numbers-row-label">Same-day drift detection vs. current end-of-week visibility</span>
+            <span class="numbers-row-basis">Estimated from described reporting cadence</span>
+          </div>
+        </div>
+
+        <div class="numbers-group">
+          <div class="numbers-group-label">Not in this report — requires your actual data</div>
+          <div class="numbers-row">
+            <span class="numbers-row-label">Office manager hours per week on manual coordination — not stated; will
+              gather in discovery call</span>
+            <span class="numbers-row-basis">L4 — excluded</span>
+          </div>
+          <div class="numbers-row">
+            <span class="numbers-row-label">Revenue and collections volumes per location — not stated; required for
+              dollar-value ROI</span>
+            <span class="numbers-row-basis">L4 — excluded</span>
+          </div>
+          <div class="numbers-row">
+            <span class="numbers-row-label">No-show and cancellation rates — not stated; discovery question</span>
+            <span class="numbers-row-basis">L4 — excluded</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 7 — STAKEHOLDER DECISION CONTEXT                -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section>
+      <div class="section-label">Section 07 — Who This Decision Involves</div>
+      <h2>Decision Context</h2>
+      <p style="margin-bottom: 24px; color: var(--gray-600); font-size: 14px;">Dr. Smith is the sole strategic
+        decision-maker. The platform's adoption depends on how each role experiences day-to-day value — this brief is
+        designed to speak to each of them.</p>
+
+      <div class="stakeholder-cards">
+        <div class="sh-card">
+          <div class="sh-role">CEO &amp; Founder</div>
+          <div class="sh-name">Dr. Melissa Smith</div>
+          <div class="sh-row">
+            <div class="sh-row-label">What matters most</div>
+            <div class="sh-row-text">Systemized operations that scale without requiring her personal bandwidth; tools
+              that empower her team and free doctors for clinical care</div>
+          </div>
+          <div class="sh-row">
+            <div class="sh-row-label">Risk to address</div>
+            <div class="sh-row-text">Anything that implies her current playbook is "broken" — frame as digitizing and
+              accelerating what she's already built, not replacing it</div>
+          </div>
+          <span class="sh-support support-high">High Support</span>
+        </div>
+
+        <div class="sh-card">
+          <div class="sh-role">Office Managers (e.g., Nicole — Washington Smiles)</div>
+          <div class="sh-name">Office Management Team</div>
+          <div class="sh-row">
+            <div class="sh-row-label">What matters most</div>
+            <div class="sh-row-text">Clear expectations, simpler daily workflows, and tools that make their job easier —
+              not more complex</div>
+          </div>
+          <div class="sh-row">
+            <div class="sh-row-label">Risk to address</div>
+            <div class="sh-row-text">Any perception that the dashboard monitors rather than supports. Demo must show
+              "this makes your morning easier" — not "this tracks everything you do"</div>
+          </div>
+          <span class="sh-support support-med">Medium Support</span>
+        </div>
+
+        <div class="sh-card">
+          <div class="sh-role">New Hires — Associate Managers</div>
+          <div class="sh-name">Incoming Leadership Pipeline</div>
+          <div class="sh-row">
+            <div class="sh-row-label">What matters most</div>
+            <div class="sh-row-text">Clear career path, structured training, and confidence in their role — tools that
+              help them succeed as they grow</div>
+          </div>
+          <div class="sh-row">
+            <div class="sh-row-label">Why this group is the easiest win</div>
+            <div class="sh-row-text">No attachment to the old way. Can be trained on the platform from day one. Best
+              pilot group for the Onboarding Module and full adoption.</div>
+          </div>
+          <span class="sh-support support-medhi">Medium-High Support</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SECTION 8 — RECOMMENDED NEXT ACTION                     -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="cta-section">
+      <div class="section-label">Section 08 — Recommended Next Step</div>
+
+      <div class="cta-box">
+        <div class="cta-eyebrow">Next Step</div>
+        <h2 class="cta-headline">Watch the demo — and let us know where we got it right</h2>
+        <p class="cta-body">
+          This brief was built on Dr. Smith's publicly shared insights and IDG's observable operational structure. We're
+          confident in the diagnosis — and honest about where we need your actual numbers to sharpen the impact
+          projections. The 6-minute demo is built around your exact 3-pillar framework. Watch it, mark what resonates,
+          and flag what we should refine. Then a 20-minute call is all we need to replace the estimated figures with
+          numbers specific to Integrity Dental Group.
+        </p>
+        <div class="cta-buttons">
+          <a href="#" class="btn-primary">Watch the Demo →</a>
+          <a href="#" class="btn-secondary">Book a 20-Minute Call →</a>
+        </div>
+      </div>
+
+    </section>
+
+  </div><!-- /page -->
+
+  <div class="footer">
+    <span class="footer-brand">Dev8X · Decision Safety Brief · Washington Smiles / Integrity Dental Group</span>
+    <span class="footer-note">Prepared May 2026 · Confidential</span>
+  </div>
+
+  <script>
+    // ─── BAR CHART ───
+    const ctx = document.getElementById('impactChart').getContext('2d');
+
+    const labels = [
+      'Operations Command Center',
+      'Scheduling Optimization',
+      'Collections Accountability',
+      'Cross-Location KPI Visibility',
+      'Morning Huddle Prep',
+      'Team Onboarding'
+    ];
+
+    const currentData = [5, 10, 15, 5, 20, 10];
+    const targetData = [90, 75, 80, 95, 85, 65];
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Current (Manual)',
+            data: currentData,
+            backgroundColor: 'rgba(148, 163, 184, 0.3)',
+            borderColor: 'rgba(148, 163, 184, 0.5)',
+            borderWidth: 1,
+            borderRadius: 4,
+          },
+          {
+            label: 'After Build (Estimated)',
+            data: targetData,
+            backgroundColor: 'rgba(37, 99, 235, 0.7)',
+            borderColor: 'rgba(37, 99, 235, 0.9)',
+            borderWidth: 1,
+            borderRadius: 4,
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: {
+              color: 'rgba(51,65,85,0.85)',
+              font: { size: 12 },
+              boxWidth: 14,
+              padding: 16
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function (ctx) {
+                return ` ${ctx.dataset.label}: ${ctx.raw}% automated`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            grid: { color: 'rgba(148,163,184,0.25)' },
+            ticks: {
+              color: 'rgba(51,65,85,0.85)',
+              callback: v => v + '%',
+              font: { size: 11 }
+            }
+          },
+          y: {
+            grid: { display: false },
+            ticks: {
+              color: 'rgba(51,65,85,0.85)',
+              font: { size: 12 }
+            }
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>
