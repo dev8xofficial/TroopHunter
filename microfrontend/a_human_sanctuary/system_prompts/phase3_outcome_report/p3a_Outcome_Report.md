@@ -596,29 +596,29 @@ inline — no external files except Chart.js loaded from CDN.
     line-height: 1.6;
   }
 
-  /* ── LAYOUT ── */
-  .page { max-width: 960px; margin: 0 auto; padding: 0 16px; }
-  section { padding: 56px 40px; border-bottom: 1px solid var(--gray-200); }
-  section:last-child { border-bottom: none; }
+  /* ── LAYOUT (stacked white "cards" on a soft gray page) ── */
+  .page { max-width: 960px; margin: 0 auto; padding: 0 24px 64px; }
+  section { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); box-shadow: var(--shadow); padding: 36px 40px; margin-top: 20px; }
+  .page > section:first-child { margin-top: 28px; }
   .section-label {
     font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--gray-400); margin-bottom: 8px;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
   }
   h2 { font-size: 24px; font-weight: 700; color: var(--navy); margin-bottom: 24px; letter-spacing: -0.01em; }
   h3 { font-size: 17px; font-weight: 600; color: var(--navy); margin-bottom: 12px; }
   p { color: var(--gray-700); line-height: 1.65; }
 
-  /* ── HERO ── */
-  .hero { background: var(--navy); color: var(--white); padding: 0; border-bottom: none; position: relative; overflow: hidden; }
+  /* ── HERO (full-bleed; sits ABOVE .page — never inside it. No negative margins) ── */
+  .hero { background: var(--navy); color: var(--white); position: relative; overflow: hidden; border: none; border-radius: 0; box-shadow: none; margin: 0; padding: 0; }
   .hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 420px; height: 420px; background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 70%); pointer-events: none; }
-  .hero-inner { padding: 48px 40px 0; position: relative; z-index: 1; }
-  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 44px; }
+  .hero-inner { max-width: 960px; margin: 0 auto; padding: 48px 40px; position: relative; z-index: 1; }
+  .hero-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px; margin-bottom: 40px; }
   .hero-meta-brand {
     font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; color: rgba(255,255,255,0.45);
+    text-transform: uppercase; color: rgba(255,255,255,0.55);
   }
-  .hero-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.25); }
-  .hero-meta-date { font-size: 12px; color: rgba(255,255,255,0.35); }
+  .hero-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+  .hero-meta-date { font-size: 12px; color: rgba(255,255,255,0.5); }
   .hero-headline {
     font-size: clamp(28px, 4vw, 40px); font-weight: 700; line-height: 1.2;
     letter-spacing: -0.02em; color: var(--white); max-width: 680px; margin-bottom: 16px;
@@ -628,7 +628,7 @@ inline — no external files except Chart.js loaded from CDN.
     font-size: 16px; color: rgba(255,255,255,0.6); max-width: 580px;
     margin-bottom: 44px; line-height: 1.6;
   }
-  .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 36px; }
   .hero-stat {
     background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
     border-radius: var(--radius); padding: 20px 22px;
@@ -638,23 +638,17 @@ inline — no external files except Chart.js loaded from CDN.
   .hero-stat-value.green { color: #4ade80; }
   .hero-stat-value.amber { color: #fbbf24; }
   .hero-stat-label { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.4; margin-bottom: 6px; }
-  .hero-stat-source { font-size: 11px; color: rgba(255,255,255,0.3); font-style: italic; }
+  .hero-stat-source { font-size: 11px; color: rgba(255,255,255,0.45); font-style: italic; }
 
-  /* ── GLANCE STRIP ── */
-  .glance-strip {
-    background: rgba(255,255,255,0.04); border-top: 1px solid rgba(255,255,255,0.08);
-    padding: 20px 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 36px;
-    position: relative; z-index: 1;
-  }
-  .glance-item { padding: 0 24px 0 0; border-right: 1px solid rgba(255,255,255,0.08); }
-  .glance-item:first-child { padding-left: 0; }
-  .glance-item:nth-child(2) { padding-left: 24px; }
-  .glance-item:last-child { border-right: none; padding-right: 0; padding-left: 24px; }
+  /* ── AT-A-GLANCE (a bordered box INSIDE .hero-inner, below the stats) ── */
+  .glance-strip { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(255,255,255,0.14); border-radius: var(--radius); overflow: hidden; }
+  .glance-item { padding: 16px 20px; border-right: 1px solid rgba(255,255,255,0.14); }
+  .glance-item:last-child { border-right: none; }
   .glance-label {
     font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(255,255,255,0.3); margin-bottom: 5px;
+    color: rgba(255,255,255,0.5); margin-bottom: 5px;
   }
-  .glance-value { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.4; font-weight: 500; }
+  .glance-value { font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.4; font-weight: 500; }
 
   /* ── GENERIC CARDS / GRIDS ── */
   .card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
@@ -707,17 +701,21 @@ inline — no external files except Chart.js loaded from CDN.
   .research-table tr:last-child td { border-bottom: none; }
   .research-table td:first-child { font-weight: 600; color: var(--navy); width: 22%; }
 
-  /* ── FUTURE RISK CARDS (SECTION 4) ── */
+  /* ── FUTURE RISK CARDS (SECTION 4) — color-coded top accent (r1/r2/r3) ── */
   .risk-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .risk-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); border-top: 3px solid var(--red); }
+  .risk-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 22px; position: relative; overflow: hidden; }
+  .risk-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .risk-card.r1::before { background: var(--red); }
+  .risk-card.r2::before { background: var(--amber); }
+  .risk-card.r3::before { background: var(--blue); }
+  .risk-card-when { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-400); font-weight: 700; margin-bottom: 6px; }
   .risk-card-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
   .risk-card-break { font-size: 13px; color: var(--gray-600); margin-bottom: 12px; line-height: 1.5; }
-  .risk-card-prevent { font-size: 12.5px; color: var(--green); background: var(--green-pale); border-radius: var(--radius-sm); padding: 8px 12px; line-height: 1.4; }
-  .risk-card-prevent strong { display: block; font-weight: 700; margin-bottom: 2px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .risk-card-prevent { font-size: 12px; color: var(--green); font-weight: 600; padding-top: 10px; border-top: 1px solid var(--gray-100); line-height: 1.45; }
 
   /* ── SOLUTION CARDS (SECTION 5) ── */
   .solutions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .sol-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .sol-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; }
   .sol-card.featured { grid-column: 1 / -1; }
   .sol-card-header { background: var(--navy); padding: 16px 20px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
   .sol-card-name { font-size: 14px; font-weight: 700; color: var(--white); line-height: 1.3; }
@@ -744,31 +742,35 @@ inline — no external files except Chart.js loaded from CDN.
   .ba-before { color: var(--gray-400); }
   .ba-after { color: var(--navy); font-weight: 600; }
 
-  /* ── ROI / OPERATIONAL IMPACT (SECTION 6) ── */
-  .roi-section { background: var(--navy); }
-  .roi-section h2 { color: var(--white); }
-  .roi-section .section-label { color: rgba(255,255,255,0.35); }
-  .roi-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 32px; }
-  .roi-stat { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 18px 16px; text-align: center; }
-  .roi-stat-val { font-size: 28px; font-weight: 700; color: var(--white); letter-spacing: -0.02em; margin-bottom: 5px; line-height: 1; }
-  .roi-stat-val.green { color: #4ade80; }
-  .roi-stat-val.blue { color: #60a5fa; }
-  .roi-stat-label { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.4; }
-  .chart-container { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 24px; margin-bottom: 28px; }
+  /* ── ROI / OPERATIONAL IMPACT (SECTION 6) — light card; dark panel only for number treatment ── */
+  .roi-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+  .roi-stat { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 18px 16px; text-align: center; }
+  .roi-stat-val { font-size: 28px; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 5px; line-height: 1; }
+  .roi-stat-val.green { color: var(--green); }
+  .roi-stat-val.blue { color: var(--blue); }
+  .roi-stat-label { font-size: 12px; color: var(--gray-500); line-height: 1.4; }
+  .chart-container { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 24px; margin-bottom: 24px; }
   .chart-container canvas { display: block; width: 100% !important; height: auto !important; }
-  .chart-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 16px; letter-spacing: 0.03em; }
-  .numbers-panel { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 22px; }
-  .numbers-panel-title { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
-  .numbers-group { margin-bottom: 16px; }
-  .numbers-group:last-child { margin-bottom: 0; }
-  .numbers-group-label { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.07); }
-  .numbers-row { display: flex; justify-content: space-between; align-items: flex-start; font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 6px; gap: 16px; line-height: 1.4; }
-  .numbers-row-label { flex: 1; }
-  .numbers-row-basis { font-size: 11px; color: rgba(255,255,255,0.3); font-style: italic; text-align: right; flex-shrink: 0; }
+  .chart-title { font-size: 13px; font-weight: 600; color: var(--gray-700); margin-bottom: 16px; }
+  /* number-treatment: the ONE dark panel — colored dots + source badges */
+  .numbers-panel { background: var(--navy); color: var(--white); border-radius: var(--radius-sm); padding: 24px; }
+  .numbers-panel-title { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.85); margin-bottom: 16px; }
+  .nt-rows { display: flex; flex-direction: column; gap: 10px; }
+  .nt-row { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 10px 14px; background: rgba(255,255,255,0.06); border-radius: 6px; font-size: 12.5px; }
+  .nt-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .nt-green { background: #4ade80; }
+  .nt-blue { background: #60a5fa; }
+  .nt-amber { background: #fbbf24; }
+  .nt-desc { color: rgba(255,255,255,0.78); line-height: 1.5; }
+  .nt-desc strong { color: var(--white); }
+  .nt-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+  .badge-green { background: rgba(74,222,128,0.15); color: #4ade80; }
+  .badge-blue { background: rgba(96,165,250,0.18); color: #93c5fd; }
+  .badge-amber { background: rgba(251,191,36,0.15); color: #fbbf24; }
 
   /* ── STAKEHOLDER (SECTION 7) ── */
   .stakeholder-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .sh-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+  .sh-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 18px; }
   .sh-role { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 4px; }
   .sh-name { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
   .sh-row { margin-bottom: 9px; }
@@ -776,14 +778,12 @@ inline — no external files except Chart.js loaded from CDN.
   .sh-row-text { font-size: 12.5px; color: var(--gray-700); line-height: 1.4; }
   .sh-note { font-size: 13px; color: var(--gray-600); font-style: italic; }
 
-  /* ── CTA (SECTION 8) ── */
-  .cta-section { background: var(--gray-50); }
-  .cta-box { background: var(--navy); border: 1px solid var(--navy-light); border-radius: var(--radius); padding: 44px 48px; box-shadow: var(--shadow-md); text-align: center; max-width: 680px; margin: 0 auto; position: relative; overflow: hidden; }
-  .cta-box::before { content: ''; position: absolute; bottom: -70px; left: 50%; transform: translateX(-50%); width: 520px; height: 320px; background: radial-gradient(circle, rgba(37,99,235,0.22) 0%, transparent 65%); pointer-events: none; }
-  .cta-box > * { position: relative; z-index: 1; }
+  /* ── CTA (SECTION 8) — the section IS a navy gradient card; light text ── */
+  .cta-section { background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 100%); border: none; padding: 44px 48px; text-align: center; color: var(--white); }
+  .cta-box { max-width: 560px; margin: 0 auto; }
   .cta-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #60a5fa; margin-bottom: 12px; }
-  .cta-headline { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 14px; letter-spacing: -0.01em; line-height: 1.3; }
-  .cta-body { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.65; margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .cta-headline { font-size: 26px; font-weight: 700; color: var(--white); margin-bottom: 14px; letter-spacing: -0.01em; line-height: 1.3; }
+  .cta-body { font-size: 15px; color: rgba(255,255,255,0.68); line-height: 1.6; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; }
   .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
   .btn-primary { display: inline-block; background: var(--blue); color: var(--white); padding: 13px 28px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; text-decoration: none; letter-spacing: 0.01em; transition: background 0.15s; }
   .btn-primary:hover { background: var(--blue-light); }
@@ -794,7 +794,7 @@ inline — no external files except Chart.js loaded from CDN.
   .timeline-strip { display: flex; align-items: flex-start; gap: 0; padding: 28px 0 0; position: relative; flex-wrap: wrap; }
   .timeline-phase { flex: 1; position: relative; padding-right: 20px; min-width: 220px; }
   .timeline-phase:last-child { padding-right: 0; }
-  .timeline-dot { width: 34px; height: 34px; border-radius: 50%; background: var(--blue); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; margin-bottom: 10px; position: relative; z-index: 1; box-shadow: 0 0 0 4px var(--gray-50); }
+  .timeline-dot { width: 34px; height: 34px; border-radius: 50%; background: var(--blue); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; margin-bottom: 10px; position: relative; z-index: 1; box-shadow: 0 0 0 4px var(--white); }
   .timeline-phase::after { content: ''; position: absolute; top: 16px; left: 32px; right: 20px; height: 1px; background: var(--gray-200); }
   .timeline-phase:last-child::after { display: none; }
   .timeline-label { font-size: 11px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
@@ -807,31 +807,39 @@ inline — no external files except Chart.js loaded from CDN.
 
   /* ── FOOTER (fixed — never restyle) ── */
   .footer { background: var(--navy); padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; }
-  .footer-brand { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.4); letter-spacing: 0.04em; }
-  .footer-note { font-size: 12px; color: rgba(255,255,255,0.25); }
+  .footer-brand { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; }
+  .footer-note { font-size: 12px; color: rgba(255,255,255,0.4); }
 
   /* ── RESPONSIVE ── */
+  /* Tablet: relax the densest grids before the full single-column collapse */
+  @media (max-width: 900px) {
+    .roi-stat-grid, .card-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .risk-cards, .stakeholder-cards, .card-grid-3 { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 720px) {
-    section { padding: 40px 24px; }
-    .hero-inner { padding: 36px 24px 0; }
-    .glance-strip { padding: 18px 24px; grid-template-columns: 1fr; gap: 16px; }
-    .glance-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 0 16px 0 !important; }
-    .glance-item:last-child { border-bottom: none; padding-bottom: 0 !important; }
+    section { padding: 24px; }
+    .hero-inner { padding: 36px 24px; }
+    .glance-strip { grid-template-columns: 1fr; }
+    .glance-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.14); }
+    .glance-item:last-child { border-bottom: none; }
     .hero-stats { grid-template-columns: 1fr; }
     .two-col-cards { grid-template-columns: 1fr; }
-    .card-grid-2 { grid-template-columns: 1fr; }
-    .card-grid-3 { grid-template-columns: 1fr; }
-    .card-grid-4 { grid-template-columns: 1fr 1fr; }
+    .card-grid-2, .card-grid-3, .card-grid-4 { grid-template-columns: 1fr; }
     .risk-cards { grid-template-columns: 1fr; }
     .solutions-grid { grid-template-columns: 1fr; }
-    .roi-stat-grid { grid-template-columns: 1fr 1fr; }
+    .roi-stat-grid { grid-template-columns: repeat(2, 1fr); }
     .stakeholder-cards { grid-template-columns: 1fr; }
+    .nt-row { grid-template-columns: auto 1fr; }
+    .nt-badge { grid-column: 2; justify-self: start; margin-top: 4px; }
+    .cta-section { padding: 32px 24px; }
     .timeline-phase { flex: 1 1 100%; padding-right: 0; }
     .timeline-phase::after { display: none; }
     .footer { flex-direction: column; gap: 8px; text-align: center; }
   }
   @media print {
     .hero-stats { grid-template-columns: repeat(3, 1fr); }
+    .roi-stat-grid { grid-template-columns: repeat(4, 1fr); }
+    section { box-shadow: none; }
   }
 </style>
 ```
@@ -849,14 +857,14 @@ inline — no external files except Chart.js loaded from CDN.
   <!-- paste 6A <style> block here verbatim -->
 </head>
 <body>
+  <section class="hero">…</section>                         <!-- Section 1: full-bleed, ABOVE .page -->
   <div class="page">
-    <section class="hero">…</section>                       <!-- Section 1 -->
     <section class="outcome-section">…</section>             <!-- Section 2 -->
     <section>…</section>                                     <!-- Section 3: Current Problems -->
     <section class="transparency-section">…</section>        <!-- Section 3B -->
     <section>…</section>                                     <!-- Section 4: Future Risks -->
     <section>…</section>                                     <!-- Section 5: Solutions -->
-    <section class="roi-section">…</section>                 <!-- Section 6: Operational Impact -->
+    <section>…</section>                                     <!-- Section 6: Operational Impact -->
     <section>…</section>                                     <!-- Section 7: Stakeholders -->
     <section class="cta-section">…</section>                 <!-- Section 8: CTA -->
   </div>
@@ -902,15 +910,17 @@ with real content. Do not leave brackets in the output.
         <div class="hero-stat-source">[≤5-word source note]</div>
       </div>
     </div>
-  </div>
-  <div class="glance-strip">
-    <!-- exactly 3 .glance-item: Current bottleneck / Strongest unlock / Recommended next step -->
-    <div class="glance-item"><div class="glance-label">Current Bottleneck</div><div class="glance-value">[phrase]</div></div>
-    <div class="glance-item"><div class="glance-label">Strongest Unlock</div><div class="glance-value">[phrase]</div></div>
-    <div class="glance-item"><div class="glance-label">Recommended Next Step</div><div class="glance-value">[phrase]</div></div>
+    <div class="glance-strip">
+      <!-- exactly 3 .glance-item: Current bottleneck / Strongest unlock / Recommended next step -->
+      <div class="glance-item"><div class="glance-label">Current Bottleneck</div><div class="glance-value">[phrase]</div></div>
+      <div class="glance-item"><div class="glance-label">Strongest Unlock</div><div class="glance-value">[phrase]</div></div>
+      <div class="glance-item"><div class="glance-label">Recommended Next Step</div><div class="glance-value">[phrase]</div></div>
+    </div>
   </div>
 </section>
 ```
+The hero is the only full-bleed block: place it directly inside `<body>`, **before**
+`<div class="page">`. Never give `.hero` a negative margin.
 
 **6C-OUTCOME** (Section 2): use `.two-col-cards` with two `.outcome-card`
 (Desired Outcome / Buying Reason) **only if** the two differ; otherwise one
@@ -957,15 +967,18 @@ never cards), wrapped in `.table-scroll`. 4–6 rows.
 (Claim / Evidence We Used / What We'd Like to Confirm / Open Question).
 
 **6C-RISKS** (Section 4) — **canonical = `.risk-cards`** (always 3 cards, never a
-table).
+table). The three cards carry `r1` / `r2` / `r3` for the red / amber / blue top
+accent, in that order.
 ```html
 <div class="risk-cards">
-  <div class="risk-card">
+  <div class="risk-card r1">
+    <div class="risk-card-when">[e.g. 12–18 months out]</div>
     <div class="risk-card-title">[risk title]</div>
     <div class="risk-card-break">[what breaks in 12–24 months]</div>
-    <div class="risk-card-prevent"><strong>How the build prevents this</strong>[prevention]</div>
+    <div class="risk-card-prevent">→ [how the recommended build prevents this]</div>
   </div>
-  <!-- ×3 -->
+  <div class="risk-card r2"><!-- same structure --></div>
+  <div class="risk-card r3"><!-- same structure --></div>
 </div>
 ```
 
@@ -1006,11 +1019,12 @@ markup; the ASCII sketch later in this prompt is only a content reference.
 </div>
 ```
 
-**6C-ROI** (Section 6) — `.roi-section` containing, in this order: a
-`.roi-stat-grid` (4 `.roi-stat`), one `.chart-container` with a `<canvas>`, and
-one `.numbers-panel` grouped by source basis.
+**6C-ROI** (Section 6) — a plain `<section>` (white card) containing, in order: a
+`.roi-stat-grid` (4 light `.roi-stat`), one `.chart-container` with a `<canvas>`,
+and one `.numbers-panel` — the single dark panel, with exactly three `.nt-row`s
+(green = direct source, blue = estimated, amber = industry context).
 ```html
-<section class="roi-section">
+<section>
   <div class="section-label">Projected Operational Impact</div>
   <h2>[heading]</h2>
   <div class="roi-stat-grid">
@@ -1023,18 +1037,30 @@ one `.numbers-panel` grouped by source basis.
   </div>
   <div class="numbers-panel">
     <div class="numbers-panel-title">How We Treated Every Number in This Report</div>
-    <div class="numbers-group">
-      <div class="numbers-group-label">From [Company]'s Own Published Materials</div>
-      <div class="numbers-row"><span class="numbers-row-label">[metric]</span><span class="numbers-row-basis">[basis]</span></div>
+    <div class="nt-rows">
+      <div class="nt-row">
+        <span class="nt-dot nt-green"></span>
+        <span class="nt-desc"><strong>From [Company]'s own materials</strong> — [which figures]. These lead all headlines.</span>
+        <span class="nt-badge badge-green">Direct source</span>
+      </div>
+      <div class="nt-row">
+        <span class="nt-dot nt-blue"></span>
+        <span class="nt-desc"><strong>Calculated estimates</strong> — [which]. Shown with an "Estimated" label.</span>
+        <span class="nt-badge badge-blue">Estimated</span>
+      </div>
+      <div class="nt-row">
+        <span class="nt-dot nt-amber"></span>
+        <span class="nt-desc"><strong>Industry reference points</strong> — [which]. Context only, never a headline.</span>
+        <span class="nt-badge badge-amber">Industry context</span>
+      </div>
     </div>
-    <div class="numbers-group"><div class="numbers-group-label">Calculated Estimates</div>…</div>
-    <div class="numbers-group"><div class="numbers-group-label">Industry Reference Points</div>…</div>
   </div>
 </section>
 ```
 
-**6C-CHART** (Chart.js init — keep these locked styling options; only swap
-labels/data with real numbers from the solution cards):
+**6C-CHART** (Chart.js init — the chart now sits on a light panel, so axis text is
+dark. Keep these locked styling options; only swap labels/data with real numbers
+from the solution cards):
 ```html
 <script>
   new Chart(document.getElementById('impactChart').getContext('2d'), {
@@ -1044,7 +1070,7 @@ labels/data with real numbers from the solution cards):
       datasets: [{
         label: '[KPI name]',
         data: [/* real numbers */],
-        backgroundColor: '#3b82f6',
+        backgroundColor: '#2563eb',
         borderRadius: 6,
         barThickness: 22
       }]
@@ -1054,8 +1080,8 @@ labels/data with real numbers from the solution cards):
       responsive: true,
       plugins: { legend: { display: false } },
       scales: {
-        x: { grid: { color: 'rgba(255,255,255,0.08)' }, ticks: { color: 'rgba(255,255,255,0.55)' } },
-        y: { grid: { display: false }, ticks: { color: 'rgba(255,255,255,0.75)' } }
+        x: { grid: { color: '#f1f5f9' }, ticks: { color: '#64748b' } },
+        y: { grid: { display: false }, ticks: { color: '#334155' } }
       }
     }
   });
@@ -1067,10 +1093,11 @@ exists; each card has `.sh-role`, `.sh-name`, and `.sh-row`s (What matters most 
 Risk they care about). If data is thin, render one `.card` with a single
 `<p class="sh-note">Stakeholder mapping recommended during discovery.</p>`.
 
-**6C-CTA** (Section 8) — one `.cta-box`. It renders as a premium dark-navy panel
-with an automatic glow (CSS), so headline and body are light text — keep copy
-short and confident. Pick the variant by Confidence Signal; the **markup is
-identical**, only copy and button count change:
+**6C-CTA** (Section 8) — the `.cta-section` itself is a navy→blue gradient card
+(light text); the inner `.cta-box` just centers the copy. The demo button `href`
+must be a real hosted/shareable URL (or `#` if none yet) — **never** a local
+`file:///…` path, which is broken for the recipient. Pick the variant by
+Confidence Signal; the **markup is identical**, only copy and button count change:
 - High → one `.btn-primary` "Watch the Demo →"
 - Medium → one `.btn-primary` "Watch the Demo →" (copy invites feedback on estimates)
 - Low → `.btn-primary` "Watch the Demo →" + `.btn-secondary` "Book a 20-Minute Call →"
