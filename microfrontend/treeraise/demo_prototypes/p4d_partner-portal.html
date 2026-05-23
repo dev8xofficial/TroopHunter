@@ -2102,6 +2102,318 @@
       text-align: right;
     }
 
+    /* ── CONTENT STUDIO ── */
+    .cs-post-card {
+      border: 1.5px solid var(--border);
+      border-radius: var(--r);
+      background: var(--white);
+      overflow: hidden;
+      transition: border-color .15s, box-shadow .15s;
+    }
+
+    .cs-post-card:hover {
+      border-color: var(--forest3);
+      box-shadow: var(--shadow);
+    }
+
+    .cs-post-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink2);
+    }
+
+    .cs-post-body {
+      padding: 16px;
+      font-size: 13.5px;
+      color: var(--ink);
+      line-height: 1.65;
+      min-height: 100px;
+      white-space: pre-wrap;
+    }
+
+    .cs-post-footer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-top: 1px solid var(--border2);
+      background: var(--bg2);
+    }
+
+    .cs-channel-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 99px;
+      font-size: 10.5px;
+      font-weight: 600;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .cs-channel-fb {
+      background: #e8f0fe;
+      color: #1877f2;
+    }
+
+    .cs-channel-ig {
+      background: #fce4ec;
+      color: #c13584;
+    }
+
+    .cs-channel-tw {
+      background: #e8f5fd;
+      color: #1da1f2;
+    }
+
+    .cs-channel-em {
+      background: var(--mint3);
+      color: var(--forest2);
+    }
+
+    .cs-regen-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border-radius: var(--r-sm);
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--forest3);
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .cs-regen-btn:hover {
+      border-color: var(--forest3);
+      background: var(--mint3);
+    }
+
+    /* ── EMAIL BUILDER ── */
+    .eb-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r);
+      background: var(--white);
+      margin-bottom: 10px;
+      transition: border-color .15s;
+      position: relative;
+    }
+
+    .eb-step:hover {
+      border-color: var(--forest3);
+    }
+
+    .eb-step.editing {
+      border-color: var(--forest3);
+      box-shadow: var(--shadow2);
+    }
+
+    .eb-step-num {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--forest2);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .eb-step-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .eb-step-title {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .eb-step-meta {
+      font-size: 11.5px;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+    }
+
+    .eb-step-subject {
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: var(--bg2);
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--ink2);
+      font-style: italic;
+    }
+
+    .eb-editor-area {
+      display: none;
+      margin-top: 12px;
+      padding: 14px;
+      background: var(--bg2);
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+    }
+
+    .eb-editor-area.open {
+      display: block;
+      animation: fadeUp .2s ease;
+    }
+
+    .eb-editor-area textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-sm);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 13.5px;
+      color: var(--ink);
+      background: var(--white);
+      outline: none;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .eb-editor-area textarea:focus {
+      border-color: var(--forest3);
+    }
+
+    .eb-merge-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .eb-merge-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      background: var(--mint3);
+      color: var(--forest2);
+      padding: 3px 9px;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      transition: all .12s;
+    }
+
+    .eb-merge-tag:hover {
+      background: var(--forest2);
+      color: #fff;
+    }
+
+    /* ── ANALYTICS MINI CHART BARS ── */
+    .an-bar-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 80px;
+      padding-top: 4px;
+    }
+
+    .an-bar {
+      flex: 1;
+      background: linear-gradient(180deg, var(--forest3), var(--mint));
+      border-radius: 3px 3px 0 0;
+      min-width: 8px;
+      transition: height .4s ease;
+    }
+
+    .an-bar.muted {
+      background: var(--border);
+    }
+
+    .an-metric-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border2);
+      font-size: 13px;
+    }
+
+    .an-metric-row:last-child {
+      border-bottom: none;
+    }
+
+    .an-metric-label {
+      color: var(--muted);
+    }
+
+    .an-metric-val {
+      font-weight: 700;
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* ── MILESTONE ALERT CONFIG ── */
+    .ma-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      background: var(--white);
+      margin-bottom: 8px;
+      transition: border-color .15s;
+    }
+
+    .ma-toggle:hover {
+      border-color: var(--forest3);
+    }
+
+    .ma-switch {
+      width: 40px;
+      height: 22px;
+      border-radius: 99px;
+      background: var(--border);
+      cursor: pointer;
+      position: relative;
+      transition: background .2s;
+    }
+
+    .ma-switch.on {
+      background: var(--forest3);
+    }
+
+    .ma-switch::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .15);
+      transition: transform .2s;
+    }
+
+    .ma-switch.on::after {
+      transform: translateX(18px);
+    }
+
     /* ── TEMPLATE CARD ── */
     .tmpl-card {
       border: 1.5px solid var(--border);
@@ -3708,225 +4020,1091 @@
         <div class="page-header">
           <div class="page-header-inner">
             <div>
-              <div class="ph-label">Campaigns</div>
+              <div class="ph-label">Campaign Operations Hub</div>
               <div class="ph-title">My Campaigns</div>
-              <div class="ph-sub">Manage active, upcoming, and past fundraising campaigns</div>
+              <div class="ph-sub">Create, manage, promote, and analyze your fundraising campaigns</div>
             </div>
-            <div class="ph-actions"><button class="btn btn-primary">+ New Campaign</button></div>
+            <div class="ph-actions"><button class="btn btn-primary"
+                onclick="showPage('page-setup', document.querySelector('[onclick*=setup]'))">+ New Campaign</button>
+            </div>
           </div>
         </div>
         <div class="content">
-          <div class="alert alert-info mb24">📢 You have 1 active campaign. <strong>Spring Tree Drive 2025</strong> is
-            39% to goal with 29 days remaining.</div>
 
-          <!-- Active live campaign — wrapped in .camp-card for JS targeting -->
-          <div class="camp-card" style="margin-bottom:10px">
-            <div class="camp-row" style="margin-bottom:0;border-radius:var(--r) var(--r) 0 0;border-bottom:none">
-              <span class="camp-icon">🌱</span>
-              <div style="flex:1">
-                <div class="camp-name">Spring Tree Drive 2025</div>
-                <div class="camp-date">Mar 1 – Apr 15, 2025 · 312 donors</div>
-                <div style="margin-top:6px">
-                  <div class="prog-track" style="height:5px;max-width:200px">
-                    <div class="prog-fill" style="width:39%"></div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div class="camp-raised">$4,820</div>
-                <div class="camp-trees">322 trees · 39% of $12,400</div>
-              </div>
-              <span class="pill pill-green" style="margin-left:8px">● Live</span>
-            </div>
-            <!-- Campaign action row -->
-            <div
-              style="display:flex;align-items:center;gap:9px;padding:10px 18px;background:var(--bg2);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r)">
-              <button class="btn btn-secondary btn-sm"
-                onclick="showPage('page-campaigns', document.querySelector('[onclick*=campaigns]'))">📊 View
-                Details</button>
-              <button class="btn btn-secondary btn-sm" onclick="showToast('Campaign link copied to clipboard!')">🔗
-                Share Link</button>
-              <div style="margin-left:auto">
-                <button class="btn btn-danger btn-sm" onclick="closeCampaign(this)">🔒 Close Campaign</button>
-              </div>
-            </div>
-            <!-- Confirmation alert — hidden until Close is triggered -->
-            <div id="close-campaign-alert" class="alert alert-success"
-              style="display:none;margin-top:12px;border-radius:var(--r-sm)">
-              ✅ Campaign closed. Impact report will be ready within 24 hours. Disbursement record created.
-            </div>
+          <!-- Campaign Tabs -->
+          <div class="tab-row" id="camp-tabs">
+            <button class="tab-btn active" onclick="switchTab('camp-tabs','camp-pane-',0)">📋 Campaigns</button>
+            <button class="tab-btn" onclick="switchTab('camp-tabs','camp-pane-',1)">🎨 Content Studio</button>
+            <button class="tab-btn" onclick="switchTab('camp-tabs','camp-pane-',2)">📧 Email Builder</button>
+            <button class="tab-btn" onclick="switchTab('camp-tabs','camp-pane-',3)">📈 Analytics</button>
+            <button class="tab-btn" onclick="switchTab('camp-tabs','camp-pane-',4)">🔔 Milestone Alerts</button>
           </div>
 
-          <!-- CHANGE-P6: Email Sequence Manager -->
-          <div class="card" style="overflow:hidden;margin-bottom:14px">
-            <div
-              style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;cursor:pointer;background:var(--bg2);border-bottom:1px solid var(--border)"
-              onclick="toggleEmailSeq()">
-              <div style="display:flex;align-items:center;gap:10px">
-                <span style="font-size:16px">📧</span>
+          <!-- ═══ TAB 0: CAMPAIGN MANAGER ═══ -->
+          <div id="camp-pane-0" class="tab-pane active">
+            <div class="alert alert-info mb24">📢 You have 1 active campaign. <strong>Spring Tree Drive 2025</strong> is
+              39% to goal with 29 days remaining.</div>
+
+            <!-- Active live campaign -->
+            <div class="camp-card" style="margin-bottom:10px">
+              <div class="camp-row" style="margin-bottom:0;border-radius:var(--r) var(--r) 0 0;border-bottom:none">
+                <span class="camp-icon">🌱</span>
+                <div style="flex:1">
+                  <div class="camp-name">Spring Tree Drive 2025</div>
+                  <div class="camp-date">Mar 1 – Apr 15, 2025 · 312 donors</div>
+                  <div style="margin-top:6px">
+                    <div class="prog-track" style="height:5px;max-width:200px">
+                      <div class="prog-fill" style="width:39%"></div>
+                    </div>
+                  </div>
+                </div>
                 <div>
-                  <div style="font-weight:600;font-size:14px;color:var(--ink)">Email Sequence — Spring Tree Drive 2025
-                  </div>
-                  <div style="font-size:12px;color:var(--muted);margin-top:2px">4 automated emails · 1 sent · 2
-                    scheduled · 1 pending</div>
+                  <div class="camp-raised">$4,820</div>
+                  <div class="camp-trees">322 trees · 39% of $12,400</div>
                 </div>
-              </div>
-              <span id="email-seq-chevron" style="font-size:18px;color:var(--muted);transition:transform .2s">▾</span>
-            </div>
-            <div id="email-seq-body">
-              <div style="padding:0 20px">
-
-                <!-- Row 1: Launch Email — Sent -->
-                <div class="comms-row">
-                  <div
-                    style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:14px;flex-shrink:0">
-                    1</div>
-                  <div class="comms-row-left">
-                    <div class="comms-row-title">Launch Email <span
-                        style="font-size:11px;color:var(--muted);font-weight:400">· Day 0</span></div>
-                    <div class="comms-row-sub">Our TreeRaise Fundraiser Starts Today</div>
-                  </div>
-                  <div style="flex-shrink:0"><span class="pill pill-green" style="font-size:10px">✅ Sent Mar 1</span>
-                  </div>
-                  <div class="comms-row-actions">
-                    <button class="btn btn-secondary btn-sm"
-                      onclick="showToast('Email preview opened')">Preview</button>
-                  </div>
-                </div>
-
-                <!-- Row 2: Mid-Drive — Scheduled -->
-                <div class="comms-row">
-                  <div
-                    style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:14px;flex-shrink:0">
-                    2</div>
-                  <div class="comms-row-left">
-                    <div class="comms-row-title">Mid-Drive <span
-                        style="font-size:11px;color:var(--muted);font-weight:400">· Day 15</span></div>
-                    <div class="comms-row-sub">Halfway There — Thank You for Your Support</div>
-                  </div>
-                  <div style="flex-shrink:0"><span class="pill pill-blue" style="font-size:10px">🕐 Scheduled Mar
-                      16</span></div>
-                  <div class="comms-row-actions">
-                    <button class="btn btn-secondary btn-sm"
-                      onclick="showToast('Email preview opened')">Preview</button>
-                    <button class="btn btn-secondary btn-sm"
-                      onclick="showToast('Email editor opened — customize your message before it sends')">Edit</button>
-                  </div>
-                </div>
-
-                <!-- Row 3: Final Push — Scheduled -->
-                <div class="comms-row">
-                  <div
-                    style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:14px;flex-shrink:0">
-                    3</div>
-                  <div class="comms-row-left">
-                    <div class="comms-row-title">Final Push <span
-                        style="font-size:11px;color:var(--muted);font-weight:400">· Day 28–29</span></div>
-                    <div class="comms-row-sub">Last Day to Support Our TreeRaise Fundraiser</div>
-                  </div>
-                  <div style="flex-shrink:0"><span class="pill pill-blue" style="font-size:10px">🕐 Scheduled Mar
-                      29</span></div>
-                  <div class="comms-row-actions">
-                    <button class="btn btn-secondary btn-sm"
-                      onclick="showToast('Email preview opened')">Preview</button>
-                    <button class="btn btn-secondary btn-sm"
-                      onclick="showToast('Email editor opened — customize your message before it sends')">Edit</button>
-                  </div>
-                </div>
-
-                <!-- Row 4: Wrap-Up — Pending close -->
-                <div class="comms-row" style="opacity:.6">
-                  <div
-                    style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:14px;flex-shrink:0">
-                    4</div>
-                  <div class="comms-row-left">
-                    <div class="comms-row-title">Wrap-Up <span
-                        style="font-size:11px;color:var(--muted);font-weight:400">· Within 24h of close</span></div>
-                    <div class="comms-row-sub">Thank You for Supporting Our TreeRaise Fundraiser</div>
-                  </div>
-                  <div style="flex-shrink:0"><span class="pill pill-gray" style="font-size:10px">⏸ Pending campaign
-                      close</span></div>
-                  <div class="comms-row-actions">
-                    <span style="font-size:12px;color:var(--muted)">—</span>
-                  </div>
-                </div>
-
+                <span class="pill pill-green" style="margin-left:8px">● Live</span>
               </div>
               <div
-                style="padding:11px 20px;background:var(--bg2);border-top:1px solid var(--border2);font-size:12px;color:var(--muted);font-style:italic;line-height:1.8">
-                Templates use merge tags:
-                <code
-                  style="font-family:'DM Mono',monospace;font-size:11px;background:var(--border);padding:1px 6px;border-radius:4px;font-style:normal">{ORG_NAME}</code>
-                <code
-                  style="font-family:'DM Mono',monospace;font-size:11px;background:var(--border);padding:1px 6px;border-radius:4px;font-style:normal">{CAMPAIGN_URL}</code>
-                <code
-                  style="font-family:'DM Mono',monospace;font-size:11px;background:var(--border);padding:1px 6px;border-radius:4px;font-style:normal">{TREE_COUNT}</code>
-                <code
-                  style="font-family:'DM Mono',monospace;font-size:11px;background:var(--border);padding:1px 6px;border-radius:4px;font-style:normal">{TOTAL_RAISED}</code>
-                <code
-                  style="font-family:'DM Mono',monospace;font-size:11px;background:var(--border);padding:1px 6px;border-radius:4px;font-style:normal">{GOAL}</code>
+                style="display:flex;align-items:center;gap:9px;padding:10px 18px;background:var(--bg2);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r)">
+                <button class="btn btn-secondary btn-sm" onclick="switchTab('camp-tabs','camp-pane-',3)">📊
+                  Analytics</button>
+                <button class="btn btn-secondary btn-sm" onclick="switchTab('camp-tabs','camp-pane-',1)">🎨
+                  Content</button>
+                <button class="btn btn-secondary btn-sm" onclick="copyCampaignLink()">🔗 Share Link</button>
+                <button class="btn btn-secondary btn-sm" onclick="switchTab('camp-tabs','camp-pane-',2)">📧
+                  Emails</button>
+                <div style="margin-left:auto">
+                  <button class="btn btn-danger btn-sm" onclick="closeCampaign(this)">🔒 Close Campaign</button>
+                </div>
+              </div>
+              <div id="close-campaign-alert" class="alert alert-success"
+                style="display:none;margin-top:12px;border-radius:var(--r-sm)">
+                ✅ Campaign closed. Impact report auto-generated and delivered. Disbursement record created.
+              </div>
+            </div>
+
+            <!-- Closed campaigns with Run Again -->
+            <div class="camp-card" style="margin-bottom:10px">
+              <div class="camp-row" style="margin-bottom:0;border-radius:var(--r) var(--r) 0 0;border-bottom:none">
+                <span class="camp-icon">❄️</span>
+                <div style="flex:1">
+                  <div class="camp-name">Winter Community Drive 2024</div>
+                  <div class="camp-date">Dec 1 – Dec 31, 2024 · 482 donors</div>
+                </div>
+                <div>
+                  <div class="camp-raised">$8,240</div>
+                  <div class="camp-trees">825 trees planted</div>
+                </div>
+                <span class="pill pill-gray" style="margin-left:8px">Closed</span>
+              </div>
+              <div
+                style="display:flex;align-items:center;gap:9px;padding:10px 18px;background:var(--bg2);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r)">
+                <button class="btn btn-secondary btn-sm"
+                  onclick="showToast('Impact report downloaded: Winter_Community_Drive_2024.pdf')">📄 Impact
+                  Report</button>
+                <button class="btn btn-secondary btn-sm" onclick="cloneCampaign('Winter Community Drive','❄️')">🔄 Run
+                  Again</button>
+                <button class="btn btn-ghost btn-sm"
+                  onclick="showToast('Donor list exported: winter_drive_2024_donors.csv')">📥 Export Donors</button>
+              </div>
+            </div>
+
+            <div class="camp-card" style="margin-bottom:10px">
+              <div class="camp-row" style="margin-bottom:0;border-radius:var(--r) var(--r) 0 0;border-bottom:none">
+                <span class="camp-icon">🍂</span>
+                <div style="flex:1">
+                  <div class="camp-name">Fall Roots Campaign 2024</div>
+                  <div class="camp-date">Sep 15 – Oct 31, 2024 · 386 donors</div>
+                </div>
+                <div>
+                  <div class="camp-raised">$4,140</div>
+                  <div class="camp-trees">322 trees planted</div>
+                </div>
+                <span class="pill pill-gray" style="margin-left:8px">Closed</span>
+              </div>
+              <div
+                style="display:flex;align-items:center;gap:9px;padding:10px 18px;background:var(--bg2);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r)">
+                <button class="btn btn-secondary btn-sm"
+                  onclick="showToast('Impact report downloaded: Fall_Roots_Campaign_2024.pdf')">📄 Impact
+                  Report</button>
+                <button class="btn btn-secondary btn-sm" onclick="cloneCampaign('Fall Roots Campaign','🍂')">🔄 Run
+                  Again</button>
+                <button class="btn btn-ghost btn-sm"
+                  onclick="showToast('Donor list exported: fall_roots_2024_donors.csv')">📥 Export Donors</button>
+              </div>
+            </div>
+
+            <!-- Draft campaign -->
+            <div class="camp-card" style="margin-bottom:10px">
+              <div class="camp-row" style="margin-bottom:0;border-radius:var(--r) var(--r) 0 0;border-bottom:none">
+                <span class="camp-icon">☀️</span>
+                <div style="flex:1">
+                  <div class="camp-name">Summer Tree Drive 2026</div>
+                  <div class="camp-date">Goal: $15,000 · Start date TBD</div>
+                </div>
+                <div>
+                  <div style="font-size:12px;color:var(--muted);text-align:right;font-family:'DM Mono',monospace">Not
+                    launched yet</div>
+                </div>
+                <span class="pill pill-gray" style="margin-left:8px">⏸ Draft</span>
+              </div>
+              <div
+                style="display:flex;align-items:center;gap:9px;padding:10px 18px;background:var(--bg2);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r)">
+                <button class="btn btn-secondary btn-sm"
+                  onclick="showToast('Campaign editor opened — edit goal, dates, and branding')">✏️ Edit</button>
+                <button class="btn btn-secondary btn-sm"
+                  onclick="showToast('Generating preview content for Summer Tree Drive 2026...');switchTab('camp-tabs','camp-pane-',1)">🎨
+                  Pre-Generate Content</button>
+                <button class="btn btn-primary btn-sm" onclick="launchCampaign(this)">🚀 Launch Campaign</button>
+              </div>
+            </div>
+
+            <!-- Clone confirmation (hidden by default) -->
+            <div id="clone-confirm" class="alert alert-success" style="display:none;margin-bottom:14px">
+              ✅ Campaign cloned! <strong id="clone-name-display"></strong> has been created as a draft with your
+              previous branding, region, and templates. <a href="#"
+                onclick="event.preventDefault();document.getElementById('clone-confirm').style.display='none'">Dismiss</a>
+            </div>
+
+            <!-- Self-Serve Campaign Builder CTA -->
+            <div class="hero-banner" style="margin-top:24px">
+              <div style="position:relative;z-index:1">
+                <div class="hero-tag">Self-Serve Campaign Builder</div>
+                <div class="hero-title">Ready to build your next campaign?</div>
+                <div class="hero-body" style="margin-bottom:16px">Launch a campaign in under 5 minutes. Set your goal,
+                  choose a region, customize branding, and auto-generate all your marketing content — no coach required.
+                </div>
+                <button class="btn btn-secondary"
+                  style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff"
+                  onclick="showPage('page-setup', document.querySelector('[onclick*=setup]'))">Open Campaign Builder
+                  →</button>
               </div>
             </div>
           </div>
 
-          <div class="camp-row">
-            <span class="camp-icon">❄️</span>
-            <div style="flex:1">
-              <div class="camp-name">Winter Community Drive 2024</div>
-              <div class="camp-date">Dec 1 – Dec 31, 2024 · 482 donors</div>
-            </div>
-            <div>
-              <div class="camp-raised">$8,240</div>
-              <div class="camp-trees">825 trees planted</div>
-            </div>
-            <span class="pill pill-gray" style="margin-left:8px">Closed</span>
-          </div>
-          <div class="camp-row">
-            <span class="camp-icon">🍂</span>
-            <div style="flex:1">
-              <div class="camp-name">Fall Roots Campaign 2024</div>
-              <div class="camp-date">Sep 15 – Oct 31, 2024 · 386 donors</div>
-            </div>
-            <div>
-              <div class="camp-raised">$4,140</div>
-              <div class="camp-trees">322 trees planted</div>
-            </div>
-            <span class="pill pill-gray" style="margin-left:8px">Closed</span>
-          </div>
-
-          <!-- Draft campaign — .camp-card wrapper for JS targeting -->
-          <div class="camp-card" style="margin-bottom:10px">
-            <div class="camp-row" style="margin-bottom:0;border-radius:var(--r) var(--r) 0 0;border-bottom:none">
-              <span class="camp-icon">☀️</span>
-              <div style="flex:1">
-                <div class="camp-name">Summer Tree Drive 2026</div>
-                <div class="camp-date">Goal: $15,000 · Start date TBD</div>
-              </div>
+          <!-- ═══ TAB 1: CONTENT STUDIO (Auto-Generated Campaign Content Engine) ═══ -->
+          <div id="camp-pane-1" class="tab-pane">
+            <div class="g2 mb24" style="align-items:flex-start">
               <div>
-                <div style="font-size:12px;color:var(--muted);text-align:right;font-family:'DM Mono',monospace">Not
-                  launched yet</div>
+                <div
+                  style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:4px">
+                  Content Studio</div>
+                <div style="font-size:13.5px;color:var(--muted)">Auto-generated social media posts, milestone updates,
+                  and marketing content — personalized with your campaign data.</div>
               </div>
-              <span class="pill pill-gray" style="margin-left:8px">⏸ Draft</span>
+              <div style="margin-left:auto;flex-shrink:0;display:flex;gap:8px">
+                <select id="cs-campaign-select" onchange="csGenerateContent()" style="min-width:180px">
+                  <option value="spring">Spring Tree Drive 2025 (Live)</option>
+                  <option value="summer">Summer Tree Drive 2026 (Draft)</option>
+                </select>
+                <button class="btn btn-primary btn-sm" onclick="csGenerateAll()">✨ Generate All Content</button>
+              </div>
             </div>
-            <div
-              style="display:flex;align-items:center;gap:9px;padding:10px 18px;background:var(--bg2);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r) var(--r)">
-              <button class="btn btn-secondary btn-sm" onclick="showToast('Campaign editor opened')">✏️ Edit</button>
-              <button class="btn btn-primary btn-sm" onclick="launchCampaign(this)">🚀 Launch Campaign</button>
+
+            <div class="alert alert-success mb24">✨ Content auto-populated using your campaign data: <strong>Riverside
+                Elementary PTA</strong> · Spring Tree Drive 2025 · Goal: $12,400 · 322 trees planted ·
+              treeraise.com/c/riverside-pta-spring-2025</div>
+
+            <!-- Social Media Posts -->
+            <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:12px">📱 Social Media Posts</div>
+            <div class="g2 mb24" style="gap:14px">
+              <!-- Facebook Post -->
+              <div class="cs-post-card">
+                <div class="cs-post-header">
+                  <span style="font-size:16px">📘</span> Facebook Launch Post
+                  <span class="cs-channel-pill cs-channel-fb" style="margin-left:auto">Facebook</span>
+                </div>
+                <div class="cs-post-body" id="cs-fb-launch">🌳 Exciting news! Riverside Elementary PTA has partnered
+                  with @TreeRaise to plant real, verified trees while raising funds for our school!
+
+                  Every dollar you give plants trees AND supports our community. Our goal: $12,400 and 827 trees.
+
+                  🔗 Donate now: treeraise.com/c/riverside-pta-spring-2025
+
+                  Together, we're growing something that lasts. 🌿💚
+
+                  #TreeRaise #PlantTrees #SchoolFundraiser #RiversideElementary</div>
+                <div class="cs-post-footer">
+                  <button class="btn btn-primary btn-sm" onclick="csCopyPost('cs-fb-launch')">📋 Copy</button>
+                  <button class="cs-regen-btn" onclick="csRegenPost('cs-fb-launch','facebook')">🔄 Regenerate</button>
+                  <button class="btn btn-ghost btn-sm" onclick="csEditPost('cs-fb-launch')">✏️ Edit</button>
+                </div>
+              </div>
+
+              <!-- Instagram Post -->
+              <div class="cs-post-card">
+                <div class="cs-post-header">
+                  <span style="font-size:16px">📸</span> Instagram Post
+                  <span class="cs-channel-pill cs-channel-ig" style="margin-left:auto">Instagram</span>
+                </div>
+                <div class="cs-post-body" id="cs-ig-launch">🌱 Plant a tree. Fund a school. Change the world.
+
+                  Riverside Elementary PTA is on a mission to raise $12,400 and plant 827 GPS-verified trees through
+                  @TreeRaise!
+
+                  Every contribution tier plants real trees:
+                  🌱 Seed — $15 (1 tree)
+                  🌿 Sapling — $45 (3 trees)
+                  🌳 Grove — $84 (6 trees)
+                  🏛️ Legacy — $156 (12 trees)
+
+                  Link in bio 🔗
+
+                  #TreeRaise #EcoFundraiser #PlantATree #RiversideElementary #GreenFuture #PTAFundraiser</div>
+                <div class="cs-post-footer">
+                  <button class="btn btn-primary btn-sm" onclick="csCopyPost('cs-ig-launch')">📋 Copy</button>
+                  <button class="cs-regen-btn" onclick="csRegenPost('cs-ig-launch','instagram')">🔄 Regenerate</button>
+                  <button class="btn btn-ghost btn-sm" onclick="csEditPost('cs-ig-launch')">✏️ Edit</button>
+                </div>
+              </div>
+
+              <!-- Twitter/X Post -->
+              <div class="cs-post-card">
+                <div class="cs-post-header">
+                  <span style="font-size:16px">🐦</span> X (Twitter) Post
+                  <span class="cs-channel-pill cs-channel-tw" style="margin-left:auto">X / Twitter</span>
+                </div>
+                <div class="cs-post-body" id="cs-tw-launch">🌳 Riverside Elementary PTA just launched our Spring Tree
+                  Drive with @TreeRaise!
+
+                  Every donation plants GPS-verified trees 🌍
+                  Goal: $12,400 → 827 trees
+
+                  No candy bars. No wrapping paper. Just real impact.
+
+                  👉 treeraise.com/c/riverside-pta-spring-2025</div>
+                <div class="cs-post-footer">
+                  <button class="btn btn-primary btn-sm" onclick="csCopyPost('cs-tw-launch')">📋 Copy</button>
+                  <button class="cs-regen-btn" onclick="csRegenPost('cs-tw-launch','twitter')">🔄 Regenerate</button>
+                  <button class="btn btn-ghost btn-sm" onclick="csEditPost('cs-tw-launch')">✏️ Edit</button>
+                </div>
+              </div>
+
+              <!-- Email Share Snippet -->
+              <div class="cs-post-card">
+                <div class="cs-post-header">
+                  <span style="font-size:16px">📧</span> Email Share Snippet
+                  <span class="cs-channel-pill cs-channel-em" style="margin-left:auto">Email</span>
+                </div>
+                <div class="cs-post-body" id="cs-email-snippet">Subject: Help Us Plant 827 Trees — Our Spring Fundraiser
+                  Is Live!
+
+                  Hi [Name],
+
+                  Riverside Elementary PTA has launched our Spring Tree Drive with TreeRaise! Instead of selling candy
+                  bars or wrapping paper, every contribution plants real, GPS-verified trees.
+
+                  Our goal: $12,400 to plant 827 trees.
+                  Your share: 50% of every dollar goes directly to our school.
+
+                  Donate here: treeraise.com/c/riverside-pta-spring-2025
+
+                  Every tree is verified by veritree with GPS coordinates. You'll see exactly where your impact grows.
+
+                  Thank you for supporting our community and our planet! 🌿</div>
+                <div class="cs-post-footer">
+                  <button class="btn btn-primary btn-sm" onclick="csCopyPost('cs-email-snippet')">📋 Copy</button>
+                  <button class="cs-regen-btn" onclick="csRegenPost('cs-email-snippet','email')">🔄 Regenerate</button>
+                  <button class="btn btn-ghost btn-sm" onclick="csEditPost('cs-email-snippet')">✏️ Edit</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Milestone Update Posts -->
+            <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:12px">🏆 Milestone Update Posts
+              <span style="font-size:11px;color:var(--muted);font-weight:400">Auto-generated when you hit each
+                milestone</span>
+            </div>
+            <div class="g2 mb24" style="gap:14px">
+              <div class="cs-post-card">
+                <div class="cs-post-header">
+                  <span style="font-size:16px">🎯</span> 25% Milestone
+                  <span class="pill pill-green" style="margin-left:auto;font-size:10px">✅ Reached</span>
+                </div>
+                <div class="cs-post-body" id="cs-milestone-25">🌿 UPDATE: We just hit 25% of our goal! 🎉
+
+                  Riverside Elementary PTA has already raised $3,100 and planted 207 trees through our Spring Tree Drive
+                  with @TreeRaise!
+
+                  75% more to go — every donation makes a difference. Who's next?
+
+                  👉 treeraise.com/c/riverside-pta-spring-2025</div>
+                <div class="cs-post-footer">
+                  <button class="btn btn-primary btn-sm" onclick="csCopyPost('cs-milestone-25')">📋 Copy</button>
+                  <button class="cs-regen-btn" onclick="csRegenPost('cs-milestone-25','milestone')">🔄
+                    Regenerate</button>
+                </div>
+              </div>
+
+              <div class="cs-post-card" style="opacity:.7">
+                <div class="cs-post-header">
+                  <span style="font-size:16px">🎯</span> 50% Milestone
+                  <span class="pill pill-gold" style="margin-left:auto;font-size:10px">⏳ Upcoming at $6,200</span>
+                </div>
+                <div class="cs-post-body" id="cs-milestone-50">🌳 HALFWAY THERE! Riverside Elementary PTA has raised
+                  $6,200 and planted 413 trees!
+
+                  Our community is incredible. Thank you to every donor who has contributed so far.
+
+                  Help us reach our goal of $12,400 → 827 trees 🌍
+
+                  👉 treeraise.com/c/riverside-pta-spring-2025
+
+                  #HalfwayThere #TreeRaise #SpringTreeDrive</div>
+                <div class="cs-post-footer">
+                  <button class="btn btn-primary btn-sm" onclick="csCopyPost('cs-milestone-50')">📋 Copy</button>
+                  <button class="cs-regen-btn" onclick="csRegenPost('cs-milestone-50','milestone')">🔄
+                    Regenerate</button>
+                </div>
+              </div>
+
+              <div class="cs-post-card" style="opacity:.5">
+                <div class="cs-post-header">
+                  <span style="font-size:16px">🎯</span> 75% Milestone
+                  <span class="pill pill-gray" style="margin-left:auto;font-size:10px">🔒 Unlocks at $9,300</span>
+                </div>
+                <div class="cs-post-body" id="cs-milestone-75">🔥 75% OF THE WAY! Only $3,100 left to reach our goal!
+
+                  Riverside Elementary PTA has planted 620 trees and raised $9,300. The finish line is in sight!
+
+                  Every last donation counts. Share this link with one friend today:
+                  👉 treeraise.com/c/riverside-pta-spring-2025</div>
+                <div class="cs-post-footer">
+                  <button class="btn btn-primary btn-sm" onclick="csCopyPost('cs-milestone-75')">📋 Copy</button>
+                  <button class="cs-regen-btn" onclick="csRegenPost('cs-milestone-75','milestone')">🔄
+                    Regenerate</button>
+                </div>
+              </div>
+
+              <div class="cs-post-card" style="opacity:.5">
+                <div class="cs-post-header">
+                  <span style="font-size:16px">🏆</span> Goal Reached!
+                  <span class="pill pill-gray" style="margin-left:auto;font-size:10px">🔒 Unlocks at $12,400</span>
+                </div>
+                <div class="cs-post-body" id="cs-milestone-100">🎉🌳 WE DID IT! Riverside Elementary PTA reached our
+                  $12,400 goal and planted 827 trees!
+
+                  Thank you to every single donor who made this possible. Your generosity is growing a forest that will
+                  sequester CO₂ for decades.
+
+                  This is what modern fundraising looks like. 💚🌍
+
+                  #GoalReached #TreeRaise #RiversideElementary #Impact</div>
+                <div class="cs-post-footer">
+                  <button class="btn btn-primary btn-sm" onclick="csCopyPost('cs-milestone-100')">📋 Copy</button>
+                  <button class="cs-regen-btn" onclick="csRegenPost('cs-milestone-100','milestone')">🔄
+                    Regenerate</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Downloadable Assets -->
+            <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:12px">📦 Downloadable Campaign
+              Assets</div>
+            <div class="g3 mb24">
+              <div class="card card-p" style="text-align:center;cursor:pointer"
+                onclick="showToast('Downloading: Spring_Tree_Drive_Poster_8.5x11.pdf')">
+                <div style="font-size:32px;margin-bottom:8px">📄</div>
+                <div style="font-weight:600;font-size:13px;color:var(--ink)">Campaign Poster</div>
+                <div style="font-size:11px;color:var(--muted);margin-top:2px">8.5×11 PDF · Print-ready</div>
+              </div>
+              <div class="card card-p" style="text-align:center;cursor:pointer"
+                onclick="showToast('Downloading: Spring_Tree_Drive_Social_Kit.zip')">
+                <div style="font-size:32px;margin-bottom:8px">🖼️</div>
+                <div style="font-weight:600;font-size:13px;color:var(--ink)">Social Media Kit</div>
+                <div style="font-size:11px;color:var(--muted);margin-top:2px">FB cover, IG story, X header</div>
+              </div>
+              <div class="card card-p" style="text-align:center;cursor:pointer"
+                onclick="showToast('Downloading: Spring_Tree_Drive_QR_Code.png')">
+                <div style="font-size:32px;margin-bottom:8px">📱</div>
+                <div style="font-weight:600;font-size:13px;color:var(--ink)">QR Code</div>
+                <div style="font-size:11px;color:var(--muted);margin-top:2px">Links to your campaign page</div>
+              </div>
             </div>
           </div>
 
-          <!-- Campaign builder callout -->
-          <div class="hero-banner" style="margin-top:24px">
-            <div style="position:relative;z-index:1">
-              <div class="hero-tag">Campaign Builder</div>
-              <div class="hero-title">Ready to build your next campaign?</div>
-              <div class="hero-body" style="margin-bottom:16px">Use templates, set automation triggers, and configure
-                your donor communication thread — all without leaving your dashboard.</div>
-              <button class="btn btn-secondary"
-                style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff">Open Campaign
-                Builder →</button>
+          <!-- ═══ TAB 2: EMAIL SEQUENCE BUILDER ═══ -->
+          <div id="camp-pane-2" class="tab-pane">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+              <div>
+                <div
+                  style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:4px">
+                  Email Sequence Builder</div>
+                <div style="font-size:13.5px;color:var(--muted)">Customize your automated email campaign. Edit subjects,
+                  body content, and scheduling.</div>
+              </div>
+              <div style="display:flex;gap:8px">
+                <button class="btn btn-secondary btn-sm" onclick="ebAddStep()">+ Add Email Step</button>
+                <button class="btn btn-primary btn-sm" onclick="ebSaveAll()">💾 Save Sequence</button>
+              </div>
+            </div>
+
+            <div class="alert alert-info mb24">📧 Emails are auto-sent at the scheduled time using merge tags to
+              personalize each message. Edit any step below — changes save to your campaign instantly.</div>
+
+            <!-- Email Step 1: Launch -->
+            <div class="eb-step" id="eb-step-1">
+              <div class="eb-step-num">1</div>
+              <div class="eb-step-content">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <div>
+                    <div class="eb-step-title">Launch Email</div>
+                    <div class="eb-step-meta">Day 0 · Sent automatically on campaign launch</div>
+                  </div>
+                  <div style="display:flex;gap:6px;align-items:center">
+                    <span class="pill pill-green" style="font-size:10px">✅ Sent Mar 1</span>
+                    <button class="btn btn-secondary btn-sm" onclick="ebToggleEditor('eb-editor-1')">✏️ Edit</button>
+                    <button class="btn btn-ghost btn-sm" onclick="ebPreview(1)">👁 Preview</button>
+                  </div>
+                </div>
+                <div class="eb-step-subject">Subject: "Our TreeRaise Fundraiser Starts Today — Plant Trees with
+                  {ORG_NAME}!"</div>
+                <div class="eb-editor-area" id="eb-editor-1">
+                  <div class="field" style="margin-bottom:10px">
+                    <label>Subject Line</label>
+                    <input type="text" id="eb-subject-1"
+                      value="Our TreeRaise Fundraiser Starts Today — Plant Trees with {ORG_NAME}!"
+                      style="font-size:13.5px">
+                  </div>
+                  <div class="field" style="margin-bottom:10px">
+                    <label>Email Body</label>
+                    <textarea id="eb-body-1">Hi there!
+
+{ORG_NAME} has just launched our Spring Tree Drive with TreeRaise! Instead of selling products, every contribution plants real, GPS-verified trees.
+
+🌳 Our Goal: {GOAL}
+🔗 Donate Now: {CAMPAIGN_URL}
+
+Every dollar raised splits 50/50 — half goes directly to our organization, and half funds verified tree planting through veritree.
+
+Thank you for being part of this!
+
+— The {ORG_NAME} Team</textarea>
+                  </div>
+                  <div class="field" style="margin-bottom:10px">
+                    <label>Send Timing</label>
+                    <select>
+                      <option selected>Immediately on launch</option>
+                      <option>1 hour after launch</option>
+                      <option>Next morning at 9am</option>
+                    </select>
+                  </div>
+                  <div style="font-size:11px;color:var(--muted);margin-bottom:6px">Insert merge tags:</div>
+                  <div class="eb-merge-tags">
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-1','{ORG_NAME}')">{ORG_NAME}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-1','{CAMPAIGN_URL}')">{CAMPAIGN_URL}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-1','{TREE_COUNT}')">{TREE_COUNT}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-1','{TOTAL_RAISED}')">{TOTAL_RAISED}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-1','{GOAL}')">{GOAL}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-1','{DONOR_COUNT}')">{DONOR_COUNT}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-1','{DAYS_LEFT}')">{DAYS_LEFT}</span>
+                  </div>
+                  <div style="display:flex;gap:8px;margin-top:14px">
+                    <button class="btn btn-primary btn-sm" onclick="ebSaveStep(1)">Save Changes</button>
+                    <button class="btn btn-ghost btn-sm" onclick="ebToggleEditor('eb-editor-1')">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email Step 2: Mid-Drive -->
+            <div class="eb-step" id="eb-step-2">
+              <div class="eb-step-num">2</div>
+              <div class="eb-step-content">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <div>
+                    <div class="eb-step-title">Mid-Drive Check-In</div>
+                    <div class="eb-step-meta">Day 15 · Scheduled Mar 16</div>
+                  </div>
+                  <div style="display:flex;gap:6px;align-items:center">
+                    <span class="pill pill-blue" style="font-size:10px">🕐 Scheduled</span>
+                    <button class="btn btn-secondary btn-sm" onclick="ebToggleEditor('eb-editor-2')">✏️ Edit</button>
+                    <button class="btn btn-ghost btn-sm" onclick="ebPreview(2)">👁 Preview</button>
+                  </div>
+                </div>
+                <div class="eb-step-subject">Subject: "Halfway There — {TREE_COUNT} Trees Planted So Far!"</div>
+                <div class="eb-editor-area" id="eb-editor-2">
+                  <div class="field" style="margin-bottom:10px">
+                    <label>Subject Line</label>
+                    <input type="text" id="eb-subject-2" value="Halfway There — {TREE_COUNT} Trees Planted So Far!"
+                      style="font-size:13.5px">
+                  </div>
+                  <div class="field" style="margin-bottom:10px">
+                    <label>Email Body</label>
+                    <textarea id="eb-body-2">Hi there!
+
+Great news — we're halfway through our Spring Tree Drive and already making an impact!
+
+🌳 Trees Planted: {TREE_COUNT}
+💰 Raised So Far: {TOTAL_RAISED} of {GOAL}
+👥 Donors: {DONOR_COUNT}
+⏳ Days Left: {DAYS_LEFT}
+
+Thank you to everyone who has contributed. If you haven't yet, there's still time to be part of this:
+
+🔗 {CAMPAIGN_URL}
+
+Every dollar plants real trees, verified by GPS. Share this link and help us reach our goal!
+
+— The {ORG_NAME} Team</textarea>
+                  </div>
+                  <div class="field" style="margin-bottom:10px">
+                    <label>Send Day</label>
+                    <div style="display:flex;gap:8px;align-items:center">
+                      <input type="number" value="15" min="1" max="60"
+                        style="width:80px;font-family:'DM Mono',monospace">
+                      <span style="font-size:12px;color:var(--muted)">days after launch</span>
+                    </div>
+                  </div>
+                  <div style="font-size:11px;color:var(--muted);margin-bottom:6px">Insert merge tags:</div>
+                  <div class="eb-merge-tags">
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-2','{ORG_NAME}')">{ORG_NAME}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-2','{CAMPAIGN_URL}')">{CAMPAIGN_URL}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-2','{TREE_COUNT}')">{TREE_COUNT}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-2','{TOTAL_RAISED}')">{TOTAL_RAISED}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-2','{GOAL}')">{GOAL}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-2','{DONOR_COUNT}')">{DONOR_COUNT}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-2','{DAYS_LEFT}')">{DAYS_LEFT}</span>
+                  </div>
+                  <div style="display:flex;gap:8px;margin-top:14px">
+                    <button class="btn btn-primary btn-sm" onclick="ebSaveStep(2)">Save Changes</button>
+                    <button class="btn btn-ghost btn-sm" onclick="ebToggleEditor('eb-editor-2')">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email Step 3: Final Push -->
+            <div class="eb-step" id="eb-step-3">
+              <div class="eb-step-num">3</div>
+              <div class="eb-step-content">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <div>
+                    <div class="eb-step-title">Final Push</div>
+                    <div class="eb-step-meta">Day 28–29 · Scheduled Mar 29</div>
+                  </div>
+                  <div style="display:flex;gap:6px;align-items:center">
+                    <span class="pill pill-blue" style="font-size:10px">🕐 Scheduled</span>
+                    <button class="btn btn-secondary btn-sm" onclick="ebToggleEditor('eb-editor-3')">✏️ Edit</button>
+                    <button class="btn btn-ghost btn-sm" onclick="ebPreview(3)">👁 Preview</button>
+                  </div>
+                </div>
+                <div class="eb-step-subject">Subject: "Last Chance! {DAYS_LEFT} Days Left to Support Our TreeRaise
+                  Fundraiser"</div>
+                <div class="eb-editor-area" id="eb-editor-3">
+                  <div class="field" style="margin-bottom:10px">
+                    <label>Subject Line</label>
+                    <input type="text" id="eb-subject-3"
+                      value="Last Chance! {DAYS_LEFT} Days Left to Support Our TreeRaise Fundraiser"
+                      style="font-size:13.5px">
+                  </div>
+                  <div class="field" style="margin-bottom:10px">
+                    <label>Email Body</label>
+                    <textarea id="eb-body-3">Hi there!
+
+⏰ This is it — our Spring Tree Drive closes in just {DAYS_LEFT} days!
+
+Here's where we stand:
+🌳 {TREE_COUNT} trees planted
+💰 {TOTAL_RAISED} raised of {GOAL}
+👥 {DONOR_COUNT} donors and counting
+
+We're so close to our goal. Can you help us get there?
+
+🔗 {CAMPAIGN_URL}
+
+Even a $15 Seed contribution plants one tree and brings us closer. Share this link today — 20-30% of all donations come in the final push!
+
+Thank you for making a difference. 🌿
+
+— The {ORG_NAME} Team</textarea>
+                  </div>
+                  <div class="field" style="margin-bottom:10px">
+                    <label>Send Day</label>
+                    <div style="display:flex;gap:8px;align-items:center">
+                      <input type="number" value="28" min="1" max="60"
+                        style="width:80px;font-family:'DM Mono',monospace">
+                      <span style="font-size:12px;color:var(--muted)">days after launch</span>
+                    </div>
+                  </div>
+                  <div style="font-size:11px;color:var(--muted);margin-bottom:6px">Insert merge tags:</div>
+                  <div class="eb-merge-tags">
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-3','{ORG_NAME}')">{ORG_NAME}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-3','{CAMPAIGN_URL}')">{CAMPAIGN_URL}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-3','{TREE_COUNT}')">{TREE_COUNT}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-3','{TOTAL_RAISED}')">{TOTAL_RAISED}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-3','{GOAL}')">{GOAL}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-3','{DONOR_COUNT}')">{DONOR_COUNT}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-3','{DAYS_LEFT}')">{DAYS_LEFT}</span>
+                  </div>
+                  <div style="display:flex;gap:8px;margin-top:14px">
+                    <button class="btn btn-primary btn-sm" onclick="ebSaveStep(3)">Save Changes</button>
+                    <button class="btn btn-ghost btn-sm" onclick="ebToggleEditor('eb-editor-3')">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email Step 4: Wrap-Up -->
+            <div class="eb-step" id="eb-step-4" style="opacity:.7">
+              <div class="eb-step-num" style="background:var(--muted)">4</div>
+              <div class="eb-step-content">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <div>
+                    <div class="eb-step-title">Wrap-Up &amp; Thank You</div>
+                    <div class="eb-step-meta">Within 24h of campaign close · Auto-includes impact report</div>
+                  </div>
+                  <div style="display:flex;gap:6px;align-items:center">
+                    <span class="pill pill-gray" style="font-size:10px">⏸ Pending close</span>
+                    <button class="btn btn-secondary btn-sm" onclick="ebToggleEditor('eb-editor-4')">✏️ Edit</button>
+                    <button class="btn btn-ghost btn-sm" onclick="ebPreview(4)">👁 Preview</button>
+                  </div>
+                </div>
+                <div class="eb-step-subject">Subject: "Thank You! {TREE_COUNT} Trees Planted — Here's Your Impact
+                  Report"</div>
+                <div class="eb-editor-area" id="eb-editor-4">
+                  <div class="field" style="margin-bottom:10px">
+                    <label>Subject Line</label>
+                    <input type="text" id="eb-subject-4"
+                      value="Thank You! {TREE_COUNT} Trees Planted — Here's Your Impact Report"
+                      style="font-size:13.5px">
+                  </div>
+                  <div class="field" style="margin-bottom:10px">
+                    <label>Email Body</label>
+                    <textarea id="eb-body-4">Hi there!
+
+Our Spring Tree Drive has officially closed — and what a success! 🎉
+
+📊 Final Results:
+🌳 Trees Planted: {TREE_COUNT}
+💰 Total Raised: {TOTAL_RAISED}
+👥 Total Donors: {DONOR_COUNT}
+
+Your Impact Report is attached with GPS coordinates, species breakdown, and CO₂ offset data verified by veritree.
+
+{ORG_NAME} keeps {TOTAL_RAISED} × 50% = your share, deposited directly to your bank account within 7 days.
+
+Thank you to everyone who contributed. You didn't just raise money — you grew a forest. 🌿
+
+Ready to run another campaign? Your Legacy Forest is waiting.
+
+— The TreeRaise Team</textarea>
+                  </div>
+                  <div style="font-size:11px;color:var(--muted);margin-bottom:6px">Insert merge tags:</div>
+                  <div class="eb-merge-tags">
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-4','{ORG_NAME}')">{ORG_NAME}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-4','{CAMPAIGN_URL}')">{CAMPAIGN_URL}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-4','{TREE_COUNT}')">{TREE_COUNT}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-4','{TOTAL_RAISED}')">{TOTAL_RAISED}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-4','{GOAL}')">{GOAL}</span>
+                    <span class="eb-merge-tag" onclick="ebInsertTag('eb-body-4','{DONOR_COUNT}')">{DONOR_COUNT}</span>
+                  </div>
+                  <div style="display:flex;gap:8px;margin-top:14px">
+                    <button class="btn btn-primary btn-sm" onclick="ebSaveStep(4)">Save Changes</button>
+                    <button class="btn btn-ghost btn-sm" onclick="ebToggleEditor('eb-editor-4')">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Add step zone -->
+            <div id="eb-new-step-zone"></div>
+
+            <div
+              style="padding:11px 0;font-size:12px;color:var(--muted);font-style:italic;line-height:1.8;border-top:1px solid var(--border2);margin-top:10px">
+              Available merge tags:
+              <code
+                style="font-family:'DM Mono',monospace;font-size:11px;background:var(--border);padding:1px 6px;border-radius:4px;font-style:normal">{ORG_NAME}</code>
+              <code
+                style="font-family:'DM Mono',monospace;font-size:11px;background:var(--border);padding:1px 6px;border-radius:4px;font-style:normal">{CAMPAIGN_URL}</code>
+              <code
+                style="font-family:'DM Mono',monospace;font-size:11px;background:var(--border);padding:1px 6px;border-radius:4px;font-style:normal">{TREE_COUNT}</code>
+              <code
+                style="font-family:'DM Mono',monospace;font-size:11px;background:var(--border);padding:1px 6px;border-radius:4px;font-style:normal">{TOTAL_RAISED}</code>
+              <code
+                style="font-family:'DM Mono',monospace;font-size:11px;background:var(--border);padding:1px 6px;border-radius:4px;font-style:normal">{GOAL}</code>
+              <code
+                style="font-family:'DM Mono',monospace;font-size:11px;background:var(--border);padding:1px 6px;border-radius:4px;font-style:normal">{DONOR_COUNT}</code>
+              <code
+                style="font-family:'DM Mono',monospace;font-size:11px;background:var(--border);padding:1px 6px;border-radius:4px;font-style:normal">{DAYS_LEFT}</code>
             </div>
           </div>
+
+          <!-- ═══ TAB 3: CAMPAIGN ANALYTICS ═══ -->
+          <div id="camp-pane-3" class="tab-pane">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+              <div>
+                <div
+                  style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:4px">
+                  Campaign Analytics</div>
+                <div style="font-size:13.5px;color:var(--muted)">Spring Tree Drive 2025 · Real-time performance data
+                </div>
+              </div>
+              <div style="display:flex;gap:8px">
+                <select style="min-width:180px">
+                  <option>Spring Tree Drive 2025</option>
+                  <option>Winter Community Drive 2024</option>
+                  <option>Fall Roots Campaign 2024</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- KPI Row -->
+            <div class="kpi-grid mb24">
+              <div class="kpi-card"><span class="kpi-icon">💰</span>
+                <div class="kpi-val">$4,820</div>
+                <div class="kpi-label">Total Raised</div>
+                <div class="kpi-trend up">↑ 39% of $12,400 goal</div>
+              </div>
+              <div class="kpi-card"><span class="kpi-icon">👥</span>
+                <div class="kpi-val">312</div>
+                <div class="kpi-label">Total Donors</div>
+                <div class="kpi-trend up">↑ +18 this week</div>
+              </div>
+              <div class="kpi-card"><span class="kpi-icon">🌳</span>
+                <div class="kpi-val">322</div>
+                <div class="kpi-label">Trees Planted</div>
+                <div class="kpi-trend up">↑ +12 today</div>
+              </div>
+              <div class="kpi-card"><span class="kpi-icon">📊</span>
+                <div class="kpi-val">$15.45</div>
+                <div class="kpi-label">Avg Donation</div>
+                <div class="kpi-trend up">↑ Above platform avg of $14.20</div>
+              </div>
+            </div>
+
+            <div class="g2 mb24">
+              <!-- Contribution Velocity -->
+              <div class="card card-p">
+                <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px">Contribution Velocity
+                </div>
+                <div style="font-size:12px;color:var(--muted);margin-bottom:14px;font-family:'DM Mono',monospace">Last
+                  14 days · donations per day</div>
+                <div class="an-bar-chart" id="an-velocity-chart">
+                  <div class="an-bar" style="height:35%"></div>
+                  <div class="an-bar" style="height:20%"></div>
+                  <div class="an-bar" style="height:45%"></div>
+                  <div class="an-bar" style="height:30%"></div>
+                  <div class="an-bar" style="height:55%"></div>
+                  <div class="an-bar" style="height:80%"></div>
+                  <div class="an-bar" style="height:65%"></div>
+                  <div class="an-bar" style="height:40%"></div>
+                  <div class="an-bar" style="height:25%"></div>
+                  <div class="an-bar" style="height:50%"></div>
+                  <div class="an-bar" style="height:70%"></div>
+                  <div class="an-bar" style="height:90%"></div>
+                  <div class="an-bar" style="height:100%"></div>
+                  <div class="an-bar" style="height:60%"></div>
+                </div>
+                <div
+                  style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;margin-top:6px">
+                  <span>Mar 3</span><span>Mar 10</span><span>Mar 16</span>
+                </div>
+              </div>
+
+              <!-- Goal Projection -->
+              <div class="card card-p">
+                <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px">Goal Projection</div>
+                <div style="font-size:12px;color:var(--muted);margin-bottom:14px;font-family:'DM Mono',monospace">Based
+                  on current velocity</div>
+                <div style="text-align:center;margin-bottom:14px">
+                  <div
+                    style="font-family:'Fraunces',serif;font-size:42px;font-weight:700;color:var(--forest2);line-height:1">
+                    $11,840</div>
+                  <div style="font-size:12px;color:var(--muted);margin-top:4px">Projected total at campaign close</div>
+                </div>
+                <div class="prog-track mb16" style="height:10px">
+                  <div class="prog-fill" style="width:39%"></div>
+                </div>
+                <div
+                  style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);font-family:'DM Mono',monospace">
+                  <span>$4,820 raised</span><span>$12,400 goal</span>
+                </div>
+                <div class="alert alert-warn" style="margin-top:14px;font-size:12px">📉 At current pace, you'll reach
+                  ~95.5% of your goal. Consider sending a mid-drive reminder or sharing on social media to close the
+                  gap.</div>
+              </div>
+            </div>
+
+            <div class="g2 mb24">
+              <!-- Email Performance -->
+              <div class="card card-p">
+                <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:14px">📧 Email Performance
+                </div>
+                <div class="an-metric-row">
+                  <span class="an-metric-label">Launch Email — Open Rate</span>
+                  <span class="an-metric-val">67.3%</span>
+                </div>
+                <div class="an-metric-row">
+                  <span class="an-metric-label">Launch Email — Click Rate</span>
+                  <span class="an-metric-val">24.1%</span>
+                </div>
+                <div class="an-metric-row">
+                  <span class="an-metric-label">Launch Email — Conversions</span>
+                  <span class="an-metric-val">48 donations</span>
+                </div>
+                <div class="an-metric-row" style="opacity:.5">
+                  <span class="an-metric-label">Mid-Drive (scheduled Mar 16)</span>
+                  <span class="an-metric-val" style="color:var(--muted)">—</span>
+                </div>
+                <div class="an-metric-row" style="opacity:.5">
+                  <span class="an-metric-label">Final Push (scheduled Mar 29)</span>
+                  <span class="an-metric-val" style="color:var(--muted)">—</span>
+                </div>
+                <div style="font-size:11px;color:var(--forest3);margin-top:10px">💡 Tip: 20-30% of contributions
+                  typically arrive during the Final Push window. Well-timed reminders are critical.</div>
+              </div>
+
+              <!-- Share Link Tracking -->
+              <div class="card card-p">
+                <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:14px">🔗 Share Link Tracking
+                </div>
+                <div class="an-metric-row">
+                  <span class="an-metric-label">Total Link Clicks</span>
+                  <span class="an-metric-val">1,847</span>
+                </div>
+                <div class="an-metric-row">
+                  <span class="an-metric-label">Click → Donation Rate</span>
+                  <span class="an-metric-val">16.9%</span>
+                </div>
+                <div class="an-metric-row">
+                  <span class="an-metric-label">Top Source</span>
+                  <span class="an-metric-val">Email (52%)</span>
+                </div>
+                <div class="an-metric-row">
+                  <span class="an-metric-label">Facebook</span>
+                  <span class="an-metric-val">28%</span>
+                </div>
+                <div class="an-metric-row">
+                  <span class="an-metric-label">Direct / Other</span>
+                  <span class="an-metric-val">20%</span>
+                </div>
+                <div style="margin-top:14px;display:flex;gap:8px">
+                  <button class="btn btn-secondary btn-sm" onclick="copyCampaignLink()">📋 Copy Campaign Link</button>
+                  <button class="btn btn-ghost btn-sm"
+                    onclick="showToast('UTM links generated for Facebook, Instagram, and Email. Copied to clipboard.')">🔗
+                    Generate UTM Links</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contribution by Tier -->
+            <div class="card card-p mb24">
+              <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:4px">Contributions by Tier</div>
+              <div style="font-size:12px;color:var(--muted);margin-bottom:16px;font-family:'DM Mono',monospace">Spring
+                Tree Drive 2025 · 312 total contributions · $4,820</div>
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+                <div style="min-width:150px;font-size:13px;color:var(--ink2)">🌱 Seed <span
+                    style="font-size:11px;color:var(--muted)">$15 · 1 tree</span></div>
+                <div class="prog-track" style="flex:1">
+                  <div class="prog-fill"
+                    style="width:100%;background:linear-gradient(90deg,var(--forest3),var(--mint))"></div>
+                </div>
+                <div style="min-width:110px;text-align:right;font-size:12px;color:var(--muted)">198 (63%) · <strong
+                    style="font-family:'DM Mono',monospace;color:var(--forest2)">$2,970</strong></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+                <div style="min-width:150px;font-size:13px;color:var(--ink2)">🌿 Sapling <span
+                    style="font-size:11px;color:var(--muted)">$45 · 3 trees</span></div>
+                <div class="prog-track" style="flex:1">
+                  <div class="prog-fill"
+                    style="width:30%;background:linear-gradient(90deg,var(--forest2),var(--forest3))"></div>
+                </div>
+                <div style="min-width:110px;text-align:right;font-size:12px;color:var(--muted)">28 (9%) · <strong
+                    style="font-family:'DM Mono',monospace;color:var(--forest2)">$1,260</strong></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+                <div style="min-width:150px;font-size:13px;color:var(--ink2)">🌳 Grove <span
+                    style="font-size:11px;color:var(--muted)">$84 · 6 trees</span></div>
+                <div class="prog-track" style="flex:1">
+                  <div class="prog-fill" style="width:10%;background:linear-gradient(90deg,var(--gold),#c87a0a)"></div>
+                </div>
+                <div style="min-width:110px;text-align:right;font-size:12px;color:var(--muted)">5 (2%) · <strong
+                    style="font-family:'DM Mono',monospace;color:var(--forest2)">$420</strong></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px">
+                <div style="min-width:150px;font-size:13px;color:var(--ink2)">🏛️ Legacy <span
+                    style="font-size:11px;color:var(--muted)">$156 · 12 trees</span></div>
+                <div class="prog-track" style="flex:1">
+                  <div class="prog-fill" style="width:4%;background:linear-gradient(90deg,#8b5cf6,#6d28d9)"></div>
+                </div>
+                <div style="min-width:110px;text-align:right;font-size:12px;color:var(--muted)">1 (0.3%) · <strong
+                    style="font-family:'DM Mono',monospace;color:var(--forest2)">$156</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ TAB 4: MILESTONE ALERTS ═══ -->
+          <div id="camp-pane-4" class="tab-pane">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+              <div>
+                <div
+                  style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:4px">
+                  Milestone Alerts</div>
+                <div style="font-size:13.5px;color:var(--muted)">Get notified and auto-generate content when your
+                  campaign hits key milestones.</div>
+              </div>
+            </div>
+
+            <div class="alert alert-info mb24">🔔 When a milestone is reached, you'll receive an email notification and
+              a ready-to-post social media update will appear in your Content Studio. Milestone posts are auto-generated
+              using your campaign data.</div>
+
+            <!-- Alert: 25% -->
+            <div class="ma-toggle">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:20px">🎯</span>
+                <div>
+                  <div style="font-weight:600;font-size:14px;color:var(--ink)">25% of Goal Reached</div>
+                  <div style="font-size:12px;color:var(--muted)">$3,100 of $12,400 · <strong
+                      style="color:var(--forest3)">✅ Reached Mar 8</strong></div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:12px;color:var(--muted)">Email + Social Post</span>
+                <div class="ma-switch on" onclick="toggleMaSwitch(this)"></div>
+              </div>
+            </div>
+
+            <!-- Alert: 50% -->
+            <div class="ma-toggle">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:20px">🎯</span>
+                <div>
+                  <div style="font-weight:600;font-size:14px;color:var(--ink)">50% of Goal Reached</div>
+                  <div style="font-size:12px;color:var(--muted)">$6,200 of $12,400 · Upcoming</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:12px;color:var(--muted)">Email + Social Post</span>
+                <div class="ma-switch on" onclick="toggleMaSwitch(this)"></div>
+              </div>
+            </div>
+
+            <!-- Alert: 75% -->
+            <div class="ma-toggle">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:20px">🔥</span>
+                <div>
+                  <div style="font-weight:600;font-size:14px;color:var(--ink)">75% of Goal Reached</div>
+                  <div style="font-size:12px;color:var(--muted)">$9,300 of $12,400 · Upcoming</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:12px;color:var(--muted)">Email + Social Post + SMS</span>
+                <div class="ma-switch on" onclick="toggleMaSwitch(this)"></div>
+              </div>
+            </div>
+
+            <!-- Alert: 100% -->
+            <div class="ma-toggle">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:20px">🏆</span>
+                <div>
+                  <div style="font-weight:600;font-size:14px;color:var(--ink)">Goal Reached!</div>
+                  <div style="font-size:12px;color:var(--muted)">$12,400 of $12,400 · Upcoming</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:12px;color:var(--muted)">Email + Social Post + SMS</span>
+                <div class="ma-switch on" onclick="toggleMaSwitch(this)"></div>
+              </div>
+            </div>
+
+            <!-- Alert: Donor Count Milestone -->
+            <div class="ma-toggle">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:20px">👥</span>
+                <div>
+                  <div style="font-weight:600;font-size:14px;color:var(--ink)">100 Donor Milestone</div>
+                  <div style="font-size:12px;color:var(--muted)">312 donors · <strong style="color:var(--forest3)">✅
+                      Reached Mar 5</strong></div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:12px;color:var(--muted)">Email only</span>
+                <div class="ma-switch on" onclick="toggleMaSwitch(this)"></div>
+              </div>
+            </div>
+
+            <!-- Alert: Tree Count -->
+            <div class="ma-toggle">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:20px">🌳</span>
+                <div>
+                  <div style="font-weight:600;font-size:14px;color:var(--ink)">500 Trees Milestone</div>
+                  <div style="font-size:12px;color:var(--muted)">322 trees · Upcoming at 500</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:12px;color:var(--muted)">Email + Social Post</span>
+                <div class="ma-switch on" onclick="toggleMaSwitch(this)"></div>
+              </div>
+            </div>
+
+            <!-- Alert: Final 48h -->
+            <div class="ma-toggle">
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:20px">⏰</span>
+                <div>
+                  <div style="font-weight:600;font-size:14px;color:var(--ink)">48 Hours Remaining</div>
+                  <div style="font-size:12px;color:var(--muted)">Auto-reminder to share final push content</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px">
+                <span style="font-size:12px;color:var(--muted)">Email + SMS</span>
+                <div class="ma-switch on" onclick="toggleMaSwitch(this)"></div>
+              </div>
+            </div>
+
+            <!-- Custom milestone -->
+            <div style="margin-top:20px">
+              <div style="font-weight:700;font-size:14px;color:var(--ink);margin-bottom:10px">➕ Custom Milestone</div>
+              <div style="display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap">
+                <div class="field" style="margin-bottom:0;flex:1;min-width:140px">
+                  <label>Milestone Type</label>
+                  <select>
+                    <option>Dollar amount raised</option>
+                    <option>Number of donors</option>
+                    <option>Number of trees planted</option>
+                    <option>Days remaining</option>
+                  </select>
+                </div>
+                <div class="field" style="margin-bottom:0;min-width:120px">
+                  <label>Value</label>
+                  <input type="number" placeholder="e.g. 250" style="font-family:'DM Mono',monospace">
+                </div>
+                <div class="field" style="margin-bottom:0;min-width:160px">
+                  <label>Notification</label>
+                  <select>
+                    <option>Email + Social Post</option>
+                    <option>Email only</option>
+                    <option>Email + SMS</option>
+                  </select>
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="showToast('Custom milestone alert saved!')">Add
+                  Alert</button>
+              </div>
+            </div>
+
+            <!-- Campaign Renewal -->
+            <div class="hero-banner" style="margin-top:32px">
+              <div style="position:relative;z-index:1">
+                <div class="hero-tag">Legacy Forest · Annual Renewal</div>
+                <div class="hero-title">Grow your impact every year</div>
+                <div class="hero-body" style="margin-bottom:16px">11 months after your campaign closes, we'll send you a
+                  reminder to launch your next campaign. Your branding, region, and templates carry forward
+                  automatically — just set a new goal and go.</div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap">
+                  <button class="btn btn-secondary"
+                    style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff"
+                    onclick="showToast('Annual renewal reminder enabled. You\'ll receive an email 11 months after your campaign closes.')">Enable
+                    Annual Renewal →</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -6264,6 +7442,249 @@
       const isOpen = body.style.display !== 'none';
       body.style.display = isOpen ? 'none' : 'block';
       chevron.style.transform = isOpen ? 'rotate(-90deg)' : 'rotate(0deg)';
+    }
+
+    /* ── CAMPAIGN LINK COPY ── */
+    function copyCampaignLink() {
+      const url = 'treeraise.com/c/riverside-pta-spring-2025';
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+          showToast('Campaign link copied: ' + url);
+        });
+      } else {
+        showToast('Campaign link copied: ' + url);
+      }
+    }
+
+    /* ── CAMPAIGN CLONE (RUN AGAIN) ── */
+    function cloneCampaign(name, icon) {
+      const year = new Date().getFullYear() + 1;
+      const newName = name + ' ' + year;
+      const confirm = document.getElementById('clone-confirm');
+      const display = document.getElementById('clone-name-display');
+      if (display) display.textContent = newName;
+      if (confirm) {
+        confirm.style.display = 'block';
+        confirm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+      showToast('🔄 Campaign cloned! "' + newName + '" created as a draft with your previous settings.');
+    }
+
+    /* ── CONTENT STUDIO ── */
+    function csCopyPost(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const text = el.innerText || el.textContent;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast('📋 Post copied to clipboard!');
+        });
+      } else {
+        showToast('📋 Post copied to clipboard!');
+      }
+    }
+
+    function csRegenPost(id, channel) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const origText = el.textContent;
+      el.style.opacity = '0.4';
+      el.textContent = '✨ Regenerating ' + channel + ' content...';
+      setTimeout(() => {
+        el.textContent = origText;
+        el.style.opacity = '1';
+        showToast('🔄 ' + channel.charAt(0).toUpperCase() + channel.slice(1) + ' post regenerated with latest campaign data.');
+      }, 1200);
+    }
+
+    function csEditPost(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (el.contentEditable === 'true') {
+        el.contentEditable = 'false';
+        el.style.outline = 'none';
+        el.style.background = '';
+        showToast('✅ Post saved.');
+      } else {
+        el.contentEditable = 'true';
+        el.style.outline = '2px solid var(--forest3)';
+        el.style.background = '#fff';
+        el.focus();
+        showToast('✏️ Edit mode — click Edit again to save.');
+      }
+    }
+
+    function csGenerateContent() {
+      const sel = document.getElementById('cs-campaign-select');
+      const name = sel ? sel.options[sel.selectedIndex].text : 'Campaign';
+      showToast('✨ Generating content for: ' + name + '...');
+    }
+
+    function csGenerateAll() {
+      showToast('✨ All content regenerated with latest campaign data!');
+    }
+
+    /* ── EMAIL BUILDER ── */
+    function ebToggleEditor(id) {
+      const editor = document.getElementById(id);
+      if (!editor) return;
+      const step = editor.closest('.eb-step');
+      if (editor.classList.contains('open')) {
+        editor.classList.remove('open');
+        if (step) step.classList.remove('editing');
+      } else {
+        // Close all other editors first
+        document.querySelectorAll('.eb-editor-area.open').forEach(e => {
+          e.classList.remove('open');
+          const s = e.closest('.eb-step');
+          if (s) s.classList.remove('editing');
+        });
+        editor.classList.add('open');
+        if (step) step.classList.add('editing');
+        editor.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    function ebSaveStep(num) {
+      const subjectEl = document.getElementById('eb-subject-' + num);
+      const bodyEl = document.getElementById('eb-body-' + num);
+      if (subjectEl && bodyEl) {
+        // Update the subject preview
+        const step = document.getElementById('eb-step-' + num);
+        if (step) {
+          const subjectPreview = step.querySelector('.eb-step-subject');
+          if (subjectPreview) {
+            subjectPreview.textContent = 'Subject: "' + subjectEl.value + '"';
+          }
+        }
+      }
+      const editor = document.getElementById('eb-editor-' + num);
+      if (editor) {
+        editor.classList.remove('open');
+        const s = editor.closest('.eb-step');
+        if (s) s.classList.remove('editing');
+      }
+      showToast('✅ Email step ' + num + ' saved successfully.');
+    }
+
+    function ebPreview(num) {
+      const subjectEl = document.getElementById('eb-subject-' + num);
+      const bodyEl = document.getElementById('eb-body-' + num);
+      if (!subjectEl || !bodyEl) { showToast('Preview not available'); return; }
+
+      // Merge tag replacements for preview
+      const tags = {
+        '{ORG_NAME}': 'Riverside Elementary PTA',
+        '{CAMPAIGN_URL}': 'treeraise.com/c/riverside-pta-spring-2025',
+        '{TREE_COUNT}': '322',
+        '{TOTAL_RAISED}': '$4,820',
+        '{GOAL}': '$12,400',
+        '{DONOR_COUNT}': '312',
+        '{DAYS_LEFT}': '29'
+      };
+
+      let subject = subjectEl.value;
+      let body = bodyEl.value;
+      for (const [tag, val] of Object.entries(tags)) {
+        subject = subject.split(tag).join(val);
+        body = body.split(tag).join(val);
+      }
+
+      // Show in modal
+      const modalBody = document.getElementById('ms-modal-body');
+      if (modalBody) {
+        modalBody.innerHTML =
+          '<div style="margin-bottom:16px">' +
+          '<div style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">EMAIL PREVIEW</div>' +
+          '<div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-sm);overflow:hidden">' +
+          '<div style="padding:12px 16px;border-bottom:1px solid var(--border);background:var(--white)">' +
+          '<div style="font-size:11px;color:var(--muted);margin-bottom:4px">Subject:</div>' +
+          '<div style="font-weight:600;font-size:14px;color:var(--ink)">' + subject + '</div>' +
+          '</div>' +
+          '<div style="padding:16px;font-size:13.5px;color:var(--ink);line-height:1.65;white-space:pre-wrap">' + body + '</div>' +
+          '</div>' +
+          '</div>';
+        document.getElementById('ms-modal').classList.add('open');
+      }
+    }
+
+    function ebInsertTag(textareaId, tag) {
+      const ta = document.getElementById(textareaId);
+      if (!ta) return;
+      const start = ta.selectionStart;
+      const end = ta.selectionEnd;
+      const text = ta.value;
+      ta.value = text.substring(0, start) + tag + text.substring(end);
+      ta.selectionStart = ta.selectionEnd = start + tag.length;
+      ta.focus();
+      showToast('Tag inserted: ' + tag);
+    }
+
+    let ebStepCounter = 4;
+    function ebAddStep() {
+      ebStepCounter++;
+      const zone = document.getElementById('eb-new-step-zone');
+      if (!zone) return;
+      const html =
+        '<div class="eb-step" id="eb-step-' + ebStepCounter + '">' +
+        '<div class="eb-step-num">' + ebStepCounter + '</div>' +
+        '<div class="eb-step-content">' +
+        '<div style="display:flex;align-items:center;justify-content:space-between">' +
+        '<div>' +
+        '<div class="eb-step-title">Custom Email Step ' + ebStepCounter + '</div>' +
+        '<div class="eb-step-meta">Custom timing · Not scheduled yet</div>' +
+        '</div>' +
+        '<div style="display:flex;gap:6px;align-items:center">' +
+        '<span class="pill pill-gold" style="font-size:10px">New</span>' +
+        '<button class="btn btn-secondary btn-sm" onclick="ebToggleEditor(\'eb-editor-' + ebStepCounter + '\')">✏️ Edit</button>' +
+        '<button class="btn btn-danger btn-sm" onclick="ebRemoveStep(' + ebStepCounter + ')">✕</button>' +
+        '</div></div>' +
+        '<div class="eb-step-subject">Subject: "Click to customize this email subject"</div>' +
+        '<div class="eb-editor-area open" id="eb-editor-' + ebStepCounter + '">' +
+        '<div class="field" style="margin-bottom:10px"><label>Subject Line</label>' +
+        '<input type="text" id="eb-subject-' + ebStepCounter + '" value="New Campaign Update from {ORG_NAME}" style="font-size:13.5px"></div>' +
+        '<div class="field" style="margin-bottom:10px"><label>Email Body</label>' +
+        '<textarea id="eb-body-' + ebStepCounter + '">Hi there!\n\nWrite your custom email content here.\n\nUse merge tags to personalize: {ORG_NAME}, {TREE_COUNT}, {TOTAL_RAISED}, {CAMPAIGN_URL}\n\n— The {ORG_NAME} Team</textarea></div>' +
+        '<div class="field" style="margin-bottom:10px"><label>Send Day</label>' +
+        '<div style="display:flex;gap:8px;align-items:center">' +
+        '<input type="number" value="20" min="1" max="60" style="width:80px;font-family:\'DM Mono\',monospace">' +
+        '<span style="font-size:12px;color:var(--muted)">days after launch</span></div></div>' +
+        '<div style="font-size:11px;color:var(--muted);margin-bottom:6px">Insert merge tags:</div>' +
+        '<div class="eb-merge-tags">' +
+        '<span class="eb-merge-tag" onclick="ebInsertTag(\'eb-body-' + ebStepCounter + '\',\'{ORG_NAME}\')">{ORG_NAME}</span>' +
+        '<span class="eb-merge-tag" onclick="ebInsertTag(\'eb-body-' + ebStepCounter + '\',\'{CAMPAIGN_URL}\')">{CAMPAIGN_URL}</span>' +
+        '<span class="eb-merge-tag" onclick="ebInsertTag(\'eb-body-' + ebStepCounter + '\',\'{TREE_COUNT}\')">{TREE_COUNT}</span>' +
+        '<span class="eb-merge-tag" onclick="ebInsertTag(\'eb-body-' + ebStepCounter + '\',\'{TOTAL_RAISED}\')">{TOTAL_RAISED}</span>' +
+        '<span class="eb-merge-tag" onclick="ebInsertTag(\'eb-body-' + ebStepCounter + '\',\'{GOAL}\')">{GOAL}</span>' +
+        '</div>' +
+        '<div style="display:flex;gap:8px;margin-top:14px">' +
+        '<button class="btn btn-primary btn-sm" onclick="ebSaveStep(' + ebStepCounter + ')">Save Changes</button>' +
+        '<button class="btn btn-ghost btn-sm" onclick="ebToggleEditor(\'eb-editor-' + ebStepCounter + '\')">Cancel</button>' +
+        '</div></div></div></div>';
+      zone.insertAdjacentHTML('beforeend', html);
+      showToast('📧 Email step ' + ebStepCounter + ' added. Customize it below.');
+      zone.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function ebRemoveStep(num) {
+      const step = document.getElementById('eb-step-' + num);
+      if (step && confirm('Remove email step ' + num + '?')) {
+        step.remove();
+        showToast('Email step removed.');
+      }
+    }
+
+    function ebSaveAll() {
+      showToast('💾 Full email sequence saved successfully. Changes will apply to your active campaign.');
+    }
+
+    /* ── MILESTONE ALERT TOGGLE ── */
+    function toggleMaSwitch(el) {
+      el.classList.toggle('on');
+      const isOn = el.classList.contains('on');
+      const label = el.closest('.ma-toggle').querySelector('div > div:first-child');
+      const name = label ? label.textContent.trim() : 'Alert';
+      showToast(isOn ? '🔔 ' + name + ' alert enabled.' : '🔕 ' + name + ' alert disabled.');
     }
 
     /* ── INIT ── */
