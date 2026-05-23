@@ -1,1539 +1,798 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Human Sanctuary — Decision Safety Brief | Dev8X</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap');
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Human Sanctuary — Decision Safety Brief | Dev8X</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
   :root {
     --navy: #0f1c2e;
-    --navy-mid: #162436;
-    --navy-light: #1e3251;
+    --navy-mid: #162338;
+    --navy-light: #1e3352;
     --blue: #2563eb;
     --blue-light: #3b82f6;
-    --blue-faint: #eff6ff;
+    --blue-pale: #dbeafe;
     --green: #16a34a;
-    --green-faint: #f0fdf4;
+    --green-pale: #dcfce7;
     --amber: #d97706;
-    --amber-faint: #fffbeb;
+    --amber-pale: #fef3c7;
     --red: #dc2626;
-    --red-faint: #fef2f2;
-    --teal: #0d9488;
-    --teal-faint: #f0fdfa;
+    --red-pale: #fee2e2;
     --white: #ffffff;
-    --gray-50: #f9fafb;
-    --gray-100: #f3f4f6;
-    --gray-200: #e5e7eb;
-    --gray-300: #d1d5db;
-    --gray-400: #9ca3af;
-    --gray-500: #6b7280;
-    --gray-600: #4b5563;
-    --gray-700: #374151;
-    --gray-800: #1f2937;
-    --gray-900: #111827;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-400: #94a3b8;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --text: #1e293b;
     --radius: 12px;
     --radius-sm: 8px;
-    --shadow: 0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.05);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.10), 0 8px 32px rgba(0,0,0,0.08);
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.1), 0 1px 4px rgba(0,0,0,0.06);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'DM Sans', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background: var(--gray-50);
-    color: var(--gray-800);
+    color: var(--text);
+    font-size: 15px;
     line-height: 1.6;
-    font-size: 15px;
   }
 
-  .page {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 24px 80px;
-  }
-
-  /* ─── HERO ─── */
-  .hero {
-    background: var(--navy);
-    color: white;
-    padding: 52px 0 44px;
-    margin: 0 -24px 0;
-  }
-
-  .hero-inner {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 48px;
-  }
-
-  .hero-meta {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 32px;
-    opacity: 0.5;
-    font-size: 11px;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-
-  .hero-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: currentColor; }
-
-  .hero-headline {
-    font-size: clamp(26px, 3.8vw, 38px);
-    font-weight: 700;
-    line-height: 1.18;
-    max-width: 660px;
-    margin-bottom: 14px;
-    letter-spacing: -0.02em;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .hero-sub {
-    font-size: 15px;
-    line-height: 1.65;
-    color: rgba(255,255,255,0.58);
-    max-width: 560px;
-    margin-bottom: 38px;
-  }
-
-  .hero-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    margin-bottom: 32px;
-  }
-
-  .hero-stat {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.09);
-    border-radius: var(--radius);
-    padding: 20px 22px;
-  }
-
-  .hero-stat .value {
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 1;
-    color: #93c5fd;
-    margin-bottom: 7px;
-    letter-spacing: -0.02em;
-  }
-
-  .hero-stat .label {
-    font-size: 12.5px;
-    color: rgba(255,255,255,0.72);
-    font-weight: 500;
-    margin-bottom: 5px;
-    line-height: 1.35;
-  }
-
-  .hero-stat .source {
-    font-size: 10.5px;
-    color: rgba(255,255,255,0.32);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-
-  .at-a-glance {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border: 1px solid rgba(255,255,255,0.11);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
-
-  .glance-item {
-    padding: 15px 20px;
-    border-right: 1px solid rgba(255,255,255,0.11);
-  }
-
-  .glance-item:last-child { border-right: none; }
-
-  .glance-label {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.35);
-    margin-bottom: 5px;
-    font-weight: 600;
-  }
-
-  .glance-value {
-    font-size: 12.5px;
-    color: rgba(255,255,255,0.82);
-    font-weight: 500;
-    line-height: 1.4;
-  }
-
-  /* ─── SECTIONS ─── */
-  .section {
-    background: white;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 36px 40px;
-    margin-top: 20px;
-  }
-
+  /* ── LAYOUT (stacked white "cards" on a soft gray page) ── */
+  .page { max-width: 960px; margin: 0 auto; padding: 0 24px 64px; }
+  section { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); box-shadow: var(--shadow); padding: 36px 40px; margin-top: 20px; }
+  .page > section:first-child { margin-top: 28px; }
   .section-label {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--blue);
-    font-weight: 700;
-    margin-bottom: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
   }
+  h2 { font-size: 24px; font-weight: 700; color: var(--navy); margin-bottom: 24px; letter-spacing: -0.01em; }
+  h3 { font-size: 17px; font-weight: 600; color: var(--navy); margin-bottom: 12px; }
+  p { color: var(--gray-700); line-height: 1.65; }
 
-  .section-title {
-    font-size: 21px;
-    font-weight: 700;
-    color: var(--navy);
-    letter-spacing: -0.01em;
-    margin-bottom: 20px;
-    line-height: 1.25;
+  /* ── HERO (full-bleed; sits ABOVE .page — never inside it. No negative margins) ── */
+  .hero { background: var(--navy); color: var(--white); position: relative; overflow: hidden; border: none; border-radius: 0; box-shadow: none; margin: 0; padding: 0; }
+  .hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 420px; height: 420px; background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 70%); pointer-events: none; }
+  .hero-inner { max-width: 960px; margin: 0 auto; padding: 48px 40px; position: relative; z-index: 1; }
+  .hero-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px; margin-bottom: 40px; }
+  .hero-meta-brand {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: rgba(255,255,255,0.55);
   }
-
-  .divider {
-    height: 1px;
-    background: var(--gray-100);
-    margin: 20px 0;
+  .hero-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+  .hero-meta-date { font-size: 12px; color: rgba(255,255,255,0.5); }
+  .hero-headline {
+    font-size: clamp(28px, 4vw, 40px); font-weight: 700; line-height: 1.2;
+    letter-spacing: -0.02em; color: var(--white); max-width: 680px; margin-bottom: 16px;
   }
-
-  /* ─── OUTCOME CARDS ─── */
-  .outcome-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-top: 20px;
+  .hero-headline em { font-style: normal; color: #60a5fa; }
+  .hero-subhead {
+    font-size: 16px; color: rgba(255,255,255,0.6); max-width: 580px;
+    margin-bottom: 44px; line-height: 1.6;
   }
-
-  .outcome-card {
-    background: var(--gray-50);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    padding: 20px;
+  .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 36px; }
+  .hero-stat {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius); padding: 20px 22px;
   }
+  .hero-stat-value { font-size: 30px; font-weight: 800; color: var(--white); letter-spacing: -0.02em; line-height: 1; margin-bottom: 6px; }
+  .hero-stat-value.accent { color: #60a5fa; }
+  .hero-stat-value.green { color: #4ade80; }
+  .hero-stat-value.amber { color: #fbbf24; }
+  .hero-stat-label { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.4; margin-bottom: 6px; }
+  .hero-stat-source { font-size: 11px; color: rgba(255,255,255,0.45); font-style: italic; }
 
-  .outcome-card .oc-label {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--gray-400);
-    font-weight: 600;
-    margin-bottom: 8px;
+  /* ── AT-A-GLANCE (a bordered box INSIDE .hero-inner, below the stats) ── */
+  .glance-strip { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(255,255,255,0.14); border-radius: var(--radius); overflow: hidden; }
+  .glance-item { padding: 16px 20px; border-right: 1px solid rgba(255,255,255,0.14); }
+  .glance-item:last-child { border-right: none; }
+  .glance-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5); margin-bottom: 5px;
   }
+  .glance-value { font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.4; font-weight: 500; }
 
-  .outcome-card .oc-title {
-    font-size: 13.5px;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 8px;
-    line-height: 1.35;
+  /* ── GENERIC CARDS / GRIDS ── */
+  .card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
+  .card-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+  /* ── DESIRED OUTCOME (SECTION 2) ── */
+  .outcome-section { background: var(--white); }
+  .two-col-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  .outcome-card { border-radius: var(--radius); padding: 22px 24px; border-left: 4px solid var(--blue); background: var(--blue-pale); }
+  .outcome-card h3 { color: var(--navy); font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; margin-bottom: 8px; }
+  .outcome-card p { color: var(--gray-700); font-size: 14px; line-height: 1.55; }
+  .timing-callout { background: var(--amber-pale); border: 1px solid #fde68a; border-radius: var(--radius-sm); padding: 16px 20px; display: flex; align-items: flex-start; gap: 12px; }
+  .timing-callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .timing-callout-text { font-size: 14px; color: #92400e; line-height: 1.5; }
+  .timing-callout-text strong { color: #78350f; }
+
+  /* ── PROBLEM TABLE (SECTION 3) ── */
+  .table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 16px; }
+  .problem-table, .research-table { min-width: 720px; width: 100%; }
+  .problem-table { border-collapse: collapse; font-size: 14px; }
+  .problem-table th {
+    background: var(--gray-100); text-align: left; padding: 11px 16px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-600); border-bottom: 2px solid var(--gray-200);
   }
-
-  .outcome-card .oc-body {
-    font-size: 13px;
-    color: var(--gray-600);
-    line-height: 1.55;
+  .problem-table td { padding: 14px 16px; vertical-align: top; border-bottom: 1px solid var(--gray-100); line-height: 1.5; color: var(--gray-700); }
+  .problem-table tr:last-child td { border-bottom: none; }
+  .problem-table tr:hover td { background: var(--gray-50); }
+  .problem-num {
+    display: inline-flex; width: 22px; height: 22px; background: var(--navy); color: var(--white);
+    border-radius: 50%; font-size: 11px; font-weight: 700; align-items: center; justify-content: center; flex-shrink: 0;
   }
+  .impact-badge { display: inline-block; padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+  .impact-critical { background: var(--red); color: #fff; }
+  .impact-high { background: var(--red-pale); color: #991b1b; }
+  .impact-med { background: var(--amber-pale); color: #92400e; }
 
-  .timing-callout {
-    margin-top: 16px;
-    background: var(--amber-faint);
-    border-left: 3px solid var(--amber);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    padding: 14px 18px;
-    font-size: 13px;
-    color: var(--gray-700);
-    line-height: 1.55;
+  /* ── RESEARCH TRANSPARENCY (SECTION 3B) ── */
+  .transparency-section { background: var(--gray-50); }
+  .research-table {
+    border-collapse: collapse; font-size: 13.5px; background: var(--white);
+    border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
   }
-
-  .timing-callout strong { color: #92400e; }
-
-  /* ─── PROBLEM TABLE ─── */
-  .problem-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 4px;
+  .research-table th {
+    background: var(--navy); color: rgba(255,255,255,0.8); text-align: left; padding: 12px 16px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
   }
+  .research-table td { padding: 14px 16px; border-bottom: 1px solid var(--gray-100); vertical-align: top; color: var(--gray-700); line-height: 1.5; }
+  .research-table tr:last-child td { border-bottom: none; }
+  .research-table td:first-child { font-weight: 600; color: var(--navy); width: 22%; }
 
-  .problem-table thead th {
-    text-align: left;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--gray-400);
-    font-weight: 600;
-    padding: 10px 14px;
-    background: var(--gray-50);
-    border-bottom: 1px solid var(--gray-200);
-  }
-
-  .problem-table tbody tr {
-    border-bottom: 1px solid var(--gray-100);
-  }
-
-  .problem-table tbody tr:last-child { border-bottom: none; }
-
-  .problem-table td {
-    padding: 14px;
-    font-size: 13.5px;
-    vertical-align: top;
-    color: var(--gray-700);
-    line-height: 1.5;
-  }
-
-  .problem-table td:first-child {
-    width: 55%;
-    font-weight: 500;
-    color: var(--gray-800);
-  }
-
-  .problem-table td:last-child {
-    width: 45%;
-    color: var(--red);
-    font-size: 13px;
-  }
-
-  .severity-badge {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    padding: 2px 8px;
-    border-radius: 99px;
-    margin-bottom: 6px;
-    vertical-align: middle;
-  }
-
-  .sev-critical { background: #fee2e2; color: #b91c1c; }
-  .sev-high { background: #ffedd5; color: #c2410c; }
-  .sev-medium { background: #fef9c3; color: #92400e; }
-
-  /* ─── RESEARCH TRANSPARENCY ─── */
-  .transparency-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 4px;
-    font-size: 13px;
-  }
-
-  .transparency-table thead th {
-    text-align: left;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--gray-400);
-    font-weight: 600;
-    padding: 10px 12px;
-    background: var(--gray-50);
-    border-bottom: 1px solid var(--gray-200);
-  }
-
-  .transparency-table td {
-    padding: 13px 12px;
-    border-bottom: 1px solid var(--gray-100);
-    vertical-align: top;
-    line-height: 1.5;
-    color: var(--gray-700);
-  }
-
-  .transparency-table tbody tr:last-child td { border-bottom: none; }
-
-  .evidence-tag {
-    display: inline-block;
-    background: var(--green-faint);
-    color: var(--green);
-    border: 1px solid #bbf7d0;
-    font-size: 10.5px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 4px;
-    margin-bottom: 4px;
-  }
-
-  .est-tag {
-    display: inline-block;
-    background: var(--blue-faint);
-    color: var(--blue);
-    border: 1px solid #bfdbfe;
-    font-size: 10.5px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 4px;
-    margin-bottom: 4px;
-  }
-
-  /* ─── RISK CARDS ─── */
-  .risk-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 8px;
-  }
-
-  .risk-card {
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    padding: 20px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .risk-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-  }
-
+  /* ── FUTURE RISK CARDS (SECTION 4) — color-coded top accent (r1/r2/r3) ── */
+  .risk-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .risk-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 22px; position: relative; overflow: hidden; }
+  .risk-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
   .risk-card.r1::before { background: var(--red); }
   .risk-card.r2::before { background: var(--amber); }
   .risk-card.r3::before { background: var(--blue); }
-  .risk-card.r4::before { background: var(--teal); }
+  .risk-card-when { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-400); font-weight: 700; margin-bottom: 6px; }
+  .risk-card-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
+  .risk-card-break { font-size: 13px; color: var(--gray-600); margin-bottom: 12px; line-height: 1.5; }
+  .risk-card-prevent { font-size: 12px; color: var(--green); font-weight: 600; padding-top: 10px; border-top: 1px solid var(--gray-100); line-height: 1.45; }
 
-  .risk-card .risk-when {
-    font-size: 10.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--gray-400);
-    font-weight: 600;
-    margin-bottom: 7px;
-  }
+  /* ── SOLUTION CARDS (SECTION 5) ── */
+  .solutions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .sol-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; }
+  .sol-card.featured { grid-column: 1 / -1; }
+  .sol-card-header { background: var(--navy); padding: 16px 20px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .sol-card-name { font-size: 14px; font-weight: 700; color: var(--white); line-height: 1.3; }
+  .proof-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 9px; border-radius: 20px; flex-shrink: 0; white-space: nowrap; }
+  .proof-visible { background: #166534; color: #bbf7d0; }
+  .proof-partial { background: #92400e; color: #fde68a; }
+  .proof-future { background: var(--navy-light); color: var(--blue-pale); }
+  .sol-card-body { padding: 18px 20px; }
+  .sol-field-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 4px; margin-top: 12px; }
+  .sol-field-label:first-child { margin-top: 0; }
+  .sol-field-text { font-size: 13.5px; color: var(--gray-700); line-height: 1.5; }
+  .sol-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; padding: 14px; background: var(--gray-50); border-radius: var(--radius-sm); border: 1px solid var(--gray-100); }
+  .sol-metric { text-align: center; }
+  .sol-metric-icon { font-size: 15px; line-height: 1; margin-bottom: 5px; }
+  .sol-metric-val { font-size: 18px; font-weight: 800; color: var(--navy); line-height: 1; margin-bottom: 4px; }
+  .sol-metric-val.green { color: var(--green); }
+  .sol-metric-val.blue { color: var(--blue); }
+  .sol-metric-label { font-size: 11px; color: var(--gray-600); line-height: 1.3; margin-bottom: 3px; }
+  .sol-metric-source { font-size: 10px; color: var(--gray-400); font-style: italic; line-height: 1.2; }
+  .sol-divider { height: 1px; background: var(--gray-100); margin: 14px 0; }
+  .ba-item { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--gray-600); margin-bottom: 7px; line-height: 1.4; }
+  .ba-check { color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .ba-arrow { color: var(--blue); font-weight: 700; flex-shrink: 0; margin: 0 2px; }
+  .ba-before { color: var(--gray-400); }
+  .ba-after { color: var(--navy); font-weight: 600; }
 
-  .risk-card .risk-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--gray-800);
-    margin-bottom: 9px;
-    line-height: 1.35;
-  }
-
-  .risk-card .risk-body {
-    font-size: 12.5px;
-    color: var(--gray-600);
-    line-height: 1.5;
-    margin-bottom: 12px;
-  }
-
-  .risk-card .risk-prevent {
-    font-size: 12px;
-    color: var(--green);
-    font-weight: 600;
-    padding-top: 10px;
-    border-top: 1px solid var(--gray-100);
-    line-height: 1.45;
-  }
-
-  /* ─── SOLUTION CARDS ─── */
-  .solutions-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-top: 8px;
-  }
-
-  .solution-card {
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius);
-    padding: 24px;
-    background: white;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .solution-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--blue);
-  }
-
-  .solution-card.green-bar::before { background: var(--green); }
-  .solution-card.amber-bar::before { background: var(--amber); }
-  .solution-card.teal-bar::before { background: var(--teal); }
-
-  .solution-card .proof-tag {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    padding: 3px 9px;
-    border-radius: 4px;
-  }
-
-  .proof-tag.demo { background: var(--green-faint); color: var(--green); border: 1px solid #bbf7d0; }
-  .proof-tag.described { background: var(--blue-faint); color: var(--blue); border: 1px solid #bfdbfe; }
-  .proof-tag.future { background: var(--amber-faint); color: var(--amber); border: 1px solid #fde68a; }
-
-  .sol-name {
-    font-size: 14.5px;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 8px;
-    padding-right: 88px;
-    line-height: 1.3;
-  }
-
-  .sol-ref {
-    font-size: 11px;
-    color: var(--gray-400);
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  .sol-problem {
-    font-size: 12.5px;
-    color: var(--gray-600);
-    margin-bottom: 8px;
-    line-height: 1.45;
-  }
-
-  .sol-build {
-    font-size: 13px;
-    color: var(--gray-700);
-    margin-bottom: 16px;
-    line-height: 1.5;
-    padding-top: 8px;
-    border-top: 1px solid var(--gray-100);
-  }
-
-  .sol-metrics {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    padding: 14px;
-    background: var(--gray-50);
-    border-radius: var(--radius-sm);
-    margin-bottom: 14px;
-  }
-
-  .sol-metric .m-val {
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--green);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-
-  .sol-metric .m-label {
-    font-size: 11px;
-    color: var(--gray-600);
-    font-weight: 500;
-    line-height: 1.3;
-    margin-bottom: 3px;
-  }
-
-  .sol-metric .m-source {
-    font-size: 10px;
-    color: var(--gray-400);
-    font-style: italic;
-  }
-
-  .before-after {
-    border-top: 1px solid var(--gray-100);
-    padding-top: 12px;
-  }
-
-  .ba-label {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--gray-400);
-    font-weight: 600;
-    margin-bottom: 7px;
-  }
-
-  .ba-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    font-size: 12px;
-    margin-bottom: 5px;
-    line-height: 1.4;
-  }
-
-  .ba-arrow { color: var(--blue); flex-shrink: 0; font-size: 11px; margin-top: 1px; }
-  .ba-before { color: var(--gray-400); text-decoration: line-through; }
-  .ba-sep { color: var(--gray-300); margin: 0 4px; }
-  .ba-after { color: var(--green); font-weight: 600; }
-
-  /* ─── IMPACT SECTION ─── */
-  .stat-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    margin-bottom: 28px;
-  }
-
-  .stat-card {
-    background: var(--gray-50);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    padding: 18px 16px;
-    text-align: center;
-  }
-
-  .stat-card .sc-val {
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--navy);
-    line-height: 1;
-    margin-bottom: 6px;
-    letter-spacing: -0.02em;
-  }
-
-  .stat-card .sc-label {
-    font-size: 12px;
-    color: var(--gray-500);
-    line-height: 1.4;
-    margin-bottom: 4px;
-  }
-
-  .stat-card .sc-source {
-    font-size: 10px;
-    color: var(--gray-400);
-    font-style: italic;
-  }
-
-  .chart-wrap {
-    background: var(--gray-50);
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    padding: 24px;
-    margin-bottom: 24px;
-  }
-
-  .chart-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--gray-700);
-    margin-bottom: 4px;
-  }
-
-  .chart-sub {
-    font-size: 11.5px;
-    color: var(--gray-400);
-    margin-bottom: 18px;
-  }
-
-  /* ─── NUMBER TREATMENT ─── */
-  .number-treatment {
-    background: var(--navy);
-    color: white;
-    border-radius: var(--radius-sm);
-    padding: 24px;
-  }
-
-  .nt-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 16px;
-  }
-
+  /* ── ROI / OPERATIONAL IMPACT (SECTION 6) — light card; dark panel only for number treatment ── */
+  .roi-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+  .roi-stat { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 18px 16px; text-align: center; }
+  .roi-stat-val { font-size: 28px; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 5px; line-height: 1; }
+  .roi-stat-val.green { color: var(--green); }
+  .roi-stat-val.blue { color: var(--blue); }
+  .roi-stat-label { font-size: 12px; color: var(--gray-500); line-height: 1.4; }
+  .chart-container { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 24px; margin-bottom: 24px; }
+  .chart-container canvas { display: block; width: 100% !important; height: auto !important; }
+  .chart-title { font-size: 13px; font-weight: 600; color: var(--gray-700); margin-bottom: 16px; }
+  /* number-treatment: the ONE dark panel — colored dots + source badges */
+  .numbers-panel { background: var(--navy); color: var(--white); border-radius: var(--radius-sm); padding: 24px; }
+  .numbers-panel-title { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.85); margin-bottom: 16px; }
   .nt-rows { display: flex; flex-direction: column; gap: 10px; }
-
-  .nt-row {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 12px;
-    padding: 11px 14px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 6px;
-    font-size: 12.5px;
-  }
-
+  .nt-row { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 10px 14px; background: rgba(255,255,255,0.06); border-radius: 6px; font-size: 12.5px; }
   .nt-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .nt-green { background: #4ade80; }
   .nt-blue { background: #60a5fa; }
   .nt-amber { background: #fbbf24; }
-
-  .nt-desc { color: rgba(255,255,255,0.72); line-height: 1.45; }
-  .nt-badge {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 2px 8px;
-    border-radius: 4px;
-    white-space: nowrap;
-  }
-
+  .nt-desc { color: rgba(255,255,255,0.78); line-height: 1.5; }
+  .nt-desc strong { color: var(--white); }
+  .nt-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
   .badge-green { background: rgba(74,222,128,0.15); color: #4ade80; }
-  .badge-blue { background: rgba(96,165,250,0.15); color: #93c5fd; }
+  .badge-blue { background: rgba(96,165,250,0.18); color: #93c5fd; }
   .badge-amber { background: rgba(251,191,36,0.15); color: #fbbf24; }
 
-  /* ─── STAKEHOLDER ─── */
-  .sh-single {
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    padding: 22px 24px;
-    background: var(--gray-50);
-    margin-top: 4px;
+  /* ── STAKEHOLDER (SECTION 7) ── */
+  .stakeholder-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .sh-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 18px; }
+  .sh-role { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 4px; }
+  .sh-name { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+  .sh-row { margin-bottom: 9px; }
+  .sh-row-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-400); margin-bottom: 2px; }
+  .sh-row-text { font-size: 12.5px; color: var(--gray-700); line-height: 1.4; }
+  .sh-note { font-size: 13px; color: var(--gray-600); font-style: italic; }
+
+  /* ── CTA (SECTION 8) — the section IS a navy gradient card; light text ── */
+  .cta-section { background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 100%); border: none; padding: 44px 48px; text-align: center; color: var(--white); }
+  .cta-box { max-width: 560px; margin: 0 auto; }
+  .cta-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #60a5fa; margin-bottom: 12px; }
+  .cta-headline { font-size: 26px; font-weight: 700; color: var(--white); margin-bottom: 14px; letter-spacing: -0.01em; line-height: 1.3; }
+  .cta-body { font-size: 15px; color: rgba(255,255,255,0.68); line-height: 1.6; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { display: inline-block; background: var(--blue); color: var(--white); padding: 13px 28px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; text-decoration: none; letter-spacing: 0.01em; transition: background 0.15s; }
+  .btn-primary:hover { background: var(--blue-light); }
+  .btn-secondary { display: inline-block; background: var(--white); color: var(--navy); border: 1px solid var(--gray-300); padding: 13px 28px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; text-decoration: none; transition: border-color 0.15s; }
+  .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+
+  /* ── TIMELINE STRIP (required roadmap module) ── */
+  .timeline-strip { display: flex; align-items: flex-start; gap: 0; padding: 28px 0 0; position: relative; flex-wrap: wrap; }
+  .timeline-phase { flex: 1; position: relative; padding-right: 20px; min-width: 220px; }
+  .timeline-phase:last-child { padding-right: 0; }
+  .timeline-dot { width: 34px; height: 34px; border-radius: 50%; background: var(--blue); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; margin-bottom: 10px; position: relative; z-index: 1; box-shadow: 0 0 0 4px var(--white); }
+  .timeline-phase::after { content: ''; position: absolute; top: 16px; left: 32px; right: 20px; height: 1px; background: var(--gray-200); }
+  .timeline-phase:last-child::after { display: none; }
+  .timeline-label { font-size: 11px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .timeline-desc { font-size: 12.5px; color: var(--gray-600); line-height: 1.4; }
+
+  /* ── UTILITIES ── */
+  .divider { height: 1px; background: var(--gray-200); margin: 32px 0; }
+  .mt-8 { margin-top: 8px; } .mt-16 { margin-top: 16px; } .mt-24 { margin-top: 24px; } .mt-32 { margin-top: 32px; }
+  .mb-0 { margin-bottom: 0; }
+
+  /* ── FOOTER (fixed — never restyle) ── */
+  .footer { background: var(--navy); padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-brand { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; }
+  .footer-note { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+  /* ── RESPONSIVE ── */
+  /* Tablet: relax the densest grids before the full single-column collapse */
+  @media (max-width: 900px) {
+    .roi-stat-grid, .card-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .risk-cards, .stakeholder-cards, .card-grid-3 { grid-template-columns: repeat(2, 1fr); }
   }
-
-  .sh-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 16px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--gray-200);
+  @media (max-width: 720px) {
+    section { padding: 24px; }
+    .hero-inner { padding: 36px 24px; }
+    .glance-strip { grid-template-columns: 1fr; }
+    .glance-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.14); }
+    .glance-item:last-child { border-bottom: none; }
+    .hero-stats { grid-template-columns: 1fr; }
+    .two-col-cards { grid-template-columns: 1fr; }
+    .card-grid-2, .card-grid-3, .card-grid-4 { grid-template-columns: 1fr; }
+    .risk-cards { grid-template-columns: 1fr; }
+    .solutions-grid { grid-template-columns: 1fr; }
+    .roi-stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .stakeholder-cards { grid-template-columns: 1fr; }
+    .nt-row { grid-template-columns: auto 1fr; }
+    .nt-badge { grid-column: 2; justify-self: start; margin-top: 4px; }
+    .cta-section { padding: 32px 24px; }
+    .timeline-phase { flex: 1 1 100%; padding-right: 0; }
+    .timeline-phase::after { display: none; }
+    .footer { flex-direction: column; gap: 8px; text-align: center; }
   }
-
-  .sh-avatar {
-    width: 44px; height: 44px;
-    border-radius: 50%;
-    background: var(--navy);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    font-weight: 700;
-    color: #93c5fd;
-    flex-shrink: 0;
+  @media print {
+    .hero-stats { grid-template-columns: repeat(3, 1fr); }
+    .roi-stat-grid { grid-template-columns: repeat(4, 1fr); }
+    section { box-shadow: none; }
   }
-
-  .sh-name { font-size: 15px; font-weight: 700; color: var(--navy); }
-  .sh-role {
-    font-size: 11px;
-    color: var(--gray-400);
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    font-weight: 600;
-  }
-
-  .sh-rows {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 16px;
-  }
-
-  .sh-row-label {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--gray-400);
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  .sh-row-val {
-    font-size: 13px;
-    color: var(--gray-700);
-    line-height: 1.45;
-  }
-
-  .sh-note {
-    margin-top: 14px;
-    padding: 12px 16px;
-    background: var(--blue-faint);
-    border-left: 3px solid var(--blue);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    font-size: 12.5px;
-    color: var(--gray-700);
-    line-height: 1.5;
-  }
-
-  /* ─── TIMELINE ─── */
-  .timeline-strip {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    margin-top: 16px;
-  }
-
-  .tl-phase {
-    padding: 18px 20px;
-    border-right: 1px solid var(--gray-200);
-    background: white;
-  }
-
-  .tl-phase:last-child { border-right: none; }
-
-  .tl-num {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 700;
-    color: var(--blue);
-    margin-bottom: 4px;
-  }
-
-  .tl-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 10px;
-  }
-
-  .tl-items { list-style: none; }
-
-  .tl-items li {
-    font-size: 11.5px;
-    color: var(--gray-600);
-    padding: 3px 0 3px 14px;
-    position: relative;
-    line-height: 1.45;
-  }
-
-  .tl-items li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--blue);
-    font-size: 10px;
-  }
-
-  /* ─── CTA ─── */
-  .cta-section {
-    background: linear-gradient(135deg, var(--navy) 0%, #1a3055 100%);
-    border-radius: var(--radius);
-    padding: 44px 48px;
-    text-align: center;
-    color: white;
-    margin-top: 20px;
-  }
-
-  .cta-title {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    letter-spacing: -0.01em;
-  }
-
-  .cta-sub {
-    font-size: 14.5px;
-    color: rgba(255,255,255,0.60);
-    margin-bottom: 30px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.65;
-  }
-
-  .cta-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    background: var(--blue);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 13px 28px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    letter-spacing: 0.01em;
-    text-decoration: none;
-    display: inline-block;
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: white;
-    border: 1px solid rgba(255,255,255,0.28);
-    border-radius: 8px;
-    padding: 13px 28px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-  }
-
-  .discovery-panel {
-    margin-top: 20px;
-    padding: 16px 20px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: var(--radius-sm);
-    font-size: 12.5px;
-    color: rgba(255,255,255,0.50);
-    line-height: 1.55;
-    text-align: left;
-  }
-
-  .discovery-panel strong { color: rgba(255,255,255,0.70); }
-
-  .footer-note {
-    text-align: center;
-    color: var(--gray-400);
-    font-size: 12px;
-    margin-top: 32px;
-    line-height: 1.7;
-    padding-bottom: 40px;
-  }
-
-  @media (max-width: 700px) {
-    .hero-stats, .risk-cards, .solutions-grid, .stat-grid, .at-a-glance, .outcome-cards, .sh-rows, .timeline-strip { grid-template-columns: 1fr; }
-    .hero-inner { padding: 0 20px; }
-    .section { padding: 22px 20px; }
-    .glance-item, .tl-phase { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.11); }
-    .sol-metrics { grid-template-columns: 1fr 1fr; }
-  }
-</style>
+  </style>
 </head>
 <body>
-
-<!-- ═══════════════════════════════════════════
-     SECTION 1 — HERO
-═══════════════════════════════════════════ -->
-<div class="hero">
-  <div class="hero-inner">
-
-    <div class="hero-meta">
-      <span>A Human Sanctuary</span>
-      <span class="dot"></span>
-      <span>Decision Safety Brief</span>
-      <span class="dot"></span>
-      <span>Prepared by Dev8X</span>
-      <span class="dot"></span>
-      <span>May 2026</span>
-    </div>
-
-    <h1 class="hero-headline">Your course launch is 10 months overdue — and the site still can't take a booking</h1>
-    <p class="hero-sub">A Human Sanctuary has the clinical depth, the community, and the programs. What's blocking growth is a website with structural compliance gaps, broken pages, and no infrastructure for the digital offerings already being marketed as live.</p>
-
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="value">10+ mo</div>
-        <div class="label">Coursework launch delay past July 2025 target</div>
-        <div class="source">AHS website, published launch date</div>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-meta">
+        <span class="hero-meta-brand">Dev8X · Decision Safety Brief</span>
+        <div class="hero-meta-dot"></div>
+        <span class="hero-meta-date">Prepared for A Human Sanctuary — May 2026</span>
       </div>
-      <div class="hero-stat">
-        <div class="value">20+</div>
-        <div class="label">Empty or broken pages on the live site right now</div>
-        <div class="source">Direct site audit, 52 pages reviewed</div>
+      <h1 class="hero-headline">Your coursework launch is 10 months overdue — on a site that <em>can't yet sell it</em></h1>
+      <p class="hero-subhead">Your site carries compliance gaps, broken pages, and placeholder pricing that block every growth track you're building. This brief maps what to fix first.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value accent">20+</div>
+          <div class="hero-stat-label">Empty, duplicate, or broken pages on the live site</div>
+          <div class="hero-stat-source">From AHS's site audit</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value amber">10+ months</div>
+          <div class="hero-stat-label">Course launch overdue since its July 2025 target</div>
+          <div class="hero-stat-source">AHS's own timeline</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value green">$10/mo</div>
+          <div class="hero-stat-label">Pricing shown for a $180–$250/hour practice</div>
+          <div class="hero-stat-source">From AHS's site</div>
+        </div>
       </div>
-      <div class="hero-stat">
-        <div class="value">$180–$250</div>
-        <div class="label">Session fee — vs. a pricing page showing $10–$20/mo</div>
-        <div class="source">AHS published booking page</div>
+      <div class="glance-strip">
+        <div class="glance-item"><div class="glance-label">Current Bottleneck</div><div class="glance-value">A broken site — empty pages, dead links, placeholder pricing — that can't convert or launch programs</div></div>
+        <div class="glance-item"><div class="glance-label">Strongest Unlock</div><div class="glance-value">A compliant, content-complete site with course and membership enrollment built in</div></div>
+        <div class="glance-item"><div class="glance-label">Recommended Next Step</div><div class="glance-value">Watch the short walkthrough of the gap audit and the build plan</div></div>
       </div>
     </div>
+  </section>
+  <div class="page">
 
-    <div class="at-a-glance">
-      <div class="glance-item">
-        <div class="glance-label">Current bottleneck</div>
-        <div class="glance-value">Broken, non-compliant site blocks every growth track simultaneously</div>
+    <!-- ── SECTION 2: DESIRED OUTCOME ── -->
+    <section class="outcome-section">
+      <div class="section-label">Desired Outcome</div>
+      <h2>A website that can carry the practice you're building</h2>
+      <div class="two-col-cards">
+        <div class="outcome-card">
+          <h3>Desired Outcome</h3>
+          <p>A HIPAA-compliant, ADA-accessible, SEO-optimized website that converts visitors into clients, onboards new clinicians, and carries your course and membership offerings at scale — so the practice can grow without pulling you, the sole licensed provider, into website maintenance and admin.</p>
+        </div>
+        <div class="outcome-card">
+          <h3>Why Now</h3>
+          <p>You're building clinical services, launching coursework, growing the Acorn Circle, and supervising associates — all at once. Meanwhile the site has compliance gaps and broken pages that block every one of those tracks. Each month, the overdue course and live exposure keep compounding.</p>
+        </div>
       </div>
-      <div class="glance-item">
-        <div class="glance-label">Strongest unlock</div>
-        <div class="glance-value">Phase 1 audit + rebuild opens course launch, client intake, and clinician onboarding at once</div>
+      <div class="timing-callout">
+        <span class="timing-callout-icon">⏱</span>
+        <span class="timing-callout-text"><strong>Your July 2025 course launch is now 10+ months past due.</strong> Every month the site stays broken is course revenue, new-client discovery, and associate onboarding that simply doesn't happen.</span>
       </div>
-      <div class="glance-item">
-        <div class="glance-label">Recommended next step</div>
-        <div class="glance-value">Watch the 6-minute demo — annotated gap audit + before/after build plan</div>
+    </section>
+
+    <!-- ── SECTION 3: CURRENT PROBLEMS ── -->
+    <section>
+      <div class="section-label">Current State</div>
+      <h2>What the current site is costing you</h2>
+      <div class="table-scroll">
+        <table class="problem-table">
+          <thead><tr><th>#</th><th>Current Challenge</th><th>Business Impact</th><th>Pressure</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="problem-num">1</span></td>
+              <td>20+ empty or duplicate pages, 4 live 404 errors, and a $10–$20/mo pricing table instead of your real $180–$250 session fees.</td>
+              <td>The site can't reliably acquire clients or deliver programs — and the pricing gap reads as a credibility problem.</td>
+              <td><span class="impact-badge impact-critical">Critical</span></td>
+            </tr>
+            <tr>
+              <td><span class="problem-num">2</span></td>
+              <td>No HIPAA-conscious audit exists; the insurance intake form collects PHI, including insurance card images, with no documented compliant handling.</td>
+              <td>Every submission is a documented exposure point a regulator or complaint could trace straight to the form.</td>
+              <td><span class="impact-badge impact-high">High</span></td>
+            </tr>
+            <tr>
+              <td><span class="problem-num">3</span></td>
+              <td>Core program pages — Modalities, Team, Intensives, Children &amp; Their Adults, Youth Leaders, Events — are entirely unpopulated.</td>
+              <td>Prospective clients can't discover or self-select your services, and referral sources see a recruiting-dark practice.</td>
+              <td><span class="impact-badge impact-high">High</span></td>
+            </tr>
+            <tr>
+              <td><span class="problem-num">4</span></td>
+              <td>The self-led coursework — targeted for July 2025 — has no landing page, enrollment mechanism, or delivery infrastructure on the site.</td>
+              <td>The second-highest-priority goal generates zero revenue while it waits on a platform that doesn't exist yet.</td>
+              <td><span class="impact-badge impact-high">High</span></td>
+            </tr>
+            <tr>
+              <td><span class="problem-num">5</span></td>
+              <td>The Acorn Circle and membership pages list tiers but offer no enrollment path, benefits, or billing — despite being marketed as live.</td>
+              <td>Community interest can't convert, so a durable recurring-revenue stream stays stuck at zero.</td>
+              <td><span class="impact-badge impact-med">Medium</span></td>
+            </tr>
+            <tr>
+              <td><span class="problem-num">6</span></td>
+              <td>Four 404 errors at /join, /privacy, /terms, and /accessibility, with no ADA audit trail behind them.</td>
+              <td>The site is broken at the exact URL most often used to declare accessibility — an avoidable compliance exposure.</td>
+              <td><span class="impact-badge impact-med">Medium</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
+    </section>
+
+    <!-- ── SECTION 3B: RESEARCH TRANSPARENCY ── -->
+    <section class="transparency-section">
+      <div class="section-label">Research Transparency</div>
+      <h2>What we know, and where we'd like your confirmation</h2>
+      <div class="table-scroll">
+        <table class="research-table">
+          <thead>
+            <tr><th>Claim</th><th>Evidence We Used</th><th>What We'd Like to Confirm With You</th><th>Open Question</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Your site has 20+ broken or empty pages and 4 live 404 errors.</td>
+              <td>A full review of your 52-page site catalogued 20+ pages flagged empty or duplicate and four 404s, including /privacy and /accessibility.</td>
+              <td>Open the site and the empty pages and dead links surface — we'll confirm live status in the audit.</td>
+              <td>Are some of those pages intentionally unpublished for now?</td>
+            </tr>
+            <tr>
+              <td>The pricing page shows $10–$20/month for a $180–$250/hour practice.</td>
+              <td>Your /pricing-plans page lists $10/$15/$20 tiers; your /book-online page lists $180–$250 per hour — the two don't match.</td>
+              <td>View both pages side by side; a prospect sees $10/month before they ever reach booking.</td>
+              <td>Are these placeholders for future course or membership pricing?</td>
+            </tr>
+            <tr>
+              <td>SEO can bring a meaningful number of new organic clients each month.</td>
+              <td>A calculated estimate from your session fees and the keyword opportunity in the eco-anxiety niche — not a guarantee.</td>
+              <td>We'd show you the keyword gap first and measure your baseline before projecting any lift.</td>
+              <td>Will the lift hold for a rural CA plus telehealth practice?</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── SECTION 4: FUTURE RISKS ── -->
+    <section>
+      <div class="section-label">If Nothing Changes</div>
+      <h2>What this gap becomes in 12–24 months</h2>
+      <div class="risk-cards">
+        <div class="risk-card r1">
+          <div class="risk-card-when">Growing now</div>
+          <div class="risk-card-title">Compliance exposure compounds</div>
+          <div class="risk-card-break">A HIPAA or CCPA complaint, or an insurance audit, exposes the unaudited PHI intake flow — and the liability grows with every new form submission and client record.</div>
+          <div class="risk-card-prevent">→ A HIPAA-conscious form and data-flow audit documents every control and closes the exposure before a regulator finds it.</div>
+        </div>
+        <div class="risk-card r2">
+          <div class="risk-card-when">12–24 months</div>
+          <div class="risk-card-title">Clinician growth stays founder-bound</div>
+          <div class="risk-card-break">As you add associates and programs, every new clinician or course needs your time to publish — keeping you, the sole provider, as the operational bottleneck indefinitely.</div>
+          <div class="risk-card-prevent">→ A reusable onboarding template and page architecture lets you add clinicians and offerings without touching code yourself.</div>
+        </div>
+        <div class="risk-card r3">
+          <div class="risk-card-when">12–24 months</div>
+          <div class="risk-card-title">A competitor claims the eco-anxiety niche</div>
+          <div class="risk-card-break">Climate-grief search demand is rising fast; while the site stays SEO-dark, that demand routes to whichever practice shows up first in search.</div>
+          <div class="risk-card-prevent">→ Structured, keyword-targeted content claims a category you already own clinically, before someone else ranks for it.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 5: WHAT GETS BUILT ── -->
+    <section>
+      <div class="section-label">The Build</div>
+      <h2>What gets built to remove the bottleneck</h2>
+      <div class="solutions-grid">
+
+        <div class="sol-card featured">
+          <div class="sol-card-header">
+            <div class="sol-card-name">Full Site Audit &amp; Compliance Remediation</div>
+            <span class="proof-tag proof-visible">Visible in Demo</span>
+          </div>
+          <div class="sol-card-body">
+            <div class="sol-field-label">Problem (Register #1)</div>
+            <div class="sol-field-text">20+ empty or duplicate pages, 4 live 404 errors, and a $10/mo pricing table for a $180–$250/hour practice — the site can't convert or stay compliant.</div>
+            <div class="sol-field-label">What Gets Built</div>
+            <div class="sol-field-text">A tracked 52-page gap matrix, a HIPAA-conscious form and data-flow audit, an ADA review, and corrected pricing — every page assigned an owner and a fix.</div>
+            <div class="sol-metrics">
+              <div class="sol-metric">
+                <div class="sol-metric-icon">📋</div>
+                <div class="sol-metric-val green">52</div>
+                <div class="sol-metric-label">Pages audited with fix status</div>
+                <div class="sol-metric-source">From AHS's site audit</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-icon">🔗</div>
+                <div class="sol-metric-val blue">4 → 0</div>
+                <div class="sol-metric-label">Live 404 errors resolved</div>
+                <div class="sol-metric-source">From AHS's site</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-icon">🛡️</div>
+                <div class="sol-metric-val">Full</div>
+                <div class="sol-metric-label">HIPAA-conscious form &amp; data audit</div>
+                <div class="sol-metric-source">Phase 1 scope</div>
+              </div>
+            </div>
+            <div class="sol-divider"></div>
+            <div class="ba-item"><span class="ba-check">✓</span><span><span class="ba-before">Pages broken &amp; unaudited</span> <span class="ba-arrow">→</span> <span class="ba-after">Every page mapped with a fix</span></span></div>
+            <div class="ba-item"><span class="ba-check">✓</span><span><span class="ba-before">$10/mo placeholder pricing</span> <span class="ba-arrow">→</span> <span class="ba-after">Accurate $180–$250 rates</span></span></div>
+            <div class="ba-item"><span class="ba-check">✓</span><span><span class="ba-before">Unverified PHI intake</span> <span class="ba-arrow">→</span> <span class="ba-after">Documented, compliant data flow</span></span></div>
+          </div>
+        </div>
+
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-card-name">Program &amp; Service Page Build-Out</div>
+            <span class="proof-tag proof-visible">Visible in Demo</span>
+          </div>
+          <div class="sol-card-body">
+            <div class="sol-field-label">Problem (Register #3)</div>
+            <div class="sol-field-text">Core program pages — Modalities, Our Team, Intensives, Children &amp; Their Adults, Youth Leaders, and Events — are entirely empty.</div>
+            <div class="sol-field-label">What Gets Built</div>
+            <div class="sol-field-text">SEO-structured content architecture for every service and program page, so prospects can discover, understand, and self-select into the right offering.</div>
+            <div class="sol-metrics">
+              <div class="sol-metric">
+                <div class="sol-metric-icon">📄</div>
+                <div class="sol-metric-val green">11+</div>
+                <div class="sol-metric-label">Empty program pages populated</div>
+                <div class="sol-metric-source">From AHS's site audit</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-icon">🧭</div>
+                <div class="sol-metric-val blue">6</div>
+                <div class="sol-metric-label">Core programs given a real page</div>
+                <div class="sol-metric-source">AHS's services</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-icon">⚙️</div>
+                <div class="sol-metric-val">Significant</div>
+                <div class="sol-metric-label">Manual page work removed</div>
+                <div class="sol-metric-source">[Estimated]</div>
+              </div>
+            </div>
+            <div class="sol-divider"></div>
+            <div class="ba-item"><span class="ba-check">✓</span><span><span class="ba-before">Blank service pages</span> <span class="ba-arrow">→</span> <span class="ba-after">Populated, SEO-ready pages</span></span></div>
+            <div class="ba-item"><span class="ba-check">✓</span><span><span class="ba-before">Prospects leave on empty pages</span> <span class="ba-arrow">→</span> <span class="ba-after">Clear path to book</span></span></div>
+            <div class="ba-item"><span class="ba-check">✓</span><span><span class="ba-before">Recruiting-dark team page</span> <span class="ba-arrow">→</span> <span class="ba-after">Credibility for referrals</span></span></div>
+          </div>
+        </div>
+
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-card-name">Course Launch Platform</div>
+            <span class="proof-tag proof-partial">Described Only</span>
+          </div>
+          <div class="sol-card-body">
+            <div class="sol-field-label">Problem (Register #4)</div>
+            <div class="sol-field-text">The self-led coursework — targeted for July 2025, now 10+ months overdue — has no landing page, enrollment, or delivery infrastructure.</div>
+            <div class="sol-field-label">What Gets Built</div>
+            <div class="sol-field-text">A course landing page, enrollment flow, and payment in Phase 1; module delivery in Phase 2 — so the eco-resiliency course can finally take revenue.</div>
+            <div class="sol-metrics">
+              <div class="sol-metric">
+                <div class="sol-metric-icon">🚀</div>
+                <div class="sol-metric-val green">10+ mo</div>
+                <div class="sol-metric-label">Overdue launch unblocked</div>
+                <div class="sol-metric-source">AHS's timeline</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-icon">💳</div>
+                <div class="sol-metric-val blue">0 → live</div>
+                <div class="sol-metric-label">Enrollment + payment flow</div>
+                <div class="sol-metric-source">Phase 1 scope</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-icon">📈</div>
+                <div class="sol-metric-val">Non-session</div>
+                <div class="sol-metric-label">New revenue stream</div>
+                <div class="sol-metric-source">AHS's model</div>
+              </div>
+            </div>
+            <div class="sol-divider"></div>
+            <div class="ba-item"><span class="ba-check">✓</span><span><span class="ba-before">"Launching July 2025" CTA</span> <span class="ba-arrow">→</span> <span class="ba-after">Live enrollment page</span></span></div>
+            <div class="ba-item"><span class="ba-check">✓</span><span><span class="ba-before">No payment path</span> <span class="ba-arrow">→</span> <span class="ba-after">Checkout built in</span></span></div>
+            <div class="ba-item"><span class="ba-check">✓</span><span><span class="ba-before">Revenue tied to your hours</span> <span class="ba-arrow">→</span> <span class="ba-after">Scalable course income</span></span></div>
+          </div>
+        </div>
+
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-card-name">Membership &amp; Acorn Circle Enrollment</div>
+            <span class="proof-tag proof-partial">Described Only</span>
+          </div>
+          <div class="sol-card-body">
+            <div class="sol-field-label">Problem (Register #5)</div>
+            <div class="sol-field-text">The Acorn Circle and membership pages list tiers but offer no enrollment path, benefits, or billing — despite being marketed as live.</div>
+            <div class="sol-field-label">What Gets Built</div>
+            <div class="sol-field-text">A gated membership portal with tiered pricing, clear benefits, and recurring billing, so community interest converts into recurring revenue.</div>
+            <div class="sol-metrics">
+              <div class="sol-metric">
+                <div class="sol-metric-icon">🎟️</div>
+                <div class="sol-metric-val green">3</div>
+                <div class="sol-metric-label">Membership tiers made functional</div>
+                <div class="sol-metric-source">AHS's pricing tiers</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-icon">🔁</div>
+                <div class="sol-metric-val blue">Recurring</div>
+                <div class="sol-metric-label">Automated billing activated</div>
+                <div class="sol-metric-source">AHS's model</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-icon">🚪</div>
+                <div class="sol-metric-val">0 → 1</div>
+                <div class="sol-metric-label">Join path on the site</div>
+                <div class="sol-metric-source">From AHS's site audit</div>
+              </div>
+            </div>
+            <div class="sol-divider"></div>
+            <div class="ba-item"><span class="ba-check">✓</span><span><span class="ba-before">Tiers listed but inactive</span> <span class="ba-arrow">→</span> <span class="ba-after">Working sign-up</span></span></div>
+            <div class="ba-item"><span class="ba-check">✓</span><span><span class="ba-before">No member benefits shown</span> <span class="ba-arrow">→</span> <span class="ba-after">Clear tier value</span></span></div>
+            <div class="ba-item"><span class="ba-check">✓</span><span><span class="ba-before">Interest with no door</span> <span class="ba-arrow">→</span> <span class="ba-after">Recurring revenue path</span></span></div>
+          </div>
+        </div>
+
+        <div class="sol-card">
+          <div class="sol-card-header">
+            <div class="sol-card-name">SEO &amp; Eco-Anxiety Specialty Hub</div>
+            <span class="proof-tag proof-future">Future State</span>
+          </div>
+          <div class="sol-card-body">
+            <div class="sol-field-label">Problem (Register #3 / future risk)</div>
+            <div class="sol-field-text">The eco-anxiety and somatic niche has meta descriptions but no page content or keyword targeting — invisible beyond branded searches.</div>
+            <div class="sol-field-label">What Gets Built</div>
+            <div class="sol-field-text">SEO-structured service pages, an eco-anxiety specialty hub, local schema for Idyllwild and telehealth CA, and keyword-targeted content.</div>
+            <div class="sol-metrics">
+              <div class="sol-metric">
+                <div class="sol-metric-icon">🔍</div>
+                <div class="sol-metric-val green">2–4</div>
+                <div class="sol-metric-label">New organic clients / month</div>
+                <div class="sol-metric-source">[Estimated]</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-icon">💵</div>
+                <div class="sol-metric-val blue">$720–$1,000</div>
+                <div class="sol-metric-label">Added revenue / month</div>
+                <div class="sol-metric-source">AHS rates [est. volume]</div>
+              </div>
+              <div class="sol-metric">
+                <div class="sol-metric-icon">📍</div>
+                <div class="sol-metric-val">Idyllwild + CA</div>
+                <div class="sol-metric-label">Telehealth keyword targeting</div>
+                <div class="sol-metric-source">Site SEO review</div>
+              </div>
+            </div>
+            <div class="sol-divider"></div>
+            <div class="ba-item"><span class="ba-check">✓</span><span><span class="ba-before">Meta tags but no content</span> <span class="ba-arrow">→</span> <span class="ba-after">Indexable, ranking pages</span></span></div>
+            <div class="ba-item"><span class="ba-check">✓</span><span><span class="ba-before">Invisible beyond brand search</span> <span class="ba-arrow">→</span> <span class="ba-after">Ranks for niche terms</span></span></div>
+            <div class="ba-item"><span class="ba-check">✓</span><span><span class="ba-before">Demand routes to competitors</span> <span class="ba-arrow">→</span> <span class="ba-after">AHS owns the category</span></span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="timeline-strip">
+        <div class="timeline-phase">
+          <div class="timeline-dot">1</div>
+          <div class="timeline-label">Months 1–2</div>
+          <div class="timeline-desc">Foundation — full site audit, HIPAA &amp; ADA review, core pages populated, pricing and 404s fixed, intake form upgraded.</div>
+        </div>
+        <div class="timeline-phase">
+          <div class="timeline-dot">2</div>
+          <div class="timeline-label">Months 2–4</div>
+          <div class="timeline-desc">Acquisition — SEO content publishing, eco-anxiety specialty hub, insurance verification improvements, and email nurture sequences.</div>
+        </div>
+        <div class="timeline-phase">
+          <div class="timeline-dot">3</div>
+          <div class="timeline-label">Months 4–6</div>
+          <div class="timeline-desc">Revenue — course landing, enrollment and payment, the membership portal with all three tiers, and client onboarding.</div>
+        </div>
+        <div class="timeline-phase">
+          <div class="timeline-dot">4</div>
+          <div class="timeline-label">Months 6–12</div>
+          <div class="timeline-desc">Scale — second course, FireKeeper youth page, referral network, and ongoing clinician onboarding without your time.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 6: PROJECTED OPERATIONAL IMPACT ── -->
+    <section>
+      <div class="section-label">Projected Operational Impact</div>
+      <h2>The shape of the change</h2>
+      <div class="roi-stat-grid">
+        <div class="roi-stat"><div class="roi-stat-val green">52</div><div class="roi-stat-label">Pages audited with a tracked fix plan</div></div>
+        <div class="roi-stat"><div class="roi-stat-val blue">4 → 0</div><div class="roi-stat-label">Live 404 errors cleared</div></div>
+        <div class="roi-stat"><div class="roi-stat-val">11+</div><div class="roi-stat-label">Empty program pages populated</div></div>
+        <div class="roi-stat"><div class="roi-stat-val">10+ mo</div><div class="roi-stat-label">Overdue course launch unblocked</div></div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-title">Pages, flows, and fixes delivered, by build area</div>
+        <canvas id="impactChart"></canvas>
+      </div>
+      <div class="numbers-panel">
+        <div class="numbers-panel-title">How We Treated Every Number in This Report</div>
+        <div class="nt-rows">
+          <div class="nt-row">
+            <span class="nt-dot nt-green"></span>
+            <span class="nt-desc"><strong>From A Human Sanctuary's own materials</strong> — the 20+ empty or broken pages, the 4 live 404s, the $10–$20/mo pricing against $180–$250 session fees, and the 10+ month overdue course launch. These lead every headline.</span>
+            <span class="nt-badge badge-green">Direct source</span>
+          </div>
+          <div class="nt-row">
+            <span class="nt-dot nt-blue"></span>
+            <span class="nt-desc"><strong>Calculated estimates</strong> — the 2–4 new organic clients per month from SEO and the resulting $720–$1,000 in monthly revenue at your rates. Each is shown with an "Estimated" label.</span>
+            <span class="nt-badge badge-blue">Estimated</span>
+          </div>
+          <div class="nt-row">
+            <span class="nt-dot nt-amber"></span>
+            <span class="nt-desc"><strong>Industry reference points</strong> — illustrative course and membership revenue, and HIPAA penalty exposure. Based on comparable practices, not specific to AHS — never a headline.</span>
+            <span class="nt-badge badge-amber">Industry context</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 7: STAKEHOLDER / DECISION CONTEXT ── -->
+    <section>
+      <div class="section-label">Decision Context</div>
+      <h2>Who this decision involves</h2>
+      <div class="stakeholder-cards">
+        <div class="sh-card">
+          <div class="sh-role">Founder &amp; Sole Licensed Provider</div>
+          <div class="sh-name">Julie Anne Steiger, LCSW</div>
+          <div class="sh-row">
+            <div class="sh-row-label">What matters most</div>
+            <div class="sh-row-text">A site that works without her managing it — compliance resolved and course revenue finally unlocked.</div>
+          </div>
+          <div class="sh-row">
+            <div class="sh-row-label">Risk they care about</div>
+            <div class="sh-row-text">Spending the budget on another contractor that doesn't deliver, or being pulled into vendor management mid-clinical-load.</div>
+          </div>
+        </div>
+        <div class="sh-card">
+          <div class="sh-role">Prospective Clients (indirect)</div>
+          <div class="sh-name">The people landing on the site</div>
+          <div class="sh-row">
+            <div class="sh-row-label">What matters most</div>
+            <div class="sh-row-text">Clear service descriptions, easy booking, and a site that looks trustworthy enough to begin therapy.</div>
+          </div>
+          <div class="sh-row">
+            <div class="sh-row-label">Risk they care about</div>
+            <div class="sh-row-text">Landing on empty pages, seeing $10/month pricing, or hitting broken links — and quietly leaving.</div>
+          </div>
+        </div>
+        <div class="sh-card">
+          <div class="sh-role">Associate Therapists (indirect)</div>
+          <div class="sh-name">Clinicians you'd onboard</div>
+          <div class="sh-row">
+            <div class="sh-row-label">What matters most</div>
+            <div class="sh-row-text">A professional-looking practice to join and visibility for their own specialties.</div>
+          </div>
+          <div class="sh-row">
+            <div class="sh-row-label">Risk they care about</div>
+            <div class="sh-row-text">No team page or credibility signals — the site reads as a solo operation, not a growing sanctuary.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 8: CTA ── -->
+    <section class="cta-section">
+      <div class="cta-box">
+        <div class="cta-eyebrow">Recommended Next Step</div>
+        <h2 class="cta-headline">See exactly how this gets built — in 6 minutes</h2>
+        <p class="cta-body">This brief is built entirely from your own site, job posting, and published materials — the broken pages, the pricing gap, and the overdue course launch. The short walkthrough shows exactly how Phase 1 closes each one, in the order we'd tackle them, so you can see the plan before we ever speak.</p>
+        <div class="cta-buttons">
+          <a class="btn-primary" href="#">Watch the Demo →</a>
+        </div>
+      </div>
+    </section>
 
   </div>
-</div>
-
-<div class="page">
-
-<!-- ═══════════════════════════════════════════
-     SECTION 2 — DESIRED OUTCOME
-═══════════════════════════════════════════ -->
-<div class="section" style="margin-top: 28px;">
-  <div class="section-label">What AHS Is Building Toward</div>
-  <h2 class="section-title">The Goal: A Compliant, Growth-Ready Platform That Runs Without You</h2>
-
-  <div class="outcome-cards">
-    <div class="outcome-card">
-      <div class="oc-label">Desired Outcome</div>
-      <div class="oc-title">A HIPAA-compliant, ADA-accessible, SEO-optimized site that converts visitors and supports every growth track</div>
-      <div class="oc-body">AHS needs a site that reliably brings in new clients through organic search, onboards associate therapists without founder involvement, and supports the launch of scalable digital offerings — eco-resiliency coursework and the Acorn Circle membership community.</div>
-    </div>
-    <div class="outcome-card">
-      <div class="oc-label">Buying Reason</div>
-      <div class="oc-title">The founder is doing clinical work, course creation, and community building — while the site has critical gaps blocking all of it</div>
-      <div class="oc-body">Julie Anne is sole licensed provider, content creator, and site manager simultaneously. The website has compliance exposure, broken pages, and no infrastructure for courses or membership — and a fourth contractor has now been posted on Upwork to fix what three prior hires did not.</div>
-    </div>
+  <div class="footer">
+    <span class="footer-brand">Dev8X · Decision Safety Brief · A Human Sanctuary</span>
+    <span class="footer-note">Prepared May 2026 · Confidential</span>
   </div>
-
-  <div class="timing-callout">
-    <strong>Why timing matters now:</strong> The July 2025 course launch was publicly announced on the AHS website. It is now May 2026 — 10 months past that target. Every month the infrastructure remains unbuilt is a month of course enrollment, membership revenue, and new client discovery that does not happen. The Upwork posting is live, which means this decision is being made right now — not next quarter.
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     SECTION 3 — CURRENT PROBLEM REGISTER
-═══════════════════════════════════════════ -->
-<div class="section">
-  <div class="section-label">Current Problem Register</div>
-  <h2 class="section-title">What's Broken Right Now — and What It's Blocking</h2>
-  <p style="font-size: 13px; color: var(--gray-500); margin-bottom: 20px; line-height: 1.5;">Drawn directly from a 52-page audit of the AHS website, the active Upwork job posting, and publicly available practice materials.</p>
-
-  <table class="problem-table">
-    <thead>
-      <tr>
-        <th>Current Challenge</th>
-        <th>Business Impact</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <div><span class="severity-badge sev-critical">Critical</span></div>
-          <strong>The site has 20+ empty or duplicate pages and four active 404 errors</strong> — including /privacy, /terms, /join, and /accessibility — making it structurally non-functional as a client acquisition or program delivery tool.
-        </td>
-        <td>Prospective clients who land on empty program pages (Modalities, Team, Intensives, Children &amp; Adults) find nothing. Referral sources checking the site see a practice that looks unfinished. Every broken link is a conversion that doesn't happen.</td>
-      </tr>
-      <tr>
-        <td>
-          <div><span class="severity-badge sev-critical">Critical</span></div>
-          <strong>The pricing table shows $10–$20/month plans while the booking page shows $180–$250/hr session fees</strong> — a visible, live contradiction any prospective client will encounter before they book.
-        </td>
-        <td>A client who finds the pricing page before the booking page will see $10/month for a trauma therapy practice. That is a credibility gap that creates doubt before the first contact is even made. Directly sourced from AHS's own published pages.</td>
-      </tr>
-      <tr>
-        <td>
-          <div><span class="severity-badge sev-critical">Critical</span></div>
-          <strong>The insurance intake form collects PHI — including insurance card images — with no documented HIPAA-compliant data handling, no confirmed BAA, and no audit trail.</strong> The Upwork job posting explicitly names HIPAA-conscious review as Phase 1.
-        </td>
-        <td>Every form submission is a documented compliance exposure. The practice is licensed as an LCSW Professional Corporation — HIPAA-governed — making this the highest-severity risk on the site. A Wix BAA alone does not cover the full data flow.</td>
-      </tr>
-      <tr>
-        <td>
-          <div><span class="severity-badge sev-high">High</span></div>
-          <strong>The eco-resiliency / Deep Adaptation coursework was publicly announced for July 2025. It is now 10+ months overdue</strong> — no landing page, no enrollment mechanism, and no payment infrastructure exist anywhere on the site.
-        </td>
-        <td>Course revenue is zero for a program already being marketed as coming. Every month without infrastructure is a month of enrollment revenue not collected — at whatever pricing Julie Anne sets for the cohort.</td>
-      </tr>
-      <tr>
-        <td>
-          <div><span class="severity-badge sev-high">High</span></div>
-          <strong>The Acorn Circle membership community is being actively promoted on LinkedIn as a live program — but the membership page is either empty or contains only partial positioning copy with no enrollment path, pricing, or join mechanism.</strong>
-        </td>
-        <td>Community members who arrive from LinkedIn or word-of-mouth cannot convert. Recurring revenue from Acorn Circle cannot start if there is no door to walk through. The audience does not wait.</td>
-      </tr>
-      <tr>
-        <td>
-          <div><span class="severity-badge sev-high">High</span></div>
-          <strong>Every clinician team page — Our Team, Meet Our Clinicians, Facilitators &amp; Guides — is entirely empty.</strong> No bios, no specialties, no credentials are published for any associate therapist or team member.
-        </td>
-        <td>Referral sources cannot match clients to clinicians. Associate therapist candidates researching the practice see no professional infrastructure. The site presents AHS as a solo operation, not a growing multi-clinician sanctuary — directly suppressing expansion.</td>
-      </tr>
-      <tr>
-        <td>
-          <div><span class="severity-badge sev-medium">Medium</span></div>
-          <strong>The /accessibility page returns a 404 error</strong> — the URL most commonly linked when a healthcare practice declares ADA accessibility compliance is itself broken. No ADA accessibility audit has been completed.
-        </td>
-        <td>ADA exposure is both a legal liability and a credibility signal. For a practice serving trauma clients — many of whom may have sensory or cognitive accessibility needs — a broken accessibility page is a conspicuous gap. Listed as Phase 1 in the Upwork scope.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     SECTION 3B — RESEARCH TRANSPARENCY
-═══════════════════════════════════════════ -->
-<div class="section" style="background: var(--gray-50);">
-  <div class="section-label">Research Transparency</div>
-  <h2 class="section-title" style="font-size: 18px; margin-bottom: 6px;">What We Know and Where We'd Like Your Confirmation</h2>
-  <p style="font-size: 12.5px; color: var(--gray-500); margin-bottom: 18px;">Headline figures are limited to numbers tied directly to AHS's own published materials. Estimates are labelled throughout.</p>
-
-  <table class="transparency-table">
-    <thead>
-      <tr>
-        <th style="width: 22%">Claim</th>
-        <th style="width: 30%">Evidence We Used</th>
-        <th style="width: 26%">What We'd Like to Confirm</th>
-        <th style="width: 22%">Open Question</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>The site has 20+ broken or empty pages across 52 pages audited</strong></td>
-        <td><span class="evidence-tag">Direct source</span> 52-page site scrape — pages 5, 8–11, 13, 16–17, 26, 29, 31–32, 35, 37–38, 40–42, 45, 49–52 flagged as empty, duplicate, or 404. Scrape dated May 2026.</td>
-        <td>Whether any of these pages are intentionally unpublished staging drafts, or all are unintended production gaps.</td>
-        <td>Either way they appear in search indexing and are reachable by visitors — but the fix approach differs slightly between the two cases.</td>
-      </tr>
-      <tr>
-        <td><strong>The coursework launch target was July 2025 — now 10+ months overdue</strong></td>
-        <td><span class="evidence-tag">Direct source</span> AHS website §15 states "Coursework Launching July 2025 — sign up for updates." Current date: May 2026. LinkedIn owner profile confirms coursework is "currently creating."</td>
-        <td>Whether July 2025 was a firm public commitment or an internal estimate that shifted. Current enrollment targets and intended pricing.</td>
-        <td>Intentional or not, the revenue gap is the same — the question is only when to close it and at what price point.</td>
-      </tr>
-      <tr>
-        <td><strong>SEO optimization can generate 2–4 new organic clients per month</strong></td>
-        <td><span class="est-tag">Estimated</span> Based on AHS session fees ($180–$250/hr) and keyword opportunity in eco-anxiety, somatic therapy, and telehealth CA search terms. AHS serves California and Texas statewide via telehealth — not walk-in only.</td>
-        <td>Confirmation of current monthly new client volume from any channel, and whether SEO has been attempted previously.</td>
-        <td>Actual lift depends on competition, content quality, and indexing timeline. We will show the keyword opportunity before projecting specific outcomes.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     SECTION 4 — FUTURE PROBLEM REGISTER
-═══════════════════════════════════════════ -->
-<div class="section">
-  <div class="section-label">Looking 12–24 Months Ahead</div>
-  <h2 class="section-title">What Breaks If the Site Stays As-Is</h2>
-
-  <div class="risk-cards">
-    <div class="risk-card r1">
-      <div class="risk-when">Now → ongoing</div>
-      <div class="risk-title">A HIPAA or CCPA enforcement action exposes the unaudited PHI intake flow</div>
-      <div class="risk-body">The insurance form collects health information and insurance card photos with no documented audit trail, no confirmed BAA, and no verified encrypted transmission. Every submission adds to the exposure window. Industry benchmarks note fines up to $50,000 per violation category — this is directional context, not specific to AHS.</div>
-      <div class="risk-prevent">→ A HIPAA-conscious audit in Phase 1 closes the exposure before a regulator finds it — not after.</div>
-    </div>
-    <div class="risk-card r2">
-      <div class="risk-when">6–12 months</div>
-      <div class="risk-title">Clinician expansion stalls permanently without a structured onboarding and team infrastructure</div>
-      <div class="risk-body">Every associate therapist added without a template or workflow requires founder time to publish bios, set up pages, and configure intake. Without a system built once in Phase 1, adding clinicians will always pull Julie Anne out of clinical work.</div>
-      <div class="risk-prevent">→ A standardized clinician onboarding template built in Phase 2 means new associates publish in hours, not founder-hours.</div>
-    </div>
-    <div class="risk-card r3">
-      <div class="risk-when">12–24 months</div>
-      <div class="risk-title">AHS's eco-therapy niche advantage generates zero organic discovery while competitors claim the SEO position first</div>
-      <div class="risk-body">Julie Anne is building clinical depth in collapse-aware therapy, eco-resiliency, and Deep Adaptation — categories with growing search demand as climate anxiety enters mainstream clinical conversation. The site currently has no keyword structure, no optimized landing pages, and no content targeting these terms.</div>
-      <div class="risk-prevent">→ SEO-structured content built now claims a niche before search volume matures and competition arrives.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     SECTION 5 — WHAT GETS BUILT
-═══════════════════════════════════════════ -->
-<div class="section">
-  <div class="section-label">What Gets Built</div>
-  <h2 class="section-title">Removing the Bottleneck — Six Targeted Builds</h2>
-  <p style="font-size: 13px; color: var(--gray-500); margin-bottom: 24px;">Each build maps directly to a confirmed problem above. The Wix platform is retained throughout — no migration, no rebuild. This is an audit, optimization, and content-completion model.</p>
-
-  <div class="solutions-grid">
-
-    <!-- CARD 1: Site Audit + Compliance Fix -->
-    <div class="solution-card">
-      <div class="proof-tag demo">Visible in Demo</div>
-      <div class="sol-ref">Solves Problems #1, #3, #7</div>
-      <div class="sol-name">Full Site Audit &amp; Structural Fix</div>
-      <div class="sol-problem">20+ empty or broken pages, four active 404 errors (including /privacy and /accessibility), and a pricing table contradiction — all live and visible to every prospective client right now.</div>
-      <div class="sol-build">A 52-page gap matrix with fix status, ownership, and completion checkpoints — delivered in 5 business days. Every broken URL resolved, every empty page assigned a content structure, pricing inconsistency corrected.</div>
-      <div class="sol-metrics">
-        <div class="sol-metric">
-          <div class="m-val">20+</div>
-          <div class="m-label">Pages with confirmed structural gaps resolved</div>
-          <div class="m-source">Direct site audit</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">4</div>
-          <div class="m-label">Active 404 errors fixed — including /privacy &amp; /accessibility</div>
-          <div class="m-source">Direct site audit</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">5 days</div>
-          <div class="m-label">To full gap matrix delivered — audit report in your inbox</div>
-          <div class="m-source">Estimated delivery scope</div>
-        </div>
-      </div>
-      <div class="before-after">
-        <div class="ba-label">Before → After</div>
-        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">Visitor lands on Modalities page — blank</span><span class="ba-sep">·</span><span class="ba-after">Structured content with AHS service descriptions live</span></span></div>
-        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">$10/mo pricing page contradicts $180–$250/hr booking</span><span class="ba-sep">·</span><span class="ba-after">Pricing corrected — no credibility gap</span></span></div>
-        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">/accessibility returns 404</span><span class="ba-sep">·</span><span class="ba-after">ADA compliance page live and linked correctly</span></span></div>
-      </div>
-    </div>
-
-    <!-- CARD 2: HIPAA/ADA Compliance -->
-    <div class="solution-card amber-bar">
-      <div class="proof-tag demo">Visible in Demo</div>
-      <div class="sol-ref">Solves Problem #2</div>
-      <div class="sol-name">HIPAA-Conscious Compliance Audit</div>
-      <div class="sol-problem">The insurance intake form collects PHI including insurance card photos. No documented HIPAA-compliant data handling, BAA confirmation, or transmission audit has been completed — a live exposure for an LCSW Professional Corporation.</div>
-      <div class="sol-build">Annotated form and data-flow audit: every field mapped against HIPAA-conscious controls, every integration reviewed, BAA gaps identified, CCPA/CPRA notice reviewed — with a remediation checklist signed off before Phase 2 begins.</div>
-      <div class="sol-metrics">
-        <div class="sol-metric">
-          <div class="m-val">100%</div>
-          <div class="m-label">PHI data fields audited and mapped to required controls</div>
-          <div class="m-source">Scope of work</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">Phase 1</div>
-          <div class="m-label">Compliance audit completed before any new intake form goes live</div>
-          <div class="m-source">Upwork scope, Phase 1</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">Zero</div>
-          <div class="m-label">Undocumented PHI transmission paths remaining after audit</div>
-          <div class="m-source">Deliverable outcome</div>
-        </div>
-      </div>
-      <div class="before-after">
-        <div class="ba-label">Before → After</div>
-        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">PHI collected via form with no audit trail or BAA confirmation</span><span class="ba-sep">·</span><span class="ba-after">Every data flow documented, gaps remediated</span></span></div>
-        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">Founder carries compliance risk unknowingly on every submission</span><span class="ba-sep">·</span><span class="ba-after">HIPAA-conscious controls in place — protection, not exposure</span></span></div>
-      </div>
-    </div>
-
-    <!-- CARD 3: Course Launch Infrastructure -->
-    <div class="solution-card green-bar">
-      <div class="proof-tag demo">Visible in Demo</div>
-      <div class="sol-ref">Solves Problem #4</div>
-      <div class="sol-name">Course Launch Infrastructure</div>
-      <div class="sol-problem">The eco-resiliency / Deep Adaptation coursework was publicly announced for July 2025. It is now 10+ months overdue — no landing page, no enrollment form, and no payment infrastructure exist anywhere on the site.</div>
-      <div class="sol-build">SEO-optimized course landing page, enrollment form, and payment integration built on Wix in Phase 1. Delivery pathway (gated content, member access) configured in Phase 2. Julie Anne provides content; Dev8X builds the container.</div>
-      <div class="sol-metrics">
-        <div class="sol-metric">
-          <div class="m-val">10+ mo</div>
-          <div class="m-label">Revenue delay closed — enrollment opens in Phase 1</div>
-          <div class="m-source">AHS published launch date</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">$0→live</div>
-          <div class="m-label">Course revenue currently at zero — Phase 1 opens enrollment</div>
-          <div class="m-source">Direct site observation</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">Self-led</div>
-          <div class="m-label">Revenue model scales without founder session time [Estimated]</div>
-          <div class="m-source">Estimated build outcome</div>
-        </div>
-      </div>
-      <div class="before-after">
-        <div class="ba-label">Before → After</div>
-        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">"Launching July 2025" CTA — no page behind it</span><span class="ba-sep">·</span><span class="ba-after">Live landing page with enrollment and payment</span></span></div>
-        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">Course content created, nowhere to deliver it</span><span class="ba-sep">·</span><span class="ba-after">Gated delivery platform ready for first cohort</span></span></div>
-      </div>
-    </div>
-
-    <!-- CARD 4: Acorn Circle Membership -->
-    <div class="solution-card teal-bar">
-      <div class="proof-tag described">Described Only</div>
-      <div class="sol-ref">Solves Problem #5</div>
-      <div class="sol-name">Acorn Circle Membership Build</div>
-      <div class="sol-problem">The Acorn Circle is actively promoted on LinkedIn as a live community — but the membership page is empty or has only partial copy with no pricing, no benefits structure, and no way to join.</div>
-      <div class="sol-build">Membership enrollment page with benefit tiers, pricing structure, and recurring payment integration — built on Wix. Waitlist capture as interim step if pricing/model needs finalizing before full launch.</div>
-      <div class="sol-metrics">
-        <div class="sol-metric">
-          <div class="m-val">$0→mrr</div>
-          <div class="m-label">Recurring revenue currently inaccessible — membership has no door</div>
-          <div class="m-source">Direct site observation</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">1 page</div>
-          <div class="m-label">Phase 1 build — waitlist or full enrollment, whichever is ready first</div>
-          <div class="m-source">Estimated scope</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">Recurring</div>
-          <div class="m-label">Revenue model: monthly subscription, sliding scale, or cohort-based [to confirm]</div>
-          <div class="m-source">Discovery question</div>
-        </div>
-      </div>
-      <div class="before-after">
-        <div class="ba-label">Before → After</div>
-        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">LinkedIn promotes Acorn Circle as live — site has no join page</span><span class="ba-sep">·</span><span class="ba-after">Enrollment page live — community can actually join</span></span></div>
-        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">Interested members arrive, find nothing, and leave</span><span class="ba-sep">·</span><span class="ba-after">Waitlist or full signup converts community interest to MRR</span></span></div>
-      </div>
-    </div>
-
-    <!-- CARD 5: Clinician Infrastructure -->
-    <div class="solution-card">
-      <div class="proof-tag described">Described Only</div>
-      <div class="sol-ref">Solves Problem #6</div>
-      <div class="sol-name">Clinician Onboarding System</div>
-      <div class="sol-problem">Every clinician team page — Our Team, Meet Our Clinicians, Facilitators &amp; Guides — is entirely empty. No bios, no photos, no specialties published. Associates cannot be found by clients or referral sources.</div>
-      <div class="sol-build">A standardized clinician onboarding template (photo specs, bio structure, specialty and modality tags) and a Phase 2 workflow so new associates publish their profile in one founder-free handoff — not a manual rebuild each time.</div>
-      <div class="sol-metrics">
-        <div class="sol-metric">
-          <div class="m-val">0→live</div>
-          <div class="m-label">Team pages populated from current empty state</div>
-          <div class="m-source">Direct site audit</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">Template</div>
-          <div class="m-label">Each new clinician onboards via standard form — no founder involvement</div>
-          <div class="m-source">Phase 2 scope</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">Credible</div>
-          <div class="m-label">Practice presents as multi-clinician sanctuary, not solo operation</div>
-          <div class="m-source">Operational outcome</div>
-        </div>
-      </div>
-      <div class="before-after">
-        <div class="ba-label">Before → After</div>
-        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">Our Team page: blank</span><span class="ba-sep">·</span><span class="ba-after">Bio, photo, specialties, modalities live for every clinician</span></span></div>
-        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">Each new hire requires founder to build a page from scratch</span><span class="ba-sep">·</span><span class="ba-after">Template submission → published profile, no founder time required</span></span></div>
-      </div>
-    </div>
-
-    <!-- CARD 6: SEO + Organic Discovery -->
-    <div class="solution-card green-bar">
-      <div class="proof-tag future">Future State</div>
-      <div class="sol-ref">Unlocks Goal #1 — organic client acquisition</div>
-      <div class="sol-name">SEO Architecture &amp; Organic Client Discovery</div>
-      <div class="sol-problem">AHS has zero keyword structure on any page. The eco-anxiety, somatic therapy, and telehealth CA terms that describe AHS's core work generate no organic search visibility — despite AHS serving California and Texas statewide.</div>
-      <div class="sol-build">On-page SEO optimization across core program pages, structured keyword targeting for eco-anxiety + telehealth CA + Idyllwild niche terms, and meta structure built into every new content page from Phase 1 onward.</div>
-      <div class="sol-metrics">
-        <div class="sol-metric">
-          <div class="m-val">2–4</div>
-          <div class="m-label">Estimated new organic clients per month after 90-day indexing window</div>
-          <div class="m-source">Estimated — labelled</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">$720–$1k</div>
-          <div class="m-label">Estimated monthly revenue impact per 4 new clients at AHS session rates [Estimated]</div>
-          <div class="m-source">AHS published session fees</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">Niche</div>
-          <div class="m-label">Collapse-aware therapy keyword position — available, unclaimed, growing</div>
-          <div class="m-source">Keyword opportunity analysis</div>
-        </div>
-      </div>
-      <div class="before-after">
-        <div class="ba-label">Before → After</div>
-        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">No keyword targeting — site invisible in eco-anxiety, somatic therapy searches</span><span class="ba-sep">·</span><span class="ba-after">Structured SEO across all program pages</span></span></div>
-        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">Climate grief, eco-resiliency searches route to competitors</span><span class="ba-sep">·</span><span class="ba-after">AHS claims the niche position before competitors build content depth</span></span></div>
-      </div>
-    </div>
-
-  </div><!-- end solutions-grid -->
-
-  <!-- PHASE TIMELINE -->
-  <div style="margin-top: 24px;">
-    <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.09em; font-weight: 700; color: var(--blue); margin-bottom: 8px;">Build Sequence — No Disruption to Live Services</div>
-    <div class="timeline-strip">
-      <div class="tl-phase">
-        <div class="tl-num">Days 1–5 · Immediate</div>
-        <div class="tl-title">Audit Delivery</div>
-        <ul class="tl-items">
-          <li>52-page gap matrix with fix plan delivered</li>
-          <li>HIPAA compliance checklist annotated</li>
-          <li>404 errors confirmed and prioritised</li>
-          <li>Pricing inconsistency documented</li>
-        </ul>
-      </div>
-      <div class="tl-phase">
-        <div class="tl-num">Weeks 2–6 · Phase 1</div>
-        <div class="tl-title">Fix &amp; Build Foundation</div>
-        <ul class="tl-items">
-          <li>All 404s resolved, pricing corrected</li>
-          <li>Compliance gaps remediated</li>
-          <li>Course landing page + enrollment live</li>
-          <li>Acorn Circle page or waitlist launched</li>
-          <li>Core program pages content-complete</li>
-        </ul>
-      </div>
-      <div class="tl-phase">
-        <div class="tl-num">Month 2+ · Phase 2</div>
-        <div class="tl-title">Ongoing Expansion</div>
-        <ul class="tl-items">
-          <li>Clinician template + onboarding workflow</li>
-          <li>SEO architecture across all new pages</li>
-          <li>Course delivery infrastructure</li>
-          <li>Julie Anne is not the bottleneck</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     SECTION 6 — PROJECTED OPERATIONAL IMPACT
-═══════════════════════════════════════════ -->
-<div class="section">
-  <div class="section-label">Projected Impact</div>
-  <h2 class="section-title">What Changes When the Bottleneck Is Removed</h2>
-
-  <div class="stat-grid">
-    <div class="stat-card">
-      <div class="sc-val">10+ mo</div>
-      <div class="sc-label">Revenue delay closed — course enrollment opens in Phase 1</div>
-      <div class="sc-source">AHS published launch date</div>
-    </div>
-    <div class="stat-card">
-      <div class="sc-val">$720–$1k</div>
-      <div class="sc-label">Est. monthly revenue added per 4 new organic clients at AHS session rates</div>
-      <div class="sc-source">AHS session fees × est. SEO lift</div>
-    </div>
-    <div class="stat-card">
-      <div class="sc-val">4 tracks</div>
-      <div class="sc-label">Simultaneously unblocked: compliance, courses, membership, clinician growth</div>
-      <div class="sc-source">Problem Register analysis</div>
-    </div>
-    <div class="stat-card">
-      <div class="sc-val">5 days</div>
-      <div class="sc-label">To full gap audit in your inbox — Phase 1 build starts on approval</div>
-      <div class="sc-source">Estimated delivery scope</div>
-    </div>
-  </div>
-
-  <div class="chart-wrap">
-    <div class="chart-title">Site Readiness by Area — Current State vs. After Phase 1 Build</div>
-    <div class="chart-sub">Each area scored 0–100% based on functional readiness for client acquisition, conversion, and compliance. Direct site audit, May 2026.</div>
-    <canvas id="impactChart" height="260"></canvas>
-  </div>
-
-  <div class="number-treatment">
-    <div class="nt-title">How We Treated Every Number in This Brief</div>
-    <div class="nt-rows">
-      <div class="nt-row">
-        <div class="nt-dot nt-green"></div>
-        <div class="nt-desc"><strong>From AHS's own published materials:</strong> 10+ month course delay (July 2025 launch date, confirmed on site), 20+ broken pages (52-page audit), $180–$250/hr session fees (booking page), 4 active 404 errors, $789.70 prior Upwork spend, $30/hr prior contractor rate, HIPAA-governed practice status. These figures lead all headlines.</div>
-        <div class="nt-badge badge-green">Direct source</div>
-      </div>
-      <div class="nt-row">
-        <div class="nt-dot nt-blue"></div>
-        <div class="nt-desc"><strong>Calculated estimates from observable signals:</strong> 2–4 new organic clients/month from SEO (based on keyword opportunity and CA telehealth market); $720–$1,000/month revenue impact (session fee × estimated new clients); 5-day audit delivery; Phase 1 timeline. Shown with "Estimated" context throughout.</div>
-        <div class="nt-badge badge-blue">Estimated</div>
-      </div>
-      <div class="nt-row">
-        <div class="nt-dot nt-amber"></div>
-        <div class="nt-desc"><strong>Industry reference points:</strong> HIPAA non-compliance fines (up to $50,000/violation category) and ADA liability benchmarks used as directional context only — not specific to AHS, not in any headline figure. Actual risk depends on specific circumstances.</div>
-        <div class="nt-badge badge-amber">Industry context</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     SECTION 7 — STAKEHOLDER CONTEXT
-═══════════════════════════════════════════ -->
-<div class="section">
-  <div class="section-label">Decision Context</div>
-  <h2 class="section-title">Who This Decision Involves</h2>
-
-  <div class="sh-single">
-    <div class="sh-header">
-      <div class="sh-avatar">JA</div>
-      <div>
-        <div class="sh-name">Julie Anne Steiger, LCSW</div>
-        <div class="sh-role">Founder · Sole Licensed Provider · Sole Decision-Maker</div>
-      </div>
-    </div>
-    <div class="sh-rows">
-      <div>
-        <div class="sh-row-label">Cares most about</div>
-        <div class="sh-row-val">A site that works without requiring her to manage it. Compliance resolved permanently so clinical work isn't shadowed by liability. Courses and membership revenue open without more contractor cycles. Not being the bottleneck in her own practice.</div>
-      </div>
-      <div>
-        <div class="sh-row-label">Primary concern</div>
-        <div class="sh-row-val">Being burned again — three prior Upwork hires, $789.70 spent, a 3.9 rating, and the site still broken. The fourth job posting is more detailed and more specific than the prior three. That specificity signals hard-won clarity about what she needs.</div>
-      </div>
-      <div>
-        <div class="sh-row-label">Decision dynamic</div>
-        <div class="sh-row-val">No committee, no procurement layer, no partners. Julie Anne is the sole decision-maker. The decision will turn on trust and demonstrated competence — not budget. The Upwork post is live now, which means the decision window is open and closing.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="sh-note">
-    <strong>No co-decision-maker risk identified.</strong> The AHS practice is a sole-owner LCSW Professional Corporation. This decision does not require board approval, partner sign-off, or procurement review. Speed to a credible, well-scoped proposal is the primary competitive variable — not price.
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     SECTION 8 — CTA
-═══════════════════════════════════════════ -->
-<div class="cta-section">
-  <div class="cta-title">See exactly how this gets built — in 6 minutes</div>
-  <p class="cta-sub">We've prepared a walkthrough showing the annotated 52-page gap audit, the compliance risk mapping, before/after page wireframes for the five biggest fixes, and the Phase 1 build plan — scoped, priced, and startable within days.</p>
-  <div class="cta-buttons">
-    <a href="#" class="btn-primary">Watch the Demo →</a>
-    <a href="#" class="btn-secondary">Book a 20-Minute Call →</a>
-  </div>
-
-
-  
-
-</div><!-- end .page -->
-
-
-
-<script>
-const ctx = document.getElementById('impactChart').getContext('2d');
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: [
-      'Client Acquisition (core pages populated)',
-      'HIPAA / Compliance Readiness',
-      'Course Launch Infrastructure',
-      'Membership / Acorn Circle',
-      'Clinician Team Visibility',
-      'ADA & Accessibility',
-      'SEO / Organic Discovery'
-    ],
-    datasets: [
-      {
-        label: 'Current State',
-        data: [12, 15, 0, 5, 0, 8, 5],
-        backgroundColor: 'rgba(220, 38, 38, 0.15)',
-        borderColor: 'rgba(220, 38, 38, 0.55)',
-        borderWidth: 1.5,
-        borderRadius: 4,
-      },
-      {
-        label: 'After Phase 1 Build',
-        data: [85, 90, 88, 75, 80, 90, 70],
-        backgroundColor: 'rgba(22, 163, 74, 0.15)',
-        borderColor: 'rgba(22, 163, 74, 0.60)',
-        borderWidth: 1.5,
-        borderRadius: 4,
-      }
-    ]
-  },
-  options: {
-    indexAxis: 'y',
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-        labels: { font: { size: 12 }, boxWidth: 14, padding: 18, color: '#374151' }
-      },
-      tooltip: {
-        callbacks: {
-          label: ctx => ` ${ctx.dataset.label}: ${ctx.raw}% readiness`
-        }
-      }
+  <script>
+  new Chart(document.getElementById('impactChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: ['Site Audit & Compliance', 'Program Page Build-Out', 'Course Launch Platform', 'Membership Enrollment', 'SEO Specialty Hub'],
+      datasets: [{
+        label: 'Pages, flows & fixes delivered',
+        data: [24, 11, 3, 3, 6],
+        backgroundColor: '#2563eb',
+        borderRadius: 6,
+        barThickness: 22
+      }]
     },
-    scales: {
-      x: {
-        min: 0,
-        max: 100,
-        ticks: {
-          callback: v => v + '%',
-          font: { size: 11 },
-          color: '#9ca3af'
-        },
-        grid: { color: '#f3f4f6' }
-      },
-      y: {
-        ticks: {
-          font: { size: 12 },
-          color: '#374151'
-        },
-        grid: { display: false }
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: '#f1f5f9' }, ticks: { color: '#64748b' } },
+        y: { grid: { display: false }, ticks: { color: '#334155' } }
       }
     }
-  }
-});
-</script>
+  });
+  </script>
 </body>
 </html>
