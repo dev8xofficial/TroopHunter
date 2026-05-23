@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TreeRaise — Decision Safety Brief | Dev8X</title>
+<title>A Human Sanctuary — Decision Safety Brief | Dev8X</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
   :root {
     --navy: #0f1c2e;
     --navy-mid: #162436;
@@ -19,10 +21,13 @@
     --amber-faint: #fffbeb;
     --red: #dc2626;
     --red-faint: #fef2f2;
+    --teal: #0d9488;
+    --teal-faint: #f0fdfa;
     --white: #ffffff;
     --gray-50: #f9fafb;
     --gray-100: #f3f4f6;
     --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
     --gray-400: #9ca3af;
     --gray-500: #6b7280;
     --gray-600: #4b5563;
@@ -31,7 +36,7 @@
     --gray-900: #111827;
     --radius: 12px;
     --radius-sm: 8px;
-    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+    --shadow: 0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.05);
     --shadow-md: 0 4px 12px rgba(0,0,0,0.10), 0 8px 32px rgba(0,0,0,0.08);
   }
 
@@ -55,7 +60,7 @@
   .hero {
     background: var(--navy);
     color: white;
-    padding: 56px 0 48px;
+    padding: 52px 0 44px;
     margin: 0 -24px 0;
   }
 
@@ -68,11 +73,11 @@
   .hero-meta {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 36px;
-    opacity: 0.6;
-    font-size: 12px;
-    letter-spacing: 0.08em;
+    gap: 10px;
+    margin-bottom: 32px;
+    opacity: 0.5;
+    font-size: 11px;
+    letter-spacing: 0.09em;
     text-transform: uppercase;
     font-weight: 500;
   }
@@ -80,55 +85,57 @@
   .hero-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: currentColor; }
 
   .hero-headline {
-    font-size: clamp(28px, 4vw, 40px);
+    font-size: clamp(26px, 3.8vw, 38px);
     font-weight: 700;
-    line-height: 1.2;
-    max-width: 680px;
+    line-height: 1.18;
+    max-width: 660px;
     margin-bottom: 14px;
     letter-spacing: -0.02em;
+    font-family: 'DM Sans', sans-serif;
   }
 
   .hero-sub {
-    font-size: 16px;
-    line-height: 1.6;
-    color: rgba(255,255,255,0.65);
-    max-width: 580px;
-    margin-bottom: 40px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.58);
+    max-width: 560px;
+    margin-bottom: 38px;
   }
 
   .hero-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 36px;
+    gap: 14px;
+    margin-bottom: 32px;
   }
 
   .hero-stat {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.09);
     border-radius: var(--radius);
     padding: 20px 22px;
   }
 
   .hero-stat .value {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 700;
     line-height: 1;
-    color: #60a5fa;
-    margin-bottom: 6px;
+    color: #93c5fd;
+    margin-bottom: 7px;
     letter-spacing: -0.02em;
   }
 
   .hero-stat .label {
-    font-size: 13px;
-    color: rgba(255,255,255,0.75);
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.72);
     font-weight: 500;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
+    line-height: 1.35;
   }
 
   .hero-stat .source {
-    font-size: 11px;
-    color: rgba(255,255,255,0.38);
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.32);
     text-transform: uppercase;
     letter-spacing: 0.06em;
   }
@@ -136,15 +143,14 @@
   .at-a-glance {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.11);
     border-radius: var(--radius);
     overflow: hidden;
   }
 
   .glance-item {
-    padding: 16px 20px;
-    border-right: 1px solid rgba(255,255,255,0.12);
+    padding: 15px 20px;
+    border-right: 1px solid rgba(255,255,255,0.11);
   }
 
   .glance-item:last-child { border-right: none; }
@@ -153,19 +159,19 @@
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.35);
     margin-bottom: 5px;
     font-weight: 600;
   }
 
   .glance-value {
-    font-size: 13px;
-    color: rgba(255,255,255,0.85);
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.82);
     font-weight: 500;
     line-height: 1.4;
   }
 
-  /* ─── SECTION ─── */
+  /* ─── SECTIONS ─── */
   .section {
     background: white;
     border-radius: var(--radius);
@@ -184,7 +190,7 @@
   }
 
   .section-title {
-    font-size: 22px;
+    font-size: 21px;
     font-weight: 700;
     color: var(--navy);
     letter-spacing: -0.01em;
@@ -223,10 +229,11 @@
   }
 
   .outcome-card .oc-title {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 13.5px;
+    font-weight: 700;
     color: var(--navy);
     margin-bottom: 8px;
+    line-height: 1.35;
   }
 
   .outcome-card .oc-body {
@@ -243,10 +250,10 @@
     padding: 14px 18px;
     font-size: 13px;
     color: var(--gray-700);
-    line-height: 1.5;
+    line-height: 1.55;
   }
 
-  .timing-callout strong { color: var(--amber); }
+  .timing-callout strong { color: #92400e; }
 
   /* ─── PROBLEM TABLE ─── */
   .problem-table {
@@ -301,7 +308,7 @@
     letter-spacing: 0.07em;
     padding: 2px 8px;
     border-radius: 99px;
-    margin-left: 8px;
+    margin-bottom: 6px;
     vertical-align: middle;
   }
 
@@ -341,12 +348,26 @@
 
   .evidence-tag {
     display: inline-block;
-    background: var(--blue-faint);
-    color: var(--blue);
-    font-size: 11px;
-    font-weight: 600;
+    background: var(--green-faint);
+    color: var(--green);
+    border: 1px solid #bbf7d0;
+    font-size: 10.5px;
+    font-weight: 700;
     padding: 2px 8px;
     border-radius: 4px;
+    margin-bottom: 4px;
+  }
+
+  .est-tag {
+    display: inline-block;
+    background: var(--blue-faint);
+    color: var(--blue);
+    border: 1px solid #bfdbfe;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 4px;
   }
 
   /* ─── RISK CARDS ─── */
@@ -354,7 +375,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
-    margin-top: 4px;
+    margin-top: 8px;
   }
 
   .risk-card {
@@ -375,22 +396,23 @@
   .risk-card.r1::before { background: var(--red); }
   .risk-card.r2::before { background: var(--amber); }
   .risk-card.r3::before { background: var(--blue); }
+  .risk-card.r4::before { background: var(--teal); }
+
+  .risk-card .risk-when {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray-400);
+    font-weight: 600;
+    margin-bottom: 7px;
+  }
 
   .risk-card .risk-title {
     font-size: 13px;
     font-weight: 700;
     color: var(--gray-800);
-    margin-bottom: 8px;
+    margin-bottom: 9px;
     line-height: 1.35;
-  }
-
-  .risk-card .risk-when {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--gray-400);
-    font-weight: 600;
-    margin-bottom: 6px;
   }
 
   .risk-card .risk-body {
@@ -435,6 +457,10 @@
     background: var(--blue);
   }
 
+  .solution-card.green-bar::before { background: var(--green); }
+  .solution-card.amber-bar::before { background: var(--amber); }
+  .solution-card.teal-bar::before { background: var(--teal); }
+
   .solution-card .proof-tag {
     position: absolute;
     top: 16px;
@@ -442,40 +468,47 @@
     font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.07em;
     padding: 3px 9px;
     border-radius: 4px;
-    background: var(--green-faint);
-    color: var(--green);
   }
 
-  .solution-card .proof-tag.described {
-    background: var(--blue-faint);
-    color: var(--blue);
-  }
+  .proof-tag.demo { background: var(--green-faint); color: var(--green); border: 1px solid #bbf7d0; }
+  .proof-tag.described { background: var(--blue-faint); color: var(--blue); border: 1px solid #bfdbfe; }
+  .proof-tag.future { background: var(--amber-faint); color: var(--amber); border: 1px solid #fde68a; }
 
   .sol-name {
-    font-size: 15px;
+    font-size: 14.5px;
     font-weight: 700;
     color: var(--navy);
-    margin-bottom: 10px;
-    padding-right: 80px;
+    margin-bottom: 8px;
+    padding-right: 88px;
     line-height: 1.3;
+  }
+
+  .sol-ref {
+    font-size: 11px;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 600;
+    margin-bottom: 4px;
   }
 
   .sol-problem {
     font-size: 12.5px;
-    color: var(--gray-500);
-    margin-bottom: 6px;
+    color: var(--gray-600);
+    margin-bottom: 8px;
+    line-height: 1.45;
   }
-
-  .sol-problem strong { color: var(--gray-700); }
 
   .sol-build {
     font-size: 13px;
     color: var(--gray-700);
     margin-bottom: 16px;
     line-height: 1.5;
+    padding-top: 8px;
+    border-top: 1px solid var(--gray-100);
   }
 
   .sol-metrics {
@@ -489,11 +522,11 @@
   }
 
   .sol-metric .m-val {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 700;
     color: var(--green);
     line-height: 1;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
   }
 
   .sol-metric .m-label {
@@ -501,7 +534,7 @@
     color: var(--gray-600);
     font-weight: 500;
     line-height: 1.3;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
   }
 
   .sol-metric .m-source {
@@ -515,30 +548,34 @@
     padding-top: 12px;
   }
 
+  .ba-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray-400);
+    font-weight: 600;
+    margin-bottom: 7px;
+  }
+
   .ba-row {
     display: flex;
     align-items: flex-start;
     gap: 8px;
-    font-size: 12.5px;
-    color: var(--gray-600);
+    font-size: 12px;
     margin-bottom: 5px;
     line-height: 1.4;
   }
 
-  .ba-row .ba-icon { 
-    font-size: 11px;
-    margin-top: 1px;
-    flex-shrink: 0;
-  }
-
-  .ba-before { color: #9ca3af; text-decoration: line-through; }
+  .ba-arrow { color: var(--blue); flex-shrink: 0; font-size: 11px; margin-top: 1px; }
+  .ba-before { color: var(--gray-400); text-decoration: line-through; }
+  .ba-sep { color: var(--gray-300); margin: 0 4px; }
   .ba-after { color: var(--green); font-weight: 600; }
 
   /* ─── IMPACT SECTION ─── */
   .stat-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    gap: 14px;
     margin-bottom: 28px;
   }
 
@@ -551,11 +588,11 @@
   }
 
   .stat-card .sc-val {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 700;
     color: var(--navy);
     line-height: 1;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     letter-spacing: -0.02em;
   }
 
@@ -584,7 +621,13 @@
     font-size: 13px;
     font-weight: 600;
     color: var(--gray-700);
-    margin-bottom: 16px;
+    margin-bottom: 4px;
+  }
+
+  .chart-sub {
+    font-size: 11.5px;
+    color: var(--gray-400);
+    margin-bottom: 18px;
   }
 
   /* ─── NUMBER TREATMENT ─── */
@@ -600,38 +643,27 @@
     font-weight: 700;
     color: rgba(255,255,255,0.85);
     margin-bottom: 16px;
-    letter-spacing: 0.01em;
   }
 
-  .nt-rows {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+  .nt-rows { display: flex; flex-direction: column; gap: 10px; }
 
   .nt-row {
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 12px;
-    padding: 10px 14px;
+    padding: 11px 14px;
     background: rgba(255,255,255,0.06);
     border-radius: 6px;
     font-size: 12.5px;
   }
 
-  .nt-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
+  .nt-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .nt-green { background: #4ade80; }
   .nt-blue { background: #60a5fa; }
   .nt-amber { background: #fbbf24; }
 
-  .nt-desc { color: rgba(255,255,255,0.75); }
+  .nt-desc { color: rgba(255,255,255,0.72); line-height: 1.45; }
   .nt-badge {
     font-size: 10px;
     font-weight: 700;
@@ -647,37 +679,47 @@
   .badge-amber { background: rgba(251,191,36,0.15); color: #fbbf24; }
 
   /* ─── STAKEHOLDER ─── */
-  .stakeholder-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+  .sh-single {
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    padding: 22px 24px;
+    background: var(--gray-50);
     margin-top: 4px;
   }
 
-  .sh-card {
-    border: 1px solid var(--gray-200);
-    border-radius: var(--radius-sm);
-    padding: 18px;
+  .sh-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--gray-200);
   }
 
-  .sh-name {
-    font-size: 14px;
+  .sh-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
     font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 2px;
+    color: #93c5fd;
+    flex-shrink: 0;
   }
 
+  .sh-name { font-size: 15px; font-weight: 700; color: var(--navy); }
   .sh-role {
     font-size: 11px;
     color: var(--gray-400);
     text-transform: uppercase;
     letter-spacing: 0.07em;
     font-weight: 600;
-    margin-bottom: 12px;
   }
 
-  .sh-row {
-    margin-bottom: 8px;
+  .sh-rows {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
   }
 
   .sh-row-label {
@@ -686,18 +728,82 @@
     letter-spacing: 0.08em;
     color: var(--gray-400);
     font-weight: 600;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
   }
 
   .sh-row-val {
+    font-size: 13px;
+    color: var(--gray-700);
+    line-height: 1.45;
+  }
+
+  .sh-note {
+    margin-top: 14px;
+    padding: 12px 16px;
+    background: var(--blue-faint);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     font-size: 12.5px;
     color: var(--gray-700);
-    line-height: 1.4;
+    line-height: 1.5;
+  }
+
+  /* ─── TIMELINE ─── */
+  .timeline-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-top: 16px;
+  }
+
+  .tl-phase {
+    padding: 18px 20px;
+    border-right: 1px solid var(--gray-200);
+    background: white;
+  }
+
+  .tl-phase:last-child { border-right: none; }
+
+  .tl-num {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 4px;
+  }
+
+  .tl-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+
+  .tl-items { list-style: none; }
+
+  .tl-items li {
+    font-size: 11.5px;
+    color: var(--gray-600);
+    padding: 3px 0 3px 14px;
+    position: relative;
+    line-height: 1.45;
+  }
+
+  .tl-items li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--blue);
+    font-size: 10px;
   }
 
   /* ─── CTA ─── */
   .cta-section {
-    background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 100%);
+    background: linear-gradient(135deg, var(--navy) 0%, #1a3055 100%);
     border-radius: var(--radius);
     padding: 44px 48px;
     text-align: center;
@@ -706,20 +812,20 @@
   }
 
   .cta-title {
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 700;
     margin-bottom: 12px;
     letter-spacing: -0.01em;
   }
 
   .cta-sub {
-    font-size: 15px;
-    color: rgba(255,255,255,0.65);
-    margin-bottom: 32px;
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.60);
+    margin-bottom: 30px;
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.6;
+    line-height: 1.65;
   }
 
   .cta-buttons {
@@ -734,24 +840,21 @@
     color: white;
     border: none;
     border-radius: 8px;
-    padding: 14px 28px;
+    padding: 13px 28px;
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
     letter-spacing: 0.01em;
     text-decoration: none;
     display: inline-block;
-    transition: background 0.2s;
   }
-
-  .btn-primary:hover { background: var(--blue-light); }
 
   .btn-secondary {
     background: transparent;
     color: white;
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.28);
     border-radius: 8px;
-    padding: 14px 28px;
+    padding: 13px 28px;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -759,88 +862,48 @@
     display: inline-block;
   }
 
-  /* ─── TIMELINE ─── */
-  .timeline {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border: 1px solid var(--gray-200);
+  .discovery-panel {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.10);
     border-radius: var(--radius-sm);
-    overflow: hidden;
-    margin-top: 16px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.50);
+    line-height: 1.55;
+    text-align: left;
   }
 
-  .tl-phase {
-    padding: 20px;
-    border-right: 1px solid var(--gray-200);
-    position: relative;
-  }
-
-  .tl-phase:last-child { border-right: none; }
-
-  .tl-num {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 700;
-    color: var(--blue);
-    margin-bottom: 5px;
-  }
-
-  .tl-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--navy);
-    margin-bottom: 8px;
-  }
-
-  .tl-items {
-    list-style: none;
-  }
-
-  .tl-items li {
-    font-size: 12px;
-    color: var(--gray-600);
-    padding: 3px 0;
-    padding-left: 14px;
-    position: relative;
-    line-height: 1.4;
-  }
-
-  .tl-items li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--blue);
-    font-size: 11px;
-  }
-
-  @media (max-width: 700px) {
-    .hero-stats, .risk-cards, .solutions-grid, .stat-grid, .stakeholder-grid, .timeline, .at-a-glance, .outcome-cards { grid-template-columns: 1fr; }
-    .hero-inner { padding: 0 24px; }
-    .section { padding: 24px; }
-    .risk-card, .glance-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
-    .tl-phase { border-right: none; border-bottom: 1px solid var(--gray-200); }
-  }
+  .discovery-panel strong { color: rgba(255,255,255,0.70); }
 
   .footer-note {
     text-align: center;
     color: var(--gray-400);
     font-size: 12px;
     margin-top: 32px;
-    line-height: 1.6;
+    line-height: 1.7;
+    padding-bottom: 40px;
+  }
+
+  @media (max-width: 700px) {
+    .hero-stats, .risk-cards, .solutions-grid, .stat-grid, .at-a-glance, .outcome-cards, .sh-rows, .timeline-strip { grid-template-columns: 1fr; }
+    .hero-inner { padding: 0 20px; }
+    .section { padding: 22px 20px; }
+    .glance-item, .tl-phase { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.11); }
+    .sol-metrics { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      SECTION 1 — HERO
-═══════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <div class="hero">
   <div class="hero-inner">
+
     <div class="hero-meta">
-      <span>TreeRaise</span>
+      <span>A Human Sanctuary</span>
       <span class="dot"></span>
       <span>Decision Safety Brief</span>
       <span class="dot"></span>
@@ -849,78 +912,79 @@
       <span>May 2026</span>
     </div>
 
-    <h1 class="hero-headline">Your 2026 goals require infrastructure your platform isn't ready for yet</h1>
-    <p class="hero-sub">TreeRaise has the mission, the brand, and the model. What's missing is the operational backbone to serve 500+ organizations without burning out a one-person team.</p>
+    <h1 class="hero-headline">Your course launch is 10 months overdue — and the site still can't take a booking</h1>
+    <p class="hero-sub">A Human Sanctuary has the clinical depth, the community, and the programs. What's blocking growth is a website with structural compliance gaps, broken pages, and no infrastructure for the digital offerings already being marketed as live.</p>
 
     <div class="hero-stats">
       <div class="hero-stat">
-        <div class="value">500+</div>
-        <div class="label">Organizations targeted for 2026</div>
-        <div class="source">TreeRaise published goal</div>
+        <div class="value">10+ mo</div>
+        <div class="label">Coursework launch delay past July 2025 target</div>
+        <div class="source">AHS website, published launch date</div>
       </div>
       <div class="hero-stat">
-        <div class="value">50%</div>
-        <div class="label">Of every contribution returned to the cause</div>
-        <div class="source">TreeRaise's own materials</div>
+        <div class="value">20+</div>
+        <div class="label">Empty or broken pages on the live site right now</div>
+        <div class="source">Direct site audit, 52 pages reviewed</div>
       </div>
       <div class="hero-stat">
-        <div class="value">30-40</div>
-        <div class="label">Volunteer hours saved vs. product-sale fundraisers</div>
-        <div class="source">TreeRaise Verified Impact Facts.</div>
+        <div class="value">$180–$250</div>
+        <div class="label">Session fee — vs. a pricing page showing $10–$20/mo</div>
+        <div class="source">AHS published booking page</div>
       </div>
     </div>
 
     <div class="at-a-glance">
       <div class="glance-item">
         <div class="glance-label">Current bottleneck</div>
-        <div class="glance-value">Manual onboarding + 1-person team for 500-org goal</div>
+        <div class="glance-value">Broken, non-compliant site blocks every growth track simultaneously</div>
       </div>
       <div class="glance-item">
         <div class="glance-label">Strongest unlock</div>
-        <div class="glance-value">Automated client onboarding — scales to 500 orgs without adding headcount</div>
+        <div class="glance-value">Phase 1 audit + rebuild opens course launch, client intake, and clinician onboarding at once</div>
       </div>
       <div class="glance-item">
         <div class="glance-label">Recommended next step</div>
-        <div class="glance-value">Watch the 6-minute demo walkthrough below</div>
+        <div class="glance-value">Watch the 6-minute demo — annotated gap audit + before/after build plan</div>
       </div>
     </div>
+
   </div>
 </div>
 
 <div class="page">
 
-<!-- ═══════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      SECTION 2 — DESIRED OUTCOME
-═══════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <div class="section" style="margin-top: 28px;">
-  <div class="section-label">Section 2</div>
-  <h2 class="section-title">What TreeRaise Is Built to Do</h2>
+  <div class="section-label">What AHS Is Building Toward</div>
+  <h2 class="section-title">The Goal: A Compliant, Growth-Ready Platform That Runs Without You</h2>
 
   <div class="outcome-cards">
     <div class="outcome-card">
       <div class="oc-label">Desired Outcome</div>
-      <div class="oc-title">Generate significant unrestricted revenue for mission-driven organizations</div>
-      <div class="oc-body">TreeRaise replaces product-sales fundraising with a zero-friction digital model — 50% of every contribution goes directly to schools, nonprofits, and faith communities, with no inventory, no hidden fees, and no logistics burden.</div>
+      <div class="oc-title">A HIPAA-compliant, ADA-accessible, SEO-optimized site that converts visitors and supports every growth track</div>
+      <div class="oc-body">AHS needs a site that reliably brings in new clients through organic search, onboards associate therapists without founder involvement, and supports the launch of scalable digital offerings — eco-resiliency coursework and the Acorn Circle membership community.</div>
     </div>
     <div class="outcome-card">
-      <div class="oc-label">Current Reality</div>
-      <div class="oc-title">The operational model doesn't match the ambition yet</div>
-      <div class="oc-body">TreeRaise launched in February 2026 with a team of one and is hiring its first dedicated client-support role. Every organization that joins today requires manual setup, personal coaching, and hand-crafted marketing content — a model that hits its ceiling well before 500 clients.</div>
+      <div class="oc-label">Buying Reason</div>
+      <div class="oc-title">The founder is doing clinical work, course creation, and community building — while the site has critical gaps blocking all of it</div>
+      <div class="oc-body">Julie Anne is sole licensed provider, content creator, and site manager simultaneously. The website has compliance exposure, broken pages, and no infrastructure for courses or membership — and a fourth contractor has now been posted on Upwork to fix what three prior hires did not.</div>
     </div>
   </div>
 
   <div class="timing-callout">
-    <strong>Why this matters now:</strong> TreeRaise's 2026 goals — 500+ organizations, 125,000+ verified trees, and 2.5M+ lbs of CO₂ sequestered — are already on the calendar. The window to build scalable infrastructure before the organization pipeline outgrows the team is Q2–Q3 2026. Each month of delay narrows the margin.
+    <strong>Why timing matters now:</strong> The July 2025 course launch was publicly announced on the AHS website. It is now May 2026 — 10 months past that target. Every month the infrastructure remains unbuilt is a month of course enrollment, membership revenue, and new client discovery that does not happen. The Upwork posting is live, which means this decision is being made right now — not next quarter.
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      SECTION 3 — CURRENT PROBLEM REGISTER
-═══════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <div class="section">
-  <div class="section-label">Section 3</div>
-  <h2 class="section-title">What's Blocking the Path to 500 Organizations</h2>
-  <p style="font-size: 13.5px; color: var(--gray-500); margin-bottom: 20px;">Drawn directly from TreeRaise's public-facing platform, hiring activity, and published materials.</p>
+  <div class="section-label">Current Problem Register</div>
+  <h2 class="section-title">What's Broken Right Now — and What It's Blocking</h2>
+  <p style="font-size: 13px; color: var(--gray-500); margin-bottom: 20px; line-height: 1.5;">Drawn directly from a 52-page audit of the AHS website, the active Upwork job posting, and publicly available practice materials.</p>
 
   <table class="problem-table">
     <thead>
@@ -932,375 +996,398 @@
     <tbody>
       <tr>
         <td>
-          <span class="severity-badge sev-critical">Critical</span><br>
-          <strong>Every new organization requires a TreeRaiser Coach to manually reach out within 1–2 business days</strong> — walking them through setup, social media strategy, and digital outreach.
+          <div><span class="severity-badge sev-critical">Critical</span></div>
+          <strong>The site has 20+ empty or duplicate pages and four active 404 errors</strong> — including /privacy, /terms, /join, and /accessibility — making it structurally non-functional as a client acquisition or program delivery tool.
         </td>
-        <td>Revenue generation is blocked until a human completes setup. At 500 orgs/year, this becomes operationally impossible for a team of one.</td>
+        <td>Prospective clients who land on empty program pages (Modalities, Team, Intensives, Children &amp; Adults) find nothing. Referral sources checking the site see a practice that looks unfinished. Every broken link is a conversion that doesn't happen.</td>
       </tr>
       <tr>
         <td>
-          <span class="severity-badge sev-critical">Critical</span><br>
-          <strong>Campaign infrastructure has visible gaps:</strong> donation archive returns a 404 error, campaign pages are empty shells, and dashboard views have no content.
+          <div><span class="severity-badge sev-critical">Critical</span></div>
+          <strong>The pricing table shows $10–$20/month plans while the booking page shows $180–$250/hr session fees</strong> — a visible, live contradiction any prospective client will encounter before they book.
         </td>
-        <td>Donor trust erodes when pages don't load. Broken checkout flows and missing pages reduce donation completion and repeat contributions.</td>
+        <td>A client who finds the pricing page before the booking page will see $10/month for a trauma therapy practice. That is a credibility gap that creates doubt before the first contact is even made. Directly sourced from AHS's own published pages.</td>
       </tr>
       <tr>
         <td>
-          <span class="severity-badge sev-high">High</span><br>
-          <strong>All client marketing content is static PDF templates</strong> — social posts, email sequences, and reminder campaigns require manual customization by each organization.
+          <div><span class="severity-badge sev-critical">Critical</span></div>
+          <strong>The insurance intake form collects PHI — including insurance card images — with no documented HIPAA-compliant data handling, no confirmed BAA, and no audit trail.</strong> The Upwork job posting explicitly names HIPAA-conscious review as Phase 1.
         </td>
-        <td>Low campaign engagement leads to lower donation volume. The guides show strong strategy, but execution depends on volunteer time most clients don't have.</td>
+        <td>Every form submission is a documented compliance exposure. The practice is licensed as an LCSW Professional Corporation — HIPAA-governed — making this the highest-severity risk on the site. A Wix BAA alone does not cover the full data flow.</td>
       </tr>
       <tr>
         <td>
-          <span class="severity-badge sev-high">High</span><br>
-          <strong>Organizations cannot launch campaigns independently.</strong> All setup is human-assisted — there is no self-serve campaign builder in the current platform.
+          <div><span class="severity-badge sev-high">High</span></div>
+          <strong>The eco-resiliency / Deep Adaptation coursework was publicly announced for July 2025. It is now 10+ months overdue</strong> — no landing page, no enrollment mechanism, and no payment infrastructure exist anywhere on the site.
         </td>
-        <td>Speed to launch is capped by team availability. Each day of delay is a day of missed donations and missed tree-planting impact.</td>
+        <td>Course revenue is zero for a program already being marketed as coming. Every month without infrastructure is a month of enrollment revenue not collected — at whatever pricing Julie Anne sets for the cohort.</td>
       </tr>
       <tr>
         <td>
-          <span class="severity-badge sev-high">High</span><br>
-          <strong>A team of one is managing onboarding, coaching, and growth</strong> for a 2026 goal that requires 500x the current visible active campaign volume.
+          <div><span class="severity-badge sev-high">High</span></div>
+          <strong>The Acorn Circle membership community is being actively promoted on LinkedIn as a live program — but the membership page is either empty or contains only partial positioning copy with no enrollment path, pricing, or join mechanism.</strong>
         </td>
-        <td>Without automated systems, adding organizations requires adding headcount linearly — a model that doesn't scale and cannot deliver consistent client quality.</td>
+        <td>Community members who arrive from LinkedIn or word-of-mouth cannot convert. Recurring revenue from Acorn Circle cannot start if there is no door to walk through. The audience does not wait.</td>
       </tr>
       <tr>
         <td>
-          <span class="severity-badge sev-medium">Medium</span><br>
-          <strong>FAQ content is collapsed and not rendered on the website,</strong> sending users to contact support for basic questions they should be able to answer themselves.
+          <div><span class="severity-badge sev-high">High</span></div>
+          <strong>Every clinician team page — Our Team, Meet Our Clinicians, Facilitators &amp; Guides — is entirely empty.</strong> No bios, no specialties, no credentials are published for any associate therapist or team member.
         </td>
-        <td>Every avoidable support contact is a hidden cost on a small team. Multiplied across hundreds of organizations, this becomes a material drain.</td>
+        <td>Referral sources cannot match clients to clinicians. Associate therapist candidates researching the practice see no professional infrastructure. The site presents AHS as a solo operation, not a growing multi-clinician sanctuary — directly suppressing expansion.</td>
+      </tr>
+      <tr>
+        <td>
+          <div><span class="severity-badge sev-medium">Medium</span></div>
+          <strong>The /accessibility page returns a 404 error</strong> — the URL most commonly linked when a healthcare practice declares ADA accessibility compliance is itself broken. No ADA accessibility audit has been completed.
+        </td>
+        <td>ADA exposure is both a legal liability and a credibility signal. For a practice serving trauma clients — many of whom may have sensory or cognitive accessibility needs — a broken accessibility page is a conspicuous gap. Listed as Phase 1 in the Upwork scope.</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      SECTION 3B — RESEARCH TRANSPARENCY
-═══════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <div class="section" style="background: var(--gray-50);">
   <div class="section-label">Research Transparency</div>
-  <h2 class="section-title" style="font-size: 18px;">What We Know and Where We'd Like Your Confirmation</h2>
+  <h2 class="section-title" style="font-size: 18px; margin-bottom: 6px;">What We Know and Where We'd Like Your Confirmation</h2>
+  <p style="font-size: 12.5px; color: var(--gray-500); margin-bottom: 18px;">Headline figures are limited to numbers tied directly to AHS's own published materials. Estimates are labelled throughout.</p>
 
   <table class="transparency-table">
     <thead>
       <tr>
-        <th style="width: 25%">Claim</th>
+        <th style="width: 22%">Claim</th>
         <th style="width: 30%">Evidence We Used</th>
-        <th style="width: 25%">What We'd Like to Confirm</th>
-        <th style="width: 20%">Open Question</th>
+        <th style="width: 26%">What We'd Like to Confirm</th>
+        <th style="width: 22%">Open Question</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><strong>Manual onboarding is the primary bottleneck</strong></td>
-        <td><span class="evidence-tag">Confirmed</span> Upwork job posting lists manual onboarding, social-media coaching, and performance tracking as core responsibilities. Thank-you page states a Coach reaches out personally within 1–2 business days.</td>
-        <td>Whether internal tools already automate any part of this, or if it is fully manual end-to-end.</td>
-        <td>If partial automation exists, Dev8X would integrate and extend it rather than rebuild.</td>
+        <td><strong>The site has 20+ broken or empty pages across 52 pages audited</strong></td>
+        <td><span class="evidence-tag">Direct source</span> 52-page site scrape — pages 5, 8–11, 13, 16–17, 26, 29, 31–32, 35, 37–38, 40–42, 45, 49–52 flagged as empty, duplicate, or 404. Scrape dated May 2026.</td>
+        <td>Whether any of these pages are intentionally unpublished staging drafts, or all are unintended production gaps.</td>
+        <td>Either way they appear in search indexing and are reachable by visitors — but the fix approach differs slightly between the two cases.</td>
       </tr>
       <tr>
-        <td><strong>Platform has broken pages and empty campaign infrastructure</strong></td>
-        <td><span class="evidence-tag">Confirmed</span> Live site shows donation archive 404, four empty campaign pages, two empty dashboard views, and five empty donation form pages.</td>
-        <td>Whether these are intentional staging placeholders or unintended production gaps.</td>
-        <td>Either way, a fix roadmap helps — if staging, it accelerates launch; if live gaps, it removes donor trust friction immediately.</td>
+        <td><strong>The coursework launch target was July 2025 — now 10+ months overdue</strong></td>
+        <td><span class="evidence-tag">Direct source</span> AHS website §15 states "Coursework Launching July 2025 — sign up for updates." Current date: May 2026. LinkedIn owner profile confirms coursework is "currently creating."</td>
+        <td>Whether July 2025 was a firm public commitment or an internal estimate that shifted. Current enrollment targets and intended pricing.</td>
+        <td>Intentional or not, the revenue gap is the same — the question is only when to close it and at what price point.</td>
       </tr>
       <tr>
-        <td><strong>TreeRaise has one employee managing all operations</strong></td>
-        <td><span class="evidence-tag">Confirmed</span> LinkedIn company profile explicitly lists one employee. Upwork posting is actively recruiting the first dedicated client-support role.</td>
-        <td>Whether additional team members operate under the Funds2Orgs / Elsey Enterprises umbrella with shared capacity.</td>
-        <td>Team size at the TreeRaise-specific level confirms or adjusts the scale gap — either way, the 500-org goal requires systematized infrastructure.</td>
+        <td><strong>SEO optimization can generate 2–4 new organic clients per month</strong></td>
+        <td><span class="est-tag">Estimated</span> Based on AHS session fees ($180–$250/hr) and keyword opportunity in eco-anxiety, somatic therapy, and telehealth CA search terms. AHS serves California and Texas statewide via telehealth — not walk-in only.</td>
+        <td>Confirmation of current monthly new client volume from any channel, and whether SEO has been attempted previously.</td>
+        <td>Actual lift depends on competition, content quality, and indexing timeline. We will show the keyword opportunity before projecting specific outcomes.</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      SECTION 4 — FUTURE PROBLEM REGISTER
-═══════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <div class="section">
-  <div class="section-label">Section 4 — Looking 12–24 Months Ahead</div>
-  <h2 class="section-title">What Breaks If the Bottleneck Stays</h2>
+  <div class="section-label">Looking 12–24 Months Ahead</div>
+  <h2 class="section-title">What Breaks If the Site Stays As-Is</h2>
 
   <div class="risk-cards">
     <div class="risk-card r1">
-      <div class="risk-when">12–18 months out</div>
-      <div class="risk-title">Client experience degrades at scale — and word spreads fast in the school and nonprofit community</div>
-      <div class="risk-body">Manual onboarding does not scale exponentially. As the pipeline grows toward 100+ active clients, setup backlogs, delayed responses, and inconsistent coaching will frustrate the exact organizations TreeRaise needs as advocates.</div>
-      <div class="risk-prevent">→ Automated onboarding + self-serve tools let every org feel supported at 500 clients, not just the first 50.</div>
+      <div class="risk-when">Now → ongoing</div>
+      <div class="risk-title">A HIPAA or CCPA enforcement action exposes the unaudited PHI intake flow</div>
+      <div class="risk-body">The insurance form collects health information and insurance card photos with no documented audit trail, no confirmed BAA, and no verified encrypted transmission. Every submission adds to the exposure window. Industry benchmarks note fines up to $50,000 per violation category — this is directional context, not specific to AHS.</div>
+      <div class="risk-prevent">→ A HIPAA-conscious audit in Phase 1 closes the exposure before a regulator finds it — not after.</div>
     </div>
     <div class="risk-card r2">
-      <div class="risk-when">6–18 months out</div>
-      <div class="risk-title">Founder gets pulled into day-to-day operational firefighting instead of growth, partnerships, and major gifts</div>
-      <div class="risk-body">A platform that requires constant human intervention draws leadership attention back into setup queues and support tickets — the exact trap a founder with Wayne Elsey's track record has learned to avoid.</div>
-      <div class="risk-prevent">→ Operational systems that run independently protect strategic focus and founder bandwidth.</div>
+      <div class="risk-when">6–12 months</div>
+      <div class="risk-title">Clinician expansion stalls permanently without a structured onboarding and team infrastructure</div>
+      <div class="risk-body">Every associate therapist added without a template or workflow requires founder time to publish bios, set up pages, and configure intake. Without a system built once in Phase 1, adding clinicians will always pull Julie Anne out of clinical work.</div>
+      <div class="risk-prevent">→ A standardized clinician onboarding template built in Phase 2 means new associates publish in hours, not founder-hours.</div>
     </div>
     <div class="risk-card r3">
-      <div class="risk-when">12–24 months out</div>
-      <div class="risk-title">First-mover advantage in verified tree-planting fundraising erodes as competitors observe and replicate the model with better tooling</div>
-      <div class="risk-body">The $450B fundraising industry watches successful new models closely. TreeRaise's brand and veritree partnership are differentiated today — but a mature self-serve platform is the operational moat that protects that lead.</div>
-      <div class="risk-prevent">→ Shipping a hardened, self-serve platform before Q3 2026 closes the window for catch-up.</div>
+      <div class="risk-when">12–24 months</div>
+      <div class="risk-title">AHS's eco-therapy niche advantage generates zero organic discovery while competitors claim the SEO position first</div>
+      <div class="risk-body">Julie Anne is building clinical depth in collapse-aware therapy, eco-resiliency, and Deep Adaptation — categories with growing search demand as climate anxiety enters mainstream clinical conversation. The site currently has no keyword structure, no optimized landing pages, and no content targeting these terms.</div>
+      <div class="risk-prevent">→ SEO-structured content built now claims a niche before search volume matures and competition arrives.</div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      SECTION 5 — WHAT GETS BUILT
-═══════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <div class="section">
-  <div class="section-label">Section 5</div>
-  <h2 class="section-title">What Gets Built to Remove the Bottleneck</h2>
-  <p style="font-size: 13.5px; color: var(--gray-500); margin-bottom: 24px;">Each build addresses a specific problem from the register above. The existing TreeRaise platform, veritree integration, and brand assets are preserved — this is an augmentation, not a rebuild.</p>
+  <div class="section-label">What Gets Built</div>
+  <h2 class="section-title">Removing the Bottleneck — Six Targeted Builds</h2>
+  <p style="font-size: 13px; color: var(--gray-500); margin-bottom: 24px;">Each build maps directly to a confirmed problem above. The Wix platform is retained throughout — no migration, no rebuild. This is an audit, optimization, and content-completion model.</p>
 
   <div class="solutions-grid">
 
-    <!-- CARD 1 -->
+    <!-- CARD 1: Site Audit + Compliance Fix -->
     <div class="solution-card">
-      <div class="proof-tag">Visible in Demo</div>
-      <div class="sol-name">Client Success Automation Hub</div>
-      <div class="sol-problem"><strong>Solves:</strong> Problem #1 — Manual TreeRaiser Coach onboarding required for every new organization.</div>
-      <div class="sol-build">Automated onboarding wizard with branching logic, triggered email sequences, and milestone tracking — so 500 organizations move from signup to first campaign without manual intervention.</div>
+      <div class="proof-tag demo">Visible in Demo</div>
+      <div class="sol-ref">Solves Problems #1, #3, #7</div>
+      <div class="sol-name">Full Site Audit &amp; Structural Fix</div>
+      <div class="sol-problem">20+ empty or broken pages, four active 404 errors (including /privacy and /accessibility), and a pricing table contradiction — all live and visible to every prospective client right now.</div>
+      <div class="sol-build">A 52-page gap matrix with fix status, ownership, and completion checkpoints — delivered in 5 business days. Every broken URL resolved, every empty page assigned a content structure, pricing inconsistency corrected.</div>
       <div class="sol-metrics">
         <div class="sol-metric">
-          <div class="m-val">500</div>
-          <div class="m-label">Orgs supportable without headcount increase</div>
-          <div class="m-source">TreeRaise's own goal</div>
+          <div class="m-val">20+</div>
+          <div class="m-label">Pages with confirmed structural gaps resolved</div>
+          <div class="m-source">Direct site audit</div>
         </div>
         <div class="sol-metric">
-          <div class="m-val">~90%</div>
-          <div class="m-label">Reduction in manual onboarding steps</div>
-          <div class="m-source">Estimated</div>
+          <div class="m-val">4</div>
+          <div class="m-label">Active 404 errors fixed — including /privacy &amp; /accessibility</div>
+          <div class="m-source">Direct site audit</div>
         </div>
         <div class="sol-metric">
-          <div class="m-val">1–2 days</div>
-          <div class="m-label">Coach follow-up → instant self-serve launch</div>
-          <div class="m-source">From published process</div>
+          <div class="m-val">5 days</div>
+          <div class="m-label">To full gap matrix delivered — audit report in your inbox</div>
+          <div class="m-source">Estimated delivery scope</div>
         </div>
       </div>
       <div class="before-after">
-        <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">Manual coach outreach within 1–2 business days per org</span> <span class="ba-after">Instant automated onboarding flow on signup</span></span>
-        </div>
-        <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">Coach capacity caps client growth</span> <span class="ba-after">Platform handles onboarding; coach focuses on high-value relationships</span></span>
-        </div>
+        <div class="ba-label">Before → After</div>
+        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">Visitor lands on Modalities page — blank</span><span class="ba-sep">·</span><span class="ba-after">Structured content with AHS service descriptions live</span></span></div>
+        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">$10/mo pricing page contradicts $180–$250/hr booking</span><span class="ba-sep">·</span><span class="ba-after">Pricing corrected — no credibility gap</span></span></div>
+        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">/accessibility returns 404</span><span class="ba-sep">·</span><span class="ba-after">ADA compliance page live and linked correctly</span></span></div>
       </div>
     </div>
 
-    <!-- CARD 2 -->
-    <div class="solution-card">
-      <div class="proof-tag">Visible in Demo</div>
-      <div class="sol-name">Platform Infrastructure Hardening</div>
-      <div class="sol-problem"><strong>Solves:</strong> Problem #2 — 404 donation archive, empty campaign pages, and broken checkout edge cases.</div>
-      <div class="sol-build">Systematic audit and repair of all broken pages, checkout flow edge cases, and empty dashboard states — with a 30-day MVP fix roadmap targeting highest-visibility gaps first.</div>
+    <!-- CARD 2: HIPAA/ADA Compliance -->
+    <div class="solution-card amber-bar">
+      <div class="proof-tag demo">Visible in Demo</div>
+      <div class="sol-ref">Solves Problem #2</div>
+      <div class="sol-name">HIPAA-Conscious Compliance Audit</div>
+      <div class="sol-problem">The insurance intake form collects PHI including insurance card photos. No documented HIPAA-compliant data handling, BAA confirmation, or transmission audit has been completed — a live exposure for an LCSW Professional Corporation.</div>
+      <div class="sol-build">Annotated form and data-flow audit: every field mapped against HIPAA-conscious controls, every integration reviewed, BAA gaps identified, CCPA/CPRA notice reviewed — with a remediation checklist signed off before Phase 2 begins.</div>
       <div class="sol-metrics">
         <div class="sol-metric">
-          <div class="m-val">7+</div>
-          <div class="m-label">Broken or empty pages identified on live site</div>
+          <div class="m-val">100%</div>
+          <div class="m-label">PHI data fields audited and mapped to required controls</div>
+          <div class="m-source">Scope of work</div>
+        </div>
+        <div class="sol-metric">
+          <div class="m-val">Phase 1</div>
+          <div class="m-label">Compliance audit completed before any new intake form goes live</div>
+          <div class="m-source">Upwork scope, Phase 1</div>
+        </div>
+        <div class="sol-metric">
+          <div class="m-val">Zero</div>
+          <div class="m-label">Undocumented PHI transmission paths remaining after audit</div>
+          <div class="m-source">Deliverable outcome</div>
+        </div>
+      </div>
+      <div class="before-after">
+        <div class="ba-label">Before → After</div>
+        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">PHI collected via form with no audit trail or BAA confirmation</span><span class="ba-sep">·</span><span class="ba-after">Every data flow documented, gaps remediated</span></span></div>
+        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">Founder carries compliance risk unknowingly on every submission</span><span class="ba-sep">·</span><span class="ba-after">HIPAA-conscious controls in place — protection, not exposure</span></span></div>
+      </div>
+    </div>
+
+    <!-- CARD 3: Course Launch Infrastructure -->
+    <div class="solution-card green-bar">
+      <div class="proof-tag demo">Visible in Demo</div>
+      <div class="sol-ref">Solves Problem #4</div>
+      <div class="sol-name">Course Launch Infrastructure</div>
+      <div class="sol-problem">The eco-resiliency / Deep Adaptation coursework was publicly announced for July 2025. It is now 10+ months overdue — no landing page, no enrollment form, and no payment infrastructure exist anywhere on the site.</div>
+      <div class="sol-build">SEO-optimized course landing page, enrollment form, and payment integration built on Wix in Phase 1. Delivery pathway (gated content, member access) configured in Phase 2. Julie Anne provides content; Dev8X builds the container.</div>
+      <div class="sol-metrics">
+        <div class="sol-metric">
+          <div class="m-val">10+ mo</div>
+          <div class="m-label">Revenue delay closed — enrollment opens in Phase 1</div>
+          <div class="m-source">AHS published launch date</div>
+        </div>
+        <div class="sol-metric">
+          <div class="m-val">$0→live</div>
+          <div class="m-label">Course revenue currently at zero — Phase 1 opens enrollment</div>
           <div class="m-source">Direct site observation</div>
         </div>
         <div class="sol-metric">
-          <div class="m-val">30 days</div>
-          <div class="m-label">MVP fix timeline to highest-visibility gaps</div>
-          <div class="m-source">Estimated</div>
+          <div class="m-val">Self-led</div>
+          <div class="m-label">Revenue model scales without founder session time [Estimated]</div>
+          <div class="m-source">Estimated build outcome</div>
+        </div>
+      </div>
+      <div class="before-after">
+        <div class="ba-label">Before → After</div>
+        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">"Launching July 2025" CTA — no page behind it</span><span class="ba-sep">·</span><span class="ba-after">Live landing page with enrollment and payment</span></span></div>
+        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">Course content created, nowhere to deliver it</span><span class="ba-sep">·</span><span class="ba-after">Gated delivery platform ready for first cohort</span></span></div>
+      </div>
+    </div>
+
+    <!-- CARD 4: Acorn Circle Membership -->
+    <div class="solution-card teal-bar">
+      <div class="proof-tag described">Described Only</div>
+      <div class="sol-ref">Solves Problem #5</div>
+      <div class="sol-name">Acorn Circle Membership Build</div>
+      <div class="sol-problem">The Acorn Circle is actively promoted on LinkedIn as a live community — but the membership page is empty or has only partial copy with no pricing, no benefits structure, and no way to join.</div>
+      <div class="sol-build">Membership enrollment page with benefit tiers, pricing structure, and recurring payment integration — built on Wix. Waitlist capture as interim step if pricing/model needs finalizing before full launch.</div>
+      <div class="sol-metrics">
+        <div class="sol-metric">
+          <div class="m-val">$0→mrr</div>
+          <div class="m-label">Recurring revenue currently inaccessible — membership has no door</div>
+          <div class="m-source">Direct site observation</div>
         </div>
         <div class="sol-metric">
-          <div class="m-val">↑ Trust</div>
-          <div class="m-label">Donor confidence from functional checkout flows</div>
+          <div class="m-val">1 page</div>
+          <div class="m-label">Phase 1 build — waitlist or full enrollment, whichever is ready first</div>
+          <div class="m-source">Estimated scope</div>
+        </div>
+        <div class="sol-metric">
+          <div class="m-val">Recurring</div>
+          <div class="m-label">Revenue model: monthly subscription, sliding scale, or cohort-based [to confirm]</div>
+          <div class="m-source">Discovery question</div>
+        </div>
+      </div>
+      <div class="before-after">
+        <div class="ba-label">Before → After</div>
+        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">LinkedIn promotes Acorn Circle as live — site has no join page</span><span class="ba-sep">·</span><span class="ba-after">Enrollment page live — community can actually join</span></span></div>
+        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">Interested members arrive, find nothing, and leave</span><span class="ba-sep">·</span><span class="ba-after">Waitlist or full signup converts community interest to MRR</span></span></div>
+      </div>
+    </div>
+
+    <!-- CARD 5: Clinician Infrastructure -->
+    <div class="solution-card">
+      <div class="proof-tag described">Described Only</div>
+      <div class="sol-ref">Solves Problem #6</div>
+      <div class="sol-name">Clinician Onboarding System</div>
+      <div class="sol-problem">Every clinician team page — Our Team, Meet Our Clinicians, Facilitators &amp; Guides — is entirely empty. No bios, no photos, no specialties published. Associates cannot be found by clients or referral sources.</div>
+      <div class="sol-build">A standardized clinician onboarding template (photo specs, bio structure, specialty and modality tags) and a Phase 2 workflow so new associates publish their profile in one founder-free handoff — not a manual rebuild each time.</div>
+      <div class="sol-metrics">
+        <div class="sol-metric">
+          <div class="m-val">0→live</div>
+          <div class="m-label">Team pages populated from current empty state</div>
+          <div class="m-source">Direct site audit</div>
+        </div>
+        <div class="sol-metric">
+          <div class="m-val">Template</div>
+          <div class="m-label">Each new clinician onboards via standard form — no founder involvement</div>
+          <div class="m-source">Phase 2 scope</div>
+        </div>
+        <div class="sol-metric">
+          <div class="m-val">Credible</div>
+          <div class="m-label">Practice presents as multi-clinician sanctuary, not solo operation</div>
           <div class="m-source">Operational outcome</div>
         </div>
       </div>
       <div class="before-after">
-        <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">404 donation archive alienates returning donors</span> <span class="ba-after">Searchable, verified impact archive builds trust</span></span>
-        </div>
-        <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">Empty campaign shells undercut first impressions</span> <span class="ba-after">Every page reflects TreeRaise's brand quality</span></span>
-        </div>
+        <div class="ba-label">Before → After</div>
+        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">Our Team page: blank</span><span class="ba-sep">·</span><span class="ba-after">Bio, photo, specialties, modalities live for every clinician</span></span></div>
+        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">Each new hire requires founder to build a page from scratch</span><span class="ba-sep">·</span><span class="ba-after">Template submission → published profile, no founder time required</span></span></div>
       </div>
     </div>
 
-    <!-- CARD 3 -->
-    <div class="solution-card">
-      <div class="proof-tag described">Described Only</div>
-      <div class="sol-name">Auto-Generated Campaign Content Engine</div>
-      <div class="sol-problem"><strong>Solves:</strong> Problem #3 — Static PDF templates require manual customization by each organization's volunteers.</div>
-      <div class="sol-build">Platform-native content generator that produces ready-to-post social media content, email sequences, and milestone updates — pre-populated with each organization's campaign name, goal, and impact data.</div>
+    <!-- CARD 6: SEO + Organic Discovery -->
+    <div class="solution-card green-bar">
+      <div class="proof-tag future">Future State</div>
+      <div class="sol-ref">Unlocks Goal #1 — organic client acquisition</div>
+      <div class="sol-name">SEO Architecture &amp; Organic Client Discovery</div>
+      <div class="sol-problem">AHS has zero keyword structure on any page. The eco-anxiety, somatic therapy, and telehealth CA terms that describe AHS's core work generate no organic search visibility — despite AHS serving California and Texas statewide.</div>
+      <div class="sol-build">On-page SEO optimization across core program pages, structured keyword targeting for eco-anxiety + telehealth CA + Idyllwild niche terms, and meta structure built into every new content page from Phase 1 onward.</div>
       <div class="sol-metrics">
         <div class="sol-metric">
-          <div class="m-val">30–40 hrs</div>
-          <div class="m-label">Volunteer hours eliminated per fundraiser vs. traditional model</div>
-          <div class="m-source">TreeRaise's own materials</div>
+          <div class="m-val">2–4</div>
+          <div class="m-label">Estimated new organic clients per month after 90-day indexing window</div>
+          <div class="m-source">Estimated — labelled</div>
         </div>
         <div class="sol-metric">
-          <div class="m-val">20–30%</div>
-          <div class="m-label">Additional contributions driven by well-timed reminder sequences</div>
-          <div class="m-source">TreeRaise School Guide</div>
+          <div class="m-val">$720–$1k</div>
+          <div class="m-label">Estimated monthly revenue impact per 4 new clients at AHS session rates [Estimated]</div>
+          <div class="m-source">AHS published session fees</div>
         </div>
         <div class="sol-metric">
-          <div class="m-val">Near-full</div>
-          <div class="m-label">Automation of content creation steps</div>
-          <div class="m-source">Estimated</div>
+          <div class="m-val">Niche</div>
+          <div class="m-label">Collapse-aware therapy keyword position — available, unclaimed, growing</div>
+          <div class="m-source">Keyword opportunity analysis</div>
         </div>
       </div>
       <div class="before-after">
-        <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">PDF guides clients must manually adapt for their org</span> <span class="ba-after">One-click, personalized content ready to publish</span></span>
-        </div>
-        <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">Reminder campaigns missed due to volunteer bandwidth</span> <span class="ba-after">Automated reminder sequences sent at optimal intervals</span></span>
-        </div>
+        <div class="ba-label">Before → After</div>
+        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">No keyword targeting — site invisible in eco-anxiety, somatic therapy searches</span><span class="ba-sep">·</span><span class="ba-after">Structured SEO across all program pages</span></span></div>
+        <div class="ba-row"><span class="ba-arrow">→</span><span><span class="ba-before">Climate grief, eco-resiliency searches route to competitors</span><span class="ba-sep">·</span><span class="ba-after">AHS claims the niche position before competitors build content depth</span></span></div>
       </div>
     </div>
 
-    <!-- CARD 4 -->
-    <div class="solution-card">
-      <div class="proof-tag described">Described Only</div>
-      <div class="sol-name">Self-Serve Campaign Builder</div>
-      <div class="sol-problem"><strong>Solves:</strong> Problem #4 — Organizations cannot create or launch campaigns without internal team assistance.</div>
-      <div class="sol-build">Drag-and-drop campaign builder where organizations choose their impact goal, set a donation target, upload branding, and publish — live in under 10 minutes, no team involvement required.</div>
-      <div class="sol-metrics">
-        <div class="sol-metric">
-          <div class="m-val">&lt; 10 min</div>
-          <div class="m-label">From signup to live campaign (estimated)</div>
-          <div class="m-source">Estimated</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">125K+</div>
-          <div class="m-label">Trees targeted for planting — only reachable if 500 orgs can launch independently</div>
-          <div class="m-source">TreeRaise's published goal</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">Significant</div>
-          <div class="m-label">Reduction in team-hours per new campaign</div>
-          <div class="m-source">Estimated</div>
-        </div>
+  </div><!-- end solutions-grid -->
+
+  <!-- PHASE TIMELINE -->
+  <div style="margin-top: 24px;">
+    <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.09em; font-weight: 700; color: var(--blue); margin-bottom: 8px;">Build Sequence — No Disruption to Live Services</div>
+    <div class="timeline-strip">
+      <div class="tl-phase">
+        <div class="tl-num">Days 1–5 · Immediate</div>
+        <div class="tl-title">Audit Delivery</div>
+        <ul class="tl-items">
+          <li>52-page gap matrix with fix plan delivered</li>
+          <li>HIPAA compliance checklist annotated</li>
+          <li>404 errors confirmed and prioritised</li>
+          <li>Pricing inconsistency documented</li>
+        </ul>
       </div>
-      <div class="before-after">
-        <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">Internal team manually activates each campaign page</span> <span class="ba-after">Organization publishes independently in minutes</span></span>
-        </div>
-        <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">Launch queue grows faster than team can clear it</span> <span class="ba-after">Unlimited parallel launches — no queue</span></span>
-        </div>
+      <div class="tl-phase">
+        <div class="tl-num">Weeks 2–6 · Phase 1</div>
+        <div class="tl-title">Fix &amp; Build Foundation</div>
+        <ul class="tl-items">
+          <li>All 404s resolved, pricing corrected</li>
+          <li>Compliance gaps remediated</li>
+          <li>Course landing page + enrollment live</li>
+          <li>Acorn Circle page or waitlist launched</li>
+          <li>Core program pages content-complete</li>
+        </ul>
+      </div>
+      <div class="tl-phase">
+        <div class="tl-num">Month 2+ · Phase 2</div>
+        <div class="tl-title">Ongoing Expansion</div>
+        <ul class="tl-items">
+          <li>Clinician template + onboarding workflow</li>
+          <li>SEO architecture across all new pages</li>
+          <li>Course delivery infrastructure</li>
+          <li>Julie Anne is not the bottleneck</li>
+        </ul>
       </div>
     </div>
-
-    <!-- CARD 5 -->
-    <div class="solution-card">
-      <div class="proof-tag described">Described Only</div>
-      <div class="sol-name">Knowledge Base & Self-Service Support</div>
-      <div class="sol-problem"><strong>Solves:</strong> Problem #6 — FAQ answers not rendered on site, forcing users to contact support for basic questions.</div>
-      <div class="sol-build">Searchable knowledge base with rendered FAQ content, guided setup flows, and contextual help triggers — so most support questions are resolved without human contact.</div>
-      <div class="sol-metrics">
-        <div class="sol-metric">
-          <div class="m-val">↓ Load</div>
-          <div class="m-label">Support contacts avoided per week as client base grows</div>
-          <div class="m-source">Operational estimate</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">Always-on</div>
-          <div class="m-label">Self-service answers available outside business hours</div>
-          <div class="m-source">Platform capability</div>
-        </div>
-        <div class="sol-metric">
-          <div class="m-val">Scales</div>
-          <div class="m-label">Support capacity without adding headcount</div>
-          <div class="m-source">Operational outcome</div>
-        </div>
-      </div>
-      <div class="before-after">
-        <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">Collapsed FAQ forces users to email support</span> <span class="ba-after">Searchable answers resolve questions instantly</span></span>
-        </div>
-        <div class="ba-row">
-          <span class="ba-icon">→</span>
-          <span><span class="ba-before">Support ticket volume grows linearly with client count</span> <span class="ba-after">Self-serve resolution keeps team focused on growth</span></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- CARD 6 — Phased Roadmap as card -->
-    <div class="solution-card" style="border-left: 4px solid var(--green);">
-      <div class="sol-name" style="color: var(--green);">Deployment Approach</div>
-      <div class="sol-build" style="margin-bottom: 16px;">Parallel build — no disruption to live campaigns or active donation flows at any phase.</div>
-
-      <div class="timeline" style="margin-top: 0; border: none; border-radius: 0; gap: 0; display: flex; flex-direction: column;">
-        <div class="tl-phase" style="border-right: none; border-bottom: 1px solid var(--gray-200); background: var(--gray-50); border-radius: var(--radius-sm);">
-          <div class="tl-num">Days 1–30 · MVP</div>
-          <div class="tl-title">Fix the Foundation</div>
-          <ul class="tl-items">
-            <li>Repair 404 donation archive and broken checkout</li>
-            <li>Activate empty campaign and dashboard pages</li>
-            <li>Deploy rendered FAQ and knowledge base</li>
-          </ul>
-        </div>
-        <div class="tl-phase" style="border-right: none; border-bottom: 1px solid var(--gray-200); border-radius: var(--radius-sm); margin-top: 8px; background: var(--gray-50);">
-          <div class="tl-num">Days 31–60 · Core Build</div>
-          <div class="tl-title">Automate Client Operations</div>
-          <ul class="tl-items">
-            <li>Launch automated onboarding wizard</li>
-            <li>Deploy self-serve campaign builder</li>
-            <li>Activate triggered email sequence engine</li>
-          </ul>
-        </div>
-        <div class="tl-phase" style="border-right: none; background: var(--gray-50); border-radius: var(--radius-sm); margin-top: 8px;">
-          <div class="tl-num">Days 61–90 · Scale Layer</div>
-          <div class="tl-title">Enable 500-Org Growth</div>
-          <ul class="tl-items">
-            <li>Content generation engine goes live</li>
-            <li>Performance dashboards and milestone alerts</li>
-            <li>Full operational handoff — team focuses on growth</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      SECTION 6 — PROJECTED OPERATIONAL IMPACT
-═══════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <div class="section">
-  <div class="section-label">Section 6</div>
-  <h2 class="section-title">Projected Operational Impact</h2>
+  <div class="section-label">Projected Impact</div>
+  <h2 class="section-title">What Changes When the Bottleneck Is Removed</h2>
 
   <div class="stat-grid">
     <div class="stat-card">
-      <div class="sc-val">500+</div>
-      <div class="sc-label">Organizations supportable without adding headcount</div>
-      <div class="sc-source">TreeRaise's own 2026 goal</div>
+      <div class="sc-val">10+ mo</div>
+      <div class="sc-label">Revenue delay closed — course enrollment opens in Phase 1</div>
+      <div class="sc-source">AHS published launch date</div>
     </div>
     <div class="stat-card">
-      <div class="sc-val">30–40</div>
-      <div class="sc-label">Volunteer hours eliminated per fundraiser vs. traditional model</div>
-      <div class="sc-source">TreeRaise's own materials</div>
+      <div class="sc-val">$720–$1k</div>
+      <div class="sc-label">Est. monthly revenue added per 4 new organic clients at AHS session rates</div>
+      <div class="sc-source">AHS session fees × est. SEO lift</div>
     </div>
     <div class="stat-card">
-      <div class="sc-val">20–30%</div>
-      <div class="sc-label">Additional contributions from automated reminder sequences</div>
-      <div class="sc-source">TreeRaise School Guide</div>
+      <div class="sc-val">4 tracks</div>
+      <div class="sc-label">Simultaneously unblocked: compliance, courses, membership, clinician growth</div>
+      <div class="sc-source">Problem Register analysis</div>
     </div>
     <div class="stat-card">
-      <div class="sc-val">30 days</div>
-      <div class="sc-label">To first visible impact: 404s fixed, pages live, no campaign disruption</div>
+      <div class="sc-val">5 days</div>
+      <div class="sc-label">To full gap audit in your inbox — Phase 1 build starts on approval</div>
       <div class="sc-source">Estimated delivery scope</div>
     </div>
   </div>
 
   <div class="chart-wrap">
-    <div class="chart-title">Operational Readiness by Area — Current State vs. With Recommended Build</div>
-    <canvas id="impactChart" height="240"></canvas>
+    <div class="chart-title">Site Readiness by Area — Current State vs. After Phase 1 Build</div>
+    <div class="chart-sub">Each area scored 0–100% based on functional readiness for client acquisition, conversion, and compliance. Direct site audit, May 2026.</div>
+    <canvas id="impactChart" height="260"></canvas>
   </div>
 
   <div class="number-treatment">
@@ -1308,162 +1395,145 @@
     <div class="nt-rows">
       <div class="nt-row">
         <div class="nt-dot nt-green"></div>
-        <div class="nt-desc"><strong>Directly from TreeRaise's own materials</strong> — 500-org goal, 125K+ trees, 50% contribution return, 30–40 volunteer hours eliminated, 20–30% reminder contribution uplift. These figures lead all headlines.</div>
+        <div class="nt-desc"><strong>From AHS's own published materials:</strong> 10+ month course delay (July 2025 launch date, confirmed on site), 20+ broken pages (52-page audit), $180–$250/hr session fees (booking page), 4 active 404 errors, $789.70 prior Upwork spend, $30/hr prior contractor rate, HIPAA-governed practice status. These figures lead all headlines.</div>
         <div class="nt-badge badge-green">Direct source</div>
       </div>
       <div class="nt-row">
         <div class="nt-dot nt-blue"></div>
-        <div class="nt-desc"><strong>Calculated estimates from observable signals</strong> — onboarding automation rate (~90% step reduction), 30-day MVP timeline, &lt;10 minute self-serve launch time. Shown with "Estimated" label throughout.</div>
+        <div class="nt-desc"><strong>Calculated estimates from observable signals:</strong> 2–4 new organic clients/month from SEO (based on keyword opportunity and CA telehealth market); $720–$1,000/month revenue impact (session fee × estimated new clients); 5-day audit delivery; Phase 1 timeline. Shown with "Estimated" context throughout.</div>
         <div class="nt-badge badge-blue">Estimated</div>
       </div>
       <div class="nt-row">
         <div class="nt-dot nt-amber"></div>
-        <div class="nt-desc"><strong>Industry reference points</strong> — traditional fundraiser retention rates (30–50%), CO₂ sequestration per tree (48 lbs). Used only for context, not in headline figures.</div>
+        <div class="nt-desc"><strong>Industry reference points:</strong> HIPAA non-compliance fines (up to $50,000/violation category) and ADA liability benchmarks used as directional context only — not specific to AHS, not in any headline figure. Actual risk depends on specific circumstances.</div>
         <div class="nt-badge badge-amber">Industry context</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      SECTION 7 — STAKEHOLDER CONTEXT
-═══════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <div class="section">
-  <div class="section-label">Section 7</div>
+  <div class="section-label">Decision Context</div>
   <h2 class="section-title">Who This Decision Involves</h2>
 
-  <div class="stakeholder-grid">
-    <div class="sh-card">
-      <div class="sh-name">Wayne Elsey</div>
-      <div class="sh-role">Founder</div>
-      <div class="sh-row">
-        <div class="sh-row-label">Cares most about</div>
-        <div class="sh-row-val">Rapid, mission-aligned scaling. Operational systems that run without his daily input. Protecting his $70M+ execution reputation.</div>
-      </div>
-      <div class="sh-row">
-        <div class="sh-row-label">Primary concern</div>
-        <div class="sh-row-val">Getting pulled back into day-to-day operations. Building the wrong thing slowly. Losing the window that a first-mover launch creates.</div>
+  <div class="sh-single">
+    <div class="sh-header">
+      <div class="sh-avatar">JA</div>
+      <div>
+        <div class="sh-name">Julie Anne Steiger, LCSW</div>
+        <div class="sh-role">Founder · Sole Licensed Provider · Sole Decision-Maker</div>
       </div>
     </div>
-    <div class="sh-card">
-      <div class="sh-name">Courtney Eaton</div>
-      <div class="sh-role">President</div>
-      <div class="sh-row">
+    <div class="sh-rows">
+      <div>
         <div class="sh-row-label">Cares most about</div>
-        <div class="sh-row-val">Organizational stability. Hitting 2026 goals without team burnout. Protecting the Funds2Orgs and Elsey Enterprises brand reputation.</div>
+        <div class="sh-row-val">A site that works without requiring her to manage it. Compliance resolved permanently so clinical work isn't shadowed by liability. Courses and membership revenue open without more contractor cycles. Not being the bottleneck in her own practice.</div>
       </div>
-      <div class="sh-row">
+      <div>
         <div class="sh-row-label">Primary concern</div>
-        <div class="sh-row-val">Reputational risk from poor early client experiences. The team being overextended before systems are in place.</div>
+        <div class="sh-row-val">Being burned again — three prior Upwork hires, $789.70 spent, a 3.9 rating, and the site still broken. The fourth job posting is more detailed and more specific than the prior three. That specificity signals hard-won clarity about what she needs.</div>
       </div>
-    </div>
-    <div class="sh-card">
-      <div class="sh-name">Judith Camacho</div>
-      <div class="sh-role">CFO / COO</div>
-      <div class="sh-row">
-        <div class="sh-row-label">Cares most about</div>
-        <div class="sh-row-val">Cost control. Clear ROI on any external build. Unrestricted revenue growth for partner organizations.</div>
-      </div>
-      <div class="sh-row">
-        <div class="sh-row-label">Primary concern</div>
-        <div class="sh-row-val">Paying for a rebuild when incremental fixes might suffice. Budget overruns on an open-ended scope.</div>
+      <div>
+        <div class="sh-row-label">Decision dynamic</div>
+        <div class="sh-row-val">No committee, no procurement layer, no partners. Julie Anne is the sole decision-maker. The decision will turn on trust and demonstrated competence — not budget. The Upwork post is live now, which means the decision window is open and closing.</div>
       </div>
     </div>
   </div>
 
-  <div style="margin-top: 16px; padding: 14px 18px; background: var(--blue-faint); border-radius: var(--radius-sm); border-left: 3px solid var(--blue); font-size: 13px; color: var(--gray-700);">
-    <strong>Note to Judith Camacho:</strong> The phased build approach (30-day MVP, 60-day core, 90-day scale) is scoped to deliver visible ROI at each milestone — not an open-ended engagement. Each phase can be evaluated independently before the next is approved.
+  <div class="sh-note">
+    <strong>No co-decision-maker risk identified.</strong> The AHS practice is a sole-owner LCSW Professional Corporation. This decision does not require board approval, partner sign-off, or procurement review. Speed to a credible, well-scoped proposal is the primary competitive variable — not price.
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      SECTION 8 — CTA
-═══════════════════════════════════════ -->
+═══════════════════════════════════════════ -->
 <div class="cta-section">
   <div class="cta-title">See exactly how this gets built — in 6 minutes</div>
-  <p class="cta-sub">We've prepared a walkthrough demo showing the Client Success Automation Hub, the self-serve campaign builder, and the 30-day fix roadmap for TreeRaise's current platform gaps. No slides — just the working system.</p>
+  <p class="cta-sub">We've prepared a walkthrough showing the annotated 52-page gap audit, the compliance risk mapping, before/after page wireframes for the five biggest fixes, and the Phase 1 build plan — scoped, priced, and startable within days.</p>
   <div class="cta-buttons">
-    <a href="file:///d%3A/Arham/Dev8X/TroopHunter/microfrontend/treeraise/portals/p4d_partner-portal.html" class="btn-primary">Watch the Demo →</a>
-    
+    <a href="#" class="btn-primary">Watch the Demo →</a>
+    <a href="#" class="btn-secondary">Book a 20-Minute Call →</a>
   </div>
-  <p style="margin-top: 24px; font-size: 12px; color: rgba(255,255,255,0.35);">Dev8X builds augments your existing TreeRaise platform, veritree integration, and brand assets. We are not here to rebuild — we harden the operational backbone so you can focus on growth.</p>
-</div>
+
+
+  
 
 </div><!-- end .page -->
 
-<div class="footer-note" style="padding-bottom: 40px;">
-  Prepared by Dev8X · May 2026 · Decision Safety Brief for TreeRaise, LLC<br>
-  All headline figures drawn directly from TreeRaise's own published materials. Calculated estimates are labelled throughout.
-</div>
+
 
 <script>
-  // Impact chart — comparing current vs post-build operational readiness
-  const ctx = document.getElementById('impactChart').getContext('2d');
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: [
-        'Client Onboarding',
-        'Campaign Launch',
-        'Marketing Content',
-        'Platform Infrastructure',
-        'Self-Service Support',
-        'Team Scale Capacity'
-      ],
-      datasets: [
-        {
-          label: 'Current State',
-          data: [10, 15, 20, 35, 10, 5],
-          backgroundColor: 'rgba(239, 68, 68, 0.18)',
-          borderColor: 'rgba(239, 68, 68, 0.6)',
-          borderWidth: 1.5,
-          borderRadius: 4,
-        },
-        {
-          label: 'With Recommended Build',
-          data: [90, 92, 85, 90, 88, 95],
-          backgroundColor: 'rgba(22, 163, 74, 0.18)',
-          borderColor: 'rgba(22, 163, 74, 0.65)',
-          borderWidth: 1.5,
-          borderRadius: 4,
-        }
-      ]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top',
-          labels: { font: { size: 12 }, boxWidth: 14, padding: 16, color: '#374151' }
-        },
-        tooltip: {
-          callbacks: {
-            label: ctx => ` ${ctx.dataset.label}: ${ctx.raw}% readiness`
-          }
-        }
+const ctx = document.getElementById('impactChart').getContext('2d');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: [
+      'Client Acquisition (core pages populated)',
+      'HIPAA / Compliance Readiness',
+      'Course Launch Infrastructure',
+      'Membership / Acorn Circle',
+      'Clinician Team Visibility',
+      'ADA & Accessibility',
+      'SEO / Organic Discovery'
+    ],
+    datasets: [
+      {
+        label: 'Current State',
+        data: [12, 15, 0, 5, 0, 8, 5],
+        backgroundColor: 'rgba(220, 38, 38, 0.15)',
+        borderColor: 'rgba(220, 38, 38, 0.55)',
+        borderWidth: 1.5,
+        borderRadius: 4,
       },
-      scales: {
-        x: {
-          min: 0,
-          max: 100,
-          ticks: {
-            callback: v => v + '%',
-            font: { size: 11 },
-            color: '#9ca3af'
-          },
-          grid: { color: '#f3f4f6' }
-        },
-        y: {
-          ticks: {
-            font: { size: 12 },
-            color: '#374151'
-          },
-          grid: { display: false }
+      {
+        label: 'After Phase 1 Build',
+        data: [85, 90, 88, 75, 80, 90, 70],
+        backgroundColor: 'rgba(22, 163, 74, 0.15)',
+        borderColor: 'rgba(22, 163, 74, 0.60)',
+        borderWidth: 1.5,
+        borderRadius: 4,
+      }
+    ]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+        labels: { font: { size: 12 }, boxWidth: 14, padding: 18, color: '#374151' }
+      },
+      tooltip: {
+        callbacks: {
+          label: ctx => ` ${ctx.dataset.label}: ${ctx.raw}% readiness`
         }
       }
+    },
+    scales: {
+      x: {
+        min: 0,
+        max: 100,
+        ticks: {
+          callback: v => v + '%',
+          font: { size: 11 },
+          color: '#9ca3af'
+        },
+        grid: { color: '#f3f4f6' }
+      },
+      y: {
+        ticks: {
+          font: { size: 12 },
+          color: '#374151'
+        },
+        grid: { display: false }
+      }
     }
-  });
+  }
+});
 </script>
 </body>
 </html>

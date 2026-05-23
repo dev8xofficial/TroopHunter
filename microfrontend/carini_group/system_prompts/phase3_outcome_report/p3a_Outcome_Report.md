@@ -523,17 +523,582 @@ unless the paragraph adds essential nuance that would otherwise be lost.
 Generate a single self-contained HTML file. All CSS and JavaScript must be
 inline — no external files except Chart.js loaded from CDN.
 
-**Visual style:**
-- Clean, minimal, professional — dark navy header (`#0f1c2e`), white body,
-  accent colour `#2563eb` (blue), success green `#16a34a` for positive metrics
-- Font: system-ui stack — no Google Fonts (avoids loading delay during recording)
-- Use one clean sans-serif type system across the whole report. Do not use
-  Georgia, Times New Roman, or mixed serif/sans pairings.
-- Cards with subtle box shadows and `border-radius: 12px`
-- The report should look like a premium SaaS dashboard, not a Word document
-- The page must feel executive-facing: high signal, low clutter, easy to scan
-- Use strong typographic hierarchy and compact summary modules so the page reads
-  well in both silent scanning and narrated walkthrough mode
+---
+
+## LOCKED DESIGN SYSTEM (single source of visual truth — non-negotiable)
+
+> **Why this section exists.** Across many reports the *content* changes but the
+> *design must not*. Do **not** invent CSS, tokens, colours, fonts, shadows,
+> radii, spacing, or component markup on each run. Doing so produces a different
+> footer, different cards, and broken layouts every time. Instead, treat the
+> blocks below as a fixed component library. Your job is to **pour content into a
+> fixed template**, not to design a new page.
+
+**Hard rules — these override any softer styling guidance elsewhere in this prompt:**
+
+1. **Copy the `<style>` block in 6A verbatim** into `<head>`. Do not rename, add,
+   remove, reorder, recolour, or "improve" any token (`:root` variable) or class.
+   No new fonts. No serif. No alternate accent colours. No gold/teal themes.
+2. **Build the page from the 6B document skeleton and the 6C component library
+   only.** Do not create new class names, new card variants, or new layouts.
+3. **Your only freedom is content:** the words, the numbers, the count of
+   cards/rows within the stated min/max, and the choices explicitly marked
+   `CHOOSE:` in a template. Everything visual is already decided.
+4. **One canonical component per section.** Where earlier sections offered a
+   choice (e.g. "a table *or* cards"), the component named in 6C is the single
+   binding choice. Always use it so every report looks identical in structure.
+5. **The footer is fixed (6C-FOOTER).** Only swap the company name and the date.
+   Never restyle, re-label, or restructure it.
+6. **Self-check before output:** the page must contain exactly the classes
+   defined in 6A and no others. If you used a class that is not in 6A, you have
+   broken the design system — fix it before saving.
+
+### 6A. DESIGN TOKENS + COMPONENT CSS (paste verbatim into `<head>`)
+
+```html
+<style>
+  :root {
+    --navy: #0f1c2e;
+    --navy-mid: #162338;
+    --navy-light: #1e3352;
+    --blue: #2563eb;
+    --blue-light: #3b82f6;
+    --blue-pale: #dbeafe;
+    --green: #16a34a;
+    --green-pale: #dcfce7;
+    --amber: #d97706;
+    --amber-pale: #fef3c7;
+    --red: #dc2626;
+    --red-pale: #fee2e2;
+    --white: #ffffff;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-400: #94a3b8;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --text: #1e293b;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.1), 0 1px 4px rgba(0,0,0,0.06);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--gray-50);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+  section { padding: 56px 40px; border-bottom: 1px solid var(--gray-200); }
+  section:last-child { border-bottom: none; }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--gray-400); margin-bottom: 8px;
+  }
+  h2 { font-size: 24px; font-weight: 700; color: var(--navy); margin-bottom: 24px; letter-spacing: -0.01em; }
+  h3 { font-size: 17px; font-weight: 600; color: var(--navy); margin-bottom: 12px; }
+  p { color: var(--gray-700); line-height: 1.65; }
+
+  /* ── HERO ── */
+  .hero { background: var(--navy); color: var(--white); padding: 0; border-bottom: none; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 420px; height: 420px; background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 70%); pointer-events: none; }
+  .hero-inner { padding: 48px 40px 0; position: relative; z-index: 1; }
+  .hero-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 44px; }
+  .hero-meta-brand {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: rgba(255,255,255,0.45);
+  }
+  .hero-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.25); }
+  .hero-meta-date { font-size: 12px; color: rgba(255,255,255,0.35); }
+  .hero-headline {
+    font-size: clamp(28px, 4vw, 40px); font-weight: 700; line-height: 1.2;
+    letter-spacing: -0.02em; color: var(--white); max-width: 680px; margin-bottom: 16px;
+  }
+  .hero-headline em { font-style: normal; color: #60a5fa; }
+  .hero-subhead {
+    font-size: 16px; color: rgba(255,255,255,0.6); max-width: 580px;
+    margin-bottom: 44px; line-height: 1.6;
+  }
+  .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .hero-stat {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius); padding: 20px 22px;
+  }
+  .hero-stat-value { font-size: 30px; font-weight: 800; color: var(--white); letter-spacing: -0.02em; line-height: 1; margin-bottom: 6px; }
+  .hero-stat-value.accent { color: #60a5fa; }
+  .hero-stat-value.green { color: #4ade80; }
+  .hero-stat-value.amber { color: #fbbf24; }
+  .hero-stat-label { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.4; margin-bottom: 6px; }
+  .hero-stat-source { font-size: 11px; color: rgba(255,255,255,0.3); font-style: italic; }
+
+  /* ── GLANCE STRIP ── */
+  .glance-strip {
+    background: rgba(255,255,255,0.04); border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 20px 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 36px;
+    position: relative; z-index: 1;
+  }
+  .glance-item { padding: 0 24px 0 0; border-right: 1px solid rgba(255,255,255,0.08); }
+  .glance-item:first-child { padding-left: 0; }
+  .glance-item:nth-child(2) { padding-left: 24px; }
+  .glance-item:last-child { border-right: none; padding-right: 0; padding-left: 24px; }
+  .glance-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); margin-bottom: 5px;
+  }
+  .glance-value { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.4; font-weight: 500; }
+
+  /* ── GENERIC CARDS / GRIDS ── */
+  .card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
+  .card-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+  /* ── DESIRED OUTCOME (SECTION 2) ── */
+  .outcome-section { background: var(--white); }
+  .two-col-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  .outcome-card { border-radius: var(--radius); padding: 22px 24px; border-left: 4px solid var(--blue); background: var(--blue-pale); }
+  .outcome-card h3 { color: var(--navy); font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; margin-bottom: 8px; }
+  .outcome-card p { color: var(--gray-700); font-size: 14px; line-height: 1.55; }
+  .timing-callout { background: var(--amber-pale); border: 1px solid #fde68a; border-radius: var(--radius-sm); padding: 16px 20px; display: flex; align-items: flex-start; gap: 12px; }
+  .timing-callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .timing-callout-text { font-size: 14px; color: #92400e; line-height: 1.5; }
+  .timing-callout-text strong { color: #78350f; }
+
+  /* ── PROBLEM TABLE (SECTION 3) ── */
+  .table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 16px; }
+  .problem-table, .research-table { min-width: 720px; width: 100%; }
+  .problem-table { border-collapse: collapse; font-size: 14px; }
+  .problem-table th {
+    background: var(--gray-100); text-align: left; padding: 11px 16px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-600); border-bottom: 2px solid var(--gray-200);
+  }
+  .problem-table td { padding: 14px 16px; vertical-align: top; border-bottom: 1px solid var(--gray-100); line-height: 1.5; color: var(--gray-700); }
+  .problem-table tr:last-child td { border-bottom: none; }
+  .problem-table tr:hover td { background: var(--gray-50); }
+  .problem-num {
+    display: inline-flex; width: 22px; height: 22px; background: var(--navy); color: var(--white);
+    border-radius: 50%; font-size: 11px; font-weight: 700; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .impact-badge { display: inline-block; padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+  .impact-critical { background: var(--red); color: #fff; }
+  .impact-high { background: var(--red-pale); color: #991b1b; }
+  .impact-med { background: var(--amber-pale); color: #92400e; }
+
+  /* ── RESEARCH TRANSPARENCY (SECTION 3B) ── */
+  .transparency-section { background: var(--gray-50); }
+  .research-table {
+    border-collapse: collapse; font-size: 13.5px; background: var(--white);
+    border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+  }
+  .research-table th {
+    background: var(--navy); color: rgba(255,255,255,0.8); text-align: left; padding: 12px 16px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+  }
+  .research-table td { padding: 14px 16px; border-bottom: 1px solid var(--gray-100); vertical-align: top; color: var(--gray-700); line-height: 1.5; }
+  .research-table tr:last-child td { border-bottom: none; }
+  .research-table td:first-child { font-weight: 600; color: var(--navy); width: 22%; }
+
+  /* ── FUTURE RISK CARDS (SECTION 4) ── */
+  .risk-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .risk-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); border-top: 3px solid var(--red); }
+  .risk-card-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
+  .risk-card-break { font-size: 13px; color: var(--gray-600); margin-bottom: 12px; line-height: 1.5; }
+  .risk-card-prevent { font-size: 12.5px; color: var(--green); background: var(--green-pale); border-radius: var(--radius-sm); padding: 8px 12px; line-height: 1.4; }
+  .risk-card-prevent strong { display: block; font-weight: 700; margin-bottom: 2px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ── SOLUTION CARDS (SECTION 5) ── */
+  .solutions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .sol-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .sol-card.featured { grid-column: 1 / -1; }
+  .sol-card-header { background: var(--navy); padding: 16px 20px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .sol-card-name { font-size: 14px; font-weight: 700; color: var(--white); line-height: 1.3; }
+  .proof-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 9px; border-radius: 20px; flex-shrink: 0; white-space: nowrap; }
+  .proof-visible { background: #166534; color: #bbf7d0; }
+  .proof-partial { background: #92400e; color: #fde68a; }
+  .proof-future { background: var(--navy-light); color: var(--blue-pale); }
+  .sol-card-body { padding: 18px 20px; }
+  .sol-field-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 4px; margin-top: 12px; }
+  .sol-field-label:first-child { margin-top: 0; }
+  .sol-field-text { font-size: 13.5px; color: var(--gray-700); line-height: 1.5; }
+  .sol-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; padding: 14px; background: var(--gray-50); border-radius: var(--radius-sm); border: 1px solid var(--gray-100); }
+  .sol-metric { text-align: center; }
+  .sol-metric-icon { font-size: 15px; line-height: 1; margin-bottom: 5px; }
+  .sol-metric-val { font-size: 18px; font-weight: 800; color: var(--navy); line-height: 1; margin-bottom: 4px; }
+  .sol-metric-val.green { color: var(--green); }
+  .sol-metric-val.blue { color: var(--blue); }
+  .sol-metric-label { font-size: 11px; color: var(--gray-600); line-height: 1.3; margin-bottom: 3px; }
+  .sol-metric-source { font-size: 10px; color: var(--gray-400); font-style: italic; line-height: 1.2; }
+  .sol-divider { height: 1px; background: var(--gray-100); margin: 14px 0; }
+  .ba-item { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--gray-600); margin-bottom: 7px; line-height: 1.4; }
+  .ba-check { color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .ba-arrow { color: var(--blue); font-weight: 700; flex-shrink: 0; margin: 0 2px; }
+  .ba-before { color: var(--gray-400); }
+  .ba-after { color: var(--navy); font-weight: 600; }
+
+  /* ── ROI / OPERATIONAL IMPACT (SECTION 6) ── */
+  .roi-section { background: var(--navy); }
+  .roi-section h2 { color: var(--white); }
+  .roi-section .section-label { color: rgba(255,255,255,0.35); }
+  .roi-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 32px; }
+  .roi-stat { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 18px 16px; text-align: center; }
+  .roi-stat-val { font-size: 28px; font-weight: 700; color: var(--white); letter-spacing: -0.02em; margin-bottom: 5px; line-height: 1; }
+  .roi-stat-val.green { color: #4ade80; }
+  .roi-stat-val.blue { color: #60a5fa; }
+  .roi-stat-label { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.4; }
+  .chart-container { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 24px; margin-bottom: 28px; }
+  .chart-container canvas { display: block; width: 100% !important; height: auto !important; }
+  .chart-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 16px; letter-spacing: 0.03em; }
+  .numbers-panel { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 22px; }
+  .numbers-panel-title { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+  .numbers-group { margin-bottom: 16px; }
+  .numbers-group:last-child { margin-bottom: 0; }
+  .numbers-group-label { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .numbers-row { display: flex; justify-content: space-between; align-items: flex-start; font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 6px; gap: 16px; line-height: 1.4; }
+  .numbers-row-label { flex: 1; }
+  .numbers-row-basis { font-size: 11px; color: rgba(255,255,255,0.3); font-style: italic; text-align: right; flex-shrink: 0; }
+
+  /* ── STAKEHOLDER (SECTION 7) ── */
+  .stakeholder-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .sh-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+  .sh-role { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 4px; }
+  .sh-name { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+  .sh-row { margin-bottom: 9px; }
+  .sh-row-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-400); margin-bottom: 2px; }
+  .sh-row-text { font-size: 12.5px; color: var(--gray-700); line-height: 1.4; }
+  .sh-note { font-size: 13px; color: var(--gray-600); font-style: italic; }
+
+  /* ── CTA (SECTION 8) ── */
+  .cta-section { background: var(--gray-50); }
+  .cta-box { background: var(--navy); border: 1px solid var(--navy-light); border-radius: var(--radius); padding: 44px 48px; box-shadow: var(--shadow-md); text-align: center; max-width: 680px; margin: 0 auto; position: relative; overflow: hidden; }
+  .cta-box::before { content: ''; position: absolute; bottom: -70px; left: 50%; transform: translateX(-50%); width: 520px; height: 320px; background: radial-gradient(circle, rgba(37,99,235,0.22) 0%, transparent 65%); pointer-events: none; }
+  .cta-box > * { position: relative; z-index: 1; }
+  .cta-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #60a5fa; margin-bottom: 12px; }
+  .cta-headline { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 14px; letter-spacing: -0.01em; line-height: 1.3; }
+  .cta-body { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.65; margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { display: inline-block; background: var(--blue); color: var(--white); padding: 13px 28px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; text-decoration: none; letter-spacing: 0.01em; transition: background 0.15s; }
+  .btn-primary:hover { background: var(--blue-light); }
+  .btn-secondary { display: inline-block; background: var(--white); color: var(--navy); border: 1px solid var(--gray-300); padding: 13px 28px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; text-decoration: none; transition: border-color 0.15s; }
+  .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+
+  /* ── TIMELINE STRIP (required roadmap module) ── */
+  .timeline-strip { display: flex; align-items: flex-start; gap: 0; padding: 28px 0 0; position: relative; flex-wrap: wrap; }
+  .timeline-phase { flex: 1; position: relative; padding-right: 20px; min-width: 220px; }
+  .timeline-phase:last-child { padding-right: 0; }
+  .timeline-dot { width: 34px; height: 34px; border-radius: 50%; background: var(--blue); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; margin-bottom: 10px; position: relative; z-index: 1; box-shadow: 0 0 0 4px var(--gray-50); }
+  .timeline-phase::after { content: ''; position: absolute; top: 16px; left: 32px; right: 20px; height: 1px; background: var(--gray-200); }
+  .timeline-phase:last-child::after { display: none; }
+  .timeline-label { font-size: 11px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .timeline-desc { font-size: 12.5px; color: var(--gray-600); line-height: 1.4; }
+
+  /* ── UTILITIES ── */
+  .divider { height: 1px; background: var(--gray-200); margin: 32px 0; }
+  .mt-8 { margin-top: 8px; } .mt-16 { margin-top: 16px; } .mt-24 { margin-top: 24px; } .mt-32 { margin-top: 32px; }
+  .mb-0 { margin-bottom: 0; }
+
+  /* ── FOOTER (fixed — never restyle) ── */
+  .footer { background: var(--navy); padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-brand { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.4); letter-spacing: 0.04em; }
+  .footer-note { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    section { padding: 40px 24px; }
+    .hero-inner { padding: 36px 24px 0; }
+    .glance-strip { padding: 18px 24px; grid-template-columns: 1fr; gap: 16px; }
+    .glance-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 0 16px 0 !important; }
+    .glance-item:last-child { border-bottom: none; padding-bottom: 0 !important; }
+    .hero-stats { grid-template-columns: 1fr; }
+    .two-col-cards { grid-template-columns: 1fr; }
+    .card-grid-2 { grid-template-columns: 1fr; }
+    .card-grid-3 { grid-template-columns: 1fr; }
+    .card-grid-4 { grid-template-columns: 1fr 1fr; }
+    .risk-cards { grid-template-columns: 1fr; }
+    .solutions-grid { grid-template-columns: 1fr; }
+    .roi-stat-grid { grid-template-columns: 1fr 1fr; }
+    .stakeholder-cards { grid-template-columns: 1fr; }
+    .timeline-phase { flex: 1 1 100%; padding-right: 0; }
+    .timeline-phase::after { display: none; }
+    .footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+  @media print {
+    .hero-stats { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+```
+
+### 6B. DOCUMENT SKELETON (fixed order — every report uses exactly this shell)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Company] — Decision Safety Brief | Dev8X</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <!-- paste 6A <style> block here verbatim -->
+</head>
+<body>
+  <div class="page">
+    <section class="hero">…</section>                       <!-- Section 1 -->
+    <section class="outcome-section">…</section>             <!-- Section 2 -->
+    <section>…</section>                                     <!-- Section 3: Current Problems -->
+    <section class="transparency-section">…</section>        <!-- Section 3B -->
+    <section>…</section>                                     <!-- Section 4: Future Risks -->
+    <section>…</section>                                     <!-- Section 5: Solutions -->
+    <section class="roi-section">…</section>                 <!-- Section 6: Operational Impact -->
+    <section>…</section>                                     <!-- Section 7: Stakeholders -->
+    <section class="cta-section">…</section>                 <!-- Section 8: CTA -->
+  </div>
+  <div class="footer">…</div>                                <!-- see 6C-FOOTER -->
+  <script> /* Chart.js init — see 6C-CHART */ </script>
+</body>
+</html>
+```
+
+### 6C. COMPONENT LIBRARY (the only markup you may use — fill content, keep structure)
+
+Each section maps to exactly one component below. Replace every `[bracket]`
+with real content. Do not leave brackets in the output.
+
+**6C-HERO** (Section 1):
+```html
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-meta">
+      <span class="hero-meta-brand">Dev8X · Decision Safety Brief</span>
+      <div class="hero-meta-dot"></div>
+      <span class="hero-meta-date">Prepared for [Company] — [Month Year]</span>
+    </div>
+    <h1 class="hero-headline">[≤16-word headline; wrap <em>one phrase</em> in em for the blue accent; no manual <br>]</h1>
+    <p class="hero-subhead">[≤24-word subhead clarifying bottleneck + what the brief covers]</p>
+    <div class="hero-stats">
+      <!-- exactly 3 .hero-stat, each from a directly-sourced (L1) headline win.
+           Tint each value with one variant for visual rhythm: accent (blue),
+           amber, green — in that order. The hero glow is automatic (CSS); no markup. -->
+      <div class="hero-stat">
+        <div class="hero-stat-value accent">[value]</div>
+        <div class="hero-stat-label">[≤12-word label]</div>
+        <div class="hero-stat-source">[≤5-word source note]</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value amber">[value]</div>
+        <div class="hero-stat-label">[≤12-word label]</div>
+        <div class="hero-stat-source">[≤5-word source note]</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value green">[value]</div>
+        <div class="hero-stat-label">[≤12-word label]</div>
+        <div class="hero-stat-source">[≤5-word source note]</div>
+      </div>
+    </div>
+  </div>
+  <div class="glance-strip">
+    <!-- exactly 3 .glance-item: Current bottleneck / Strongest unlock / Recommended next step -->
+    <div class="glance-item"><div class="glance-label">Current Bottleneck</div><div class="glance-value">[phrase]</div></div>
+    <div class="glance-item"><div class="glance-label">Strongest Unlock</div><div class="glance-value">[phrase]</div></div>
+    <div class="glance-item"><div class="glance-label">Recommended Next Step</div><div class="glance-value">[phrase]</div></div>
+  </div>
+</section>
+```
+
+**6C-OUTCOME** (Section 2): use `.two-col-cards` with two `.outcome-card`
+(Desired Outcome / Buying Reason) **only if** the two differ; otherwise one
+`.outcome-card`. Always follow with one `.timing-callout`.
+```html
+<section class="outcome-section">
+  <div class="section-label">Desired Outcome</div>
+  <h2>[heading]</h2>
+  <div class="two-col-cards">
+    <div class="outcome-card"><h3>Desired Outcome</h3><p>[≤70 words]</p></div>
+    <div class="outcome-card"><h3>Why Now</h3><p>[…]</p></div>
+  </div>
+  <div class="timing-callout">
+    <span class="timing-callout-icon">⏱</span>
+    <span class="timing-callout-text"><strong>[timing hook]</strong> [why timing matters now]</span>
+  </div>
+</section>
+```
+
+**6C-PROBLEMS** (Section 3) — **canonical = `.problem-table`** (always a table,
+never cards), wrapped in `.table-scroll`. 4–6 rows.
+```html
+<section>
+  <div class="section-label">Current State</div>
+  <h2>[heading]</h2>
+  <div class="table-scroll">
+    <table class="problem-table">
+      <thead><tr><th>#</th><th>Current Challenge</th><th>Business Impact</th><th>Pressure</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="problem-num">1</span></td>
+          <td>[challenge — references Problem Register row]</td>
+          <td>[impact, one sentence]</td>
+          <td><span class="impact-badge impact-high">High</span></td>
+        </tr>
+        <!-- 4–6 rows; CHOOSE per row: impact-critical | impact-high | impact-med -->
+      </tbody>
+    </table>
+  </div>
+</section>
+```
+
+**6C-RESEARCH** (Section 3B) — `.research-table`, exactly 3 claim rows, 4 columns
+(Claim / Evidence We Used / What We'd Like to Confirm / Open Question).
+
+**6C-RISKS** (Section 4) — **canonical = `.risk-cards`** (always 3 cards, never a
+table).
+```html
+<div class="risk-cards">
+  <div class="risk-card">
+    <div class="risk-card-title">[risk title]</div>
+    <div class="risk-card-break">[what breaks in 12–24 months]</div>
+    <div class="risk-card-prevent"><strong>How the build prevents this</strong>[prevention]</div>
+  </div>
+  <!-- ×3 -->
+</div>
+```
+
+**6C-SOLUTIONS** (Section 5) — `.solutions-grid` of `.sol-card` (4–7 cards). The
+**first card carries `featured`** (`class="sol-card featured"`) so the strongest
+solution spans full width; all remaining cards are plain `.sol-card` (two per
+row). Each metric leads with one emoji icon (`.sol-metric-icon`) and each
+before/after row leads with a green check (`.ba-check`). This is the binding card
+markup; the ASCII sketch later in this prompt is only a content reference.
+```html
+<div class="solutions-grid">
+  <div class="sol-card featured">   <!-- first card only: full-width hero solution -->
+    <div class="sol-card-header">
+      <div class="sol-card-name">[Specific Solution Name]</div>
+      <span class="proof-tag proof-visible">Visible in Demo</span>
+      <!-- CHOOSE one: proof-visible "Visible in Demo" | proof-partial "Described Only" | proof-future "Future State" -->
+    </div>
+    <div class="sol-card-body">
+      <div class="sol-field-label">Problem (Register #N)</div>
+      <div class="sol-field-text">[≤25 words]</div>
+      <div class="sol-field-label">What Gets Built</div>
+      <div class="sol-field-text">[≤30 words]</div>
+      <div class="sol-metrics">
+        <div class="sol-metric">
+          <div class="sol-metric-icon">🔓</div>   <!-- one relevant emoji per metric -->
+          <div class="sol-metric-val green">[value]</div>
+          <div class="sol-metric-label">[label]</div>
+          <div class="sol-metric-source">[source note]</div>
+        </div>
+        <!-- exactly 3 .sol-metric; use .green for primary, .blue for supporting, default navy otherwise -->
+      </div>
+      <div class="sol-divider"></div>
+      <div class="ba-item"><span class="ba-check">✓</span><span><span class="ba-before">[before]</span> <span class="ba-arrow">→</span> <span class="ba-after">[after]</span></span></div>
+      <!-- 2–3 .ba-item, ≤12 words each -->
+    </div>
+  </div>
+  <!-- remaining 3–6 cards: <div class="sol-card"> … same body … -->
+</div>
+```
+
+**6C-ROI** (Section 6) — `.roi-section` containing, in this order: a
+`.roi-stat-grid` (4 `.roi-stat`), one `.chart-container` with a `<canvas>`, and
+one `.numbers-panel` grouped by source basis.
+```html
+<section class="roi-section">
+  <div class="section-label">Projected Operational Impact</div>
+  <h2>[heading]</h2>
+  <div class="roi-stat-grid">
+    <div class="roi-stat"><div class="roi-stat-val green">[v]</div><div class="roi-stat-label">[label]</div></div>
+    <!-- ×4, most-defensible summary KPIs only -->
+  </div>
+  <div class="chart-container">
+    <div class="chart-title">[chart title]</div>
+    <canvas id="impactChart"></canvas>
+  </div>
+  <div class="numbers-panel">
+    <div class="numbers-panel-title">How We Treated Every Number in This Report</div>
+    <div class="numbers-group">
+      <div class="numbers-group-label">From [Company]'s Own Published Materials</div>
+      <div class="numbers-row"><span class="numbers-row-label">[metric]</span><span class="numbers-row-basis">[basis]</span></div>
+    </div>
+    <div class="numbers-group"><div class="numbers-group-label">Calculated Estimates</div>…</div>
+    <div class="numbers-group"><div class="numbers-group-label">Industry Reference Points</div>…</div>
+  </div>
+</section>
+```
+
+**6C-CHART** (Chart.js init — keep these locked styling options; only swap
+labels/data with real numbers from the solution cards):
+```html
+<script>
+  new Chart(document.getElementById('impactChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: [/* solution names */],
+      datasets: [{
+        label: '[KPI name]',
+        data: [/* real numbers */],
+        backgroundColor: '#3b82f6',
+        borderRadius: 6,
+        barThickness: 22
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.08)' }, ticks: { color: 'rgba(255,255,255,0.55)' } },
+        y: { grid: { display: false }, ticks: { color: 'rgba(255,255,255,0.75)' } }
+      }
+    }
+  });
+</script>
+```
+
+**6C-STAKEHOLDER** (Section 7) — `.stakeholder-cards` of `.sh-card` when data
+exists; each card has `.sh-role`, `.sh-name`, and `.sh-row`s (What matters most /
+Risk they care about). If data is thin, render one `.card` with a single
+`<p class="sh-note">Stakeholder mapping recommended during discovery.</p>`.
+
+**6C-CTA** (Section 8) — one `.cta-box`. It renders as a premium dark-navy panel
+with an automatic glow (CSS), so headline and body are light text — keep copy
+short and confident. Pick the variant by Confidence Signal; the **markup is
+identical**, only copy and button count change:
+- High → one `.btn-primary` "Watch the Demo →"
+- Medium → one `.btn-primary` "Watch the Demo →" (copy invites feedback on estimates)
+- Low → `.btn-primary` "Watch the Demo →" + `.btn-secondary` "Book a 20-Minute Call →"
+```html
+<section class="cta-section">
+  <div class="cta-box">
+    <div class="cta-eyebrow">Recommended Next Step</div>
+    <h2 class="cta-headline">[confidence-adjusted headline]</h2>
+    <p class="cta-body">[one short paragraph]</p>
+    <div class="cta-buttons">
+      <a class="btn-primary" href="#">Watch the Demo →</a>
+      <!-- add .btn-secondary only when confidence is Low -->
+    </div>
+  </div>
+</section>
+```
+A `.timeline-strip` (3–4 `.timeline-phase`) showing the phased roadmap is the
+required sequence module; place it inside Section 5 or Section 6.
+
+**6C-FOOTER** (fixed — appears once, after `.page`; swap only company + date):
+```html
+<div class="footer">
+  <span class="footer-brand">Dev8X · Decision Safety Brief · [Company]</span>
+  <span class="footer-note">Prepared [Month Year] · Confidential</span>
+</div>
+```
+
+---
 
 **Hero-specific visual rules:**
 - The hero should feel composed, not busy.
@@ -561,16 +1126,16 @@ inline — no external files except Chart.js loaded from CDN.
 - If `hours saved` is weak or speculative, do not use it as the chart axis or
   as the lead stat card. Use a stronger KPI instead.
 
-**Visual modules required across the page:**
-- Hero stat cards
-- At-a-glance executive summary strip
-- Compact current-state problem table or cards
-- Research transparency table
-- Future-risk cards or table
-- Solution cards
-- ROI stat grid
-- At least one timeline, sequence strip, or phased roadmap showing how the
-  recommended build unfolds or how the bottleneck gets removed over time
+**Visual modules required across the page (each maps to exactly ONE locked
+component from 6C — the canonical choice below overrides any "X or Y" wording):**
+- Hero stat cards → `6C-HERO` (`.hero-stat` ×3)
+- At-a-glance executive summary strip → `6C-HERO` (`.glance-strip`)
+- Current-state problems → `6C-PROBLEMS` (`.problem-table` — always a table, never cards)
+- Research transparency → `6C-RESEARCH` (`.research-table`)
+- Future risks → `6C-RISKS` (`.risk-cards` — always 3 cards, never a table)
+- Solutions → `6C-SOLUTIONS` (`.sol-card` grid)
+- ROI stat grid + chart + numbers panel → `6C-ROI`
+- Phased roadmap → `.timeline-strip` (`6C-CTA` note), always present
 
 **Copy discipline:**
 - Prefer short sentences and short blocks.
@@ -586,9 +1151,9 @@ inline — no external files except Chart.js loaded from CDN.
   phrasing.
 - Every visible sentence should earn its space.
 
-**Layout:**
-- Max width 960px, centered, generous padding
-- Mobile-readable but optimised for 1280px screen recording
+**Layout (already enforced by the 6A CSS — do not re-implement or override):**
+- Max width 960px, centered, generous padding (`.page`)
+- Mobile-readable but optimised for 1280px screen recording (6A responsive rules)
 - Each section clearly separated with a section heading and a thin divider
 - Print-friendly: no fixed elements, no overflow issues
 - The first viewport should contain the headline, the top value case, and enough
@@ -601,7 +1166,9 @@ inline — no external files except Chart.js loaded from CDN.
   at regular intervals
 - Do not bury the most important insight inside a paragraph
 
-**Stat display pattern for solution cards:**
+**Stat display pattern for solution cards** (illustrative of *content only* — the
+binding markup is the `.sol-card` template in `6C-SOLUTIONS` above; do not invent
+a different card from this sketch):
 ``` 
 ┌─────────────────────────────────────────┐
 │ [Solution Name]                 [Tag]   │
@@ -630,7 +1197,17 @@ methodology terms: "L1", "L2", "L3", "L4", "ROI Integrity", "Decision Emotion",
 "Decision-Led Proof Framework", and "framework". Replace them with the
 client-facing language from the surface rule above.
 
-Before finalising the HTML, also sanity-check the page against these questions:
+Before finalising the HTML, run the **design-system conformance check** (this is
+what keeps every report visually identical):
+1. The `<style>` block matches 6A verbatim — same `:root` tokens, same colours,
+   same fonts. No serif, no Georgia/Times, no gold/teal, no added or renamed tokens.
+2. Every element uses only classes defined in 6A. No invented class names.
+3. Section order and wrappers match 6B exactly.
+4. The footer matches `6C-FOOTER` exactly (only company + date changed).
+5. Each section uses its single canonical component (table for problems, 3 cards
+   for risks, `.sol-card` grid for solutions, etc.) — no per-report substitutions.
+
+Then sanity-check the content against these questions:
 1. Can a busy CEO understand the value in under 90 seconds of scanning?
 2. Is the first screen strong enough without reading long paragraphs?
 3. Does every section have a clear visual anchor?
