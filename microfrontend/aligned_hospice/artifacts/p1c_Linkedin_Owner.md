@@ -1,187 +1,203 @@
----
-platform: LinkedIn
-profile_type: person
-name: Sir Stelios Haji-Ioannou
-url: https://www.linkedin.com/in/stelios/
-headline: Creator and owner of the easy family of brands.
-linkedin_footer: [About, Accessibility, User Agreement, Privacy Policy, Cookie Policy,
-                  Copyright Policy, Brand Policy, Guest Controls, Community Guidelines]
----
+Name: Matthew Valiere
+Headline: Director of Operations
 
-# Sir Stelios Haji-Ioannou — LinkedIn Profile
 
-## Summary
+About: Experienced and Award Winning Leader in at the at home delivery of senior care from DME, to Home Infusion, Home Health and mostly the ever so compassionate delivery of Hospice Care. Demonstrated a long history leading teams towards building trusted partners within the healthcare space of San Diego and Riverside Counties. Skilled the transactional customer service while also actively participating in the transformations within the healthcare space for 17 years. Strong leadership skills driven from promoting success within my teams.
 
-Stelios is best known for creating the easy family of brands beginning with easyJet in 1994 when he was just 27. Six years later he floated the airline on the London Stock Exchange in order to fund the airline's growth; however, he and his family remain the largest shareholders holding around 15% of the shares.
 
-During the IPO process Stelios made the strategic decision to retain ownership of the easy brand (including easyJet) in his private investment vehicle, easyGroup, based in Monaco and London. As a result, easyGroup now enjoys a steadier income from licensing the easy brand to many other businesses, including the airline. Every time a ticket is bought on easyJet, easyGroup collects 0.25% of its transaction value as a royalty, which is a more resilient income stream than dividend payments.
+Experience
+Aligned Hospice logo
+Director of Operations
 
-Since 1994 the easy family of brands has been extended to many other activities — all offering consumers "more value for less". Other brands include: easyHotel.com, easyBus.com, easyCar.com, easyFly.travel, easyHub.com, easyMoney.com, easyProperty.com, easyGym.com, easyStorage.com and many others. Stelios is always looking for carefully selected business partners and entrepreneurs with whom to work to jointly extend the easy family of brands.
+Aligned Hospice · Full-time
 
-Stelios started giving back to society when he turned 40 years old and has since formalised his charitable giving by creating the Stelios Philanthropic Foundation, which now takes up about a third of his time. Its mission statement is to support a diverse range of charitable activities principally in the countries where he has lived and worked: UK, Greece, Cyprus and Monaco. The most notable program is "Food from the heart" that feeds 200,000 people with a snack each month in Greece and Cyprus since 2013. In addition since 2008 the Foundation's bi-communal awards programme in Cyprus gives €500,000 annually to Greek and Turkish Cypriots who work together for a lasting peace on the island. The Foundation has also given to many pandemic-related causes including thank-you gifts in the form of shop vouchers to front-line nurses and carers. Environmental charity WWF is a major beneficiary in partnership with HSH Prince Albert II of Monaco's own foundation. In May 2017 Stelios signed the Giving Pledge committing to endow his Foundation with half his estate in order to become the perpetual vehicle for his legacy.
+Sep 2024 - Present · 1 yr 9 mos
 
-## Posts
+San Diego County, California, United States · On-site
 
-#### Post 1
-type: repost
-timestamp: recent
-author: Reposted from easyapp.io / easyStars founder
-hashtags: []
+What excites me most about my new role is the opportunity to make a meaningful difference in the lives of patients and families facing life's most challenging moments. I'm eager to apply my skills and experience to ensure the high touch delivery of compassionate, high-quality care and to contribute to the growth and success of Aligned Hospice.
 
-We've just closed another round of funding led by easyGroup, and this time, we're not just scaling easyStars — we're scaling the whole playbook.
+ Communication
 
-easyStars started as a scrappy little app. The bet was AI + astrology could be something. A billion TikTok views and $1M ARR later, that bet has paid off.
+Mission Healthcare logo
+Mission Healthcare
 
-Now launching easyapp.io, a multi-app publisher with a clear mission: build consumer AI apps that people actually love to use. Goal for the next 6 months: ship 10+ new apps. easyEats, easyArt, easyMusic, easyCinema, easyJobs, and easySkinCare are just a few of the brands in the pipeline.
+12 yrs 8 mos
 
-A huge thank you to Sir Stelios Haji-Ioannou and the entire easyGroup family for the continued trust and partnership. Backing a founder once is generous. Backing them again is quite special.
+Area Sales Manager
 
----
+Full-time
 
-#### Post 2
-type: repost
-timestamp: recent
-author: Reposted from easyBags
-hashtags: [#easyBags, #BAndQ, #easyJet, #easyJetHolidays, #easyHotel, #easySim, #Partnership, #Retail, #Travel, #Luggage, #easyFamily, #UKBusiness]
+Apr 2016 - Sep 2024 · 8 yrs 6 mos
 
-easyBags, part of the easy family of brands founded by Sir Stelios Haji-Ioannou, is proud to partner with one of the UK's leading retailers, B&Q.
+San Diego County
 
-With a growing range of over 400 travel products, we are bringing smart, practical luggage and backpacks to more customers across the UK.
+Delivering Yearly San Diego County new market share growth and partnerships through quality care and a very talented sales team.
 
-Our mission is simple: make buying travel bags easier, smarter and more accessible.
+Area Sales Manager
 
-Find us online now, with in-store coming soon.
+Full-time
 
-external_link: https://lnkd.in/enYkPSsN
+Feb 2012 - Sep 2024 · 12 yrs 8 mos
 
----
+San Diego County
 
-#### Post 3
-type: repost
-timestamp: recent
-author: Reposted from LSE (London School of Economics)
-hashtags: []
+Account Manager
 
-We are delighted to announce that we will be hosting Sir Stelios Haji-Ioannou (BSc Economics '87) for a fireside chat at the London School of Economics on Tuesday 12 May 2026, 3pm – 4pm, in the Old Theatre.
+Apr 2012 - Nov 2019 · 7 yrs 8 mos
 
-Sir Stelios created the "easy" family of brands starting with easyJet in 1994 at the age of 27, helping to revolutionise low-cost air travel in Europe. Today easyJet operates more than 354 aircraft and carries around 100 million passengers annually. Through his private investment vehicle easyGroup Ltd, Sir Stelios still owns the "easy" family of brands including easyJet.com, easyHotel.com, easyStorage.com and more than 100 other easy brands, creating a steady recurring income stream from royalties.
+South West Riverside County
 
-Sir Stelios donates the profits of easyGroup Ltd each year to the Stelios Philanthropic Foundation, a UK-registered charity, and will endow the foundation with half his estate so it can continue giving back in perpetuity. Since 2010, Sir Stelios and easyGroup have donated €122 million to charity.
+Mission Health Care includes Mission Home Health, Mission Hospice, and Mission Home Care. As an Account Manager for Mission Home Health I help to keep management informed on territory changes, as well as continue to educate physicians/care coordinators and discharge planners on healthcare options for the elderly. From coordination of equipment, to placement into an Assisted living, the AM role is very diversified, challenging as well as fun.
 
-In recognition of his services to entrepreneurship, he was knighted by HM Queen Elizabeth II in 2006.
+Home health care is a critical part of healthcare today, touching the lives of millions. It represents a wide range of professional healthcare and support services provided in the home. As hospital stays have decreased, the number of people who require skilled services in the home has increased significantly.
 
-Registration required.
+Although service with Mission Home Health is covered through most health insurance plans, rising healthcare costs are a concern for all Americans. Home health care, if correctly utilized can reduce healthcare spending by reducing the cost burden for health plans and ultimately tax payers. In addition to lower costs, patients who are cared for at home recover faster from illness or injury than those who receive care in an alternative environment.
 
-external_link: https://luma.com/qs6vjv1a
+Mission understands that patients and families have the right to choose their home health provider.  In many areas, there are more than 50 options for home health services.  To have the privilege of caring for you or your loved one, Mission recognizes that it must stand alone with respect to quality of care and your experience as our customer.  Mission’s core principles are based on providing our patients an experience that they will recommend to others:
 
----
+Fast Response Admission Policy
+Geographical Coverage
+Administrator on Call
+Comprehensive Services
 
-#### Post 4
-type: repost
-timestamp: recent
-author: Reposted from Stelios Philanthropic Foundation
-hashtags: [#SteliosFoundation, #Yachting, #Hospitality, #Education, #Opportunities, #Spetses, #FutureLeaders]
+http://homewithmission.com/
 
-On 18 April 2026, Sir Stelios Haji-Ioannou hosted a special gathering in Spetses, bringing together the Stelios Philanthropic Foundation Yacht chef scholars (in collaboration with BCA College) and Yacht captain scholars (in partnership with Omega Yachting-Maritime-SpeedBoat Academy).
+Sales Manager
 
-The scholarships are carried out on the historic vessel MY Klelia 1, in memory of Loucas Haji-Ioannou, honouring his legacy and contribution to the maritime sector.
+Mission Infusion
 
-During the event, Sir Stelios announced an additional €1,000 graduation bonus to be awarded to every graduate. More than 50 attendees were present, including scholars, professors, and trustees.
+Feb 2012 - Apr 2012 · 3 mos
 
----
+San Diego
 
-#### Post 5
-type: repost
-timestamp: recent
-author: Reposted from Stelios Awards recipient
-hashtags: [#SteliosAwards, #DisabledEntrepreneur, #BusinessLeadership, #CareSector, #ILiftAsIClimb]
+Mission Infusion is a newer division of Mission Home Health based out of San Diego County. MHH created MI to aid in providing care to those patients that are not home bound. MI is an infusion clinic currently based at the Pomerado Hospital, with a new clinic currently being built at Alvarado Hospital. We look forward to making ambitious strides in Southern California over the next few years to inform the community that outpatient therapy is becoming more available and can impact the patient much less.
 
-£300,000 in cash prizes. £1.85 million donated to disabled entrepreneurs since 2007. The 18th Stelios Awards For UK Disabled Entrepreneurs are now live.
+Business Development Manager
 
-Sir Stelios Haji-Ioannou and Leonard Cheshire are opening the doors again, offering disabled entrepreneurs real prize money and real recognition.
+Premier Infusion Care
 
-Eligibility: own 50%+ of a UK company with £200k+ turnover and be disabled.
+Mar 2011 - Feb 2012 · 1 yr
 
-Close date: 30 April 2026.
+Riverside and San Diego Counties
 
-external_link: https://lnkd.in/enwAQW8C
+Consultant
 
----
+Lolo Company
 
-#### Post 6
-type: repost
-timestamp: recent
-author: Reposted from easyCinema
-hashtags: [#easyFamilyofBrands]
+Apr 2008 - Jan 2012 · 3 yrs 10 mos
 
-easyCinema.com was created by Sir Stelios Haji-Ioannou and easyGroup, with a simple mission: make choosing what to watch easy.
+Consultant and Sales Director for a small San Diego Based Toy Company. Live life to the funnest.
 
-Today's film and TV landscape is crowded, fragmented, and often confusing. easyCinema.com fixes that by bringing together data from Rotten Tomatoes and IMDb into a single, clear, weighted score for every film and TV title. It also provides consolidated guidance on where to watch — whether streaming, renting, or buying — across all major platforms.
 
-external_link: https://easyCinema.com
 
----
 
-#### Post 7
-type: repost
-timestamp: recent
-author: Reposted from easyMoney
-hashtags: [#UK, #milestone, #millions, #awards]
+POst 
 
-Q1 Milestone: £300 million currently invested on the easyMoney platform — a milestone that reflects continued year-on-year growth.
+1
+Exciting Announcement at Aligned Hospice
 
-easyMoney has also been named Alternative Credit Investor IFISA Provider of the Year three times.
+I am delighted to announce Elizabeth Pinto as our new Hospice Intake Manager at Aligned Hospice. Working closely with Liz has been a true privilege, and her addition to our team is a significant victory for our patients, families, and partners.
 
-*This is a financial promotion intended to provide information, not investment advice. Capital is at risk. Past performance is no guarantee of future results.*
+Liz brings a unique blend of professionalism, compassion, and composed leadership under pressure, immediately enhancing our hospice care services. She recognizes the value of prompt communication, seamless coordination, and providing unwavering support to families during their most delicate moments.
 
-external_link: https://www.easymoney.com
+We feel incredibly fortunate to have Liz on board, and I am thankful to welcome someone who not only sets high standards but also leads with genuine compassion.
 
----
 
-#### Post 8
-type: repost
-timestamp: recent
-author: Reposted from Elevate Greece / YTILI participant
-hashtags: [#YTILI, #ElevateGreece, #Startups, #Greece, #Entrepreneurship, #GivingBack, #SteliosFoundation]
+2
+Reach out to Salma Rawi for details—let’s make a difference together!
+View Salma Rawi’s  graphic link
+Salma RawiSalma Rawi
+   • 3rd+Verified • 3rd+
+Director of Operations | Healthcare Administration & Management at Aligned GeriatricsDirector of Operations | Healthcare Administration & Management at Aligned Geriatrics
+1yr • Edited •  1 year ago • Edited • Visible to anyone on or off LinkedIn
 
-Last September, I was standing on a stage receiving an award from the Stelios Philanthropic Foundation. Sir Stelios Haji-Ioannou runs this initiative to support young entrepreneurs in Greece.
+Follow
+What was once just hope is now a promise!
 
-During my acceptance speech I said: "I will try my best to return this help to the next generation."
+Thanks to groundbreaking research, increased resources, and now real treatments available for Alzheimer’s patients, we are witnessing a new era in the fight against this disease. This progress is possible because of the unwavering support of organizations like the Alzheimer’s Association!!
 
-Through the U.S. Department of State's YTILI (Young Transatlantic Innovation Leaders Initiative), I brought a team of international experts to Athens to work, for free, with Elevate Greece on upgrading the national startup platform. Three days of workshops — founders, VCs, incubators, and government stakeholders — having honest conversations about what actually works.
+I’m honored to serve on the Alzheimer’s Association San Diego Gala Committee, supporting this incredible mission. 
 
-The single biggest finding: participants said the thing holding the ecosystem back was not funding or talent — it was trust. Trust between government and constituents, and between people.
+Please join me at the Brilliance Gala – A Coastal Affair, where we turn hope into a promise. Tickets and tables are now available! Experience an unforgettable evening of purpose and impact at the stunning Seabird Resort in Oceanside.
 
-Elevate Greece has over 1,000 registered startups. The country has world-class talent. But the ecosystem runs on informal connections because people don't trust the system enough to use it. That's a human problem — and it's solvable.
+Reach out to me for details—let’s make a difference together!
 
-The full findings and strategic roadmap are now with Elevate Greece and will be presented to the Minister of Development. Zero cost to the Greek government.
+hashtag#AlzheimersAwareness hashtag#EndAlz hashtag#JoinTheFight hashtag#alzheimersassociation hashtag#sandiego
 
----
+To purchase tickets, please visit:
 
-#### Post 9
-type: repost
-timestamp: recent
-author: Reposted from easyHotel Cardiff
-hashtags: []
+https://lnkd.in/d7bT_-zg
 
-This month, the Cardiff team marked five years since opening. Hotel Manager Shannon joined easyHotel in Liverpool while at university, working part-time as a team member. She progressed to Team Leader, then Assistant Hotel Manager, before returning to the business as Hotel Manager in Cardiff, where she has now been for three years.
 
-Shannon: "The consistently high level of service our team delivers, reflected in fantastic guest feedback and the loyalty of returning guests, means a great deal to us. Seeing our team develop, gain confidence, and flourish over the years has been hugely rewarding."
 
----
+3
+I have made my pledge to cherish my health and help low income seniors. 
+Will we see you there?
 
-#### Post 10
-type: original
-timestamp: recent
-author: Sir Stelios Haji-Ioannou
-hashtags: [#aviation, #easygroup, #airline, #airport]
+Aligned HospiceAligned Hospice
+436 followers436 followers
+1yr •  1 year ago • Visible to anyone on or off LinkedIn
 
-Another photo ticked off the bucket list.
+Follow
+Cherish your health!
+Join us:
 
-The EUIPO office in Alicante is a location of some significance to anyone involved in the business of trademarks. The European Intellectual Property Office is responsible for the registration of EU-wide trademarks — more than three million since it was founded in 1994.
+Zumba Heart-a-thon 2025
+08 FEBRUARY 2025 9:00am
 
-Alicante is also an important base for easyJet. According to airport operator Aena, the airline carried over two million passengers through Alicante-Elche airport in 2025, with no fewer than 22 routes available this summer — including Manchester, Athens, and Zurich.
+Salvation Army
+1011 E Main St El Cajon CA 92021
 
-An easyHotel is also opening later this summer, conveniently located on Avenida de Alcoy just 5 minutes from the city centre.
+The social media influencer nurse Julie has shared with us recently through her experience what most people regret most during their end of life journey. 
 
-*Opinions expressed are my own.*
+“The main thing people say, that I don’t hear a lot of people mention, is ‘I wish I would have appreciated my health,’” McFadden revealed during an interview on Rob Moore’s “Disruptors” podcast.
+
+So let’s commit to one Saturday morning to cherish our health health while helping others.
+
+Sign up here:
+https://lnkd.in/guaXEfE9
+
+This is an event where we will get together to not only be around each other and get the blood and sweat going, we will also be raising charitable contributions to help the blessed low income seniors in East County San Diego.
+
+
+
+
+4
+The foundation of Hospice care started as a much needed volunteer service worldwide. Today at Aligned Hospice we are proud to share our focus around our volunteer program led by Emily! We believe in our community, and our shared peer to peer support, symbolized by these cuddle bears. Created by volunteers that live in one CCRC for some of our very own hospice patients that live at another local Memory Care facility. We believe in Independant activities to support others in their time of need. Feel good about living again, there isn’t a better way than to volunteer your time for another.
+
+
+5
+Who are you thinking of today? Thinking about gifts, time shared with others, event planning, family and friends. 
+
+The holiday season can be both magical for some and lonely for others. Who are you thinking of that could benefit from the stable support hospice could offer that person to stay in their own home this season?
+
+Aligned HospiceAligned Hospice
+436 followers436 followers
+1yr •  1 year ago • Visible to anyone on or off LinkedIn
+
+Follow
+The holiday season is here!!
+
+So much to be thankful for, much to celebrate and resolutions to come!
+
+Providing hospice care during this time can have all of this as well. The busy holiday schedule can distract us from taking the time to consider the choice of whether hospice care is appropriate “today” or “another day”. Often times we see folks decide to wait until the new year, or even forget until some more major event comes up that requires us to react. 
+
+Choosing hospice care proactivly during or before the holiday season allows a terminally ill loved one to spend their final days comfortably at home, surrounded by their family and friends and caregivers. Adding professional support to manage symptoms and emotional needs, does make the holidays less stressful and more focused on creating meaningful moments together, rather than managing complex medical care, appointments and follow up calls, etc. 
+Hospice prioritizes keeping patients at their home where they feel most comfortable and can be surrounded by familiar surroundings during a potentially emotional time. 
+
+Remember: Hospice is elective, you can choose if one day isn’t the best time for a visit, and can call us anytime to speak to an Aligned Hospice nurse.
+
+We all can be most thankful when we are proactive. We can celebrate someone who is with us today and remember someone who was with us yesterday. We can learn our life’s efforts through others experiences as much as our own, and we don’t have to wait until new years to make a new resolution. 
+
+hashtag#hospice hashtag#hospicecare hashtag#aligned hashtag#alignedhospice hashtag#hospiceathome hashtag#sandiego hashtag#griefsupport hashtag#love hashtag#family hashtag#caregiver hashtag#bereavement hashtag#endoflifeplanning hashtag#celebrationoflife
+
+
+6
+I'm thrilled to share that I've transitioned into a new role as Director of Operations at Aligned Hospice.  My passion for serving patients and families facing life's most challenging moments has led me to this incredible opportunity.
+
+My background in sales and leadership, where I have been recognized over the past decade for marketer of the year, sales representative of the year, employee of the year along with Sales Leader of the year, has proven the much needed valuable skills around building relationships, driving results, and inspiring teams.  I'm excited to apply these skills back to the hospice setting, ensuring the delivery of compassionate, high-quality care to those in need.
+
+I'm eager to contribute to the growth and success of Aligned Hospice and make a positive impact on the lives of patients and their families.  I'm grateful for this opportunity to continue my professional journey in a field that has aligned with my values and purpose.
+
+hashtag#hospice hashtag#hospicecare hashtag#leadership hashtag#newchapter hashtag#aligned hashtag#alignedhospice hashtag#alignedgeriatrics hashtag#Rawi hashtag#RawiMedical hashtag#SanDiego

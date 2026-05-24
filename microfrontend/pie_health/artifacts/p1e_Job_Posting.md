@@ -1,62 +1,44 @@
----
-platform: Upwork
-job_title: n8n Automation Specialist for E-Commerce Platform
-company: easySkip (easyskip.uk)
-location: Remote
-remote: true
-employment_type: Contract
-engagement: Hourly
-hours_per_week: 10
-duration: Ongoing
-experience_level: Intermediate
-compensation: $20.00 – $30.00 per hour
----
+Title:Enterprise Health Architect: Scaling "Pie Health" Home Health & Hospice Workflow
+Summary: I am launching a tech-enabled medical credentialing and payer enrollment agency modeled after piehealthusa.com to service clients across the entire state of Texas. We service both established agencies looking to expand their commercial/Medicaid footprint, and groups navigating corporate transitions (CHOWs). [6]
+Due to the May 2026 CMS enrollment moratorium, our immediate 6-month product focus is optimizing established operational entities—managing their staff rosters, processing state re-validations, and enrolling them into commercial/Medicaid networks across all 13 Texas Medicaid Service Areas. [1]
+I need an experienced Systems Architect to configure our Healthie (Enterprise) platform and integrate backend automation tools to match pie Health's signature transparency and real-time milestone tracking.
+Scope of Work Includes:
 
-# n8n Automation Specialist for E-Commerce Platform — easySkip — Job Posting
+1. Multi-Region Dashboard Logic: Configure Healthie to segment agency branches across different Texas territories (Dallas-Fort Worth, Houston-Harris, San Antonio-Bexar, and El Paso).
+2. 2026 Compliance Forms: Integrate specialized workflows mapping to the June 12, 2026 TMHP IAMOnline + Multi-Factor Authentication (MFA)cutover requirements, tracking the $750 institutional application fee configurations.
+3. Payer Automation Workflows: Connect our backend data to an automation engine (Assured, MedTrainer, or Andros) capable of routing profiles to state platforms (TMHP PEMS) and major private insurers (BCBSTX, Aetna, Cigna, UnitedHealthcare, Humana, and regional MCOs like El Paso Health and Superior).
+4. Expirable Multi-Triggers: Build automatic portal notifications alerting clients 60/30/15 days before any localized Texas HHSC TULIP license, clinical nursing registry check, or commercial malpractice policy lapses. [1]
+Requirements:
 
-## Role Summary
+• Proven track record building enterprise-level, multi-location workflows inside Healthie.
+• Hands-on experience integrating third-party credentialing APIs or roster managers.
+• Clear understanding of Texas-specific portals (TMHP PEMS, TULIP, Availity).
+• To Apply: Begin your proposal with the phrase "Automated Texas Lone Star Engine Ready". Provide an example of a multi-location health platform you have previously engineered.
 
-easySkip (easyskip.uk) is a fast-growing online skip hire brokerage in the UK processing approximately 1,000 orders per month through waste carrier partners. The n8n Automation Specialist will own and expand the company's workflow infrastructure on an ongoing basis — building new automations, maintaining existing ones, troubleshooting issues, and continuously improving operational efficiency as the business scales. A missed SLA costs £200–600 per incident, so these workflows directly impact revenue.
 
-## Responsibilities
+$550.00
 
-- Build new n8n workflows and automations across the full technology stack.
-- Maintain and troubleshoot existing production n8n workflows.
-- Integrate with Freshworks CRM (deals, contacts, suppliers), Postmark (transactional emails), Gmail API (inbound email monitoring and parsing), Google Sheets API (dashboards, logging, reporting), Slack API (alerts, escalations, team notifications), Stripe (payments and refunds), Strapi CMS (supplier pricelists, product data), and Claude API / Anthropic (AI-powered document extraction and classification).
-- Pick up Jira tickets with detailed acceptance criteria and architecture diagrams, build independently, test, and ship without hand-holding.
-- Continuously improve operational automation as the business scales.
+Fixed-price
+Expert
+I am willing to pay higher rates for the most experienced freelancers
+Project Type:Complex project
+Skills and experience
+Mandatory skills
 
-## Requirements
+Softech Systems HealthConnect
+healthie
+Software development
+Preferred qualifications
+Activity on this job
+Proposals:
+5 to 10
 
-##### Must Have
+Last viewed by client:
+7 days ago
 
-- 2+ years building production n8n workflows (not just tutorials).
-- Strong hands-on experience with: Gmail nodes, HTTP Request nodes (REST APIs), Google Sheets nodes, Slack nodes, cron/scheduled triggers, Wait/timer nodes, Switch/conditional routing, error handling and retry logic.
-- Experience with CRM API integrations (Freshworks preferred; any CRM experience acceptable).
-- Experience with Postmark or similar transactional email APIs.
-- Available with UK timezone overlap (at least a few hours daily).
-- Self-starter able to manage tasks from Jira ticket through to shipped workflow independently.
-
-##### Nice to Have
-
-- Experience integrating AI/LLM APIs (Claude, OpenAI) into n8n.
-- Experience with Stripe API.
-- JavaScript or Python skills for custom n8n Function nodes.
-
-## Client / Company Profile
-
-- Website: easyskip.uk
-- Industry: E-Commerce / Waste Management / Skip Hire Brokerage
-- Order volume: ~1,000 orders/month
-- Current stack: n8n (cloud-hosted), Freshworks CRM, Postmark, Gmail API, Google Sheets API, Slack API, Stripe, Claude API / Anthropic, Strapi CMS
-- Backlog: 20+ automation tickets ready for development
-- Spec quality: Detailed Jira tickets with acceptance criteria, architecture diagrams, and edge cases provided
-
-## Compensation & Terms
-
-- Type: Hourly
-- Rate: $20.00 – $30.00
-- Hours per week: ~10
-- Project type: Ongoing
-- Employment classification: Contract / Freelance
-- Location requirement: Remote; UK timezone overlap required
+Interviewing:
+5
+Invites sent:
+18
+Unanswered invites:
+10

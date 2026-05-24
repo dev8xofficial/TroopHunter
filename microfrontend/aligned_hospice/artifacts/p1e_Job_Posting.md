@@ -1,62 +1,65 @@
----
-platform: Upwork
-job_title: n8n Automation Specialist for E-Commerce Platform
-company: easySkip (easyskip.uk)
-location: Remote
-remote: true
-employment_type: Contract
-engagement: Hourly
-hours_per_week: 10
-duration: Ongoing
-experience_level: Intermediate
-compensation: $20.00 – $30.00 per hour
----
+Title: WordPress Website Redesign — Hospice Care (Healthcare, HIPAA)
 
-# n8n Automation Specialist for E-Commerce Platform — easySkip — Job Posting
 
-## Role Summary
+Summary: We are Aligned Hospice, a locally owned, Medicare-certified hospice serving San Diego, CA. We need our existing WordPress website fully redesigned — new look, new pages, and several legally required compliance pages added.
 
-easySkip (easyskip.uk) is a fast-growing online skip hire brokerage in the UK processing approximately 1,000 orders per month through waste carrier partners. The n8n Automation Specialist will own and expand the company's workflow infrastructure on an ongoing basis — building new automations, maintaining existing ones, troubleshooting issues, and continuously improving operational efficiency as the business scales. A missed SLA costs £200–600 per incident, so these workflows directly impact revenue.
+The good news: all the hard work is done for you. All website copy is already written (13 pages), brand colors and fonts are specified, and a homepage design mockup is provided. You are handling design and implementation, not content strategy or writing.
 
-## Responsibilities
+What the project includes:
+Full visual redesign of existing WordPress site (warm, compassionate, professional aesthetic — brand colors and mockup provided)
+13 pages built with provided copy (homepage, about, services, FAQ, for families, referrals, careers, contact, and 4 compliance/legal pages)
+HIPAA-compliant contact and referral forms (must use encrypted provider with BAA — JotForm HIPAA, Formstack, or equivalent)
+Mobile-responsive, WCAG 2.1 AA accessible
+Basic on-page SEO (meta titles/descriptions, H1 structure, alt text)
+Google Analytics (GA4) installed
+XML sitemap submitted to Google Search Console
+30-day post-launch support
 
-- Build new n8n workflows and automations across the full technology stack.
-- Maintain and troubleshoot existing production n8n workflows.
-- Integrate with Freshworks CRM (deals, contacts, suppliers), Postmark (transactional emails), Gmail API (inbound email monitoring and parsing), Google Sheets API (dashboards, logging, reporting), Slack API (alerts, escalations, team notifications), Stripe (payments and refunds), Strapi CMS (supplier pricelists, product data), and Claude API / Anthropic (AI-powered document extraction and classification).
-- Pick up Jira tickets with detailed acceptance criteria and architecture diagrams, build independently, test, and ship without hand-holding.
-- Continuously improve operational automation as the business scales.
+Required in your proposal:
+2–3 examples of WordPress sites you have built (healthcare a plus)
+Confirmation you have set up HIPAA-compliant forms before
+Your proposed price and timeline
+2–3 sentences on how you would approach this project
 
-## Requirements
+Budget: $1,500–$3,000 fixed price
+Timeline: 3–4 weeks
 
-##### Must Have
+A full detailed project brief and complete copy document will be shared with the winning candidate immediately upon hiring.
+Less
+Less than 30 hrs/week
+Hourly
+1 to 3 months
+Duration
+Intermediate
+I am looking for a mix of experience and value
+Project Type:Complex project
+Skills and experience
+Mandatory skills
 
-- 2+ years building production n8n workflows (not just tutorials).
-- Strong hands-on experience with: Gmail nodes, HTTP Request nodes (REST APIs), Google Sheets nodes, Slack nodes, cron/scheduled triggers, Wait/timer nodes, Switch/conditional routing, error handling and retry logic.
-- Experience with CRM API integrations (Freshworks preferred; any CRM experience acceptable).
-- Experience with Postmark or similar transactional email APIs.
-- Available with UK timezone overlap (at least a few hours daily).
-- Self-starter able to manage tasks from Jira ticket through to shipped workflow independently.
+Elementor
+UX & UI
+WordPress
+Web Design
+CSS
+HTML
+PHP
+Graphic Design
+Search Engine Optimization
+Google Analytics
+Preferred qualifications
+Location:
+Europe, Americas, Asia, Poland, Ukraine, Romania, Colombia, Argentina, Mexico, Philippines 
+Activity on this job
+Proposals:
+20 to 50
 
-##### Nice to Have
+Last viewed by client:
+7 days ago
 
-- Experience integrating AI/LLM APIs (Claude, OpenAI) into n8n.
-- Experience with Stripe API.
-- JavaScript or Python skills for custom n8n Function nodes.
+Interviewing:
+0
+Invites sent:
+0
+Unanswered invites:
+0
 
-## Client / Company Profile
-
-- Website: easyskip.uk
-- Industry: E-Commerce / Waste Management / Skip Hire Brokerage
-- Order volume: ~1,000 orders/month
-- Current stack: n8n (cloud-hosted), Freshworks CRM, Postmark, Gmail API, Google Sheets API, Slack API, Stripe, Claude API / Anthropic, Strapi CMS
-- Backlog: 20+ automation tickets ready for development
-- Spec quality: Detailed Jira tickets with acceptance criteria, architecture diagrams, and edge cases provided
-
-## Compensation & Terms
-
-- Type: Hourly
-- Rate: $20.00 – $30.00
-- Hours per week: ~10
-- Project type: Ongoing
-- Employment classification: Contract / Freelance
-- Location requirement: Remote; UK timezone overlap required

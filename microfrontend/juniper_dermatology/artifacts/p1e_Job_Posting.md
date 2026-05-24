@@ -1,62 +1,67 @@
----
-platform: Upwork
-job_title: n8n Automation Specialist for E-Commerce Platform
-company: easySkip (easyskip.uk)
-location: Remote
-remote: true
-employment_type: Contract
-engagement: Hourly
-hours_per_week: 10
-duration: Ongoing
-experience_level: Intermediate
-compensation: $20.00 – $30.00 per hour
----
+Title: Website maintenance and overhaul
 
-# n8n Automation Specialist for E-Commerce Platform — easySkip — Job Posting
 
-## Role Summary
+Summary: Platform / Structure
+● Audit current WordPress setup (Elementor + Templately + theme) and document what controls layouts
+(headers, footers, templates, pages)
+● Resolve conflicts between Elementor and Templately templates
+● Standardize page builder usage (Elementor as primary)
+● Confirm global styles (fonts, colors, spacing) are consistent across templates
+Performance / Stability
+● Investigate and resolve intermittent 503 errors
+● Review hosting environment (PHP version, memory limits, server performance)
+● Audit caching/optimization plugins and settings (minification, JS/CSS combine, defer)
+● Ensure Elementor editor loads reliably across all pages
+● Review plugin list and remove unused or redundant plugins
+Mobile / Responsive
+● Audit mobile vs desktop layouts across key pages
+● Fix spacing, stacking, and typography issues on mobile
+● Ensure navigation and buttons function correctly on mobile devices
+Content Updates
+● Replace outdated copy and images across all pages (reference December image spreadsheet;
+includes items not completed by Blink)
+● Remove unused, duplicate, or placeholder sections throughout the site
+● Update all service pages to reflect current offerings and positioning
+● Update GentleCure® page for accuracy, completeness, and clarity of treatment details
+● Expand SRT / skin cancer content (treatment overview, patient experience, expectations, and FAQs)
+● Ensure alignment between skin cancer, screening, and GentleCure pages (content and internal linking)
+● Update current promotions content
+● Create provider page for Karrah
+● Replace Dustin’s photography (current images do not meet brand standards)
+● Update Contact page to include Redmond location information
+● Add financial policy content (cosmetic consult fee, late-change / cancellation policy)
+● Review and update internal links between related pages (services, providers, contact, treatment pages)
+● Audit all buttons and links for correct URLs and functionality
+SEO on website pages
+● Update SEO titles and meta descriptions for key pages (E.G. Gentlecure/skin cancer treatements,
+same-week appointments_
+● Ensure proper heading structure (H1, H2, etc.) across pages for optimised SEO
+● Add internal links between related pages (services, providers, contact)
+● Confirm XML sitemap is active and accurate
+Local SEO, works with the google ads
+● Verify business information (name, address, phone) is consistent across site
+● Ensure location references (Bend, Redmond, Central Oregon) are included where appropriate
+● Audit Rank Math plugin, and check the local SEO settings
+Integrations / Tracking
+● Confirm Google Ads tag is properly installed and firing. There are several installed in the website and
+old ones might be creating conflicts
+● Validate conversion tracking (form submissions, calls, booking clicks), google ads, bitly QR code scans
+Forms / Scheduling
+● Review all forms for functionality and routing
+● Ensure all “Request Appointment” button actions routing
+● Remove or update any broken or duplicate forms
+● Fix email management
+Media / Assets
+● Replace outdates photography of former employees
+● Optimize image sizes for performance
+● Replace outdated or low-quality images
+● Ensure all images have appropriate alt text
+Security / Domain / Infrastructure
+● Review domain and DNS settings (including email authentication: SPF, DKIM, DMARC)
+● Ensure backups are configured and running
+Cleanup
+● Remove unused pages, drafts, and templates
+● Remove unused plugins and themes
+● Clean up test content or placeholder elements
 
-easySkip (easyskip.uk) is a fast-growing online skip hire brokerage in the UK processing approximately 1,000 orders per month through waste carrier partners. The n8n Automation Specialist will own and expand the company's workflow infrastructure on an ongoing basis — building new automations, maintaining existing ones, troubleshooting issues, and continuously improving operational efficiency as the business scales. A missed SLA costs £200–600 per incident, so these workflows directly impact revenue.
-
-## Responsibilities
-
-- Build new n8n workflows and automations across the full technology stack.
-- Maintain and troubleshoot existing production n8n workflows.
-- Integrate with Freshworks CRM (deals, contacts, suppliers), Postmark (transactional emails), Gmail API (inbound email monitoring and parsing), Google Sheets API (dashboards, logging, reporting), Slack API (alerts, escalations, team notifications), Stripe (payments and refunds), Strapi CMS (supplier pricelists, product data), and Claude API / Anthropic (AI-powered document extraction and classification).
-- Pick up Jira tickets with detailed acceptance criteria and architecture diagrams, build independently, test, and ship without hand-holding.
-- Continuously improve operational automation as the business scales.
-
-## Requirements
-
-##### Must Have
-
-- 2+ years building production n8n workflows (not just tutorials).
-- Strong hands-on experience with: Gmail nodes, HTTP Request nodes (REST APIs), Google Sheets nodes, Slack nodes, cron/scheduled triggers, Wait/timer nodes, Switch/conditional routing, error handling and retry logic.
-- Experience with CRM API integrations (Freshworks preferred; any CRM experience acceptable).
-- Experience with Postmark or similar transactional email APIs.
-- Available with UK timezone overlap (at least a few hours daily).
-- Self-starter able to manage tasks from Jira ticket through to shipped workflow independently.
-
-##### Nice to Have
-
-- Experience integrating AI/LLM APIs (Claude, OpenAI) into n8n.
-- Experience with Stripe API.
-- JavaScript or Python skills for custom n8n Function nodes.
-
-## Client / Company Profile
-
-- Website: easyskip.uk
-- Industry: E-Commerce / Waste Management / Skip Hire Brokerage
-- Order volume: ~1,000 orders/month
-- Current stack: n8n (cloud-hosted), Freshworks CRM, Postmark, Gmail API, Google Sheets API, Slack API, Stripe, Claude API / Anthropic, Strapi CMS
-- Backlog: 20+ automation tickets ready for development
-- Spec quality: Detailed Jira tickets with acceptance criteria, architecture diagrams, and edge cases provided
-
-## Compensation & Terms
-
-- Type: Hourly
-- Rate: $20.00 – $30.00
-- Hours per week: ~10
-- Project type: Ongoing
-- Employment classification: Contract / Freelance
-- Location requirement: Remote; UK timezone overlap required
+https://juniperdermatology.com/?utm_source=seo_gmb&utm_medium=gmb&utm_campaign=home_page

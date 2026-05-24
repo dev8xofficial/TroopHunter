@@ -1,62 +1,84 @@
----
-platform: Upwork
-job_title: n8n Automation Specialist for E-Commerce Platform
-company: easySkip (easyskip.uk)
-location: Remote
-remote: true
-employment_type: Contract
-engagement: Hourly
-hours_per_week: 10
-duration: Ongoing
-experience_level: Intermediate
-compensation: $20.00 – $30.00 per hour
----
+Title: Website Developer Needed for Junk Removal & Cleanout Business
 
-# n8n Automation Specialist for E-Commerce Platform — easySkip — Job Posting
 
-## Role Summary
+Summary: About the Project:
+I’m looking for a skilled web developer to build a professional website for Clarity Cleanouts, a junk removal and property cleanout service. The site needs to look clean, trustworthy, and make it easy for customers to learn about our services and reach out for a quote.
 
-easySkip (easyskip.uk) is a fast-growing online skip hire brokerage in the UK processing approximately 1,000 orders per month through waste carrier partners. The n8n Automation Specialist will own and expand the company's workflow infrastructure on an ongoing basis — building new automations, maintaining existing ones, troubleshooting issues, and continuously improving operational efficiency as the business scales. A missed SLA costs £200–600 per incident, so these workflows directly impact revenue.
+What We Need:
 
-## Responsibilities
+• A polished, mobile-responsive informational website
+• Online booking or quote request form
+• Service pages (junk removal, estate cleanouts, etc.)
+• Contact page with call-to-action buttons
+• Basic SEO setup
+• Fast load times and clean design
 
-- Build new n8n workflows and automations across the full technology stack.
-- Maintain and troubleshoot existing production n8n workflows.
-- Integrate with Freshworks CRM (deals, contacts, suppliers), Postmark (transactional emails), Gmail API (inbound email monitoring and parsing), Google Sheets API (dashboards, logging, reporting), Slack API (alerts, escalations, team notifications), Stripe (payments and refunds), Strapi CMS (supplier pricelists, product data), and Claude API / Anthropic (AI-powered document extraction and classification).
-- Pick up Jira tickets with detailed acceptance criteria and architecture diagrams, build independently, test, and ship without hand-holding.
-- Continuously improve operational automation as the business scales.
+What We Have Ready:
 
-## Requirements
+• Logo and branding assets
+• Brand colors and style direction
+• Website copy (text for all pages)
 
-##### Must Have
+So you can hit the ground running — no waiting on content from us.
 
-- 2+ years building production n8n workflows (not just tutorials).
-- Strong hands-on experience with: Gmail nodes, HTTP Request nodes (REST APIs), Google Sheets nodes, Slack nodes, cron/scheduled triggers, Wait/timer nodes, Switch/conditional routing, error handling and retry logic.
-- Experience with CRM API integrations (Freshworks preferred; any CRM experience acceptable).
-- Experience with Postmark or similar transactional email APIs.
-- Available with UK timezone overlap (at least a few hours daily).
-- Self-starter able to manage tasks from Jira ticket through to shipped workflow independently.
+Ideal Candidate:
 
-##### Nice to Have
+• Experience building small business websites (portfolio required)
+• Proficient in WordPress, Squarespace, Webflow, or similar platforms
+• Strong eye for clean, modern design
+• Communicates clearly and meets deadlines
+• Experience with service-based or home services businesses is a plus
 
-- Experience integrating AI/LLM APIs (Claude, OpenAI) into n8n.
-- Experience with Stripe API.
-- JavaScript or Python skills for custom n8n Function nodes.
+Project Details:
 
-## Client / Company Profile
+• Budget: Under $500 (fixed price)
+• Timeline: Looking to launch within 2–3 weeks
+• Scope: Small business website, ~5–7 pages
 
-- Website: easyskip.uk
-- Industry: E-Commerce / Waste Management / Skip Hire Brokerage
-- Order volume: ~1,000 orders/month
-- Current stack: n8n (cloud-hosted), Freshworks CRM, Postmark, Gmail API, Google Sheets API, Slack API, Stripe, Claude API / Anthropic, Strapi CMS
-- Backlog: 20+ automation tickets ready for development
-- Spec quality: Detailed Jira tickets with acceptance criteria, architecture diagrams, and edge cases provided
+To Apply, Please Include:
 
-## Compensation & Terms
+• 2–3 examples of similar websites you’ve built
+• Your proposed platform/approach
+• Estimated timeline to completion
+Less
+Less than 30 hrs/week
+Hourly
+Less than 1 month
+Duration
+Intermediate
+I am looking for a mix of experience and value
+Project Type:One-time project
+Skills and experience
+Mandatory skills
 
-- Type: Hourly
-- Rate: $20.00 – $30.00
-- Hours per week: ~10
-- Project type: Ongoing
-- Employment classification: Contract / Freelance
-- Location requirement: Remote; UK timezone overlap required
+WordPress Development
+WordPress Bug Fix
+WordPress Migration
+WordPress Customization
+WordPress Landing Page
+WordPress Installation
+Elementor
+Divi
+Theme Development
+Website Migration
+Gutenberg Editor
+WordPress e-Commerce
+Advanced Custom Fields Plugin
+WordPress Website Design
+WordPress Website
+Preferred qualifications
+Activity on this job
+Proposals:
+15 to 20
+
+Last viewed by client:
+7 days ago
+
+Interviewing:
+6
+Invites sent:
+6
+Unanswered invites:
+0
+
+

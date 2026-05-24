@@ -1,62 +1,106 @@
----
-platform: Upwork
-job_title: n8n Automation Specialist for E-Commerce Platform
-company: easySkip (easyskip.uk)
-location: Remote
-remote: true
-employment_type: Contract
-engagement: Hourly
-hours_per_week: 10
-duration: Ongoing
-experience_level: Intermediate
-compensation: $20.00 – $30.00 per hour
----
+Title: WordPress Website for Premium Skin Clinic (SEO + High-End Design)
 
-# n8n Automation Specialist for E-Commerce Platform — easySkip — Job Posting
 
-## Role Summary
+Summary: I’m looking for an experienced WordPress designer/developer to create a clean, high-end, and conversion-focused website for my skin clinic, Yume Aesthetics, based in Sydney.
 
-easySkip (easyskip.uk) is a fast-growing online skip hire brokerage in the UK processing approximately 1,000 orders per month through waste carrier partners. The n8n Automation Specialist will own and expand the company's workflow infrastructure on an ongoing basis — building new automations, maintaining existing ones, troubleshooting issues, and continuously improving operational efficiency as the business scales. A missed SLA costs £200–600 per incident, so these workflows directly impact revenue.
+We specialise in results-driven skin treatments such as extraction facials, chemical peels, skin needling, and advanced laser and light skin therapies, with a strong focus on simplifying skincare for our clients.
 
-## Responsibilities
+The goal of this website is to:
 
-- Build new n8n workflows and automations across the full technology stack.
-- Maintain and troubleshoot existing production n8n workflows.
-- Integrate with Freshworks CRM (deals, contacts, suppliers), Postmark (transactional emails), Gmail API (inbound email monitoring and parsing), Google Sheets API (dashboards, logging, reporting), Slack API (alerts, escalations, team notifications), Stripe (payments and refunds), Strapi CMS (supplier pricelists, product data), and Claude API / Anthropic (AI-powered document extraction and classification).
-- Pick up Jira tickets with detailed acceptance criteria and architecture diagrams, build independently, test, and ship without hand-holding.
-- Continuously improve operational automation as the business scales.
+Position the clinic as premium and results-driven
+Attract new local clients through SEO
+Convert visitors into bookings
 
-## Requirements
+I will provide design inspiration (attached), and I’d like the final website to follow a similar look and feel.
 
-##### Must Have
+Scope of Work:
+- Design and develop a fully responsive WordPress website
+- Create a clean, modern, and premium aesthetic (aligned with provided inspiration)
+- Build key pages:
+- Home
+- About
+- Services (with individual service pages if needed)
+- Skin Concerns / Treatment Guide
+- Contact / Booking
+- Integrate booking system (Fresha or external booking link)
+- Ensure fast loading speed and mobile optimisation
 
-- 2+ years building production n8n workflows (not just tutorials).
-- Strong hands-on experience with: Gmail nodes, HTTP Request nodes (REST APIs), Google Sheets nodes, Slack nodes, cron/scheduled triggers, Wait/timer nodes, Switch/conditional routing, error handling and retry logic.
-- Experience with CRM API integrations (Freshworks preferred; any CRM experience acceptable).
-- Experience with Postmark or similar transactional email APIs.
-- Available with UK timezone overlap (at least a few hours daily).
-- Self-starter able to manage tasks from Jira ticket through to shipped workflow independently.
+SEO Requirements (Very Important):
+- On-page SEO optimisation for a local skin clinic in Sydney
+- Optimised page structure, headings, and metadata
+- Keyword integration (e.g. skin clinic Sydney, skin needling Sydney, acne treatment Sydney, etc.)
+- Basic local SEO setup (Google-friendly structure, schema if possible)
+- Image optimisation and site speed optimisation
 
-##### Nice to Have
+Design Direction:
+- Minimal, clean, and high-end
+- Soft, cool-toned neutral palette (white, black, taupe tones)
+- Calm, clinical yet welcoming feel
+- Easy navigation, not overwhelming
+- Focus on trust, results, and education
 
-- Experience integrating AI/LLM APIs (Claude, OpenAI) into n8n.
-- Experience with Stripe API.
-- JavaScript or Python skills for custom n8n Function nodes.
+What I’ll Provide:
+- Branding (logo, colours, fonts if needed)
+- Content direction and key messaging
+- Design inspiration references
+- Service information
 
-## Client / Company Profile
+Nice to Have:
+- Experience with aesthetic/beauty clinics
+- Ability to provide future support or edits
+- Basic walkthrough on how I can update the site myself
+Less
+$1,000.00
 
-- Website: easyskip.uk
-- Industry: E-Commerce / Waste Management / Skip Hire Brokerage
-- Order volume: ~1,000 orders/month
-- Current stack: n8n (cloud-hosted), Freshworks CRM, Postmark, Gmail API, Google Sheets API, Slack API, Stripe, Claude API / Anthropic, Strapi CMS
-- Backlog: 20+ automation tickets ready for development
-- Spec quality: Detailed Jira tickets with acceptance criteria, architecture diagrams, and edge cases provided
+Fixed-price
+Intermediate
+I am looking for a mix of experience and value
+Attachments (2)
+d648484168ea227689f787a99eec34c0.webp
+ (145 KB)
+ef2c12de8b5ddbfd9763cf3bfbdc854d.webp
+ (99 KB)
+Project Type:Ongoing project
+You will be asked to answer the following questions when submitting a proposal:
 
-## Compensation & Terms
+What is your approach to SEO for local businesses?
+Why are you a good fit for this project?
+Describe your recent experience with similar projects
+How do you decide what tone of voice to write in?
+How do you use metrics to inform your strategy?
+Skills and experience
+Mandatory skills
 
-- Type: Hourly
-- Rate: $20.00 – $30.00
-- Hours per week: ~10
-- Project type: Ongoing
-- Employment classification: Contract / Freelance
-- Location requirement: Remote; UK timezone overlap required
+WordPress Website Design
+Website Redesign
+WooCommerce
+Ecommerce Website Development
+Search Engine Optimization
+On-Page SEO
+Off-Page SEO
+Wix
+Shopify Website Design
+Logo Design
+Graphic Design
+Landing Page Design
+Google Ads
+Corporate Website
+Website Builder
+Preferred qualifications
+Job Success Score:
+At least 90% 
+Include Rising Talent:
+Yes 
+Activity on this job
+Proposals:
+20 to 50
+
+Last viewed by client:
+4 days ago
+
+Interviewing:
+2
+Invites sent:
+1
+Unanswered invites:
+0
