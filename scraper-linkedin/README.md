@@ -39,7 +39,15 @@ pip install -r requirements.txt
 Activate your virtual environment, then run:
 
 ```bash
-python main.py "https://www.linkedin.com/company/upstanderinternational/" --max-scrolls 40 --no-headless
+python main.py "https://www.linkedin.com/company/juniper-dermatology/" --max-scrolls 150 --no-headless
+python main.py "https://www.linkedin.com/company/pie-health/" --max-scrolls 150 --no-headless
+python main.py "https://www.linkedin.com/company/aligned-hospice/" --max-scrolls 150 --no-headless
+python main.py "https://www.linkedin.com/company/clarity-consultants/" --max-scrolls 150 --no-headless
+python main.py "https://www.linkedin.com/company/nexbiome-therapeutics/" --max-scrolls 150 --no-headless
+python main.py "https://www.linkedin.com/in/avadh-kishor-chouksey/" --max-scrolls 150 --no-headless
+python main.py "https://www.linkedin.com/company/powered-by-isaac/" --max-scrolls 150 --no-headless
+python main.py "https://www.linkedin.com/company/aligned-hospice/" --max-scrolls 150 --no-headless
+python main.py "https://www.linkedin.com/company/rideitrideshare/" --max-scrolls 150 --no-headless
 ```
 
 The scraper will:
