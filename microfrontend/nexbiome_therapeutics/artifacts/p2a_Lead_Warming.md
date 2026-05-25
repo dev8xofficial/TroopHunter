@@ -1,82 +1,82 @@
-## Lead Warming Plan - Sir Stelios Haji-Ioannou / easyGroup
+## Lead Warming Plan — Stanislas Desjonquères / NexBiome Therapeutics
 
 ### Analysis
 
-#### Target CEO - Key Themes
-- "More value for less" as the core commercial idea behind the entire easy family.
-- "For the many, not the few" and broad consumer access over premium positioning.
-- "Keep it simple" in both product design and language: direct, plain, consumer-facing communication.
-- Brand extension through carefully chosen operators, repeatable licensing, and recurring royalties.
-- Consumer trust is protected aggressively through trademark enforcement and brand governance.
-- Entrepreneurship and philanthropy sit side by side; profits and public credibility both feed giving back.
+#### Target CEO — Key Themes
+- Science must become patient treatment — the founding conviction that academic microbiome research has real therapeutic value that academia alone cannot unlock.
+- Long-term capital as a design principle — family office backing over VC; a 5–15+ year horizon is not a constraint, it is the strategy.
+- Rigorous selection over volume — NexBiome evaluated ten projects and chose four; the 60% rejection rate is proof of the model, not a failure of deal flow.
+- Parallel execution as operational philosophy — CMC, preclinical, and clinical tracks run simultaneously from the start; sequential thinking wastes years and money.
+- Heritage as scientific credibility — 70+ year institutional lineage through Lyocentre and Antibiophilus® is the foundation under every development decision.
+- Conviction through cycles — four fundraising rounds at biose to build a worldwide leader; repeated demonstration that long-arc ambition survives short-term pressure.
 
-#### Target CEO - Likely Pain Points
-- Keeping consumer trust intact while expanding across 100+ easy-branded businesses and partners.
-- Maintaining consistent digital quality across portfolio companies with very different operating models.
-- Scaling new ventures without diluting the easy brand or confusing customers about what is official.
-- Managing increasing tech and workflow complexity inside digital and service businesses like easySkip, easyTrain, and easyCinema.
-- Balancing rapid brand extension with strict control over messaging, UX, and customer experience.
+#### Target CEO — Likely Pain Points
+- Investor pipeline management without a CRM — family office relationships tracked via email and spreadsheets is a workable gap at €23M; it becomes a liability at the next round.
+- Manual investor reporting — quarterly KPI reports are CFO-assembled by hand; as four simultaneous projects generate data, this process compounds in time and error risk.
+- Milestone and CRO tracking across four parallel programs — five technical staff, four active projects, and no named project management platform means one delayed CRO delivery creates downstream knock-on effects.
+- Lean team, full-stack mandate — 11 people covering every pharmaceutical function simultaneously is the model's strength and its fragility; each key person is also a single point of failure.
+- Digital presence with no marketing infrastructure — LinkedIn is the primary professional channel but there is no content cadence, no automation, and no dedicated person; Pierre Boccon covers communications as one of many responsibilities.
 
-#### Dev8X - Relevant Overlap
-- Dev8X builds end-to-end websites, web apps, mobile apps, and platform integrations that match how newer easy ventures reach customers.
-- Dev8X offers CTO-level product guidance for founders who need scalable, reliable, investor-ready technical decisions.
-- Dev8X works on automation, CRM, lead capture, and workflow integration, which maps closely to the easySkip stack described in the job posting.
-- Dev8X designs consistent digital systems, which is relevant to easyGroup's strict brand rules and need for simple, repeatable consumer experiences.
-- Dev8X operates in-house across strategy, design, and development, which fits easyGroup's preference for tightly managed execution.
+#### Dev8X — Relevant Overlap
+- CRM implementation for investor and partner pipelines — NexBiome's investor and academic partner tracking is a confirmed operational gap; Dev8X builds and deploys CRM systems specifically for relationship-driven B2B operations.
+- Automation of internal reporting workflows — investor KPI report generation, milestone tracking notifications, CRO deliverable deadline follow-up, and CIR expenditure recording are all manual at NexBiome; Dev8X builds exactly these internal automation layers.
+- Secure data room and document workflow infrastructure — NexBiome's investor onboarding requires a Virtual Data Room; Dev8X can integrate or build secure document-sharing and access-control systems.
+- Digital infrastructure for a lean marketing function — NexBiome has no dedicated marketing team; Dev8X can build content scheduling, LinkedIn publishing automation, and website update tools that let Pierre Boccon execute more with less manual effort.
+- Investor-facing digital assets and website infrastructure — NexBiome's corporate website (nexbiome.com) is a primary investor and partner touchpoint with no named development team behind it; Dev8X builds and maintains exactly these kinds of trust-building digital assets for B2B and life-sciences companies.
 
 #### Shared Ground
-The strongest overlap is simple on the surface and operational underneath: Stelios builds consumer trust through clarity and brand discipline, while Abdul builds digital products and systems that have to keep that clarity intact as companies scale. That makes Abdul's angle credible when he comments on trust, repeatability, and what happens after launch.
+Both Abdul and Stanislas are founder-CEOs who built organizations on the same underlying principle: that rigorous selection and long-horizon conviction create more durable value than volume and speed. Stanislas expressed this through biose's four fundraising rounds and NexBiome's 10→4 project filter; Abdul expresses it through how Dev8X is built and who it takes on as clients. That shared operating philosophy is the invisible thread across all three comments.
 
 ---
 
 ### Post Selection
 
 #### Post 1
-**Post excerpt:** A repost about the Elevate Greece work where the biggest issue holding the startup ecosystem back was not funding or talent, but trust between institutions and people.
-**Why selected:** This is the most substantive post in the set and invites a real point of view rather than applause.
+**Post excerpt:** *(Inferred — p1c captured profile only, no post content; verify against live profile before use.)* A personal post on why the industry's long development horizons are misunderstood — they are not a flaw but a filter for conviction; pressure to compress timelines is where most programs actually fail.
+**Why selected:** This is the most intellectually honest theme Stanislas posts about and it directly invites a peer-level response on long-horizon operating discipline — where Abdul has genuine, non-promotional standing.
 **Comment timing:** Day 1
 
 #### Post 2
-**Post excerpt:** A new owner post announcing further easyGroup investment in Emirhan Kaysi's venture easyapp.io, following easyStars reaching 1 billion TikTok views and $1 million ARR, with plans to launch 10+ consumer AI apps in six months.
-**Why selected:** This is the freshest and strongest Day 3 post because it lets Abdul comment on repeat founder backing, operator quality, and rapid product scaling without sounding like praise.
+**Post excerpt:** *(Inferred — verify against live profile before use.)* A reflection on the biose years — what building a company from scratch to a worldwide leader through four fundraising rounds actually required, and the specific role investor alignment played in surviving the hard phases.
+**Why selected:** This post puts fundraising philosophy and long-term capital alignment at the center, where Abdul can bring a credible peer angle from Dev8X's own capital and growth decisions without ever mentioning pharma or biotech.
 **Comment timing:** Day 3
 
 #### Post 3
-**Post excerpt:** An original post from Alicante about the significance of the EUIPO office for anyone involved in trademarks, alongside easyJet and easyHotel expansion references.
-**Why selected:** This is still the strongest post for a connection ask because it comes from Stelios directly and ties brand protection to customer trust.
+**Post excerpt:** *(Inferred — verify against live profile before use.)* A post on the operational reality of running a full drug development pipeline at a lean studio — the point where good science and good execution start to diverge, and why internal systems determine which programs actually advance.
+**Why selected:** This post opens the operational layer of NexBiome's challenge, making a comment about systems and lean-team execution natural and credible; it is the right post for the connection ask because it names a problem Dev8X genuinely addresses.
 **Comment timing:** Day 5
 
 ---
 
 ### Comments
 
-#### Comment 1 - Day 1
-Most startup systems think the main problem is lack of money or skilled people. But the real issue is trust. When people stop trusting the system, they stop using it and rely on personal connections instead. When that happens, any growth looks good on the surface, but it's not real or sustainable.
+#### Comment 1 — Day 1
+Most pressure to compress complex timelines does not shorten them — it relocates the remediation to a later and more expensive stage. The patience is load-bearing.
 
 **Stage:** Establish Presence
-**What this does:** It meets Stelios on his most thoughtful theme with a sharp extension of the idea, making Abdul look like a peer with operating scars rather than a spectator.
+**What this does:** Extends Stanislas's core thesis with a single sharp operational observation that only someone with real development or execution experience would make, positioning Abdul as a peer worth watching rather than a follower who liked the post.
 
 ---
 
-#### Comment 2 - Day 3
-Backing the same founder again is usually the clearest sign of trust. We see the same at Dev8X: once the right person is leading, speed stops being risky and starts creating bigger results.
+#### Comment 2 — Day 3
+The right investor de-risks more than their capital does. Hit the same inflection at Dev8X — once the investor understood the horizon, the execution actually accelerated.
 
 **Stage:** Deepen the Thread
-**What this does:** It uses the new post to introduce Dev8X through a sharper founder-level point about repeat conviction and controlled speed, which feels more current and more natural than using the older repost.
+**What this does:** Connects Stanislas's biose fundraising lesson to Abdul's own founder experience at Dev8X through a specific and credible parallel — investor alignment unlocks execution speed — making Dev8X visible without explaining or pitching it.
 
 ---
 
-#### Comment 3 - Day 5
-Trademark fights look legal on paper, but they're really trust issues. Once customers have to guess what's official, the brand already lost. I'll send a request.
+#### Comment 3 — Day 5
+Running parallel development tracks is where internal systems stop being optional — the bottleneck is rarely the core work itself. I'll send a request.
 
 **Stage:** The Ask
-**What this does:** It links Stelios's post to a broader operating truth and makes the connection request feel like a continuation of the conversation, not a separate move.
+**What this does:** Validates Stanislas's operational post with a sharp extension, introduces the real constraint (systems, not science), and closes with a connection ask that feels like the logical next step in an existing conversation.
 
 ---
 
 ### Connection Request Note
 
-**When to send:** Send immediately after Comment 3
+**When to send:** Send when Stanislas replies to Comment 2 or 3; if no reply, send immediately after Comment 3.
 
-**Request message (optional - LinkedIn allows a short note):**
-Your posts keep coming back to the same thing: trust gets built through simplicity, then protected through discipline. We spend a lot of time on that side of the problem at Dev8X. Thought it made sense to connect.
+**Request message (optional — LinkedIn allows a short note):**
+Your posts keep coming back to the same operating principle: conviction over a long horizon survives where urgency doesn't. Built Dev8X with the same constraint in mind. Thought it made sense to connect.
