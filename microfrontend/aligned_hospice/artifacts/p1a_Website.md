@@ -1,2129 +1,429 @@
-# Scrape Results — alignedhospice.com
-
-- **Start URL**: https://www.alignedhospice.com/
-- **Scraped at**: 2026-05-24 09:21:12 UTC
-- **Total pages**: 43
-
-## Page 1 — Services – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/services/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-##### We provide:
-
-##### Physicians and Pharmacists to assist with pain medications
-
-##### Physical, occupation, and speech therapists to help maintain patient needs
-
-##### Basic medical equipment and supplies related to the hospice plan of care
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
+---
+site: Aligned Hospice
+domain: https://www.alignedhospice.com
+contact_email: info@alignedhospice.com
+contact_phone: "(619) 810-1939"
+nav: [About Us, Services, Myths & Facts, Referral, Career, F.A.Q, Contact Us]
 ---
 
-## Page 2 — About us – Aligned Hospice
+# Aligned Hospice — Scraped Content
 
-**🔗 URL:** https://www.alignedhospice.com/about-us/
+## 1 — Services
 
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
+url: https://www.alignedhospice.com/services/
+type: landing
+meta: none
 
-###### (619) 810-1939
+### We Provide
 
-### About us
+- Physicians and Pharmacists to assist with pain medications
+- Physical, occupation, and speech therapists to help maintain patient needs
+- Basic medical equipment and supplies related to the hospice plan of care
 
-Aligned Hospice is comprised of empathetic and knowledgeable healthcare workers with a passion for helping patients during their end of life journey. We provide expert interdisciplinary care, consultation, support, and education for those affected by serious illness, death, and grief. Our team is committed to understanding each patients unique and individual needs. At Aligned Hospice we know that you or your loved one are more than your terminal diagnosis. We strive to know our patients, their family, and caregivers on a personal level. Making the decision to sign on to hospice is never an easy one; we are hear to support, respect, and honor your decisions during this sacred time.
+***
 
-Aligned Hospice is the hospice of choice, employer of preference and the community’s trusted partner for comprehensive end-of-life care.
+## 2 — About Us
 
-###### What is Hospice?
+url: https://www.alignedhospice.com/about-us/
+type: landing
+meta: none
 
-###### Who can refer?
+### About Us
 
-###### Where can I receive services?
+Aligned Hospice is comprised of empathetic and knowledgeable healthcare workers with a passion for helping patients during their end of life journey. We provide expert interdisciplinary care, consultation, support, and education for those affected by serious illness, death, and grief. Our team is committed to understanding each patient's unique and individual needs. At Aligned Hospice we know that you or your loved one are more than your terminal diagnosis. We strive to know our patients, their family, and caregivers on a personal level. Making the decision to sign on to hospice is never an easy one; we are here to support, respect, and honor your decisions during this sacred time.
 
-###### Who pays for hospice?
+Aligned Hospice is the hospice of choice, employer of preference and the community's trusted partner for comprehensive end-of-life care.
 
-###### We are passionate about enhancing the quality of our patients' lives, and supporting their loved ones during this transition.
+### Mission & Vision
 
-- Mission
-- Vision
+**Mission:** Aligned Hospice is dedicated to providing compassionate care & outstanding services. We offer a patient-centered approach that treats the physical, emotional, social & spiritual needs of the patient & family. To make that happen, we surround the entire family with an interdisciplinary team that specializes in end-of-life care.
 
-Aligned Hospice is dedicated to providing compassionate care & outstanding services. We offer a patient centered approach that treats the physical, emotional, social & spiritual needs of the patient & family. To make that happen, we surround the entire family with an interdisciplinary team that specializes in end of life care.
+### FAQ Anchors on This Page (headings only — no expanded answers in source)
 
-###### AREAS WE SERVE
+- What is Hospice?
+- Who can refer?
+- Where can I receive services?
+- Who pays for hospice?
 
-- San Diego
+***
 
-###### (619) 880-5153
+## 3 — F.A.Q
 
-###### info@alignedhospice.com
+url: https://www.alignedhospice.com/f-a-q/
+type: utility
+meta: none
 
-###### www.alignedhospice.com
+### Frequently Asked Questions
 
-###### ACCREDITING PARTNERS
+Question headings listed (answers not present in scraped source):
 
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
+- What is Hospice Care?
+- Who is Hospice for?
+- Who Pays for Hospice Care?
+- Why Choose Hospice Care?
 
----
+***
 
-## Page 3 — F.A.Q – Aligned Hospice
+## 4 — Career
 
-**🔗 URL:** https://www.alignedhospice.com/f-a-q/
+url: https://www.alignedhospice.com/career/
+type: utility
+meta: none
 
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
+Join the Aligned Hospice team and become part of our mission to provide the highest quality of medical, emotional, social, spiritual, and comfort care to patients and families in our community. Aligned Hospice is always looking for exceptional RNs, LVNs, CHHAs, Physical Therapists, Occupational Therapists, Speech Therapists, Volunteers, Chaplains, and Social Workers. A career with Aligned Hospice allows you to make a difference in the lives of others.
 
-###### (619) 810-1939
+> CTA: Apply to be a part of our growing team today!
 
-### Frequent Asked Questions
+### Open Positions
 
-###### What is Hospice Care?
+- Registered Nurses
+- Licensed Practical Nurse
+- Certified Home Health Aide
+- Physical Therapist
+- Occupational Therapist
+- Speech Therapist
+- Chaplain
+- Social Worker
+- Volunteer
 
-###### Who is Hospice for?
+***
 
-###### Who Pays for Hospice Care?
+## 5 — Contact Us
 
-###### Why Choose Hospice Care?
+url: https://www.alignedhospice.com/contact-us/
+type: utility
+meta: none
 
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 4 — Career – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/career/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-Join the Aligned Hospice team and become part of our mission to provide the highest quality of medical, emotional, social, spiritual and comfort care to the patients and families in our community.
-
-Aligned Hospice is always looking for exceptional RNs, LVNs, CHHAs, Physical Therapists, Occupational Therapists, Speech Therapists, Volunteers, Chaplains and Social Workers.
-
-A career with Aligned Hospice allows you to make a difference in the lives of others.
-
-Apply to be a part of our growing team today!
-
-###### Registered Nurses
-
-###### Licensed Practical Nurse
-
-###### Certified Home Health Aide
-
-###### Physical Therapist
-
-###### Speech Therapist
-
-###### Chaplain
-
-###### Social Worker
-
-###### Volunteer
-
-###### Occupational Therapist
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 5 — Contact us – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/contact-us/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-### Contact us
+### Contact Information
 
 402 W. Broadway Ste. 400, San Diego, CA 92101-3554
 
-Phone: (619) 810-1939
+- Phone: (619) 810-1939
+- Fax: (619) 880-5153
+- Email: info@alignedhospice.com
 
-Fax: (619) 880-5153
+> CTA: Fill out the contact form on-site to submit a message, including name, email, phone, area of interest, and message.
 
-info@alignedhospice.com
+***
 
-www.alignedhospice.com
+## 6 — Homepage
 
-##### Please fill out the form
+url: https://www.alignedhospice.com/
+type: landing
+meta: none
 
-Full name *
+### Core Values
 
-Your email *
+- Accountability
+- Service Excellence
+- Collaboration
 
-Your phone*
+> CTA: Explore all services
 
-I’m interested in
+***
 
-Your Message
+## 7 — Referral
 
-###### AREAS WE SERVE
+url: https://www.alignedhospice.com/referral/
+type: utility
+meta: none
 
-- San Diego
+If you are a healthcare provider or a patient/family member and wish to refer a patient for services from Aligned Hospice, fill out the clinical referral form on-site. The form collects patient name and phone, the referring party's relationship (Patient, Family, Doctor, or Facility), referring contact details, an optional message, and an upload field for clinical documents (Face-sheet / H&P / Hospice Order / Discharge Summary).
 
-###### (619) 880-5153
+***
 
-###### ACCREDITING PARTNERS
+## 8 — Job Application Form
 
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
+url: https://www.alignedhospice.com/job-application-form/
+type: utility
+meta: none
 
----
+Online employment application. Collects applicant name, current address, available start date, state, city, zip code, email, phone, current employment status, position sought, years of experience, and resume upload.
 
-## Page 6 — Aligned Hospice – Aligned Hospice
+***
 
-**🔗 URL:** https://www.alignedhospice.com/
+## 9 — Myths & Facts
 
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
+url: https://www.alignedhospice.com/myths-facts/
+type: article
+meta: none
 
-###### (619) 810-1939
+Hospice is a specialized level of care for those with life-limiting illnesses and their families. Many people are uncertain whether hospice care is right for them based on common misconceptions. The following myths are addressed with facts on this page (expanded fact text not present in scraped source — headings only):
 
-###### Accountability
+### Common Myths
 
-###### Service Excellence
+- Becoming a hospice patient means giving up hope.
+- Suffering is a part of hospice care because traditional medicine is no longer allowed.
+- Hospice is a place.
+- Hospice care is only for cancer patients.
+- The Medicare hospice benefit covers only six months of care.
+- Only a doctor can refer a patient for hospice care.
+- If you choose hospice care you can never see your family physician again.
+- I cannot afford hospice care.
 
-###### Collaboration
+***
 
-###### Explore all services
+## 10 — Advisor's Care Guide
 
-###### AREAS WE SERVE
+url: https://www.alignedhospice.com/resource/advisors-care-guide/
+type: article
+meta: none
 
-- San Diego
+Resource page. No substantive content available in scraped source; contact form returned a load error.
 
-###### (619) 880-5153
+***
 
-###### info@alignedhospice.com
+## 11 — Bio-Balance Health
 
-###### www.alignedhospice.com
+url: https://www.alignedhospice.com/resource/bio-balance-health/
+type: article
+meta: none
 
-###### ACCREDITING PARTNERS
+Resource page. No substantive content available in scraped source; contact form returned a load error.
 
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
+***
 
----
+## 12 — Brain Damage Studies
 
-## Page 7 — Referral – Aligned Hospice
+url: https://www.alignedhospice.com/resource/brain-damage-studies/
+type: article
+meta: none
 
-**🔗 URL:** https://www.alignedhospice.com/referral/
+Resource page. No substantive content available in scraped source; contact form returned a load error.
 
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
+***
 
-###### (619) 810-1939
+## 13 — Exercise and Self-Care
 
-If you are a healthcare provider or a patient/family member and wish to refer your patient for services from Aligned Hospice, simply fill out our clinical referral form.
+url: https://www.alignedhospice.com/resource/exercise-and-self-care/
+type: article
+meta: none
 
-(*) required fields
+Resource page. No substantive content available in scraped source; contact form returned a load error.
 
-Patient's First Name*
+***
 
-Patient's Last Name*
+## 14 — Limb Movement Assistance
 
-Patient's Phone Number*
+url: https://www.alignedhospice.com/resource/limb-movement-assistance/
+type: article
+meta: none
 
-Relationship*
-—Please choose an option—
-Patient
-Family
-Doctor
-Facility
-
-Your First Name*
-
-Your Last Name*
-
-Your E-mail Address*
-
-Your Phone Number*
-
-Message
-
-Face-sheet / H&P / Hospice Order / Discharge Summary
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
+Resource page. No substantive content available in scraped source.
 
-###### info@alignedhospice.com
+***
 
-###### www.alignedhospice.com
+## 15 — Green Low-fat Dieting
 
-###### ACCREDITING PARTNERS
+url: https://www.alignedhospice.com/resource/green-low-fat-dieting/
+type: article
+meta: none
 
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
+Resource page. No substantive content available in scraped source; contact form returned a load error.
 
----
+***
 
-## Page 8 — Job Application Form – Aligned Hospice
+## 16 — Volunteers that Add a Special Dimension to Caring
 
-**🔗 URL:** https://www.alignedhospice.com/job-application-form/
+url: https://www.alignedhospice.com/service/volunteers-that-add-a-special-dimension-to-caring/
+type: product
+meta: none
 
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
+### Basic Assistance Care
 
-###### (619) 810-1939
+No additional body content in scraped source. Page references downloadable documents (PDF/doc files not extracted by scraper).
 
-### Job Application Form
+***
 
-(*) required fields
+## 17 — Professional Care Available 24 Hours a Day, 7 Days a Week
 
-First Name *
+url: https://www.alignedhospice.com/service/daily-home-care/
+type: product
+meta: none
 
-Last name *
+### Doctor Care
 
-Current Address *
+No additional body content in scraped source.
 
-Available Start Date: *
+***
 
-State *
-—Please choose an option—
-Alabama
-Alaska
-Arizona
-Arkansas
-California
-Colorado
-Connecticut
-Delaware
-District of Columbia
-Florida
-Georgia
-Hawaii
-Idaho
-Illinois
-Indiana
-Iowa
-Kansas
-Kentucky
-Louisiana
-Maine
-Maryland
-Massachusettes
-Michigan
-Minnesota
-Mississippi
-Missouri
-Montana
-Nebraska
-Nevada
-New Hampshire
-New Jersey
-New Mexico
-New York
-North Carolina
-North Dakota
-Ohio
-Oklahoma
-Oregon
-Pennsylvania
-Rhode Island
-South Carolina
-South Dakota
-Tennesse
-Texas
-Utah
-Vermont
-Virginia
-Washington
-West Virginia
-Wisconsin
-Wyoming
+## 18 — Dieticians to Assist with Meal Planning
 
-City *
+url: https://www.alignedhospice.com/service/dieticians-to-assist-with-mean-planning/
+type: product
+meta: none
 
-Zip Code *
+### Home Health Aides
 
-Email *
+No additional body content in scraped source. Page references downloadable documents (PDF/doc files not extracted by scraper).
 
-Phone *
+***
 
-What is your Current employment Status? *
+## 19 — Chaplains to Provide Spiritual and Emotional Support and Bereavement Counseling
 
-Position *
+url: https://www.alignedhospice.com/service/chaplains-to-provide-spiritual-and-emotional-support-and-bereavement-counseling/
+type: product
+meta: none
 
-Years of Experience: *
+### Medical Social Workers
 
-Upload Your Resume *
+No additional body content in scraped source. Page references downloadable documents (PDF/doc files not extracted by scraper).
 
-###### AREAS WE SERVE
+***
 
-- San Diego
+## 20 — Social Workers to Provide Assistance with Practical and Financial Concerns
 
-###### (619) 880-5153
+url: https://www.alignedhospice.com/service/specialized-care/
+type: product
+meta: none
 
-###### info@alignedhospice.com
+### Physical/Mental Therapy
 
-###### www.alignedhospice.com
+No additional body content in scraped source. Page references downloadable documents (PDF/doc files not extracted by scraper).
 
-###### ACCREDITING PARTNERS
+***
 
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
+## 21 — Registered Nurses to Coordinate the Plan of Care and Use of Medications
 
----
+url: https://www.alignedhospice.com/service/hourly-home-care/
+type: product
+meta: none
 
-## Page 9 — Myths & Facts – Aligned Hospice
+No body content in scraped source. Page references downloadable documents (PDF/doc files not extracted by scraper).
 
-**🔗 URL:** https://www.alignedhospice.com/myths-facts/
+***
 
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
+## 22 — Basic Medical Equipment and Supplies Related to the Hospice Plan of Care
 
-###### (619) 810-1939
+url: https://www.alignedhospice.com/service/basic-medical-equipment-and-supplies-related-to-the-hospice-plan-of-care/
+type: product
+meta: none
 
-Hospice is a specialized level of care for those with life-limiting illnesses and their families.
+No body content in scraped source beyond service sidebar navigation.
 
-Many people are confused by the different things they’ve heard and may be unsure if hospice care is right for them or their loved one. Here are some of the common hospice myths, along with the facts.
+***
 
-###### Becoming a hospice patient means giving up hope.
+## 23 — Physical, Occupation, and Speech Therapists to Help Maintain Patient Needs
 
-###### Suffering is a part of hospice care because traditional medicine is no longer allowed.
+url: https://www.alignedhospice.com/service/physical-occupation-and-speech-therapists-to-help-maintain-patient-needs/
+type: product
+meta: none
 
-###### Hospice is a place
+No body content in scraped source beyond service sidebar navigation.
 
-###### Hospice care is only for cancer patients.
+***
 
-###### The Medicare hospice benefit covers only six month of care.
+## 24 — Physicians and Pharmacists to Assist with Pain Medications
 
-###### Only a doctor can refer a patient for hospice care.
+url: https://www.alignedhospice.com/service/physicians-and-pharmacists-to-assist-with-pain-medications/
+type: product
+meta: none
 
-###### If you choose hospice care you can never see your family physician again.
+No body content in scraped source beyond service sidebar navigation.
 
-###### I cannot afford hospice care.
+***
 
-###### AREAS WE SERVE
+## 25 — Elements
 
-- San Diego
+url: https://www.alignedhospice.com/?ic_mega_menu=elements
+type: utility
+meta: none
 
-###### (619) 880-5153
+CMS/theme UI elements demo page (Elements 01–04 headings only). No substantive content.
 
-###### info@alignedhospice.com
+***
 
-###### www.alignedhospice.com
+## 26 — Category: Education Center
 
-###### ACCREDITING PARTNERS
+url: https://www.alignedhospice.com/resource-category/education-center/
+type: listing
+meta: none
+content_summary: Lists 2 resources — Brain Damage Studies [See Page 12], Advisor's Care Guide [See Page 10]
 
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
+***
 
----
+## 27 — Category: Free Guide
 
-## Page 10 — Advisor’s Care Guide – Aligned Hospice
+url: https://www.alignedhospice.com/resource-category/free-guide/
+type: listing
+meta: none
+content_summary: Lists 3 resources — Green Low-fat Dieting [See Page 15], Limb Movement Assistance [See Page 14], Exercise and Self-Care [See Page 13]
 
-**🔗 URL:** https://www.alignedhospice.com/resource/advisors-care-guide/
+***
 
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
+## 28 — Category: Training & Support
 
-###### (619) 810-1939
+url: https://www.alignedhospice.com/resource-category/training-support/
+type: listing
+meta: none
+content_summary: Lists 1 resource — Bio-Balance Health [See Page 11]
 
-### Advisor’s Care Guide
+***
 
-#### Looking for Advice?
+## 29 — Author: Taib Rawi
 
-Error: Contact form not found.
+url: https://www.alignedhospice.com/author/trawialignedhospice-com/
+type: author
+meta: none
+content_summary: No posts found for this author.
 
-###### AREAS WE SERVE
+***
 
-- San Diego
+## 30 — Aligned Hospice (Homepage) [DUPLICATE — See Page 6]
 
-###### (619) 880-5153
+***
 
-###### info@alignedhospice.com
+## 31 — About Us [DUPLICATE — See Page 2]
 
-###### www.alignedhospice.com
+***
 
-###### ACCREDITING PARTNERS
+## 32 — Services [DUPLICATE — See Page 1]
 
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
+***
 
----
+## 33 — Myths & Facts [DUPLICATE — See Page 9]
 
-## Page 11 — Bio-Balance Health – Aligned Hospice
+***
 
-**🔗 URL:** https://www.alignedhospice.com/resource/bio-balance-health/
+## 34 — Referral [DUPLICATE — See Page 7]
 
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
+***
 
-###### (619) 810-1939
+## 35 — Career [DUPLICATE — See Page 4]
 
-### Bio-Balance Health
+***
 
-#### Looking for Advice?
+## 36 — F.A.Q [DUPLICATE — See Page 3]
 
-Error: Contact form not found.
+***
 
-###### AREAS WE SERVE
+## 37 — Contact Us [DUPLICATE — See Page 5]
 
-- San Diego
+***
 
-###### (619) 880-5153
+## 38 — Physicians and Pharmacists to Assist with Pain Medications [DUPLICATE — See Page 24]
 
-###### info@alignedhospice.com
+***
 
-###### www.alignedhospice.com
+## 39 — Physical, Occupation, and Speech Therapists to Help Maintain Patient Needs [DUPLICATE — See Page 23]
 
-###### ACCREDITING PARTNERS
+***
 
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
+## 40 — Basic Medical Equipment and Supplies Related to the Hospice Plan of Care [DUPLICATE — See Page 22]
 
----
+***
 
-## Page 12 — Brain Damage Studies – Aligned Hospice
+## 41 — Professional Care Available 24 Hours a Day, 7 Days a Week [DUPLICATE — See Page 17]
 
-**🔗 URL:** https://www.alignedhospice.com/resource/brain-damage-studies/
+***
 
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
+## 42 — Job Application Form [DUPLICATE — See Page 8]
 
-###### (619) 810-1939
+***
 
-### Brain Damage Studies
+## 43 — Archives: Services
 
-#### Looking for Advice?
-
-Error: Contact form not found.
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 13 — Exercise and Self-Care – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/resource/exercise-and-self-care/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-### Exercise and Self-Care
-
-#### Looking for Advice?
-
-Error: Contact form not found.
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 14 — Limb Movement Assistance – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/resource/limb-movement-assistance/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-### Limb Movement Assistance
-
-#### Categories
-
-#### Search
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 15 — Green Low-fat Dieting – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/resource/green-low-fat-dieting/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-### Green Low-fat Dieting
-
-#### Looking for Advice?
-
-Error: Contact form not found.
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 16 — Volunteers that add a special dimension to caring – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/service/volunteers-that-add-a-special-dimension-to-caring/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-- Home
-- Volunteers that add a special dimension to caring
-
-##### Basic Assistance Care
-
-###### The_Balanced_Care_Method_Flyer.pdf
-
-###### infomation sheet 2 2016-17.doc
-
-###### what_is_home_care_manual.zip
-
-#### Care Services
-
-###### Respite Home Care
-
-###### Daily Home Care
-
-###### Hospital to Home Care
-
-###### Advanced Care
-
-###### Specialized Care
-
-###### Hourly Home Care
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 17 — Professional care available 24 hours a day, 7 days a week. – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/service/daily-home-care/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-- Home
-- Professional care available 24 hours a day, 7 days a week.
-
-##### Doctor Care
-
-#### Care Services
-
-###### Respite Home Care
-
-###### Daily Home Care
-
-###### Hospital to Home Care
-
-###### Advanced Care
-
-###### Specialized Care
-
-###### Hourly Home Care
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 18 — Dieticians to assist with mean planning – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/service/dieticians-to-assist-with-mean-planning/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-- Home
-- Dieticians to assist with mean planning
-
-##### Home Health Aides
-
-###### The_Balanced_Care_Method_Flyer.pdf
-
-###### infomation sheet 2 2016-17.doc
-
-###### what_is_home_care_manual.zip
-
-#### Care Services
-
-###### Respite Home Care
-
-###### Daily Home Care
-
-###### Hospital to Home Care
-
-###### Advanced Care
-
-###### Specialized Care
-
-###### Hourly Home Care
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 19 — Chaplains to provide spiritual and emotional support and bereavement counseling. – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/service/chaplains-to-provide-spiritual-and-emotional-support-and-bereavement-counseling/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-- Home
-- Chaplains to provide spiritual and emotional support and bereavement counseling.
-
-##### Medical Social Workers
-
-###### The_Balanced_Care_Method_Flyer.pdf
-
-###### infomation sheet 2 2016-17.doc
-
-###### what_is_home_care_manual.zip
-
-#### Care Services
-
-###### Respite Home Care
-
-###### Daily Home Care
-
-###### Hospital to Home Care
-
-###### Advanced Care
-
-###### Specialized Care
-
-###### Hourly Home Care
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 20 — Social workers to provide assistance with practical and financial concerns. – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/service/specialized-care/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-- Home
-- Social workers to provide assistance with practical and financial concerns.
-
-##### Physical/ mental therapy
-
-###### The_Balanced_Care_Method_Flyer.pdf
-
-###### infomation sheet 2 2016-17.doc
-
-###### what_is_home_care_manual.zip
-
-#### Care Services
-
-###### Respite Home Care
-
-###### Daily Home Care
-
-###### Hospital to Home Care
-
-###### Advanced Care
-
-###### Specialized Care
-
-###### Hourly Home Care
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 21 — Registered nurses to coordinate the plan of care and use of medications. – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/service/hourly-home-care/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-- Home
-- Registered nurses to coordinate the plan of care and use of medications.
-
-###### The_Balanced_Care_Method_Flyer.pdf
-
-###### infomation sheet 2 2016-17.doc
-
-###### what_is_home_care_manual.zip
-
-#### Care Services
-
-###### Respite Home Care
-
-###### Daily Home Care
-
-###### Hospital to Home Care
-
-###### Advanced Care
-
-###### Specialized Care
-
-###### Hourly Home Care
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 22 — Basic medical equipment and supplies related to the hospice plan of care – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/service/basic-medical-equipment-and-supplies-related-to-the-hospice-plan-of-care/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-- Home
-- Basic medical equipment and supplies related to the hospice plan of care
-
-#### Care Services
-
-###### Respite Home Care
-
-###### Daily Home Care
-
-###### Hospital to Home Care
-
-###### Advanced Care
-
-###### Specialized Care
-
-###### Hourly Home Care
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 23 — Physical, occupation, and speech therapists to help maintain patient needs – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/service/physical-occupation-and-speech-therapists-to-help-maintain-patient-needs/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-- Home
-- Physical, occupation, and speech therapists to help maintain patient needs
-
-#### Care Services
-
-###### Respite Home Care
-
-###### Daily Home Care
-
-###### Hospital to Home Care
-
-###### Advanced Care
-
-###### Specialized Care
-
-###### Hourly Home Care
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 24 — Physicians and Pharmacists to assist with pain medications – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/service/physicians-and-pharmacists-to-assist-with-pain-medications/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-- Home
-- Physicians and Pharmacists to assist with pain medications
-
-#### Care Services
-
-###### Respite Home Care
-
-###### Daily Home Care
-
-###### Hospital to Home Care
-
-###### Advanced Care
-
-###### Specialized Care
-
-###### Hourly Home Care
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 25 — Elements – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/?ic_mega_menu=elements
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-### Elements
-
-#### Elements 01
-
-#### Elements 02
-
-#### Elements 03
-
-#### Elements 04
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 26 — Education Center – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/resource-category/education-center/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-### Category: Education Center
-
-###### Brain Damage Studies
-
-###### Advisor’s Care Guide
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 27 — Free Guide – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/resource-category/free-guide/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-### Category: Free Guide
-
-###### Green Low-fat Dieting
-
-###### Limb Movement Assistance
-
-###### Exercise and Self-Care
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 28 — Training & Support – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/resource-category/training-support/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-### Category: Training & Support
-
-###### Bio-Balance Health
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 29 — Taib Rawi – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/author/trawialignedhospice-com/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-### Author: Taib Rawi
-
-##### Nothing Found
-
-It seems we can’t find what you’re looking for. Perhaps searching can help.
-
-#### Categories
-
-#### Search
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 30 — Aligned Hospice – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-###### Accountability
-
-###### Service Excellence
-
-###### Collaboration
-
-###### Explore all services
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 31 — About us – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/about-us/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-### About us
-
-Aligned Hospice is comprised of empathetic and knowledgeable healthcare workers with a passion for helping patients during their end of life journey. We provide expert interdisciplinary care, consultation, support, and education for those affected by serious illness, death, and grief. Our team is committed to understanding each patients unique and individual needs. At Aligned Hospice we know that you or your loved one are more than your terminal diagnosis. We strive to know our patients, their family, and caregivers on a personal level. Making the decision to sign on to hospice is never an easy one; we are hear to support, respect, and honor your decisions during this sacred time.
-
-Aligned Hospice is the hospice of choice, employer of preference and the community’s trusted partner for comprehensive end-of-life care.
-
-###### What is Hospice?
-
-###### Who can refer?
-
-###### Where can I receive services?
-
-###### Who pays for hospice?
-
-###### We are passionate about enhancing the quality of our patients' lives, and supporting their loved ones during this transition.
-
-- Mission
-- Vision
-
-Aligned Hospice is dedicated to providing compassionate care & outstanding services. We offer a patient centered approach that treats the physical, emotional, social & spiritual needs of the patient & family. To make that happen, we surround the entire family with an interdisciplinary team that specializes in end of life care.
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 32 — Services – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/services/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-##### We provide:
-
-##### Physicians and Pharmacists to assist with pain medications
-
-##### Physical, occupation, and speech therapists to help maintain patient needs
-
-##### Basic medical equipment and supplies related to the hospice plan of care
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 33 — Myths & Facts – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/myths-facts/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-Hospice is a specialized level of care for those with life-limiting illnesses and their families.
-
-Many people are confused by the different things they’ve heard and may be unsure if hospice care is right for them or their loved one. Here are some of the common hospice myths, along with the facts.
-
-###### Becoming a hospice patient means giving up hope.
-
-###### Suffering is a part of hospice care because traditional medicine is no longer allowed.
-
-###### Hospice is a place
-
-###### Hospice care is only for cancer patients.
-
-###### The Medicare hospice benefit covers only six month of care.
-
-###### Only a doctor can refer a patient for hospice care.
-
-###### If you choose hospice care you can never see your family physician again.
-
-###### I cannot afford hospice care.
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 34 — Referral – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/referral/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-If you are a healthcare provider or a patient/family member and wish to refer your patient for services from Aligned Hospice, simply fill out our clinical referral form.
-
-(*) required fields
-
-Patient's First Name*
-
-Patient's Last Name*
-
-Patient's Phone Number*
-
-Relationship*
-—Please choose an option—
-Patient
-Family
-Doctor
-Facility
-
-Your First Name*
-
-Your Last Name*
-
-Your E-mail Address*
-
-Your Phone Number*
-
-Message
-
-Face-sheet / H&P / Hospice Order / Discharge Summary
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 35 — Career – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/career/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-Join the Aligned Hospice team and become part of our mission to provide the highest quality of medical, emotional, social, spiritual and comfort care to the patients and families in our community.
-
-Aligned Hospice is always looking for exceptional RNs, LVNs, CHHAs, Physical Therapists, Occupational Therapists, Speech Therapists, Volunteers, Chaplains and Social Workers.
-
-A career with Aligned Hospice allows you to make a difference in the lives of others.
-
-Apply to be a part of our growing team today!
-
-###### Registered Nurses
-
-###### Licensed Practical Nurse
-
-###### Certified Home Health Aide
-
-###### Physical Therapist
-
-###### Speech Therapist
-
-###### Chaplain
-
-###### Social Worker
-
-###### Volunteer
-
-###### Occupational Therapist
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 36 — F.A.Q – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/f-a-q/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-### Frequent Asked Questions
-
-###### What is Hospice Care?
-
-###### Who is Hospice for?
-
-###### Who Pays for Hospice Care?
-
-###### Why Choose Hospice Care?
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 37 — Contact us – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/contact-us/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-### Contact us
-
-402 W. Broadway Ste. 400, San Diego, CA 92101-3554
-
-Phone: (619) 810-1939
-
-Fax: (619) 880-5153
-
-info@alignedhospice.com
-
-www.alignedhospice.com
-
-##### Please fill out the form
-
-Full name *
-
-Your email *
-
-Your phone*
-
-I’m interested in
-
-Your Message
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 38 — Physicians and Pharmacists to assist with pain medications – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/service/physicians-and-pharmacists-to-assist-with-pain-medications/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-- Home
-- Physicians and Pharmacists to assist with pain medications
-
-#### Care Services
-
-###### Respite Home Care
-
-###### Daily Home Care
-
-###### Hospital to Home Care
-
-###### Advanced Care
-
-###### Specialized Care
-
-###### Hourly Home Care
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 39 — Physical, occupation, and speech therapists to help maintain patient needs – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/service/physical-occupation-and-speech-therapists-to-help-maintain-patient-needs/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-- Home
-- Physical, occupation, and speech therapists to help maintain patient needs
-
-#### Care Services
-
-###### Respite Home Care
-
-###### Daily Home Care
-
-###### Hospital to Home Care
-
-###### Advanced Care
-
-###### Specialized Care
-
-###### Hourly Home Care
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 40 — Basic medical equipment and supplies related to the hospice plan of care – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/service/basic-medical-equipment-and-supplies-related-to-the-hospice-plan-of-care/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-- Home
-- Basic medical equipment and supplies related to the hospice plan of care
-
-#### Care Services
-
-###### Respite Home Care
-
-###### Daily Home Care
-
-###### Hospital to Home Care
-
-###### Advanced Care
-
-###### Specialized Care
-
-###### Hourly Home Care
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 41 — Professional care available 24 hours a day, 7 days a week. – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/service/daily-home-care/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-- Home
-- Professional care available 24 hours a day, 7 days a week.
-
-##### Doctor Care
-
-#### Care Services
-
-###### Respite Home Care
-
-###### Daily Home Care
-
-###### Hospital to Home Care
-
-###### Advanced Care
-
-###### Specialized Care
-
-###### Hourly Home Care
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 42 — Job Application Form – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/job-application-form/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-### Job Application Form
-
-(*) required fields
-
-First Name *
-
-Last name *
-
-Current Address *
-
-Available Start Date: *
-
-State *
-—Please choose an option—
-Alabama
-Alaska
-Arizona
-Arkansas
-California
-Colorado
-Connecticut
-Delaware
-District of Columbia
-Florida
-Georgia
-Hawaii
-Idaho
-Illinois
-Indiana
-Iowa
-Kansas
-Kentucky
-Louisiana
-Maine
-Maryland
-Massachusettes
-Michigan
-Minnesota
-Mississippi
-Missouri
-Montana
-Nebraska
-Nevada
-New Hampshire
-New Jersey
-New Mexico
-New York
-North Carolina
-North Dakota
-Ohio
-Oklahoma
-Oregon
-Pennsylvania
-Rhode Island
-South Carolina
-South Dakota
-Tennesse
-Texas
-Utah
-Vermont
-Virginia
-Washington
-West Virginia
-Wisconsin
-Wyoming
-
-City *
-
-Zip Code *
-
-Email *
-
-Phone *
-
-What is your Current employment Status? *
-
-Position *
-
-Years of Experience: *
-
-Upload Your Resume *
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
-
----
-
-## Page 43 — Services – Aligned Hospice
-
-**🔗 URL:** https://www.alignedhospice.com/service/
-
-- About Us
-- Services
-- Myths & Facts
-- Referral
-- Career
-- F.A.Q
-- Contact Us
-
-###### (619) 810-1939
-
-### Archives: Services
-
-##### Physicians and Pharmacists to assist with pain medications
-
-##### Physical, occupation, and speech therapists to help maintain patient needs
-
-##### Basic medical equipment and supplies related to the hospice plan of care
-
-###### AREAS WE SERVE
-
-- San Diego
-
-###### (619) 880-5153
-
-###### info@alignedhospice.com
-
-###### www.alignedhospice.com
-
-###### ACCREDITING PARTNERS
-
-Aligned Hospice is a Medicare/AHCCCS certified
-Home Health Agency and is accredited by the Accreditation Commission for Health Care.
+url: https://www.alignedhospice.com/service/
+type: listing
+meta: none
+content_summary: Lists 3 services. [See Page 1]

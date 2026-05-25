@@ -1,84 +1,57 @@
-Title: Website Developer Needed for Junk Removal & Cleanout Business
+---
+platform: Upwork
+job_title: Website Developer Needed for Junk Removal & Cleanout Business
+company: Clarity Cleanouts
+location: Remote
+remote: true
+employment_type: Freelance
+engagement: Fixed
+duration: Less than 1 month
+experience_level: Intermediate
+compensation: Under $500
+---
 
+# Website Developer Needed for Junk Removal & Cleanout Business — Clarity Cleanouts — Job Posting
 
-Summary: About the Project:
-I’m looking for a skilled web developer to build a professional website for Clarity Cleanouts, a junk removal and property cleanout service. The site needs to look clean, trustworthy, and make it easy for customers to learn about our services and reach out for a quote.
+## Role Summary
 
-What We Need:
+Clarity Cleanouts is a junk removal and property cleanout service seeking a web developer to build a professional informational website. The developer is responsible for delivering a complete, launch-ready ~5–7 page site — clean, trustworthy in appearance, mobile-responsive, and optimized for lead generation via quote requests and contact CTAs.
 
-• A polished, mobile-responsive informational website
-• Online booking or quote request form
-• Service pages (junk removal, estate cleanouts, etc.)
-• Contact page with call-to-action buttons
-• Basic SEO setup
-• Fast load times and clean design
+## Responsibilities
 
-What We Have Ready:
+- Build a polished, mobile-responsive small business website (~5–7 pages)
+- Implement an online booking or quote request form
+- Create service pages covering junk removal, estate cleanouts, and related offerings
+- Build a contact page with call-to-action buttons
+- Configure basic on-page SEO
+- Deliver fast load times and clean modern design
 
-• Logo and branding assets
-• Brand colors and style direction
-• Website copy (text for all pages)
+## Requirements
 
-So you can hit the ground running — no waiting on content from us.
+##### Must Have
 
-Ideal Candidate:
+- Portfolio of similar small business websites (2–3 examples required to apply)
+- Proficiency in WordPress, Squarespace, Webflow, or a comparable platform
+- Strong eye for clean, modern design
+- Clear communication and ability to meet deadlines
 
-• Experience building small business websites (portfolio required)
-• Proficient in WordPress, Squarespace, Webflow, or similar platforms
-• Strong eye for clean, modern design
-• Communicates clearly and meets deadlines
-• Experience with service-based or home services businesses is a plus
+##### Nice to Have
 
-Project Details:
+- Experience with service-based or home services businesses
 
-• Budget: Under $500 (fixed price)
-• Timeline: Looking to launch within 2–3 weeks
-• Scope: Small business website, ~5–7 pages
+## Client / Company Profile
 
-To Apply, Please Include:
+- Proposals received: 15–20
+- Interviewing: 6
+- Invites sent: 6
+- Unanswered invites: 0
+- Last viewed by client: 7 days ago
 
-• 2–3 examples of similar websites you’ve built
-• Your proposed platform/approach
-• Estimated timeline to completion
-Less
-Less than 30 hrs/week
-Hourly
-Less than 1 month
-Duration
-Intermediate
-I am looking for a mix of experience and value
-Project Type:One-time project
-Skills and experience
-Mandatory skills
+## Compensation & Terms
 
-WordPress Development
-WordPress Bug Fix
-WordPress Migration
-WordPress Customization
-WordPress Landing Page
-WordPress Installation
-Elementor
-Divi
-Theme Development
-Website Migration
-Gutenberg Editor
-WordPress e-Commerce
-Advanced Custom Fields Plugin
-WordPress Website Design
-WordPress Website
-Preferred qualifications
-Activity on this job
-Proposals:
-15 to 20
-
-Last viewed by client:
-7 days ago
-
-Interviewing:
-6
-Invites sent:
-6
-Unanswered invites:
-0
-
-
+- Type: Fixed
+- Budget: Under $500
+- Duration: Less than 1 month
+- Project type: One-time
+- Scope: ~5–7 pages
+- Assets provided: Logo, branding assets, brand colors/style direction, full website copy

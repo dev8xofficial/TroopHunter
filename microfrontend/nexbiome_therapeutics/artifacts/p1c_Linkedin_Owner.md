@@ -1,22 +1,30 @@
-Name: Stanislas DESJONQUERES
-HEadline: Chief Executive Officer chez Nexbiome Therapeutics
+---
+platform: LinkedIn
+profile_type: person
+name: Stanislas Desjonquères
+url: https://www.linkedin.com/in/stanislas-desjonqueres/
+headline: Chief Executive Officer chez Nexbiome Therapeutics
+linkedin_footer: [About, Accessibility, User Agreement, Privacy Policy, Cookie Policy,
+                  Copyright Policy, Brand Policy, Guest Controls, Community Guidelines]
+---
 
-About: With a business school training, specialising in finance, Stanislas has worked in the pharmaceutical industry for 25 years, and has developed an in-depth understanding of its markets and their operation. He has been successful in growing his last company, making it a world-wide leader, and achieving four fundraisings for that purpose. He is the founder of Nexbiome Therapeutics, which he did with the thought that value can be created too in a way to reach a broader patient population.
+# Stanislas Desjonquères — LinkedIn Profile
 
+## Summary
 
-Experience
-Nexbiome Therapeutics logo
-Chief Executive Officer
+With a business school training, specialising in finance, Stanislas has worked in the pharmaceutical industry for 25 years, and has developed an in-depth understanding of its markets and their operation. He has been successful in growing his last company, making it a world-wide leader, and achieving four fundraisings for that purpose. He is the founder of Nexbiome Therapeutics, which he did with the thought that value can be created too in a way to reach a broader patient population.
 
-Nexbiome Therapeutics · Full-time
+## Experience
 
-Jul 2020 - Present · 5 yrs 11 mos
+#### Chief Executive Officer — Nexbiome Therapeutics
 
-Clermont-Ferrand, Auvergne-Rhône-Alpes, France
+dates: Jul 2020 – Present
+duration: 5 yrs 11 mos
+location: Clermont-Ferrand, Auvergne-Rhône-Alpes, France
+employment_type: Full-time
 
-biose logo
-Chief Executive Officer
+#### Chief Executive Officer — biose
 
-biose · Full-time
-
-Oct 2007 - Jul 2020 · 12 yrs 10 mos
+dates: Oct 2007 – Jul 2020
+duration: 12 yrs 10 mos
+employment_type: Full-time

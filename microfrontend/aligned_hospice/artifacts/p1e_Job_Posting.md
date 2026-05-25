@@ -1,65 +1,61 @@
-Title: WordPress Website Redesign — Hospice Care (Healthcare, HIPAA)
+---
+platform: Upwork
+job_title: WordPress Website Redesign — Hospice Care (Healthcare, HIPAA)
+company: Aligned Hospice
+location: Remote
+remote: true
+employment_type: Contract
+engagement: Fixed
+duration: 1–3 months
+experience_level: Intermediate
+compensation: "$1,500–$3,000"
+---
 
+# WordPress Website Redesign — Hospice Care (Healthcare, HIPAA) — Aligned Hospice — Job Posting
 
-Summary: We are Aligned Hospice, a locally owned, Medicare-certified hospice serving San Diego, CA. We need our existing WordPress website fully redesigned — new look, new pages, and several legally required compliance pages added.
+## Role Summary
 
-The good news: all the hard work is done for you. All website copy is already written (13 pages), brand colors and fonts are specified, and a homepage design mockup is provided. You are handling design and implementation, not content strategy or writing.
+Aligned Hospice is a locally owned, Medicare-certified hospice serving San Diego, CA. They need their existing WordPress site fully redesigned — new visual design, 13 pages built from provided copy, and several legally required compliance pages added. All content strategy is complete: copy for all 13 pages is written, brand colors and fonts are specified, and a homepage design mockup is provided. The hired contractor is responsible for design execution and implementation only.
 
-What the project includes:
-Full visual redesign of existing WordPress site (warm, compassionate, professional aesthetic — brand colors and mockup provided)
-13 pages built with provided copy (homepage, about, services, FAQ, for families, referrals, careers, contact, and 4 compliance/legal pages)
-HIPAA-compliant contact and referral forms (must use encrypted provider with BAA — JotForm HIPAA, Formstack, or equivalent)
-Mobile-responsive, WCAG 2.1 AA accessible
-Basic on-page SEO (meta titles/descriptions, H1 structure, alt text)
-Google Analytics (GA4) installed
-XML sitemap submitted to Google Search Console
-30-day post-launch support
+## Responsibilities
 
-Required in your proposal:
-2–3 examples of WordPress sites you have built (healthcare a plus)
-Confirmation you have set up HIPAA-compliant forms before
-Your proposed price and timeline
-2–3 sentences on how you would approach this project
+- Fully redesign the existing WordPress site using a warm, compassionate, professional aesthetic per provided brand colors and mockup.
+- Build all 13 pages using provided copy: homepage, about, services, FAQ, for families, referrals, careers, contact, and 4 compliance/legal pages.
+- Implement HIPAA-compliant contact and referral forms using an encrypted provider with a signed BAA (JotForm HIPAA, Formstack, or equivalent).
+- Ensure the site is mobile-responsive and meets WCAG 2.1 AA accessibility standards.
+- Apply basic on-page SEO: meta titles/descriptions, H1 structure, and image alt text.
+- Install Google Analytics (GA4).
+- Generate and submit an XML sitemap to Google Search Console.
+- Provide 30 days of post-launch support.
 
-Budget: $1,500–$3,000 fixed price
-Timeline: 3–4 weeks
+## Requirements
 
-A full detailed project brief and complete copy document will be shared with the winning candidate immediately upon hiring.
-Less
-Less than 30 hrs/week
-Hourly
-1 to 3 months
-Duration
-Intermediate
-I am looking for a mix of experience and value
-Project Type:Complex project
-Skills and experience
-Mandatory skills
+##### Must Have
 
-Elementor
-UX & UI
-WordPress
-Web Design
-CSS
-HTML
-PHP
-Graphic Design
-Search Engine Optimization
-Google Analytics
-Preferred qualifications
-Location:
-Europe, Americas, Asia, Poland, Ukraine, Romania, Colombia, Argentina, Mexico, Philippines 
-Activity on this job
-Proposals:
-20 to 50
+- Demonstrated WordPress build experience — 2–3 portfolio examples required with proposal.
+- Prior experience setting up HIPAA-compliant forms (must confirm in proposal).
+- Proficiency in Elementor, HTML, CSS, PHP.
+- Web design and UX/UI skills aligned with a warm, professional healthcare aesthetic.
+- Graphic design capability.
+- SEO and Google Analytics (GA4) implementation experience.
 
-Last viewed by client:
-7 days ago
+##### Nice to Have
 
-Interviewing:
-0
-Invites sent:
-0
-Unanswered invites:
-0
+- Healthcare website experience (specifically noted as a plus).
+- Location in Europe, Americas, Asia, Poland, Ukraine, Romania, Colombia, Argentina, Mexico, or Philippines.
 
+## Client / Company Profile
+
+- Activity: 20–50 proposals received
+- Last viewed by client: 7 days ago
+- Interviewing: 0
+- Invites sent: 0
+- Unanswered invites: 0
+
+## Compensation & Terms
+
+- Type: Fixed
+- Budget: $1,500–$3,000
+- Duration: 1–3 months
+- Project type: One-time
+- Post-launch: 30-day support included in scope
