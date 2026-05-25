@@ -1,14 +1,14 @@
-Name: Karla Pivik
-Headline: Dermatologist at Juniper Dermatology
+---
+platform: LinkedIn
+profile_type: person
+name: Karla Pivik
+headline: Dermatologist at Juniper Dermatology
+location: Bend, Oregon, United States
+---
 
-LOcation: Bend, Oregon, United States
+# Karla Pivik — LinkedIn Profile
 
-·
-
-
-About:
-
-
+## Summary
 
 Dr. Karla Snider Pivik, FAAD, FAOCD, is a Board-Certified Dermatologist with a very patient-centered approach to treating dermatologic medical conditions. She hails from the wild and scenic town of Green River, Wyoming, and earned two Bachelor’s Degrees from the University of Wyoming. During her tenure in Wyoming, she discovered her love of foreign travel and participated in a foreign exchange program in Salamanca, Spain.
 
@@ -28,13 +28,8 @@ Osteopathic medicine emphasizes disease prevention through diet, exercise, and a
 
 For more information on Doctors of Osteopathy, please visit the American Osteopathic Association.
 
+## Experience
 
+#### Dermatologist — Juniper Dermatology
 
-
-
-Experience
-Juniper Dermatology logo
-Dermatologist
-
-Juniper Dermatology · Full-time
-
+employment_type: Full-time
