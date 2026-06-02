@@ -47,6 +47,14 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+If `pip` resolves to the system-managed Python (e.g. Homebrew on macOS) and throws
+an `externally-managed-environment` error, bypass the shell lookup and use the venv's
+own Python directly:
+
+```bash
+./venv/bin/python3 -m pip install -r requirements.txt
+```
+
 ## Configuration
 
 Open `config.py` to adjust behavior:
@@ -71,6 +79,12 @@ Activate your virtual environment, then run:
 
 ```bash
 python3 main.py "https://example.com"
+```
+
+If `python3` still resolves to system Python after activation, call the venv's binary directly:
+
+```bash
+./venv/bin/python3 main.py "https://example.com"
 ```
 
 The scraper will:
@@ -100,6 +114,14 @@ python main.py "https://easy.com/" --max-pages 50 --concurrent-tabs 5 --no-headl
 python main.py "https://atharved.com/" --max-pages 80 --concurrent-tabs 5 --no-headless
 ```
 
+If `python3` / `python` resolve to system Python, use the venv binary directly:
+
+```bash
+./venv/bin/python3 main.py "https://easy.com/" --max-pages 10 --concurrent-tabs 5 --headless
+./venv/bin/python3 main.py "https://easy.com/" --max-pages 50 --concurrent-tabs 5 --no-headless
+./venv/bin/python3 main.py "https://atharved.com/" --max-pages 80 --concurrent-tabs 5 --no-headless
+```
+
 ## Usage (Web page)
 
 You can also drive the scraper through a small web page instead of the CLI.
@@ -108,6 +130,12 @@ From the project root (after activating your virtual environment and installing 
 
 ```bash
 python3 web_app.py
+```
+
+Or with the venv binary directly:
+
+```bash
+./venv/bin/python3 web_app.py
 ```
 
 Then open `http://127.0.0.1:5000/` in your browser.

@@ -34,6 +34,14 @@ pip install -r requirements.txt
 
 ```
 
+If `pip` resolves to the system-managed Python (e.g. Homebrew on macOS) and throws
+an `externally-managed-environment` error, bypass the shell lookup and use the venv's
+own Python directly:
+
+```bash
+./venv/bin/python3 -m pip install -r requirements.txt
+```
+
 ## Usage (CLI)
 
 Activate your virtual environment, then run:
@@ -48,6 +56,13 @@ python main.py "https://www.linkedin.com/in/avadh-kishor-chouksey/" --max-scroll
 python main.py "https://www.linkedin.com/company/powered-by-isaac/" --max-scrolls 150 --no-headless
 python main.py "https://www.linkedin.com/company/aligned-hospice/" --max-scrolls 150 --no-headless
 python main.py "https://www.linkedin.com/company/rideitrideshare/" --max-scrolls 150 --no-headless
+```
+
+If `python` resolves to system Python after activation, use the venv binary directly:
+
+```bash
+./venv/bin/python3 main.py "https://www.linkedin.com/company/juniper-dermatology/" --max-scrolls 150 --no-headless
+./venv/bin/python3 main.py "https://www.linkedin.com/in/avadh-kishor-chouksey/" --max-scrolls 150 --no-headless
 ```
 
 The scraper will:
@@ -68,6 +83,12 @@ You can also run this via a simple local Flask app:
 
 ```bash
 python3 web_app.py
+```
+
+Or with the venv binary directly:
+
+```bash
+./venv/bin/python3 web_app.py
 ```
 
 Then visit `http://127.0.0.1:5000/`. Enter the LinkedIn URL and your max-scroll count and let the tool do the rest.
