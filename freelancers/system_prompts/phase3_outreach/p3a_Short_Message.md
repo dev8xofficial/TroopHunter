@@ -47,7 +47,7 @@ not a pitch accepted. One reply that keeps the conversation alive.
 
 **What not to do:**
 - Do not introduce Abdul by name, role, company, or background.
-- Do not mention Dev8X.
+- Do not mention any company.
 - Do not reference the portfolio link.
 - Do not ask for a call, a meeting, or 15 minutes of their time.
 - Do not use the prospect's first name in the message.

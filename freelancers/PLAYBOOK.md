@@ -9,7 +9,7 @@ Abdul is a frontend-first, full-stack developer looking for subcontract and over
 from other freelancers and small agencies. The goal is to build a layered network that
 consistently generates paid work — starting at 20 hours per week, scaling from there.
 
-This is not a client acquisition pipeline. Abdul is not selling Dev8X services.
+This is not a client acquisition pipeline. Abdul is not selling software products or agency services.
 He is positioning himself as a reliable technical collaborator that overloaded freelancers
 and small agencies can send work to.
 
@@ -212,7 +212,7 @@ problems.
 Each comment has a distinct job. The three stages must not collapse into one.
 
 **Comment 1 — Establish Presence (Day 0)**
-No introduction. No mention of Dev8X or Abdul's background. One specific insight,
+No introduction. No mention of any company or Abdul's background. One specific insight,
 observation, or contrasting point that adds something to the post — under 30 words.
 Short by design. A long first comment from an unknown name reads as performance.
 Short and sharp reads as someone who has something worth saying.
@@ -220,8 +220,8 @@ Short and sharp reads as someone who has something worth saying.
 **Comment 2 — Deepen the Thread (Day 2)**
 Shows continued attention — not a one-off. One brief, natural mention of relevant
 personal context is allowed here, woven into the comment, not announced.
-Example: "We hit the same wall scaling our frontend pipeline at Dev8X — the fix
-surprised me." One sentence. Still no pitch, no ask.
+Example: "We hit the same wall scaling a frontend pipeline — the fix surprised me."
+One sentence. Still no pitch, no ask.
 
 **Comment 3 — The Ask (Day 4)**
 One more substantive point, then a direct, low-pressure connection ask.
@@ -231,11 +231,10 @@ or "Would be good to connect — we're thinking about the same things."
 
 ### When to send the connection request
 
-The connection request is sent only if the prospect replies to any of the three comments.
-A reply is the signal that they have noticed and are open to contact.
+- **Prospect replies to any comment** → send the connection request immediately, the same day the reply arrives.
+- **No reply to any of the three comments** → send the connection request on Day 5 — one day after Comment 3.
 
-If none of the three comments get a reply, no connection request is sent.
-The prospect is noted as non-responsive in `_shared/results.md` and the pipeline stops.
+The connection request goes out either way. A reply makes it happen faster and with warmer context. Silence does not stop it — it only delays it by one day.
 
 ### Connection request note
 
@@ -312,7 +311,7 @@ without changing it, it is not ready.
 
 ### No pitch before the conversation exists
 
-The comments do not mention Dev8X's services. The connection request does not pitch.
+The comments do not pitch or reference any company. The connection request does not pitch.
 Path A does not pitch. Even Path B, which uses the fixed intro block, does not list
 services or ask for a call in a sales-framing way.
 
@@ -337,7 +336,7 @@ Read it aloud. If it sounds like it was written, rewrite it.
 | Stage | Success signal |
 |-------|---------------|
 | Phase 1 | Three clean context files with no gaps |
-| Phase 2 | Prospect replies to at least one comment → connection request sent and accepted |
+| Phase 2 | Connection request sent (immediately on reply, or Day 5 if no reply) and accepted |
 | Phase 3 | Prospect replies to the first message with genuine engagement |
 | Beyond pipeline | Trial task agreed → delivered on time → recurring work offered |
 
@@ -361,8 +360,8 @@ Step 7    Run p2a with context files + _shared/abdul.md → save as [prospect]/c
 Step 8    Post Comment 1 (Day 0)
 Step 9    Post Comment 2 (Day 2)
 Step 10   Post Comment 3 (Day 4)
-Step 11   If prospect replies to any comment → send connection request with short note
-          If no reply to any comment → log in _shared/results.md → stop
+Step 11   If prospect replies to any comment → send connection request immediately (same day)
+          If no reply to any comment → send connection request on Day 5 (1 day after Comment 3)
 Step 12   If connection accepted → run p3x_Strategy with context files + _shared/
           → get strategy recommendation (Path A, B, or C) + rationale
 Step 13   Run the recommended path prompt with _shared/abdul.md as required input

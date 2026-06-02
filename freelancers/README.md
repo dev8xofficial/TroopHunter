@@ -1,4 +1,4 @@
-# Dev8X — Freelancer Outreach Pipeline
+# Abdul — Freelancer Outreach Pipeline
 
 Abdul is a frontend-first, full-stack developer looking for subcontract and overflow work
 from top-rated freelancers and small agencies on Upwork. This pipeline moves a prospect
@@ -150,9 +150,9 @@ Day 2   Post Comment 2
 Day 4   Post Comment 3
 ```
 
-**Connection request rule:** Send only if the prospect replies to any comment.
-If no comment gets a reply, log the prospect in `_shared/results.md` as non-responsive
-and stop. Do not send a connection request to a silent prospect.
+**Connection request rule:**
+- Prospect replies to any comment → send connection request immediately (same day as reply)
+- No reply to any of the 3 comments → send connection request on Day 5 (1 day after Comment 3)
 
 ---
 

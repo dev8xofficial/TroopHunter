@@ -48,7 +48,7 @@ Lead generation platform — Next.js dashboards, Node.js microservices, PostgreS
 Sequelize, TurboRepo monorepo, Docker + Kubernetes + Terraform + Ansible CI/CD.
 Built and led all executive and technical aspects end to end.
 
-**Dev8X (2024–present)**
+**Independent projects (2024–present)**
 Frontend systems with React.js, Next.js, TypeScript. Node.js backend microservices.
 DevOps with Docker, Kubernetes, Terraform, Ansible. Monorepo with TurboRepo.
 Multiple client-facing products shipped.

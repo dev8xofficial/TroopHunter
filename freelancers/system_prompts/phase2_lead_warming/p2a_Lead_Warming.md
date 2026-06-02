@@ -33,8 +33,9 @@ technical founder — peer to peer, never salesy, never corporate.
   feels like the obvious next move.
 
 **What success looks like:**
-The target replies to at least one comment. A reply is the only signal that unlocks
-the connection request. If no comment gets a reply, no connection request is sent.
+The target replies to at least one comment — that triggers an immediate connection request.
+If no comment gets a reply, the connection request is still sent on Day 5 (one day after
+Comment 3). A reply makes it warmer and faster. Silence delays it by one day, nothing more.
 
 ---
 
@@ -89,7 +90,7 @@ Goal: Get noticed as someone worth paying attention to.
 Rules:
 - Add genuine value. Share a specific insight, a contrasting data point, a
   relevant experience, or a sharp observation that extends the post's idea.
-- Do NOT introduce Abdul. Do NOT mention Dev8X. Do NOT hint at wanting to connect.
+- Do NOT introduce Abdul. Do NOT mention any company. Do NOT hint at wanting to connect.
 - Write as one developer who found the post genuinely interesting — nothing more.
 - Length: 2–3 sentences. Words: under 30.
 - Tone: Direct, confident, peer-level. Not flattering. Not enthusiastic. Not corporate.
@@ -142,10 +143,10 @@ Rules:
 
 ### 5. Connection Request Rule
 
-The connection request is sent ONLY if the target replies to any of the three comments.
-A reply — any reply — is the signal that they have noticed and are open to contact.
+- **Target replies to any comment** → send the connection request immediately, the same day the reply arrives.
+- **No reply to any of the three comments** → send the connection request on Day 5 — one day after Comment 3.
 
-If no comment receives a reply, no connection request is sent.
+The connection request goes out either way. A reply makes it warmer and faster. Silence delays it by one day, not stops it.
 
 ### 6. Output Format
 
@@ -223,7 +224,7 @@ coherent rather than random.
 
 ### Connection Request Note
 
-**When to send:** Send only if the target replies to any of the three comments.
+**When to send:** Immediately if the target replied to any comment. Day 5 if no reply was received.
 
 **Request message (optional — LinkedIn allows a short note):**
 [2–3 sentence note Abdul can attach to the connection request. Same tone rules apply.

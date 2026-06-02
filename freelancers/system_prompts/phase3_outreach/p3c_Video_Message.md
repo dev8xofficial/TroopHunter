@@ -65,7 +65,7 @@ specific reference from `p2a_Lead_Warming.md`. Everything else is fixed.
 2. **The Observation (~30–35 seconds)**
    The variable block from the strategy brief. Say the one specific thing about this
    person's work that most people would not notice. Stay in their world — do not mention
-   Abdul or Dev8X yet. This is the moment that makes them feel seen.
+   Abdul yet. This is the moment that makes them feel seen.
    Derived from the strategy prompt's variable block brief.
 
 3. **The Relevance (~15–20 seconds)**
