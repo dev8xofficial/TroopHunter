@@ -300,6 +300,77 @@ The recommendation is derived from signals in the research:
 
 ---
 
+## Phase 4 — Trial Task
+
+### Why the trial task comes before recurring work
+
+A trial task removes the biggest barrier for a busy freelancer or agency owner: they do
+not know yet whether Abdul delivers the way he says he does. A short, specific task with
+a clear deliverable answers that question faster than any message or portfolio link.
+
+The trial task is proposed by Abdul — not requested. When the prospect replies to the
+first message, Abdul runs p4a with the existing context files and identifies the most
+relevant task. Then he proposes it in the same conversation thread — one concrete sentence,
+no pressure.
+
+### What makes a good trial task
+
+A good trial task is specific, completable in 2–4 hours, directly relevant to the
+structural gap identified in Phase 1, and produces a concrete deliverable the prospect
+can evaluate immediately — a component, a module, an integration. It can be scoped
+independently, without credentials, private system access, or a long briefing call.
+
+The task must come from what the prospect actually needs, not from what Abdul wants to
+showcase. "Help with frontend" is not a trial task. "Build the admin data table with
+sort, filter, and pagination to match your existing component style" is.
+
+### Delivering the trial task
+
+Deliver on time. p4b generates the delivery note — short, specific, names the deliverable
+exactly, leaves a natural opening without asking for it. The note does not explain every
+decision. The code speaks for itself.
+
+If it lands well, the relationship moves to Phase 5. If the prospect goes quiet after
+delivery, log the outcome in `_shared/results.md` and move on.
+
+---
+
+## Phase 5 — Scaling
+
+### From trial to recurring
+
+A successful trial task does not automatically become recurring work. Abdul has to ask —
+once, specifically, without pressure.
+
+p5a reads the trial task category and the Upwork overflow signals and produces a message
+that proposes a recurring arrangement in concrete terms: what type of tasks, how many
+hours per week, what the handoff process looks like. This is not a negotiation opener.
+It is a practical offer the prospect can say yes to without a call.
+
+### Asking for referrals
+
+Once the relationship is established — at least two tasks completed and acknowledged —
+Abdul can ask for a referral. This is not a sales move. It is a peer asking another
+peer whether anyone in their network is in the same situation they were in before they
+started working with Abdul.
+
+p5b produces one sentence, specific to this prospect's network context, with no commercial
+framing. It does not use the word "referral." It does not offer incentives. It simply
+names a type of person the prospect might know and asks if they do.
+
+### Updating the log
+
+After every concluded engagement — whether it ends at Phase 2 with no reply, at Phase 3
+with a message that goes cold, or at Phase 5 with recurring work or a referral — add a
+row to `_shared/results.md`. Then extract any relevant signals into the appropriate
+patterns file.
+
+The patterns files are the memory of the system. They are worthless until they have data.
+Log every outcome, including dead prospects — the dead ones often reveal the most useful
+signals about what not to do.
+
+---
+
 ## The Rules That Run Through Everything
 
 ### Every message is specific to one person

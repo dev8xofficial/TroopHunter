@@ -19,6 +19,10 @@ p3x_   Phase 3 — Strategy decision (Path A / B / C)
 p3a_   Phase 3 — Path A: Short conversation starter
 p3b_   Phase 3 — Path B: Medium introduction
 p3c_   Phase 3 — Path C: Video message (script + HTML report)
+p4a_   Phase 4 — Trial task scope
+p4b_   Phase 4 — Delivery note
+p5a_   Phase 5 — Recurring work ask
+p5b_   Phase 5 — Referral ask
 ```
 
 Prompts live in `system_prompts/`. Generated context files live in `[prospect]/context/`.
@@ -35,6 +39,7 @@ freelancers/
 ├── README.md                            ← this file — operational reference
 ├── _shared/
 │   ├── abdul.md                         ← Abdul's fixed blocks (derived from master-dataset/abdul.json)
+│   ├── prospects.md                     ← master prospects table (replaces Google Sheet)
 │   ├── results.md                       ← engagement log: prospect type, path used, outcome
 │   └── patterns/
 │       ├── comments.md                  ← comment angles that got replies, by prospect type
@@ -47,11 +52,17 @@ freelancers/
 │   │   └── p1c_Linkedin_Owner.md
 │   ├── phase2_lead_warming/
 │   │   └── p2a_Lead_Warming.md
-│   └── phase3_outreach/
-│       ├── p3x_Strategy.md
-│       ├── p3a_Short_Message.md
-│       ├── p3b_Medium_Message.md
-│       └── p3c_Video_Message.md
+│   ├── phase3_outreach/
+│   │   ├── p3x_Strategy.md
+│   │   ├── p3a_Short_Message.md
+│   │   ├── p3b_Medium_Message.md
+│   │   └── p3c_Video_Message.md
+│   ├── phase4_trial_task/
+│   │   ├── p4a_Trial_Scope.md
+│   │   └── p4b_Delivery_Note.md
+│   └── phase5_scaling/
+│       ├── p5a_Recurring_Ask.md
+│       └── p5b_Referral_Ask.md
 │
 └── [prospect-name]/                     ← one folder per prospect
     ├── raw/                             ← raw scrapes (input, named after the prompt that reads them)
@@ -63,12 +74,16 @@ freelancers/
     │   ├── p1b_Upwork.md
     │   ├── p1c_Linkedin_Owner.md
     │   ├── p2a_Lead_Warming.md
-    │   └── p3x_Strategy.md
+    │   ├── p3x_Strategy.md
+    │   └── p4a_Trial_Scope.md
     └── artifacts/                       ← ready-to-send outputs
         ├── p3a_Message_[Name].md        ← Path A output
         ├── p3b_Message_[Name].md        ← Path B output
         ├── p3c_Script_[Name].md         ← Path C video script
-        └── p3c_Report_[Name].html       ← Path C HTML visual report
+        ├── p3c_Report_[Name].html       ← Path C HTML visual report
+        ├── p4b_Delivery_[Name].md       ← Trial task delivery note
+        ├── p5a_Recurring_[Name].md      ← Recurring work ask
+        └── p5b_Referral_[Name].md       ← Referral ask
 ```
 
 ---
@@ -79,6 +94,8 @@ freelancers/
 PHASE 1 — Intelligence    Raw scrapes → 3 clean context files
 PHASE 2 — Warming         Context → 3-comment LinkedIn sequence (Day 0 / Day 2 / Day 4)
 PHASE 3 — Outreach        Strategy decision → one of three message paths
+PHASE 4 — Trial Task      Prospect reply → scoped trial task → delivery note
+PHASE 5 — Scaling         Delivery acknowledged → recurring ask → referral ask
 ```
 
 | Phase | Abdul has done | Prospect has seen | Gate to next phase |
@@ -86,6 +103,8 @@ PHASE 3 — Outreach        Strategy decision → one of three message paths
 | 1 | Scraped and cleaned 3 sources | Nothing | 3 context files exist |
 | 2 | Posted 3 comments over 4 days | Comments from Abdul | Prospect replies to any comment |
 | 3 | Sent first message | Personalised message or video | Prospect replies |
+| 4 | Proposed and delivered a trial task | Concrete deliverable from Abdul | Prospect acknowledges delivery positively |
+| 5 | Proposed recurring arrangement | Specific offer with hours and task type | Prospect agrees to recurring work |
 
 ---
 
@@ -268,6 +287,87 @@ Do not use if research cannot produce a genuinely specific observation — use P
 
 ---
 
+## Phase 4 — Trial Task
+
+**When to run:** After the prospect replies to the first message with genuine interest.
+Run p4a to scope the task, then propose it in the same conversation thread.
+
+---
+
+### p4a — Trial Task Scope
+
+**Attach to Claude:**
+| File | Role |
+|------|------|
+| `system_prompts/phase4_trial_task/p4a_Trial_Scope.md` | Prompt |
+| `[prospect]/context/p1a_Website.md` | Prospect website — services and project types |
+| `[prospect]/context/p1b_Upwork.md` | Prospect Upwork — work history and tech stack |
+| `[prospect]/context/p1c_Linkedin_Owner.md` | Prospect LinkedIn — current focus |
+| `[prospect]/context/p3x_Strategy.md` | Strategy decision — what gap was identified |
+| `_shared/abdul.md` | Abdul's skills — what he can actually deliver |
+
+> Estimated token usage: 15k–30k.
+
+**Save output as:** `[prospect]/context/p4a_Trial_Scope.md`
+
+---
+
+### p4b — Delivery Note
+
+**When to run:** When the trial task is complete and ready to hand off.
+
+**Attach to Claude:**
+| File | Role |
+|------|------|
+| `system_prompts/phase4_trial_task/p4b_Delivery_Note.md` | Prompt |
+| `[prospect]/context/p4a_Trial_Scope.md` | What was scoped and agreed |
+| `_shared/abdul.md` | Abdul's tone and framing |
+
+> Estimated token usage: 5k–10k.
+
+**Save output as:** `[prospect]/artifacts/p4b_Delivery_[Name].md`
+
+---
+
+## Phase 5 — Scaling
+
+**When to run p5a:** After the prospect acknowledges the trial task delivery positively.
+**When to run p5b:** After at least 2 tasks have been completed and the relationship is established.
+
+---
+
+### p5a — Recurring Ask
+
+**Attach to Claude:**
+| File | Role |
+|------|------|
+| `system_prompts/phase5_scaling/p5a_Recurring_Ask.md` | Prompt |
+| `[prospect]/context/p1b_Upwork.md` | Prospect Upwork — workload signals and project types |
+| `[prospect]/context/p4a_Trial_Scope.md` | What was delivered — grounds the message |
+| `_shared/abdul.md` | Abdul's offer structure and available hours |
+
+> Estimated token usage: 5k–15k.
+
+**Save output as:** `[prospect]/artifacts/p5a_Recurring_[Name].md`
+
+---
+
+### p5b — Referral Ask
+
+**Attach to Claude:**
+| File | Role |
+|------|------|
+| `system_prompts/phase5_scaling/p5b_Referral_Ask.md` | Prompt |
+| `[prospect]/context/p1c_Linkedin_Owner.md` | Prospect LinkedIn — network signals |
+| `[prospect]/context/p4a_Trial_Scope.md` | What was delivered — for framing context |
+| `_shared/results.md` | Engagement history — confirms what has been completed |
+
+> Estimated token usage: 5k–10k.
+
+**Save output as:** `[prospect]/artifacts/p5b_Referral_[Name].md`
+
+---
+
 ## How the Phases Connect
 
 ```
@@ -276,8 +376,10 @@ _shared/abdul.md ─────────────────────
 p1a_ + p1b_ + p1c_ → p2a_ Warming (Day 0/2/4) → p3x_ Strategy → p3a_ or p3b_ or p3c_
 ```
 
-`_shared/abdul.md` is a required input for p2a and all Phase 3 prompts.
+`_shared/abdul.md` is a required input for p2a, all Phase 3 prompts, and all Phase 4–5 prompts.
 `_shared/patterns/` is an optional input that improves with each completed engagement.
+`_shared/prospects.md` is the master list of all leads — updated as prospects move through phases.
+`_shared/results.md` receives a row only when an engagement is fully concluded.
 
 ---
 
@@ -293,5 +395,9 @@ p1a_ + p1b_ + p1c_ → p2a_ Warming (Day 0/2/4) → p3x_ Strategy → p3a_ or p3
 | 3 | p3a_ Short Message | Prompt + p1c_ + p2a_ + p3x_ | 10k–20k |
 | 3 | p3b_ Medium Message | Prompt + p1a_ + p1b_ + p1c_ + p2a_ + _shared/ | 15k–30k |
 | 3 | p3c_ Video Message | Prompt + p1a_ + p1b_ + p1c_ + p2a_ + _shared/ | 20k–45k |
+| 4 | p4a_ Trial Scope | Prompt + p1a_ + p1b_ + p1c_ + p3x_ + _shared/ | 15k–30k |
+| 4 | p4b_ Delivery Note | Prompt + p4a_ + _shared/ | 5k–10k |
+| 5 | p5a_ Recurring Ask | Prompt + p1b_ + p4a_ + _shared/ | 5k–15k |
+| 5 | p5b_ Referral Ask | Prompt + p1c_ + p4a_ + _shared/ | 5k–10k |
 
 Keep each phase in its own Claude session to stay within the 190k per-session limit.
