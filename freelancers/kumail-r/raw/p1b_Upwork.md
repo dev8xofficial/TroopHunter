@@ -323,6 +323,188 @@ $15.00 /hr
 
 Current page 2 of 3
 
+Google Cloud Run & Next.js Release Engineer/Guide
+Oct 14, 2025 - Present
+Job in progress
+
+$210.00
+$35.00 /hr
+6 hours
+WordPress install (theme and plugins) troubleshooting
+Jul 7, 2025 - Present
+Job in progress
+
+$60.00
+$15.00 /hr
+4 hours
+Full-Stack Developer (FastAPI + Next.js + Supabase) for AI Tools & Ongoing Projects
+May 24, 2025 - Present
+Job in progress
+
+$12,697.50
+$15.00 /hr
+847 hours
+Webhook for the Teams Presence API
+Apr 14, 2025 - Present
+Job in progress
+React developer with GatsbyJS expertize
+Rating is 4.0 out of 5.
+4.0
+Apr 11, 2020 - Jun 16, 2020
+"Will be edited when finish everything"
+
+$200.00
+Fixed price
+Frontend Developer React
+May 4, 2020 - Jun 10, 2020
+This feedback has been removed
+
+$482.67
+$8.00 /hr
+60 hours
+Need React.js Gatsby Developer with good design skills (30-100hrs per month)
+Rating is 5.0 out of 5.
+5.0
+Apr 15, 2020 - Jun 10, 2020
+"Kumail has worked with us on many projects over the past few months and he is an absolute lifesaver. He's professional and highly-motivated. Over the past 8 websites he has..." See more
+
+Professional
+Reliable
+Committed to Quality
+$2,255.00
+$15.00 /hr
+150 hours
+Co-Lead Developer and Assistant to CIO/CEO
+Rating is 5.0 out of 5.
+5.0
+Apr 6, 2020 - Apr 30, 2020
+"Kumail understands content better than any coder I have ever worked with"
+
+Clear Communicator
+$135.00
+Fixed price
+Frontend Developer React
+Rating is 4.8 out of 5.
+4.8
+Apr 5, 2020 - Apr 9, 2020
+"Work very hard and honest!"
+
+Professional
+$153.33
+$8.00 /hr
+19 hours
+React Contentful Developer Needed
+Rating is 5.0 out of 5.
+5.0
+Mar 15, 2020 - Apr 6, 2020
+$18.67
+$7.00 /hr
+3 hours
+React Redux Restful API
+Rating is 5.0 out of 5.
+5.0
+Mar 26, 2020 - Apr 5, 2020
+"Good Developer...We continue the development together"
+
+Freelancer's response
+
+"Thanks alot"
+Collaborative
+$392.00
+$8.00 /hr
+49 hours
+React Contentful Developer Needed
+Rating is 5.0 out of 5.
+5.0
+Feb 11, 2020 - Mar 15, 2020
+"Great Freelancer. He read and got up to speed on our project very quickly. However due to current market conditions surrounding the Coronavirus Pandemic we have had to regroup and..." See more
+
+Clear Communicator
+$30.00
+Fixed price
+Fix, Maintain, update a backend application using nodejs
+Rating is 5.0 out of 5.
+5.0
+Mar 11, 2020 - Mar 12, 2020
+"Intelligent person, who will make things work as requested and is very reliable and quick in response, will rehire again"
+
+Reliable
+Clear Communicator
+$120.00
+Fixed price
+Are you able to make a static novel website?
+Rating is 5.0 out of 5.
+5.0
+Dec 17, 2019 - Dec 18, 2019
+"he is kind and has a positive attitude
+I hope there will be another opportunity to work with him"
+
+Freelancer's response
+
+"Thank For your Trust. Will definitely work with you again :)"
+Collaborative
+$10.00
+Fixed price
+
+
+Google Cloud Run & Next.js Release Engineer/Guide
+Oct 14, 2025 - Present
+Job in progress
+
+$210.00
+$35.00 /hr
+6 hours
+WordPress install (theme and plugins) troubleshooting
+Jul 7, 2025 - Present
+Job in progress
+
+$60.00
+$15.00 /hr
+4 hours
+Full-Stack Developer (FastAPI + Next.js + Supabase) for AI Tools & Ongoing Projects
+May 24, 2025 - Present
+Job in progress
+
+$12,697.50
+$15.00 /hr
+847 hours
+Webhook for the Teams Presence API
+Apr 14, 2025 - Present
+Job in progress
+
+$140.00
+$35.00 /hr
+4 hours
+Next.js Developer Needed for Project with Prisma ORM and Tailwind CSS
+Mar 20, 2025 - Present
+Job in progress
+
+$3,704.18
+$35.00 /hr
+106 hours
+Full Stack Developer
+Feb 26, 2025 - Present
+Job in progress
+
+$1,400.00
+Fixed price
+Urban Treasure app development
+Jan 16, 2025 - Present
+Job in progress
+
+$21,624.17
+$35.00 /hr
+618 hours
+MERN developer to add to the team
+Oct 16, 2024 - Present
+Job in progress
+
+$30.00
+Fixed price
+
+
+
+
 Portfolio
 
 HostJane

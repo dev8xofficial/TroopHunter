@@ -1,140 +1,315 @@
-# Name
-Herman K.
+Amish Maqbool Khan
+· 3rd
 
-# Headline
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
+✨✨ Transforming Logic into Magic ✨✨Creator | Entrepreneur | Mentor | Front-End & Full-Stack Software Engineer | Technical Architect | AI Engineer | Engineering & Product Leader | Empowering & Building Digital Solutions
 
-# Location
-Edmonton, Alberta, Canada
+Canada
+
+·
 
 Contact info
+
+
+Upwork
+
+1,702 followers
+
+·
+
 500+
+
 connections
 
-# About
-Did you know that 68% of MVPs fail within months of launch? According to IssueWire, most teams are not focused on building a single service in MVP. Budgets blow up. Deadlines slip. Sound familiar?
 
-I'm Herman, CEO of Coding House Studio. We help advertising agencies and small to mid-size businesses launch MVPs the right way — fast, focused, and without comprome on the quality. We build products that are ready to grow, focused on the features that matter most, and designed to get your idea in front of real users as quickly as possible. We help reduce time to market by 40% compared to traditional alternatives by focusing strictly on high-impact MVP features.
+Follow
 
-We've been doing this for over five years and we understand what our clients need, often before they say it. More than 20 projects delivered for clients across North America. In Q1 of 2026, three of our clients went live on both the App Store and Google Play. We know what it takes to go from idea to launch — and we help you get there without wasting time or money.
+Message
 
-Our team of 15 handles everything you need to ship your MVP — from rough notes and requirements to a polished, ready-to-launch product. Most projects we ship in 4 to 12 weeks and we've got your back if you need any ongoing support. We use AI to build faster and smarter — and we help our clients integrate AI directly into their own apps.
+People who follow Amish also follow
 
-Our clients rely on us for transparency and trust us to deliver their projects the right way. We help you figure out what your MVP needs right now — and what can wait. If you're looking for a trusted partner to have your MVP launched on time and on budget, we're here to help.
 
-# Experience
 
-Coding House Studio logo
-CEO & Founder
+View profile
+Abdul Waheed® 
 
-Coding House Studio · Self-employed
+⤷ Business Development Specialist | Lead Generation Specialist | Outreach Specialist | Tech-Driven Marketing Strategist | SEO & Email Marketing Expert | HubSpot | IT Staff Augmentation | Sales | B2B | B2C | Pipedrive
 
-Sep 2025 - Present · 10 mos
+75,830 followers
 
-Wilmington, Delaware, United States · Remote
 
-As CEO of Coding House, my mission is simple: help businesses stay competitive in the age of AI.
-I founded Coding House to bring creativity back into development. I surrounded myself with experts who share that same passion for innovation — people who push boundaries, embrace new ideas, and deliver work that actually moves the needle for our clients.
-If you're building a digital product and want to stay ahead in these dynamic times, let's talk.
+Follow
+View profile
+Rehan Sattar 
 
- Edtech, HealthTech and +3 skills
+Founder @Sakeenah - سکینہ | Senior Software Engineer @Metal (YC) | Top 1% Mentor @Topmate | Author | Tech Speaker
 
-AMA - Alberta Motor Association logo
-Agile Team Lead
 
-AMA - Alberta Motor Association · Permanent Full-time
 
-Jan 2024 - Aug 2025 · 1 yr 8 mos
+Followed by Abdul and Saqib
 
-Edmonton, Alberta, Canada · Hybrid
 
-Led and mentored a team of 5 full-stack mobile developers, focusing on personal growth and skill development
-Unblocked development team by introducing integration testing and a new state management approach processes
-Enhanced hiring with a coding challenge and better evaluation methods
-Audited mobile apps and set up a process to manage technical debt
-Boosted test automation to improve software quality
+Follow
+View profile
+Laeeq Ahmad 
 
- Software Quality Improvement  , Technical Hiring Optimization   and +14 skills
+Built Pakistan’s #1 Investment Platform with Zero Finance Degree | Founder, Sarmaaya.pk | Helping 50,000+ Pakistanis Build Wealth Through Smart Investing
 
-Nicholas and Company logo
-Network Architect
+45,399 followers
 
-Nicholas and Company · Full-time
 
-Jul 2021 - Mar 2023 · 1 yr 9 mos
+Follow
+View profile
+Alexander Nabutovsky 
 
-Salt Lake City, Utah, United States
+CEO & Co-Founder  at QuickNode.com (YC W21)
 
-Achieved over $1M savings in Microsoft licensing through contract renewal audits.
-Migrated virtual infrastructure to VMware and managed 15 Microsoft applications.
-Managed on-premise systems including SAN and Rubrik for high availability.
-Improved network and server performance with SolarWinds Orion and Icinga2 monitoring.
+2,639 followers
 
- Network Administration, dhcp and +24 skills
 
-JourneyTEAM logo
-Cloud Solutions Specialist
+Follow
+View profile
+Naseem Hassan
 
-JourneyTEAM · Contract
+Lead EHS Mangla Refurbishment Hydro power Project AJk, Pakistan (Main Contractor General Electric ) (GE)
 
-May 2020 - Jul 2021 · 1 yr 3 mos
+1,499 followers
 
-Draper, Utah, United States
 
-Improved efficiency by 75% with health checks of 10 Active Directory environments.
-Deployed AD CA across multiple domain forests.
-Migrated Active Directory and onboarded 10 software packages to Intune.
-Enhanced security for Intune-managed devices.
-Set up autopilot and endpoint onboarding/offboarding processes.
+Follow
+About
+Greetings👋🏻 I am a computer science graduate with a proven track record of designing, architecting, developing, managing, and maintaining solid, reliable, and scalable software solutions in web and mobile application development. With extensive experience working with Fortune companies, startups, SMEs, and enterprise clients, I am a full-stack developer well-versed in a wide range of technologies, tools, frameworks, and libraries.
 
- Network Administration, Network Infrastructure and +5 skills
+Specialize in building (and occasionally designing) exceptional Websites, web Apps, Mobile Applications, SaaS Products,Start-up's, MVP's,Teams,Individual and everything in between.
 
-Progressive Leasing logo
-Information Security Specialist
+In addition to my technical skills, I possess non-development skills such as mentorship, CTO and architect roles, system design and architecture, team leadership, and UI/UX design. I am well-versed in the software development life cycle (SDLC) and proficient in essential project management and collaboration tools such as Trello, Slack, JIRA, Monday.com, Discord, and Figma.
 
-Progressive Leasing · Internship
+Experience
 
-Jan 2020 - Apr 2020 · 4 mos
+Upwork logo
+UI/UX designer / Full Stack Developer / Frontend Software Engineer / Top-Rated Plus / AI Engineer
 
-Draper, UT
+Upwork · Freelance
 
-Saved 52 hours/year by automating tasks with Python.
-Integrated Crowdstrike, JIRA, and Qualys for better efficiency.
-Consolidated security alerts to Slack using API integrations.
+Jan 2016 - Present · 10 yrs 6 mos
 
- Network Administration, Network Infrastructure and +4 skills
+Remote
 
-Senior Technical Service Representative
+ Front-end Development, Front-End Development and +26 skills
 
-ExpanDrive and others · Contract
+QuickNode logo
+Senior Software Consultant
 
-Mar 2018 - Jan 2020 · 1 yr 11 mos
+QuickNode · Contract
 
-Greater Boston
+Feb 2024 - Present · 2 yrs 5 mos
 
-•	Interfaced with 5,000+ customers and solved their issues with a response time of under 2 minutes 
-•	Resolved technical issues via TeamViewer and oversaw sales, billing, and technical questions 
-•	Performed troubleshooting on Google Drive, OneDrive, Cloud, SharePoint, DropBox, Box, SFTP/FTP/TFTP, WebDAV, NextCloud, Back Blaze, Wasabi, and IDrive cloud issues
+United States · Remote
 
- Troubleshooting and Skill Development
+Conducted comprehensive UI/UX design reviews, gathered feedback, and implemented enhancements to elevate user interface aesthetics and functionality.
+Developed and deployed innovative new features that aligned with QuickNode's strategic roadmap, ensuring a consistent, user-friendly, and engaging experience across all touchpoints.
+Managed, structured, and maintained Contentful CMS, ensuring optimal content creation workflows, seamless platform integration, and up-to-date content delivery.
+Led technical debt cleanup initiatives, focusing on improving codebase quality, system performance, and long-term maintainability.
+Provided expert consultation on frontend development, including responsive design, animations, user interactions, and overall user experience optimization.
+Collaborated with cross-functional teams, including designers, developers, and product managers, to identify and capitalize on opportunities for platform innovation and continuous improvement.
+Ensured all developments were fully responsive, adhered to brand standards, and optimized for accessibility and usability across various devices and browsers.
+Oversaw the creation and optimization of landing pages, ensuring they were visually appealing, conversion-focused, and aligned with marketing goals.
+Monitored and implemented best practices for SEO and performance optimization, contributing to the platform's overall growth and success.
+Engaged in continuous learning and professional development to stay current with the latest frontend technologies, design trends, and CMS management techniques, applying this knowledge to enhance the QuickNode platform.
 
-FamilySearch logo
-Metadata Specialist
+ Website Building, Web Application Development and +18 skills
 
-FamilySearch · Part-time
+Nexlayer logo
+Chief front-end engineer
 
-Oct 2016 - Sep 2017 · 1 yr
+Nexlayer · Contract
 
-Salt Lake City Metropolitan Area
+Jun 2024 - Present · 2 yrs 1 mo
 
-•	Conducted troubleshooting of network, hardware, and software-related issues 
-•	Executed Python automation for inefficient processes of transferring roughly 4,000 TB of data 
-•	Created and implemented scripts to replace manual work and increase efficiency 
-•	Helped 10 employees in the division with fixing printers, and computers, installing and configuring Windows, Windows Server, and Mac OS to improve operations
+United States · Remote
 
- Troubleshooting and Skill Development
+As Chief Front-End Engineer at NexLayer,  Architect and lead the development of cutting-edge, scalable, and performant front-end solutions for our cloud-native SaaS platform. I own the entire front-end stack—driving real-time features, state management, DevOps alignment, and seamless third-party integrations—while mentoring engineers and aligning technical execution with product vision.
 
-# Skills
+Key Responsibilities:
+
+Architecture & Strategy: Design scalable front-end architecture using modern frameworks and modular codebases.
+State Management: Implement and maintain advanced state management using Redux and Zustand, depending on feature complexity and scope.
+Real-Time Features: Develop interactive, real-time experiences using WebSockets and event-driven architecture.
+OAuth & Authentication: Build secure, robust authentication flows using OAuth and WorkOS for enterprise login.
+Git-Based Integration: Create Git repository registration and project setup flows to streamline onboarding and version control.
+Team Leadership: Lead a team of front-end developers, conduct code reviews, and establish best practices in performance, security, and accessibility.
+UI/UX Implementation: Translate design system components into responsive, production-grade UIs using React, Next.js, Tailwind CSS, and Radix UI.
+DevOps Collaboration: Work closely with DevOps to ensure smooth Docker-based development workflows and Kubernetes deployments.
+CI/CD: Maintain and improve CI/CD pipelines for frontend delivery using GitHub Actions.
+
+ Software as a Service (SaaS), SaaS Development and +22 skills
+
+Stellar Stack logo
+Founder & Software Consultant
+
+Stellar Stack · Self-employed
+
+Jan 2019 - Present · 7 yrs 6 mos
+
+Burnaby, British Columbia, Canada · Hybrid
+
+StellarStack is a Services based team with HQ in Vancouver, BC, Canada. We believe in pushing beyond the limits of core technologies to create new paradigms, which either disrupt large markets, or create new ones entirely. We build products from the ground up, utilizing frontier technologies to create value and efficiency that’s orders of magnitude greater than the status quo.
+
+StellarStack is a company whose vision is to implement new ideas through cutting-edge technology. We have clients from all over the world whom we serve diligently to make them 100% satisfied by providing the best value and top quality services.
+
+WE LOVE TO TURN TECHNOLOGIES AND DESIGN INTO A SOLUTION FOR BUSINESS NEEDS.
+
+ Front-end Development, Databases and +20 skills
+
+Agile IT logo
+Senior Frontend Software Engineer
+
+Agile IT · Contract Full-time
+
+Sep 2023 - Jul 2025 · 1 yr 11 mos
+
+United States · Remote
+
+At Agile IT, we enable companies to leverage the cloud, as a remote company, we embrace the cloud. working as Web Developer with experience in Astro to assist in the,migrate wordpress site, redesign and redevelopment , maintain ,update of our existing WordPress site.
+
+Key Responsibilities:
+Complete Migration of website from wordpress to Latest tech stack.
+Updating and maintaining the existing website work in Astro, ensuring optimal performance and user experience.  
+Working with Integrating a WYSIWYG service to facilitate the building of new pages, while ensuring full compatibility with Astro.  
+Ensureing all design components are developed using Tailwind CSS, allowing for easy global and specific design modifications.  
+Working closely with the design and content teams to ensure the website's aesthetics and functionality align with company goals.  
+Continuously test and debug to ensure the website remains responsive across devices and browsers.  
+Stay updated with the latest developments in Astro and related technologies to keep the website modern and competitive.
+Hands on daily experienced Astro development and deployment.  
+Proficiency in Tailwind CSS and a deep understanding of responsive design.  
+Familiarity with WYSIWYG tools and their integration with web development platforms.  
+collaborating and communicating daily or on weekly basis with the stakeholder and other members of team.
+
+ Cloud Computing, Front-End Development and +19 skills
+
+Crowdbotics logo
+Tech Lead / Senior Frontend Software Engineer
+
+Crowdbotics
+
+Sep 2022 - Sep 2023 · 1 yr 1 mo
+
+Berkeley, California, United States · Remote
+
+During my time at Crowdbotics, I excelled in The following niche:
+
+Frontend & React Native Development: Creating user-friendly interfaces for iOS, Android, and web apps with React Native.
+REST API Development: Leading the development of REST APIs for seamless client-server communication.
+Scalable Code and Libraries: Designing code and libraries for long-term sustainability and feature expansion.
+Database Optimization & REDIS Caching: Optimizing databases and implementing REDIS cache for improved performance.
+Data Security: Implementing modern security measures for data protection.
+Debugging & Testing: Identifying and resolving issues early in development, ensuring application reliability.
+Legacy System Upgrades: Modernizing systems for enhanced efficiency.
+Team Support & Training: Empowering colleagues through assistance and training.
+Tech Trends Awareness: Staying informed about emerging technologies for informed decision-making.
+
+In summary, I contributed to frontend development, API design, code scalability, database optimization, data security, debugging, system upgrades, team support, and tech trend awareness, improving project efficiency and user satisfaction.
+
+ Databases, Front-End Development and +13 skills
+
+Intelligent Relations logo
+Full Stack Engineer & Lead Senior Frontend Engineer
+
+Intelligent Relations · Contract Full-time
+
+Apr 2022 - Mar 2023 · 1 yr
+
+Weston, Connecticut · Remote
+
+IR growing, 100% virtual MarTech SaaS startup was looking for an experienced Full Stack Developer to help with implementation of a library of React components and page designs, as well as a number of other responsibilities with the team.like:
+Backend: Working with TypeScript, NodeJS,BlitzJS For Server Site Development.
+Front end: Working with React For client Side Development.
+Working with a utility-first css framework like TailwindCSS.
+Working with Strapi or other headless CMS for dynamic Content Genereation for Landing Pages .
+Working with ,Prisma Studio,PostgreSQL database
+Designing features from scratch and to refactor and proposing improvements for existing functionalities.
+
+ Databases, Front-end Engineering and +30 skills
+
+ngrok logo
+Full Stack Engineer
+
+ngrok · Contract Full-time
+
+Nov 2021 - Sep 2022 · 11 mos
+
+San Francisco, California, United States · Remote
+
+It was a project to convert Figma into HTML/Tailwind/JS in our marketing and blog sites. We expect the conversion to work seamlessly with our current tech (static pages with python/flask/html/css/markdowns), but we developed Blog web App as propsed proposal for JAMStack (pref using React + a CMSless solution. We want to avoid git PRs to push content!)
+
+Required Experience
+- Experience converting static sites from python/flask to JAMStack
+- Experience in making architectural recommendations
+- Experience with GIT source control and CMSLess
+
+ Front-end Engineering, React and +9 skills
+
+Leni logo
+Senior Frontend Developer
+
+Leni · Contract Full-time
+
+Jan 2020 - Dec 2021 · 2 yrs
+
+Canada · Remote
+
+The Realsage Team combines their deep experience in real estate (JLL, Cushman & Wakefield and Greybook) alongside their experience in banking and technology(Goldman Sachs, RBC & Zomato) and applies it to the world of Realsage.
+
+Rental managers are faced with unique challenges and we set out to build a digital solution that automates and orients their operations with the power of data.
+
+We started Realsage from the founders’ personal experiences in the domain to tackle the modern-day challenges that rental managers face by enabling them to leverage their data and systems uniquely. So far, we have seen great success in making rental management better for institutions and have transferred the developed system to an in-house team of professionals with proper guidance, mentoring, and support to scale the system as per there and needs and growth.
+
+Over 2000 subscribed units
+Deployed in 40 cities across North America
+$10 billion in Assets Under Management(AUM)
+
+ Front-End Development, Search Engine Optimization (SEO) and +10 skills
+
+FHA Technology logo
+Senior Frontend Software Engineer
+
+FHA Technology · Full-time
+
+Dec 2020 - Jan 2021 · 2 mos
+
+Islāmābād, Pakistan
+
+ Front-end Development, Front-End Development and +9 skills
+
+Software Engineer
+
+elTallerJS · Freelance
+
+Jun 2020 - Nov 2020 · 6 mos
+
+ Front-end Development, Front-End Development and +10 skills
+
+AlphaSquad logo
+Frontend React Engineer
+
+AlphaSquad · Full-time
+
+Jan 2019 - Aug 2020 · 1 yr 8 mos
+
+ Front-end Development, Front-End Development and +9 skills
+
+SeerBytes logo
+Frontend Web Developer
+
+SeerBytes
+
+Jan 2018 - Dec 2018 · 1 yr
+
+Pakistan
+
+ Front-end Development, Front-End Development and +4 skills
+
+ Skills
+
 
 All
 
@@ -143,491 +318,615 @@ Industry Knowledge
 Tools & Technologies
 
 Interpersonal Skills
-Business Strategy
 
-Mobile Application Development
-
-Edtech
+Other Skills
+Software as a Service (SaaS)
 
 
-CEO & Founder at Coding House Studio
+Chief front-end engineer at Nexlayer
 
-HealthTech
+2 endorsements
+
+SaaS Development
 
 
-CEO & Founder at Coding House Studio
+Chief front-end engineer at Nexlayer
+
+1 endorsement
+
+docker
+
+
+Chief front-end engineer at Nexlayer
+
+1 endorsement
+
+Kubernetes
+
+
+Chief front-end engineer at Nexlayer
+
+Software Design
+
+
+Chief front-end engineer at Nexlayer
+
+
+COMSATS University Islamabad, Abbottabad Campus
+
+Enterprise Software
+
+
+Chief front-end engineer at Nexlayer
+
+
+COMSATS University Islamabad, Abbottabad Campus
+
+Data Structures
+
+
+COMSATS University Islamabad, Abbottabad Campus
+
+Algorithms
+
+
+COMSATS University Islamabad, Abbottabad Campus
+
+Algorithm Design
+
+
+COMSATS University Islamabad, Abbottabad Campus
+
+Algorithm Development
+
+
+COMSATS University Islamabad, Abbottabad Campus
 
 Artificial Intelligence (AI)
 
 
-CEO & Founder at Coding House Studio
+2 experiences at Upwork and 1 other company
 
-Product Launch
 
+COMSATS University Islamabad, Abbottabad Campus
 
-CEO & Founder at Coding House Studio
+software Engineering
 
-React.js
 
+Chief front-end engineer at Nexlayer
 
-Endorsed by 1 person in the last 6 months
 
-2 endorsements
+COMSATS University Islamabad, Abbottabad Campus
 
-MVP
+Assembly Language
 
 
-CEO & Founder at Coding House Studio
+COMSATS University Islamabad, Abbottabad Campus
 
-1 endorsement
+Software Architecture
 
-Full-Stack Development
 
+7 experiences at Quicknode and 6 other companies
 
-Endorsed by 1 person in the last 6 months
 
-2 endorsements
+COMSATS University Islamabad, Abbottabad Campus
 
-Full-Stack
+Hands-on Technical
 
-Content Management Systems (CMS)
 
-App Store
-
-Next JS
-
-Agile Team Lead  
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Full-Stack Mobile Development  
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Team Leadership & Mentorship
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Developer Growth & Coaching
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Integration Testing Implementation 
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-State Management Strategy 
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Technical Hiring Optimization  
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Mobile App Audit  
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Technical Debt Management 
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Test Automation Strategy  
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Software Quality Improvement  
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Cross-functional Team Leadership
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Lean Process Improvement
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Scalable Mobile Architecture
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-CI/CD and Testing Best Practices
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-VMware Infrastructure
-
-
-3 experiences at Nicholas and Company Inc. Foodservice and 2 other companies
-
-Microsoft Azure
-
-
-3 experiences at AMA - Alberta Motor Association and 2 other companies
-
-Cloud Computing
-
-
-AWS Certified Cloud Practitioner
-
-Agile Methodologies
-
-
-Advanced Certified ScrumMaster (A-CSM)
-
-Passed LinkedIn Skill Assessment
-
-Scrum
-
-
-Scrum Master Certified (SMC)
-
-
-Advanced Certified ScrumMaster (A-CSM)
-
-Agile Leadership
-
-
-Scrum Master Certified (SMC)
-
-
-Advanced Certified ScrumMaster (A-CSM)
-
-Management
-
-
-Network Architect at Nicholas and Company Inc. Foodservice
-
-Troubleshooting
-
-
-5 experiences at Nicholas and Company Inc. Foodservice and 4 other companies
-
-Technical Reports
-
-
-Network Architect at Nicholas and Company Inc. Foodservice
+12 experiences at Upwork and 11 other companies
 
 Technical Leadership
 
 
-Network Architect at Nicholas and Company Inc. Foodservice
+3 experiences at Quicknode and 2 other companies
 
-Skill Development
-
-
-5 experiences at Nicholas and Company Inc. Foodservice and 4 other companies
-
-Network Infrastructure
+Website Building
 
 
-3 experiences at Nicholas and Company Inc. Foodservice and 2 other companies
+Senior Software Consultant at Quicknode
 
-Network Administration
-
-
-3 experiences at Nicholas and Company Inc. Foodservice and 2 other companies
-
-Flow Charts
+Marketing
 
 
-Network Architect at Nicholas and Company Inc. Foodservice
+Senior Software Consultant at Quicknode
 
-Computer Science
-
-
-Network Architect at Nicholas and Company Inc. Foodservice
-
-Disaster Recovery
+Software Project Management
 
 
-3 experiences at Nicholas and Company Inc. Foodservice and 2 other companies
+Senior Software Consultant at Quicknode
 
-iOS Development
-
-Android Development
-
-Web Development
-
-Flutter
-
-1 endorsement
-
-Identity & Access Management (IAM)
+Consulting
 
 
-Network Architect at Nicholas and Company Inc. Foodservice
+Senior Software Consultant at Quicknode
+
+Creative Design
+
+
+2 experiences at Quicknode and 1 other company
+
+Design Consulting
+
+
+Senior Software Consultant at Quicknode
+
+Pre-Sales Consulting
+
+
+Senior Software Consultant at Quicknode
+
+Azure DevOps Server
+
+
+Senior Frontend Software Engineer at Agile IT
+
+Content Management Systems (CMS)
+
+
+2 experiences at Quicknode and 1 other company
+
+Astro
+
+
+Senior Frontend Software Engineer at Agile IT
+
+Figma
+
+
+2 experiences at Quicknode and 1 other company
+
+Custom Websites
+
+
+3 experiences at Quicknode and 2 other companies
+
+Responsiveness
+
+
+11 experiences at Upwork and 10 other companies
+
+B2B Software
+
+
+3 experiences at Upwork and 2 other companies
+
+ESLint
+
+
+Senior Frontend Developer at Leni
+
+Babel.js
+
+
+Tech Lead / Senior Frontend Software Engineer at Crowdbotics
+
+CSSEdit
+
+
+2 experiences at Crowdbotics and 1 other company
+
+React Hooks
+
+
+7 experiences at Upwork and 6 other companies
+
+Mockups
+
+
+UI/UX designer / Full Stack Developer / Frontend Software Engineer / Top-Rated Plus / AI Engineer at Upwork
+
+Product Service
+
+
+3 experiences at Intelligent Relations and 2 other companies
+
+Software Deployment
+
+
+2 experiences at Nexlayer and 1 other company
+
+Oral Communication
+
+Software Engineer at elTallerJS
+
+Databases
+
+
+3 experiences at StellarStack.Ltd and 2 other companies
+
+
+COMSATS University Islamabad, Abbottabad Campus
+
+Search Engine Optimization (SEO)
+
+
+7 experiences at Upwork and 6 other companies
+
+Communication
+
+
+4 experiences at Upwork and 3 other companies
+
+PSD to HTML
+
+
+Full Stack Engineer at ngrok
+
+MobX
+
+
+2 experiences at Upwork and 1 other company
+
+Learning
+
+
+UI/UX designer / Full Stack Developer / Frontend Software Engineer / Top-Rated Plus / AI Engineer at Upwork
 
 Amazon Web Services (AWS)
 
-
-Network Architect at Nicholas and Company Inc. Foodservice
-
-
-AWS Certified Cloud Practitioner
-
-Passed LinkedIn Skill Assessment
-
-Show all 4 details
-VMware
+Web Application Development
 
 
-Network Architect at Nicholas and Company Inc. Foodservice
+2 experiences at Quicknode and 1 other company
 
-VMware vSphere
-
-
-Network Architect at Nicholas and Company Inc. Foodservice
-
-Hyper-V
+Microsoft Azure
 
 
-Network Architect at Nicholas and Company Inc. Foodservice
-
-High Availability Clustering
-
-
-Network Architect at Nicholas and Company Inc. Foodservice
+Senior Frontend Software Engineer at Agile IT
 
 1 endorsement
 
-Rubrik
+Agile Application Development
 
 
-Network Architect at Nicholas and Company Inc. Foodservice
-
-Storage Area Network (SAN)
-
-
-Network Architect at Nicholas and Company Inc. Foodservice
-
-Microsoft Intune
-
-
-Network Architect at Nicholas and Company Inc. Foodservice
-
-Project Management
-
-Contract Negotiation
-
-Software Development
+2 experiences at Nexlayer and 1 other company
 
 1 endorsement
 
-Software Architectural Design
+Cloud Computing
 
-Enterprise Architecture
+
+Senior Frontend Software Engineer at Agile IT
+
+
+COMSATS University Islamabad, Abbottabad Campus
 
 1 endorsement
 
-Okta Administration
+Cloud Applications
 
 
-Network Architect at Nicholas and Company Inc. Foodservice
+3 experiences at Upwork and 2 other companies
 
-Okta Single Sign-On
-
-
-Network Architect at Nicholas and Company Inc. Foodservice
-
-DNS Management
+Back-End Web Development
 
 
-Network Architect at Nicholas and Company Inc. Foodservice
-
-dhcp
+3 experiences at Upwork and 2 other companies
 
 
-Network Architect at Nicholas and Company Inc. Foodservice
-
-Ambitious
-
-5 endorsements
-
-Hardworking
-
-5 endorsements
-
-Linux
-
-
-Endorsed by 2 colleagues at FamilySearch
+COMSATS University Islamabad, Abbottabad Campus
 
 4 endorsements
 
-Windows
+Front-End Development
 
-2 endorsements
 
-Ios
+11 experiences at Upwork and 10 other companies
 
-2 endorsements
+4 endorsements
 
-Android
+Web Development
+
+
+8 experiences at Upwork and 7 other companies
+
+
+COMSATS University Islamabad, Abbottabad Campus
+
+4 endorsements
+
+Mobile Application Development
+
+
+2 experiences at Upwork and 1 other company
+
+
+COMSATS University Islamabad, Abbottabad Campus
+
+UI/UX
+
+
+2 experiences at Upwork and 1 other company
+
+Full-Stack Development
+
+
+8 experiences at Upwork and 7 other companies
+
+
+COMSATS University Islamabad, Abbottabad Campus
+
+React
+
+
+9 experiences at Upwork and 8 other companies
+
+Passed LinkedIn Skill Assessment
+
+Next.js
+
+
+8 experiences at Upwork and 7 other companies
+
+Vue.js
+
+Tailwind CSS
+
+
+4 experiences at Upwork and 3 other companies
+
+TypeScript
+
+
+2 experiences at Upwork and 1 other company
+
+GraphQL
+
+
+6 experiences at Upwork and 5 other companies
 
 1 endorsement
 
-Active Directory
+Node.js
 
 
-Network Architect at Nicholas and Company Inc. Foodservice
+2 experiences at Upwork and 1 other company
 
-2 endorsements
+Passed LinkedIn Skill Assessment
 
-Raid
-
-3 endorsements
-
-Storage
+Strapi.js
 
 
-Endorsed by 2 colleagues at FamilySearch
+Full Stack Engineer & Lead Senior Frontend Engineer at Intelligent Relations
 
-3 endorsements
+Prismic CMS
 
-Data Analysis
+Webpack
 
-3 endorsements
+Software Development
 
-Team Leadership
+
+11 experiences at Upwork and 10 other companies
+
+
+COMSATS University Islamabad, Abbottabad Campus
 
 1 endorsement
 
+Microservices
 
-# Recommendations
+Object-Oriented Programming (OOP)
 
-# Received
 
-Bridget Regan 
+Full Stack Engineer & Lead Senior Frontend Engineer at Intelligent Relations
+
+User Experience (UX)
+
+Scrum
+
+
+Founder & Software Consultant at StellarStack.Ltd
+
+Apollo GraphQL
+
+
+Chief front-end engineer at Nexlayer
+
+Computer Science
+
+Front-end Development
+
+
+6 experiences at Upwork and 5 other companies
+
+
+COMSATS University Islamabad, Abbottabad Campus
+
+UI development
+
+
+Full Stack Engineer & Lead Senior Frontend Engineer at Intelligent Relations
+
+Agile Methodologies
+
+
+2 experiences at StellarStack.Ltd and 1 other company
+
+1 endorsement
+
+Entrepreneurship
+
+
+Founder & Software Consultant at StellarStack.Ltd
+
+Responsive Web Design
+
+
+Full Stack Engineer & Lead Senior Frontend Engineer at Intelligent Relations
+
+1 endorsement
+
+Frontend development
+
+JavaScript
+
+Passed LinkedIn Skill Assessment
+
+React.js
+
+
+5 experiences at Upwork and 4 other companies
+
+Passed LinkedIn Skill Assessment
+
+html
+
+
+Full Stack Engineer & Lead Senior Frontend Engineer at Intelligent Relations
+
+Passed LinkedIn Skill Assessment
+
+css
+
+Passed LinkedIn Skill Assessment
+
+Git
+
+
+Full Stack Engineer & Lead Senior Frontend Engineer at Intelligent Relations
+
+jQuery
+
+Passed LinkedIn Skill Assessment
+
+Cascading Style Sheets (CSS)
+
+
+Full Stack Engineer & Lead Senior Frontend Engineer at Intelligent Relations
+
+Passed LinkedIn Skill Assessment
+
+1 endorsement
+
+github
+
+
+Full Stack Engineer & Lead Senior Frontend Engineer at Intelligent Relations
+
+Redux.js
+
+
+2 experiences at Nexlayer and 1 other company
+
+SASS
+
+
+3 experiences at Intelligent Relations and 2 other companies
+
+React Native
+
+
+2 experiences at Upwork and 1 other company
+
+GatsbyJS
+
+Contentful
+
+
+Senior Software Consultant at Quicknode
+
+Leadership
+
+Management
+
+
+Founder & Software Consultant at StellarStack.Ltd
+
+Front-end Coding
+
+Front-end Engineering
+
+
+3 experiences at Nexlayer and 2 other companies
+
+Continuous Integration and Continuous Delivery (CI/CD)
+
+
+Full Stack Engineer & Lead Senior Frontend Engineer at Intelligent Relations
+
+Front-end Design
+
+
+Senior Software Consultant at Quicknode
+
+front end testing
+
+Micro Frontend Architecture
+
+
+3 experiences at Upwork and 2 other companies
+
+
+Recommendations
+
+Received (2)
+
+Given
+
+Salvador S. 
 
 · 3rd
 
-Startup Founder & Operator | Growth, Product, Brand
+Building Nexlayer — The fastest way to ship AI products that run, scale, and manage themselves.
 
-October 12, 2023, Bridget was Herman’s client
+December 18, 2025, Salvador was Amish’s client
 
-Herman is a skilled full-stack engineer who helped my company with everything from network architecture to CI/CD pipeline to building out new features. He was able to seamlessly jump from frontend to backend, mobile app to web app, Github to Testflight, with a holistic understanding of how everything works together even though our stack is complex. He used our project management tools like Shortcut, communication tools like Slack, and was communicative around challenges and roadblocks so that the project wouldn't be delayed. I'd recommend Herman to anyone else who has engineering needs regarding Flutter, React, AWS and more.
+Amish is an exceptional developer partner — fast, thoughtful, and highly reliable.
 
+He consistently delivers production-ready work, thinks in systems (not just code), and operates with an owner’s mindset. He anticipates issues before they happen and communicates clearly throughout the process.
 
-Spencer Leigh
-
-· 3rd+
-
-Service Desk Analyst
-
-May 7, 2023, Herman was senior to Spencer but didn’t manage Spencer directly
-
-I found Herman to be a vary valuable resource. He is a very intelligent and driven individual. Any time my team had a question he would either know the answer or would be able to find it in a time efficient manner. Herman is a self motivator and some one that can always be counted on to get the job done.
-
-Jared S. 
-
-· 3rd+
-
-Information Security Professional at Progressive Leasing
-
-April 24, 2020, Jared managed Herman directly
-
-Creative and eager are two words that come to mind when I think about Herman. I had the opportunity to bring him in as an intern and was very happy with the result. I was impressed with his technical ability, along with the soft skills necessary to navigate some challenging waters. No matter the situation, Herman would be a solid addition to any team. I would welcome the opportunity to work with him again.
+If you want someone who can move quickly without sacrificing quality, Amish is someone I’d highly recommend.
 
 
-Troy Fitzgerald 
+Sean Madden 
 
 · 3rd
 
-CISSP | GDAT | Cyber Security Architect at Progressive Leasing
+Marketing Operations / Revenue Operations Leader
 
-April 10, 2020, Troy was senior to Herman but didn’t manage Herman directly
+June 5, 2025, Sean managed Amish directly
 
-I had the pleasure to work with Herman during his internship on our security team at PL. We lucked out, as Herman was easy to work with and wasn't afraid to ask questions. He displayed a passion for security, but also demonstrated the ability to troubleshoot issues and find solutions. I believe Herman will do great things in the Technology/Security space and be an asset to any company. I would look forward to working with him in the future.
-
-
-Bryan Swainston
-
-· 3rd+
-
-Cybersecurity Architect | SoundOff Signal
-
-April 3, 2020, Bryan was senior to Herman but didn’t manage Herman directly
-
-Herman is the definition of "go-getter". His tenacity, willingness to learn, and ability to troubleshoot issues would make him, in my opinion, an ideal employee in any tech position. In his time with our company he demonstrated his skills around API integrations (python) as well as an overall understanding of infrastructure and security best practices. In the 3 months he spent with us, he made a lasting impression on our team. Herman has a wealth of knowledge in the tech space, but more importantly, he has the one thing you can't teach, PASSION. 
+Amish is a straightforward and dedicated technician. We collaborated on a large publishing project and he delivered each gate on time. His suggestions were thoughtful and improved the overall design!
 
 
-Corbin Ploužek 
+All activity
 
-· 3rd
+Posts
 
-Communications Technology Specialist | Low Voltage Technician
+Comments
 
-November 17, 2019, Corbin worked with Herman on the same team
+Videos
 
-I remember well the day that I met Herman. He was young, impressionable, and ready for a new opportunity. I had been working on a big project at the LDS church, and really need some help! He rushed right in, listened, went to work, and helped us move our mountain. 
+Images
 
-Herman remained focused and ready to work every day. We processed millions of images and thousands of hard drives; one after the other - Until the task was finished. Thank you, Friend!
+More
 
-# Given
-
-Troy Fitzgerald 
-
-· 3rd
-
-CISSP | GDAT | Cyber Security Architect at Progressive Leasing
-
-April 11, 2020, Troy was senior to Herman but didn’t manage Herman directly
-
-It has been pleasure to work with Troy during my internship. Everyone on the team calls him "Guru". He is very knowledgeable and experienced. He does not mind sharing it with other team members. There were countless times when I asked Troy for an advice and he was always there to help. 
-
-Looking forward to work with him in future some day.
-
-
-# All activity
-
-# Posts
-
-View Herman K.’s  graphic link
-Herman K.
+View Amish Maqbool Khan’s  graphic link
+Amish Maqbool Khan
    • 3rd+
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
-11h •  
+✨✨ Transforming Logic into Magic ✨✨ Creator | Entrepreneur | Mentor | Front-End & Full-Stack Software Engineer | Technical Architect | AI Engineer | Engineering & Product Leader | Empowering & Building Digital Solutions
+7mo • Edited •  
 
 Follow
 
-When you build a digital offering or production, questions come up: should we build a web app or a mobile app? 
+Hey everyone 👋🏻,
 
-It sounds like a tech decision. It's not. It's a business decision, and the answer shapes your launch timeline and budget more than almost anything else you'll decide early on. 
+we been working on NexLayer.com, an AI-powered deployment platform that simplifies managing and scaling SaaS apps. We’re now in the testing phase and would love your feedback!
 
-A web app gets you live fast. No store approvals, no review cycles, no waiting on Apple or Google to clear you. You ship when you're ready, iterate in real time, and your users are one link away. 
+You can check it out here: https://nexlayer.io
+Drop your thoughts or suggestions in our Discord support channel: https://lnkd.in/dYvShaSD
 
-A native mobile app gives you things a browser can't: push notifications, offline access, hardware integrations, a store presence. But it comes with a longer build, more complex QA, and a submission process that can push your launch by weeks. 
+Your feedback will help us shape the next version of NexLayer 🚀
+ Thanks for the support 🙌
 
-Neither is the wrong answer. But picking the wrong one for where you are right now? That's where budgets blow and timelines slip. 
-People don't talk about the partner question enough. 
-
-A good development partner won't just take your spec and start building. They'll ask why mobile, why now, why this feature set and not a leaner one. They'll push back, not to slow you down, but because they've seen what happens when nobody does. 
-
-The wrong partner says yes to everything. 
-
-I've watched founders save months of work and real money by having an honest conversation before a single line of code got written. I've also seen the other version: build finishes, product launches, nothing sticks. 
-
-It's almost never really about the technology. Do you prefer a mobile app or a website? Which one is your favorite?
-
-like
-1
+hashtag#NexLayer hashtag#SaaS hashtag#AI hashtag#DevTools hashtag#Startup hashtag#Cloud hashtag#WebDevelopment hashtag#TechCommunity hashtag#Feedback hashtag#Innovation hashtag#Developers hashtag#Deployments
+hashtag#DevOps
+Join the Nexlayer Discord Server!
+discord.com
+likelovecelebrate
+10
+5 reposts
 
 Like
 
@@ -637,46 +936,34 @@ Repost
 
 Send
 
-View Herman K.’s  graphic link
-Herman K.
+
+View Amish Maqbool Khan’s  graphic link
+Amish Maqbool Khan
    • 3rd+
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
-2mo •  
+✨✨ Transforming Logic into Magic ✨✨ Creator | Entrepreneur | Mentor | Front-End & Full-Stack Software Engineer | Technical Architect | AI Engineer | Engineering & Product Leader | Empowering & Building Digital Solutions
+11mo • Edited •  
 
 Follow
 
-Mini Sudoku #233 | 1:04 and flawless ✏️
-The classic game, made mini. Mini Sudoku is LinkedIn’s newest logic puzzle, handcrafted by the originators of "Sudoku." Play daily at
-lnkd.in/minisudoku.
-lovelike
-2
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 3
-Herman’s profile photo
-Herman K. reposted this
-
-View Carol Fineagan’s  graphic link
-Carol Fineagan
-   • 3rd+
-Partner @ BlueMonday.io | Co-founder & COO @ EdQuantify
-1yr •  
-
-Follow
-Technology, in and of itself cannot solve business problems. Now is the best time for Business, Operational and Technology Executives to work together to build a roadmap for success.
-
-The New Tech Journey
-Carol Fineagan
-likecelebratelove
-41
-4 comments
-3 reposts
+🚀 NexLayer v1.0 is Here – Be Part of the Revolution!
+We’ve been quietly building something powerful at NexLayer – and v1.0 is finally live! 🔥
+⚡ An AI-powered platform designed to simplify, scale, and supercharge your SaaS deployments
+ ⚡ Built with speed, security, and flexibility in mind – from devs, for devs
+ ⚡ Designed to solve real problems, not just look good
+💬 We’re inviting our community to explore v1.0 early — and your feedback will shape the next versions.
+👀 Get involved:
+ 🎯 Try the Playground → nexlayer.com/playground
+ 📚 Explore the Docs → docs.nexlayer.com
+ 🌐 Visit the Website → nexlayer.com
+ 🤝 Join the Community → community.nexlayer.com
+👉 Drop a 🔥 in the comments or DM me with your thoughts — we’re building with you, not just for you.
+Let’s shape the future of cloud, Deploments,AI.Together.
+ hashtag#NexLayer hashtag#v1 hashtag#SaaS hashtag#CloudComputing hashtag#DevTools hashtag#AI hashtag#StartupLaunch hashtag#EarlyAccess hashtag#TechCommunity hashtag#FeedbackWanted hashtag#ProductLaunch
+Activate to view larger image,
+No alternative text description for this image
+Activate to view larger image,
+likesupportcelebrate
+12
 
 Like
 
@@ -686,141 +973,47 @@ Repost
 
 Send
 
-View Herman K.’s  graphic link
-Herman K.
+View Amish Maqbool Khan’s  graphic link
+Amish Maqbool Khan
    • 3rd+
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
+✨✨ Transforming Logic into Magic ✨✨ Creator | Entrepreneur | Mentor | Front-End & Full-Stack Software Engineer | Technical Architect | AI Engineer | Engineering & Product Leader | Empowering & Building Digital Solutions
 1yr •  
 
 Follow
 
-I’m happy to share that I’ve obtained a new certification: Certified Scrum Professional® - ScrumMaster from Scrum Alliance!
+🚀 The Future of Software Development is Here! 🚀
+What if AI could deploy, scale, and optimize your apps—while you focus on what truly matters? No friction. No downtime. Just pure innovation.
+🔥 Introducing NexLayer—the first cloud built for agentic engineers. A world where AI takes care of the heavy lifting, so you can build, launch, and iterate at lightning speed.
+👀 We’re calling on bold, Creators, visionary developers, Engineers, Freelancer to test-drive the future and help shape the next evolution of AI-powered engineering.
+⚡ Early access is limited! Want in? Drop a comment, DM us, or secure your spot here: Currently in alpha 👉 https://lnkd.in/eaQktJp9
+🚀 Let’s build the future—together.
 
-
-Celebrating a New Certification
-likecelebratesupport
-31
-8 comments
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 6
-View Herman K.’s  graphic link
-Herman K.
+hashtag#AI hashtag#SoftwareDevelopment hashtag#AgenticEngineering hashtag#NexLayer hashtag#Developers hashtag#TechInnovation hashtag#ComingSoon
+View Salvador S.’s  graphic link
+Salvador S.
    • 3rd+
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
-1yr •  
+Building Nexlayer — The fastest way to ship AI products that run, scale, and manage themselves.
+1yr • Edited •  
 
 Follow
+🚀 Calling all developers and creators! 🚀
 
-View my verified achievement from Amazon Web Services (AWS).
+Are you ready to explore the future of software development? Imagine building full-stack apps where AI agents deploy, scale, and iterate—all seamlessly and without friction.
 
-AWS Certified Cloud Practitioner was issued by Amazon Web Services Training and Certification to Herman Kravchenko.
-credly.com
-likecelebrate
-19
-6 comments
+We’re launching NexLayer, the first cloud built for agentic engineers.
 
-Like
+If you’re curious, ambitious, and want to be part of the next big thing in AI-driven development and deployment, join our upcoming closed beta today!
 
-Comment
+💡 Let us know you’re interested by commenting below or registering here: Currently in alpha https://lnkd.in/eaQktJp9
 
-Repost
-
-Send
-Feed post number 7
-View Herman K.’s  graphic link
-Herman K.
-   • 3rd+
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
-1yr •  
-
-Follow
-
-I’m happy to share that I’ve obtained a new certification: AWS Certified Cloud Practitioner from Amazon Web Services (AWS)!
-
-
-Celebrating a New Certification
+hashtag#AI hashtag#SoftwareDevelopment hashtag#AgenticEngineering hashtag#NexLayer hashtag#Developers hashtag#TechInnovation
+…more
+Activate to view larger image,
+diagram
+Activate to view larger image,
 likecelebrate
 13
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 8
-View Herman K.’s  graphic link
-Herman K.
-   • 3rd+
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
-1yr •  
-
-Follow
-
-I’m happy to share that I’ve obtained a new certification: Advanced Certified ScrumMaster® from Scrum Alliance!
-
-
-Celebrating a New Certification
-likecelebrate
-22
-5 comments
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 9
-View Herman K.’s  graphic link
-Herman K.
-   • 3rd+
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
-1yr •  
-
-Follow
-
-I’m happy to share that I’ve obtained a new certification: Scrum Master Certified (SMC) from Scrum Alliance!
-
-
-Celebrating a New Certification
-likecelebrate
-17
-6 comments
-
-Like
-
-Comment
-
-Repost
-
-Send
-
-View Herman K.’s  graphic link
-Herman K.
-   • 3rd+
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
-2yr •  
-
-Follow
-
-As a leader you have to make changes and to be prepared for worst case scenarios and have a plan.
-
-Pizza chain closes California locations before minimum wage law took effect https://lnkd.in/g-xAANyN
-
-Pizza chain closes California locations before minimum wage law took effect
-foxbusiness.com
-like
-3
+1 repost
 
 Like
 

@@ -1,140 +1,95 @@
-# Name
-Herman K.
+Tariq Saleem
+· 3rd
 
-# Headline
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
+Senior Full Stack Developer & AI Architect || Building Intelligent Applications with AI Integration || React • Next.js • Node.js • Python • LLMs || Transforming Businesses with AI-Powered Solutions
 
-# Location
-Edmonton, Alberta, Canada
+Lahore, Punjab, Pakistan
+
+·
 
 Contact info
-500+
+
+
+WebSphereX
+
+
+University of Sargodha
+
+41
+
 connections
 
-# About
-Did you know that 68% of MVPs fail within months of launch? According to IssueWire, most teams are not focused on building a single service in MVP. Budgets blow up. Deadlines slip. Sound familiar?
 
-I'm Herman, CEO of Coding House Studio. We help advertising agencies and small to mid-size businesses launch MVPs the right way — fast, focused, and without comprome on the quality. We build products that are ready to grow, focused on the features that matter most, and designed to get your idea in front of real users as quickly as possible. We help reduce time to market by 40% compared to traditional alternatives by focusing strictly on high-impact MVP features.
+Message
 
-We've been doing this for over five years and we understand what our clients need, often before they say it. More than 20 projects delivered for clients across North America. In Q1 of 2026, three of our clients went live on both the App Store and Google Play. We know what it takes to go from idea to launch — and we help you get there without wasting time or money.
+Follow
 
-Our team of 15 handles everything you need to ship your MVP — from rough notes and requirements to a polished, ready-to-launch product. Most projects we ship in 4 to 12 weeks and we've got your back if you need any ongoing support. We use AI to build faster and smarter — and we help our clients integrate AI directly into their own apps.
+Open to work
 
-Our clients rely on us for transparency and trust us to deliver their projects the right way. We help you figure out what your MVP needs right now — and what can wait. If you're looking for a trusted partner to have your MVP launched on time and on budget, we're here to help.
+Full Stack Engineer, Artificial Intelligence Engineer, Artificial Intelligence Engineer, Artificial Intelligence Engineer and Full Stack Engineer roles
 
-# Experience
+Show details
 
-Coding House Studio logo
-CEO & Founder
+About
+𝗬𝗼𝘂𝗿 𝗰𝗼𝗺𝗽𝗲𝘁𝗶𝘁𝗼𝗿𝘀 𝗮𝗿𝗲 𝗮𝗹𝗿𝗲𝗮𝗱𝘆 𝘂𝘀𝗶𝗻𝗴 𝗔𝗜, 𝗯𝘂𝘁 𝗮𝗿𝗲 𝘁𝗵𝗲𝘆 𝗹𝗲𝘃𝗲𝗿𝗮𝗴𝗶𝗻𝗴 𝗶𝘁 𝗲𝗳𝗳𝗲𝗰𝘁𝗶𝘃𝗲𝗹𝘆? Many businesses are rushing to "add AI" without having an effective strategy in place and experimenting without returning on their investment. 
 
-Coding House Studio · Self-employed
+As a 𝑺𝒆𝒏𝒊𝒐𝒓 𝑭𝒖𝒍𝒍 𝑺𝒕𝒂𝒄𝒌 𝑫𝒆𝒗𝒆𝒍𝒐𝒑𝒆𝒓 𝒂𝒏𝒅 𝑨𝑰 𝑨𝒓𝒄𝒉𝒊𝒕𝒆𝒄𝒕 𝒘𝒊𝒕𝒉 9+ 𝒚𝒆𝒂𝒓𝒔 𝒐𝒇 𝒆𝒙𝒑𝒆𝒓𝒊𝒆𝒏𝒄𝒆, I can assist your business in intelligent integration of AI by developing applications using Large Language Models (LLMs) as well as machine learning and automation to create solutions that solve real-world problems, deliver measurable results.
 
-Sep 2025 - Present · 10 mos
+𝗘𝘅𝗮𝗺𝗽𝗹𝗲𝘀 𝗼𝗳 𝗺𝘆 𝘄𝗼𝗿𝗸 𝗶𝗻𝗰𝗹𝘂𝗱𝗲:
+• Architecting platforms driven by AI technology which reduced customer support costs by 70%
+• Building intelligent automation solutions that process millions of transactions daily
+• Integrating GPT-4 and custom ML models into production applications for enterprise clients
 
-Wilmington, Delaware, United States · Remote
+𝗔𝗿𝗲𝗮𝘀 𝗼𝗳 𝗘𝘅𝗽𝗲𝗿𝘁𝗶𝘀𝗲:
+✓ Full-stack development with AI integration (React, Node.js, Python, FastAPI) 
+✓ LLM implementation & RAG systems (OpenAI, Anthropic Claude, LangChain) 
+✓ Custom ML model development and deployment 
+✓ Intelligent automation and AI-driven workflows 
+✓ Cloud infrastructure for AI applications (AWS, Azure, GCP)
 
-As CEO of Coding House, my mission is simple: help businesses stay competitive in the age of AI.
-I founded Coding House to bring creativity back into development. I surrounded myself with experts who share that same passion for innovation — people who push boundaries, embrace new ideas, and deliver work that actually moves the needle for our clients.
-If you're building a digital product and want to stay ahead in these dynamic times, let's talk.
+𝑰 𝒅𝒐𝒏'𝒕 𝒋𝒖𝒔𝒕 𝒂𝒅𝒅 𝒄𝒉𝒂𝒕𝒃𝒐𝒕𝒔 𝒕𝒐 𝒘𝒆𝒃𝒔𝒊𝒕𝒆𝒔; I design total AI solutions to optimise operations, deliver enhanced user experiences, and build sustainable competitive advantages.
 
- Edtech, HealthTech and +3 skills
+𝗪𝗵𝗮𝘁 𝗦𝗲𝘁𝘀 𝗠𝗲 𝗔𝗽𝗮𝗿𝘁:
+I can help you bridge the gap between AI hype and business results. I understand both the technical and business language and will ensure your investment generates real value, not simply impressive demos.
 
-AMA - Alberta Motor Association logo
-Agile Team Lead
+𝑳𝒆𝒕'𝒔 𝑻𝒂𝒍𝒌 𝑨𝒃𝒐𝒖𝒕 𝑯𝒐𝒘 𝑨𝑰 𝑪𝒐𝒖𝒍𝒅 𝑩𝒆𝒏𝒆𝒇𝒊𝒕 𝒀𝒐𝒖𝒓 𝑪𝒐𝒎𝒑𝒂𝒏𝒚: Send me a message or schedule a FREE 30-minute consultation call to discuss how intelligent solutions can help your company achieve success now.
 
-AMA - Alberta Motor Association · Permanent Full-time
+WebSphereX logo
+Senior Full Stack Engineer
 
-Jan 2024 - Aug 2025 · 1 yr 8 mos
+WebSphereX · Full-time
 
-Edmonton, Alberta, Canada · Hybrid
+Feb 2023 - Present · 3 yrs 5 mos
 
-Led and mentored a team of 5 full-stack mobile developers, focusing on personal growth and skill development
-Unblocked development team by introducing integration testing and a new state management approach processes
-Enhanced hiring with a coding challenge and better evaluation methods
-Audited mobile apps and set up a process to manage technical debt
-Boosted test automation to improve software quality
+Lake City, Lahore, Punjab, Pakistan · On-site
 
- Software Quality Improvement  , Technical Hiring Optimization   and +14 skills
+ TypeScript, System Architecture and +66 skills
 
-Nicholas and Company logo
-Network Architect
+Bayt.com logo
+Full Stack Engineer
 
-Nicholas and Company · Full-time
+Bayt.com · Full-time
 
-Jul 2021 - Mar 2023 · 1 yr 9 mos
+Apr 2019 - Jan 2023 · 3 yrs 10 mos
 
-Salt Lake City, Utah, United States
+On-site
 
-Achieved over $1M savings in Microsoft licensing through contract renewal audits.
-Migrated virtual infrastructure to VMware and managed 15 Microsoft applications.
-Managed on-premise systems including SAN and Rubrik for high availability.
-Improved network and server performance with SolarWinds Orion and Icinga2 monitoring.
+ Rust (Programming Language), AI Model Fine-tuning and +11 skills
 
- Network Administration, dhcp and +24 skills
+eTek Studio logo
+Junior Full Stack developer
 
-JourneyTEAM logo
-Cloud Solutions Specialist
+eTek Studio · Full-time
 
-JourneyTEAM · Contract
+Mar 2017 - Apr 2019 · 2 yrs 2 mos
 
-May 2020 - Jul 2021 · 1 yr 3 mos
+Lahore, Punjab, Pakistan · On-site
 
-Draper, Utah, United States
+ Rust (Programming Language), AI Model Fine-tuning and +5 skills
 
-Improved efficiency by 75% with health checks of 10 Active Directory environments.
-Deployed AD CA across multiple domain forests.
-Migrated Active Directory and onboarded 10 software packages to Intune.
-Enhanced security for Intune-managed devices.
-Set up autopilot and endpoint onboarding/offboarding processes.
 
- Network Administration, Network Infrastructure and +5 skills
+ Skills
 
-Progressive Leasing logo
-Information Security Specialist
-
-Progressive Leasing · Internship
-
-Jan 2020 - Apr 2020 · 4 mos
-
-Draper, UT
-
-Saved 52 hours/year by automating tasks with Python.
-Integrated Crowdstrike, JIRA, and Qualys for better efficiency.
-Consolidated security alerts to Slack using API integrations.
-
- Network Administration, Network Infrastructure and +4 skills
-
-Senior Technical Service Representative
-
-ExpanDrive and others · Contract
-
-Mar 2018 - Jan 2020 · 1 yr 11 mos
-
-Greater Boston
-
-•	Interfaced with 5,000+ customers and solved their issues with a response time of under 2 minutes 
-•	Resolved technical issues via TeamViewer and oversaw sales, billing, and technical questions 
-•	Performed troubleshooting on Google Drive, OneDrive, Cloud, SharePoint, DropBox, Box, SFTP/FTP/TFTP, WebDAV, NextCloud, Back Blaze, Wasabi, and IDrive cloud issues
-
- Troubleshooting and Skill Development
-
-FamilySearch logo
-Metadata Specialist
-
-FamilySearch · Part-time
-
-Oct 2016 - Sep 2017 · 1 yr
-
-Salt Lake City Metropolitan Area
-
-•	Conducted troubleshooting of network, hardware, and software-related issues 
-•	Executed Python automation for inefficient processes of transferring roughly 4,000 TB of data 
-•	Created and implemented scripts to replace manual work and increase efficiency 
-•	Helped 10 employees in the division with fixing printers, and computers, installing and configuring Windows, Windows Server, and Mac OS to improve operations
-
- Troubleshooting and Skill Development
-
-# Skills
 
 All
 
@@ -143,489 +98,621 @@ Industry Knowledge
 Tools & Technologies
 
 Interpersonal Skills
-Business Strategy
 
+Other Skills
+SaaS Development
+
+
+Senior Full Stack Engineer at WebSphereX
+
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
+
+Munch Studio - AI Workflow Social Media Automation SaaS
+
+Show all 5 details
+Full-Stack Development
+
+
+Senior Full Stack Engineer at WebSphereX
+
+
+University of Sargodha
+
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
+
+Show all 7 details
 Mobile Application Development
 
-Edtech
+Picktime 
+
+Loveable AI
 
 
-CEO & Founder at Coding House Studio
+Senior Full Stack Engineer at WebSphereX
 
-HealthTech
+Software Development
 
 
-CEO & Founder at Coding House Studio
+Senior Full Stack Engineer at WebSphereX
 
+Web Application Development
+
+
+Senior Full Stack Engineer at WebSphereX
+
+iOS Development
+
+Picktime 
+
+Android Development
+
+Picktime 
+
+Generative AI Development
+
+
+Senior Full Stack Engineer at WebSphereX
+
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
+
+Copy.ai | AI-powered Platform
+
+Show all 4 details
 Artificial Intelligence (AI)
 
 
-CEO & Founder at Coding House Studio
+Senior Full Stack Engineer at WebSphereX
 
-Product Launch
+Munch Studio - AI Workflow Social Media Automation SaaS
+
+Copy.ai | AI-powered Platform
+
+Machine Learning
 
 
-CEO & Founder at Coding House Studio
+2 experiences at WebSphereX and 1 other company
+
+
+University of Sargodha
+
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
+
+Show all 6 details
+AI Integration & Implementation
+
+
+Senior Full Stack Engineer at WebSphereX
+
+Munch Studio - AI Workflow Social Media Automation SaaS
+
+Copy.ai | AI-powered Platform
+
+MERN Stack
+
+
+Senior Full Stack Engineer at WebSphereX
 
 React.js
 
 
-Endorsed by 1 person in the last 6 months
+Senior Full Stack Engineer at WebSphereX
 
-2 endorsements
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
 
-MVP
+Munch Studio - AI Workflow Social Media Automation SaaS
 
+Show all 4 details
+Node.js
 
-CEO & Founder at Coding House Studio
 
-1 endorsement
+Senior Full Stack Engineer at WebSphereX
 
-Full-Stack Development
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
 
+Munch Studio - AI Workflow Social Media Automation SaaS
 
-Endorsed by 1 person in the last 6 months
+Show all 5 details
+JavaScript
 
-2 endorsements
 
-Full-Stack
+Senior Full Stack Engineer at WebSphereX
 
-Content Management Systems (CMS)
+TypeScript
 
-App Store
 
-Next JS
+Senior Full Stack Engineer at WebSphereX
 
-Agile Team Lead  
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
 
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Full-Stack Mobile Development  
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Team Leadership & Mentorship
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Developer Growth & Coaching
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Integration Testing Implementation 
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-State Management Strategy 
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Technical Hiring Optimization  
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Mobile App Audit  
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Technical Debt Management 
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Test Automation Strategy  
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Software Quality Improvement  
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Cross-functional Team Leadership
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Lean Process Improvement
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-Scalable Mobile Architecture
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-CI/CD and Testing Best Practices
-
-
-Agile Team Lead at AMA - Alberta Motor Association
-
-VMware Infrastructure
-
-
-3 experiences at Nicholas and Company Inc. Foodservice and 2 other companies
-
-Microsoft Azure
-
-
-3 experiences at AMA - Alberta Motor Association and 2 other companies
+Veeps – Frontend Streaming Platform for Live Events, Concerts & Fan Experiences
 
 Cloud Computing
 
 
-AWS Certified Cloud Practitioner
-
-Agile Methodologies
-
-
-Advanced Certified ScrumMaster (A-CSM)
-
-Passed LinkedIn Skill Assessment
-
-Scrum
-
-
-Scrum Master Certified (SMC)
-
-
-Advanced Certified ScrumMaster (A-CSM)
-
-Agile Leadership
-
-
-Scrum Master Certified (SMC)
-
-
-Advanced Certified ScrumMaster (A-CSM)
-
-Management
-
-
-Network Architect at Nicholas and Company Inc. Foodservice
-
-Troubleshooting
-
-
-5 experiences at Nicholas and Company Inc. Foodservice and 4 other companies
-
-Technical Reports
-
-
-Network Architect at Nicholas and Company Inc. Foodservice
-
-Technical Leadership
-
-
-Network Architect at Nicholas and Company Inc. Foodservice
-
-Skill Development
-
-
-5 experiences at Nicholas and Company Inc. Foodservice and 4 other companies
-
-Network Infrastructure
-
-
-3 experiences at Nicholas and Company Inc. Foodservice and 2 other companies
-
-Network Administration
-
-
-3 experiences at Nicholas and Company Inc. Foodservice and 2 other companies
-
-Flow Charts
-
-
-Network Architect at Nicholas and Company Inc. Foodservice
-
-Computer Science
-
-
-Network Architect at Nicholas and Company Inc. Foodservice
-
-Disaster Recovery
-
-
-3 experiences at Nicholas and Company Inc. Foodservice and 2 other companies
-
-iOS Development
-
-Android Development
-
-Web Development
-
-Flutter
-
-1 endorsement
-
-Identity & Access Management (IAM)
-
-
-Network Architect at Nicholas and Company Inc. Foodservice
+Senior Full Stack Engineer at WebSphereX
 
 Amazon Web Services (AWS)
 
 
-Network Architect at Nicholas and Company Inc. Foodservice
+Senior Full Stack Engineer at WebSphereX
+
+Vue.js
 
 
-AWS Certified Cloud Practitioner
+Senior Full Stack Engineer at WebSphereX
 
-Passed LinkedIn Skill Assessment
+AngularJS
+
+
+Senior Full Stack Engineer at WebSphereX
+
+Responsive Web Design
+
+
+Senior Full Stack Engineer at WebSphereX
+
+Redux.js
+
+
+Senior Full Stack Engineer at WebSphereX
+
+Next.js
+
+
+Senior Full Stack Engineer at WebSphereX
+
+Veeps – Frontend Streaming Platform for Live Events, Concerts & Fan Experiences
+
+Cascading Style Sheets (CSS)
+
+
+Senior Full Stack Engineer at WebSphereX
+
+Tailwind CSS
+
+
+Senior Full Stack Engineer at WebSphereX
+
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
+
+Munch Studio - AI Workflow Social Media Automation SaaS
+
+Show all 5 details
+Shadcn
+
+
+Senior Full Stack Engineer at WebSphereX
+
+Material-UI
+
+
+Senior Full Stack Engineer at WebSphereX
+
+Bootstrap (Framework)
+
+
+Senior Full Stack Engineer at WebSphereX
+
+HTML5
+
+
+Senior Full Stack Engineer at WebSphereX
+
+PHP
+
+
+Senior Full Stack Engineer at WebSphereX
+
+Laravel
+
+
+Senior Full Stack Engineer at WebSphereX
+
+Express.js
+
+
+Senior Full Stack Engineer at WebSphereX
+
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
+
+Munch Studio - AI Workflow Social Media Automation SaaS
+
+Show all 5 details
+Django
+
+
+Senior Full Stack Engineer at WebSphereX
+
+REST APIs
+
+
+Senior Full Stack Engineer at WebSphereX
+
+FastAPI
+
+
+3 experiences at WebSphereX and 2 other companies
+
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
+
+Munch Studio - AI Workflow Social Media Automation SaaS
+
+Show all 6 details
+GraphQL
+
+
+Senior Full Stack Engineer at WebSphereX
+
+Docker
+
+
+Senior Full Stack Engineer at WebSphereX
+
+Continuous Integration and Continuous Delivery (CI/CD)
+
+
+Senior Full Stack Engineer at WebSphereX
+
+Python (Programming Language)
+
+
+2 experiences at WebSphereX and 1 other company
+
+
+University of Sargodha
+
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
+
+Show all 6 details
+PyTorch
+
+
+2 experiences at WebSphereX and 1 other company
+
+Munch Studio - AI Workflow Social Media Automation SaaS
+
+Copy.ai | AI-powered Platform
 
 Show all 4 details
-VMware
+LangChain
 
 
-Network Architect at Nicholas and Company Inc. Foodservice
+Senior Full Stack Engineer at WebSphereX
 
-VMware vSphere
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
 
+Munch Studio - AI Workflow Social Media Automation SaaS
 
-Network Architect at Nicholas and Company Inc. Foodservice
+Show all 5 details
+PostgreSQL
 
-Hyper-V
 
+Senior Full Stack Engineer at WebSphereX
 
-Network Architect at Nicholas and Company Inc. Foodservice
+MongoDB
 
-High Availability Clustering
 
+Senior Full Stack Engineer at WebSphereX
 
-Network Architect at Nicholas and Company Inc. Foodservice
+Rust (Programming Language)
 
-1 endorsement
 
-Rubrik
+3 experiences at WebSphereX and 2 other companies
 
 
-Network Architect at Nicholas and Company Inc. Foodservice
+University of Sargodha
 
-Storage Area Network (SAN)
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
 
+Show all 7 details
+AI Model Fine-tuning
 
-Network Architect at Nicholas and Company Inc. Foodservice
 
-Microsoft Intune
+3 experiences at WebSphereX and 2 other companies
 
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
 
-Network Architect at Nicholas and Company Inc. Foodservice
+Munch Studio - AI Workflow Social Media Automation SaaS
 
-Project Management
+Show all 4 details
+System Architecture
 
-Contract Negotiation
 
-Software Development
+Senior Full Stack Engineer at WebSphereX
 
-1 endorsement
+Technical Project Leadership
 
-Software Architectural Design
 
-Enterprise Architecture
+Senior Full Stack Engineer at WebSphereX
 
-1 endorsement
+Software Architecture
 
-Okta Administration
 
+Senior Full Stack Engineer at WebSphereX
 
-Network Architect at Nicholas and Company Inc. Foodservice
+Database Design
 
-Okta Single Sign-On
 
+Senior Full Stack Engineer at WebSphereX
 
-Network Architect at Nicholas and Company Inc. Foodservice
+Vector Databases
 
-DNS Management
 
+3 experiences at WebSphereX and 2 other companies
 
-Network Architect at Nicholas and Company Inc. Foodservice
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
 
-dhcp
+Copy.ai | AI-powered Platform
 
+Show all 4 details
+API Development
 
-Network Architect at Nicholas and Company Inc. Foodservice
 
-Ambitious
+Senior Full Stack Engineer at WebSphereX
 
-5 endorsements
+OpenAI API
 
-Hardworking
 
-5 endorsements
+Senior Full Stack Engineer at WebSphereX
 
-Linux
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
 
+Munch Studio - AI Workflow Social Media Automation SaaS
 
-Endorsed by 2 colleagues at FamilySearch
+Show all 4 details
+Anthropic Claude API
 
-4 endorsements
 
-Windows
+3 experiences at WebSphereX and 2 other companies
 
-2 endorsements
 
-Ios
+University of Sargodha
 
-2 endorsements
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
 
-Android
+Show all 7 details
+Agile Methodologies
 
-1 endorsement
 
-Active Directory
+Senior Full Stack Engineer at WebSphereX
 
+Retrieval-Augmented Generation (RAG)
 
-Network Architect at Nicholas and Company Inc. Foodservice
 
-2 endorsements
+3 experiences at WebSphereX and 2 other companies
 
-Raid
 
-3 endorsements
+University of Sargodha
 
-Storage
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
 
+Show all 7 details
+Large Language Models (LLMs)
 
-Endorsed by 2 colleagues at FamilySearch
 
-3 endorsements
+2 experiences at WebSphereX and 1 other company
 
-Data Analysis
 
-3 endorsements
+University of Sargodha
 
-Team Leadership
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
 
-1 endorsement
+Show all 5 details
+TensorFlow
 
 
-# Recommendations
+2 experiences at WebSphereX and 1 other company
 
-# Received
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
 
-Bridget Regan 
+Munch Studio - AI Workflow Social Media Automation SaaS
 
-· 3rd
+Show all 5 details
+Natural Language Processing (NLP)
 
-Startup Founder & Operator | Growth, Product, Brand
 
-October 12, 2023, Bridget was Herman’s client
+Senior Full Stack Engineer at WebSphereX
 
-Herman is a skilled full-stack engineer who helped my company with everything from network architecture to CI/CD pipeline to building out new features. He was able to seamlessly jump from frontend to backend, mobile app to web app, Github to Testflight, with a holistic understanding of how everything works together even though our stack is complex. He used our project management tools like Shortcut, communication tools like Slack, and was communicative around challenges and roadblocks so that the project wouldn't be delayed. I'd recommend Herman to anyone else who has engineering needs regarding Flutter, React, AWS and more.
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
 
+Munch Studio - AI Workflow Social Media Automation SaaS
 
-Spencer Leigh
+Show all 4 details
+Collaborative Problem Solving
 
-· 3rd+
 
-Service Desk Analyst
+Senior Full Stack Engineer at WebSphereX
 
-May 7, 2023, Herman was senior to Spencer but didn’t manage Spencer directly
+Code Review
 
-I found Herman to be a vary valuable resource. He is a very intelligent and driven individual. Any time my team had a question he would either know the answer or would be able to find it in a time efficient manner. Herman is a self motivator and some one that can always be counted on to get the job done.
 
-Jared S. 
+Senior Full Stack Engineer at WebSphereX
 
-· 3rd+
+Database Optimization
 
-Information Security Professional at Progressive Leasing
 
-April 24, 2020, Jared managed Herman directly
+Senior Full Stack Engineer at WebSphereX
 
-Creative and eager are two words that come to mind when I think about Herman. I had the opportunity to bring him in as an intern and was very happy with the result. I was impressed with his technical ability, along with the soft skills necessary to navigate some challenging waters. No matter the situation, Herman would be a solid addition to any team. I would welcome the opportunity to work with him again.
+Performance Tuning
 
 
-Troy Fitzgerald 
+Senior Full Stack Engineer at WebSphereX
 
-· 3rd
+Technical Consulting
 
-CISSP | GDAT | Cyber Security Architect at Progressive Leasing
 
-April 10, 2020, Troy was senior to Herman but didn’t manage Herman directly
+Senior Full Stack Engineer at WebSphereX
 
-I had the pleasure to work with Herman during his internship on our security team at PL. We lucked out, as Herman was easy to work with and wasn't afraid to ask questions. He displayed a passion for security, but also demonstrated the ability to troubleshoot issues and find solutions. I believe Herman will do great things in the Technology/Security space and be an asset to any company. I would look forward to working with him in the future.
+Pinecone.io
 
 
-Bryan Swainston
+3 experiences at WebSphereX and 2 other companies
 
-· 3rd+
 
-Cybersecurity Architect | SoundOff Signal
+University of Sargodha
 
-April 3, 2020, Bryan was senior to Herman but didn’t manage Herman directly
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
 
-Herman is the definition of "go-getter". His tenacity, willingness to learn, and ability to troubleshoot issues would make him, in my opinion, an ideal employee in any tech position. In his time with our company he demonstrated his skills around API integrations (python) as well as an overall understanding of infrastructure and security best practices. In the 3 months he spent with us, he made a lasting impression on our team. Herman has a wealth of knowledge in the tech space, but more importantly, he has the one thing you can't teach, PASSION. 
+Show all 7 details
+AI Integration
 
 
-Corbin Ploužek 
+2 experiences at WebSphereX and 1 other company
 
-· 3rd
+Doxy.me – Full Stack Telehealth Platform for Secure Video Consultations
 
-Communications Technology Specialist | Low Voltage Technician
+Munch Studio - AI Workflow Social Media Automation SaaS
 
-November 17, 2019, Corbin worked with Herman on the same team
+Show all 6 details
+Git
 
-I remember well the day that I met Herman. He was young, impressionable, and ready for a new opportunity. I had been working on a big project at the LDS church, and really need some help! He rushed right in, listened, went to work, and helped us move our mountain. 
 
-Herman remained focused and ready to work every day. We processed millions of images and thousands of hard drives; one after the other - Until the task was finished. Thank you, Friend!
+Senior Full Stack Engineer at WebSphereX
 
-# Given
+GitHub
 
-Troy Fitzgerald 
 
-· 3rd
+Senior Full Stack Engineer at WebSphereX
 
-CISSP | GDAT | Cyber Security Architect at Progressive Leasing
+Azure SQL
 
-April 11, 2020, Troy was senior to Herman but didn’t manage Herman directly
 
-It has been pleasure to work with Troy during my internship. Everyone on the team calls him "Guru". He is very knowledgeable and experienced. He does not mind sharing it with other team members. There were countless times when I asked Troy for an advice and he was always there to help. 
+Senior Full Stack Engineer at WebSphereX
 
-Looking forward to work with him in future some day.
+Redis
 
 
-# All activity
+Senior Full Stack Engineer at WebSphereX
 
-# Posts
+Quality Assurance Testing
 
-View Herman K.’s  graphic link
-Herman K.
-   • 3rd+
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
-11h •  
+
+Senior Full Stack Engineer at WebSphereX
+
+
+All activity
+
+Posts
+
+Comments
+
+Images
+
+Articles
+
+Reactions
+Loaded 4 Posts posts
+Feed post number 1
+View Tariq Saleem’s open to work graphic link
+Tariq Saleem
+ • 3rd+
+Senior Full Stack Developer & AI Architect || Building Intelligent Applications with AI Integration || React • Next.js • Node.js • Python • LLMs || Transforming Businesses with AI-Powered Solutions
+1d •  
 
 Follow
 
-When you build a digital offering or production, questions come up: should we build a web app or a mobile app? 
+On the day React 19 was released, I had my eyes and ears open, and so did most of you. However, many are missing one significant aspect of the changes in the newest version of React, which will change how you write and develop applications.
 
-It sounds like a tech decision. It's not. It's a business decision, and the answer shapes your launch timeline and budget more than almost anything else you'll decide early on. 
+What seemingly everyone was talking about throughout the day, when React 19 was released, was that Server Components were now stable and could be included in projects without worrying about breaking changes. This was a major focus of discussion. The most useful feature is the new `use()` hook and how it handles asynchronous data.
 
-A web app gets you live fast. No store approvals, no review cycles, no waiting on Apple or Google to clear you. You ship when you're ready, iterate in real time, and your users are one link away. 
+Before React 19, if you had a component that was going to read a `Promise`, for example, you would have had the headache of writing out useEffect, useState, handling loading state, and error state on every single call to that Promise. So to do that in the new way with React 19, you can do it like this:
 
-A native mobile app gives you things a browser can't: push notifications, offline access, hardware integrations, a store presence. But it comes with a longer build, more complex QA, and a submission process that can push your launch by weeks. 
+```
+const data = use(fetchUserData(userId));
+```
 
-Neither is the wrong answer. But picking the wrong one for where you are right now? That's where budgets blow and timelines slip. 
-People don't talk about the partner question enough. 
+With React Suspense, you handle the loading state, with Error Boundaries, you handle when your call fails, and you just write out what you want to do with the data that is returned.
 
-A good development partner won't just take your spec and start building. They'll ask why mobile, why now, why this feature set and not a leaner one. They'll push back, not to slow you down, but because they've seen what happens when nobody does. 
+This isn't magic by any means. You still must wrap with Suspense and Error Boundaries; however, the mental overhead of writing a data fetching logic just decreased drastically.
 
-The wrong partner says yes to everything. 
+In reviewing the notable components of React 19; 
 
-I've watched founders save months of work and real money by having an honest conversation before a single line of code got written. I've also seen the other version: build finishes, product launches, nothing sticks. 
+(1) Action, native way to handle asynchronous mutations with a built-in pending/error state for things like forms, 
 
-It's almost never really about the technology. Do you prefer a mobile app or a website? Which one is your favorite?
+(2) useFormStatus and useOptimistic allow you to build fast-feeling applications without an additional state management library for most forms. 
 
+(3) ref is finally treated just like a normal prop, and you no longer need to do the goofy forwardRef boilerplate, and 
+
+(4) Ah, the compiler (React Forget) is now finished, and you don’t need to use useMemo/useCallback for most instances anymore.
+
+I've been migrating a mid-sized Next.js 15 app, and the reduction in ceremony is real.
+
+What feature in React 19 are you most excited to actually use in production?
+hashtag#ReactJS hashtag#React19 hashtag#WebDev hashtag#FullStackDeveloper hashtag#JavaScript hashtag#NextJS hashtag#FrontendDevelopment
+Activate to view larger image,
+React 19: Less Code, More Focus
+Activate to view larger image,
+
+Like
+
+Comment
+
+Repost
+
+Send
+Feed post number 2
+View Tariq Saleem’s open to work graphic link
+Tariq Saleem
+ • 3rd+
+Senior Full Stack Developer & AI Architect || Building Intelligent Applications with AI Integration || React • Next.js • Node.js • Python • LLMs || Transforming Businesses with AI-Powered Solutions
+1w •  
+
+Follow
+
+With the release of React 19, people are sleeping on a major new feature that will change everything: Server Components are becoming stable.
+
+Although the big news was that Server Components have finally reached production-quality stability, I find that the new use() hook and its ability to handle async data are the new features that I use most.
+
+Before React 19, when you needed to read from a promise inside a component, you needed to manage multiple states - useEffect for the promise lifecycle, useState to keep track of the returned data, and loading and error states all had to be managed every time you tried to get data when rendering your component.
+
+You can now simply write this:
+
+const data = use(fetchUserData(userId));
+
+React will automatically handle all of your loading and error states through Suspense & error boundary wrappers, so you are essentially only required to describe what happens when the data is received in your component.
+
+Note: There is still some overhead in wrapping your components with Suspense and an error boundary; however, the overhead of writing data-fetching logic has been reduced drastically.
+
+Here are several things to check out with React 19:
+
+• Actions: native method to handle asynchronous mutations with built-in pending/error state, especially for forms.
+• useFormStatus and useOptimistic together will allow you to create UI with the feeling of instant response, eliminating the need for a third-party state library for most form usage.
+• Ref is now just a standard prop (finally), so no more forwardRef code!
+• The compiler (React Forget) is provided, and useMemo/useCallback will be optional in most cases.
+
+I have been working on upgrading a medium-sized Next.js 15 application, and I really appreciate all of the implementation reduction that I have obtained.
+
+What feature in React 19 are you most looking forward to using in a production environment?
+hashtag#ReactJS hashtag#React19 hashtag#WebDev hashtag#FullStackDeveloper hashtag#JavaScript hashtag#NextJS hashtag#FrontendDevelopment
+Activate to view larger image,
+React 19: Server components are stable 
+Activate to view larger image,
+
+Like
+
+Comment
+
+Repost
+
+Send
+Feed post number 3
+View Tariq Saleem’s open to work graphic link
+Tariq Saleem
+ • 3rd+
+Senior Full Stack Developer & AI Architect || Building Intelligent Applications with AI Integration || React • Next.js • Node.js • Python • LLMs || Transforming Businesses with AI-Powered Solutions
+2w •  
+
+Follow
+
+Hi everyone! I’m seeking a new role and would appreciate your support. If you hear of any opportunities or just want to catch up, please send me a message or comment below. I’d love to reconnect. hashtag#OpenToWork
+
+About me & what I’m looking for:
+💼 I’m looking for Full Stack Engineer roles.
+⭐ I’ve previously worked at eTek Studio, Bayt.com, and WebSphereX.
+
+Tariq is open to work
+Looking for Remote roles in United Arab Emirates, Pakistan, Dubai, United Arab Emirates, United States and United Kingdom
+View job preferences
 like
 1
 
@@ -636,191 +723,21 @@ Comment
 Repost
 
 Send
-
-View Herman K.’s  graphic link
-Herman K.
-   • 3rd+
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
-2mo •  
-
-Follow
-
-Mini Sudoku #233 | 1:04 and flawless ✏️
-The classic game, made mini. Mini Sudoku is LinkedIn’s newest logic puzzle, handcrafted by the originators of "Sudoku." Play daily at
-lnkd.in/minisudoku.
-lovelike
-2
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 3
-Herman’s profile photo
-Herman K. reposted this
-
-View Carol Fineagan’s  graphic link
-Carol Fineagan
-   • 3rd+
-Partner @ BlueMonday.io | Co-founder & COO @ EdQuantify
-1yr •  
-
-Follow
-Technology, in and of itself cannot solve business problems. Now is the best time for Business, Operational and Technology Executives to work together to build a roadmap for success.
-
-The New Tech Journey
-Carol Fineagan
-likecelebratelove
-41
-4 comments
-3 reposts
-
-Like
-
-Comment
-
-Repost
-
-Send
-
-View Herman K.’s  graphic link
-Herman K.
-   • 3rd+
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
-1yr •  
+Feed post number 4
+View Tariq Saleem’s open to work graphic link
+Tariq Saleem
+ • 3rd+
+Senior Full Stack Developer & AI Architect || Building Intelligent Applications with AI Integration || React • Next.js • Node.js • Python • LLMs || Transforming Businesses with AI-Powered Solutions
+2w •  
 
 Follow
 
-I’m happy to share that I’ve obtained a new certification: Certified Scrum Professional® - ScrumMaster from Scrum Alliance!
+If you are loosing your MVP is taking months to complete, check how to build your MVP within 8-12 weeks.
 
-
-Celebrating a New Certification
-likecelebratesupport
-31
-8 comments
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 6
-View Herman K.’s  graphic link
-Herman K.
-   • 3rd+
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
-1yr •  
-
-Follow
-
-View my verified achievement from Amazon Web Services (AWS).
-
-AWS Certified Cloud Practitioner was issued by Amazon Web Services Training and Certification to Herman Kravchenko.
-credly.com
-likecelebrate
-19
-6 comments
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 7
-View Herman K.’s  graphic link
-Herman K.
-   • 3rd+
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
-1yr •  
-
-Follow
-
-I’m happy to share that I’ve obtained a new certification: AWS Certified Cloud Practitioner from Amazon Web Services (AWS)!
-
-
-Celebrating a New Certification
-likecelebrate
-13
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 8
-View Herman K.’s  graphic link
-Herman K.
-   • 3rd+
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
-1yr •  
-
-Follow
-
-I’m happy to share that I’ve obtained a new certification: Advanced Certified ScrumMaster® from Scrum Alliance!
-
-
-Celebrating a New Certification
-likecelebrate
-22
-5 comments
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 9
-View Herman K.’s  graphic link
-Herman K.
-   • 3rd+
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
-1yr •  
-
-Follow
-
-I’m happy to share that I’ve obtained a new certification: Scrum Master Certified (SMC) from Scrum Alliance!
-
-
-Celebrating a New Certification
-likecelebrate
-17
-6 comments
-
-Like
-
-Comment
-
-Repost
-
-Send
-
-View Herman K.’s  graphic link
-Herman K.
-   • 3rd+
-Helping advertisement agencies to launch MVPs 40% Faster. Get your MVP running in a matter of weeks!
-2yr •  
-
-Follow
-
-As a leader you have to make changes and to be prepared for worst case scenarios and have a plan.
-
-Pizza chain closes California locations before minimum wage law took effect https://lnkd.in/g-xAANyN
-
-Pizza chain closes California locations before minimum wage law took effect
-foxbusiness.com
+The Wrong Developer Did Not Just Waste Your Money. They Wasted Your Market Window.
+Tariq Saleem
 like
-3
+1
 
 Like
 
