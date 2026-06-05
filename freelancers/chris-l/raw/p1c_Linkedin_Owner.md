@@ -1,43 +1,30 @@
-Chris Lee
-· 3rd
+---
+platform: LinkedIn
+profile_type: person
+name: Chris Lee
+headline: Software Engineer
+location: Miami, Florida, United States
+connections: 19
+---
 
-Software Engineer
+# Chris Lee — LinkedIn Profile
 
-Miami, Florida, United States
+## Summary
 
-·
-
-Contact info
-
-
-Hulu
-
-19
-
-connections
-
-
-About
 Technology executive & software developer skilled in all components of FinTech development with a comprehensive career and notable experience at leading tech companies since 2014.
 
+## Experience
 
+#### Software Engineer — Hulu
 
+dates: Jun 2015 – Nov 2018
+duration: 3 yrs 6 mos
+location: Los Angeles, California, United States
+employment_type: Full-time
 
-Experience
-Hulu logo
-Software Engineer
+#### Software Engineer Intern — Twitter, Inc.
 
-Hulu · Full-time
-
-Jun 2015 - Nov 2018 · 3 yrs 6 mos
-
-Los Angeles, California, United States · On-site
-
-Twitter, Inc. logo
-Software Engineer Intern
-
-Twitter, Inc. · Internship
-
-May 2012 - Aug 2012 · 4 mos
-
-San Francisco, California, United States · On-site
+dates: May 2012 – Aug 2012
+duration: 4 mos
+location: San Francisco, California, United States
+employment_type: Internship

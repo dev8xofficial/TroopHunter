@@ -1,51 +1,43 @@
-Ali H.
-Verified
- Khichiwala, Pakistan – 4:48 pm local time
-Available now
-100% Job Success
-Top Rated Plus
-$80K+
-Total earnings
-20
-Total jobs
-8
-Total hours
-Hours per week
-As Needed - Open to Offers
-Open to contract to hire New
-Avg. response
-0-4 hours
-Languages
-English:  Native or Bilingual
-Urdu:  Native or Bilingual
-Hindi:  Fluent
-Arabic:  Basic
-German:  Basic
-Verifications
-ID: 
-Verified
-Verified
-Education
-FAST-NU Islamabad
-Bachelor of Science (BS), Software Engineering
-2018-2022
-Linked accounts
-GitHub Since 2020
-Ali Hamza
-Ali Hamza
-View profile
-AI SaaS MVPs to Scalable Products | Full Stack + LLM Expert
-$35.00/hr
+---
+platform: Upwork
+profile_type: freelancer
+name: Ali Hamza
+headline: "AI SaaS MVPs to Scalable Products | Full Stack + LLM Expert"
+location: Khichiwala, Pakistan
+hourly_rate: "$35.00/hr"
+job_success_score: "100%"
+total_jobs: 20
+total_hours: 8
+total_earnings: "$80K+"
+response_time: "0–4 hours"
+availability: "As Needed – Open to Offers"
+badge: Top Rated Plus
+verified: true
+languages:
+  - English (Native or Bilingual)
+  - Urdu (Native or Bilingual)
+  - Hindi (Fluent)
+  - Arabic (Basic)
+  - German (Basic)
+education:
+  - FAST-NU Islamabad — BS Software Engineering (2018–2022)
+linked_accounts:
+  - GitHub (since 2020)
+---
+
+# Ali Hamza — Upwork Profile
+
+## Overview
 
 Top 1% on Upwork | 7+ Years Building MVPs, SaaS & AI Products | 100% Job Success
 
-Most founders don’t struggle with ideas, they struggle with turning those ideas into a real SaaS product with users, scalability, and revenue. That’s where I come in. I help founders go from:
+Most founders don't struggle with ideas, they struggle with turning those ideas into a real SaaS product with users, scalability, and revenue. That's where I come in. I help founders go from:
 
 Idea → MVP → Beta → Production SaaS → Active Users → Scaling
 
 You bring the idea, I handle the complete end-to-end product execution.
 
-What I Do
+**What I Do**
 ✔ End-to-end AI SaaS MVP development
 ✔ Full stack SaaS architecture (built to scale from day one)
 ✔ AI integrations (LLMs, agents, workflows, automation)
@@ -53,347 +45,270 @@ What I Do
 ✔ MVP → Beta → Production launch → Scaling
 ✔ Deployment & infrastructure (AWS, Docker, cloud systems)
 
-Experience Snapshot
+**Experience Snapshot**
 ✔ 7+ years building SaaS & full-stack applications
 ✔ 25+ MVPs built for startups
 ✔ 10+ AI-powered SaaS & automation systems with real paying users.
 ✔ 30+ full stack projects completed
 ✔ Products developed with real users and live environments
 
-AI & Advanced Systems
+**AI & Advanced Systems**
 ✔ AI SaaS platforms (OpenAI, LLM workflows, RAG systems)
 ✔ Voice AI agents & real-time communication systems
 ✔ AI copilots, assistants & automation workflows
 ✔ Smart search, summarization & AI-powered features
 
-Tech Stack (Production-Ready Systems)
+**Tech Stack (Production-Ready Systems)**
 Frontend: Next.js, React, React Native
 Backend: Node.js, NestJS, Python (FastAPI)
-Databases: PostgreSQL, MongoDB, Redis, supabase, appwrite, firebase
+Databases: PostgreSQL, MongoDB, Redis, Supabase, Appwrite, Firebase
 AI Stack: OpenAI, LangChain, LangGraph, Pinecone, Whisper, ElevenLabs
-Cloud & DevOps: AWS (ECS, Fargate, Lambda, S3), Docker, kubernetes
-Realtime & Voice: LiveKit, Twilio, pipecat
+Cloud & DevOps: AWS (ECS, Fargate, Lambda, S3), Docker, Kubernetes
+Realtime & Voice: LiveKit, Twilio, Pipecat
 AI Development: Claude, Claude Code, Cursor, Kimi, Perplexity, Replit, Codex, v0, Lovable, Base44, HeyGen, Replicate, n8n
 
-How I Work
+**How I Work**
 Most developers just write code.
 I:
-✔ Help you define the right MVP (so you don’t waste time & money)
+✔ Help you define the right MVP (so you don't waste time & money)
 ✔ Build systems that are scalable from day one
 ✔ Deliver production-ready SaaS, not just prototypes
 
-Who I Work With
+**Who I Work With**
 ✔ Startup founders building AI SaaS
 ✔ Non-technical founders who want end-to-end ownership handled
 ✔ Teams looking to go from idea → live product fast
 
-Let’s Build Something Real
-If you have an idea, I’ll turn it into a working SaaS product with real users.
-more
-Book a consultation
-Development & IT Consultation
-$25 per 30 min Zoom meeting
+---
 
-AI Integration
-AI Speech & Audio Generation
-Chatbot Development
-Ecommerce Development
-Work history
-Insights from completed jobs
+## Skills
 
-Committed to Quality
-7
-Clear Communicator
-4
-Accountable for Outcomes
-2
-Collaborative
-2
-Professional
-2
-Reliable
-2
-Solution Oriented
-2
-Detail Oriented
-1
+- SaaS
+- AI Development
+- LLM Prompt Engineering
+- Full-Stack Development
+- Next.js
+- React
+- Node.js
+- OpenAI API
+- Claude
+- Firebase
+- Supabase
+- Chatbot
+- Model Tuning
+- Agent GPT
+- MERN Stack
+- AI Agent Development
+- Automation
+- Artificial Intelligence
+- Prompt Engineering
+- Machine Learning
 
-Completed jobs (17)
+---
 
-In progress (3)
-Senior React Native Developer: AI Mobile Personal Assistant SAAS (Claude Code/SAAS/MVP)
-Jun 3, 2026 - Jun 3, 2026
-No feedback given
+## Work History
 
-$1,365.00
-Fixed price
-MASAT Development
-Rating is 5.0 out of 5.
-5.0
-Mar 6, 2025 - Jan 4, 2026
-"unbelievable skilled. we are very happy with the result. i totally recommend their services. great quality, great communication, worth every penny spent."
+---
 
-Committed to Quality
-Solution Oriented
-Clear Communicator
-$16,750.00
-Fixed price
-AI Voice Assistant MVP Development
-Rating is 5.0 out of 5.
-5.0
-Oct 11, 2025 - Dec 7, 2025
-"Ali worked on an AI voice assistant MVP for our business.
-The project required multiple iterations, and development took longer than originally planned, but Ali stayed engaged, responsive, and consistently worked through issues until the system became stable.
-He was open to feedback, made corrections when problems were identified, and ultimately delivered a working solution.
-Recommended for projects where ongoing iteration and refinement are expected." Less
+#### Senior React Native Developer: AI Mobile Personal Assistant SaaS (Claude Code/SaaS/MVP)
 
-Reliable
-Collaborative
-Committed to Quality
-Solution Oriented
-Clear Communicator
-Detail Oriented
-$775.00
-Fixed price
-Senior n8n + OpenAI Engineer to Build E‑commerce Support Chatbot with RAG on Product Feeds (XML/CSV)
-Rating is 5.0 out of 5.
-5.0
-Oct 7, 2025 - Dec 1, 2025
-$208.33
-$25.00 /hr
-8 hours
-Senior Python Developer – Real-Time Voice Translation (German ↔ English) | Twilio + OpenAI + Gemini
-Rating is 5.0 out of 5.
-5.0
-Jun 28, 2025 - Nov 13, 2025
+contract_type: Fixed-price
+dates: Jun 3, 2026 – Jun 3, 2026
+budget: $1,365.00
+
+---
+
+#### MASAT Development
+
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Mar 6, 2025 – Jan 4, 2026
+budget: $16,750.00
+
+**Client review:**
+"Unbelievable skilled. we are very happy with the result. i totally recommend their services. great quality, great communication, worth every penny spent."
+
+---
+
+#### AI Voice Assistant MVP Development
+
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Oct 11, 2025 – Dec 7, 2025
+budget: $775.00
+
+**Client review:**
+"Ali worked on an AI voice assistant MVP for our business. The project required multiple iterations, and development took longer than originally planned, but Ali stayed engaged, responsive, and consistently worked through issues until the system became stable. He was open to feedback, made corrections when problems were identified, and ultimately delivered a working solution. Recommended for projects where ongoing iteration and refinement are expected."
+
+---
+
+#### Senior n8n + OpenAI Engineer to Build E-commerce Support Chatbot with RAG on Product Feeds (XML/CSV)
+
+client_rating: 5.00
+contract_type: Hourly
+hours_billed: 8
+dates: Oct 7, 2025 – Dec 1, 2025
+budget: $208.33 ($25.00/hr)
+
+---
+
+#### Senior Python Developer – Real-Time Voice Translation (German ↔ English) | Twilio + OpenAI + Gemini
+
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Jun 28, 2025 – Nov 13, 2025
+budget: $1,150.00
+
+**Client review:**
 "The Syntax team did a great job and going the extra mile to make sure that the project is executed to our satisfaction."
 
-Committed to Quality
-Accountable for Outcomes
-$1,150.00
-Fixed price
-Front-end Developer with Lovable and Supabase Experience
-Rating is 5.0 out of 5.
-5.0
-Oct 15, 2025 - Nov 12, 2025
+---
+
+#### Front-end Developer with Lovable and Supabase Experience
+
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Oct 15, 2025 – Nov 12, 2025
+budget: $700.00
+
+**Client review:**
 "Met our timeline and gave us a great project result"
 
-Reliable
-Committed to Quality
-$700.00
-Fixed price
-TalentFinder Payment Due
-Oct 28, 2024 - Nov 11, 2025
-No feedback given
+---
 
-$750.00
-Fixed price
-Groundbreaking AI Browser App — Ongoing Work for Talented TypeScript/React Developer
-Rating is 5.0 out of 5.
-5.0
-Aug 3, 2025 - Sep 17, 2025
-"exceptional - did deep research and succeeded in a very complex tax my team had failed at. Never game up - lots of initiative, and great communication. Will use again."
+#### TalentFinder Payment Due
 
-Committed to Quality
-Clear Communicator
-$250.00
-Fixed price
-Test offer for a new account
-Aug 8, 2025 - Aug 27, 2025
-No feedback given
+contract_type: Fixed-price
+dates: Oct 28, 2024 – Nov 11, 2025
+budget: $750.00
 
-$5.00
-Fixed price
-Appwrite to Firebase Migration
-Nov 28, 2024 - Aug 3, 2025
-No feedback given
+---
 
-$400.00
-Fixed price
-Pagination
+#### Groundbreaking AI Browser App — Ongoing Work for Talented TypeScript/React Developer
 
-Current page 1 of 21
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Aug 3, 2025 – Sep 17, 2025
+budget: $250.00
 
-go to page2
-Current page 1 of 2
+**Client review:**
+"Exceptional — did deep research and succeeded in a very complex task my team had failed at. Never gave up — lots of initiative, and great communication. Will use again."
 
+---
 
-Van 3D Simulator + Ecommerce
-Nov 26, 2024 - Aug 3, 2025
-No feedback given
+#### Appwrite to Firebase Migration
 
-$1,140.00
-Fixed price
-Inventory management system
-Rating is 5.0 out of 5.
-5.0
-Jan 27, 2025 - Jul 17, 2025
-"I’ve worked with many freelancers on Upwork, and this team truly stands out. They delivered top-quality work ahead of schedule, communicated proactively at every milestone, and showed genuine care for..." See more
+contract_type: Fixed-price
+dates: Nov 28, 2024 – Aug 3, 2025
+budget: $400.00
 
-Committed to Quality
-Clear Communicator
-Accountable for Outcomes
-Professional
-$1,110.00
-Fixed price
-Full Stack Development -1
-Rating is 5.0 out of 5.
-5.0 of 1 reviews
-Sep 19, 2024 - Dec 11, 2024
-Rating is 5.0 out of 5.
-5.0
-Nov 1, 2024
-"I highly recommend Syntax's services to any business looking to develop a robust and engaging online presence. Also, we would like to express our sincere gratitude to Ali, Yahya, Husnain..." See more
+---
 
-$1,665.00
-Fixed price
-Senior React & Firebase Developer Needed!
-Rating is 5.0 out of 5.
-5.0
-Jul 30, 2024 - Nov 22, 2024
-$300.00
-Fixed price
-Eskino | Training Session Managment
-Rating is 5.0 out of 5.
-5.0
-Nov 1, 2024 - Nov 16, 2024
-"........once again great working with you guys. Always the Best :)"
+#### Van 3D Simulator + Ecommerce
 
-Collaborative
-$600.00
-Fixed price
-Self host configuration
-Sep 11, 2024 - Sep 19, 2024
-No feedback given
+contract_type: Fixed-price
+dates: Nov 26, 2024 – Aug 3, 2025
+budget: $1,140.00
 
-$200.00
-Fixed price
-You will get Full Stack Web Developer | MERN | Node JS | React JS | Next JS
-Rating is 5.0 out of 5.
-5.0
-Jul 4, 2024 - Jul 19, 2024
-"I am delighted to provide a comprehensive review of the software development team that delivered an exceptional software solution for our project. From the onset, their professionalism, technical expertise, and dedication were evident, resulting in a product that not only meets but exceeds our expectations." Less
+---
 
-Professional
-Committed to Quality
-$799.00
-Fixed price
+### In Progress (3 active contracts)
 
+---
 
-In progress (3)
-AI Engineer for SaaS Project
-May 28, 2026 - Present
-Job in progress
+#### AI Engineer for SaaS Project
 
-Fixed price
-Full Stack Engineer for SaaS Development
-May 18, 2026 - Present
-Job in progress
+contract_type: Fixed-price
+dates: May 28, 2026 – Present
 
-$1,900.00
-Fixed price
-Backend Developer for Sports Data Simulation Engine
-Rating is 5.0 out of 5.
-5.0 of 1 reviews
-Oct 23, 2025 - Present
-Rating is 5.0 out of 5.
-5.0
-Dec 28, 2025
-"Ali and his team have been amazing to work with. Very broad set of skills with a level of diligence and professionalism that is well above and beyond. They will..." See more
+---
 
-Job in progress
+#### Full Stack Engineer for SaaS Development
 
-$54,185.00
-Fixed price
+contract_type: Fixed-price
+dates: May 18, 2026 – Present
+budget: $1,900.00
 
-Portfolio
+---
 
-GameLens: AI Sports Intelligence Platform
+#### Backend Developer for Sports Data Simulation Engine
 
-Masat: eMAG Seller Intelligence Platform
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Oct 23, 2025 – Present
+budget: $54,185.00
 
-Tactiq | A Smart AI For Every Meeting
-Pagination
+**Client review (interim, Dec 28, 2025):**
+"Ali and his team have been amazing to work with. Very broad set of skills with a level of diligence and professionalism that is well above and beyond. They will..."
 
-Current page 1 of 41
+---
 
-go to page2
+## Portfolio
 
-go to page3
+---
 
-go to page4
-Current page 1 of 4
-Skills
-SaaS
-AI Development
-LLM Prompt Engineering
-Full-Stack Development
-Next.js
-React
-Node.js
-OpenAI API
-Claude
-Firebase
-Supabase
-Chatbot
-Model Tuning
-Agent GPT
-MERN Stack
-AI Agent Development
-Automation
-Artificial Intelligence
-Prompt Engineering
-Machine Learning
-Project catalog 
-Get started working with Ali quickly with these predefined projects.
+#### GameLens: AI Sports Intelligence Platform
 
-You will get Expert full stack MERN Developer | NextJS | React | NodeJS | MongoDB
-From $250
-5 days delivery
-You will get Full Stack Web Developer | MERN | Node JS | React JS | Next JS
-From $250
-5 days delivery
-Testimonials
-Endorsements from past clients
+---
 
-"We've known each other for about three years now, and I recall a time when you helped me revamp my online presence. I had been struggling with it for months, unable to get the traction I needed for my business. Your expertise and dedication turned things around, leading to a significant increase in traffic and sales. This was incredibly meaningful to me because it not only saved my business but also boosted my confidence. Your commitment and genuine care for your clients' success truly stand out. Without a doubt, I would highly recommend others to work with you, as your character and professionalism are exceptional."
+#### Masat: eMAG Seller Intelligence Platform
 
-Arfeen d. | Business Developer
-Ecommerce Eye Glasses Website Jul 2024  Verified
+---
 
-Certifications
-Introduction to Cloud Computing
-Skip skills
-Recreational Architecture
-Desktop Application
-Municipal Architecture
-Material Selection
-Commercial Design
-IaaS
-Software Debugging
-Provider: IBM
-Issued: April 2024
-Full Stack NextJS
-Provider: IBM
-Issued: June 2022
-Certification ID: 1235j5j6
-Employment history
-Co-founder | Syntax
-January 2024 - Present
+#### Tactiq | A Smart AI For Every Meeting
 
-As a co-founder and leader of Syntax, an innovative tech startup, I spearhead strategic planning, product development, and team management. I drive the company's vision and mission, nurturing a collaborative and growth-focused work environment. Additionally, I engage with stakeholders to ensure the successful delivery of projects and foster business growth.
-Full Stack Engineer | Code District
-March 2022 - September 2023
+---
 
-During my tenure as a Full Stack Engineer at Code District in Islamabad, Pakistan, from March 2022 to September 2023, I was responsible for designing, developing, and maintaining web applications. My role involved both front-end and back-end development, ensuring seamless integration and functionality of various features. I collaborated closely with cross-functional teams to implement user-friendly interfaces and robust server-side logic. Additionally, I contributed to optimizing application performance, conducting code reviews, and staying updated with emerging technologies to improve overall project outcomes. This experience significantly enhanced my technical skills and project management capabilities in a dynamic and fast-paced environment.
-more
-Frontend Developer | Logic Farm - Diversified Holding Company
-February 2021 - January 2022
+## Certifications & Tests
 
-During my tenure as a Frontend Developer at Logic Farm - Diversified Holding Company in Islamabad, Pakistan, from February 2021 to January 2023, I was responsible for designing, developing, and maintaining user-friendly web applications. My role involved crafting responsive and intuitive interfaces, implementing best practices in front-end development, and ensuring cross-browser compatibility. I collaborated closely with UX/UI designers and backend developers to create seamless and engaging user experiences. Additionally, I focused on optimizing application performance, debugging issues, and staying updated with the latest industry trends to enhance the quality and efficiency of the projects. This experience significantly enhanced my technical skills and ability to work effectively in a collaborative environment.
-more
-Other experiences
-Operations Manager FIFA'24 | NasCon
+- **Introduction to Cloud Computing** — Provider: IBM — Issued: April 2024
+- **Full Stack NextJS** — Provider: IBM — Issued: June 2022 (ID: 1235j5j6)
 
-I had experience as operations manager at FIFA CUP at NASCON'24 .
-This was really Nice experience learned a lot and made good connections
+---
+
+## Employment History
+
+---
+
+#### Co-founder — Syntax
+
+dates: January 2024 – Present
+
+Spearheads strategic planning, product development, and team management for an innovative tech startup. Drives the company's vision and mission, nurturing a collaborative and growth-focused work environment. Engages with stakeholders to ensure successful delivery of projects and foster business growth.
+
+---
+
+#### Full Stack Engineer — Code District
+
+dates: March 2022 – September 2023
+
+Designed, developed, and maintained web applications across front-end and back-end. Collaborated with cross-functional teams to implement user-friendly interfaces and robust server-side logic. Conducted code reviews and optimised application performance.
+
+---
+
+#### Frontend Developer — Logic Farm (Diversified Holding Company)
+
+dates: February 2021 – January 2022
+
+Designed and maintained responsive, intuitive web interfaces. Collaborated with UX/UI designers and backend developers to deliver seamless user experiences. Focused on cross-browser compatibility and application performance optimisation.
+
+---
+
+## Education
+
+---
+
+#### Bachelor of Science (BS), Software Engineering — FAST-NU Islamabad
+
+dates: 2018–2022
+
+---
+
+## Overflow Signals
+
+- **Agency / team operation** — Profile operates under "Syntax" (co-founded Jan 2024); multiple client reviews name team members explicitly ("Ali, Yahya, Husnain"), and one review addresses "The Syntax team" directly — this is a small agency, not a solo freelancer.
+- **Simultaneous project execution** — Work history shows 4–5 contracts running concurrently in the Oct–Nov 2025 window (MASAT, AI Voice Assistant, n8n Chatbot, Voice Translation, Lovable/Supabase), which only makes sense with distributed team capacity.
+- **3 active contracts currently in progress** — All three in-progress contracts (AI Engineer for SaaS, Full Stack SaaS, Sports Simulation Engine at $54,185) are live simultaneously as of June 2026, indicating sustained, full workload.
+- **High-value anchor project** — The Sports Data Simulation Engine contract is at $54,185 and ongoing since Oct 2025; a project of this scale likely consumes significant team bandwidth, compressing capacity for new intake.
+- **Client review language confirms reliability without hand-holding** — "Never gave up — lots of initiative", "went the extra mile", "will use again", "well above and beyond" — language consistent with a trusted execution partner clients return to, driving repeat demand.
+- **Rate tier creates referral overflow opportunity** — At $35/hr for a team delivering $16K–$54K fixed-price contracts, the effective project rate far exceeds the hourly floor; inquiries below their project minimum or outside their AI/SaaS niche are natural overflow candidates.
