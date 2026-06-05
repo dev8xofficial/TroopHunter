@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Burkes Group TX — Premier real estate and mortgage advisory in The Woodlands, TX. One team for buying, selling, financing, and investing.">
+<title>The Burkes Group TX — Real Estate &amp; Mortgage | The Woodlands, TX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+/* ============================================================
+   CSS VARIABLES
+   ============================================================ */
+:root {
+  --navy:       #0B1B2B;
+  --navy-mid:   #122236;
+  --navy-light: #1A3352;
+  --gold:       #C9A84C;
+  --gold-light: #E2C47B;
+  --gold-pale:  #F5EDD5;
+  --white:      #FFFFFF;
+  --off-white:  #F8F7F4;
+  --gray-100:   #F0EEE9;
+  --gray-300:   #C8C4BC;
+  --gray-500:   #8A8680;
+  --gray-700:   #48443E;
+  --gray-900:   #1C1A17;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'DM Sans', -apple-system, sans-serif;
+  --font-mono:    'DM Mono', 'Courier New', monospace;
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-hero: clamp(3.5rem, 7vw, 6rem);
+  --pad:       clamp(1.5rem, 5vw, 5rem);
+  --sec:       clamp(5rem, 10vw, 9rem);
+  --max:       1280px;
+  --ease:      0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body { font-family: var(--font-body); background: var(--off-white); color: var(--gray-900); overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+.sec  { padding: var(--sec) 0; }
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.1rem;
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.rv { opacity: 0; transform: translateY(26px); transition: opacity 0.75s ease, transform 0.75s ease; }
+.rv.in { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.10s; } .d2 { transition-delay: 0.20s; }
+.d3 { transition-delay: 0.30s; } .d4 { transition-delay: 0.40s; }
+.d5 { transition-delay: 0.50s; }
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+#nav {
+  position: fixed; inset: 0 0 auto;
+  height: 80px; z-index: 1000;
+  display: flex; align-items: center; padding: 0 var(--pad);
+  transition: background var(--ease), border-color var(--ease), box-shadow var(--ease);
+  border-bottom: 1px solid transparent;
+}
+#nav.on { background: var(--navy); border-color: rgba(201,168,76,0.55); box-shadow: 0 4px 40px rgba(0,0,0,.35); }
+
+.nav-in { max-width: var(--max); margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+
+.nav-logo { display: flex; flex-direction: column; gap: 0.15rem; }
+.nav-logo-name { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); line-height: 1; }
+.nav-logo-sub  { font-family: var(--font-body); font-size: 0.625rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); line-height: 1; }
+
+.nav-links { display: flex; gap: 0; }
+.nav-links a {
+  font-family: var(--font-body); font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: rgba(255,255,255,.72); padding: 0.4rem 0.7rem;
+  position: relative; transition: color var(--ease);
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -1px; left: 50%; right: 50%;
+  height: 1px; background: var(--gold);
+  transition: left var(--ease), right var(--ease);
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { left: 0.7rem; right: 0.7rem; }
+
+.nav-cta {
+  display: flex; align-items: center; gap: 0.45rem;
+  font-family: var(--font-body); font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 0.06em; color: var(--gold);
+  border: 1px solid var(--gold); padding: 0.55rem 1.2rem; border-radius: 2px;
+  white-space: nowrap; transition: background var(--ease), color var(--ease);
+}
+.nav-cta:hover { background: var(--gold); color: var(--navy); }
+.nav-cta i { font-size: 14px; }
+
+.ham { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 0.5rem; }
+.ham span { display: block; width: 22px; height: 1.5px; background: var(--white); transition: var(--ease); transform-origin: center; }
+.ham.on span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.ham.on span:nth-child(2) { opacity: 0; }
+.ham.on span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ============================================================
+   MOBILE OVERLAY
+   ============================================================ */
+#mob {
+  position: fixed; inset: 0; z-index: 999;
+  background: var(--navy);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+  opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+}
+#mob.on { opacity: 1; pointer-events: all; }
+#mob a { font-family: var(--font-display); font-size: 2rem; color: var(--white); transition: color var(--ease); }
+#mob a:hover { color: var(--gold); }
+.mob-cta { font-family: var(--font-body) !important; font-size: 0.9rem !important; color: var(--gold) !important; border: 1px solid var(--gold); padding: 0.75rem 2.5rem; border-radius: 2px; margin-top: 0.5rem; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero { min-height: 100vh; position: relative; display: flex; align-items: center; overflow: hidden; padding-top: 80px; }
+
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(180deg, #040b12 0%, #0B1B2B 35%, #122236 65%, #091624 100%);
+}
+.hero-bg::before {
+  content: '';  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+                    linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size: 72px 72px;
+}
+.hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 55% 65% at 72% 38%, rgba(26,51,82,.55) 0%, transparent 65%),
+    radial-gradient(ellipse 28% 35% at 82% 72%, rgba(201,168,76,.055) 0%, transparent 58%),
+    linear-gradient(135deg, rgba(11,27,43,.78) 0%, rgba(11,27,43,.22) 100%);
+}
+
+/* Architectural accent lines */
+.hero-arch { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.hero-arch::before {
+  content: ''; position: absolute;
+  right: 18%; top: 8%; bottom: 8%; width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(201,168,76,.2) 25%, rgba(201,168,76,.2) 75%, transparent);
+}
+.hero-arch::after {
+  content: ''; position: absolute;
+  right: 22%; top: 12%; bottom: 12%; width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 75%, transparent);
+}
+
+.hero-wrap {
+  position: relative; z-index: 2;
+  max-width: var(--max); margin: 0 auto; padding: 3rem var(--pad);
+  width: 100%; display: grid; grid-template-columns: 55fr 45fr;
+  gap: 3.5rem; align-items: center;
+}
+
+.hero-eyebrow { display: flex; align-items: center; gap: .65rem; margin-bottom: 1.75rem; }
+.hero-eline { width: 40px; height: 1px; background: var(--gold); }
+.hero-edot  { width: 3.5px; height: 3.5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+.hero-etxt  { font-family: var(--font-body); font-size: .75rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+
+.hero-h1 { font-family: var(--font-display); font-size: var(--text-hero); font-weight: 600; line-height: 1.0; color: var(--white); margin-bottom: 1.4rem; }
+.hero-h1 em { font-style: italic; color: var(--gold); }
+
+.hero-sub { font-family: var(--font-body); font-size: var(--text-lg); line-height: 1.72; color: rgba(255,255,255,.82); max-width: 510px; margin-bottom: 2.5rem; }
+
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.btn-gold {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--gold); color: var(--navy);
+  font-family: var(--font-body); font-size: .8125rem; font-weight: 500; letter-spacing: .04em;
+  height: 52px; padding: 0 1.75rem; border-radius: 2px; border: none; cursor: pointer;
+  transition: background var(--ease), transform var(--ease);
+}
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+.btn-ghost-w {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: transparent; color: var(--white);
+  font-family: var(--font-body); font-size: .8125rem; font-weight: 500; letter-spacing: .04em;
+  height: 52px; padding: 0 1.75rem; border-radius: 2px; border: 1px solid rgba(255,255,255,.45); cursor: pointer;
+  transition: border-color var(--ease), background var(--ease);
+}
+.btn-ghost-w:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
+
+/* Stat panel */
+.hero-panel {
+  background: rgba(255,255,255,.07);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(201,168,76,.25); border-radius: 4px;
+}
+.panel-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.panel-cell {
+  padding: 1.6rem 1.5rem;
+  border-right: 1px solid rgba(255,255,255,.1);
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.panel-cell:nth-child(2n) { border-right: none; }
+.panel-cell:nth-child(3), .panel-cell:nth-child(4) { border-bottom: none; }
+
+.panel-num { font-family: var(--font-display); font-size: 2.75rem; font-weight: 600; color: var(--gold); line-height: 1; margin-bottom: .4rem; }
+.panel-lbl { font-family: var(--font-body); font-size: .7rem; font-weight: 500; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.6); line-height: 1.35; }
+
+.panel-trust {
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding: 1.1rem 1.5rem;
+  display: flex; align-items: center; justify-content: center; gap: .9rem; flex-wrap: wrap;
+}
+.trust-it { font-family: var(--font-body); font-size: .65rem; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.48); display: flex; align-items: center; gap: .35rem; }
+.trust-it .st { color: var(--gold); font-size: .75rem; }
+.trust-sep { color: rgba(255,255,255,.18); font-size: .55rem; }
+
+/* Scroll chevron */
+.hero-scroll {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  z-index: 3; display: flex; flex-direction: column; align-items: center; gap: .4rem;
+  color: rgba(255,255,255,.38); font-family: var(--font-body); font-size: .625rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  animation: hfloat 2.6s ease-in-out infinite;
+}
+.hero-scroll i { font-size: 18px; }
+@keyframes hfloat {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(7px); }
+}
+
+/* ============================================================
+   TICKER
+   ============================================================ */
+#ticker {
+  background: var(--navy-mid); height: 72px; overflow: hidden;
+  display: flex; align-items: center;
+  border-top: 1px solid rgba(201,168,76,.12); border-bottom: 1px solid rgba(201,168,76,.12);
+}
+.ticker-tr {
+  display: flex; align-items: center; white-space: nowrap;
+  animation: tick 40s linear infinite;
+  will-change: transform;
+}
+.ticker-tr:hover { animation-play-state: paused; }
+.tick-item { display: inline-flex; align-items: center; gap: 1.1rem; padding: 0 1.25rem; font-family: var(--font-body); font-size: .8rem; font-weight: 500; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.78); }
+.tick-gem { color: var(--gold); font-size: .45rem; }
+@keyframes tick { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+#about { background: var(--off-white); }
+
+.about-grid { display: grid; grid-template-columns: 55fr 45fr; gap: 4.5rem; align-items: center; }
+
+/* Image composition */
+.about-comp { position: relative; height: 580px; }
+
+.about-pattern {
+  position: absolute; top: 1.5rem; left: 0; right: -1.5rem; bottom: -1.5rem;
+  background-image: linear-gradient(rgba(201,168,76,.09) 1px,transparent 1px), linear-gradient(90deg,rgba(201,168,76,.09) 1px,transparent 1px);
+  background-size: 22px 22px; border-radius: 4px; z-index: 0;
+}
+.about-gline {
+  position: absolute; left: 0; top: 8%; bottom: 8%; width: 4px; z-index: 2;
+  background: linear-gradient(to bottom, transparent, var(--gold) 18%, var(--gold) 82%, transparent);
+}
+.about-img {
+  position: absolute; left: 1.25rem; top: 0; right: 0; bottom: 0;
+  border-radius: 4px; overflow: hidden; z-index: 1;
+  background: linear-gradient(160deg, #1A3352 0%, #0B1B2B 55%, #091624 100%);
+}
+.about-img::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 55% 55% at 50% 25%, rgba(201,168,76,.065) 0%, transparent 65%),
+    linear-gradient(to bottom, transparent 40%, rgba(11,27,43,.55) 100%);
+}
+/* Decorative vertical pillars inside the image */
+.about-img::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size: 48px 48px;
+}
+
+.about-card {
+  position: absolute; bottom: 3rem; left: -1.25rem; z-index: 3;
+  background: var(--white); border: 1px solid var(--gold); border-radius: 4px;
+  padding: 1.1rem 1.35rem; display: flex; align-items: center; gap: .9rem;
+  box-shadow: 0 12px 40px rgba(11,27,43,.14); max-width: 300px;
+}
+.about-av {
+  width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+  background: var(--navy); border: 2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: var(--gold);
+}
+.about-card-name { font-family: var(--font-display); font-size: .9rem; font-weight: 600; color: var(--gray-900); line-height: 1.2; }
+.about-card-role { font-family: var(--font-body); font-size: .68rem; color: var(--gray-500); letter-spacing: .03em; margin-top: .18rem; line-height: 1.4; }
+
+.about-badge {
+  position: absolute; top: 2rem; right: 1.5rem; z-index: 3;
+  width: 68px; height: 68px; border-radius: 50%; background: var(--gold);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: 0 4px 18px rgba(201,168,76,.4);
+}
+.about-badge span:first-child { font-family: var(--font-display); font-size: .6rem; color: var(--navy); letter-spacing: .05em; text-transform: uppercase; }
+.about-badge span:last-child  { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--navy); line-height: 1; }
+
+/* About copy */
+.about-h2 { font-family: var(--font-display); font-size: 2.75rem; font-weight: 600; line-height: 1.1; color: var(--gray-900); margin-bottom: 1.4rem; }
+.about-h2 em { font-style: italic; color: var(--gold); }
+.about-p { font-family: var(--font-body); font-size: var(--text-base); line-height: 1.82; color: var(--gray-700); margin-bottom: .9rem; }
+
+.about-icons {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: .75rem;
+  padding: 1.5rem 0; margin: 1.5rem 0;
+  border-top: 1px solid var(--gray-100); border-bottom: 1px solid var(--gray-100);
+}
+.about-ico { display: flex; flex-direction: column; align-items: center; gap: .5rem; text-align: center; }
+.about-ico i { font-size: 1.4rem; color: var(--gold); }
+.about-ico span { font-family: var(--font-body); font-size: .65rem; font-weight: 500; text-transform: uppercase; letter-spacing: .1em; color: var(--gray-500); }
+
+.btn-outline-nv {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: transparent; color: var(--navy);
+  font-family: var(--font-body); font-size: .8125rem; font-weight: 500; letter-spacing: .04em;
+  height: 48px; padding: 0 1.75rem; border-radius: 2px; border: 1px solid var(--navy); cursor: pointer;
+  transition: background var(--ease), color var(--ease);
+}
+.btn-outline-nv:hover { background: var(--navy); color: var(--white); }
+
+/* ============================================================
+   SERVICES
+   ============================================================ */
+#services { background: var(--navy); }
+
+.srv-hdr { text-align: center; margin-bottom: 3.75rem; }
+.srv-h2 { font-family: var(--font-display); font-size: clamp(2.25rem,4vw,3rem); font-weight: 600; line-height: 1.1; color: var(--white); margin-bottom: 1.1rem; }
+.srv-h2 em { font-style: italic; color: var(--gold); }
+.srv-sub { font-family: var(--font-body); font-size: var(--text-base); color: rgba(255,255,255,.5); max-width: 530px; margin: 0 auto; line-height: 1.72; }
+
+.srv-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.35rem; }
+
+.srv-card {
+  background: rgba(255,255,255,.038); border: 1px solid rgba(201,168,76,.16);
+  border-radius: 4px; padding: 2.25rem 1.85rem; position: relative; overflow: hidden;
+  transition: border-color .35s ease, transform .35s ease, background .35s ease, box-shadow .35s ease;
+  cursor: default;
+}
+.srv-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg,transparent,rgba(201,168,76,.45),transparent);
+  opacity: 0; transition: opacity .35s ease;
+}
+.srv-card:hover { border-color: rgba(201,168,76,.55); transform: translateY(-6px); background: rgba(255,255,255,.07); box-shadow: 0 24px 64px rgba(0,0,0,.28); }
+.srv-card:hover::before { opacity: 1; }
+
+.srv-icon { font-size: 1.75rem; color: var(--gold); margin-bottom: 1.1rem; }
+.srv-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--white); line-height: 1.1; margin-bottom: .65rem; }
+.srv-rule { width: 28px; height: 1px; background: var(--gold); margin-bottom: .9rem; }
+.srv-desc { font-family: var(--font-body); font-size: .875rem; line-height: 1.72; color: rgba(255,255,255,.58); margin-bottom: 1.4rem; }
+.srv-link { font-family: var(--font-body); font-size: .78rem; font-weight: 500; text-transform: uppercase; letter-spacing: .08em; color: var(--gold); display: flex; align-items: center; gap: .4rem; transition: gap var(--ease); }
+.srv-card:hover .srv-link { gap: .7rem; }
+
+/* ============================================================
+   WHY US
+   ============================================================ */
+#why { background: var(--off-white); }
+
+.why-grid { display: grid; grid-template-columns: 40fr 60fr; gap: 5rem; align-items: center; }
+
+.why-left { position: relative; }
+.why-num {
+  font-family: var(--font-display); font-size: clamp(8rem,12vw,13rem); font-weight: 600;
+  color: rgba(201,168,76,.08); line-height: .8;
+  position: absolute; top: -1.5rem; left: -1rem; user-select: none; pointer-events: none;
+}
+.why-h2 { font-family: var(--font-display); font-size: clamp(2rem,3.5vw,2.75rem); font-weight: 600; line-height: 1.15; color: var(--gray-900); position: relative; z-index: 1; margin-bottom: 1.35rem; }
+.why-h2 em { font-style: italic; color: var(--gold); }
+.why-p { font-family: var(--font-body); font-size: var(--text-base); line-height: 1.82; color: var(--gray-700); position: relative; z-index: 1; }
+
+.why-rows {}
+.why-row {
+  display: grid; grid-template-columns: 3.25rem 1fr; gap: 1.35rem; align-items: start;
+  padding: 1.6rem 0; border-bottom: 1px solid var(--gray-100);
+  position: relative; transition: padding-left var(--ease); cursor: default;
+}
+.why-row:first-child { border-top: 1px solid var(--gray-100); }
+.why-row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--gold); transition: width .22s ease; }
+.why-row:hover { padding-left: 1.1rem; }
+.why-row:hover::before { width: 3px; }
+
+.why-row-n { font-family: var(--font-display); font-size: 1.05rem; font-weight: 400; color: var(--gold); padding-top: .12rem; }
+.why-row-t { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--gray-900); margin-bottom: .35rem; line-height: 1.2; }
+.why-row-d { font-family: var(--font-body); font-size: .875rem; color: var(--gray-500); line-height: 1.62; }
+
+/* ============================================================
+   PROCESS
+   ============================================================ */
+#process { background: linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 100%); }
+
+.proc-hdr { text-align: center; margin-bottom: 4.5rem; }
+.proc-h2 { font-family: var(--font-display); font-size: clamp(2.25rem,4vw,3rem); font-weight: 600; color: var(--white); line-height: 1.1; }
+.proc-h2 em { font-style: italic; color: var(--gold); }
+
+.proc-steps { display: grid; grid-template-columns: repeat(4,1fr); position: relative; }
+.proc-steps::before {
+  content: ''; position: absolute; z-index: 0;
+  top: 3.5rem; left: 12.5%; right: 12.5%; height: 1px;
+  border-top: 1px dashed rgba(201,168,76,.38);
+}
+
+.proc-step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 1.25rem; position: relative; z-index: 1; }
+.proc-ico { font-size: 1.1rem; color: rgba(255,255,255,.35); margin-bottom: .9rem; }
+.proc-circle {
+  width: 4.25rem; height: 4.25rem; border-radius: 50%; border: 1px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; color: var(--gold);
+  background: var(--navy); margin-bottom: 1.4rem; position: relative; z-index: 2;
+}
+.proc-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--white); margin-bottom: .65rem; line-height: 1.1; }
+.proc-desc { font-family: var(--font-body); font-size: .875rem; color: rgba(255,255,255,.52); line-height: 1.65; }
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+#testim { background: var(--off-white); }
+
+.testim-layout { display: grid; grid-template-columns: 38fr 62fr; gap: 4rem; align-items: start; }
+
+.testim-h2 { font-family: var(--font-display); font-size: 2.75rem; font-weight: 600; line-height: 1.1; color: var(--gray-900); margin-bottom: 1.25rem; }
+.testim-h2 em { font-style: italic; color: var(--gold); }
+.testim-sub { font-family: var(--font-body); font-size: var(--text-base); line-height: 1.72; color: var(--gray-500); margin-bottom: 1.75rem; }
+
+.testim-right { display: flex; flex-direction: column; gap: 1.2rem; }
+
+.t-card {
+  background: var(--white); border: 1px solid var(--gray-100); border-left: 4px solid var(--gold);
+  border-radius: 4px; padding: 1.85rem 1.65rem;
+  transition: box-shadow var(--ease), transform var(--ease);
+}
+.t-card:hover { box-shadow: 0 10px 40px rgba(11,27,43,.09); transform: translateY(-3px); }
+.t-stars { color: var(--gold); font-size: .85rem; letter-spacing: .08em; margin-bottom: .9rem; }
+.t-quote { font-family: var(--font-display); font-size: 1.08rem; font-style: italic; line-height: 1.68; color: var(--gray-900); margin-bottom: 1.1rem; }
+.t-foot { display: flex; align-items: center; gap: .9rem; }
+.t-av { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: .85rem; font-weight: 600; color: var(--gold); flex-shrink: 0; }
+.t-name { font-family: var(--font-body); font-size: .875rem; font-weight: 500; color: var(--gray-900); line-height: 1.2; }
+.t-svc  { font-family: var(--font-body); font-size: .72rem; color: var(--gray-500); margin-top: .15rem; }
+
+/* ============================================================
+   STATS
+   ============================================================ */
+#stats { background: var(--navy); }
+
+.stats-inner { display: grid; grid-template-columns: repeat(4,1fr); }
+.stat-it {
+  text-align: center; padding: 1rem 2rem; position: relative;
+}
+.stat-it:not(:last-child)::after {
+  content: ''; position: absolute; top: 12%; bottom: 12%; right: 0; width: 1px;
+  background: rgba(255,255,255,.1);
+}
+.stat-n { font-family: var(--font-display); font-size: clamp(2.25rem,4vw,3.75rem); font-weight: 600; color: var(--gold); line-height: 1; margin-bottom: .65rem; }
+.stat-l { font-family: var(--font-body); font-size: .78rem; font-weight: 500; text-transform: uppercase; letter-spacing: .12em; color: rgba(255,255,255,.48); }
+
+/* ============================================================
+   BLOG
+   ============================================================ */
+#blog { background: var(--off-white); }
+
+.blog-hdr { text-align: center; margin-bottom: 3.25rem; }
+.blog-h2 { font-family: var(--font-display); font-size: clamp(2.25rem,4vw,3rem); font-weight: 600; color: var(--gray-900); margin-bottom: .9rem; }
+.blog-sub { font-family: var(--font-body); font-size: var(--text-base); color: var(--gray-500); max-width: 500px; margin: 0 auto; line-height: 1.72; }
+
+.blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-bottom: 3rem; }
+
+.b-card {
+  background: var(--white); border-radius: 4px; border: 1px solid var(--gray-100);
+  border-bottom: 2px solid transparent; overflow: hidden;
+  transition: border-bottom-color var(--ease), box-shadow var(--ease), transform var(--ease);
+}
+.b-card:hover { border-bottom-color: var(--gold); box-shadow: 0 14px 48px rgba(11,27,43,.1); transform: translateY(-4px); }
+
+.b-img { position: relative; aspect-ratio: 16/9; overflow: hidden; }
+.b-card:nth-child(1) .b-img { background: linear-gradient(135deg, #0B1B2B 0%, #1A3352 100%); }
+.b-card:nth-child(2) .b-img { background: linear-gradient(135deg, #0d2b1c 0%, #122236 100%); }
+.b-card:nth-child(3) .b-img { background: linear-gradient(135deg, #1c1407 0%, #0B1B2B 100%); }
+
+.b-img::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size: 28px 28px;
+}
+/* Central orb of light in blog card images */
+.b-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 55% 55% at 50% 50%, rgba(201,168,76,.06) 0%, transparent 70%);
+}
+
+.b-cat {
+  position: absolute; bottom: 1rem; left: 1rem; z-index: 1;
+  font-family: var(--font-body); font-size: .65rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .09em;
+  color: var(--navy); background: var(--gold); padding: .3rem .65rem; border-radius: 2px;
+}
+.b-body { padding: 1.4rem; }
+.b-date { font-family: var(--font-body); font-size: .7rem; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; color: var(--gray-500); margin-bottom: .65rem; }
+.b-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--gray-900); line-height: 1.35; margin-bottom: .6rem; }
+.b-excerpt { font-family: var(--font-body); font-size: .875rem; color: var(--gray-700); line-height: 1.62; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: .9rem; }
+.b-link { font-family: var(--font-body); font-size: .78rem; font-weight: 500; text-transform: uppercase; letter-spacing: .08em; color: var(--gold); display: flex; align-items: center; gap: .4rem; transition: gap var(--ease); }
+.b-card:hover .b-link { gap: .7rem; }
+
+.blog-cta { text-align: center; }
+
+/* ============================================================
+   CTA CONSULTATION
+   ============================================================ */
+#cta { position: relative; padding: var(--sec) 0; overflow: hidden; }
+.cta-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(135deg, #04080e 0%, #0B1B2B 45%, #122236 80%, #060e16 100%);
+}
+.cta-bg::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 65% 70% at 50% 50%, rgba(201,168,76,.048) 0%, transparent 65%),
+    linear-gradient(rgba(11,27,43,.65),rgba(11,27,43,.65));
+}
+.cta-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size: 55px 55px;
+}
+.cta-content { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; text-align: center; padding: 0 var(--pad); }
+.cta-h2 { font-family: var(--font-display); font-size: clamp(2.5rem,5vw,3.5rem); font-weight: 600; line-height: 1.05; color: var(--white); margin-bottom: 1.4rem; }
+.cta-h2 em { font-style: italic; color: var(--gold); }
+.cta-sub { font-family: var(--font-body); font-size: var(--text-lg); line-height: 1.72; color: rgba(255,255,255,.7); margin-bottom: 2.4rem; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.75rem; }
+
+.btn-gold-lg {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--gold); color: var(--navy);
+  font-family: var(--font-body); font-size: .9rem; font-weight: 500; letter-spacing: .04em;
+  height: 56px; padding: 0 2rem; border-radius: 2px; border: none; cursor: pointer;
+  transition: background var(--ease), transform var(--ease);
+}
+.btn-gold-lg:hover { background: var(--gold-light); transform: translateY(-2px); }
+.btn-wout-lg {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: transparent; color: var(--white);
+  font-family: var(--font-body); font-size: .9rem; font-weight: 500; letter-spacing: .04em;
+  height: 56px; padding: 0 2rem; border-radius: 2px; border: 1px solid rgba(255,255,255,.4); cursor: pointer;
+  transition: border-color var(--ease), background var(--ease);
+}
+.btn-wout-lg:hover { border-color: var(--white); background: rgba(255,255,255,.07); }
+
+.cta-trust { display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+.cta-trust-it { font-family: var(--font-body); font-size: .8rem; color: rgba(255,255,255,.45); display: flex; align-items: center; gap: .4rem; }
+.cta-trust-it .ck { color: var(--gold); font-size: .9rem; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+#footer { background: var(--gray-900); }
+
+.ftr-top {
+  max-width: var(--max); margin: 0 auto;
+  padding: 5rem var(--pad) 3.5rem;
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.15fr; gap: 3rem;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.ftr-name { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--white); margin-bottom: .25rem; }
+.ftr-tag  { font-family: var(--font-body); font-size: .7rem; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; }
+.ftr-desc { font-family: var(--font-body); font-size: .875rem; line-height: 1.65; color: rgba(255,255,255,.42); margin-bottom: 1.4rem; }
+.ftr-soc { display: flex; gap: .65rem; }
+.ftr-soc a { width: 34px; height: 34px; border-radius: 2px; border: 1px solid rgba(255,255,255,.14); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.55); font-size: .95rem; transition: color var(--ease), border-color var(--ease); }
+.ftr-soc a:hover { color: var(--gold); border-color: var(--gold); }
+
+.ftr-col-h { font-family: var(--font-body); font-size: .7rem; font-weight: 500; letter-spacing: .11em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; }
+.ftr-links { display: flex; flex-direction: column; gap: .55rem; }
+.ftr-links a { font-family: var(--font-body); font-size: .875rem; color: rgba(255,255,255,.46); transition: color var(--ease); line-height: 1; }
+.ftr-links a:hover { color: var(--white); }
+
+.ftr-ci { display: flex; align-items: flex-start; gap: .7rem; margin-bottom: .8rem; }
+.ftr-ci i { font-size: .95rem; color: var(--gold); margin-top: .1rem; flex-shrink: 0; }
+.ftr-ci-txt { font-family: var(--font-body); font-size: .875rem; color: rgba(255,255,255,.46); line-height: 1.5; }
+.ftr-ci-txt a { transition: color var(--ease); }
+.ftr-ci-txt a:hover { color: var(--white); }
+
+.ftr-hrs { margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid rgba(255,255,255,.07); }
+.ftr-hrs-h { font-family: var(--font-body); font-size: .65rem; font-weight: 500; text-transform: uppercase; letter-spacing: .11em; color: var(--gold); margin-bottom: .45rem; }
+.ftr-hrs-t { font-family: var(--font-body); font-size: .8rem; color: rgba(255,255,255,.4); line-height: 1.65; }
+
+.ftr-bot { max-width: var(--max); margin: 0 auto; padding: 1.4rem var(--pad); display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.ftr-copy { font-family: var(--font-body); font-size: .72rem; color: rgba(255,255,255,.28); }
+.ftr-copy a { color: rgba(255,255,255,.38); transition: color var(--ease); }
+.ftr-copy a:hover { color: rgba(255,255,255,.65); }
+.ftr-lic { display: flex; align-items: center; gap: .7rem; }
+.eho { width: 26px; height: 26px; background: rgba(255,255,255,.09); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-family: var(--font-body); font-size: .5rem; font-weight: 500; color: rgba(255,255,255,.32); text-align: center; line-height: 1.2; }
+.ftr-lic-t { font-family: var(--font-body); font-size: .72rem; color: rgba(255,255,255,.28); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .hero-wrap { grid-template-columns: 1fr; max-width: 640px; }
+  .hero-panel { max-width: 440px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-comp { height: 400px; }
+  .srv-grid { grid-template-columns: repeat(2,1fr); }
+  .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .why-num { font-size: 9rem; }
+  .testim-layout { grid-template-columns: 1fr; }
+  .stats-inner { grid-template-columns: repeat(2,1fr); }
+  .stat-it:nth-child(2)::after { display: none; }
+  .stat-it:nth-child(1), .stat-it:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,.1); }
+  .ftr-top { grid-template-columns: 1fr 1fr; }
+  .blog-grid { grid-template-columns: repeat(2,1fr); }
+}
+
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .ham { display: flex; }
+  .proc-steps { grid-template-columns: repeat(2,1fr); gap: 2rem; }
+  .proc-steps::before { display: none; }
+  .about-comp { display: none; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .ftr-top { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+@media (max-width: 480px) {
+  .hero-btns, .cta-btns { flex-direction: column; }
+  .btn-gold, .btn-ghost-w, .btn-gold-lg, .btn-wout-lg { width: 100%; justify-content: center; }
+  .proc-steps { grid-template-columns: 1fr; }
+  .srv-grid { grid-template-columns: 1fr; }
+  .stats-inner { grid-template-columns: repeat(2,1fr); }
+  .about-icons { grid-template-columns: repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav id="nav">
+  <div class="nav-in">
+    <a href="#" class="nav-logo">
+      <span class="nav-logo-name">The Burkes Group</span>
+      <span class="nav-logo-sub">Real Estate &amp; Mortgage Experts</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Buy</a></li>
+      <li><a href="#services">Sell</a></li>
+      <li><a href="#services">Mortgage</a></li>
+      <li><a href="#services">Divorce Services</a></li>
+      <li><a href="#services">CPA &amp; Investors</a></li>
+      <li><a href="#blog">Blog</a></li>
+    </ul>
+    <a href="#cta" class="nav-cta"><i class="ti ti-calendar"></i>Book a Consultation</a>
+    <button class="ham" id="ham" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE OVERLAY -->
+<div id="mob">
+  <a href="#"        onclick="closeMob()">Home</a>
+  <a href="#about"   onclick="closeMob()">About</a>
+  <a href="#services"onclick="closeMob()">Buy</a>
+  <a href="#services"onclick="closeMob()">Sell</a>
+  <a href="#services"onclick="closeMob()">Mortgage</a>
+  <a href="#services"onclick="closeMob()">Divorce Services</a>
+  <a href="#services"onclick="closeMob()">CPA &amp; Investors</a>
+  <a href="#blog"    onclick="closeMob()">Blog</a>
+  <a href="#cta" class="mob-cta" onclick="closeMob()">Book a Consultation</a>
+</div>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-arch"></div>
+
+  <div class="hero-wrap">
+    <!-- Left: Copy -->
+    <div>
+      <div class="hero-eyebrow">
+        <div class="hero-eline"></div>
+        <div class="hero-edot"></div>
+        <div class="hero-eline"></div>
+        <span class="hero-etxt">The Woodlands, TX — Premier Real Estate &amp; Mortgage</span>
+      </div>
+      <h1 class="hero-h1">One Team.<br><em>Every</em> Step.</h1>
+      <p class="hero-sub">From finding your dream home to closing with confidence — The Burkes Group combines real estate expertise with in-house mortgage solutions for a seamless experience.</p>
+      <div class="hero-btns">
+        <a href="#cta" class="btn-gold">Start Your Journey &rarr;</a>
+        <a href="#process" class="btn-ghost-w">See How We Work</a>
+      </div>
+    </div>
+
+    <!-- Right: Stat Panel -->
+    <div>
+      <div class="hero-panel">
+        <div class="panel-grid">
+          <div class="panel-cell"><div class="panel-num">500+</div><div class="panel-lbl">Transactions</div></div>
+          <div class="panel-cell"><div class="panel-num">98%</div><div class="panel-lbl">Client Satisfaction</div></div>
+          <div class="panel-cell"><div class="panel-num">$250M+</div><div class="panel-lbl">Volume Closed</div></div>
+          <div class="panel-cell"><div class="panel-num">15+</div><div class="panel-lbl">Yrs Combined Exp.</div></div>
+        </div>
+        <div class="panel-trust">
+          <div class="trust-it"><span class="st">★★★★★</span><span>Google Reviews</span></div>
+          <span class="trust-sep">|</span>
+          <div class="trust-it">HAR MLS</div>
+          <span class="trust-sep">|</span>
+          <div class="trust-it"><i class="ti ti-home" style="font-size:11px;color:var(--gold)"></i>Equal Housing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span style="font-size:.58rem;letter-spacing:.16em">SCROLL</span>
+    <i class="ti ti-chevron-down"></i>
+  </div>
+</section>
+
+<!-- ============================================================
+     TRUST TICKER
+     ============================================================ -->
+<div id="ticker">
+  <div class="ticker-tr">
+    <div class="tick-item">500+ Closed Transactions</div><div class="tick-item"><span class="tick-gem">◆</span></div>
+    <div class="tick-item">$250M+ in Volume</div><div class="tick-item"><span class="tick-gem">◆</span></div>
+    <div class="tick-item">The Woodlands Native</div><div class="tick-item"><span class="tick-gem">◆</span></div>
+    <div class="tick-item">Licensed Real Estate Agent &amp; Mortgage Lender</div><div class="tick-item"><span class="tick-gem">◆</span></div>
+    <div class="tick-item">Serving All of Greater Houston</div><div class="tick-item"><span class="tick-gem">◆</span></div>
+    <div class="tick-item">Top Producing Team</div><div class="tick-item"><span class="tick-gem">◆</span></div>
+    <div class="tick-item">First-Time Buyer Specialists</div><div class="tick-item"><span class="tick-gem">◆</span></div>
+    <div class="tick-item">Investor-Focused Strategy</div><div class="tick-item"><span class="tick-gem">◆</span></div>
+    <!-- duplicate for loop -->
+    <div class="tick-item">500+ Closed Transactions</div><div class="tick-item"><span class="tick-gem">◆</span></div>
+    <div class="tick-item">$250M+ in Volume</div><div class="tick-item"><span class="tick-gem">◆</span></div>
+    <div class="tick-item">The Woodlands Native</div><div class="tick-item"><span class="tick-gem">◆</span></div>
+    <div class="tick-item">Licensed Real Estate Agent &amp; Mortgage Lender</div><div class="tick-item"><span class="tick-gem">◆</span></div>
+    <div class="tick-item">Serving All of Greater Houston</div><div class="tick-item"><span class="tick-gem">◆</span></div>
+    <div class="tick-item">Top Producing Team</div><div class="tick-item"><span class="tick-gem">◆</span></div>
+    <div class="tick-item">First-Time Buyer Specialists</div><div class="tick-item"><span class="tick-gem">◆</span></div>
+    <div class="tick-item">Investor-Focused Strategy</div><div class="tick-item"><span class="tick-gem">◆</span></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section id="about" class="sec">
+  <div class="wrap">
+    <div class="about-grid">
+
+      <!-- Image Composition -->
+      <div class="about-comp rv">
+        <div class="about-pattern"></div>
+        <div class="about-gline"></div>
+        <div class="about-img"></div>
+        <div class="about-card">
+          <div class="about-av">JB</div>
+          <div>
+            <div class="about-card-name">Jahcorrian Burkes</div>
+            <div class="about-card-role">Principal · REALTOR® &amp; Licensed<br>Mortgage Advisor</div>
+          </div>
+        </div>
+        <div class="about-badge"><span>Est.</span><span>2018</span></div>
+      </div>
+
+      <!-- Copy -->
+      <div>
+        <div class="eyebrow rv">Know Your Team</div>
+        <h2 class="about-h2 rv d1">We're <em>More</em> Than a<br>Real Estate Agency</h2>
+        <p class="about-p rv d2">Founded by Jahcorrian Burkes — a licensed real estate agent and mortgage lender — The Burkes Group was built on a powerful premise: your transaction shouldn't require two separate teams pulling in different directions. We unified both disciplines under one roof so clients experience a seamless, stress-free journey from consultation to close.</p>
+        <p class="about-p rv d3">Based in The Woodlands, Texas, we serve first-time buyers, seasoned investors, sellers seeking maximum return, divorce attorneys, CPAs, and self-employed professionals throughout Greater Houston. Our dual expertise means faster approvals, better-coordinated closings, and a long-term partner for your real estate wealth strategy.</p>
+        <div class="about-icons rv d4">
+          <div class="about-ico"><i class="ti ti-home"></i><span>Buy</span></div>
+          <div class="about-ico"><i class="ti ti-key"></i><span>Sell</span></div>
+          <div class="about-ico"><i class="ti ti-chart-line"></i><span>Invest</span></div>
+          <div class="about-ico"><i class="ti ti-scale"></i><span>Divorce</span></div>
+        </div>
+        <a href="#" class="btn-outline-nv rv d5">Meet the Team &rarr;</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVICES
+     ============================================================ -->
+<section id="services" class="sec">
+  <div class="wrap">
+    <div class="srv-hdr">
+      <div class="eyebrow rv">What We Do</div>
+      <h2 class="srv-h2 rv d1">Complete Real Estate Solutions,<br>Under <em>One Roof.</em></h2>
+      <p class="srv-sub rv d2">Whether you're buying your first home or building a real estate portfolio — we have the expertise to guide every step.</p>
+    </div>
+    <div class="srv-grid">
+      <div class="srv-card rv d1">
+        <div class="srv-icon"><i class="ti ti-home"></i></div>
+        <h3 class="srv-title">Buy a Home</h3>
+        <div class="srv-rule"></div>
+        <p class="srv-desc">Expert buyer representation, pre-approval guidance, and market analysis to find the right home at the right price. We navigate every detail so you close with confidence.</p>
+        <a href="#" class="srv-link">Explore <i class="ti ti-arrow-right" style="font-size:12px"></i></a>
+      </div>
+      <div class="srv-card rv d2">
+        <div class="srv-icon"><i class="ti ti-trending-up"></i></div>
+        <h3 class="srv-title">Sell a Home</h3>
+        <div class="srv-rule"></div>
+        <p class="srv-desc">Strategic pricing, professional staging guidance, and expert negotiation to sell faster and for more. We maximize your return in any market condition.</p>
+        <a href="#" class="srv-link">Explore <i class="ti ti-arrow-right" style="font-size:12px"></i></a>
+      </div>
+      <div class="srv-card rv d3">
+        <div class="srv-icon"><i class="ti ti-report-money"></i></div>
+        <h3 class="srv-title">Mortgage Solutions</h3>
+        <div class="srv-rule"></div>
+        <p class="srv-desc">In-house licensed lending — faster approvals, better rates, and seamless integration with your real estate transaction. One team, zero runaround.</p>
+        <a href="#" class="srv-link">Explore <i class="ti ti-arrow-right" style="font-size:12px"></i></a>
+      </div>
+      <div class="srv-card rv d1">
+        <div class="srv-icon"><i class="ti ti-building"></i></div>
+        <h3 class="srv-title">Investment Properties</h3>
+        <div class="srv-rule"></div>
+        <p class="srv-desc">Portfolio strategy, ROI analysis, and acquisition support for first-time and experienced investors. We help you build real estate wealth, not just buy properties.</p>
+        <a href="#" class="srv-link">Explore <i class="ti ti-arrow-right" style="font-size:12px"></i></a>
+      </div>
+      <div class="srv-card rv d2">
+        <div class="srv-icon"><i class="ti ti-scale"></i></div>
+        <h3 class="srv-title">Divorce Real Estate</h3>
+        <div class="srv-rule"></div>
+        <p class="srv-desc">Compassionate, court-qualified guidance for attorneys and clients navigating property division. Discreet, professional, and thorough — every time.</p>
+        <a href="#" class="srv-link">Explore <i class="ti ti-arrow-right" style="font-size:12px"></i></a>
+      </div>
+      <div class="srv-card rv d3">
+        <div class="srv-icon"><i class="ti ti-chart-dots"></i></div>
+        <h3 class="srv-title">CPA &amp; Investor Services</h3>
+        <div class="srv-rule"></div>
+        <p class="srv-desc">Tax-strategic real estate decisions for CPAs, financial advisors, and self-employed professionals. Align every transaction with your long-term financial goals.</p>
+        <a href="#" class="srv-link">Explore <i class="ti ti-arrow-right" style="font-size:12px"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY THE BURKES GROUP
+     ============================================================ -->
+<section id="why" class="sec">
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="why-left">
+        <div class="why-num">1</div>
+        <h2 class="why-h2 rv">The only team that handles <em>both sides</em> of the transaction.</h2>
+        <p class="why-p rv d1">Most buyers and sellers are forced to coordinate between two separate companies — their realtor and their lender. At The Burkes Group, those are the same team. This means aligned incentives, fewer delays, and a dramatically smoother experience from offer to close.</p>
+      </div>
+      <div class="why-rows">
+        <div class="why-row rv">
+          <div class="why-row-n">01</div>
+          <div><div class="why-row-t">Real Estate + Mortgage Under One Roof</div><div class="why-row-d">Skip the back-and-forth. One team manages your transaction start to finish — aligned on your timeline, your goals, and your success.</div></div>
+        </div>
+        <div class="why-row rv d1">
+          <div class="why-row-n">02</div>
+          <div><div class="why-row-t">Market-Native Expertise</div><div class="why-row-d">Born and raised in The Woodlands. We know every neighborhood, price trend, HOA nuance, and hidden gem in Greater Houston.</div></div>
+        </div>
+        <div class="why-row rv d2">
+          <div class="why-row-n">03</div>
+          <div><div class="why-row-t">Investor-Grade Analysis</div><div class="why-row-d">Every purchase decision backed by ROI projections and market data — whether you're buying your first home or your tenth investment property.</div></div>
+        </div>
+        <div class="why-row rv d3">
+          <div class="why-row-n">04</div>
+          <div><div class="why-row-t">Long-Term Wealth Strategy</div><div class="why-row-d">We don't just close deals. We help you build real estate wealth over time with refinancing support, portfolio reviews, and ongoing strategic guidance.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROCESS
+     ============================================================ -->
+<section id="process" class="sec">
+  <div class="wrap">
+    <div class="proc-hdr">
+      <div class="eyebrow rv">The Process</div>
+      <h2 class="proc-h2 rv d1">Your Journey, <em>Simplified.</em></h2>
+    </div>
+    <div class="proc-steps">
+      <div class="proc-step rv">
+        <div class="proc-ico"><i class="ti ti-message-circle"></i></div>
+        <div class="proc-circle">1</div>
+        <h3 class="proc-title">Consultation</h3>
+        <p class="proc-desc">Tell us your goals. We build a custom strategy around your timeline, budget, and long-term vision.</p>
+      </div>
+      <div class="proc-step rv d1">
+        <div class="proc-ico"><i class="ti ti-file-certificate"></i></div>
+        <div class="proc-circle">2</div>
+        <h3 class="proc-title">Strategy &amp; Pre-Approval</h3>
+        <p class="proc-desc">Get mortgage-ready and market-ready before you make a move. We do the homework so you can act decisively.</p>
+      </div>
+      <div class="proc-step rv d2">
+        <div class="proc-ico"><i class="ti ti-handshake"></i></div>
+        <div class="proc-circle">3</div>
+        <h3 class="proc-title">Transaction</h3>
+        <p class="proc-desc">Find, negotiate, and close with expert guidance at every turn. We handle the complexity so you stay focused on what matters.</p>
+      </div>
+      <div class="proc-step rv d3">
+        <div class="proc-ico"><i class="ti ti-rocket"></i></div>
+        <div class="proc-circle">4</div>
+        <h3 class="proc-title">Beyond the Close</h3>
+        <p class="proc-desc">Ongoing investment strategy, refinancing, and portfolio growth support. We're your long-term real estate partner.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS
+     ============================================================ -->
+<section id="testim" class="sec">
+  <div class="wrap">
+    <div class="testim-layout">
+      <div>
+        <div class="eyebrow rv">Client Outcomes</div>
+        <h2 class="testim-h2 rv d1">Real Results<br>From <em>Real</em> Clients.</h2>
+        <p class="testim-sub rv d2">Hundreds of families, investors, and professionals have trusted The Burkes Group with their most significant financial decisions. Here's what they say.</p>
+        <a href="#" class="btn-outline-nv rv d3">Read All Reviews &rarr;</a>
+      </div>
+      <div class="testim-right">
+        <div class="t-card rv">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"The team made our first home purchase completely stress-free. Having our realtor and lender in the same office saved us weeks of back-and-forth — we closed ahead of schedule and under budget."</p>
+          <div class="t-foot">
+            <div class="t-av">SM</div>
+            <div><div class="t-name">Sarah M.</div><div class="t-svc">Purchased in Spring, TX — 2024</div></div>
+          </div>
+        </div>
+        <div class="t-card rv d1">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"Closed on two investment properties in 60 days. Jahcorrian's market knowledge is unmatched in this area — he found deals we would never have discovered and ran the numbers before we even asked."</p>
+          <div class="t-foot">
+            <div class="t-av">MT</div>
+            <div><div class="t-name">Marcus &amp; Denise T.</div><div class="t-svc">Investment Properties — The Woodlands, TX</div></div>
+          </div>
+        </div>
+        <div class="t-card rv d2">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-quote">"As a family law attorney, I trust The Burkes Group completely with my clients' property cases. Professional, discreet, and thorough — exactly what high-stakes divorce proceedings require."</p>
+          <div class="t-foot">
+            <div class="t-av">JR</div>
+            <div><div class="t-name">Attorney Jennifer R.</div><div class="t-svc">Divorce Real Estate Services</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STATS
+     ============================================================ -->
+<section id="stats" style="padding:5.5rem 0">
+  <div class="wrap">
+    <div class="stats-inner">
+      <div class="stat-it rv">
+        <div class="stat-n" data-target="500" data-sfx="+">0+</div>
+        <div class="stat-l">Homes Closed</div>
+      </div>
+      <div class="stat-it rv d1">
+        <div class="stat-n" data-target="250" data-pfx="$" data-sfx="M+">$0M+</div>
+        <div class="stat-l">Volume Transacted</div>
+      </div>
+      <div class="stat-it rv d2">
+        <div class="stat-n" data-target="200" data-sfx="+">0+</div>
+        <div class="stat-l">5-Star Reviews</div>
+      </div>
+      <div class="stat-it rv d3">
+        <div class="stat-n" data-target="15" data-sfx="+">0+</div>
+        <div class="stat-l">Markets Served</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BLOG
+     ============================================================ -->
+<section id="blog" class="sec">
+  <div class="wrap">
+    <div class="blog-hdr">
+      <div class="eyebrow rv">Market Insights</div>
+      <h2 class="blog-h2 rv d1">Stay Ahead of the Market.</h2>
+      <p class="blog-sub rv d2">Expert analysis, buyer guides, and investment insights from The Burkes Group team.</p>
+    </div>
+    <div class="blog-grid">
+      <div class="b-card rv">
+        <div class="b-img"><span class="b-cat">Buyer's Guide</span></div>
+        <div class="b-body">
+          <div class="b-date">May 12, 2026</div>
+          <h3 class="b-title">The Benefits of Homeownership: More Than Just a Place to Live</h3>
+          <p class="b-excerpt">Owning a home is one of the most powerful financial decisions you can make. We break down the wealth-building advantages most buyers overlook entirely.</p>
+          <a href="#" class="b-link">Read Article <i class="ti ti-arrow-right" style="font-size:11px"></i></a>
+        </div>
+      </div>
+      <div class="b-card rv d1">
+        <div class="b-img"><span class="b-cat">Market Update</span></div>
+        <div class="b-body">
+          <div class="b-date">April 28, 2026</div>
+          <h3 class="b-title">How to Sell Your Home for Maximum Value in Today's Market</h3>
+          <p class="b-excerpt">In a competitive landscape, strategy matters more than ever. Learn what separates top-dollar sales from homes that sit on the market for months.</p>
+          <a href="#" class="b-link">Read Article <i class="ti ti-arrow-right" style="font-size:11px"></i></a>
+        </div>
+      </div>
+      <div class="b-card rv d2">
+        <div class="b-img"><span class="b-cat">Investment</span></div>
+        <div class="b-body">
+          <div class="b-date">April 10, 2026</div>
+          <h3 class="b-title">Real Estate as a Wealth-Building Tool: What Your CPA Should Know</h3>
+          <p class="b-excerpt">The tax and equity advantages of strategic real estate investing are often misunderstood. Here's what every financial professional needs on their radar.</p>
+          <a href="#" class="b-link">Read Article <i class="ti ti-arrow-right" style="font-size:11px"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="blog-cta rv">
+      <a href="#" class="btn-outline-nv">Explore All Insights &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA CONSULTATION
+     ============================================================ -->
+<section id="cta">
+  <div class="cta-bg"></div>
+  <div class="cta-content">
+    <div class="eyebrow rv" style="color:var(--gold)">Take the Next Step</div>
+    <h2 class="cta-h2 rv d1">Ready to Make<br><em>Your Move?</em></h2>
+    <p class="cta-sub rv d2">Schedule a complimentary 30-minute consultation with The Burkes Group. Whether you're buying, selling, or investing — we'll build a custom strategy tailored to your goals.</p>
+    <div class="cta-btns rv d3">
+      <a href="tel:8324791677" class="btn-gold-lg"><i class="ti ti-calendar"></i>Book a Free Consultation</a>
+      <a href="tel:8324791677" class="btn-wout-lg"><i class="ti ti-phone"></i>Call 832-479-1677</a>
+    </div>
+    <div class="cta-trust rv d4">
+      <div class="cta-trust-it"><span class="ck">✓</span>No obligation</div>
+      <div class="cta-trust-it"><span class="ck">✓</span>Same-day response</div>
+      <div class="cta-trust-it"><span class="ck">✓</span>Expert, not a call center</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer id="footer">
+  <div class="ftr-top">
+    <div>
+      <div class="ftr-name">The Burkes Group</div>
+      <div class="ftr-tag">Built on Trust. Driven by Legacy. Delivered with Reliability.</div>
+      <p class="ftr-desc">The Woodlands' premier real estate and mortgage advisory team — one trusted partner for every step of your real estate journey, from first home to full portfolio.</p>
+      <div class="ftr-soc">
+        <a href="#" aria-label="Facebook"><i class="ti ti-brand-facebook"></i></a>
+        <a href="#" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+      </div>
+    </div>
+    <div>
+      <div class="ftr-col-h">Navigate</div>
+      <nav class="ftr-links">
+        <a href="#">Home</a><a href="#about">About</a><a href="#services">Buy</a>
+        <a href="#services">Sell</a><a href="#services">Mortgage</a>
+        <a href="#services">Divorce Services</a><a href="#services">CPA Services</a>
+        <a href="#blog">Blog</a><a href="#cta">Contact</a>
+      </nav>
+    </div>
+    <div>
+      <div class="ftr-col-h">Our Services</div>
+      <nav class="ftr-links">
+        <a href="#services">Buy a Home</a><a href="#services">Sell a Home</a>
+        <a href="#services">Mortgage Solutions</a><a href="#services">Investment Properties</a>
+        <a href="#services">Divorce Real Estate</a><a href="#services">CPA &amp; Investor Services</a>
+      </nav>
+    </div>
+    <div>
+      <div class="ftr-col-h">Reach Us</div>
+      <div class="ftr-ci"><i class="ti ti-map-pin"></i><div class="ftr-ci-txt">2105 Sawdust Road, Suite 200<br>The Woodlands, TX 77380</div></div>
+      <div class="ftr-ci"><i class="ti ti-phone"></i><div class="ftr-ci-txt"><a href="tel:8324791677">832-479-1677</a></div></div>
+      <div class="ftr-ci"><i class="ti ti-mail"></i><div class="ftr-ci-txt"><a href="mailto:service@theburkesgrouptx.com">service@theburkesgrouptx.com</a></div></div>
+      <div class="ftr-hrs">
+        <div class="ftr-hrs-h">Business Hours</div>
+        <div class="ftr-hrs-t">Mon – Fri: 7:00 AM – 10:00 PM<br>Sat – Sun: 7:00 AM – 10:00 PM</div>
+      </div>
+    </div>
+  </div>
+  <div class="ftr-bot">
+    <div class="ftr-copy">© 2026 The Burkes Group. All Rights Reserved. &nbsp;|&nbsp; <a href="#">Privacy Policy</a></div>
+    <div class="ftr-lic"><div class="eho">EHO</div><div class="ftr-lic-t">Licensed in Texas</div></div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+/* ── Nav scroll transition ── */
+const navEl   = document.getElementById('nav');
+const heroEl  = document.getElementById('hero');
+new IntersectionObserver(
+  ([e]) => navEl.classList.toggle('on', !e.isIntersecting),
+  { threshold: 0, rootMargin: '-80px 0px 0px 0px' }
+).observe(heroEl);
+
+/* ── Mobile menu ── */
+const hamEl = document.getElementById('ham');
+const mobEl = document.getElementById('mob');
+hamEl.addEventListener('click', () => {
+  const open = hamEl.classList.toggle('on');
+  mobEl.classList.toggle('on', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+function closeMob() {
+  hamEl.classList.remove('on');
+  mobEl.classList.remove('on');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMob(); });
+
+/* ── Smooth scroll ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const t = document.querySelector(this.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+/* ── Scroll reveal (one-shot) ── */
+const rvObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); rvObs.unobserve(e.target); }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
+
+/* ── Counter animation ── */
+function runCounter(el, target, pfx, sfx, dur) {
+  const t0 = performance.now();
+  (function frame(t) {
+    const p = Math.min((t - t0) / dur, 1);
+    const v = Math.round((1 - Math.pow(1 - p, 3)) * target);
+    el.textContent = pfx + v + sfx;
+    if (p < 1) requestAnimationFrame(frame);
+    else el.textContent = pfx + target + sfx;
+  })(t0);
+}
+
+const statsEl = document.getElementById('stats');
+let ranCounters = false;
+new IntersectionObserver(([e]) => {
+  if (e.isIntersecting && !ranCounters) {
+    ranCounters = true;
+    document.querySelectorAll('[data-target]').forEach(el => {
+      runCounter(el, +el.dataset.target, el.dataset.pfx || '', el.dataset.sfx || '', 2000);
+    });
+  }
+}, { threshold: 0.35 }).observe(statsEl);
+</script>
+
+</body>
+</html>
