@@ -1,265 +1,140 @@
-Kirk Cooper
-· 3rd
+---
+platform: LinkedIn
+profile_type: person
+name: Kirk Cooper
+headline: Entrepreneur + FORBES NEXT 1000
+location: Parker, Colorado, United States
+website: https://www.thecodenest.io
+---
 
-Entrepreneur + FORBES NEXT 1000
+# Kirk Cooper — LinkedIn Profile
 
-Parker, Colorado, United States
+## Experience
 
-·
+#### Company Owner — CodeNest
 
-Contact info
+dates: Apr 2020 – Present
+duration: 6 yrs 3 mos
+employment_type: Full-time
 
+#### Owner — Coop & Co. LLC
 
-Experience
-CodeNest logo
-Company Owner
+dates: Nov 2015 – Present
+duration: 10 yrs 8 mos
+location: Aurora, Colorado
 
-CodeNest · Full-time
+E-commerce / Investments
 
-Apr 2020 - Present · 6 yrs 3 mos
+#### Owner — Coach Coop's Custom Furniture
 
-Owner
-
-Coop & Co. LLC
-
-Nov 2015 - Present · 10 yrs 8 mos
-
-Aurora, Colorado
-
-E-commerce/ Investments
-
-Owner
-
-Coach Coop's Custom Furniture
-
-Jan 2016 - Present · 10 yrs 6 mos
-
-Aurora, Colorado
+dates: Jan 2016 – Present
+duration: 10 yrs 6 mos
+location: Aurora, Colorado
 
 Custom built home furnishings. You design and then let one of our skilled carpenters build it for you!
--tables, benches, chairs, doors, gates, shelving, bed frames and more!
+- Tables, benches, chairs, doors, gates, shelving, bed frames and more
 
-Owner
+#### Owner — Baseband Bracelets & Blitzband Bracelets
 
-Baseband Bracelets & Blitzband Bracelets
+dates: Jun 2014 – Present
+duration: 12 yrs 1 mo
+location: Denver, Colorado
 
-Jun 2014 - Present · 12 yrs 1 mo
+Baseband Bracelets are baseball bracelets designed for fundraisers and promotions. We supply the styles, you supply the creativity! Pick your baseball bracelet's style, bracelet's size, and customize it with any message you would like. Design these Basebands with your nickname, team name, mascot, favorite quote, motivational message, image, logo, special event or whatever your heart desires.
 
-Denver, Colorado
+#### Track/Football/Golf Coach — Cherry Creek Schools
 
-Baseband Bracelets are baseball bracelets designed for fundraisers and promotions. 
+dates: Jan 2010 – Oct 2019
+duration: 9 yrs 10 mos
+location: Smoky Hill High School
 
-We supply the styles, you supply the creativity! Pick your baseball bracelet’s style, bracelet’s size, and customize it with any message you would like. Design these Basebands with your nickname, team name, mascot, favorite quote, motivational message, image, logo, special event or whatever your heart desires.
+## Education
 
-Baseband Bracelets
+#### Master's Degree — University of Phoenix
 
-Customize your own Baseball Bracelet, Baseball Bracelets, Custom Baseball Bracelet
-
-Track/Football/Golf Coach
-
-Cherry Creek Schools
-
-Jan 2010 - Oct 2019 · 9 yrs 10 mos
-
-Smoky Hill High School
-
-
-
-
-Education
-University of Phoenix
-
-Master's Degree, Secondary Education and Teaching
-
-2011 – 2013
+dates: 2011 – 2013
+field: Secondary Education and Teaching
 
 Emphasis in Health & Physical Education
 
-Colorado State University logo
-Colorado State University
+#### Bachelor of Arts — Colorado State University
 
-BA
-
-2009 – 2010
+dates: 2009 – 2010
 
 Activities and societies: Track and Field - Pole Vault
 
+## Posts
 
+#### Post 1
 
+type: original
+timestamp: 1mo
+hashtags: [#WebDevelopment, #ShopifyExperts, #WebsiteOptimization, #Codenest, #BusinessGrowth]
 
-Post
-
-View Kirk Cooper’s  graphic link
-Kirk CooperKirk Cooper
-   • 3rd+Verified • 3rd+
-Entrepreneur + FORBES NEXT 1000Entrepreneur + FORBES NEXT 1000
-1mo •  1 month ago • Visible to anyone on or off LinkedIn
-
-Follow
-
-🚀 Your website should be your #1 growth tool — not a roadblock.
+Your website should be your #1 growth tool — not a roadblock.
 Most businesses I talk to are losing leads, sales, or time because of a slow, broken, or outdated website.
 
 We help businesses fix that.
 
 At CodeNest, we:
-✅ Improve speed & performance
- ✅ Fix broken features & integrations
- ✅ Optimize user experience
- ✅ Build websites that convert
+- Improve speed & performance
+- Fix broken features & integrations
+- Optimize user experience
+- Build websites that convert
 
-Here’s a recent review from a client in the food & beverage industry.
-Results like this are why we do what we do. 🙌
-If your website isn’t performing the way it should, I’d love to take a look and see how we can help.
+Here's a recent review from a client in the food & beverage industry. Results like this are why we do what we do.
+If your website isn't performing the way it should, I'd love to take a look and see how we can help.
 
-📩 Message me here on LinkedIn or visit www.thecodenest.io to get started.
-hashtag#WebDevelopment hashtag#ShopifyExperts hashtag#WebsiteOptimization hashtag#Codenest hashtag#BusinessGrowth
-Activate to view larger image,
-graphical user interface, website
-Activate to view larger image,
-love
-1
+Message me here on LinkedIn or visit www.thecodenest.io to get started.
 
-Like
+---
 
-Comment
+#### Post 2
 
-Repost
+type: original
+timestamp: 9mo
 
-Send
-
-
-View Kirk Cooper’s  graphic link
-Kirk CooperKirk Cooper
-   • 3rd+Verified • 3rd+
-Entrepreneur + FORBES NEXT 1000Entrepreneur + FORBES NEXT 1000
-9mo •  9 months ago • Visible to anyone on or off LinkedIn
-
-Follow
-
-I’m excited to announce the launch of my company CodeNest, a US based digital solutions agency focused on helping businesses grow with technology, creativity, and strategy. To celebrate this milestone we are offering a special 30% discount on all our services for a limited time. Whether you’re a startup preparing to launch or an established brand aiming to scale, our team is here to deliver results that matter.
-
+I'm excited to announce the launch of my company CodeNest, a US based digital solutions agency focused on helping businesses grow with technology, creativity, and strategy. To celebrate this milestone we are offering a special 30% discount on all our services for a limited time. Whether you're a startup preparing to launch or an established brand aiming to scale, our team is here to deliver results that matter.
 
 Our services include:
+- Web Development & Design
+- Mobile App Development (iOS & Android)
+- AI & Automation Solutions
+- Cloud Integration & SaaS Development
+- Digital Marketing & SEO
+- Branding & Creative Design
+- Business Strategy & Consulting
+- Custom Software Development
 
-Web Development & Design
+---
 
-Mobile App Development (iOS & Android)
+#### Post 3
 
-AI & Automation Solutions
+type: original
+timestamp: 4yr
+hashtags: [#entrepreneurs, #growth, #forbes, #forbesmagazine, #ForbesNext1000, #PassiveIncome, #TimeFreedom, #multiplestreamsofincome]
 
-Cloud Integration & SaaS Development
+Honored to receive this recognition and to have met so many other incredible entrepreneurs and businesses owners yesterday! Here is to another year of growth and changing lives!
 
-Digital Marketing & SEO
+---
 
-Branding & Creative Design
+#### Post 4
 
-Business Strategy & Consulting
-
-Custom Software Development
-
-Pause
-Remaining time 
-0:40
-1x
-
-Playback speed
-
-Unmute
-
-Turn fullscreen on
-likelovecelebrate
-11
-1 comment
-
-Like
-
-Comment
-
-Repost
-
-Send
-
-
-View Kirk Cooper’s  graphic link
-Kirk CooperKirk Cooper
-   • 3rd+Verified • 3rd+
-Entrepreneur + FORBES NEXT 1000Entrepreneur + FORBES NEXT 1000
-4yr •  4 years ago • Visible to anyone on or off LinkedIn
-
-Follow
-
-Honored to receive this recognition and to have met so many other incredible entrepreneurs and businesses owners yesterday! Here is to another year of growth and changing lives! hashtag#entrepreneurs hashtag#growth hashtag#forbes hashtag#forbesmagazine hashtag#ForbesNext1000 hashtag#PassiveIncome hashtag#TimeFreedom hashtag#multiplestreamsofincome
-Activate to view larger image,
-a man wearing a suit and tie standing in front of a brick building
-Activate to view larger image,
-likecelebrate
-33
-8 comments
-
-Like
-
-Comment
-
-Repost
-
-Sen
-
-
-View Kirk Cooper’s  graphic link
-Kirk CooperKirk Cooper
-   • 3rd+Verified • 3rd+
-Entrepreneur + FORBES NEXT 1000Entrepreneur + FORBES NEXT 1000
-5yr •  5 years ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 5yr
 
 Thanks for having me on the show, Daniel Blue! Looking forward to coming back on in the future.
 
-https://lnkd.in/ghZafdf
+external_link: https://lnkd.in/ghZafdf
 
-‎How Winners Win: 012 From High School Teacher to CEO on Apple Podcasts
-podcasts.apple.com
-like
-3
+---
 
-Like
+#### Post 5
 
-Comment
+type: original
+timestamp: 5yr
+hashtags: [#financialfreedom, #multiplestreamsofincome, #ecommercebusiness, #passiveincome, #ebayseller, #amazonsellers, #walmartsellers, #shopifyexperts]
 
-Repost
+Had the honor of being on success profiles radio and magazine. Truly love helping people reach financial freedom.
 
-View Kirk Cooper’s  graphic link
-Kirk CooperKirk Cooper
-   • 3rd+Verified • 3rd+
-Entrepreneur + FORBES NEXT 1000Entrepreneur + FORBES NEXT 1000
-5yr • Edited •  5 years ago • Edited • Visible to anyone on or off LinkedIn
-
-Follow
-
-Had the honor of being on success profiles radio and magazine. Truly love helping people reach financial freedom 🙏🏼 
-
-Check out the show here:
-https://lnkd.in/gbEYFTJ
-
-hashtag#financialfreedom hashtag#multiplestreamsofincome
- hashtag#ecommercebusiness 
- hashtag#passiveincome 
-hashtag#ebayseller 
-hashtag#amazonsellers 
-hashtag#walmartsellers
- hashtag#shopifyexperts
-Activate to view larger image,
-No alternative text description for this image
-Activate to view larger image,
-likeloveinsightful
-22
-4 comments
-
-Like
-
-Comment
-
-Repost
-
-Send
+external_link: https://lnkd.in/gbEYFTJ

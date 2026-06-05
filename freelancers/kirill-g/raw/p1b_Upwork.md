@@ -1,42 +1,25 @@
-Kirill G.
-Verified
-Kings County, NY, USA – 8:56 am local time
-100% Job Success
-Top Rated Plus
-$20K+
-Total earnings
-9
-Total jobs
-365
-Total hours
-Meet Kirill G.
-https://www.youtube.com/watch?v=pFPsMqlg4FA
-Hours per week
-As Needed - Open to Offers
-Open to contract to hire New
-Avg. response
-0-4 hours
-Languages
-English: Native or Bilingual
-Verifications
-ID:
-Verified
-Verified
-Phone number:
-Verified
-Verified
-Education
-Belarusian State University
-Bachelor of Engineering (BEng)
-2014-2018
-Linked accounts
-GitHub Since 2023
-Kirill Gerts
-Kirill Gerts
-View profile
-41 followers
-Senior Full-stack & AI integration Expert
-$70.00/hr
+---
+platform: Upwork
+profile_type: freelancer
+name: Kirill G.
+headline: Senior Full-stack & AI integration Expert
+location: Kings County, NY, USA
+hourly_rate: $70.00/hr
+job_success_score: 100%
+total_jobs: 9
+total_hours: 365
+total_earnings: $20K+
+response_time: 0-4 hours
+availability: As Needed - Open to Offers
+badge: Top Rated Plus
+languages:
+  - English (Native or Bilingual)
+verified: true
+---
+
+# Kirill G. — Upwork Profile
+
+## Overview
 
 ⭐ Top Rated Plus | 🇺🇸 NYC
 I speak code and business.
@@ -90,192 +73,177 @@ Recently, I led the creation of a scalable component library that improved desig
 What sets me apart is the T-shaped blend of deep frontend expertise and broad business acumen. I move fast, think holistically, and communicate fluently across tech, product, and design teams.
 
 Always curious. Always building. Always bridging the gap between.
-less
-Book a consultation
-Development & IT Consultation
-$100 per 30 min Zoom meeting
 
-AI Integration
-Web Programming
-Work history
-Insights from completed jobs
+## Skills
 
-Collaborative
-5
-Clear Communicator
-4
-Committed to Quality
-4
-Detail Oriented
-3
-Accountable for Outcomes
-2
-Solution Oriented
-2
+- React
+- Next.js
+- TypeScript
+- JavaScript
+- Tailwind CSS
+- Redux
+- Node.js
+- Python
+- Product Development
+- Artificial Intelligence
+- Web Development
+- GraphQL
+- PostgreSQL
+- AWS CloudFront
+- Docker
 
-Completed jobs (6)
+## Work History
 
-In progress (3)
-AI Fintech - Seeking a legit Human, Fullstack AI Engineer to join the team
-Rating is 5.0 out of 5.
-5.0
-Feb 4, 2026 - Mar 4, 2026
+#### Senior Backend Engineer - Node.js + MongoDB + AI Tools
+
+contract_type: Hourly
+dates: Mar 11, 2026 – Present
+budget: $15,000.00
+hours_billed: 250
+
+*In progress*
+
+---
+
+#### Web Development / WordPress
+
+contract_type: Hourly
+dates: Mar 5, 2026 – Present
+budget: $3,525.00
+hours_billed: 71
+
+*In progress*
+
+---
+
+#### Squarespace JSON Integration Specialist Needed
+
+contract_type: Hourly
+dates: Mar 4, 2026 – Present
+budget: $1,400.00
+hours_billed: 27
+
+*In progress*
+
+---
+
+#### AI Fintech - Seeking a legit Human, Fullstack AI Engineer to join the team
+
+client_rating: 5.00
+contract_type: Hourly
+dates: Feb 4, 2026 – Mar 4, 2026
+budget: $6,000.00
+
+**Client review:**
 "Kirill is a solid team player, great ideas, leaning into AI in super creative ways across the whole stack."
 
-Collaborative
-$2,000.00 /week
-Weekly retainer
-$6,000.00
-AI Fintech - Seeking a legit Human, Fullstack AI Engineer to join the team
-Rating is 5.0 out of 5.
-5.0
-Jan 22, 2026 - Feb 4, 2026
+---
+
+#### AI Fintech - Seeking a legit Human, Fullstack AI Engineer to join the team
+
+client_rating: 5.00
+contract_type: Hourly
+dates: Jan 22, 2026 – Feb 4, 2026
+budget: $850.00
+hours_billed: 5
+
+**Client review:**
 "Kirill is a fantastic team member, his attitude and approach to what's required is second to none."
 
-Collaborative
-Solution Oriented
-Clear Communicator
-$850.00
-$50.00 /hr
-5 hours
-Build a simple VSCode extension
-Rating is 5.0 out of 5.
-5.0
-Dec 17, 2025 - Dec 24, 2025
+---
+
+#### Build a simple VSCode extension
+
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Dec 17, 2025 – Dec 24, 2025
+budget: $225.00
+
+**Client review:**
 "Dedicated and proactive developer. Takes time to understanding the problem and recommends alternatives that can greatly improve your returns on investment."
 
-Committed to Quality
-Solution Oriented
-Clear Communicator
-Detail Oriented
-$225.00
-Fixed price
-Front-End Developer Needed for Interactive Project
-Rating is 5.0 out of 5.
-5.0
-Dec 10, 2025 - Dec 10, 2025
+---
+
+#### Front-End Developer Needed for Interactive Project
+
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Dec 10, 2025 – Dec 10, 2025
+budget: $15.00
+
+**Client review:**
 "It was a pleasure working with Kirill. The work was completed efficiently and with high quality, demonstrating great attention to detail."
 
-Collaborative
-Committed to Quality
-Detail Oriented
-$15.00
-Fixed price
-Notification System
-Rating is 5.0 out of 5.
-5.0
-Dec 2, 2025 - Dec 4, 2025
+---
+
+#### Notification System
+
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Dec 2, 2025 – Dec 4, 2025
+budget: $15.00
+
+**Client review:**
 "Amazing to work with! Will continue to work with him. Great quality!
 He knows what he's doing, did all the revisions required and even more.
 Above and beyond, 10/10"
 
-Collaborative
-Committed to Quality
-Clear Communicator
-Accountable for Outcomes
-Detail Oriented
-$15.00
-Fixed price
-Simple Visitor Counters for Website
-Rating is 5.0 out of 5.
-5.0
-Nov 27, 2025 - Nov 27, 2025
+---
+
+#### Simple Visitor Counters for Website
+
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Nov 27, 2025 – Nov 27, 2025
+budget: $10.00
+
+**Client review:**
 "Awesome to work with!
 I will be contacting Kirill in the future for some more work."
 
-Collaborative
-Committed to Quality
-Clear Communicator
-Accountable for Outcomes
-$10.00
-Fixed price
+## Portfolio
 
-Senior Backend Engineer - Node.js + MongoDB + AI Tools
-Mar 11, 2026 - Present
-Job in progress
+#### The onchain company OS for founders. New York hackathon winner
 
-$15,000.00
-$60.00 /hr
-250 hours
-Web Development / WordPress
-Mar 5, 2026 - Present
-Job in progress
+url: https://ethglobal.com/showcase/startupchain-0fyf5
 
-$3,525.00
-$60.00 /hr
-71 hours
-Squarespace JSON Integration Specialist Needed
-Mar 4, 2026 - Present
-Job in progress
+Won the Best Use of ENS Prize ($1,000) at ETHGlobal New York 2025, one of the largest hackathons in New York City with 800+ attendees, 690 hackers, and 275 projects. Built startupchain.io, a dApp that helps entrepreneurs bootstrap onChain: secure an ENS domain, define founder roles and equity splits, and establish a transparent, verifiable business structure. Served as full-stack engineer (frontend and backend).
 
-$1,400.00
-$50.00 /hr
-27 hours
+## Employment History
 
-Portfolio
+#### Senior Software Engineer — Self-Employed
 
-The onchain company OS for founders. New York hackathon winner
-Skills
-React
-Next.js
-TypeScript
-JavaScript
-Tailwind CSS
-Redux
-Node.js
-Python
-Product Development
-Artificial Intelligence
-Web Development
-GraphQL
-PostgreSQL
-AWS CloudFront
-Docker
-Clear Communicator
-Accountable for Outcomes
-Employment history
-Senior Software Engineer | Self-Employed
-October 2025 - Present
+dates: October 2025 – Present
 
-• Built and integrated AI-powered features into existing web applications to automate workflows and reduce manual operations
-• Designed and deployed custom AI integrations (LLMs, chatbots, data processing) tailored to business-specific needs.
-• Upgraded legacy applications with modern AI-driven functionality without disrupting existing systems.
-• Helped businesses optimize costs and productivity by replacing repetitive tasks with AI automation.
-less
-Software Engineer | alabs.team
-June 2022 - October 2025
+Built and integrated AI-powered features into existing web applications to automate workflows and reduce manual operations. Designed and deployed custom AI integrations (LLMs, chatbots, data processing) tailored to business-specific needs. Upgraded legacy applications with modern AI-driven functionality without disrupting existing systems. Helped businesses optimize costs and productivity by replacing repetitive tasks with AI automation.
 
-• Built a real-time ATM cash-deposit tracking system for business banking using React, TypeScript, and WebSockets, enabling instant cash-flow visibility
-• Introduced TDD with AI-assisted test generation across frontend and backend, increasing test coverage by 40% and sharply reducing production regressions
-• Mentored junior engineers to full component ownership, raising code quality, documentation standards, and delivery reliability
-• Created and maintained a shared React + TypeScript UI library, standardizing design patterns and accelerating feature development across teams
-less
-Senior Investment Advisor | Freedom Holding Corp.
-February 2020 - June 2022
+---
 
-- Counseled high-net-worth (HNW) clients on IPO investment opportunities
-  across NASDAQ and NYSE, developing customized strategies that aligned
-  with portfolio objectives, risk tolerances, and long-term wealth preservation
-  goals.
-- Conducted rigorous analysis of pre-IPO filings (e.g., S-1, S-1/A) and
-  company fundamentals, leveraging SEC filings and proprietary research to
-  deliver compelling, data-driven pitches that drove client commitments.
-- Partnered with late-stage venture funds and institutional investors to source
-  high-potential pre-IPO opportunities, aligning capital allocation strategies with
-  market trends to enhance client portfolio performance.
-  less
-  Other experiences
-  Mobile App Development
+#### Software Engineer — alabs.team
 
-Built the mobile apps using hybrid and cross-platform solutions like React Native.
-AI Bot Development
+dates: June 2022 – October 2025
 
-Built custom tool to predict prices for live Trading platforms.
-Won ETHGlobal Hackathon in NYC
+Built a real-time ATM cash-deposit tracking system for business banking using React, TypeScript, and WebSockets, enabling instant cash-flow visibility. Introduced TDD with AI-assisted test generation across frontend and backend, increasing test coverage by 40% and sharply reducing production regressions. Mentored junior engineers to full component ownership, raising code quality, documentation standards, and delivery reliability. Created and maintained a shared React + TypeScript UI library, standardizing design patterns and accelerating feature development across teams.
 
-Won the Best Use of ENS Prize ($1,000) at ETHGlobal New York 2025, one of the largest hackathons in New York City with 800+ attendees, 690 hackers, and 275 projects. I served as the full‑stack engineer (frontend and backend). Our team also included a designer and a Solidity developer.
+---
 
-We built startupchain.io, a dApp that helps entrepreneurs bootstrap onChain: secure an ENS domain, define founder roles and equity splits, and establish a transparent, verifiable business structure.
+#### Senior Investment Advisor — Freedom Holding Corp.
 
-Showcase: https://ethglobal.com/showcase/startupchain-0fyf5
-less
+dates: February 2020 – June 2022
+
+Counseled high-net-worth (HNW) clients on IPO investment opportunities across NASDAQ and NYSE, developing customized strategies aligned with portfolio objectives, risk tolerances, and long-term wealth preservation goals. Conducted rigorous analysis of pre-IPO filings (S-1, S-1/A) and company fundamentals, leveraging SEC filings and proprietary research to deliver data-driven pitches. Partnered with late-stage venture funds and institutional investors to source high-potential pre-IPO opportunities.
+
+## Education
+
+#### Bachelor of Engineering (BEng) — Belarusian State University
+
+dates: 2014–2018
+
+## Overflow Signals
+
+- **High booking rate** — 3 contracts currently in-progress simultaneously (Node.js backend, WordPress, Squarespace), plus 6 completed contracts spanning Nov 2025–Mar 2026 with no gaps between them, indicating continuous sustained demand.
+- **Rate tier** — $70.00/hr list rate (current contracts billing at $60/hr and $50/hr), above the $50/hr threshold suggesting he cannot personally absorb every incoming inquiry.
+- **Project scale** — Senior Backend Engineer in-progress contract has 250 hours billed at $15,000 with work ongoing; all three in-progress contracts together represent 348+ active hours, indicating significant scope under management.
+- **Availability gap** — Profile status is "As Needed - Open to Offers" despite carrying 3 simultaneous active contracts, signaling constrained capacity and a likely referral point for overflow work.
+- **Client review language** — Multiple "will continue to work with him" and "will be contacting Kirill in the future" signals, plus "Above and beyond, 10/10" and "second to none" phrasing — strong repeat-hire demand that generates overflow pressure.
+- **Job type match** — Completed and in-progress contracts span full-stack AI, frontend (VSCode extension, visitor counters, notification system, Squarespace integration), and backend Node.js+MongoDB — all within Abdul's frontend/full-stack execution range.

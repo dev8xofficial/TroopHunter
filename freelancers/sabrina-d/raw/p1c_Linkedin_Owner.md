@@ -1,92 +1,77 @@
-Sabrina Dhaliwal
-· 3rd
+---
+platform: LinkedIn
+profile_type: person
+name: Sabrina Dhaliwal
+headline: UI/UX Designer & Webflow Developer
+location: Irvine, California, United States
+connections: 485
+website: https://www.sabrinadhaliwal.com/
+linkedin_footer: [About, Accessibility, User Agreement, Privacy Policy, Cookie Policy, Copyright Policy, Brand Policy, Guest Controls, Community Guidelines]
+---
 
-UI/UX Designer & Webflow Developer
+# Sabrina Dhaliwal — LinkedIn Profile
 
-Irvine, California, United States
+## Summary
 
-·
-
-Contact info
-
-
-California State University, Fullerton
-
-485
-
-connections
-
-
-About
 My expertise is in designing and developing flawless data-driven user experiences through the use of Figma and Webflow.
 
-Upwork portfolio: https://www.upwork.com/freelancers/~016f3537cbc131a494
+## Experience
 
-Personal Portfolio: https://www.sabrinadhaliwal.com/
+#### UI/UX Designer & Webflow Developer — Interactive Sites
 
-
-Experience
-Interactive Sites logo
-UI/UX Designer & Webflow Developer
-
-Interactive Sites · Full-time
-
-May 2023 - Present · 3 yrs 2 mos
-
-Tempe, Arizona, United States · Remote
+dates: May 2023 – Present
+duration: 3 yrs 2 mos
+location: Tempe, Arizona, United States
+employment_type: Full-time
 
 Senior Webflow developer for Interactive Sites.
 
-Texas Southern University logo
-Frontend Developer
+---
 
-Texas Southern University · Contract
+#### Frontend Developer — Texas Southern University
 
-Jun 2022 - May 2024 · 2 yrs
+dates: Jun 2022 – May 2024
+duration: 2 yrs
+employment_type: Contract
 
-Remote
+JavaScript, AngularJS
 
- JavaScript, AngularJS and +1 skill
+---
 
-Stride Consulting logo
-Designer & Webflow Frontend Developer
+#### Designer & Webflow Frontend Developer — Stride Consulting
 
-Stride Consulting · Freelance
+dates: Mar 2022 – Mar 2023
+duration: 1 yr 1 mo
+employment_type: Freelance
 
-Mar 2022 - Mar 2023 · 1 yr 1 mo
+- Rapidly redesigned and developed the site
+- Hired originally to work on the site, but later expanded and continued working on related projects
 
--Rapidly redesigned and developed the site
--Hired originally to work on the site, but later expanded and continued working on related projects
+---
 
- Webflow, Web Design and +1 skill
+#### Webflow Developer & Product Designer — Lazy 8ight Yacht Club
 
-Webflow Developer & Product Designer
+dates: Dec 2021 – Jun 2022
+duration: 7 mos
+employment_type: Freelance
 
-Lazy 8ight Yacht Club *Mint Date: June 11, 2022* · Freelance
+- Voted the #1 NFT project to watch in 2022
+- Assisted with the design and development of the pre launch landing page
+- Helping to create the minting function and other features necessary for post launch
 
-Dec 2021 - Jun 2022 · 7 mos
+---
 
--Voted the #1 NFT project to watch in 2022
--Assisted with the design and development of the pre launch landing page
--Helping to create the minting function and other features necessary for post launch
+#### Product Designer — Right-ClickSave
 
- Front-End Development, Webflow and +2 skills
+dates: Mar 2022 – Apr 2022
+duration: 2 mos
+employment_type: Freelance
 
-Product Designer
+- Worked closely with the CEO to design the website from scratch
 
-Right-ClickSave · Freelance
+## Education
 
-Mar 2022 - Apr 2022 · 2 mos
+#### Bachelor's degree — California State University, Fullerton
 
--Worked closely with the CEO to design the website from scratch
-
- Web Design, Design and +1 skill
-
-
- Education
-California State University, Fullerton logo
-California State University, Fullerton
-
-Bachelor's degree, Speech-Language Pathology/Pathologist
-
-2015 – 2020
+dates: 2015 – 2020
+field: Speech-Language Pathology

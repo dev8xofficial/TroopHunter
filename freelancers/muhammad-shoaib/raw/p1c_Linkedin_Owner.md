@@ -1,131 +1,83 @@
-Muhammad Shoaib
-· 2nd
+---
+platform: LinkedIn
+profile_type: person
+name: Muhammad Shoaib
+headline: Co-Founder @Devsoul | 100+ Projects Delivered | Helping Startups & Businesses Build Scalable Digital Products
+location: Daska, Punjab, Pakistan
+connections: 500+
+email: shoaib@devsoul.net
+website: https://devsoul.net
+linkedin_footer: [About, Accessibility, User Agreement, Privacy Policy, Cookie Policy, Copyright Policy, Brand Policy, Guest Controls, Community Guidelines]
+---
 
-Co-Founder @Devsoul | 100+ Projects Delivered | Helping Startups & Businesses Build Scalable Digital Products
+# Muhammad Shoaib — LinkedIn Profile
 
-Daska, Punjab, Pakistan
+## Summary
 
-·
-
-Contact info
-
-
-Devsoul Technologies (Pvt.) Limited
-
-
-GIFT University
-
-500+
-
-connections
-
-
-
-About
 At Devsoul Technologies, we help startups and growing businesses turn ideas into scalable, high-performing digital products.
 
-As Co-Founder, I lead the delivery of end-to-end software solutions—from strategy and design to development and deployment. We’ve successfully delivered 100+ projects across mobile, web, and cloud, enabling companies to launch faster and scale efficiently.
- 
-Our focus is simple: build technology that solves real business problems. Whether it’s an MVP, a full-scale platform, or AI-driven automation, we create solutions that are reliable, scalable, and results-driven.
- 
+As Co-Founder, I lead the delivery of end-to-end software solutions—from strategy and design to development and deployment. We've successfully delivered 100+ projects across mobile, web, and cloud, enabling companies to launch faster and scale efficiently.
+
+Our focus is simple: build technology that solves real business problems. Whether it's an MVP, a full-scale platform, or AI-driven automation, we create solutions that are reliable, scalable, and results-driven.
+
 With a strong background in React Native and Node.js, I work closely with clients and teams to ensure every product meets both technical excellence and business goals.
- 
-If you’re looking to build, scale, or automate your business:
-  
-🌐 https://devsoul.net
- 
-📧 shoaib@devsoul.net
 
+## Experience
 
+#### Co-Founder — Devsoul Technologies (Pvt.) Limited
 
-Experience
-Devsoul Technologies (Pvt.) Limited logo
-Co-Founder
+dates: May 2022 – Present
+duration: 4 yrs 2 mos
+location: Gujranwala, Punjab, Pakistan
+employment_type: Full-time
 
-Devsoul Technologies (Pvt.) Limited · Full-time
+#### Senior Frontend Developer — ÄHDUS TECHNOLOGY
 
-May 2022 - Present · 4 yrs 2 mos
+dates: Mar 2024 – Present
+duration: 2 yrs 4 mos
+location: Islamabad, Pakistan
+employment_type: Freelance
 
-Gujranwala, Punjab, Pakistan · On-site
+#### React Native Developer — CodeClever
 
- Start-up Leadership, Early Stage Ventures and +4 skills
+dates: Oct 2022 – Feb 2024
+duration: 1 yr 5 mos
+location: Islamabad, Pakistan
+employment_type: Full-time
 
-ÄHDUS TECHNOLOGY logo
-Senior Frontend Developer
+#### React Native Developer — Techify
 
-ÄHDUS TECHNOLOGY · Freelance
+dates: Mar 2022 – Aug 2022
+duration: 6 mos
+location: Lahore, Punjab, Pakistan
+employment_type: Full-time
 
-Mar 2024 - Present · 2 yrs 4 mos
+#### React Native Developer — Orthiya Technology
 
-Islāmābād, Pakistan · Remote
+dates: Nov 2021 – Mar 2022
+duration: 5 mos
+location: Islamabad, Pakistan
+employment_type: Full-time
 
- Node.js, Next.js and +4 skills
+## Education
 
-CodeClever logo
-React Native Developer
+#### Bachelor's Degree, Computer Software Engineering — GIFT University
 
-CodeClever · Full-time
+dates: Jun 2017 – Oct 2021
 
-Oct 2022 - Feb 2024 · 1 yr 5 mos
+#### Intermediate — Government Degree College Daska
 
-Islāmābād, Pakistan
+dates: 2015 – 2017
 
- Firebase, Stripe Connect and +5 skills
+## Posts
 
-Techify logo
-React Native Developer
+---
 
-Techify · Full-time
+#### Post 1
 
-Mar 2022 - Aug 2022 · 6 mos
-
-Lahore, Punjab, Pakistan
-
- React Native, JavaScript and +8 skills
-
-Orthiya Technology logo
-React Native Developer
-
-Orthiya Technology · Full-time
-
-Nov 2021 - Mar 2022 · 5 mos
-
-Islāmābād, Pakistan
-
- React Native, TypeScript and +5 skills
-
-
-
- Education
-GIFT University logo
-GIFT University
-
-Bachelor's degree, Computer Software Engineering
-
-Jun 2017 – Oct 2021
-
- JavaScript, TypeScript and +6 skills
-
-Government degree college Daska
-
-Intermediate
-
-2015 – 2017
-
-Grade: B+
-
-
-
-
-Post
-
-View Muhammad Shoaib’s  graphic link
-Muhammad ShoaibMuhammad Shoaib
-   • 2ndVerified • 2nd
-Co-Founder @Devsoul | 100+ Projects Delivered | Helping Startups & Businesses Build Scalable Digital ProductsCo-Founder @Devsoul | 100+ Projects Delivered | Helping Startups & Businesses Build Scalable Digital Products
-1d •  1 day ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 1d
+hashtags: [#SoftwareDevelopment, #TechnicalDebt, #ProductDevelopment, #SaaS, #Devsoul]
 
 Moving fast is important.
 
@@ -145,40 +97,18 @@ The goal is not perfect code.
 
 The goal is sustainable progress.
 
-Build for today’s launch.
-Plan for tomorrow’s scale.
+Build for today's launch.
+Plan for tomorrow's scale.
 
 Where have you seen a shortcut become expensive later?
 
-hashtag#SoftwareDevelopment hashtag#TechnicalDebt hashtag#ProductDevelopment hashtag#SaaS hashtag#Devsoul
+---
 
-No alternative text description for this image
+#### Post 2
 
-No alternative text description for this image
-
-No alternative text description for this image
-
-No alternative text description for this image
-+1
-Activate to view larger image,
-likeinsightful
-3
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 2
-View Muhammad Shoaib’s  graphic link
-Muhammad ShoaibMuhammad Shoaib
-   • 2ndVerified • 2nd
-Co-Founder @Devsoul | 100+ Projects Delivered | Helping Startups & Businesses Build Scalable Digital ProductsCo-Founder @Devsoul | 100+ Projects Delivered | Helping Startups & Businesses Build Scalable Digital Products
-2d •  2 days ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 2d
+hashtags: [#AI, #SoftwareDevelopment, #ProductDevelopment, #TechLeadership, #Devsoul]
 
 AI is becoming part of everyday software development.
 
@@ -203,48 +133,13 @@ It is to make good engineering teams more effective.
 
 How is your team using AI without compromising product quality?
 
-hashtag#AI hashtag#SoftwareDevelopment hashtag#ProductDevelopment hashtag#TechLeadership hashtag#Devsoul
+---
 
-No alternative text description for this image
+#### Post 3
 
-No alternative text description for this image
+type: original
+timestamp: 4yr
 
-No alternative text description for this image
+I recently graduated in software engineering with good academic record. I can write efficient code and worked in firm as a front end developer. Now I want to move further to my career. I want to work in one of these organisations to grow further.
 
-No alternative text description for this image
-+1
-Activate to view larger image,
-likeinsightful
-6
-
-Like
-
-Comment
-
-Repost
-
-Send
-
-
-View Muhammad Shoaib’s  graphic link
-Muhammad ShoaibMuhammad Shoaib
-   • 2ndVerified • 2nd
-Co-Founder @Devsoul | 100+ Projects Delivered | Helping Startups & Businesses Build Scalable Digital ProductsCo-Founder @Devsoul | 100+ Projects Delivered | Helping Startups & Businesses Build Scalable Digital Products
-4yr •  4 years ago • Visible to anyone on or off LinkedIn
-
-Follow
-
-I recently graduated in software engineering with good academic record. I can write efficient code and worked in firm as a front end developer. Now I want to move further to my career. I want to work in one of these organisations to I’ve further.
-Systems Limited 
-Arbisoft 
-i2c Inc. 
-NETSOL Technologies Inc. 
-Techverx 
-ibex 
-Ideofusion.Co.Uk 
-CONFiX 
-Tanbits 
-Snexus 
-PentaLoop 
-Generix 
-AppsGenii Technologies
+[List of target companies: Systems Limited, Arbisoft, i2c Inc., NETSOL Technologies Inc., Techverx, ibex, Ideofusion.Co.Uk, CONFiX, Tanbits, Snexus, PentaLoop, Generix, AppsGenii Technologies]

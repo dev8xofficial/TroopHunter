@@ -1,20 +1,21 @@
-# Scrape Results — interactivesites.com
-
-- **Start URL**: https://www.interactivesites.com/
-- **Scraped at**: 2026-06-04 11:32:04 UTC
-- **Total pages**: 2
-
-## Page 1 — Interactive Sites - Prod
-
-**🔗 URL:** https://www.interactivesites.com/
-
+---
+site: Interactive Sites
+domain: https://www.interactivesites.com
 ---
 
-## Page 2 — Interactive Sites - Prod
+# Interactive Sites — Scraped Content
 
-**🔗 URL:** https://www.interactivesites.com/
+## 1 — Interactive Sites - Prod [EMPTY — no content]
 
-#### Custom Development
+***
+
+## 2 — Interactive Sites - Prod
+
+url: https://www.interactivesites.com/
+type: landing
+meta: none
+
+### Custom Development
 
 Interactive Sites develops web-based, easy-to-use custom solutions as well as third-party integrations for hotels to address several critical needs within the hospitality industry. Hotels require efficient management of their operations, including reservations, front desk activities, housekeeping, and guest services. Standard, off-the-shelf software sometimes fails to meet the unique and specific demands of each hotel, leading to inefficiencies and missed opportunities for enhancing guest experiences.
 
