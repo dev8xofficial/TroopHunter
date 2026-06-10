@@ -35,7 +35,7 @@ Both Abdul and Herman operate around the same principle: ship clean without over
 
 ### Post Selection
 
-> **Scrape note:** The LinkedIn scrape surfaced 2 substantive original posts — Post 1 (11h ago) and Post 3 (2yr ago). All other posts are certification announcements or reposts, which the rules exclude. Before Day 2, check Herman's profile for any new posts and replace Post 2 with the most recent original post available. If nothing new has appeared, proceed with the fallback. By Day 4, Herman will likely have posted again — select the freshest available post for Comment 3.
+> **Scrape note:** The LinkedIn scrape surfaced 2 substantive original posts — Post 1 (11h ago) and Post 2 (2yr ago). All other posts are certification announcements or reposts, which the rules exclude. The sequence runs over 2 comments only.
 
 #### Post 1
 **Post excerpt:** "When you build a digital offering or production, questions come up: should we build a web app or a mobile app? It sounds like a tech decision. It's not. It's a business decision... The wrong partner says yes to everything."
@@ -43,14 +43,9 @@ Both Abdul and Herman operate around the same principle: ship clean without over
 **Comment timing:** Day 0
 
 #### Post 2
-**Post excerpt:** Check Herman's profile for any new original post before Day 2. Fallback if nothing new: "As a leader you have to make changes and to be prepared for worst case scenarios and have a plan." (2yr ago)
-**Why selected:** Leadership and contingency planning connects thematically to the partner/decision theme from Comment 1, allowing Abdul to weave in one sentence of genuine context without forcing a new topic.
+**Post excerpt:** "As a leader you have to make changes and to be prepared for worst case scenarios and have a plan." (2yr ago)
+**Why selected:** Leadership and contingency planning connects thematically to the partner/decision theme from Comment 1, allowing Abdul to weave in one sentence of genuine context and close with a natural connection ask.
 **Comment timing:** Day 2
-
-#### Post 3
-**Post excerpt:** Use the most recent original post available on Day 4. If nothing new has appeared, use the leadership/worst-case fallback post.
-**Why selected:** The connection ask lands best on a post where Herman is actively reading comments — select at comment time to ensure it is the freshest post available.
-**Comment timing:** Day 4
 
 ---
 
@@ -67,27 +62,16 @@ The partner filter matters more than the platform filter. A team that doesn't pu
 
 #### Comment 2 — Day 2
 
-In software the worst case is rarely technical. Most projects go sideways on decisions made before the first line of code — learned that building a real-time scheduling system.
+In software the worst case is rarely technical. Most projects go sideways on decisions made before the first line of code — learned that building a real-time scheduling system. Would be good to connect — feel like we're thinking about the same side of this.
 
-**Stage:** Deepen the Thread
-**What this does:** Connects the leadership/planning theme back to software delivery reality and weaves in one sentence of genuine personal context (real-time scheduling system build) that establishes production experience without naming anything or pitching.
-
----
-
-#### Comment 3 — Day 4
-
-*(Adapt the opening line to acknowledge the specific post Herman has published most recently by Day 4. The close is fixed.)*
-
-[One sentence acknowledging the specific post's point.] The scope conversation and the platform conversation are usually the same conversation had at different times. Would be good to connect — feel like we're thinking about the same side of this.
-
-**Stage:** The Ask
-**What this does:** Ties back to the running partner/decision theme, then issues the connection ask as a natural continuation — peer inviting peer, no pitch signal.
+**Stage:** Deepen the Thread + The Ask
+**What this does:** Connects the leadership/planning theme back to software delivery reality, weaves in one sentence of genuine personal context, and closes with a low-pressure peer-to-peer connection ask.
 
 ---
 
 ### Connection Request Note
 
-**When to send:** Immediately if Herman replies to any of the three comments. Day 5 if no reply received.
+**When to send:** Immediately if Herman replies to any comment. Day 3 if no reply received (one day after Comment 2).
 
 **Request message:**
 Left a few comments on your posts this week — React and Next.js developer, been following your work on MVPs and the platform decision framing. Worth connecting properly.
