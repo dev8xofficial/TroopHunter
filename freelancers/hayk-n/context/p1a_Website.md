@@ -1,132 +1,106 @@
 ---
-site: Ryan Brown Media
-domain: https://ryanbrownmedia.com
-contact_email: ryanbrownmedia@gmail.com
-nav: [Home, Reviews, Jobs, Blog]
-copyright: "Ryan Brown Media"
-scraped_at: 2026-06-10 12:43:56 UTC
+site: Hayk Nurijanyan Portfolio
+domain: https://hayknurijanyan.github.io
+nav: [Projects, Services, About, Contact]
 ---
 
-# Ryan Brown Media — Scraped Content
+# Hayk Nurijanyan Portfolio — Scraped Content
 
-## 1 — Home
+## 1 — Portfolio Homepage
 
-url: https://ryanbrownmedia.com/
+url: https://hayknurijanyan.github.io/
 type: landing
-meta: Ryan Brown Media provides custom Webflow and Javascript solutions for large and small scale websites. Based in Fort Collins, CO.
-
-### Positioning
-
-Freelance web developer based in Fort Collins, Colorado. Specializes in Webflow, Shopify, and custom JavaScript development.
-
-### Services & Approach
-
-Partner-model engagement: clients work with a designer (their own or one from Ryan's network) to produce a Figma/XD prototype, which Ryan then builds pixel-for-pixel in Webflow.
-
-Offers branding, logo, and design packages depending on budget.
-
-Industries served: psychology, authors, basketball leagues, fitness studios, coffee shops, equipment rentals, home defense, energy work, NFTs, crypto, SaaS, financial institutions, spirituality.
-
-Webflow is primary CMS of choice — enables fully custom design with client-editable content post-launch.
-
-> CTA: Reach out if you want to partner up and begin the journey of developing a new website.
-
-### Featured Projects (listed by name)
-
-- Tailorbird Site
-- Job Description Generator for The Swarm (JavaScript, Zapier)
-- Shef Landing Page
-
-### Recent Projects (listed by name)
-
-- Augeo Marketing Homepage
-- WhiteHaven Site
-- Artist Verified
-- Millie Giving Pricing Page + Mega Nav Menus
-- Crossing Minds Website
-- OnRamp Job Board (Webflow + Airtable + Integromat + Stripe)
-- Artisan Consulting Website
-- Legacy Farmer
-- Updated DUOS Homepage
-- Onramp Website Migration to Webflow
-- Bacon Coin
-- Famepick Collective Landing Page
-- HoneyBook Business Makeover
-- Riva HQ Team Page
-- MG Illustrated Portfolio Site
-- Safeor Custom API powered product accordions
-- Lido Blog Pages
-- Unbreakable Website
-- Review Panda Web App
-- The Haven Within Website
-- Idle Hour Coffee Roasters Website
-- Zero Proof Raleigh Website
-- DUOS Press Page
-- Famepick Brand Outreach Page
-- 1Build Pricing Page
-- The Rising Website
-
-### Founder Story (abridged)
-
-Former GIS technician and city worker in Charlotte, NC. Traveled South America and Europe in 2018 teaching English online. Began coding after a period of self-reflection, enrolled in a bootcamp, and started freelancing during COVID in 2020. Built the business through 2021 under financial pressure; describes that year as his most transformational. Now based in Fort Collins, CO after stints in Raleigh and Austin. Openly discusses mindset work, plant medicine, spirituality, and the psychology of freelancing.
-
-***
-
-## 2 — Reviews
-
-url: https://ryanbrownmedia.com/reviews
-type: utility
 meta: none
 
-### Client Testimonials (selected)
+### Hero
 
-- "He was incredibly responsive to hop on calls with us multiple times with little notice... I'd absolutely trust Ryan to build out a Webflow website and provide guidance on Webflow best practices."
-- "He's very skilled, knowledgeable, a true expert in his field. He's trustworthy, receptive, a respectful communicator, caring, high integrity, and the best I've ever worked with for technical website expertise."
-- "I spent WAY too long trying to solve a problem that only took him less than 2 hours. He is truly talented and has a deep knowledge of the platform."
-- "Ryan jumped right in and helped us knock out a TON of webflow deliverables for various web projects. Really appreciate how he adapted to our current systems of Monday.com and Slack."
-- "Ryan was able to take our client's frankensteined Webflow website, fix all the broken functionalities, and quickly make complicated changes... what I appreciated most is how reliable, communicative, and responsive he is."
-- "Everything was spot on on the first pass."
-- "Ryan met every deadline he set and always stayed in communication with me."
-- "He was able to advise on best practices and enable our team to become more webflow fluent."
+Let's make something awesome together! A showcase of projects as a software engineer.
 
-***
+Here are some of the projects I enjoyed working on the most.
 
-## 3 — Junior Webflow Developer
+### Projects
 
-url: https://ryanbrownmedia.com/jobs/junior-webflow-developer
-type: utility
-meta: none
+#### Tetris
 
-### Job Posting — Junior Webflow Developer
+A classic Tetris game with modern design and scoring system.
+Tech Stack: HTML, CSS, JavaScript
 
-Remote, global, flexible hours, all timezones.
+#### YourPhoto
 
-#### Responsibilities
+An online photo-printing platform with user authentication and photo editing.
+Tech Stack: React, Firebase, Material UI
 
-- Build pixel-perfect Webflow sites from Figma/XD/Sketch designs
-- Use Finsweet or other Webflow-compatible libraries
-- Communicate clearly and meet deadlines
-- Follow team CSS naming conventions (Client First CSS)
+#### Karpet
 
-#### Nice to Haves
+Modern Architecture & Design Service.
+Tech Stack: React, Next.js, Firebase
 
-- Basic JavaScript/jQuery
-- Understanding of low-code/no-code tools
-- Figma design experience
-- Familiarity with Client First CSS methodology
+#### Quest
 
-Contact: ryanbrownmedia@gmail.com
+An adventure-based escape room.
+Tech Stack: React, CSS, Github Pages
 
-***
+#### Carify
 
-## 4 — Thanks 2021
+A car renting platform with advanced search and comparison features.
+Tech Stack: React, CSS, Github Pages
 
-url: https://ryanbrownmedia.com/blog/thanks-2021
-type: article
-date: Late 2021 (exact date not specified)
-author: Ryan Brown
-meta: none
+#### Fredman
 
-Year-in-review post covering Ryan's personal and professional transformation in 2021. Themes: overcoming scarcity mindset, building a freelance business from scratch post-COVID, plant medicine experiences, relocating from Raleigh to Austin, mindset shifts around money and self-worth. Describes 2021 as his first year fully self-employed as a developer. Notes the business grew significantly by year-end. Closes with plans for Mexico and Ecuador travel in 2022.
+Construction Service.
+Tech Stack: React, Next.js, Firebase
 
-Key self-description: "My full-time job was turning my dreams into reality and living the life I wanted to live through remote work and freelancing."
+#### Magnum
+
+Appliance Repair Service.
+Tech Stack: HTML, CSS, Javascript, Bootstrap
+
+### Services
+
+- 🌐 Web Development
+- 📱 Mobile App Development
+- 🎨 UI/UX Design
+- ⚙️ Backend Development
+- ☁️ Cloud Services
+- 🔧 Website Maintenance & Deployment
+
+### About
+
+I'm a passionate Software Engineer with a love for coding and building impactful web and mobile applications. With experience in front-end, back-end, and mobile development, I focus on creating scalable, responsive, and user-friendly applications.
+
+I specialize in React, React Native, Node.js, and other cutting-edge technologies to bring ideas to life. Constant learning and improving my craft is what drives me.
+
+I hold a Bachelor's Degree in Computer Science, which provided me with a solid foundation in software engineering and problem-solving skills.
+
+When I'm not coding, I enjoy exploring new tech trends, reading, and spending time with loved ones.
+
+### Career & Achievements
+
+#### Full Stack Software Engineer — Maurice Ward Group
+
+dates: March 2024 – Present
+
+Worked on both frontend and backend, focusing on API integrations and handling transactions systems.
+
+#### Software Developer — Buildern
+
+dates: July 2021 – December 2023
+
+Worked on both frontend and backend, developing full CRUD APIs, dashboards, and features.
+
+#### Web & Mobile Developer — YourPhoto App
+
+dates: December 2020 – July 2021
+
+Developed core features, including user authentication & responsive designs.
+
+### Certifications
+
+- Google Web Analytics & SEO Certification
+- AWS Certification
+
+### Contact
+
+Have a question, or want to collaborate? I'd love to hear from you.
+
+> CTA: Send Message

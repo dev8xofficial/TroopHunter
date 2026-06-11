@@ -1,250 +1,250 @@
 ---
 platform: Upwork
 profile_type: freelancer
-name: Ryan B.
-url: https://www.upwork.com/freelancers/ryanbrown
-headline: Webflow Expert + Automations Specialist (Make, Hubspot, Zapier etc)
-location: Fort Collins, CO, USA
-hourly_rate: "$75.00/hr"
-job_success_score: "99%"
-total_jobs: 200
-total_hours: 4011
-total_earnings: "$400K+"
-response_time: "4-8 hours"
-availability: "As Needed - Open to Offers"
+name: Hakeem Abbas
+headline: Full Stack Developer | Node.js, Python & FastAPI | Web & Mobile Dev
+location: San Francisco, CA, USA
+hourly_rate: "$50.00/hr"
+job_success_score: "100%"
+total_jobs: 46
+total_hours: 5619
+total_earnings: "$300K+"
+response_time: "0–4 hours"
+availability: "As Needed – Open to Offers"
 badge: Top Rated Plus
-languages: [English (Native or Bilingual)]
 verified: true
+languages:
+  - English (Native or Bilingual)
+member_since: 2017
+associated_agency: Coding Crafts
 ---
 
-# Ryan B. — Upwork Profile
+# Hakeem Abbas — Upwork Profile
 
 ## Overview
 
-I am a proven Webflow and Shopify expert who is serious about meeting my clients' deadlines and communicating clearly throughout each development phase. I also specialize in leveraging automation tools like Zapier, Make, Hubspot, and Pipedream to add advanced functionality to any Webflow site. I can also help architect a Webflow development system or standard in your site to ensure you are being efficient and building sites as quickly as possible.
+I am an expert Full Stack Developer with over 12 years of experience in building scalable, high-performance web and mobile applications. With a deep understanding of modern frameworks and technologies such as Node.js, Python, and FastAPI, I have consistently delivered innovative solutions to complex challenges, working across the full stack to build end-to-end solutions.
 
-I am passionate about bringing websites to life for my clients that reflect their brand, vision, and personality. One of the things I take most seriously is providing support throughout the entire journey and communicating clearly through the process!
+As a top 1% Expert-Vetted Talent, I've been pre-screened by industry professionals and talent managers to ensure I meet the highest standards of technical expertise and quality. Throughout my career, I've had the privilege of working in dynamic, high-impact roles at some of the most renowned tech companies, where I gained extensive experience in leading engineering teams and architecting advanced systems.
 
-I have built a wide range of websites related to the following industries: psychology, authors, basketball leagues, fitness studios, coffee shops, equipment rentals, home defense, energy work, etc. Any chance I have an opportunity to work in a new field, I consider it a chance to become a better version of myself as I get to learn about something new!
+**Professional Experience**
 
-Webflow has become my CMS of choice! It allows me to build the client a completely custom design, while also giving the client the ability to maintain the site themselves moving forward!
+1- **Senior Software Engineer | Microsoft**
+Spearheaded large-scale, cloud-based software systems that supported Microsoft's enterprise solutions, focusing on security, performance optimization, and user experience. Led cross-functional teams to implement key features for Microsoft Azure and Office 365.
 
-When I build a new website, I make them modern, clean, and bold. Depending on budget, I also offer branding, logo, and design packages as well!
+2- **Senior Software Engineer | Facebook**
+Contributed to the core engineering teams responsible for Facebook's backend services, handling millions of active users and optimizing real-time data processing. Played a pivotal role in building scalable APIs, improving system performance, and enhancing user experience.
 
-Reach out if you want to partner up and begin the journey of developing a new website with me!
+3- **Lead Software Engineer | Hellogov AI**
+Directed a team to build AI-powered government solutions, improving efficiency and accessibility for public services. Collaborated with stakeholders to design innovative features while ensuring system reliability and scalability.
+
+**Key Skills & Technologies**
+
+1- Backend Development: Skilled in Node.js, Python, FastAPI, and Express.js for building scalable APIs and microservices.
+
+2- Frontend Development: Experienced with React.js, Vue.js, and HTML/CSS for creating responsive web interfaces.
+
+3- Mobile Development: Expertise in React Native and Flutter for cross-platform mobile app development.
+
+4- Cloud & DevOps: Proficient in AWS, Azure, Google Cloud, Docker, Kubernetes, and CI/CD for scalable deployment.
+
+5- Database Management: Strong in relational and NoSQL databases like PostgreSQL, MySQL, MongoDB, and Redis.
+
+6- Agile & Leadership: Experienced in leading Agile teams, driving project success, and mentoring junior developers.
+
+**Flexible Timezone Availability:**
+I am comfortable working across a variety of time zones and can adapt to your team's working hours, ensuring seamless collaboration no matter where you're based. Whether you need overlapping work hours or full-time availability, I am open to flexible arrangements that align with your team's needs.
+
+**High-Quality, Scalable Solutions:**
+I have a proven track record of building high-performance systems that scale efficiently, ensuring long-term stability and performance. I am committed to delivering robust solutions that meet business goals while optimizing user experience.
+
+**Fast-Paced & Results-Driven:**
+I thrive in fast-paced environments and understand the importance of meeting deadlines without compromising on quality. I take a results-driven approach to development, always focusing on delivering value quickly and effectively.
+
+**Proven Leadership and Team Collaboration:**
+Throughout my career, I've led multiple cross-functional teams, ensuring strong collaboration and clear communication at all stages of development. Whether working as a lead engineer or as part of a team, I take an active role in mentoring and guiding junior developers to achieve their full potential.
+
+**Innovative & Continuous Learner:**
+I am passionate about staying ahead of the curve in an ever-evolving tech landscape. My curiosity drives me to constantly explore new tools, technologies, and techniques, so I can apply the best possible solutions to each project I undertake.
 
 ## Skills
 
-- Responsive Design
-- JavaScript
-- HTML
-- PostgreSQL
 - Node.js
-- CSS
 - React
-- jQuery
-- Web Development
-- Front-End Development
-- Wix
-- Squarespace
-- Shopify
-- Webflow
+- Mobile App
+- React Native
+- Full-Stack Development
+- JavaScript
+- TypeScript
+- React Bootstrap
+- Web Application Development
+- API Development
+- OpenAI API
+- FastAPI
+- Python
+- MERN Stack
+- SQL Programming
 
 ## Work History
 
 ---
 
-#### Looking for webflow developer
-
-client_rating: 5.00
-contract_type: Hourly
-dates: Sep 29, 2025 – May 28, 2026
-budget: $10,675.00 ($75.00/hr, 142 hours)
-
-**Client review:**
-Ryan is a genuinely great guy and extremely responsive. He did a wonderful job with our Webflow project.
-
----
-
-#### 30 minute consultation
+#### Senior Full-Stack Developer for SaaS Deployment and Management
 
 client_rating: 5.00
 contract_type: Fixed-price
-dates: May 12, 2026 – May 20, 2026
-budget: $50.00
+dates: Mar 5, 2026 – Apr 22, 2026
+budget: $750.00
 
 **Client review:**
-Ryan was very professional and great to work with. I recommend him.
+Hakeem was fantastic, thorough and provided technical direction that enabled a smooth project to completion. I look forward to working with him again.
 
 ---
 
-#### FBOJets work
+#### AI Development Team
 
 client_rating: 5.00
+hours_billed: 336
 contract_type: Hourly
-dates: Oct 14, 2025 – Mar 27, 2026
-budget: $2,100.00 ($60.00/hr, 35 hours)
+dates: Mar 9, 2026 – Apr 3, 2026
+budget: $16,800.00
 
 **Client review:**
-Ryan did a great job overhauling our site!
+Hakeem and the team communicated well and delivered the work on time and as expected. They were proactive and helpful in the process.
 
 ---
 
-#### Webflow Expert for SAAS Startup Website
+#### AI Engineer - OpenAI Integration with Structured Data
 
 client_rating: 5.00
+hours_billed: 280
 contract_type: Hourly
-dates: Jul 10, 2024 – Mar 2, 2026
-budget: $12,462.50 ($75.00/hr, 166 hours)
+dates: Jan 22, 2026 – Mar 31, 2026
+budget: $14,000.00
 
 **Client review:**
-Ryan was a pleasure to work with on our Webflow site! He executed projects quickly and successfully, often with very few rounds of revisions. He was great at communicating issues and questions and never hesitated to hop on a call when we needed to talk through something more complex. His work absolutely helped us elevate our Webflow site.
+Hakeem was great to work with on the project, providing high-quality work and great communication and planning. We will continue to work together.
 
 ---
 
-#### Webflow Rebuild (Phase 1): Home Page & Global Design System
+#### Senior Full Stack Web Developer (Contract - Remote)
 
 client_rating: 5.00
-contract_type: Fixed-price
-dates: Jan 29, 2026 – Mar 2, 2026
-budget: $1,100.00
-
-**Client review:**
-Ryan's attention to detail during our Webflow home page rebuild was excellent, and he managed the global design settings perfectly. He's professional, communicative, and very fast. I'm looking forward to working with him again on future phases.
-
----
-
-#### Webflow & CRM Integration Expert (HubSpot, Attio, APIs)
-
-client_rating: 1.00
+hours_billed: 328
 contract_type: Hourly
-dates: Jul 11, 2025 – Feb 12, 2026
-budget: $24,097.50 ($85.00/hr, 284 hours)
+dates: Dec 8, 2025 – Mar 8, 2026
+budget: $16,400.00
 
 **Client review:**
-Violated Security and confidentiality
-
-**Freelancer response:**
-I was surprised by this feedback, as I worked with Steve for over seven months and genuinely enjoyed collaborating with him while delivering all requested work and maintaining professional standards and account security.
-
-Throughout the engagement, I remained responsive, met deadlines, and completed the requested Webflow and CRM work without any reported security incidents, so this caught me off guard.
-
-I take confidentiality and security very seriously in all client engagements, and this feedback does not reflect my experience of the project or my long track record on Upwork.
+Hakeem was fantastic for us, truly an experienced professional. Being non-technical, it didn't take long for him to understand what we needed and execute it with very minimal supervision. Very grateful to have hired Hakeem and will work with him in the future!
 
 ---
 
-#### Webflow & Interactive Developer
+#### iOS Swift Developer for Fintech App (First Version Build)
 
 client_rating: 5.00
-contract_type: Fixed-price
-dates: Jul 1, 2025 – Feb 15, 2026
+hours_billed: 440
+contract_type: Hourly
+dates: Sep 17, 2025 – Apr 4, 2026
+budget: $17,600.00
+
+**Client review:**
+He did a great job especially for the price. Was a very valuable member of our team. Knows his stuff. Recommend.
+
+---
+
+#### Healthcare Web/API/App developer
+
+client_rating: 5.00
+hours_billed: 153
+contract_type: Hourly
+dates: Sep 1, 2025 – Nov 4, 2025
+budget: $6,120.00
+
+**Client review:**
+A great and timely worker - a self starter that can find value and deliver on time.
+
+---
+
+#### Senior Front End Developer
+
+client_rating: 5.00
+hours_billed: 340
+contract_type: Hourly
+dates: Sep 25, 2025 – Dec 8, 2025
+budget: $13,600.00
+
+---
+
+#### Senior Frontend Engineer (Next.js, TypeScript, shadcn/ui)
+
+client_rating: 3.30
+hours_billed: 40
+contract_type: Hourly
+dates: Sep 8, 2025 – Sep 20, 2025
 budget: $1,600.00
 
 ---
 
-#### API & Webflow Expert
+#### Senior Front End Developer
 
 client_rating: 5.00
-contract_type: Hourly
-dates: Feb 20, 2025 – May 2, 2025
-budget: $14,250.00 ($75.00/hr, 190 hours)
+contract_type: Fixed-price
+dates: Aug 21, 2025 – Sep 24, 2025
+budget: $2,100.00
 
 ---
 
-#### Figma to Webflow Developer
+#### Senior Full Stack Engineer
 
 client_rating: 5.00
+hours_billed: 80
 contract_type: Hourly
-dates: May 6, 2024 – May 31, 2025
-budget: $15,816.89 ($65.00/hr, 249 hours)
-
-**Client review:**
-Great working with Ryan. Would hire again.
-
----
-
-#### Senior Webflow Developer
-
-client_rating: 5.00
-contract_type: Hourly
-dates: Oct 12, 2024 – Apr 25, 2025
-budget: $1,066.00 ($82.00/hr, 13 hours)
-
-**Client review:**
-Very talented, great communication. Highly recommend for any Webflow work.
+dates: Jun 11, 2025 – Nov 8, 2025
+budget: $2,400.00
 
 ## Employment History
 
 ---
 
-#### Web Developer — Ryan Brown Media LLC
+#### Lead Software Engineer — Hellogov AI
 
-dates: June 2020 – Present
+dates: July 2023 – Present
 
-- Responsible for taking design mocks (XD) and building full-stack websites for clients from various industries
-- Developing strategies to build sales and acquiring leads
-- Built on React front-end, NodeJS back-end, and PostgreSQL
-- Continuing maintenance and development of features
+Created an AI based document processing system that allows government document processing to be a breeze.
 
 ---
 
-#### Junior Service Developer — Constellation Digital Partners
+#### Senior Software Engineer — Facebook
 
-dates: February 2020 – May 2020
+dates: August 2017 – March 2020
 
-- Built single page apps using Javascript, jQuery, and React for credit unions
-- Developed and enhanced documentation for Constellation developers to use
-- Did some minor Java work on their backend components
-- Supported and guided other developers in using our services
+Responsible for implementing casting of Oculus (VR Headset) video/audio to Facebook Live, TV & phone devices. Wrote React Native companion app for Oculus Devices.
 
 ---
 
-#### Website Coordinator — Sokal
+#### Senior Software Engineer — Microsoft
 
-dates: February 2019 – February 2020
+dates: October 2012 – June 2017
 
-- Functioned as a front end developer in maintaining and updating websites for car dealerships across the US
-- Performed jQuery and Javascript implementations when necessary
-- Managed Google Analytics and Google Tag Manager tracking information
-- Built new components on websites using HTML, CSS, jQuery, and Javascript
-- Collaborated with account coordinators to ensure clients were satisfied
-
----
-
-#### GIS Technician — Charlotte Water
-
-dates: November 2016 – February 2018
-
-- Developed a GIS for all of Charlotte, North Carolina's water features
-- Maintained GIS map daily via data entry from engineering drawings
-- Used GPS to capture important points throughout the city
-- Proficient in ArcGIS, Microsoft Office Suite, and Trimble software
-
----
-
-#### GIS Technician — QC Data
-
-dates: January 2015 – October 2016
-
-- Developed a GIS pertaining to telecom equipment of a major US phone company
-- Performed data entry from engineering drawings to Ewo cloud
-- Collaborated with engineers in storing all telecom equipment from field to cloud
-- Maintained at least 96% accuracy in all cartographic placements
+- Maintained large code base for Remote Desktop client for Android.
+- Developed and owned end-to-end Android native applications.
+- Debugged and improved performance of remote desktop client applications.
+- Expert in testing framework and automation.
 
 ## Education
 
 ---
 
-#### Bachelor of Arts (BA), Geography/GIS — Indiana University of Pennsylvania
+#### Bachelor of Science (BS), Computer Science — National University of Computer and Emerging Sciences
 
-dates: 2010 – 2014
-field: Geography / GIS
+dates: 2008 – 2012
 
 ## Overflow Signals
 
-- **Extreme project volume** — 55 jobs currently in progress simultaneously, spanning everything from single landing pages to multi-month SaaS site builds; this is not a freelancer with spare capacity.
-- **High booking rate** — 4,011 total hours billed across 200 jobs, with a dense cluster of active contracts stretching back to 2021 and 2022 still marked "in progress," indicating sustained, uninterrupted demand.
-- **Rate tier** — billing at $75–$85/hr (with one contract at $100/hr), placing him firmly above the threshold where passing modular work to a lower-rate specialist is economically rational.
-- **Project scale** — multiple contracts in the 150–284 hour range (SAAS startup site at 166 hrs, CRM/API build at 284 hrs, Figma-to-Webflow at 249 hrs) suggest he regularly takes on scope that benefits from a second developer on component or integration work.
-- **Job posting for junior developer** — website lists an active opening for a Junior Webflow Developer to build out core components from Figma/XD designs, explicitly describing it as a potential "long term partnership." This is a direct structural signal that he is actively seeking to offload build work.
-- **Full-stack background, Webflow-focused present** — his stack (React, Node.js, PostgreSQL) overlaps directly with Abdul's, but Ryan has moved almost entirely into Webflow delivery. Clients occasionally require React or custom JS layers that sit outside pure Webflow, which is precisely the gap a React/Next.js specialist fills.
+- **Agency / team profile** — Hakeem is associated with Coding Crafts on Upwork (a separate agency account with 398 hours and Top Rated badge), and client review for "AI Development Team" explicitly references "Hakeem and the team," confirming he operates with a team behind him rather than solo.
+- **Sustained high billing rate** — 8 in-progress contracts running simultaneously as of the scrape date (May–June 2026), totalling at least $35K+ in active work; combined with 5,619 lifetime billed hours, this signals near-continuous utilisation.
+- **Large project scale** — Multiple contracts exceed 300 hours billed (440 hrs fintech app, 336 hrs AI team, 328 hrs full-stack web dev, 340 hrs senior front end), indicating he routinely manages significant scope and would benefit from trusted sub-contractors.
+- **Rate tier & range** — Rates span $30–$95/hr across history and currently sit at $50/hr; the spread suggests he price-adjusts per engagement, and the volume of active contracts at $50/hr means he cannot absorb every new inquiry at that level personally.
+- **Client review language confirming autonomous delivery** — Reviews use phrases like "very minimal supervision," "self starter that can find value," "working autonomously with some of our most critical and technical tasks," and "handles large projects, communicates effectively" — signalling a freelancer who delegates or needs capacity rather than hand-holding.
+- **Job type match** — Active and completed contracts span React Native, Next.js/TypeScript, Node.js, full-stack SaaS, and AI/OpenAI integrations — all within or adjacent to a senior frontend/full-stack specialist's wheelhouse, making him a natural source of overflow for those sub-disciplines.

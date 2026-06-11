@@ -1,250 +1,315 @@
 ---
 platform: Upwork
 profile_type: freelancer
-name: Ryan B.
-url: https://www.upwork.com/freelancers/ryanbrown
-headline: Webflow Expert + Automations Specialist (Make, Hubspot, Zapier etc)
-location: Fort Collins, CO, USA
-hourly_rate: "$75.00/hr"
-job_success_score: "99%"
-total_jobs: 200
-total_hours: 4011
-total_earnings: "$400K+"
-response_time: "4-8 hours"
-availability: "As Needed - Open to Offers"
+name: Ehteshamuddin M.
+headline: Full stack Engineer | Kubernetes | Terraform | HIPAA | DevOps
+location: Phoenix, AZ, USA
+hourly_rate: "$25.00/hr"
+job_success_score: "100%"
+total_jobs: 70
+total_hours: 3,741
+total_earnings: "$100K+"
+response_time: "0-4 hours"
+availability: "More than 30 hrs/week"
 badge: Top Rated Plus
-languages: [English (Native or Bilingual)]
+languages:
+  - English (Native or Bilingual)
 verified: true
+education:
+  - Governors State University — Master of Computer Science (MSCS)
 ---
 
-# Ryan B. — Upwork Profile
+# Ehteshamuddin M. — Upwork Profile
 
 ## Overview
 
-I am a proven Webflow and Shopify expert who is serious about meeting my clients' deadlines and communicating clearly throughout each development phase. I also specialize in leveraging automation tools like Zapier, Make, Hubspot, and Pipedream to add advanced functionality to any Webflow site. I can also help architect a Webflow development system or standard in your site to ensure you are being efficient and building sites as quickly as possible.
+🎯 100% Refund If I set the wrong expectations and can't deliver. No questions asked.
 
-I am passionate about bringing websites to life for my clients that reflect their brand, vision, and personality. One of the things I take most seriously is providing support throughout the entire journey and communicating clearly through the process!
+Top-Rated Plus, Upwork Top 1 Percent, Highly recommended.
 
-I have built a wide range of websites related to the following industries: psychology, authors, basketball leagues, fitness studios, coffee shops, equipment rentals, home defense, energy work, etc. Any chance I have an opportunity to work in a new field, I consider it a chance to become a better version of myself as I get to learn about something new!
+What do I offer:
+1. 100% work satisfaction
+2. 24/7 Support
+3. On-time delivery
+4. Enterprise quality
+5. 15 Days of free support after completion of the project
 
-Webflow has become my CMS of choice! It allows me to build the client a completely custom design, while also giving the client the ability to maintain the site themselves moving forward!
+Cloud Architect with 10+ years of DevOps experience, specializing in scalable, platform-agnostic cloud infrastructures. Proven track record in high-scale environments. Proficient in Infrastructure as Code, automation, and scripting, with expertise in CI/CD, Cloud Services, and Infrastructure Automation. Skilled in building, deploying, and managing applications on AWS, GCP, Azure, and OCI, with a focus on robust monitoring and observability.
 
-When I build a new website, I make them modern, clean, and bold. Depending on budget, I also offer branding, logo, and design packages as well!
+➜ Zazmic Inc, San Francisco, CA
+- Automation Tools: Terraform, Ansible
+- Cloud Platforms: GCP
+- Containerization: Docker, Helm charts
+- CI/CD: GitLab CI
+- Monitoring: HPA, Cloud Armour
+- Databases: Different kinds of databases on GCP
 
-Reach out if you want to partner up and begin the journey of developing a new website with me!
+➜ Tripleseat, Concord, Massachusetts
+- Cloud Platforms: Azure, GCP
+- Containerization: Docker
+- CI/CD: Azure Pipelines, Azure DevOps
+- Monitoring: Grafana, Prometheus
+
+➜ Century Communities, Inc., Greenwood Village, CO
+- Cloud Platforms: AWS, Oracle Cloud
+- Automation Tools: Lambda functions, Ansible
+- Containerization: Docker, AWS ECS, EKS
+- CI/CD: CircleCI, GitHub Actions, AWS CodePipeline
+- Monitoring: CloudWatch, CloudFront
+
+➜ Summary:
+- Proficient in Kubernetes, I architect and manage clusters to facilitate agile and scalable application deployment.
+- Skilled in Infrastructure as Code (IaC), I employ Terraform, Ansible, and Chef to automate configuration and ensure uniform environments.
+- With hands-on experience in CI/CD pipeline creation and maintenance using Jenkins, GitLab CI, and Azure DevOps, I ensure the efficient and reliable delivery of software products.
+- Possessing a robust background in Linux/UNIX system administration, including expertise in managing RHEL environments.
+- Armed in scripting with Bash and Python to streamline automation processes and optimize operational efficiency.
+- Good know how of monitoring and logging tools such as Elasticsearch, CloudWatch, Prometheus, and Grafana, enabling proactive monitoring of infrastructure and application health.
+- Experienced in VMware virtualization, proficiently managing VMs, executing V-motion operations, and maintaining Snapshots.
+- Adaptable to fast-paced 24/7 production environments, providing responsive on-call support, including weekends.
+- Successfully deployed and managed scalable microservices on Kubernetes clusters across GCP and AWS platforms.
+- Expertise extends to migrating on-premises workloads to the cloud, focusing on performance optimization and cost efficiency.
+- Possess proactive problem-solving and troubleshooting skills essential for maintaining high-quality production environments.
+- Strong communication and collaboration abilities, facilitating effective bridging of the gap between development and operations teams.
+
+➜ Tools:
+Git, Ansible, AWS CloudFormation, ELK, GitLab, GitLab CI/CD, Terraform, Docker Compose, Grafana, Telegraf, CircleCI, Traefik, Amazon CloudWatch, Amazon ECS, GitHub, VPN, AWS Fargate, Amazon CloudFront CDN, AWS IAM, Amazon VPC, Docker Swarm, NGINX, Puppet, Jenkins, Amazon EKS, Amazon SQS, RabbitMQ, Celery, TeamCity, Nagios, Makefile, AWS CodeDeploy, Confluence, AWS CodeBuild
+
+➜ Platforms:
+Linux, Docker, Amazon Web Services, AWS Elastic Beanstalk, Amazon EC2, Kubernetes, AWS Lambda, Windows, Apache Kafka, JVM, Heroku, Azure, WordPress, New Relic, Windows Server, Google Cloud Platform, Blockchain, Rancher
+
+➜ Storage:
+Amazon Aurora, Amazon S3, MySQL, MongoDB, InfluxDB, Redis, On-premise, Amazon DynamoDB, Redis Cache, Elasticsearch, PostgreSQL
+
+➜ Languages:
+Python, Bash, Java, PHP, Markdown, Go, JavaScript, SQL, TypeScript
+
+➜ Frameworks:
+Flask, Django, Windows PowerShell, .NET, Serverless Framework
 
 ## Skills
 
-- Responsive Design
-- JavaScript
-- HTML
-- PostgreSQL
-- Node.js
-- CSS
-- React
-- jQuery
-- Web Development
-- Front-End Development
-- Wix
-- Squarespace
-- Shopify
-- Webflow
+- Kubernetes
+- Terraform
+- Docker
+- DevOps
+- Google Cloud Platform
+- Amazon Web Services
+- Cloud Computing
+- Cloud Architecture
+- CI/CD
+- Microsoft Azure
+- DigitalOcean
+- HIPAA
+- SOC 2
+- Ansible
+- Python
+- Data Warehousing & ETL Software
+- Django
+- Linux System Administration
+- AWS CloudFormation
+- Git
 
 ## Work History
 
 ---
 
-#### Looking for webflow developer
+#### AWS DevOps Engineer for HIPAA-Oriented Clinical Portal
 
-client_rating: 5.00
 contract_type: Hourly
-dates: Sep 29, 2025 – May 28, 2026
-budget: $10,675.00 ($75.00/hr, 142 hours)
-
-**Client review:**
-Ryan is a genuinely great guy and extremely responsive. He did a wonderful job with our Webflow project.
+dates: May 15, 2026 – Jun 2, 2026
+budget: $900.00
+hours_billed: 30
 
 ---
 
-#### 30 minute consultation
+#### Senior DevOps Wizard
 
-client_rating: 5.00
+contract_type: Hourly
+dates: May 5, 2026 – Jun 2, 2026
+budget: $105.00
+hours_billed: 3
+
+---
+
+#### Python/FastAPI Developer Needed for SaaS MVP Development
+
 contract_type: Fixed-price
-dates: May 12, 2026 – May 20, 2026
-budget: $50.00
-
-**Client review:**
-Ryan was very professional and great to work with. I recommend him.
+dates: Dec 16, 2025 – Jun 2, 2026
+budget: $5,200.00
 
 ---
 
-#### FBOJets work
+#### Devops Engineer
 
-client_rating: 5.00
 contract_type: Hourly
-dates: Oct 14, 2025 – Mar 27, 2026
-budget: $2,100.00 ($60.00/hr, 35 hours)
-
-**Client review:**
-Ryan did a great job overhauling our site!
+dates: Jan 30, 2026 – Apr 30, 2026
+budget: $3,080.00
+hours_billed: 103
 
 ---
 
-#### Webflow Expert for SAAS Startup Website
+#### Docker Service Setup and Container Migration
 
-client_rating: 5.00
+client_rating: "5.00"
 contract_type: Hourly
-dates: Jul 10, 2024 – Mar 2, 2026
-budget: $12,462.50 ($75.00/hr, 166 hours)
+dates: Apr 13, 2026 – Apr 30, 2026
+budget: $500.00
+hours_billed: 20
 
 **Client review:**
-Ryan was a pleasure to work with on our Webflow site! He executed projects quickly and successfully, often with very few rounds of revisions. He was great at communicating issues and questions and never hesitated to hop on a call when we needed to talk through something more complex. His work absolutely helped us elevate our Webflow site.
+Ehteshamuddin was excellent to work with! Very professional and completed the job successfully.
 
 ---
 
-#### Webflow Rebuild (Phase 1): Home Page & Global Design System
+#### Immediate: Expert in AWS + Cloudflare to help with HIPPA and SOC2 hardening with Python expertise
 
-client_rating: 5.00
-contract_type: Fixed-price
-dates: Jan 29, 2026 – Mar 2, 2026
-budget: $1,100.00
-
-**Client review:**
-Ryan's attention to detail during our Webflow home page rebuild was excellent, and he managed the global design settings perfectly. He's professional, communicative, and very fast. I'm looking forward to working with him again on future phases.
-
----
-
-#### Webflow & CRM Integration Expert (HubSpot, Attio, APIs)
-
-client_rating: 1.00
 contract_type: Hourly
-dates: Jul 11, 2025 – Feb 12, 2026
-budget: $24,097.50 ($85.00/hr, 284 hours)
+dates: Apr 16, 2026 – Apr 21, 2026
+budget: $112.50
+hours_billed: 5
+
+---
+
+#### Hourly DevOps Engineer Needed for AWS and Terraform Projects
+
+contract_type: Hourly
+dates: Dec 18, 2025 – Apr 10, 2026
+budget: $2,900.00
+hours_billed: 73
+
+---
+
+#### Survey Platform Developer (Decipher/Forsta) – Modular Architecture
+
+client_rating: "5.00"
+contract_type: Hourly
+dates: Jan 28, 2026 – Apr 10, 2026
+budget: $915.00
+hours_billed: 61
 
 **Client review:**
-Violated Security and confidentiality
-
-**Freelancer response:**
-I was surprised by this feedback, as I worked with Steve for over seven months and genuinely enjoyed collaborating with him while delivering all requested work and maintaining professional standards and account security.
-
-Throughout the engagement, I remained responsive, met deadlines, and completed the requested Webflow and CRM work without any reported security incidents, so this caught me off guard.
-
-I take confidentiality and security very seriously in all client engagements, and this feedback does not reflect my experience of the project or my long track record on Upwork.
+Ehteshamuddin was a pleasure to work with. He communicated clearly throughout the project, stayed organized, and consistently delivered high-quality work on time. He was proactive in solving issues and paid close attention to detail, which made the collaboration smooth and efficient. I'd be happy to work with him again and would recommend him to others.
 
 ---
 
-#### Webflow & Interactive Developer
+#### kubernetes upgrade
 
-client_rating: 5.00
-contract_type: Fixed-price
-dates: Jul 1, 2025 – Feb 15, 2026
-budget: $1,600.00
-
----
-
-#### API & Webflow Expert
-
-client_rating: 5.00
+client_rating: "5.00"
 contract_type: Hourly
-dates: Feb 20, 2025 – May 2, 2025
-budget: $14,250.00 ($75.00/hr, 190 hours)
-
----
-
-#### Figma to Webflow Developer
-
-client_rating: 5.00
-contract_type: Hourly
-dates: May 6, 2024 – May 31, 2025
-budget: $15,816.89 ($65.00/hr, 249 hours)
+dates: Feb 24, 2026 – Mar 6, 2026
+budget: $165.00
+hours_billed: 6
 
 **Client review:**
-Great working with Ryan. Would hire again.
+Ehteshamuddin helped us successfully upgrade our Kubernetes environment in AWS. He showed strong expertise in Kubernetes and cloud infrastructure, quickly understood the requirements, and executed the upgrade smoothly. Communication was excellent, and he kept us updated throughout the process. The work was completed efficiently and with a high level of professionalism. I highly recommend him for any AWS or Kubernetes-related projects and would gladly work with him again.
 
 ---
 
-#### Senior Webflow Developer
+#### Immediate start: Python API + file pipeline (images + video) – fix + run end-to-end
 
-client_rating: 5.00
+client_rating: "5.00"
 contract_type: Hourly
-dates: Oct 12, 2024 – Apr 25, 2025
-budget: $1,066.00 ($82.00/hr, 13 hours)
+dates: Jan 28, 2026 – Mar 5, 2026
+budget: $1,216.67
+hours_billed: 31
 
 **Client review:**
-Very talented, great communication. Highly recommend for any Webflow work.
+Ehteshamuddin did exceptionally well. He was very detail-oriented, easy to work with, and a clear communicator. I will be working with him again in the future.
+
+## Portfolio
+
+---
+
+#### FinStream Cloud — Enterprise AWS DevOps Transformation
+
+category: Project Catalog
+budget: From $200
+delivery: 3 days
+
+---
+
+#### CloudOps Nexus: Multi-Cloud Modernization & DevOps Automation
+
+category: Project Catalog
+budget: From $200
+delivery: 3 days
+
+---
+
+#### Consultation on Optimizing Your Cloud Systems to Reduce Costs
+
+category: Project Catalog
+budget: From $250
+delivery: 1 day
+
+---
+
+#### Terraform Modules and Ansible Playbooks for Cloud Infrastructure
+
+category: Project Catalog
+budget: From $200
+delivery: 3 days
+
+## Certifications & Tests
+
+- **AWS Certified Solutions Architect - Professional** — AWS Amazon — Issued December 2024, Expires December 2027
+- **AWS Certified Security - Specialty** — AWS Amazon — Issued September 2024, Expires September 2026
+- **Microsoft Certified Azure Security Engineer Associate** — Microsoft — Issued January 2024, Expires January 2026
+- **AWS Certified Solutions Architect - Professional** — AWS Amazon — Issued November 2023, Expires November 2026
+- **Certified Kubernetes Administrator** — Linux Foundation — Issued November 2022
+- **Terraform Associate** — HashiCorp — Issued May 2022
 
 ## Employment History
 
 ---
 
-#### Web Developer — Ryan Brown Media LLC
+#### Sr. DevOps Engineer — Zazmic Inc
 
-dates: June 2020 – Present
+dates: March 2022 – Present
 
-- Responsible for taking design mocks (XD) and building full-stack websites for clients from various industries
-- Developing strategies to build sales and acquiring leads
-- Built on React front-end, NodeJS back-end, and PostgreSQL
-- Continuing maintenance and development of features
+DevOps Engineer with health-tech experience, supporting clients across the USA and Canada. Skilled in managing highly available GKE clusters on Google Cloud Platform, implementing GitOps workflows with ArgoCD, and deploying secure, scalable microservices using Docker, Helm charts, and Kubernetes.
 
----
+Experienced in infrastructure automation with Terraform and Ansible, CI/CD pipeline creation using GitLab CI, branch and release management, and production deployment approvals. Strong focus on uptime, security, and reliability through HPA, GCP Cloud Armor, secure database connectivity, and Kubernetes best practices.
 
-#### Junior Service Developer — Constellation Digital Partners
+Also supports developers through JIRA, reviews junior engineers' pull requests, troubleshoots deployment issues, and conducts knowledge-sharing sessions for juniors and interns.
 
-dates: February 2020 – May 2020
-
-- Built single page apps using Javascript, jQuery, and React for credit unions
-- Developed and enhanced documentation for Constellation developers to use
-- Did some minor Java work on their backend components
-- Supported and guided other developers in using our services
+Core Skills: GCP, GKE, Kubernetes, ArgoCD, GitOps, Terraform, Ansible, Docker, Helm, GitLab CI/CD, Cloud Armor, HPA, Microservices, JIRA, CI/CD.
 
 ---
 
-#### Website Coordinator — Sokal
+#### DevOps Engineer — Tripleseat
 
-dates: February 2019 – February 2020
+dates: August 2019 – March 2022
 
-- Functioned as a front end developer in maintaining and updating websites for car dealerships across the US
-- Performed jQuery and Javascript implementations when necessary
-- Managed Google Analytics and Google Tag Manager tracking information
-- Built new components on websites using HTML, CSS, jQuery, and Javascript
-- Collaborated with account coordinators to ensure clients were satisfied
+DevOps Engineer experienced in managing and optimizing Azure and GCP environments for high availability, performance, and security. Skilled in Azure Functions, Azure VMs, GCP MySQL databases, and highly available GKE clusters following scalability and reliability best practices.
 
----
+Experienced in building CI/CD pipelines with Azure Pipelines and Azure DevOps, deploying containerized applications with Docker, and automating infrastructure and operations across Azure and GCP. Strong background in monitoring with Grafana and Prometheus, plus BigQuery integration for analytics.
 
-#### GIS Technician — Charlotte Water
-
-dates: November 2016 – February 2018
-
-- Developed a GIS for all of Charlotte, North Carolina's water features
-- Maintained GIS map daily via data entry from engineering drawings
-- Used GPS to capture important points throughout the city
-- Proficient in ArcGIS, Microsoft Office Suite, and Trimble software
+Core Skills: Azure, GCP, GKE, Azure DevOps, Azure Pipelines, Docker, CI/CD, Grafana, Prometheus, BigQuery, MySQL, Python, Bash, Cloud Security, Backup & Recovery.
 
 ---
 
-#### GIS Technician — QC Data
+#### DevOps Engineer — Century Communities, Inc.
 
-dates: January 2015 – October 2016
+dates: June 2017 – August 2019
 
-- Developed a GIS pertaining to telecom equipment of a major US phone company
-- Performed data entry from engineering drawings to Ewo cloud
-- Collaborated with engineers in storing all telecom equipment from field to cloud
-- Maintained at least 96% accuracy in all cartographic placements
+AWS/DevOps Engineer skilled in maximizing service availability, reducing processing time, and supporting UNIX, Linux, and Windows environments. Experienced in AWS EC2, Elastic Beanstalk, ECS, EKS, RDS, DynamoDB, and DocumentDB.
+
+Strong background in Linux administration, including Amazon Linux, RedHat, Ubuntu, and CentOS deployment, configuration, troubleshooting, and package management. Skilled in Docker, Kubernetes/EKS, CI/CD pipelines, Lambda automation, Ansible playbooks, and Python/Bash scripting.
+
+Core Skills: AWS, EC2, ECS, EKS, Elastic Beanstalk, RDS, DynamoDB, DocumentDB, Docker, Linux, Ansible, Lambda, CI/CD, Python, Bash, TCP/IP, Cloud Security.
 
 ## Education
 
 ---
 
-#### Bachelor of Arts (BA), Geography/GIS — Indiana University of Pennsylvania
-
-dates: 2010 – 2014
-field: Geography / GIS
+#### Master of Computer Science (MSCS) — Governors State University
 
 ## Overflow Signals
 
-- **Extreme project volume** — 55 jobs currently in progress simultaneously, spanning everything from single landing pages to multi-month SaaS site builds; this is not a freelancer with spare capacity.
-- **High booking rate** — 4,011 total hours billed across 200 jobs, with a dense cluster of active contracts stretching back to 2021 and 2022 still marked "in progress," indicating sustained, uninterrupted demand.
-- **Rate tier** — billing at $75–$85/hr (with one contract at $100/hr), placing him firmly above the threshold where passing modular work to a lower-rate specialist is economically rational.
-- **Project scale** — multiple contracts in the 150–284 hour range (SAAS startup site at 166 hrs, CRM/API build at 284 hrs, Figma-to-Webflow at 249 hrs) suggest he regularly takes on scope that benefits from a second developer on component or integration work.
-- **Job posting for junior developer** — website lists an active opening for a Junior Webflow Developer to build out core components from Figma/XD designs, explicitly describing it as a potential "long term partnership." This is a direct structural signal that he is actively seeking to offload build work.
-- **Full-stack background, Webflow-focused present** — his stack (React, Node.js, PostgreSQL) overlaps directly with Abdul's, but Ryan has moved almost entirely into Webflow delivery. Clients occasionally require React or custom JS layers that sit outside pure Webflow, which is precisely the gap a React/Next.js specialist fills.
+- **High booking rate** — 3,741 total hours billed across 70 jobs, with multiple concurrent active contracts visible in the most recent work history (e.g., SaaS MVP, DevOps Engineer, and HIPAA portal all overlapping in late 2025 – early 2026), indicating sustained and simultaneous demand.
+- **Project scale** — Several large engagements: Kubernetes Cluster Build with Rancher (392 hrs, ~$13.7K), Graylog Setup and Maintenance (263 hrs, ~$8.4K), DevOps Support (373 hrs, ~$14.9K), and DevOps Engineer for Implementation and Support (304 hrs, ~$9.4K) — all suggesting he manages significant long-term scope.
+- **Rate tier breadth** — Hourly rates vary widely across contracts ($15–$80/hr), suggesting he takes on work opportunistically rather than filtering by rate, which implies he may be volume-constrained rather than rate-constrained and could benefit from delegating lower-complexity work.
+- **Client review language** — Multiple reviews cite "will hire again," "work independently," "delivered on time," "proactive in solving issues," and "recommend him for any AWS or Kubernetes-related projects," indicating reliability without hand-holding and a client base that generates repeat demand.
+- **Niche mismatch opportunity** — His specialty is DevOps/cloud infrastructure (Kubernetes, Terraform, AWS), yet several contracts involve Python API development, FastAPI/SaaS MVP build, and survey platform development (Decipher/Forsta) — work that sits outside his core infrastructure niche, suggesting he takes on full-stack and backend tasks that a dedicated developer could handle, freeing him for higher-value infra work.
+- **Recency of work** — Nine contracts active or completed within the last 90 days (Mar–Jun 2026) with no visible gaps, indicating a consistently full pipeline and limited slack capacity.
