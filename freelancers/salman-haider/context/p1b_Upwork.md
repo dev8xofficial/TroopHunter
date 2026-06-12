@@ -1,91 +1,252 @@
-## Lead Warming Plan — Talha A. / Rank Orbit
+---
+platform: Upwork
+profile_type: freelancer
+name: Salman H.
+url: https://www.upwork.com/freelancers/salmannaqvi
+headline: Full Stack Web & Mobile Developer | AI Automation Expert | React, Node
+location: Ridge, NY, USA
+hourly_rate: "$55.00/hr"
+job_success_score: "100%"
+total_jobs: 60
+total_hours: 2590
+total_earnings: "$100K+"
+response_time: "0–4 hours"
+availability: "As Needed – Open to Offers"
+badge: Top Rated Plus
+languages:
+  - English (Native or Bilingual)
+verified: true
+---
+
+# Salman H. — Upwork Profile
+
+## Overview
+
+I build AI-powered MVPs and automation systems that take founders from idea → launch → first revenue.
+
+Delivered AI solutions generating $1.2M+ in additional revenue and 40% cost reduction for enterprise clients across healthcare, finance, and e-commerce.
+
+🌟 100% Job Success | Top-Rated | $100K+ earned | 60+ projects
+
+𝐓𝐞𝐜𝐡 𝐒𝐭𝐚𝐜𝐤:
+
+AI & ML: OpenAI (GPT-4), Claude, Gemini, LangChain, RAG, LLAMA, Pinecone, Weaviate
+Voice & Conversational AI: Vapi, Retell AI, Whisper, ElevenLabs
+Automation & Workflows: n8n, Make, Zapier, GoHighLevel, custom pipelines
+Frontend & Mobile: React.js, Next.js, React Native, Tailwind CSS, TypeScript
+Backend & APIs: Node.js, Express, Python (FastAPI), GraphQL, .NET MVC
+Databases: PostgreSQL, MongoDB, Prisma
+Cloud & Hosting: AWS (Lambda, S3), Firebase, Vercel
+Integrations: Stripe, Twilio, Shopify, Salesforce, TikTok, Walmart, QuickBooks
+
+𝐖𝐡𝐚𝐭 𝐈 𝐁𝐮𝐢𝐥𝐝: AI MVPs & Automation
+
+𝐀𝐈 𝐕𝐨𝐢𝐜𝐞 & 𝐂𝐨𝐧𝐯𝐞𝐫𝐬𝐚𝐭𝐢𝐨𝐧𝐚𝐥 𝐒𝐲𝐬𝐭𝐞𝐦𝐬:
+🎙️ Voice Agents: Customer support, sales, engagement; multi-prompt logic, contextual awareness
+📚 RAG & Knowledge Engines: Internal tools, FAQ bots, AI coaching frameworks (10M+ interaction)
+⚙️ Automation Pipelines: n8n / Make workflows, logistics dispatch, route optimization
+📈 Scalable MVP Systems: 1,000+ concurrent calls, sub-800ms latency, multilingual support
+
+𝐑𝐚𝐩𝐢𝐝 𝐒𝐚𝐚𝐒 & 𝐌𝐚𝐫𝐤𝐞𝐭𝐩𝐥𝐚𝐜𝐞 𝐀𝐈:
+📊 Multi-Channel Dashboards: Amazon, Shopify, eBay, TikTok — one place to manage everything
+⚡ AI-Powered Optimization: Pricing engines, personalization, anomaly detection
+💼 Workflow & Financial Automation: Accounting, reconciliation, conditional pipelines
+
+𝐇𝐞𝐚𝐥𝐭𝐡𝐜𝐚𝐫𝐞 & 𝐌𝐞𝐝𝐢𝐜𝐚𝐥 𝐌𝐕𝐏𝐬:
+🛡️ HIPAA/SOC2 compliant Telehealth, diagnostic assistants, CBT frameworks
+🏥 Multi-tenant clinical systems, secure provider collaboration
+
+𝐅𝐢𝐧𝐚𝐧𝐜𝐞 & 𝐓𝐫𝐚𝐝𝐢𝐧𝐠 𝐌𝐕𝐏𝐬:
+💰 Trading platforms, MT5 integration, payment verification
+🎨 AI-generated content, interactive avatars, voice/video synthesis
+💬 Real-time messaging platforms handling 100K+ concurrent users
+
+𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐢𝐥𝐢𝐭𝐲: 30–40 hours/week with under 24hrs response to all communications.
+
+If you're a founder looking to validate, launch, or scale an AI MVP without burning months or budget, let's talk.
+
+## Skills
+
+- Node.js
+- NodeJS Framework
+- React
+- JavaScript
+- MERN Stack
+- REST API
+- GraphQL
+- API Development
+- Next.js
+- Software Architecture & Design
+- Software Development
+- AI Bot
+- AI Chatbot
+- AI Development
+- AI Text-to-Speech
+
+## Work History
 
 ---
 
-### Analysis
+#### AI Developer for Marketing Dashboard
 
-#### Target — Key Themes
+client_rating: 5.00
+contract_type: Hourly
+dates: May 10, 2026 – May 25, 2026
+budget: $700.00
+hours_billed: 20
 
-- **Speed as the primary value signal** — "shipped in 11 days," "launched in 8 weeks," "save you months of delays." Velocity is how he proves worth, not just capability.
-- **Validation before building** — recurring belief that most failures come from building the wrong thing, not building it badly. Posts 1 and 3 both circle this.
-- **AI as a force multiplier, not a shortcut** — he draws a sharp line between using AI to write bad code faster vs. using it to make better decisions faster. That distinction matters to him.
-- **Founder empathy** — he narrates from the founder's perspective, not the developer's. "Founders don't care about your tech stack. They care about time-to-value."
-- **Pipeline over model** — in the AI engineering post, his strongest conviction is that execution infrastructure (pipelines, monitoring, architecture) beats benchmark accuracy. Practical over theoretical.
-- **Earned trust through ownership** — client reviews confirm and he reflects this: "never felt like we had to micromanage," "handled all client communications independently." Autonomy is a selling point he leans on consciously.
-
-#### Target — Tech Stack and Work Type
-
-- **Frontend:** React.js, Next.js, Tailwind CSS — overlaps directly with Abdul's core stack
-- **Backend:** Node.js, NestJS — overlaps with Abdul's Node.js / Express work
-- **Database:** PostgreSQL, Supabase, MongoDB — Abdul covers PostgreSQL / Sequelize on the backend
-- **Project type:** SaaS MVPs, marketplace platforms, real-time apps, CRM/ERP systems — the same kind of full-stack feature work Abdul has shipped (TroopHunter, Total Health Dental CRM)
-- **AI/automation layer:** OpenAI, LangChain, n8n — outside Abdul's current stack, meaning Talha handles this layer himself and is less likely to sub it out; the overflow opportunity is in the React/Next.js/Node product layer underneath
-
-#### Target — Overflow Signals
-
-- **Agency operation with active team** — multiple recent client reviews reference "Talha and his team," and the Rank Orbit Upwork agency sub-profile is separately listed; he is not solo
-- **Three concurrent contracts in progress simultaneously** totalling $30,110+ in active billing as of May 2026 — a sustained load that requires sub-contractor capacity
-- **Project scale creates downstream demand** — $23K and $20.5K fixed-price MVP contracts are not solo 40-hr builds; they require frontend module delegation to ship on the timelines his reviews confirm
-- **Open to Work flag is active on LinkedIn** — unusual for a busy agency founder; suggests either a hiring mode or subcontractor sourcing mode, both of which create an opening
-- **Rate and positioning gap** — at $50/hr with agency overhead and large project commitments, pure frontend sprint work (component libraries, dashboard UI, animation layers) is the first thing that gets delegated downstream
-
-#### Shared Ground
-
-Both Talha and Abdul build production-grade React/Next.js products for founders who need things shipped fast — Talha from the client-facing delivery side, Abdul from the execution layer underneath. The specific shared experience is dashboard and CRM-class UI work: Talha has delivered custom CRM dashboards for healthcare and marketplace clients; Abdul built a full CRM replacement for 15,000-patient dental practice with drag-and-drop scheduling, real-time updates, and Mapbox integration. That overlap is specific enough to anchor all three comments without forcing it.
+**Client review:**
+Salman and his team did a great job on the task at hand. Would definitely recommend their services.
 
 ---
 
-### Post Selection
+#### GCP Agentic Conversation AI Deployment
 
-#### Post 1
-**Post excerpt:** "Stop building features that nobody uses. Whether you're investing in development, AI automation, or launching a new product, technology alone won't solve a broken process. Too many businesses rush into building software, adding AI tools, or scaling infrastructure before validating the fundamentals."
-**Why selected:** The validation-before-building argument is a genuine position Abdul holds — the dental CRM project required exactly this thinking — making a sharp extension feel earned rather than performed.
-**Comment timing:** Day 0
-
-#### Post 2
-**Post excerpt:** "A founder came to me last month with a 6-week timeline and a tight budget. We shipped in 11 days. Not because I worked 20-hour days. Because I've completely changed how I build. Here's what nobody tells you about AI-assisted development — it's not about writing less code. It's about making better decisions, faster."
-**Why selected:** The Cursor/Claude/Perplexity toolchain breakdown and the "better decisions, faster" framing invite a direct peer-level response from someone who has lived the same shift — and Abdul has (TurboRepo, TanStack Query v5, component architecture decisions on production dashboards).
-**Comment timing:** Day 2
-
-#### Post 3
-**Post excerpt:** "I was 11 PM deep into my laptop, surrounded by empty coffee cups, staring at a pipeline that had been running for 6 hours. It crashed. No error message. No warning. Just... silence."
-**Why selected:** The "ship fast, improve faster" conclusion — and the specific conviction that the pipeline matters more than the model — is the right post to close on: it's personal, it got explicit engagement asks ("drop it below"), and a connection ask at the end of a comment here reads as two practitioners who've both been in the trenches, not a vendor sliding in.
-**Comment timing:** Day 4
+client_rating: 5.00
+contract_type: Hourly
+dates: Feb 12, 2026 – Feb 16, 2026
+budget: $467.50
+hours_billed: 9
 
 ---
 
-### Comments
+#### Prompt Engineer for PDF Capture and Web Automation
 
-#### Comment 1 — Day 0
-
-> Validation is the step most teams skip because it feels like slowing down — but it's the only thing that actually speeds up the second half of the build.
-
-**Stage:** Establish Presence
-**What this does:** Extends the core argument of the post in one sharp, specific sentence that signals this commenter has shipped enough to know the pattern, not just read about it.
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Nov 22, 2025 – Nov 26, 2025
+budget: $5.00
 
 ---
 
-#### Comment 2 — Day 2
+#### Automation Engineer
 
-> The tool-per-job breakdown is what most people miss — they pick one and try to make it do everything. Hit the same wall on a Next.js dashboard project, ended up using Claude for architecture decisions and keeping Cursor strictly at the implementation layer. Cleaner results.
-
-**Stage:** Deepen the Thread
-**What this does:** Mirrors his exact framing ("each one plays a position") with a specific, believable use case that makes Abdul recognisable as someone operating at the same level — not a curious follower, a peer.
-
----
-
-#### Comment 3 — Day 4
-
-> "The pipeline is the product" is the most under-stated truth in AI engineering — everyone optimises the model, nobody monitors the drift until a client notices. Silent degradation is the one that actually kills projects. Would be good to connect — feel like we're circling the same problems.
-
-**Stage:** The Ask
-**What this does:** Opens with the strongest conviction from the post (pipeline over model, silent drift), adds one concrete extension that shows Abdul has shipped in this space, then closes with a connection ask that feels like a natural continuation of an ongoing thread, not a sales move.
+client_rating: 5.00
+contract_type: Hourly
+dates: Jun 28, 2025 – Nov 4, 2025
+budget: $180.00
+hours_billed: 12
 
 ---
 
-### Connection Request Note
+#### Full Stack Development of SAAS web app
 
-**When to send:** Immediately if Talha replied to any comment. Day 5 if no reply was received.
+contract_type: Fixed-price
+dates: Oct 14, 2024 – Oct 28, 2025
+budget: $8,200.00
 
-**Request message (optional — LinkedIn allows a short note):**
-Left a few comments on your posts over the past week — the AI toolchain breakdown and the pipeline-over-model point both landed close to home. I'm a frontend developer, six years with React, Next.js, TypeScript — full-stack when the project needs it. Worth connecting properly.
+---
+
+#### AI - SaaS Development
+
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Jul 16, 2025 – Sep 13, 2025
+budget: $6,175.00
+
+---
+
+#### Voice AI Consultation (Vapi / Retell Expert) — Custom Architecture + Long-Term Build Strategy
+
+client_rating: 5.00
+contract_type: Hourly
+dates: Sep 4, 2025 – Sep 8, 2025
+budget: $200.00
+hours_billed: 2
+
+**Client review:**
+Working with Salman has never felt like "outsourcing" — it's been more like gaining a partner who actually cares about the outcome as much as I do. His expertise in full-stack development and the AI space is evident in every project; he doesn't just tick off tasks, he anticipates problems before they exist, suggests smarter ways to do things, and somehow still delivers faster than expected.
+
+---
+
+#### AI Chatbot - Vercel AI SDK Expert
+
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Jul 18, 2025 – Aug 20, 2025
+budget: $466.00
+
+---
+
+#### React Developer for Migrating Static Magento Form to React/Firebase (9 Pages)
+
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Jan 10, 2025 – Aug 16, 2025
+budget: $900.00
+
+**Client review:**
+Salman worked very hard on our React Remix, Tailwind CSS project.
+
+---
+
+#### Need MVP Dev to Build My Weird Little Web App - Uploads, Remixing, Feed, Aesthetic-First
+
+client_rating: 5.00
+contract_type: Hourly
+dates: May 23, 2025 – Aug 2, 2025
+budget: $1,000.00
+hours_billed: 40
+
+**Client review:**
+Working with Salman and his team has been a great experience thus far. This is an ambitious, creative project with a very specific vision, and they rose to the challenge. I'm looking forward to ongoing collaboration with Salman in future.
+
+## Certifications & Tests
+
+- **HIPAA Compliance Training Program** — hipaatraining.us — Issued August 2025, Expires August 2026 (ID: HIPAA-0004103)
+- **Certified Node.js Developer** — Global Tech Institute — Issued August 2025 (ID: NT-5678-9876-JHUX)
+
+## Employment History
+
+---
+
+#### Lead Architect | RAG Based Chatbot — Beyond AIO
+
+dates: October 2024 – Present
+
+Engineered an AI-driven ERP platform leveraging Next.js, Node.js, MongoDB, GraphQL, and AWS Lambda. Designed a RAG-based ChatGPT assistant to dynamically ingest and process data from diverse sources, enabling context-aware, real-time responses for CRM, HR, and operational queries. Implemented a microservices architecture using Docker and Kubernetes, optimizing for high concurrency, scalability, and fault tolerance, supporting over 300 concurrent users in the first year. Utilized Bull.js for reliable asynchronous job processing while automating infrastructure with Terraform. Built secure, compliant systems with OAuth2 authentication and end-to-end encryption adhering to GDPR and SOC 2 standards.
+
+---
+
+#### Lead Backend Engineer — Enlyt Health
+
+dates: February 2022 – March 2024
+
+Architected and developed the core backend infrastructure of a multi-tenant healthcare platform, integrating secure user authentication, booking systems, and comprehensive record analysis. Primary focus on development and deployment of EnlytGPT, a GPT-4 powered AI chatbot built with AWS Embeddings delivering HIPAA-compliant responses. Engineered a high-performance backend using Node.js and Prisma; orchestrated complex workflows via AWS Lambda, Step Functions, and S3 for real-time data processing. Used a monorepo setup to streamline continuous development across microservices.
+
+---
+
+#### Software Engineer — TriFin Labs Inc.
+
+dates: January 2018 – April 2019
+
+Developed high-performance backend systems using Node.js for enterprise applications. Engineered a Node.js-based backend enabling real-time data synchronization across 75+ microservices using Apache Kafka and GraphQL. Streamlined performance with Node.js and Redis, managing 500,000+ requests daily with 40% latency reduction. Automated cloud infrastructure with Terraform on AWS for platforms supporting 10,000+ active users globally.
+
+---
+
+#### Technical Partner / Lead Backend Engineer — SIS System for Concordia (Other experience)
+
+Architected a highly scalable distributed backend using Node.js for 150+ campuses nationwide. Designed low-latency, high-concurrency APIs for real-time data synchronization across fee management, payroll, and LMS systems. Integrated Node.js with Bull.js for asynchronous job processing; led CI/CD pipeline setup with Jest, Mocha, and Chai.
+
+---
+
+#### Lead Backend Developer / Node.js API Engineer — Haystak.app (Other experience)
+
+Led development of a high-performance platform using Node.js for real-time data processing. Integrated Electron.js with Node.js for a cross-platform desktop app. Developed RESTful and GraphQL APIs with PostgreSQL and Redis for real-time data caching. Implemented JWT authentication, data encryption, and RBAC for security and data privacy compliance.
+
+## Education
+
+---
+
+#### Bachelor of Science (BS), Computer Science — University of Management and Technology
+
+dates: 2013 – 2017
+
+## Overflow Signals
+
+- **Agency operation with active team** — multiple client reviews reference "Salman and his team" explicitly (Marketing Dashboard, MVP web app); the profile is associated with Beyond Tech Services INC as an agency entity, and the LinkedIn scrape confirms he is CEO of Beyond Technologies with an active team including a COO.
+- **Massive concurrent workload** — 14 contracts listed as in-progress simultaneously as of June 2026, spanning AI voice systems, full-stack development, medical websites, e-commerce, and automation; total active billing across in-progress contracts exceeds $40,000 in fixed-price value alone.
+- **Project scale creates delegation demand** — in-progress contracts include a $9,000 AI Agentic Voice build (active since Nov 2025), a $14,485 AI Call-Center Agent (483 hours billed, still running since Oct 2025), and an $8,300 GPT-4/Flask text analysis tool (active since Jul 2025); these are multi-month, high-scope engagements that cannot be delivered solo.
+- **Rate tier and rate variance signal volume-filling** — active rates range from $25/hr to $100/hr across contracts; the $35/hr Marketing Dashboard and $30/hr pricing on several in-progress contracts sit well below his $55/hr listed rate, suggesting he or his team absorbs lower-rate work to fill capacity rather than turning it down.
+- **Client review language confirms autonomous, partner-level delivery** — reviews describe him as someone who "anticipates problems before they exist," "never felt like outsourcing," and "handles tasks he was never even asked about"; this positions him as a senior delivery partner whose time is at a premium, not a task executor.
+- **Full-stack overflow opportunity for React/Next.js layer** — the AI and backend depth (LangChain, RAG, Vapi, n8n, Kubernetes, Terraform) is his differentiated positioning; the React/Next.js/Node frontend and product UI layer is the most delegable surface, matching directly with a frontend-specialist subcontractor's stack.

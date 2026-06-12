@@ -1,91 +1,295 @@
-## Lead Warming Plan — Talha A. / Rank Orbit
+---
+platform: Upwork
+profile_type: freelancer
+name: Anser M.
+headline: Principal AI Engineer & Full Stack Developer | Mobile App Developer
+location: Houston, TX, USA
+hourly_rate: "$35.00/hr"
+job_success_score: "94%"
+total_jobs: 36
+total_hours: 4433
+total_earnings: "$100K+"
+response_time: "0–4 hours"
+availability: "More than 30 hrs/week"
+badge: Top Rated Plus
+member_since: ~2024 (GitHub linked since 2024)
+languages:
+  - English (Native or Bilingual)
+verified: true
+associated_accounts:
+  - TECHVADERS INC. (229 hrs, 90% JSS, Rising Talent)
+  - TECHVADERS (303 hrs, 70% JSS)
+---
+
+# Anser M. — Upwork Profile
+
+## Overview
+
+👋 Hi, I'm Anser! an Upwork Top-Rated Plus Principal AI Engineer, Mobile App Developer & Full Stack Developer, 📱 Flutter Developer, and React Native Developer with 7+ years of experience turning bold product ideas into live, scalable applications on iOS, Android, and the web.
+
+I've shipped 17+ live mobile apps, AI agents and SaaS platforms, helped startups secure $8.5M+ in seed funding through AI-powered MVPs, and scaled products to 10M+ active users.
+
+"Anser is always running in the background and available for questions and is very responsive. Each week I receive a memorandum of what has been accomplished, which always aligns with the project objectives."
+— GoVo, Long-term client, $21K+ contract, 833+ hours
+
+"Had an outstanding experience working with Anser. He delivered our React Native migration and feature updates in under 24 hours. I'd happily hire him again."
+— Verified Upwork Client
+
+📱 Mobile App Development
+- Flutter and React Native, cross-platform iOS and Android from a single codebase
+- Native iOS with Swift and SwiftUI, Native Android with Kotlin and Jetpack Compose
+- Offline-first architecture, real-time sync, push notifications, background services
+- In-app purchases, Stripe, PayPal and payment gateway integration
+- App Store and Google Play deployment, TestFlight, Fastlane CI/CD, automated testing
+- Pixel-perfect UI/UX implementation directly from Figma
+- State management with Redux Toolkit, TanStack Query, Zustand, Bloc and Provider
+- Deep linking, custom animations, camera, video, audio and chat integrations
+
+Apps I've built and shipped:
+- Opty Sleep: AI-powered sleep optimization app in the health and wellness space
+- Chaser the Network: Social networking platform scaled to thousands of active users
+- Race Command: Real-time mobile command app for motorsports, currently in progress
+- Medalite: BLE-connected LED light therapy mask controller built in Flutter
+
+🔌 IoT and BLE Mobile Apps
+
+I build mobile apps that talk directly to hardware over Bluetooth Low Energy, which is a rare skill set most mobile developers don't have.
+
+- BLE SDK integration in Flutter and React Native
+- ESP32 firmware communication via BLE
+- NFC, AR, and IoT monitoring and control apps
+
+Medalite is a great example. It's a Flutter app connected to an ESP32-powered LED light therapy mask via BLE. Users build custom light sequences for meditation, sleep optimization, breathwork, and ketamine-assisted therapy. Full real-time BLE communication with a medically focused UX.
+
+🌐 Full Stack Development
+
+Frontend: React.js, Next.js 15 (App Router, SSR/SSG, Server Components), TypeScript, Angular, Vue.js, Nuxt.js, Tailwind CSS, Material UI, Framer Motion
+Backend: Node.js, NestJS, Express.js, Python (FastAPI, Django, Flask), Java Spring Boot, Laravel, PHP
+APIs: RESTful API design, GraphQL with Apollo, WebSockets with Socket.io, event-driven microservices
+Databases: Firebase Realtime DB and Firestore, PostgreSQL with pgvector, MongoDB, MySQL, Redis, SQLite
+Cloud and DevOps: AWS (EC2, S3, Lambda, SageMaker), GCP, Azure, Docker, Kubernetes, GitHub Actions, Jenkins CI/CD
+
+🤖 AI App Development
+- OpenAI, Claude, Groq and Gemini API integration
+- LangChain and LlamaIndex for RAG pipelines and AI agents
+- AI-powered MVP development for funded startups
+- pgvector and Pinecone for vector databases
+- No-code AI tools: Cursor AI, v0 by Vercel, Bolt.new, Lovable
+
+🏭 Industries: Healthcare, Fintech, IoT and Firmware, E-commerce, Real Estate, Entertainment, Fitness, Social Networking, Education, Automotive
+
+🤝 How I Work
+
+Every client gets a clear milestone plan before any code is written. Scope, timeline, and deliverables are agreed on upfront so we both know exactly what success looks like. On hourly contracts I send weekly memos covering exactly what was completed that week, what is coming next, and anything that needs your input. I respond within 48 hours guaranteed and I never go silent mid-project. Billing breakdowns are always provided in writing at each milestone so there are no surprises on the invoice.
+
+I treat every project as unique. I align your business goals with technical execution and make smart decisions around features, budget, and timelines. My code is clean, organized, and built to scale with your product as it grows.
+
+💼 Why Clients Work With Me Long Term
+
+I have active contracts that have been running for 6 to 12 months because clients do not have to chase me. They get consistent updates, predictable delivery, and a developer who genuinely cares about the outcome of their product, not just closing a ticket.
+
+## Skills
+
+- AI Agent Development
+- Artificial Intelligence
+- Machine Learning
+- Mobile App Development
+- Full-Stack Development
+- AI App Development
+- AI Mobile App Development
+- Computer Vision
+- Flutter
+- React Native
+- iOS Development
+- Android App Development
+- Swift
+- Internet of Things
+- Generative AI
+- Python
+- Node.js
+- TypeScript
+- Next.js
+- Supabase
+
+## Work History
 
 ---
 
-### Analysis
+#### App Development & Claude Code Tutoring Needed
 
-#### Target — Key Themes
-
-- **Speed as the primary value signal** — "shipped in 11 days," "launched in 8 weeks," "save you months of delays." Velocity is how he proves worth, not just capability.
-- **Validation before building** — recurring belief that most failures come from building the wrong thing, not building it badly. Posts 1 and 3 both circle this.
-- **AI as a force multiplier, not a shortcut** — he draws a sharp line between using AI to write bad code faster vs. using it to make better decisions faster. That distinction matters to him.
-- **Founder empathy** — he narrates from the founder's perspective, not the developer's. "Founders don't care about your tech stack. They care about time-to-value."
-- **Pipeline over model** — in the AI engineering post, his strongest conviction is that execution infrastructure (pipelines, monitoring, architecture) beats benchmark accuracy. Practical over theoretical.
-- **Earned trust through ownership** — client reviews confirm and he reflects this: "never felt like we had to micromanage," "handled all client communications independently." Autonomy is a selling point he leans on consciously.
-
-#### Target — Tech Stack and Work Type
-
-- **Frontend:** React.js, Next.js, Tailwind CSS — overlaps directly with Abdul's core stack
-- **Backend:** Node.js, NestJS — overlaps with Abdul's Node.js / Express work
-- **Database:** PostgreSQL, Supabase, MongoDB — Abdul covers PostgreSQL / Sequelize on the backend
-- **Project type:** SaaS MVPs, marketplace platforms, real-time apps, CRM/ERP systems — the same kind of full-stack feature work Abdul has shipped (TroopHunter, Total Health Dental CRM)
-- **AI/automation layer:** OpenAI, LangChain, n8n — outside Abdul's current stack, meaning Talha handles this layer himself and is less likely to sub it out; the overflow opportunity is in the React/Next.js/Node product layer underneath
-
-#### Target — Overflow Signals
-
-- **Agency operation with active team** — multiple recent client reviews reference "Talha and his team," and the Rank Orbit Upwork agency sub-profile is separately listed; he is not solo
-- **Three concurrent contracts in progress simultaneously** totalling $30,110+ in active billing as of May 2026 — a sustained load that requires sub-contractor capacity
-- **Project scale creates downstream demand** — $23K and $20.5K fixed-price MVP contracts are not solo 40-hr builds; they require frontend module delegation to ship on the timelines his reviews confirm
-- **Open to Work flag is active on LinkedIn** — unusual for a busy agency founder; suggests either a hiring mode or subcontractor sourcing mode, both of which create an opening
-- **Rate and positioning gap** — at $50/hr with agency overhead and large project commitments, pure frontend sprint work (component libraries, dashboard UI, animation layers) is the first thing that gets delegated downstream
-
-#### Shared Ground
-
-Both Talha and Abdul build production-grade React/Next.js products for founders who need things shipped fast — Talha from the client-facing delivery side, Abdul from the execution layer underneath. The specific shared experience is dashboard and CRM-class UI work: Talha has delivered custom CRM dashboards for healthcare and marketplace clients; Abdul built a full CRM replacement for 15,000-patient dental practice with drag-and-drop scheduling, real-time updates, and Mapbox integration. That overlap is specific enough to anchor all three comments without forcing it.
+contract_type: Hourly
+dates: Mar 26, 2026 – May 20, 2026
+budget: $80.00 ($40.00/hr)
+hours_billed: 2
 
 ---
 
-### Post Selection
+#### Race Command mobile app development
 
-#### Post 1
-**Post excerpt:** "Stop building features that nobody uses. Whether you're investing in development, AI automation, or launching a new product, technology alone won't solve a broken process. Too many businesses rush into building software, adding AI tools, or scaling infrastructure before validating the fundamentals."
-**Why selected:** The validation-before-building argument is a genuine position Abdul holds — the dental CRM project required exactly this thinking — making a sharp extension feel earned rather than performed.
-**Comment timing:** Day 0
-
-#### Post 2
-**Post excerpt:** "A founder came to me last month with a 6-week timeline and a tight budget. We shipped in 11 days. Not because I worked 20-hour days. Because I've completely changed how I build. Here's what nobody tells you about AI-assisted development — it's not about writing less code. It's about making better decisions, faster."
-**Why selected:** The Cursor/Claude/Perplexity toolchain breakdown and the "better decisions, faster" framing invite a direct peer-level response from someone who has lived the same shift — and Abdul has (TurboRepo, TanStack Query v5, component architecture decisions on production dashboards).
-**Comment timing:** Day 2
-
-#### Post 3
-**Post excerpt:** "I was 11 PM deep into my laptop, surrounded by empty coffee cups, staring at a pipeline that had been running for 6 hours. It crashed. No error message. No warning. Just... silence."
-**Why selected:** The "ship fast, improve faster" conclusion — and the specific conviction that the pipeline matters more than the model — is the right post to close on: it's personal, it got explicit engagement asks ("drop it below"), and a connection ask at the end of a comment here reads as two practitioners who've both been in the trenches, not a vendor sliding in.
-**Comment timing:** Day 4
+contract_type: Fixed-price
+dates: May 29, 2025 – Apr 23, 2026
+budget: $6,400.00
 
 ---
 
-### Comments
+#### Mobile Application Development for iOS and Android
 
-#### Comment 1 — Day 0
-
-> Validation is the step most teams skip because it feels like slowing down — but it's the only thing that actually speeds up the second half of the build.
-
-**Stage:** Establish Presence
-**What this does:** Extends the core argument of the post in one sharp, specific sentence that signals this commenter has shipped enough to know the pattern, not just read about it.
+client_rating: 4.0
+contract_type: Fixed-price
+dates: Mar 17, 2026 – Mar 20, 2026
+budget: $300.00
 
 ---
 
-#### Comment 2 — Day 2
+#### Firebase Web App Help – Export Feature, Backend Integration, and Secure Deployment
 
-> The tool-per-job breakdown is what most people miss — they pick one and try to make it do everything. Hit the same wall on a Next.js dashboard project, ended up using Claude for architecture decisions and keeping Cursor strictly at the implementation layer. Cleaner results.
-
-**Stage:** Deepen the Thread
-**What this does:** Mirrors his exact framing ("each one plays a position") with a specific, believable use case that makes Abdul recognisable as someone operating at the same level — not a curious follower, a peer.
-
----
-
-#### Comment 3 — Day 4
-
-> "The pipeline is the product" is the most under-stated truth in AI engineering — everyone optimises the model, nobody monitors the drift until a client notices. Silent degradation is the one that actually kills projects. Would be good to connect — feel like we're circling the same problems.
-
-**Stage:** The Ask
-**What this does:** Opens with the strongest conviction from the post (pipeline over model, silent drift), adds one concrete extension that shows Abdul has shipped in this space, then closes with a connection ask that feels like a natural continuation of an ongoing thread, not a sales move.
+contract_type: Fixed-price
+dates: May 7, 2025 – Nov 5, 2025
+budget: $900.00
 
 ---
 
-### Connection Request Note
+#### SEO and Google Ads
 
-**When to send:** Immediately if Talha replied to any comment. Day 5 if no reply was received.
+contract_type: Hourly
+dates: Nov 27, 2024 – Nov 5, 2025
+budget: $380.00 ($20.00/hr)
+hours_billed: 19
 
-**Request message (optional — LinkedIn allows a short note):**
-Left a few comments on your posts over the past week — the AI toolchain breakdown and the pipeline-over-model point both landed close to home. I'm a frontend developer, six years with React, Next.js, TypeScript — full-stack when the project needs it. Worth connecting properly.
+---
+
+#### Review Android App
+
+client_rating: 1.0
+contract_type: Hourly
+dates: Feb 16, 2025 – Aug 23, 2025
+budget: $2,460.00 ($30.00/hr)
+hours_billed: 82
+
+**Client review:**
+"My Experience With Freelancer Anser Manzer – A Public Warning. In February of this year, I hired a freelancer named Anser Manzer, who represented themselves as running an agency with..." [truncated in source]
+
+**Freelancer response:**
+"We regret that this project ended with disappointment for both sides, but we need to clarify several misrepresentations in Jay's review.
+
+In our 7+ years of working with Upwork clients, we have always taken ownership of our mistakes. Even in this project, when Google rejected the app due to incorrect login credentials, we accepted responsibility and resolved it.
+
+The claim that Jay suffered financial loss without reciprocation is misleading. A dedicated team of five (including Abdul, Mansoor, Rohail, myself, and another team's developer added later) worked on this project for over three months without charging a single additional dollar after charging the first few weeks. I personally paid their salaries out of pocket associated with the project, despite the fact that weekly calls, builds, and debugging continued. We told him that we would not charge him 'in good faith' until the app was live. He did not ask to pay for the efforts during these months of work. Only asked us after the app was live and then suddenly ended the contract before we could discuss the tasks memo document in a meeting. Meaning the actual financial loss was borne by us as well.
+
+The central bottleneck was Google Play's strict compliance against native SMS. From the outset, we advised Jay that such functionality would not pass review. He, however, insisted that we attempt to publish with SMS enabled. To respect that request, we implemented multiple changes: added proper disclosure pop-ups for foreground services, corrected a Firebase-driven YouTube link issue, and repeatedly updated permissions and forms as requested by the client.
+
+Despite our warnings, the app continued to be rejected, as expected, since Google explicitly does not permit native SMS. This was eventually confirmed when the client themselves appealed to Google, and the response matched what our developers had already communicated weeks earlier. The app was only accepted once SMS was removed, exactly as we advised him, not the other way around.
+
+The client describes our weekly updates as failures. This is inaccurate. Each build iteration addressed compliance changes, UI refinements, disclosure implementations, and permission workflows. Builds were regularly sent to the client for testing, and hours-long recordings of our calls confirm that progress was being made. The narrative that nothing was done ignores the countless hours invested in navigating policy roadblocks, most of which were caused by constraints in the original feature set.
+
+Throughout the project, our team faced repeated verbal mistreatment, including expletive language and insults during calls. Despite this, we never retaliated, never 'shut down' communication, and consistently showed empathy for the client's frustration. Even when accused of delivering the 'same build,' we calmly asked the client to run the app live on their device, which immediately proved that features were present and working.
+
+We went beyond industry norms by offering a full refund after cancellation of contract, despite already taking both financial and reputational losses. The client refused our offer of refund by rejecting our request to remove the damaging review first, then later demanded additional legal disclaimers before accepting. At that point, the refund request became one-sided and unreasonable, and we could not proceed. Also, Upwork does not bind us to process a refund if 180 days have passed since the last payment, so as per platform's policy, we will not be able to process the refund anyway.
+
+This project was not perfect; timelines extended, and frustration grew on both sides. But to portray us as negligent or incompetent is unfair. We worked for months without further compensation, absorbed real financial losses, navigated strict Google policies, and ultimately got the app live. The client, meanwhile, walked away with both an app and a refund offer they declined due to their own conditions.
+
+We acknowledge lessons learned. In the future, we will enforce stricter time-based validation and stop work the moment the client contradicts platform compliance. But it is important that the public record reflects the full picture. This was not neglect, but a case where our professionalism and goodwill were extended far beyond what was reciprocated."
+
+---
+
+#### Python & API Integration Specialist for MERN CRM with NLP Model
+
+client_rating: 5.0
+contract_type: Fixed-price
+dates: Aug 12, 2025 – Aug 13, 2025
+budget: $50.00
+
+**Client review:**
+"Absolutely top notch work and delivered quickly. Great communication and a real problem solver. Highly recommended!"
+
+---
+
+#### Developer Needed for Data-Driven Government Transparency Platform
+
+client_rating: 5.0
+contract_type: Hourly
+dates: Jun 26, 2025 – Aug 6, 2025
+budget: $1,500.00 ($25.00/hr)
+hours_billed: 40
+
+**Client review:**
+"When we explained to Anser Mazer what we needed, he understood exactly what was being asked for, even though we used layman terms. Glad we found him!"
+
+---
+
+#### Full-Stack Engineer: Flutter Dart Next.js React Node.js NestJS Firebase Firestore CodeMagic Vercel
+
+client_rating: 5.0
+contract_type: Hourly
+dates: May 13, 2025 – Jul 29, 2025
+budget: $4,825.00 ($25.00/hr)
+hours_billed: 193
+
+---
+
+#### React Native Developer Needed to Migrate Existing Project
+
+client_rating: 5.0
+contract_type: Fixed-price
+dates: Jul 31, 2025 – Aug 1, 2025
+budget: $100.00
+
+**Client review:**
+"Had an outstanding experience working with Anser — he delivered our React Native migration and feature updates in under 24 hours. I'd happily hire him again."
+
+## Certifications & Tests
+
+- **Building RAG Agents with LLMs** — NVIDIA — Issued March 2025
+- **Professional Machine Learning Engineer** — Google Cloud — Issued May 2024
+- **Expert Mobile Application Developer** — University of Georgia — Issued June 2019
+
+## Employment History
+
+---
+
+#### Native iOS Engineer — Codefied.co
+
+dates: May 2023 – April 2025
+
+---
+
+#### React Native Engineer — ATTNEST
+
+dates: March 2019 – May 2023
+
+---
+
+#### Backend Engineer — (Remote, unnamed company)
+
+Backend Node.js engineer. Replaced Firebase real-time notifications with a custom Node.js module now live in production; currently handling ongoing maintenance.
+
+---
+
+#### Frontend Developer — (Two unnamed companies)
+
+3 years of frontend development focused on React.js and Next.js across two companies.
+
+## Education
+
+---
+
+#### Bachelor of Business Administration — Houston Community College
+
+dates: 2022 – 2026
+field: Management Information Systems
+
+---
+
+#### High School Degree — The American Foundation School
+
+dates: 2006 – 2019
+field: Computer Science
+
+## Overflow Signals
+
+- **Active team operation** — Freelancer response to the 1-star review explicitly names a team of five (Abdul, Mansoor, Rohail, himself, and a fifth developer); "we" language is used throughout the overview and response, and two associated Upwork accounts (TECHVADERS INC. and TECHVADERS) are linked to this profile, confirming an agency structure with subcontractors.
+- **High booking rate / sustained workload** — 4,433 total hours billed across 36 jobs; multiple concurrent active contracts visible in recent work history (Race Command running ~11 months, Firebase project ~6 months, Full-Stack Flutter/Next.js contract 193 hrs over 2.5 months), indicating near-continuous demand.
+- **Project scale** — The GoVo contract cited in the overview ran to 833+ hours and $21K+; the Race Command contract billed $6,400 fixed-price over nearly a year; the Full-Stack Engineer contract billed 193 hours. Multiple large-scope engagements run simultaneously.
+- **Rate tier mismatch vs. scope** — Profile billing rate is $35/hr (low for a self-described Principal AI Engineer managing a 5-person team), suggesting the account wins volume through competitive pricing but cannot physically absorb all incoming work without subcontracting or overflow.
+- **Job type match** — Work history contains directly relevant projects: React Native migration, Flutter development, Next.js/Node.js/NestJS full-stack contracts, Firebase backend work — all within a frontend/full-stack specialist's wheelhouse.
+- **Client review language** — Reviews cite "always running in the background," "responded quickly," "delivered in under 24 hours," and "understood exactly what was being asked" — signals a reliable operator who handles independently, likely to pass discrete tasks to trusted overflow developers rather than hand-holding them.
