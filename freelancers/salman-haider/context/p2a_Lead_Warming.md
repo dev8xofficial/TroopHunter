@@ -1,5 +1,4 @@
-
-## Lead Warming Plan — Ehtesham Mohammed / Lightedge (Sr. Cloud Engineer)
+## Lead Warming Plan — Salman (Naqvi) Haider / Beyond Technologies
 
 ---
 
@@ -7,53 +6,62 @@
 
 #### Target — Key Themes
 
-- **Infrastructure reliability above all** — his entire career narrative centres on zero-downtime deployments, high availability, SLA/SLO compliance, and disaster recovery. This isn't just a skill list; it's an identity claim.
-- **Security and compliance as a differentiator** — HIPAA, SOC 2, NIST 800-171, DevSecOps, and a stack of security-specific certs (AWS Security Specialty, Azure Security Engineer) appear throughout. He positions hardening as a core competency, not an add-on.
-- **Automation as the answer to scale** — IaC (Terraform, Ansible, CloudFormation), GitOps (ArgoCD, Flux CD), and CI/CD pipelines appear in every role. His language frames automation as the solution to operational toil.
-- **Multi-cloud breadth** — AWS, GCP, Azure, and OCI all appear; he explicitly markets "platform-agnostic" cloud infrastructure. The Upwork work history confirms this across real client engagements.
-- **Developer enablement and knowledge sharing** — at Zazmic he reviews junior PRs, runs knowledge-sharing sessions, and supports developers through JIRA. He frames himself as someone who bridges dev and ops, not just an ops operator.
-- **Niche mismatch under pressure** — his Upwork history shows him taking Python/FastAPI, SaaS MVP, and survey platform work (Decipher/Forsta) alongside his core infra work, suggesting he absorbs full-stack tasks when his pipeline is full rather than referring them out.
+- **AI-first positioning as a founder identity** — his headline, summary, and every recent Upwork contract frame him as an AI architect first, full-stack developer second. "Architecting Intelligent Futures" is the tagline he chose. The agency name (Beyond Technologies), the product name (Beyond AIO), and his post cadence all reinforce this as a deliberate personal brand, not just a service offering.
+- **Pakistan's tech talent on a global stage** — the single LinkedIn post captured frames London Tech Week as a national pride moment, not just a personal milestone. He uses "Pakistan's tech talent belongs in rooms like these" — this is a belief he holds and signals publicly, not casual networking content.
+- **Agency-as-multiplier, not solo freelancer** — he consistently signals team delivery, not solo execution. Client reviews say "Salman and his team." He names his COO publicly. He runs two companies simultaneously (Beyond Technologies + Beyond Kreatives). His positioning is explicitly an agency building intelligent systems, not a contractor taking tasks.
+- **Founder-to-founder framing** — his Upwork overview addresses "founders" directly ("if you're a founder looking to validate, launch, or scale an AI MVP"). His LinkedIn summary does the same. He identifies with the founder peer group, not the freelancer peer group.
+- **Speed and reliability as delivery identity** — client reviews describe him as someone who "anticipates problems before they exist," "delivers faster than expected," and makes the engagement feel like "gaining a partner." He positions delivery quality as the differentiator, not price.
+- **Full-stack breadth under AI depth** — beneath the AI positioning sits a conventional full-stack layer (React, Next.js, Node.js, TypeScript, PostgreSQL) that he uses to execute. He does not market this layer; it is infrastructure for the AI products he sells.
 
 ---
 
 #### Target — Tech Stack and Work Type
 
-- **Kubernetes & container orchestration** — EKS, AKS, GKE, Helm, ArgoCD, Flux CD; cluster management is his headline skill across every role
-- **Infrastructure as Code** — Terraform (certified), Ansible, CloudFormation, AWS CDK; used across all three cloud platforms
-- **CI/CD pipeline engineering** — Jenkins, GitHub Actions, GitLab CI, Azure Pipelines, CircleCI; pipeline builds appear in nearly every engagement
-- **Python backend and API work** — FastAPI/SaaS MVP ($5,200 fixed-price), Python API + file pipeline ($1,216), survey platform with modular architecture ($915); these are out-of-niche contracts he is absorbing
-- **Multi-cloud architecture** — AWS (primary), GCP, Azure; healthcare, finance, and education verticals across Lightedge and Connectria
+- **React / Next.js / TypeScript frontend** — present in Upwork profile skills, work history (Magento → React migration, aesthetic-first MVP, Marketing Dashboard), and employment history (RSK Group JS frameworks, Enlyt Health monorepo). This is the layer he delivers but does not lead with in positioning.
+- **Node.js / Express backend** — appears in every employment role and most Upwork contracts; the foundation of his API and microservice work.
+- **AI integration layer** — LangChain, RAG, GPT-4, Vapi, Retell AI, ElevenLabs, n8n, Make; this is his differentiated surface and the work he wins at $55–$100/hr.
+- **AWS infrastructure** — Lambda, S3, Step Functions, Terraform, Kubernetes, Docker; used across Beyond AIO, Enlyt Health, and TriFin Labs roles.
+- **PostgreSQL / MongoDB / Prisma** — database layer across all full-stack and AI contracts.
 
 ---
 
 #### Target — Overflow Signals
 
-- **Nine active or recently closed contracts in 90 days** — Mar–Jun 2026 shows no visible gaps; the pipeline has had no slack for at least a quarter
-- **Three concurrent contracts in late 2025 / early 2026** — SaaS MVP (Dec 2025–Jun 2026), DevOps Engineer (Jan–Apr 2026), and HIPAA portal (May–Jun 2026) all overlapping; he is clearly running parallel workloads
-- **Out-of-niche contracts accepted** — Python FastAPI MVP, survey platform development (Decipher/Forsta), and Python API/file pipeline work all sit outside his core Kubernetes/Terraform positioning; he is absorbing application-layer work because clients ask and he doesn't turn it down
-- **Rate variance without filtering** — contracts range from $15/hr to $80/hr with no apparent pattern; he is volume-constrained and takes work opportunistically rather than rate-filtering
-- **Client reviews all signal rehire intent** — "will work with him again," "I will be working with him again in the future," "I'd be happy to work with him again"; the demand is compounding, not one-shot
+- **14 concurrent in-progress contracts as of June 2026** — spanning AI voice, full-stack, medical websites, e-commerce, and automation; no visible gaps in the pipeline for at least a quarter.
+- **Multi-month, high-scope anchors cannot be delivered solo** — $14,485 AI Call-Center Agent (483 hours billed, still running since Oct 2025), $9,000 AI Agentic Voice build (Nov 2025–present), $8,300 GPT-4/Flask text analysis (Jul 2025–present); these require sustained delivery capacity.
+- **Rate variance signals volume-filling below listed rate** — active contracts range from $25/hr to $100/hr; several sit well below his $55/hr listed rate, indicating absorption of lower-tier work rather than turning it down.
+- **Client reviews explicitly confirm team-based delivery** — "Salman and his team" appears in multiple reviews; team capacity, not solo capacity, is the constraint — meaning delegation demand is already structural.
+- **React/Next.js frontend layer is the most delegable surface** — his AI and backend depth is the differentiator he cannot delegate to a junior; the React/Next.js/TypeScript UI layer on top of those AI systems is exactly the surface a frontend specialist can own.
 
 ---
 
 #### Shared Ground
 
-Both Abdul and Ehtesham operate on the same infrastructure stack — Docker, Kubernetes, Terraform, GitHub Actions, microservices, PostgreSQL — and both have shipped full-stack products end to end (Abdul: TroopHunter with K8s/Terraform/TurboRepo monorepo; Ehtesham: the same toolchain daily). The real common thread is that Ehtesham's overflow isn't more DevOps work — it's the application layer he keeps absorbing: FastAPI backends, SaaS MVPs, frontend dashboards — exactly the modules Abdul delivers.
+Both Abdul and Salman build on the same frontend and backend stack — React, Next.js, TypeScript, Node.js, PostgreSQL, Docker — and both have shipped complex, multi-service products end to end. The real connection point is that Salman's differentiated work is the AI layer, which sits on top of a React/Next.js frontend that he has to build himself or delegate; Abdul's core strength is exactly that frontend layer, making him a direct fit for the overflow Salman is already absorbing through team-based delivery.
 
 ---
 
 ### Post Selection
 
-> ⚠️ **BLOCKED — No posts available in source data**
+> ⚠️ **BLOCKED — Insufficient posts in source data**
 >
-> The LinkedIn scrape (`p1c_Linkedin_Owner.md`) contains no posts — only profile,
-> experience, education, and certifications. Post selection and all three comments
-> require real post text from the target's own activity feed.
+> The LinkedIn scrape (`p1c_Linkedin_Owner.md`) contains only one post, and that post
+> is a pure milestone announcement (London Tech Week delegation). Per the prompt rules:
+>
+> > "Avoid posts that are: Pure announcements (certification won, new client, product
+> > launch) — comments here read as congratulations noise."
+>
+> A comment on this post would be indistinguishable from congratulations noise.
+> It cannot serve as Comment 1, 2, or 3 under any framing.
+>
+> Post selection requires **3 original posts** from the target's own activity feed
+> where the topic invites a substantive response — a strong opinion, a problem shared,
+> a question, a data point, or a lesson learned.
 >
 > **Required action before proceeding:**
-> Scrape Ehtesham Mohammed's LinkedIn activity feed and add the posts to
-> `freelancers/ehteshamuddin-m/context/p1c_Linkedin_Owner.md` under a
-> `## Posts` section, then re-run this prompt.
+> Re-scrape Salman's LinkedIn activity feed and add posts to
+> `freelancers/salman-haider/context/p1c_Linkedin_Owner.md` under the `## Posts`
+> section, then re-run this prompt.
 >
 > **Format each post as:**
 >
@@ -64,18 +72,19 @@ Both Abdul and Ehtesham operate on the same infrastructure stack — Docker, Kub
 > ```
 >
 > **Selection criteria to apply once posts are available:**
-> - Prioritise posts where Ehtesham describes a specific technical problem he
->   hit — CI/CD edge cases, Kubernetes gotchas, IaC drift, HIPAA/compliance
->   tradeoffs, microservice patterns — topics where Abdul has direct hands-on
->   experience from TroopHunter and Total Health Dental Care
-> - Avoid pure milestone posts (cert earned, new job, work anniversary) —
->   they attract congratulations noise only
-> - Avoid personal or emotional posts — any commercial warmth reads as
->   opportunistic
-> - The three posts should span different sub-themes (e.g. infra ops /
->   application development / team/process) so comments feel independent,
->   not repetitive
+> - Prioritise posts where Salman describes a specific technical or business problem —
+>   AI architecture decisions, React/Next.js patterns, LangChain gotchas, scaling MVPs,
+>   managing client scope, running an agency — topics where Abdul has direct hands-on
+>   experience
+> - Posts where he expresses an opinion or takes a position are stronger than posts
+>   that report an outcome
+> - Avoid further milestone/announcement posts (new client, award, speaking slot,
+>   team hire) — they attract congratulations noise only
+> - Avoid personal or emotional posts — any commercial warmth reads as opportunistic
+> - The three posts should span different sub-themes (e.g. technical / business /
+>   team-or-process) so each comment feels independent, not repetitive
 > - Prioritise recent posts (last 60–90 days) over older ones
+> - Posts are only the owner's original content — not reposts of someone else's content
 
 ---
 
@@ -88,18 +97,23 @@ Both Abdul and Ehtesham operate on the same infrastructure stack — Docker, Kub
 >
 > **Angles confirmed available once posts are selected:**
 >
-> - **Infra/DevOps post angle** — Abdul ran the same Kubernetes + Terraform +
->   GitHub Actions stack on TroopHunter (microservices, Docker, K8s, Terraform,
->   Ansible); any post about cluster management, IaC pain, or CI/CD tradeoffs
->   gives direct peer standing
-> - **Application overflow angle** — Ehtesham's out-of-niche contracts (FastAPI,
->   SaaS MVP, modular survey platform) are the clearest opening; if he posts
->   anything about the dev/ops boundary, task delegation, or being stretched
->   across layers, that thread is the natural Comment 2 or Comment 3 home
-> - **Healthcare/compliance angle** — Abdul's Total Health Dental Care CRM
->   (15,000+ active patients, real-time scheduling, HIPAA-adjacent domain) gives
->   credible standing on any post about compliance, regulated environments, or
->   healthcare tech
+> - **AI + frontend architecture angle** — if Salman posts about building AI-powered
+>   UIs, React dashboards on top of LangChain/RAG backends, or Next.js performance on
+>   AI-heavy products, Abdul has direct hands-on standing from TroopHunter (Next.js
+>   dashboards, Node.js microservices, TurboRepo monorepo) and Total Health Dental Care
+>   (real-time drag-and-drop CRM, Agora video, Mapbox integration)
+> - **Agency / delegation angle** — if Salman posts about managing team capacity,
+>   scoping work across concurrent projects, or the cost of absorbing out-of-core tasks,
+>   that thread is the natural home for the Comment 2 self-reference: Abdul has run the
+>   same pattern from the other side
+> - **MVP / founder velocity angle** — if Salman posts about the tradeoffs of shipping
+>   fast vs building right, or about what slows down an AI MVP, Abdul's aesthetic-first
+>   MVP and Total Health Dental Care CRM work (40% load time reduction, 33% appointment
+>   increase) give concrete peer standing
+> - **Pakistan tech / global market angle** — if Salman posts again about Pakistan
+>   tech talent on the global stage, Abdul (also Lahore-based, also building for
+>   international clients) has genuine peer standing — but this angle is lower priority
+>   because it does not connect to the overflow opportunity
 
 ---
 
@@ -108,13 +122,13 @@ Both Abdul and Ehtesham operate on the same infrastructure stack — Docker, Kub
 > ⚠️ **BLOCKED — Will be drafted once comment thread and reply status are known**
 >
 > The note will reference whichever comment drew a reply.
-> If no comment receives a reply, the request goes out cold on Day 5 with a
-> brief note referencing the shared infra stack — no pitch, no ask beyond the
-> connection itself.
+> If no comment receives a reply, the request goes out cold on Day 5 with a brief
+> note referencing the shared stack and agency-scale delivery context — no pitch,
+> no ask beyond the connection itself.
 
 ---
 
 ### Next Step
 
-Add posts to `p1c_Linkedin_Owner.md` and re-run this prompt.
-The analysis is complete; only the post-dependent sections remain.
+Re-scrape Salman's LinkedIn activity feed, add posts to `p1c_Linkedin_Owner.md`,
+and re-run this prompt. The analysis is complete; only the post-dependent sections remain.
