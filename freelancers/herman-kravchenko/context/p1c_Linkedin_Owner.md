@@ -183,7 +183,19 @@ Herman is the definition of "go-getter". His tenacity, willingness to learn, and
 #### Post 1
 
 type: original
-timestamp: 11h
+timestamp: 2d
+
+A client reached out to find the next technical partner for an existing project, one their previous team couldn’t get over the line. They were sure it was 95% done; we found it was closer to 50%, with a chunk not fit for production. 
+
+They still wanted to ship, so we took it on as-is and ran discovery, transition, and migration. Pricing someone else’s half-built code as a fixed bid takes real experience, and we’re seeing more of these rescue jobs lately. 
+
+We don’t say yes to everything, but when the numbers are honest, we’ll tell you what’s realistic. Ever inherited a project far less finished than you were promised, and how did you handle it?
+
+
+#### Post 2
+
+type: original
+timestamp: 1w
 
 When you build a digital offering or production, questions come up: should we build a web app or a mobile app?
 
@@ -205,7 +217,7 @@ It's almost never really about the technology.
 
 ---
 
-#### Post 2
+#### Post 3
 
 type: repost
 timestamp: 1yr
@@ -216,7 +228,7 @@ Technology, in and of itself cannot solve business problems. Now is the best tim
 
 ---
 
-#### Post 3
+#### Post 4
 
 type: original
 timestamp: 2yr

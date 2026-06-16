@@ -111,7 +111,7 @@ python3 main.py "https://easy.com/" --max-pages 10 --concurrent-tabs 5 --headles
 python main.py "https://easy.com/" --max-pages 50 --concurrent-tabs 5 --no-headless
 
 # Simple crawl: discover & scrape
-python main.py "http://zenprojects.com/" --max-pages 80 --concurrent-tabs 5 --no-headless
+python main.py "https://www.theburkesgrouptx.com/" --max-pages 80 --concurrent-tabs 5 --no-headless
 ```
 
 If `python3` / `python` resolve to system Python, use the venv binary directly:
