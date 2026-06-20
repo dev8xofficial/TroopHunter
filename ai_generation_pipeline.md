@@ -172,16 +172,50 @@ documentation/
 
 > Answers: **WHAT the live site literally is — captured, not yet synthesized**
 >
-> This is the only tier produced with the **website open**. It is the raw capture that
-> `design_dna.md` is synthesized *from*. Once Tier 0 + DNA exist, the website is never
-> opened again — every downstream file derives from these artifacts, not the live site.
-> This is what makes "open once, derive the rest" safe: the raw capture is the audit trail
-> you check instead of re-opening (see *If Output Quality Is Low*).
+> **Who does Tier 0:** The user opens the site in Chrome and DevTools, analyzes it, and
+> provides screenshots to the AI. The AI reads the screenshots and produces the structured
+> notes. The AI cannot open a browser or DevTools itself — Tier 0 is human-driven capture,
+> AI-driven structuring.
+>
+> The three files require three different modes of engagement and must run in this order:
+>
+> ```
+> 0b first  — Chrome open, DevTools CLOSED. Screenshot the live visual experience.
+> 0a second — DevTools OPEN. Screenshot all panels: Elements, Computed, Network,
+>             Animations, Sources, Z-index layers.
+> 0c third  — DevTools Responsive mode. Screenshot at 1440 / 768 / 375.
+>             Screenshot Box Model per key element.
+> ```
+>
+> **Why 0b must come first:** once DevTools opens, the brain enters technical mode and
+> the fresh-eyes visual perception is gone for that session. 0b captures the qualitative
+> feel — mood, motion weight, brand voice — that `design-intent` and `generation-rules`
+> are built from. It must be screenshotted before DevTools is opened.
+>
+> After Tier 0 completes, the website is never opened again. All downstream files derive
+> from these artifacts. The raw capture is the audit trail you check instead of re-opening
+> (see *If Output Quality Is Low*).
+
+---
+
+#### `visual-observation-notes.md`
+What DevTools cannot read: the human-perceived qualities. **Run first — DevTools closed.**
+
+```
+Covers:
+- Mood and photography treatment
+- Motion feel (cinematic vs. snappy, slow-pan vs. jerk)
+- Hierarchy, density gradient, white-space philosophy
+- Brand voice impressions from the copy
+
+Rule: Subjective observation, captured before it is rationalized into intent.
+      Run before opening DevTools — this perception cannot be recovered after.
+```
 
 ---
 
 #### `live-url-devtools-notes.md`
-The unprocessed DevTools capture. Facts, not interpretation.
+The unprocessed DevTools capture. Facts, not interpretation. **Run second — DevTools open.**
 
 ```
 Covers:
@@ -197,26 +231,11 @@ Rule: Capture only. No synthesis, no "why". This is ground truth.
 
 ---
 
-#### `visual-observation-notes.md`
-What DevTools cannot read: the human-perceived qualities.
-
-```
-Covers:
-- Mood and photography treatment
-- Motion feel (cinematic vs. snappy, slow-pan vs. jerk)
-- Hierarchy, density gradient, white-space philosophy
-- Brand voice impressions from the copy
-
-Rule: Subjective observation, captured before it is rationalized into intent.
-```
-
----
-
 #### `measurement-pixel-specs.yaml`
-Exact pixel measurements — px-level ground truth.
+Exact pixel measurements — px-level ground truth. **Run third — Responsive mode.**
 
 ```yaml
-# Per element, per breakpoint
+# Per element, per breakpoint — DevTools Responsive mode + Box Model
 hero:
   height: { 1440: "94vh", 768: "94vh", 375: "85vh" }
   title-size: { 1440: "80px", 768: "60px", 375: "42px" }
@@ -289,6 +308,10 @@ returns no uncovered observable dimensions. Weak DNA wastes every downstream tok
 #### `component_library.md`
 Component-by-component anatomy. Structure, variants, and composition rules.
 
+> **Input note:** `live-url-devtools-notes.md` is a required input alongside the DNA. The
+> DevTools element capture contains the raw HTML structure and class naming that the DNA
+> summarizes but does not reproduce in full structural detail.
+
 ```
 Covers:
 - Every UI component (Header, Hero, Card, Button, Footer, etc.)
@@ -303,6 +326,10 @@ Covers:
 
 #### `design_tokens.json`
 All values in machine-readable format. Source of truth for all numbers.
+
+> **Input note:** `measurement-pixel-specs.yaml` is a required input alongside the DNA.
+> Token values must be grounded in the px-level capture — not derived from DNA prose
+> which may be imprecise. The pixel specs are the authoritative numbers.
 
 ```json
 {
@@ -319,6 +346,16 @@ All values in machine-readable format. Source of truth for all numbers.
 ### Tier 2 — Generation Control
 
 > Answers: **HOW to build, WHY it was built, what NOT to do, and what to substitute**
+
+**Input logic for the three design-definition files:**
+
+| File | Source | Why |
+|---|---|---|
+| design_principles.md | DNA + component_library | Principles are rules extracted from patterns the DNA already describes. If DNA says "0px buttons / 15px containers," the principle is right there. DNA is sufficient. |
+| design_intent.md | DNA + visual-observation-notes | Intent is the WHY — rooted in qualitative feel (mood, restraint, luxury). DNA captures this partially; visual-observation-notes captures it raw. Both are needed. |
+| design-rationale.md | DNA + intent + visual-observation-notes | Rationale is the extended WHY + trade-offs. Needs the felt qualities (observations) alongside the reasoned intent. |
+
+The key distinction: **Principles are derived from measurable patterns** (DNA is enough). **Intent and Rationale are derived from felt qualities** — the DNA can only partially represent these; `visual-observation-notes.md` is the direct source and must be fed alongside the DNA.
 
 ---
 
@@ -345,6 +382,8 @@ Examples:
 
 #### `design_intent.md`
 The philosophical reasoning. WHY each decision was made.
+
+> **Input note:** `visual-observation-notes.md` is a required input alongside the DNA. The observations file is the only place in the system that captures qualitative feel — mood, restraint, photography treatment, brand voice impressions — exactly the raw material that intent is built from. DNA alone risks producing intent derived purely from measurable facts, which loses the subjective WHY.
 
 ```
 Format per intent:
@@ -428,8 +467,12 @@ Examples:
 
 ---
 
-#### `component_states.md`
+#### `component-states.yaml`
 Every state for every interactive component.
+
+> **Input note:** `visual-observation-notes.md` is required alongside component-library
+> and principles. How a state *feels* — the spring bounce on hover, the cinematic slow-pan
+> on image hover — is captured in the observations, not derivable from principles alone.
 
 ```
 Covers per component:
@@ -449,8 +492,32 @@ All interactive components will feel broken in use.
 
 ---
 
-#### `animation_choreography.md`
+#### `interaction-system.md`
+The full interaction model — hover, cursor, fills, micro-interactions.
+
+> **Input note:** Two Tier 0 files required alongside component-library + principles:
+> `visual-observation-notes.md` → how interactions feel (lerp physics, spring curves,
+> cinematic weight). `live-url-devtools-notes.md` → exact easing and timing from the
+> DevTools Animations panel. Feel + precision together, not either alone.
+
+```
+Covers:
+- Custom cursor behavior and physics
+- Button fill animations (direction, duration, easing)
+- Image hover effects (scale, speed, feel)
+- Social icon spring interactions
+- All hover / active / focus micro-interactions
+```
+
+---
+
+#### `animation-system.md`
 The full scroll animation timeline across sections.
+
+> **Input note:** `live-url-devtools-notes.md` is required alongside DNA + principles.
+> Animation timing, easing curves, and scroll triggers are captured directly from the
+> DevTools Animations panel — the DNA describes them, the DevTools notes provide the
+> exact values.
 
 ```
 Covers:
@@ -466,8 +533,12 @@ They fire out of sequence and clash visually.
 
 ---
 
-#### `responsive_matrix.md`
+#### `responsive-system.md`
 Component-by-component behavior at every breakpoint.
+
+> **Input note:** `measurement-pixel-specs.yaml` is required alongside component-library
+> and tokens. Breakpoint values must come from the measured specs — the authoritative
+> px-level capture per breakpoint — not from token prose descriptions.
 
 ```
 Format:

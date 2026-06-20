@@ -8,10 +8,10 @@
 Files must be generated in this sequence. Each file depends on the ones above it.
 
 ```
-─── (Tier 0 — raw extraction, WEBSITE OPEN) ───
-0a. live-url-devtools-notes.md
-0b. visual-observation-notes.md
-0c. measurement-pixel-specs.yaml
+─── (Tier 0 — raw extraction, WEBSITE OPEN for full session) ───
+0b. visual-observation-notes.md    ← FIRST — fresh eyes, DevTools closed
+0a. live-url-devtools-notes.md     ← SECOND — DevTools open
+0c. measurement-pixel-specs.yaml   ← THIRD — responsive mode + box model
 ─── (Tier 1 — foundation) ───
 1.  brand-dna.md            (Pass 1: free analysis — Tier 0 notes as context)
 1b. completeness_self_audit (Pass 2 — same session — GATE before step 2)
@@ -33,6 +33,11 @@ Files must be generated in this sequence. Each file depends on the ones above it
 15. content-architecture.yaml
 16. edge-cases.md
 17. user-flows.md
+─── (inputs summary — no new files, all Tier 0 already captured) ───
+    component-states    ← component-library + principles + visual-observation-notes
+    interaction-system  ← component-library + principles + visual-observation + devtools
+    animation-system    ← dna + principles + live-url-devtools-notes
+    responsive-system   ← component-library + tokens + measurement-pixel-specs
 ─── (Tier 4 — only for multi-source) ───
 18. synthesis-map.md
 ─── (Generation) ───
@@ -46,14 +51,44 @@ Files must be generated in this sequence. Each file depends on the ones above it
 
 ## Tier 0 — Raw Extraction
 
-*The only step with the website open. This raw capture is the source of truth `design_dna.md` is synthesized from — after this, the website is never opened again.*
+*The website stays open for the entire Tier 0 session (all three files below). After
+Tier 0 completes, the website is never opened again — every downstream file derives from
+these artifacts, not the live site.*
+
+*The three files require three different modes of engagement — run them in this order:*
+
+```
+0b first  — Chrome DevTools CLOSED. Experience the site as a user. Fresh eyes only.
+0a second — Chrome DevTools OPEN. Technical capture across all panels.
+0c third  — Chrome  DevTools OPEN, Responsive mode. Systematic measurement per breakpoint.
+```
+
+*Once DevTools opens for 0a, the fresh-eyes perception is permanently gone for that session.
+0b must happen first or its qualitative capture is contaminated by technical analysis.*
+
+---
+
+### 0b. `visual-observation-notes.md`
+
+```
+Input:   The source website URL (DevTools CLOSED)
+
+Output:  visual-observation-notes.md
+
+Prompt:  Record manual visual observations DevTools cannot capture: mood,
+         photography treatment, motion feel, hierarchy, and density.
+```
+
+> **Run first — before opening DevTools.** Fresh-eyes perception of mood, feel, and
+> motion cannot be recovered once technical analysis begins. This is the raw qualitative
+> material that `design-intent` and `generation-rules` are built from.
 
 ---
 
 ### 0a. `live-url-devtools-notes.md`
 
 ```
-Input:   The source website URL (open in DevTools)
+Input:   The source website URL (DevTools OPEN — Elements, Network, Animations, Sources)
 
 Output:  live-url-devtools-notes.md
 
@@ -64,23 +99,11 @@ Prompt:  Record raw DevTools observations for this site: computed styles, fonts,
 
 ---
 
-### 0b. `visual-observation-notes.md`
-
-```
-Input:   The source website URL
-
-Output:  visual-observation-notes.md
-
-Prompt:  Record manual visual observations DevTools cannot capture: mood,
-         photography treatment, motion feel, hierarchy, and density.
-```
-
----
-
 ### 0c. `measurement-pixel-specs.yaml`
 
 ```
-Input:   The source website URL + live-url-devtools-notes.md
+Input:   The source website URL (DevTools OPEN — Responsive mode + Box Model)
+         live-url-devtools-notes.md
 
 Output:  measurement-pixel-specs.yaml
 
@@ -132,36 +155,48 @@ Prompt:  Audit the design DNA you just produced. List every design dimension you
 
 ```
 Input:   design_dna.md
+         measurement-pixel-specs.yaml
 
 Output:  design_tokens.json
 
 Prompt:  Convert this design DNA into a structured JSON token file.
 ```
 
+> `measurement-pixel-specs.yaml` is the px-level ground truth. Token values must match
+> the measured specs — not be derived from DNA prose descriptions which may be imprecise.
+
 ---
 
 ### 3. `component_library.md`
 
 ```
-Input:   design_dna.md 
+Input:   design_dna.md
+         live-url-devtools-notes.md
 
 Output:  component_library.md
 
 Prompt:  Document every UI component on this site from a design and development perspective.
 ```
 
+> `live-url-devtools-notes.md` contains the raw HTML structure, class naming conventions,
+> and element composition that the DNA summarizes but does not reproduce in full detail.
+
 ---
 
-### 4. `page_blueprint.md`
+### 4. `page-screen-specs.md`
 
 ```
 Input:   design_dna.md
-        component_library.md
+         component_library.md
+         live-url-devtools-notes.md
 
-Output:  page_blueprint.md
+Output:  page-screen-specs.md
 
 Prompt:  Map the complete page architecture for every route on this site.
 ```
+
+> `live-url-devtools-notes.md` provides the authoritative page structure, route order,
+> and section sequencing — the DNA covers anatomy but the DevTools capture has the detail.
 
 ---
 
@@ -169,37 +204,47 @@ Prompt:  Map the complete page architecture for every route on this site.
 
 ---
 
-### 5. `design_principles.md`
+### 5. `design-principles.md`
 
 ```
 Input:   design_dna.md
-         component_library.md 
+         component_library.md
+         measurement-pixel-specs.yaml
 
-Output:  design_principles.md
+Output:  design-principles.md
 
 Prompt:  Extract the design principles from this design system — the HOW.
 ```
 
+> `measurement-pixel-specs.yaml` grounds the principles in exact measurements — rules like
+> "0px buttons / 15px containers" must reference the measured values, not prose estimates.
+
 ---
 
-### 6. `design_intent.md`
+### 6. `design-intent-ux-philosophy.md`
 
 ```
 Input:   design_dna.md
-        
+         visual-observation-notes.md
 
-Output:  design_intent.md
+Output:  design-intent-ux-philosophy.md
 
 Prompt:  Extract the design intent from this design system — the WHY.
 ```
 
----
+> `visual-observation-notes.md` is required here, not optional. It is the only file that
+> captures qualitative feel — mood, restraint, photography treatment, brand voice
+> impressions. Intent built from DNA alone risks being derived purely from measurable facts,
+> losing the subjective WHY that makes intent meaningful.
+
 ---
 
-### `design-rationale.md`  
+### `design-rationale.md`
 
 ```
-Input:   design-dna.md + design-intent.md
+Input:   design_dna.md
+         design-intent-ux-philosophy.md
+         visual-observation-notes.md
 
 Output:  design-rationale.md
 
@@ -207,32 +252,44 @@ Prompt:  Document the extended rationale and trade-offs behind the design decisi
          the deeper WHY beyond the intent summary.
 ```
 
+> Rationale requires the felt qualities (visual-observation-notes) alongside the reasoned
+> intent — trade-offs are grounded in both the measured facts and the perceived feel.
+
 ---
 
-### 7. `generation_rules.md`
+### 7. `generation-rules.md`
 
 ```
 Input:   design_dna.md
-         design_principles.md
-         design_intent.md
-         
+         design-principles.md
+         design-intent-ux-philosophy.md
+         visual-observation-notes.md
 
-Output:  generation_rules.md
+Output:  generation-rules.md
 
 Prompt:  Generate the generation rules for this design system.
 ```
 
+> `visual-observation-notes.md` is required — generation rules are "never add X because
+> it violates the feel." The felt qualities that define what "wrong" looks like live in
+> the observations, not in the principles or intent alone.
+
 ---
 
-### 8. `asset_fallbacks.md`
+### 8. `data-asset-replacement-guidelines.md`
 
 ```
 Input:   design_dna.md
- 
- Output:  asset_fallbacks.md
+         live-url-devtools-notes.md
+
+Output:  data-asset-replacement-guidelines.md
 
 Prompt:  Generate the asset fallbacks for this design system.
 ```
+
+> `live-url-devtools-notes.md` is the authoritative source for which assets exist — the
+> network panel identifies every font, JS library (GSAP, Swiper, Lottie) and media asset.
+> DNA describes them; DevTools notes prove they exist and need fallbacks.
 
 ---
 
@@ -242,56 +299,87 @@ Prompt:  Generate the asset fallbacks for this design system.
 
 ---
 
-### 9. `component_states.md`
+### 9. `component-states.yaml`
 
 ```
 Input:   component_library.md
-         design_principles.md
-        
+         design-principles.md
+         visual-observation-notes.md
 
-Output:  component_states.md
+Output:  component-states.yaml
 
 Prompt:  Document the component states for this design system.
 ```
 
+> `visual-observation-notes.md` captures how states *feel* — the spring bounce on hover,
+> the cinematic slow-pan on image hover. Principles define the rule; observations define
+> the felt quality the rule is meant to reproduce.
+
 ---
 
-### 10. `animation_choreography.md`
+### 10. `interaction-system.md`
+
+```
+Input:   component_library.md
+         design-principles.md
+         visual-observation-notes.md
+         live-url-devtools-notes.md
+
+Output:  interaction-system.md
+
+Prompt:  Document the interaction model — hover behavior, custom cursor, fills,
+         and micro-interactions across the system.
+```
+
+> `visual-observation-notes.md` → how interactions feel (lerp physics, spring curves,
+> cinematic weight). `live-url-devtools-notes.md` → the exact easing/timing/library
+> values from the DevTools Animations panel. Both are needed: feel + precision.
+
+---
+
+### 11. `animation-system.md`
 
 ```
 Input:   design_dna.md
-         design_principles.md
-        
+         design-principles.md
+         live-url-devtools-notes.md
 
-Output:  animation_choreography.md
+Output:  animation-system.md
 
 Prompt:  Document the animation choreography for this site.
 ```
 
+> `live-url-devtools-notes.md` is the authoritative source for animation timing, easing
+> curves, and sequence — captured directly from the DevTools Animations panel. The DNA
+> describes animations; the DevTools notes provide the exact values.
+
 ---
 
-### 11. `responsive_matrix.md`
+### 12. `responsive-system.md`
 
 ```
 Input:   component_library.md
          design_tokens.json
-        
+         measurement-pixel-specs.yaml
 
-Output:  responsive_matrix.md
+Output:  responsive-system.md
 
 Prompt:  Document the responsive behavior of this design system.
 ```
 
+> `measurement-pixel-specs.yaml` is the ground truth for responsive values — it captures
+> exact measurements per breakpoint (1440 / 768 / 375). Tokens provide the design values;
+> pixel specs confirm what those values actually measure at each breakpoint.
+
 ---
 
-### 12. `content_edge_cases.md`
+### 13. `edge-cases.md`
 
 ```
 Input:   component_library.md
-         page_blueprint.md
-        
+         page-screen-specs.md
 
-Output:  content_edge_cases.md
+Output:  edge-cases.md
 
 Prompt:  Document the content edge cases for this design system.
 ```
