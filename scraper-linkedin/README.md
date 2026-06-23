@@ -47,7 +47,7 @@ own Python directly:
 Activate your virtual environment, then run:
 
 ```bash
-python main.py "https://www.linkedin.com/company/juniper-dermatology/" --max-scrolls 150 --no-headless
+python main.py "https://www.linkedin.com/company/muscular-dystrophy-association-nz/people/" --max-scrolls 150 --no-headless
 python main.py "https://www.linkedin.com/company/pie-health/" --max-scrolls 150 --no-headless
 python main.py "https://www.linkedin.com/company/aligned-hospice/" --max-scrolls 150 --no-headless
 python main.py "https://www.linkedin.com/company/clarity-consultants/" --max-scrolls 150 --no-headless

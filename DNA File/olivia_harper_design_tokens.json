@@ -1,0 +1,157 @@
+{
+  "$schema": "https://identity.foundation/design-tokens/format",
+  "olivia_harper": {
+    "color": {
+      "primary": {
+        "$value": "#96847A",
+        "$type": "color",
+        "comment": "Warm Taupe — Brand anchor, footer bg, overlays"
+      },
+      "secondary": {
+        "$value": "#B6AB99",
+        "$type": "color",
+        "comment": "Muted Sand — Decorative text, inactive scroll reveals"
+      },
+      "background": {
+        "$value": "#EEEBE4",
+        "$type": "color",
+        "comment": "Warm Ivory — Dominant page surface color"
+      },
+      "text": {
+        "$value": "#313131",
+        "$type": "color",
+        "comment": "Charcoal — Primary body text"
+      },
+      "accent": {
+        "$value": "#424242",
+        "$type": "color",
+        "comment": "Dark Gray — Nav hover, active elements"
+      },
+      "white": {
+        "$value": "#FFFFFF",
+        "$type": "color",
+        "comment": "Pure White"
+      },
+      "black": {
+        "$value": "#000000",
+        "$type": "color",
+        "comment": "Deep Black"
+      },
+      "overlay": {
+        "hero": {
+          "$value": "#E2E1E126",
+          "$type": "color",
+          "comment": "Translucent warm tint over header nav (14% opacity)"
+        },
+        "footer": {
+          "$value": "#96847AA1",
+          "$type": "color",
+          "comment": "63% opacity taupe overlay (multiply blend) for images"
+        },
+        "form": {
+          "$value": "#0000000A",
+          "$type": "color",
+          "comment": "4% black overlay on sand background for forms"
+        }
+      }
+    },
+    "typography": {
+      "fontFamily": {
+        "display": {
+          "$value": "\"F37 Bolton\", sans-serif",
+          "$type": "fontFamily",
+          "comment": "Primary brand font for headings and body"
+        },
+        "ui": {
+          "$value": "\"Roboto\", sans-serif",
+          "$type": "fontFamily",
+          "comment": "Functional font for navigation and small labels"
+        }
+      },
+      "fontSize": {
+        "display-large": { "$value": "75px", "$type": "dimension" },
+        "display-medium": { "$value": "65px", "$type": "dimension" },
+        "heading-1": { "$value": "36px", "$type": "dimension" },
+        "body-main": { "$value": "17px", "$type": "dimension" },
+        "label-small": { "$value": "13px", "$type": "dimension" }
+      },
+      "fontWeight": {
+        "light": { "$value": 300, "$type": "fontWeight" },
+        "regular": { "$value": 400, "$type": "fontWeight" }
+      },
+      "lineHeight": {
+        "tight": { "$value": "1em", "$type": "dimension" },
+        "relaxed": { "$value": "1.4em", "$type": "dimension" }
+      }
+    },
+    "spacing": {
+      "inset": { "$value": "15px", "$type": "dimension", "comment": "Global page frame inset" },
+      "gap": { "$value": "24px", "$type": "dimension", "comment": "Default block gap" },
+      "section-padding": { "$value": "100px", "$type": "dimension" },
+      "container": {
+        "narrow": { "$value": "800px", "$type": "dimension" },
+        "wide": { "$value": "1200px", "$type": "dimension" }
+      }
+    },
+    "borderRadius": {
+      "none": { "$value": "0px", "$type": "dimension", "comment": "Sharp CTA buttons" },
+      "container": { "$value": "15px", "$type": "dimension", "comment": "Hero and cards" },
+      "footer": { "$value": "20px", "$type": "dimension", "comment": "Footer wrappers" },
+      "pill": { "$value": "50px", "$type": "dimension", "comment": "Scroll indicators" },
+      "circle": { "$value": "50%", "$type": "dimension", "comment": "Social icons and custom cursor" }
+    },
+    "animation": {
+      "duration": {
+        "fast": { "$value": "300ms", "$type": "time" },
+        "medium": { "$value": "350ms", "$type": "time" },
+        "slow": { "$value": "1600ms", "$type": "time" },
+        "scroll-indicator": { "$value": "2200ms", "$type": "time" }
+      },
+      "easing": {
+        "spring": { "$value": "cubic-bezier(0.31, -0.105, 0.43, 1.59)", "$type": "cubicBezier", "comment": "Icon bounce" },
+        "smooth": { "$value": "cubic-bezier(0.34, 1.56, 0.64, 1)", "$type": "cubicBezier", "comment": "Cursor lerp" },
+        "power1-out": { "$value": "ease-out", "$type": "cubicBezier", "comment": "GSAP scroll text reveal" }
+      }
+    },
+    "shadows": {
+      "subtle-glow": {
+        "$value": {
+          "color": "rgba(0, 0, 0, 0.05)",
+          "offsetX": "0px",
+          "offsetY": "0px",
+          "blur": "30px",
+          "spread": "0px"
+        },
+        "$type": "shadow"
+      },
+      "cursor-shadow": {
+        "$value": {
+          "color": "rgba(0, 0, 0, 0.2)",
+          "offsetX": "0px",
+          "offsetY": "5px",
+          "blur": "15px",
+          "spread": "0px"
+        },
+        "$type": "shadow"
+      }
+    },
+    "breakpoints": {
+      "mobile": { "$value": "767px", "$type": "dimension" },
+      "tablet": { "$value": "1024px", "$type": "dimension" },
+      "desktop": { "$value": "1025px", "$type": "dimension" }
+    },
+    "zIndex": {
+      "base": { "$value": 0, "$type": "number" },
+      "overlay": { "$value": 10, "$type": "number" },
+      "header": { "$value": 50, "$type": "number", "comment": "Sticky nav" },
+      "badge": { "$value": 999, "$type": "number", "comment": "Awwwards badge" },
+      "cursor": { "$value": 999999, "$type": "number", "comment": "Custom cursor" }
+    },
+    "aspectRatio": {
+      "square": { "$value": "1/1", "$type": "number" },
+      "landscape": { "$value": "3/2", "$type": "number", "comment": "Project cards" },
+      "portrait": { "$value": "3/4", "$type": "number", "comment": "Team portraits" },
+      "cinematic": { "$value": "16/9", "$type": "number", "comment": "Hero sections" }
+    }
+  }
+}
