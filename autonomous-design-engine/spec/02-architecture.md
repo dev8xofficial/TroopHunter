@@ -20,6 +20,7 @@ flowchart TB
         GEN["Generator (LLM)"]
         CRIT["Critic / Judge (LLM, fresh context)"]
         EYES["Eyes (headless browser)"]
+        GUARD["Guardrail Layer (deterministic gates)"]
         RET["Retriever (embeddings + ANN search)"]
         WB["Write-back (distiller)"]
     end
@@ -32,7 +33,7 @@ flowchart TB
     end
 
     CLI --> ORCH
-    ORCH --> GEN --> EYES --> CRIT --> ORCH
+    ORCH --> GEN --> EYES --> GUARD --> CRIT --> ORCH
     ORCH --> RET --> LIB
     ORCH --> WB --> LIB
     ORCH <--> BRAND
@@ -44,7 +45,7 @@ flowchart TB
 
 - **Layer 4 (Interface):** a CLI is the only entry point (chosen in planning). Subcommands map to workflows in `06`.
 - **Layer 3 (Orchestration):** the one stateful brain. Holds the project, assembles input bundles, enforces hard constraints, runs the loop, decides crystallization and write-back.
-- **Layer 2 (Capabilities):** stateless workers the Orchestrator calls — the three capabilities (Eyes/Memory/Taste) plus the Generator and the Retriever/Write-back halves of Memory.
+- **Layer 2 (Capabilities):** stateless workers the Orchestrator calls — the three capabilities (Eyes/Memory/Taste) plus the Generator and the Retriever/Write-back halves of Memory, **and the Guardrail Layer** (deterministic gates that own the objective floor — see [11](./11-guardrails-and-invariants.md)).
 - **Layer 1 (Stores):** durable state. Two *hard* stores, one *soft* store, two record stores.
 
 ---
@@ -73,9 +74,10 @@ The center of the architecture is a single loop the Orchestrator drives per sect
 ```
 
 Control rules (full detail in `05`):
-- **Loop budget:** `max_iterations` per section; the Critic gates each pass.
+- **Gates (`11`):** a **render-health gate** runs before critique (a render bug must never reach the Critic), deterministic **hard-constraint checks** (a11y, token-allowlist, responsive) run on a healthy render, and the **Pass Gate is composite** — approved ⇔ deterministic checks pass **and** the Critic passes.
+- **Loop budget:** `max_iterations` per section; **best-so-far** is retained so a run never ends worse than its best candidate.
 - **Variation:** the Generator may emit *N* candidates; the Critic ranks pairwise and the best continues.
-- **Stop conditions:** Critic passes, or budget exhausted (escalate to human), or hard-constraint violation that cannot be repaired (abort + record).
+- **Stop conditions:** Pass Gate met, or budget exhausted (escalate to human, with best-so-far), or an unrepairable render/hard violation (abort + record). Every run ends in exactly one recorded state.
 
 ---
 
@@ -144,6 +146,9 @@ Net: context cost is ~**constant** regardless of how many references exist or ho
 3. **Hard stores are written by deliberate events**, never as a side effect of generation: Brand by human approval, Project Design System by crystallization.
 4. **The Orchestrator is the only stateful component.** Capabilities are stateless functions of their inputs — which is what keeps them swappable and testable.
 5. **The CLI holds no logic** beyond parsing and dispatch — every behavior lives in Orchestration so it is reusable when a UI or API is added later.
+6. **Objective is deterministic; subjective is the Critic.** Anything code can check (a11y, token drift, render success, schema, content presence) is checked by the Guardrail Layer, never the LLM. The Critic judges only subjective quality (see [11](./11-guardrails-and-invariants.md)).
+7. **Every external call is fallible.** Model/retrieval/render calls use retries+backoff, timeouts, streaming for large output, refusal fallback, and a pinned model id recorded in the trace; retrieval failure degrades gracefully to brand+brief.
+8. **Stores are atomic, versioned, and isolated.** Hard stores (Brand, Design System) are append-only + versioned + written only by deliberate events; writes are atomic; concurrent runs are isolated per client; every loop iteration is persisted immediately ([03](./03-data-model.md) §8, [11](./11-guardrails-and-invariants.md) §5).
 
 ---
 

@@ -1,0 +1,81 @@
+PHASE 2B — KNOWLEDGE GRAPH
+Name: Artificial Intelligence Category: Artificial Intelligence Parent: None Children: AGI, ASI, Augmented Intelligence, Digital Transformation, Physical AI, Machine Learning, Generative AI, RAG, AI Security, AI Governance & Ethics, MLOps & Infrastructure, Development Frameworks & Tools, Business Applications Prerequisites: Not Specified Related Concepts: Machine Learning, Deep Learning, Generative AI
+ Aliases: AI Difficulty: 1 Learning Stage: Introduction IBM Playlist Coverage: AI Academy, AI Fundamentals
+ Keywords: Intelligence, computing, automation Business Applications: Customer Service, Marketing, HR, Finance, Supply Chain
+ Status: Core
+Name: AGI (Artificial General Intelligence) Category: Artificial Intelligence Parent: Artificial Intelligence Children: None Prerequisites: Machine Learning, Generative AI, NLP (implied)
+ Related Concepts: ASI, NLP
+ Aliases: Artificial General Intelligence Difficulty: 10 Learning Stage: Advanced Research IBM Playlist Coverage: AI Fundamentals
+ Keywords: General intelligence, human-level AI Business Applications: Not Specified Status: Advanced
+Name: ASI (Artificial Superintelligence) Category: Artificial Intelligence Parent: Artificial Intelligence Children: None Prerequisites: AGI (implied)
+ Related Concepts: AGI, Agents, RAG
+ Aliases: Artificial Superintelligence Difficulty: 10 Learning Stage: Hypothetical IBM Playlist Coverage: AI Fundamentals
+ Keywords: Superintelligence Business Applications: Not Specified Status: Advanced
+Name: Augmented Intelligence Category: Artificial Intelligence Parent: Artificial Intelligence Children: None Prerequisites: Not Specified Related Concepts: Artificial Intelligence
+ Aliases: Not Specified Difficulty: 2 Learning Stage: Introduction IBM Playlist Coverage: AI Fundamentals
+ Keywords: Human-AI collaboration, decision support Business Applications: Decision making
+ Status: Core
+Name: Digital Transformation Category: Artificial Intelligence Parent: Artificial Intelligence Children: None Prerequisites: Not Specified Related Concepts: AI
+ Aliases: Not Specified Difficulty: 3 Learning Stage: Business Strategy IBM Playlist Coverage: AI in Action
+ Keywords: Enterprise modernization, technology integration Business Applications: Business leadership, enterprise strategy
+ Status: Core
+Name: Physical AI Category: Physical AI Parent: Artificial Intelligence Children: Robotics, 1X NEO (Humanoid Robot), Industrial Workflow Automation Prerequisites: Not Specified Related Concepts: Robotics
+ Aliases: Not Specified Difficulty: 7 Learning Stage: Specialized IBM Playlist Coverage: AI Fundamentals, AI in Action
+ Keywords: Robots, real-world learning, adaptation Business Applications: Manufacturing, Industrial workflows
+ Status: Core
+Name: Robotics Category: Physical AI Parent: Physical AI Children: None Prerequisites: Physical AI Related Concepts: 1X NEO, Industrial Workflow Automation
+ Aliases: Not Specified Difficulty: 7 Learning Stage: Implementation IBM Playlist Coverage: AI in Action
+ Keywords: Intelligent robots, automation Business Applications: Industrial operations, manufacturing
+ Status: Supporting
+Name: 1X NEO (Humanoid Robot) Category: Physical AI Parent: Physical AI Children: None Prerequisites: Physical AI, Robotics Related Concepts: NEO 1X Robot
+ Aliases: NEO 1X Robot Difficulty: 8 Learning Stage: Advanced / Emerging IBM Playlist Coverage: Mixture of Experts
+ Keywords: Humanoid robot, home robotics Business Applications: Home assistance
+ Status: Advanced
+Name: Machine Learning Category: Machine Learning Parent: Artificial Intelligence Children: Supervised Learning, Unsupervised Learning, Predictive AI, Federated Learning, Ensemble Learning, Training & Optimization, Statistical Analysis, Neural Networks Prerequisites: Not Specified Related Concepts: AI, Deep Learning, Foundation Models
+ Aliases: ML Difficulty: 4 Learning Stage: Foundational IBM Playlist Coverage: AI Academy, AI Fundamentals, AI Models Explained
+ Keywords: Algorithms, data patterns, learning Business Applications: Predictive models, everyday use cases
+ Status: Core
+Name: Supervised Learning Category: Machine Learning Parent: Machine Learning Children: None Prerequisites: Machine Learning Related Concepts: Unsupervised Learning
+ Aliases: Not Specified Difficulty: 4 Learning Stage: Intermediate IBM Playlist Coverage: AI Models Explained
+ Keywords: Labeled data, training Business Applications: Classification, prediction
+ Status: Core
+Name: Unsupervised Learning Category: Machine Learning Parent: Machine Learning Children: None Prerequisites: Machine Learning Related Concepts: Supervised Learning
+ Aliases: Not Specified Difficulty: 5 Learning Stage: Intermediate IBM Playlist Coverage: AI Models Explained
+ Keywords: Unlabeled data, clustering, pattern discovery Business Applications: Data exploration
+ Status: Core
+Name: Predictive AI Category: Machine Learning Parent: Machine Learning Children: None Prerequisites: Machine Learning Related Concepts: Generative AI
+ Aliases: Not Specified Difficulty: 4 Learning Stage: Application IBM Playlist Coverage: AI Fundamentals
+ Keywords: Forecasting, historical data, outcomes Business Applications: Future outcome prediction, business planning
+ Status: Core
+Name: Federated Learning Category: Machine Learning Parent: Machine Learning Children: None Prerequisites: Machine Learning Related Concepts: Encrypted AI Agents, Data Privacy
+ Aliases: Not Specified Difficulty: 8 Learning Stage: Advanced Implementation IBM Playlist Coverage: AI Agents Explained, AI Models Explained
+ Keywords: Decentralized training, privacy Business Applications: Secure data training, data privacy
+ Status: Supporting
+Name: Ensemble Learning Category: Machine Learning Parent: Machine Learning Children: Random Forest Prerequisites: Machine Learning Related Concepts: Random Forest
+ Aliases: Not Specified Difficulty: 6 Learning Stage: Intermediate IBM Playlist Coverage: AI Models Explained
+ Keywords: Multiple models, voting Business Applications: Classification
+ Status: Supporting
+Name: Training & Optimization Category: Machine Learning Parent: Machine Learning Children: Back Propagation, Gradient Descent, Overfitting, Underfitting, Test Time Compute, Model Distillation, Pre-training, Scaling Laws Prerequisites: Machine Learning Related Concepts: Neural Networks
+ Aliases: Not Specified Difficulty: 7 Learning Stage: Intermediate / Advanced IBM Playlist Coverage: AI Models Explained
+ Keywords: Minimizing loss, model efficiency Business Applications: Model performance improvement
+ Status: Supporting
+Name: Generative AI Category: Generative AI Parent: Artificial Intelligence Children: Foundation Models (FM), Multimodal AI, Large Language Models (LLMs), AI Agents Prerequisites: Machine Learning, Deep Learning (implied)
+ Related Concepts: Foundation models, Predictive AI
+ Aliases: GenAI Difficulty: 6 Learning Stage: Intermediate IBM Playlist Coverage: AI Academy, AI Fundamentals, AI Models Explained
+ Keywords: Content creation, business value, GenAI Business Applications: Customer service, marketing automation, coding assistance
+ Status: Core
+Name: Large Language Models Category: Generative AI Parent: Generative AI Children: SLM, LRM, VLM, Context Management, Performance & Efficiency, Risks & Limitations, Specific Model Families Prerequisites: Generative AI, Transformers (implied)
+ Related Concepts: Chatbots, RAG, NLP
+ Aliases: LLMs Difficulty: 7 Learning Stage: Intermediate / Advanced IBM Playlist Coverage: AI Fundamentals, AI Models Explained, Large Language Models and Chatbots
+ Keywords: NLP, massive scale, transformers Business Applications: Language translation, virtual agents, coding
+ Status: Core
+Name: AI Agents Category: Generative AI Parent: Generative AI Children: AI Assistants (Virtual Agents), Agentic AI, Agent Patterns & Architectures, Agent Operations, Communication Protocols Prerequisites: LLMs, RAG (implied)
+ Related Concepts: Orchestration, autonomous workflows
+ Aliases: Agents Difficulty: 8 Learning Stage: Implementation / Advanced IBM Playlist Coverage: AI Agents Explained, AI Fundamentals, RAG Explained
+ Keywords: Autonomy, task execution, reasoning Business Applications: IT issue prediction, HR transformation, lead generation
+ Status: Core
+Name: RAG (Retrieval Augmented Generation) Category: RAG (Retrieval Augmented Generation) Parent: Artificial Intelligence Children: OpenRAG, Hybrid RAG, GraphRAG, Multimodal RAG, CAG, Retrieval Strategies, Context Engineering, Vector Databases, Knowledge Graph Prerequisites: LLMs
+ Related Concepts: Fine-tuning, Prompt Engineering
+ Aliases: Not Specified Difficulty: 7 Learning Stage: Implementation IBM Playlist Coverage: RAG Explained, AI Technical Tutorials
+ Keywords: Knowledge retrieval, external data, grounding Business Applications: Customer service, database queries, mainframe operations
+ Status: Core

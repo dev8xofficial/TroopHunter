@@ -1,0 +1,20 @@
+{
+  "client": "IronForge Fitness",
+  "industry": "Fitness / Health & Wellness",
+  "location": "Austin, Texas",
+  "audience": "Fitness-minded adults aged 22-45 looking for structured training programs and community-driven gym culture",
+  "goal": "Drive membership sign-ups by showcasing elite coaching, modern facilities, and a strong community vibe",
+  "section": {
+    "name": "hero",
+    "content": {
+      "headline": "Built Different. Train Different.",
+      "subheadline": "Expert coaches. Competition-grade equipment. A community that pushes you past your limits. Your first class is on us.",
+      "cta": {
+        "text": "Claim Your Free Class",
+        "href": "/free-class"
+      },
+      "nav": ["Programs", "Coaches", "Schedule", "Membership", "Location"],
+      "tags": ["Olympic Lifting", "CrossFit", "Recovery Zone", "Nutrition Coaching"]
+    }
+  }
+}

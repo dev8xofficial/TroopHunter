@@ -10,10 +10,11 @@
 |---|---|---|---|
 | **Design Lead / R&D** | Human | Approve the brand once; give taste verdicts; curate what the library learns | Sets the **hard** floor |
 | **Client Input** | Data source | Provide business context, content, assets, and optionally ≤5 references | context = **hard**, references = **soft** |
-| **Orchestrator** | AI agent | Run a project: sequence sections, assemble inputs, enforce consistency, trigger write-back | — (executes policy) |
+| **Orchestrator** | AI agent | Run a project: comprehend the brief, sequence sections, assemble inputs, run guardrail gates, enforce consistency, trigger write-back | — (executes policy) |
 | **Generator** | AI agent | Produce the code (React + TypeScript component) for one section | — |
 | **Critic / Judge** | AI agent | Score & rank rendered output against brand + system + brief + quality; decide pass/fail | — (applies the rubric) |
 | **Browser (the "Eyes")** | Tool | Render output and screenshot it at each breakpoint | — (reports facts) |
+| **Guardrail Layer** | Tool (deterministic) | Run the deterministic gates — input, render-health, hard-constraint (a11y/token/responsive), schema, de-identification — and gate the loop | — (enforces the hard floor) |
 | **Global Library** | Memory store | Hold cross-project, de-identified design knowledge; answer retrieval queries | **soft** (retrieved as direction) |
 | **Brand Foundation** | Memory store | Hold one client's identity (colors, type, motion voice, personality) | **hard** (binding) |
 | **Project Design System** | Memory store | Hold per-surface tokens + component recipes, frozen after section 1 | **hard** (binding) |
@@ -94,8 +95,9 @@ The Lead does **not** specify layouts, pick colors per section, or write rules p
 
 ### 3.2 Client Input
 Not an agent — a structured data source. Carries:
-- **Business context** (industry, audience, goals, brand personality) — **hard**.
+- **Business context** (industry, audience, goals) — **hard**.
 - **Content & assets** (copy, logo, images) — **hard**.
+- **Brand-data** (palette + typography only — the visual givens you maintain) — **hard**. *Brand personality, tone, and motion are **not** provided here; the AI derives them (`03` §3, `04` §2.1).*
 - **≤5 references** (optional) — **soft** direction only. (See `04` for why references are dissolved into direction, never stitched as parts.)
 
 ### 3.3 Orchestrator
@@ -129,7 +131,19 @@ Three stores, two kinds (full detail in `03` and `04`):
 - **Run/Trace Store** — every iteration, score, and decision, for audit and for measuring the hypotheses in `08`.
 
 ### 3.9 Learning Write-back
-Runs after an artifact is approved. Distills it into **de-identified** library entries (the abstracted lesson, never the client's tokens/copy), and **dedups/merges** against existing entries (raise confidence, add a variation, or create new). This is the only writer to the Global Library.
+Runs after an artifact is approved. Distills it into **de-identified** library entries (the abstracted lesson, never the client's tokens/copy), and **dedups/merges** against existing entries (raise confidence, add a variation, or create new). This is the only writer to the Global Library — and it writes **only through the de-identification gate** (§3.10).
+
+### 3.10 Guardrail Layer (the deterministic floor)
+A non-LLM tool that runs the system's **deterministic gates** — the structural solution to the failure classes in [10](./10-failure-modes.md) (full design in [11-guardrails-and-invariants.md](./11-guardrails-and-invariants.md)). It exists because anything *objectively checkable* must be checked by code, not a model:
+- **Input gate** — brief schema, required fields, contradiction/asset checks, content sanitization.
+- **Render-health gate** — only render-valid screenshots reach the Critic (a render bug must never be judged as bad design).
+- **Hard-constraint gate** — a11y/contrast, token-allowlist, responsive overflow, required elements, no placeholders/missing content.
+- **Schema gate** — every machine-read LLM output validates.
+- **De-identification gate** — no client identity may enter the Library.
+
+The **Pass Gate** is composite: a section is approved only when *deterministic checks pass* **and** *the Critic passes*. This shrinks the Critic to its proper job (subjective quality) and moves everything objective to code.
+
+> The component diagram above shows the core loop. For the **gated** loop (where each gate sits), see [11 §2](./11-guardrails-and-invariants.md).
 
 ---
 

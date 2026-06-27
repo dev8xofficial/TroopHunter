@@ -37,9 +37,10 @@ The only added cost vs raw HTML is a **preview harness**: a thin app that mounts
 
 ```
 ade generate \
-  --brief    ./briefs/burkes-hero.json   # required: the brief (schema §3)
-  --section  hero                         # required: section name
-  --out      ./runs/burkes-hero           # required: output dir
+  --brief      ./briefs/burkes-hero.json   # required: business context + content (schema §3)
+  --brand-data ./briefs/burkes-brand.json  # optional: palette + typography (hard tokens; §3)
+  --section    hero                         # required: section name
+  --out        ./runs/burkes-hero           # required: output dir
   --variations 2                          # optional: N candidates per iteration (default 1)
   --max-iters 4                           # optional: loop budget (default 4)
   --threshold 80                          # optional: pass score 0–100 (default 80)
@@ -52,9 +53,11 @@ Exit codes: `0` approved (passed), `2` escalated (budget exhausted, best-so-far 
 
 ---
 
-## 3. Brief input format (`--brief`)
+## 3. Inputs: the brief + brand-data (`--brief`, `--brand-data`)
 
-A single JSON file. This is the **hard** input the section must serve.
+Two small JSON files. The human provides only **facts and constraints**; strategic brand cues (personality, tone, motion) are **AI-derived**, never hand-specified.
+
+**`--brief`** — business context + this section's content. The **hard** input the section must serve:
 
 ```json
 {
@@ -62,9 +65,7 @@ A single JSON file. This is the **hard** input the section must serve.
   "industry": "Real estate & mortgage",
   "location": "The Woodlands, TX",
   "audience": "home buyers, sellers, investors",
-  "personality": ["trust", "legacy", "reliable", "modern"],
   "goal": "lead generation via confidence, not urgency",
-  "feel": ["warm", "editorial", "spacious"],
   "section": {
     "name": "hero",
     "content": {
@@ -78,7 +79,24 @@ A single JSON file. This is the **hard** input the section must serve.
 }
 ```
 
-> In the MVP, brand-like cues (`personality`, `feel`) live **in the brief** because there is no Brand store yet. When the Brand Foundation is built (later phase), those move there and become a separate hard input.
+**`--brand-data`** — the **only** visual essentials you supply: palette + typography ([03 §3.1](./03-data-model.md)). The MVP uses these as fixed **hard** tokens (enforced by the color allowlist, §4); it does **not** yet derive a full Brand Foundation around them — that's the brand phase.
+
+```json
+{
+  "client_id": "burkes",
+  "palette": [
+    { "role": "background", "value": "#F7F5F1" },
+    { "role": "ink",        "value": "#1C1A17" },
+    { "role": "accent",     "value": "#8A6A3B" }
+  ],
+  "typography": [
+    { "role": "display", "family": "Canela", "fallback": "Georgia, serif" },
+    { "role": "ui",      "family": "Inter",  "fallback": "system-ui" }
+  ]
+}
+```
+
+> **Why no `personality`/`feel` field?** Those are *strategic interpretation*, not facts you own — so the system **derives** them (full system: from business context + brand-data; MVP: the Generator infers them per-section). Specifying them by hand would anchor the AI's strategy, the opposite of Goal B. The only brand constraints you supply are the palette + typography in `--brand-data`. (Rationale: [04 §2.1](./04-memory-and-consistency.md).)
 
 ---
 
@@ -117,12 +135,14 @@ sequenceDiagram
     O-->>CLI: exit 2 (escalated)
 ```
 
-Iteration detail:
-1. **Generate** — call the model with the Generator prompt (`05` §6.1, reduced: no brand/system inputs). With `--variations N`, request N candidates (separate calls or one call returning N).
-2. **Render** — write each candidate's `Section.tsx` into the **preview harness**, (re)start/refresh its dev server (Vite/Next); Playwright loads the harness URL, sets viewport to each breakpoint, screenshots full page.
-3. **Critique** — call the model with the Critic prompt (`05` §6.2) in a **fresh** context, passing the screenshots (vision) + the brief. Get structured scores + ranking + feedback.
-4. **Decide** — if best ≥ `--threshold`, finish; else carry the best candidate + feedback into the next iteration.
-5. **Trace** — append the full iteration record (`03` §6) to `trace.json`.
+Iteration detail (gates from [11](./11-guardrails-and-invariants.md) are part of the MVP):
+1. **Generate** — Generator prompt (`05` §6.1, reduced: **brand-data** palette+type as hard tokens; no full design system; personality/tone inferred per-section). With `--variations N`, request N candidates.
+2. **Render** — write each candidate's `Section.tsx` into the **preview harness**, refresh the Vite dev server; Playwright loads the harness URL and screenshots each breakpoint.
+3. **Render-health gate** (deterministic) — type-check/build clean, non-blank DOM, no error overlay, fonts/images loaded, layout settled. Invalid → bounded **repair** path (fix the code), **not** critique — a render bug is never judged as design (I11).
+4. **Hard-constraint gate** (deterministic) — a11y/contrast audit (axe-core), responsive-overflow, content-present / no-placeholder, and — when `--brand-data` is supplied — a **color allowlist** (only the provided palette may appear; off-palette hex fails). Violations are fed back as **hard** feedback. *(The full token-allowlist for spacing/radii/etc. is still skipped — no design system yet.)*
+5. **Critique** — Critic prompt (`05` §6.2) in a **fresh** context (I2), screenshots + brief → structured scores + ranking + feedback (validated by the **Schema gate**).
+6. **Decide — Pass Gate** = hard-gate pass **AND** Critic ≥ `--threshold`. Update **best-so-far** (never replace with worse, I4). If not passed and budget remains, carry violations + critique forward; else escalate with best-so-far.
+7. **Trace** — append the iteration record (`03` §6) to `trace.json` **immediately** (durable, atomic).
 
 ---
 
@@ -159,16 +179,17 @@ src/
 ├── generator.ts      # generate(bundle, feedback?) → candidate Section.tsx (Anthropic SDK)
 ├── critic.ts         # critique(shots, brief) → scores+ranking+feedback   (Anthropic SDK, vision)
 ├── eyes.ts           # mount .tsx in harness → render → screenshots        (Playwright)
+├── guardrails.ts     # deterministic gates: render-health, a11y, content, schema (11)
 ├── prompts.ts        # generator/critic prompt builders (05 §6)
 ├── schema.ts         # Brief, RunRecord, DimensionScores (03)
-└── trace.ts          # append/read trace.json
+└── trace.ts          # append/read trace.json (immediate, atomic)
 harness/              # thin Vite + React app: mounts the candidate Section.tsx at a route
 ├── index.html        # harness shell (not the design output — just the preview host)
 ├── src/main.tsx      # imports the candidate component + renders it
 └── vite.config.ts
 ```
 
-Dependencies to add (build phase, not now): `@anthropic-ai/sdk`, `playwright`, a small arg parser, plus the harness stack — `react`, `react-dom`, `vite`, `@vitejs/plugin-react`, `tailwindcss`, `typescript`. Node + TS. `ANTHROPIC_API_KEY` from env. (Swap the Vite harness for a minimal Next.js app when you want production parity — the generated component is unchanged.)
+Dependencies to add (build phase, not now): `@anthropic-ai/sdk`, `playwright`, `@axe-core/playwright` (deterministic a11y gate), a small arg parser, plus the harness stack — `react`, `react-dom`, `vite`, `@vitejs/plugin-react`, `tailwindcss`, `typescript`. Node + TS. `ANTHROPIC_API_KEY` from env. (Swap the Vite harness for a minimal Next.js app when you want production parity — the generated component is unchanged.)
 
 ---
 
@@ -193,6 +214,7 @@ The MVP is complete when, for the Burkes hero brief (no reference):
 2. The loop **demonstrably edits in response to critique** (iteration N+1 addresses iteration N's feedback) — visible in `iterations/`.
 3. Across a handful of briefs, scores **trend upward** across iterations more often than not (the H1 signal; see `08`).
 4. A human, shown the final output, judges it "good or close" for the brief on a meaningful fraction of runs (the H2 smell-test).
+5. **The guardrails work:** an injected render bug is caught by the **render-health gate** and routed to repair (never scored as bad design), and an a11y/contrast failure **cannot** pass the Pass Gate. This proves the deterministic floor protects the H1 measurement.
 
 These criteria are deliberately about **the loop working**, not about perfect design — the MVP proves the mechanism; quality is raised later by Memory and a calibrated Critic.
 

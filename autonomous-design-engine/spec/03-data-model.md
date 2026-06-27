@@ -8,6 +8,8 @@
 
 ```mermaid
 erDiagram
+    CLIENT ||--|| BRAND_DATA : "provides (palette+type)"
+    BRAND_DATA ||--|| BRAND_FOUNDATION : "seeds derivation"
     CLIENT ||--|| BRAND_FOUNDATION : "has one"
     BRAND_FOUNDATION ||--o{ PROJECT_DESIGN_SYSTEM : "parents (per surface)"
     PROJECT_DESIGN_SYSTEM ||--o{ ARTIFACT : "governs"
@@ -16,6 +18,11 @@ erDiagram
     ARTIFACT ||--o{ LIBRARY_ENTRY : "distilled into (de-identified)"
     LIBRARY_ENTRY }o--|| LIBRARY_ENTRY : "merges/dedups"
 
+    BRAND_DATA {
+        string client_id
+        string palette "provided"
+        string typography "provided"
+    }
     BRAND_FOUNDATION {
         string client_id
         string status "draft|approved|frozen"
@@ -144,28 +151,56 @@ PAYLOAD (metadata)   construction · rationale · pairs_with · avoid · recipe_
 
 ---
 
-## 3. Brand Foundation (hard, per client, frozen once)
+## 3. Brand Foundation (hard, per client) — provided givens + AI-derived strategy
 
-The identity that applies to **everything** a client ships (website, product, email…). Approved by a human once, then frozen.
+The identity that applies to **everything** a client ships (website, product, email…). It is built in **dependency order**: the human provides only the **essential visual givens** (colors + typography) in a small `BrandData` file; the AI **derives** the rest of the foundation (personality reading, tone, motion voice, color-usage rules) from those givens **plus** the business context; a human **approves** the derived result. Approved once, then frozen.
+
+> **Why this split.** The givens are *facts the client owns and maintains*; everything else is *strategic interpretation*. Providing only the givens keeps the AI's strategy un-anchored (objective), and — because every derived element is computed *from* the givens — there is no derived decision the human overrides after the fact, so the foundation never goes stale. If a given changes, the dependent derived elements are **re-derived** (a new `version`), never hand-patched. (Establishment flow: `06` §2; principle: `04` §2.1.)
+
+### 3.1 BrandData — the provided input (palette + typography ONLY)
+
+A tiny human-authored file: the only brand constraints you supply. Nothing strategic lives here.
+
+```ts
+interface BrandData {                 // the human-provided givens — one small file per client
+  client_id: string;
+  palette: { role: string; value: string }[];                 // exact brand colors + roles
+  typography: { role: "display"|"ui"|"mono"; family: string; fallback: string }[];
+  logo_ref?: string;                  // asset pointer, if the client maintains one
+}
+```
+
+### 3.2 BrandFoundation — the derived, approved identity
 
 ```ts
 interface BrandFoundation {
   client_id: string;
+  version: number;                    // append-only; bumped on approval OR re-derivation (I5)
   status: "draft" | "approved" | "frozen";
   identity: {
-    palette: { role: string; value: string; usage: string }[]; // brand colors + roles
-    typography: { role: "display"|"ui"|"mono"; family: string; fallback: string }[];
-    motion_voice: string;        // "restrained, cinematic, no bounce"
-    personality: string[];       // ["trust","legacy","reliable","modern"]
-    tone: string;                // brand voice for copy
-    logo_ref: string;            // asset pointer
+    palette: { role: string; value: string; usage: string }[]; // FROM BrandData (+ AI-assigned usage)
+    typography: { role: "display"|"ui"|"mono"; family: string; fallback: string }[]; // FROM BrandData
+    motion_voice: string;        // DERIVED — "restrained, cinematic, no bounce"
+    personality: string[];       // DERIVED from business context — ["trust","legacy","reliable","modern"]
+    tone: string;                // DERIVED — brand voice for copy
+    logo_ref: string;            // FROM BrandData
+  };
+  provenance: {                       // per-element source — drives correct re-derivation
+    palette: "provided";
+    typography: "provided";
+    motion_voice: "derived" | "provided";   // "provided" only if a client overrides the default
+    personality: "derived" | "provided";
+    tone: "derived" | "provided";
+    derived_from?: string;            // what the derivation consumed, e.g. "brand-data v1 + brief"
   };
   approved_by: string;
   approved_at: string;
 }
 ```
 
-**Burkes instance:** warm-neutral near-zero-chroma palette; humanist display family + clean UI family; restrained cinematic motion; personality `[trust, legacy, reliable, modern]`. Reused unchanged when the Burkes **product** is built later.
+**Provided vs derived.** `palette`, `typography`, `logo_ref` come **verbatim** from `BrandData` (the AI only *assigns usage roles* to the palette). `motion_voice`, `personality`, `tone` are **derived** by the AI from the givens + business context, then human-approved. A client may *optionally* override a derived element (its `provenance` then flips to `"provided"`), but the default is full derivation so the AI's strategy stays objective. Disagreement with a derived element is resolved by **re-derivation** (enrich an input, bump `version`), never by hand-editing a derived field.
+
+**Burkes instance:** the human provides a warm-neutral near-zero-chroma palette + a humanist display family / clean UI family (the `BrandData`); the AI **derives** personality `[trust, legacy, reliable, modern]`, an "assured, editorial, never urgent" tone, and a restrained cinematic motion voice from that data + the real-estate business context; a human approves; it freezes. The same frozen foundation is reused when the Burkes **product** is built later.
 
 ---
 
@@ -178,6 +213,7 @@ Concrete, binding tokens + component recipes for **one surface** (this website; 
 ```ts
 interface ProjectDesignSystem {
   client_id: string;
+  version: number;                       // append-only; bumped on crystallization & each component add (I5)
   surface: "website" | "product";
   status: "open" | "foundation-frozen"; // open before section 1; tokens locked after,
                                          // component layer keeps growing
@@ -310,3 +346,15 @@ classDiagram
 | Run/Trace Record | local JSON `./projects/<client>/trace/` | runs DB |
 
 The MVP (`07`) persists only **Artifact/Section** and **Run/Trace** — enough to prove the loop and measure H1.
+
+### 8.1 Integrity & concurrency requirements (all stores)
+
+These are mandatory storage rules — the solution to the storage/consistency failure class (full design in [11 §5](./11-guardrails-and-invariants.md)). They apply whatever the backend (files now, DB later):
+
+- **Atomic writes** — temp-file + atomic rename; a crash never leaves a partial/corrupt file (F-STO-01).
+- **Append-only versioning** for the **hard stores** (Brand, Project Design System) — every change is a new immutable `version` with provenance; reads are snapshot-consistent (F-STO-02, F-BRD-02). Hard stores change **only** by deliberate events: Brand by human approval, Design System by crystallization / component-add — never as a side effect of generation.
+- **Per-client concurrency control** — a lock or optimistic version precondition so concurrent runs cannot clobber a client's Brand/System/Library (F-STO-03).
+- **Durable trace** — each `RunRecord` is appended **immediately** (not at run end), atomically — the measurement substrate survives a crash (F-STO-04).
+- **Referential integrity** — soft-delete/archive over hard-delete; an integrity scan detects dangling artifact→system / entry→provenance links (F-STO-05).
+- **Schema-validate on read** — incompatible/corrupt data is caught at load, never propagated.
+- **Embedding-model id stored with each vector** — re-embed the whole Library on a model change (F-MEM-03).

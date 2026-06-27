@@ -40,31 +40,41 @@ sequenceDiagram
     participant R as Retriever
     participant G as Generator (LLM)
     participant E as Eyes (browser)
+    participant V as Guardrail (deterministic)
     participant C as Critic (LLM, fresh ctx)
     participant T as Trace store
 
+    O->>V: input gate (brief schema · assets · contradictions)
     O->>R: query Library with brief
     R-->>O: top-k soft entries
     O->>O: assemble input bundle (soft+hard+ctx)
 
-    loop until pass OR budget exhausted
+    loop until Pass Gate OR budget exhausted
         O->>G: generate N candidate(s) from bundle (+ last feedback)
         G-->>O: candidate code [1..N]
-        par render each candidate
+        par each candidate
             O->>E: render + screenshot @1440/768/375
             E-->>O: screenshots
+            O->>V: render-health gate
+            alt render invalid
+                V-->>O: render bug → bounded repair path, skip critique
+            else render valid
+                O->>V: hard-constraint gate (a11y · token-allowlist · responsive · content)
+                V-->>O: pass / specific violations
+            end
         end
-        O->>C: score each + rank pairwise vs bundle
+        O->>C: score + rank pairwise (render-valid candidates only)
         C-->>O: scores + ordering + targeted feedback
-        O->>T: record iteration (inputs, shots, scores, verdict)
-        alt best candidate passes threshold
+        O->>O: update best-so-far (never replace with worse)
+        O->>T: record iteration (inputs, shots, det-results, scores, verdict)
+        alt Pass Gate: hard checks pass AND Critic pass
             O->>O: select best → exit loop
         else fail
-            O->>O: keep best; feed feedback into next iteration
+            O->>O: feed violations + critique into next iteration
         end
     end
 
-    O-->>O: approved section (or escalate to human if budget exhausted)
+    O-->>O: approved · or escalate with best-so-far · or abort on unrepairable render
 ```
 
 Notes:
@@ -79,14 +89,19 @@ Notes:
 ```mermaid
 stateDiagram-v2
     [*] --> Assembling
-    Assembling --> Generating: bundle ready
+    Assembling --> Generating: bundle ready (input gate passed)
     Generating --> Rendering: candidate(s) produced
-    Rendering --> Critiquing: screenshots captured
-    Critiquing --> Selecting: scored + ranked
-    Selecting --> Passed: best ≥ threshold
-    Selecting --> Generating: fail & budget remaining (feedback fed back)
-    Selecting --> Escalated: fail & budget exhausted
-    Critiquing --> Aborted: unrepairable hard-constraint violation
+    Rendering --> RenderHealth: screenshots captured
+    RenderHealth --> Repairing: render invalid
+    Repairing --> Generating: fix render (bounded)
+    Repairing --> Aborted: unrepairable after K tries
+    RenderHealth --> HardChecks: render valid
+    HardChecks --> Generating: hard violation & budget remaining (fed back)
+    HardChecks --> Critiquing: hard checks pass
+    Critiquing --> Selecting: scored + ranked (best-so-far updated)
+    Selecting --> Passed: Pass Gate (deterministic AND Critic)
+    Selecting --> Generating: fail & budget remaining
+    Selecting --> Escalated: budget exhausted (returns best-so-far)
     Passed --> Crystallizing: section 1 only
     Passed --> Approved: section ≥ 2
     Crystallizing --> Approved
@@ -111,6 +126,7 @@ The Critic scores the rendered section on four weighted dimensions. The weights 
 | **Craft** | hierarchy, rhythm, restraint, polish, responsiveness | 25% | 35% |
 
 Rules:
+- **Deterministic floor first (composite Pass Gate).** The *objective* parts of brand/system adherence (token-allowlist) and the entire quality floor (a11y/contrast, responsive overflow, content presence, no placeholders) are checked by the **Guardrail Layer** ([11](./11-guardrails-and-invariants.md)) **before** the Critic — not by the Critic. A Critic "pass" can never override a deterministic failure: `approved ⇔ deterministic checks pass AND Critic passes`. This shrinks the rubric below to the *subjective* remainder.
 - **Pairwise over absolute.** When ranking candidates, the Critic compares them head-to-head ("A or B, and why") — far more reliable than absolute 0–100 scores. Absolute scores are still recorded for trend tracking.
 - **Feedback must be actionable.** Each fail returns specific, addressable notes ("the CTA competes with the headline; the photo is cropped too tight at 375") — not "make it better."
 - **The Critic is a proxy, not an oracle.** It is the system's weakest link; it is calibrated over time by human verdicts (see `08` H3/H8). Until then, a human spot-checks Critic "passes."
@@ -121,12 +137,13 @@ Rules:
 
 | Condition | Action |
 |---|---|
-| Best candidate ≥ pass threshold | exit → Approved |
-| `iterations == max_iterations` (default 4) | exit → Escalated (human reviews best-so-far) |
-| Hard-constraint violation the Generator cannot repair across K tries | Aborted + recorded |
-| Wall-clock / token budget per section exceeded | Escalated |
+| **Pass Gate met** — deterministic hard checks pass **and** Critic ≥ threshold | exit → Approved |
+| Render invalid and unrepairable across K tries | Aborted + recorded |
+| Hard-constraint violation unresolved within budget | Escalated (returns best-so-far) |
+| `iterations == max_iterations` (default 4) | Escalated (human reviews best-so-far) |
+| Wall-clock / token budget per section exceeded | Escalated (returns best-so-far) |
 
-Budgets are configurable. The point is **bounded** autonomy: the loop never spins forever and always ends in a recorded, inspectable state.
+Budgets are configurable. The point is **bounded** autonomy: the loop never spins forever and always ends in a recorded, inspectable state. **Best-so-far is retained throughout** — an Escalated run still returns the best candidate seen, never nothing and never a regression (invariant I4, [11 §7](./11-guardrails-and-invariants.md)).
 
 ---
 

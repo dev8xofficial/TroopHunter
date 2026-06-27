@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Run output (gitignored - per-run artifacts)
+runs/
+
+# Environment
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Harness candidate (overwritten per iteration)
+harness/src/candidate/Section.tsx
+!harness/src/candidate/.gitkeep
+
+# Verdicts
+verdicts.jsonl

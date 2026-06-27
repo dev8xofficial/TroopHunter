@@ -1,0 +1,388 @@
+PHASE 2C — LEARNING ROADMAP
+This roadmap is constructed exclusively from the hierarchical relationships and prerequisites identified in the previous phases of this conversation.
+Stage 1 — AI Foundations
+1. Artificial Intelligence
+Learn After: Not Specified (Entry Point)
+Learn Before: Augmented Intelligence, Digital Transformation, Machine Learning, Generative AI
+Required Prerequisites: Not Specified
+Unlocks: All downstream AI categories
+2. Augmented Intelligence
+Learn After: Artificial Intelligence
+Learn Before: Not Specified
+Required Prerequisites: Artificial Intelligence
+Unlocks: Not Specified
+3. Digital Transformation
+Learn After: Artificial Intelligence
+Learn Before: Not Specified
+Required Prerequisites: Artificial Intelligence
+Unlocks: Not Specified
+Stage 1 Milestones:
+Skills gained: Distinguishing between different high-level AI paradigms.
+Concepts mastered: Artificial Intelligence, Augmented Intelligence, Digital Transformation.
+What the learner can now build: High-level AI adoption strategies for enterprises.
+Readiness for the next stage: Clear understanding of the distinction between general automation and intelligent systems.
+Stage 2 — Machine Learning
+4. Machine Learning
+Learn After: Artificial Intelligence
+Learn Before: Supervised Learning, Unsupervised Learning, Neural Networks
+Required Prerequisites: Artificial Intelligence
+Unlocks: Predictive AI, Supervised Learning, Statistical Analysis
+5. Supervised Learning
+Learn After: Machine Learning
+Learn Before: Not Specified
+Required Prerequisites: Machine Learning
+Unlocks: Not Specified
+6. Unsupervised Learning
+Learn After: Machine Learning
+Learn Before: Not Specified
+Required Prerequisites: Machine Learning
+Unlocks: Not Specified
+7. Predictive AI
+Learn After: Machine Learning
+Learn Before: Not Specified
+Required Prerequisites: Machine Learning
+Unlocks: Not Specified
+8. Statistical Analysis (Group)
+Concepts: Confusion Matrix, Time Series Analysis, Monte Carlo Simulation
+Learn After: Machine Learning
+Learn Before: Not Specified
+Required Prerequisites: Machine Learning
+Unlocks: Performance evaluation skills
+Stage 2 Milestones:
+Skills gained: Ability to categorize data problems into supervised or unsupervised tasks; forecasting.
+Concepts mastered: Machine Learning, Supervised Learning, Unsupervised Learning, Predictive AI, Statistical Analysis.
+What the learner can now build: Basic predictive models and performance evaluation tables (Confusion Matrix).
+Readiness for the next stage: Foundational knowledge of how models learn from data.
+Stage 3 — Deep Learning (Neural Networks & Optimization)
+9. Neural Networks
+Learn After: Machine Learning
+Learn Before: CNN, RNN, Transformers, Back Propagation
+Required Prerequisites: Machine Learning
+Unlocks: Deep Learning architectures, Optimization methods
+10. Training & Optimization (Group)
+Concepts: Back Propagation, Gradient Descent, Overfitting, Underfitting, Scaling Laws, Pre-training, Model Distillation, Test Time Compute
+Learn After: Neural Networks
+Learn Before: Transformers, LLMs
+Required Prerequisites: Neural Networks
+Unlocks: Efficient model training and fine-tuning
+11. Specialized Architectures (Group)
+Concepts: CNN, RNN, LSTM, GNN, GANs, Autoencoders, RBM, KAN, NeuroSymbolic AI
+Learn After: Neural Networks
+Learn Before: Generative AI
+Required Prerequisites: Neural Networks
+Unlocks: Specific applications in vision, sequences, and graph data
+12. Transformers
+Learn After: Neural Networks, Training & Optimization
+Learn Before: Generative AI, Large Language Models
+Required Prerequisites: Neural Networks
+Unlocks: Generative AI, LLMs
+Stage 3 Milestones:
+Skills gained: Understanding of complex network layers and mathematical optimization of weights.
+Concepts mastered: Neural Networks, Back Propagation, Gradient Descent, CNN, RNN, Transformers.
+What the learner can now build: Image classifiers (CNN), sequence predictors (RNN/LSTM), and foundational deep learning models.
+Readiness for the next stage: Technical understanding of the Transformer architecture, the engine of modern Generative AI.
+Stage 4 — Generative AI
+13. Generative AI
+Learn After: Transformers
+Learn Before: Foundation Models, Multimodal AI, Large Language Models
+Required Prerequisites: Machine Learning, Transformers
+Unlocks: LLMs, AI Agents
+14. Foundation Models (FM)
+Learn After: Generative AI
+Learn Before: Large Language Models
+Required Prerequisites: Generative AI
+Unlocks: Model adaptation and downstream task specialization
+15. Multimodal AI
+Learn After: Generative AI
+Learn Before: VLM, SAM 2
+Required Prerequisites: Generative AI
+Unlocks: Cross-media processing (text, image, video)
+Stage 4 Milestones:
+Skills gained: Understanding the shift from predictive to creative/generative outputs.
+Concepts mastered: Generative AI, Foundation Models, Multimodal AI.
+What the learner can now build: Strategic frameworks for using base foundation models in a business context.
+Readiness for the next stage: Deep dive into the most prominent form of Generative AI: Large Language Models.
+Stage 5 — Large Language Models
+16. Large Language Models (LLMs)
+Learn After: Generative AI, Foundation Models
+Learn Before: RAG, AI Agents, Prompt Engineering, Prompt Tuning
+Required Prerequisites: Generative AI, Transformers
+Unlocks: RAG systems, AI Agents, Prompting techniques
+17. LLM Variants (Group)
+Concepts: SLM (Small Language Models), LRM (Large Reasoning Models), VLM (Vision Language Models)
+Learn After: LLMs
+Learn Before: Not Specified
+Required Prerequisites: LLMs
+Unlocks: Task-specific model selection (efficiency vs. reasoning)
+18. Context & Performance (Group)
+Concepts: Context Management (Long Context, Prompt Caching), LLM Compression, Prompt Tuning, Tokenmaxxing
+Learn After: LLMs
+Learn Before: RAG
+Required Prerequisites: LLMs
+Unlocks: Model optimization for latency and cost
+19. LLM Risks (Group)
+Concepts: Hallucination, LLM Risks, Bias
+Learn After: LLMs
+Learn Before: AI Ethics, AI Security
+Required Prerequisites: LLMs
+Unlocks: Safety and reliability engineering
+20. Specific Model Families (Group)
+Concepts: IBM Granite, Claude, Llama, OpenAI (o1, etc.), Mistral, DeepSeek, Gemini, SAM 2, Reflection 70B, Qwen3
+Learn After: LLMs, Foundation Models
+Learn Before: Not Specified
+Required Prerequisites: Foundation Models
+Unlocks: Practical application development using state-of-the-art models
+Stage 5 Milestones:
+Skills gained: Selecting the right model size/type; identifying and mitigating hallucinations.
+Concepts mastered: LLMs, SLMs, Prompt Tuning, Hallucination, Context Windows.
+What the learner can now build: Basic chatbots and text-generation applications using various model APIs.
+Readiness for the next stage: Grounding these models in real-world data using RAG.
+Stage 6 — Retrieval-Augmented Generation (RAG)
+Continue? (Type "Continue" to proceed to Stages 6-11).
+Continue to Stage 6 - Retrieval-Augmented Generation
+How do I transition from LLMs to RAG and Agents?
+What build projects are unlocked after completing Stage 5?
+Continue
+
+PHASE 2C — LEARNING ROADMAP (Continued)
+Stage 6 — Retrieval-Augmented Generation (RAG)
+21. RAG (Retrieval Augmented Generation)
+Learn After: Large Language Models (LLMs)
+.
+Learn Before: OpenRAG, Hybrid RAG, GraphRAG, Multimodal RAG
+.
+Required Prerequisites: Large Language Models (LLMs)
+.
+Unlocks: Grounded AI systems and advanced AI Agent architectures
+.
+22. RAG Architectures & Strategies (Group)
+Concepts: OpenRAG, Hybrid RAG, GraphRAG, Multimodal RAG, CAG (Cache-Augmented Generation), Sparse Retrieval, Dense Retrieval
+.
+Learn After: RAG
+.
+Learn Before: Not Specified.
+Required Prerequisites: RAG
+.
+Unlocks: Specialized retrieval for diverse data types (graph, multimodal).
+23. Retrieval Infrastructure (Group)
+Concepts: Vector Databases, Knowledge Graph, Context Engineering
+.
+Learn After: RAG
+.
+Learn Before: AI Agents
+.
+Required Prerequisites: RAG
+.
+Unlocks: Scalable external memory for LLMs
+.
+Stage 6 Milestones:
+Skills gained: Connecting LLMs to external data sources; optimizing retrieval accuracy through hybrid and semantic strategies
+.
+Concepts mastered: RAG, Vector Databases, Sparse/Dense Retrieval, Context Engineering
+.
+What the learner can now build: AI systems that answer questions based on private company documents or real-time data
+.
+Readiness for the next stage: Transitioning from passive information retrieval to autonomous agentic action.
+Stage 7 — AI Agents
+24. AI Agents & Agentic AI
+Learn After: Large Language Models (LLMs), RAG
+.
+Learn Before: Multi Agent Systems, Agent Protocols
+.
+Required Prerequisites: Large Language Models (LLMs), RAG
+.
+Unlocks: Autonomous goal-oriented workflows
+.
+25. Agent Patterns & Roles (Group)
+Concepts: AI Assistants (Virtual Agents), Orchestrator Agents, Research Agents, Decision Agents, Search Agents, Codex Agents, Human-in-the-Loop (HITL)
+.
+Learn After: AI Agents
+.
+Learn Before: Multi Agent Systems (MAS)
+.
+Required Prerequisites: AI Agents
+.
+Unlocks: Complex collaborative AI ecosystems
+.
+26. Agent Operations & Memory (Group)
+Concepts: AI Agent Identity, AI Agent Memory (Short-term/Long-term), Agentic Storage, Tool Calling, Delegation, Agent Control Planes
+.
+Learn After: AI Agents
+.
+Learn Before: Not Specified.
+Required Prerequisites: AI Agents
+.
+Unlocks: Persistent and stateful autonomous systems
+.
+27. Agent Communication Protocols (Group)
+Concepts: MCP (Model Context Protocol), A2A (Agent2Agent Protocol), gRPC
+.
+Learn After: AI Agents
+.
+Learn Before: Not Specified.
+Required Prerequisites: AI Agents
+.
+Unlocks: Interoperability between different AI models and external tools
+.
+Stage 7 Milestones:
+Skills gained: Designing autonomous agents that can use tools, remember past interactions, and work in teams
+.
+Concepts mastered: Agentic AI, Multi Agent Systems, MCP, Tool Calling, HITL
+.
+What the learner can now build: An autonomous research agent or a multi-agent system that coordinates complex software development tasks
+.
+Readiness for the next stage: Preparing to deploy and scale these agents in production environments.
+Stage 8 — MLOps & Infrastructure
+28. MLOps (Machine Learning Operations)
+Learn After: Machine Learning, Training & Optimization
+.
+Learn Before: LLM-D
+.
+Required Prerequisites: Machine Learning
+.
+Unlocks: Reliable and scalable model deployment
+.
+29. AI Infrastructure (Group)
+Concepts: Hybrid Cloud, Kubernetes (K8s), AI Stack, LLM-D
+.
+Learn After: MLOps, LLMs
+.
+Learn Before: Not Specified.
+Required Prerequisites: MLOps, Large Language Models (LLMs)
+.
+Unlocks: Enterprise-grade AI deployment environments
+.
+30. Specialized Infrastructure (Group)
+Concepts: Mainframe Modernization, Quantum Computing, AI Technical Debt
+.
+Learn After: AI Foundations, MLOps
+.
+Learn Before: Not Specified.
+Required Prerequisites: Not Specified.
+Unlocks: Integrating AI with legacy systems and future computing paradigms
+.
+Stage 8 Milestones:
+Skills gained: Managing the lifecycle of models; deploying models using containers and cloud-native frameworks
+.
+Concepts mastered: MLOps, Kubernetes, Hybrid Cloud, AI Stack
+.
+What the learner can now build: A production-ready environment for hosting LLMs and RAG systems at scale
+.
+Readiness for the next stage: Moving from deployment to securing the AI system against attacks.
+Stage 9 — AI Security
+31. AI Security Foundations (Group)
+Concepts: Zero Trust, Agentic Trust, OWASP Top 10 for LLMs
+.
+Learn After: Large Language Models (LLMs), AI Agents
+.
+Learn Before: Defensive strategies
+.
+Required Prerequisites: Large Language Models (LLMs), AI Agents
+.
+Unlocks: Secure AI architecture design
+.
+32. Threats & Vulnerabilities (Group)
+Concepts: Prompt Injection, LLMJacking, Zero-Click Attacks, Privilege Escalation, Shadow AI, Hypnotized AI, Corpus Poisoning, TTP Risks, Ransomware, Deepfakes, S.A.T.A.N, OpenClaw Security Risks
+.
+Learn After: AI Security Foundations
+.
+Learn Before: Defensive strategies
+.
+Required Prerequisites: AI Security Foundations
+.
+Unlocks: Threat modeling for AI systems
+.
+33. Defense & Security Engineering (Group)
+Concepts: Code Risk Intelligence, Encrypted AI Agents, Constitutional Classifiers, Constitutional AI
+.
+Learn After: Threats & Vulnerabilities
+.
+Learn Before: Not Specified.
+Required Prerequisites: AI Security Foundations
+.
+Unlocks: Hardened and self-regulating AI systems
+.
+Stage 9 Milestones:
+Skills gained: Identifying AI-specific attack vectors; implementing zero-trust principles for agentic systems
+.
+Concepts mastered: Prompt Injection, Zero Trust, Shadow AI, OWASP Top 10
+.
+What the learner can now build: Security-hardened AI applications with automated monitoring for prompt injection
+.
+Readiness for the next stage: Ensuring the system is not only secure but also ethical and compliant.
+Stage 10 — Governance & Ethics
+34. AI Ethics & Governance (Group)
+Concepts: AI Ethics, Responsible AI, Trust & Transparency, AI Regulations
+.
+Learn After: Artificial Intelligence
+.
+Learn Before: Not Specified.
+Required Prerequisites: Artificial Intelligence
+.
+Unlocks: Socially responsible and legally compliant AI
+.
+35. Explainable & Reliable AI (Group)
+Concepts: Explainable AI (XAI), Trustworthy AI Agents, Machine Unlearning
+.
+Learn After: AI Ethics & Governance
+.
+Learn Before: Not Specified.
+Required Prerequisites: AI Ethics & Governance
+.
+Unlocks: Systems that provide transparent reasoning for their decisions
+.
+36. Operational Sustainability & Legal (Group)
+Concepts: Energy Consumption, IP (Intellectual Property)
+.
+Learn After: AI Ethics & Governance
+.
+Learn Before: Not Specified.
+Required Prerequisites: Not Specified.
+Unlocks: Environmentally and legally sound long-term AI strategy
+.
+Stage 10 Milestones:
+Skills gained: Implementing ethical frameworks; navigating global AI regulations; auditability of AI decisions
+.
+Concepts mastered: AI Ethics, Responsible AI, XAI, Trust & Transparency
+.
+What the learner can now build: An AI governance framework for an organization, including bias detection and energy monitoring
+.
+Readiness for the next stage: Comprehensive mastery allows for advanced implementation and business-specific application.
+Stage 11 — Advanced Topics & Implementation
+37. Development Frameworks & Libraries (Group)
+Concepts: LangChain, LangGraph, BeeAI Framework, InstructLab, Llama Stack, ADK, PyTorch, Python SDK, Langflow
+.
+Learn After: Stage 5 (LLMs), Stage 6 (RAG), Stage 7 (Agents)
+.
+Learn Before: Business Applications.
+Required Prerequisites: LLMs, RAG, AI Agents
+.
+Unlocks: Rapid prototyping and deployment of complex AI solutions
+.
+38. Professional Tools & AI Coding (Group)
+Concepts: Ollama, Docling, NotebookLM, IBM Bob, Terraform, Cursor, character.ai, friend.com, Perplexity, AI Pair Programming, Agentic Coding, Spec-Driven Development (SDD), Vibe Coding, Shift Left, Text-to-SQL, CLI
+.
+Learn After: Stage 7 (Agents), Stage 11 (Frameworks)
+.
+Learn Before: Business Applications.
+Required Prerequisites: AI Agents
+.
+Unlocks: High-velocity software engineering and research
+.
+39. Business Applications (Group)
+Concepts: Customer Service, Marketing AI, Talent Management, Supply Chain, Finance, IT Operations (AIOps), Observability, Lead Generation, Decision Intelligence, ROI, Healthcare, Real Estate, Entertainment, Sports
+.
+Learn After: Stages 1–10.
+Learn Before: Not Specified (Final Integration).
+Required Prerequisites: AI Foundations, Generative AI
+.
+Unlocks: Direct business value and industry-specific transformation
+.
+Stage 11 Milestones:
+Skills gained: Master-level application of all previous concepts to solve real-world problems and optimize development workflows
+.
+Concepts mastered: LangGraph, BeeAI, Vibe Coding, Agentic Coding, Business-specific AI ROI
+.
+What the learner can now build: Complete, production-grade agentic systems tailored for specific industries such as healthcare stroke prevention or financial lead generation
+.
+Readiness for the next stage: Completion of the Roadmap. Master Knowledge Architect status achieved.

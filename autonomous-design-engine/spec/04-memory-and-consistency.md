@@ -44,6 +44,27 @@ flowchart TB
 
 > **Lock the primitives, free the composition.** Color, type, spacing, motion, component styles are locked; layout and section structure are free. *Atoms fixed, arrangements free* — consistent without being monotonous.
 
+### 2.1 The Brand Foundation itself: provided givens → derived strategy
+
+The hierarchy above *starts* at the Brand Foundation — but **how is the brand itself decided?** By the same **fix-then-derive** discipline that crystallization (§3) uses one level down. The human provides only the **givens they own** — palette + typography (a small `BrandData` file, `03` §3.1) — and the AI **derives** the rest of the foundation (personality, tone, motion voice, color-usage rules) from those givens plus the business context.
+
+```
+   PROVIDED (givens — facts you own)        DERIVED (AI strategy, grounded in givens + brief)
+   ─────────────────────────────────        ────────────────────────────────────────────────
+   • palette (exact colors + roles)    ──►   • personality reading
+   • typography (typefaces + roles)    ──►   • tone of voice
+   • logo                              ──►   • motion voice
+                                             • color role / usage rules
+                                       (a human APPROVES the derived result, or sends it back)
+```
+
+Two rules make this safe:
+
+- **Derive in dependency order; never patch a derived leaf.** Because every derived element is computed *from* the givens, there is no derived decision a human overrides after the fact — which is exactly what would otherwise leave the motion/tone rationale **stale** when colors change. Disagree with a derived element? Change an input (enrich the brief, or adjust a given) and **re-derive** — a new `version` (`03` §3.2), not a hand-edit.
+- **Minimal givens keep the strategy objective.** Every adjective a human supplies anchors the AI's search. Providing only the visual essentials lets its brand strategy stay un-anchored; the human still holds a **veto** (approval), just not the pen. This is the Goal-B autonomy principle applied to the brand layer: constrain the *facts*, free the *strategy*.
+
+Both the provided givens and the approved derived foundation are **hard** (they sit at rank 2 of the precedence in §7); the only difference is who authored each element, recorded per-element in `provenance` (`03` §3.2).
+
 ---
 
 ## 3. Crystallization — where per-artifact consistency is born

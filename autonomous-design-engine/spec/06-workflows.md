@@ -8,8 +8,8 @@
 
 ```mermaid
 flowchart TB
-    NC["NEW CLIENT<br/>business context · content · assets · (optional) ≤5 references"] --> B
-    B["[1] BRAND ESTABLISHMENT (once per client)<br/>AI proposes Brand Foundation → HUMAN approves → FROZEN (hard)"] --> S1
+    NC["NEW CLIENT<br/>business context · content · assets · brand-data (palette+type) · (optional) ≤5 references"] --> B
+    B["[1] BRAND ESTABLISHMENT (once per client)<br/>human provides palette+type → AI DERIVES the rest → HUMAN approves → FROZEN (hard)"] --> S1
     S1["[2] FIRST SECTION (e.g. hero)<br/>closed loop (05) → approved → CRYSTALLIZE → Project Design System frozen"] --> SR
     SR["[3] REMAINING SECTIONS (about, features, footer)<br/>closed loop, constrained by frozen system + sees built sections"] --> QA
     QA["[4] ASSEMBLE + WHOLE-ARTIFACT QA<br/>cross-section coherence pass"] --> DEL
@@ -35,22 +35,23 @@ sequenceDiagram
     participant G as Generator
     participant BF as Brand Foundation
 
-    U->>O: design brand --client burkes --context brief.md [--refs ...]
+    U->>O: design brand --client burkes --context brief.md --brand-data brand-data.json [--refs ...]
+    Note over U,O: human provides ONLY palette + typography (the givens)
     O->>R: retrieve brand-strategy direction (soft)
     R-->>O: top-k Library entries
-    O->>G: propose brand identity from context (+soft direction)
-    G-->>O: proposed BrandFoundation (palette, type, motion, personality, tone)
-    O->>U: present proposal
+    O->>G: DERIVE the rest from givens + business context (+soft direction)
+    G-->>O: derived BrandFoundation (personality, tone, motion, color-usage) grounded in the givens
+    O->>U: present derived foundation for approval
     alt approved
         U-->>O: approve
-        O->>BF: write status=frozen
-    else revise
-        U-->>O: notes
-        O->>G: revise → re-present
+        O->>BF: write status=frozen (palette/type=provided · rest=derived)
+    else re-derive
+        U-->>O: enrich an input / adjust a given
+        O->>G: RE-DERIVE → re-present (never hand-patch a derived field)
     end
 ```
 
-**Burkes:** AI proposes warm-neutral palette + humanist display + restrained motion for `[trust, legacy, reliable, modern]`; the Lead approves; it freezes. (This same frozen brand is reused in §6 for the product.)
+**Burkes:** the Lead provides only the **givens** — a warm-neutral palette + humanist display / clean UI families (`brand-data.json`). From those plus the real-estate business context, the AI **derives** the personality `[trust, legacy, reliable, modern]`, an assured/editorial tone, and a restrained cinematic motion voice; the Lead approves; it freezes. Disagreement is resolved by re-deriving (adjust an input), not by hand-editing a derived field. (This same frozen brand is reused in §6 for the product.)
 
 ---
 
@@ -136,7 +137,7 @@ The product's **first screen** is its section-1: it runs the loop under the (alr
 
 | CLI subcommand | Workflow stage | Notes |
 |---|---|---|
-| `design brand --client <c> --context <brief>` | Stage 1 | proposes + (with `--approve`) freezes Brand Foundation |
+| `design brand --client <c> --context <brief> --brand-data <f>` | Stage 1 | derives the foundation from brand-data + context, then (with `--approve`) freezes it |
 | `design section --client <c> --surface <s> --name <n> --content <f>` | Stages 2–3 | runs the loop; first approved section crystallizes the system |
 | `design site --client <c> --surface <s> --plan <f>` | Stages 2–4 | sequences sections + assemble/QA |
 | `design learn --artifact <id>` | Stage 6 | write-back to Library |
