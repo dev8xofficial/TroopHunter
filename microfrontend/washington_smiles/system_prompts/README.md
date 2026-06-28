@@ -1,10 +1,41 @@
 # Dev8X — Document Generation Pipeline
 
-This pipeline moves a prospect through six phases: from raw research to a signed
-proposal. Every file is named with a phase prefix so its origin and position in
-the pipeline are immediately visible.
+This pipeline moves a prospect from raw research to a signed proposal. Every file
+is named with a phase prefix so its origin and position in the pipeline are
+immediately visible.
 
 **Token limit per Claude session: 190k**
+
+---
+
+## Pipeline Model — PAID (revenue from every stage)
+
+This is a **paid pipeline**. Each stage after the first contact is a paid gate, and
+each gate is its own profit centre — it must earn its fee whether or not a build
+follows.
+
+```
+Lead warming        FREE   — relationship only (LinkedIn)
+First Video / Brief FREE   — the trust-buyer; one free sample
+Paid Consultation   PAID   — FIRST GATE · live diagnosis · standalone profit
+Paid Demo           PAID   — working-solution reveal · standalone profit
+Proposal → Build    PAID   — the development contract
+```
+
+Two rules thread through every stage:
+
+- **The Hold-Back.** Each stage proves depth and withholds the next stage's payload.
+  The first video shows the *problem* and stops (no solutions, no ROI, no build).
+  The consultation diagnoses and sketches *solution direction* (no working demo).
+  The demo shows the *working solution* (no build cost). This is what makes
+  "revenue from every stage" hold.
+- **Two-Step Money.** Money is never asked for in a deliverable. The first video
+  ends on a *reply ask*; the paid consultation is offered in the follow-up, after
+  dialogue exists, wrapped in a guarantee + a stakes number + one proof point.
+
+> Conversion to paid is complete for the **first video** and the **consultation**
+> (Phase 3). The demo (Phase 4) and proposal (Phase 5) still carry the legacy free
+> CTAs and have not yet been converted.
 
 ---
 
@@ -13,7 +44,9 @@ the pipeline are immediately visible.
 ```
 p1_   Phase 1 — Research
 p2_   Phase 2 — Outreach
-p3_   Phase 3 — First Touch
+p3a_  Phase 3 — First Touch: Decision Safety Brief (trimmed — problems only)
+p3b_  Phase 3 — First Touch: First Video Script + paid-consultation follow-up
+p3c_  Phase 3 — Diagnosis: Live Consultation Playbook (the first PAID gate)
 p4a_  Phase 4 — Step 1: Business Operations Manual
 p4b_  Phase 4 — Step 2: Business Report
 p4c_  Phase 4 — Step 3: Tech Spec
@@ -30,25 +63,27 @@ e.g. `p4a_Business_Operations_Doc_Generator.md.md` (prompt) → `p4a_Business_Op
 
 ---
 
-## The 6-Phase Pipeline
+## The Pipeline
 
 ```
 PHASE 0 — Decision Card  Research → Decision Card + Problem Register → Gate assessment
 PHASE 1 — Research       Raw data → clean context files
-PHASE 2 — Outreach       Context → LinkedIn warming plan
-PHASE 3 — First Touch    Decision Card + Research → Decision Safety Brief (video sent cold)
-PHASE 4 — Demo & Scoping Problem Register + Portals → Demo pitch script
-PHASE 5 — Proposal       Decision Card + Problem Register + Tech Spec → Full proposal suite
+PHASE 2 — Outreach       Context → LinkedIn warming plan                       FREE
+PHASE 3 — First Touch    Decision Card + Research → trimmed Brief + Video Script FREE
+PHASE 3 — Diagnosis      Decision Card + Problem Register → Consultation Playbook PAID ← first gate
+PHASE 4 — Demo & Scoping Problem Register + Portals → Demo pitch script          PAID
+PHASE 5 — Proposal       Decision Card + Problem Register + Tech Spec → Proposal  PAID
 ```
 
-| Phase | Dev8X has done... | Prospect has seen... | Goal |
-|-------|-------------------|----------------------|------|
-| 0 | Produced Decision Card + Problem Register | Nothing yet | Gate assessment — decide how much to build |
-| 1 | Researched the prospect | Nothing yet | Build intelligence |
-| 2 | Started LinkedIn comments | First comments from Abdul | Accept connection |
-| 3 | Sent outcome video | A personalised Decision Safety Brief | Book a call |
-| 4 | Built and demoed the platform | Working portals + demo video | Agree to proposal |
-| 5 | Delivered full proposal suite | Proposal + pitch video + blueprint | Sign and start |
+| Phase | Dev8X has done... | Prospect has seen... | Goal | Money |
+|-------|-------------------|----------------------|------|-------|
+| 0 | Produced Decision Card + Problem Register | Nothing yet | Gate assessment — decide how much to build | — |
+| 1 | Researched the prospect | Nothing yet | Build intelligence | — |
+| 2 | Started LinkedIn comments | First comments from Abdul | Accept connection | Free |
+| 3 (first touch) | Sent the first video | A trimmed Brief (problems only) + reply ask | Get a reply | Free |
+| 3 (diagnosis) | Ran the live consultation | A documented Operational Diagnosis they keep | Sell the demo | **Paid** |
+| 4 | Built and demoed the platform | Working portals + demo video | Agree to proposal | **Paid** |
+| 5 | Delivered full proposal suite | Proposal + pitch video + blueprint | Sign and start | **Paid** |
 
 ---
 
@@ -69,8 +104,10 @@ treeraise/
 │   │   └── p0b_Problem_Register.md
 │   ├── phase2_outreach/
 │   │   └── p2a_Lead_Warming.md
-│   ├── phase3_first_touch/
-│   │   └── p3a_Outcome_Report.md
+│   ├── phase3_first_touch/        (on disk: phase3_outcome_report/)
+│   │   ├── p3a_Outcome_Report.md           ← trimmed: problems only, reply-ask CTA
+│   │   ├── p3b_First_Video_Script.md       ← video narration + paid-consult follow-up
+│   │   └── p3c_Consultation_Playbook.md    ← live paid diagnosis (first paid gate)
 │   ├── phase4_demo_scoping/
 │   │   ├── p4a_Business_Operations_Doc_Generator.md.md
 │   │   ├── p4b_Business_Report_Doc_Generator.md
@@ -95,6 +132,8 @@ treeraise/
 │   ├── p0b_Problem_Register_TreeRaise.md       ← output of p0b_Problem_Register.md
 │   ├── p2a_Lead_Warming.md                     ← output of p2a_Lead_Warming.md
 │   ├── p3a_Decision_Safety_Brief_TreeRaise.html                 ← output of p3a_Outcome_Report.md
+│   ├── p3b_First_Video_Script_TreeRaise.docx                    ← output of p3b_First_Video_Script.md
+│   ├── p3c_Consultation_Playbook_TreeRaise.docx                 ← output of p3c_Consultation_Playbook.md
 │   ├── p4a_Business_Operations_Manual.docx    ← output of p4a_Business_Operations_Doc_Generator.md.md
 │   ├── p4b_TreeRaise_Company_Report.docx      ← output of p4b_Business_Report_Doc_Generator.md
 │   ├── p4c_Tech_Spec_TreeRaise.docx           ← output of p4c_Tech_Spec_Doc_Generator.md
@@ -309,45 +348,97 @@ reply or once Comment 3 lands well.
 
 ---
 
-## Phase 3 — First Touch
+## Phase 3 — First Touch + Diagnosis
 
-**What this phase does:** Generate a personalised visual HTML report quantifying
-the business impact Dev8X can deliver. Screen-record it as a 2–3 minute video
-and send it as the first direct message after connection is accepted.
+**What this phase does:** Turn research into the FREE first video (trust-buyer),
+then run the first PAID gate — a live consultation that delivers a documented
+Operational Diagnosis. Three prompts: `p3a` builds the recorded brief, `p3b`
+scripts the video + the paid follow-up, `p3c` runs the live consultation.
 
-**When to run:** After Phase 1 context files exist. Runs in parallel with Phase 2.
+**When to run:** `p3a` + `p3b` after Phase 1 context exists (parallel with Phase 2).
+`p3c` only after the prospect replies and agrees to the paid session.
+
+**The Hold-Back across this phase:** the first video shows the *problem* and stops
+(no solutions, no ROI, no build). The consultation diagnoses and sketches *solution
+direction* (no working demo). Money is asked for only in the p3b follow-up — never
+inside a deliverable.
 
 ---
 
-### p3a_Outcome_Report.md — Decision Safety Brief
+### p3a_Outcome_Report.md — Decision Safety Brief (TRIMMED for hold-back)
 
-**The report includes:**
-- Buyer Confirmation Status badge (Confirmed / Partial / Hypothesis)
-- Three headline numbers — L1 or L2 metrics only; L3/L4 never in hero
-- Current Problem Register table (4–6 rows) drawn from Problem Register
-- Proof Ledger Summary showing claims, evidence, and proof conditions
-- Future Problem Register table (3 rows) triggering Fear of Inaction
-- 4–7 solution cards linked to specific problem numbers, each with ROI Integrity label
-- ROI Integrity Summary grouping all metrics by L1/L2/L3/L4 classification
-- CTA dynamically adjusted to Confidence Signal level
+The recorded brief. **Trimmed** so it cannot leak the diagnosis on screen:
+
+- Hero stat cards now show the **cost/stakes of the problem**, not solution wins
+- Current Problem Register table (4–6 rows) — the homework, in the prospect's words
+- Research Transparency table — what we can/can't see (the Trust bridge)
+- Future Problem Register — the **Regret Gap** (their stated goal vs. the bottleneck)
+- **No solution cards, no ROI dashboard, no chart, no stakeholder section** (withheld)
+- CTA is a **reply ask** — no demo button, no calendar, no price
 
 **Attach to Claude:**
 | File | Role |
 |------|------|
 | `prompts/phase3_first_touch/p3a_Outcome_Report.md` | Prompt |
-| `context/p0a_Decision_Card_[ClientName].md` | PRIMARY — Confidence Signal, goals, bottlenecks, ROI Integrity |
+| `context/p0a_Decision_Card_[ClientName].md` | PRIMARY — Confidence Signal, goal, bottleneck, stakes figure, Emotion Map |
 | `context/p0b_Problem_Register_[ClientName].md` | PRIMARY — Current/Future problems, Proof Ledger |
-| `context/p4b_TreeRaise_Company_Report.docx` | SECONDARY — Pain points and transformation opportunities |
-| `context/p4a_Business_Operations_Manual.docx` | SECONDARY — Workflow detail for quantification |
+| `context/p1c_Linkedin_Owner.md` | The CEO's stated goal + voice (for the Regret Gap) |
 
-> The Decision Card and Problem Register are PRIMARY sources. The Business Report
-> and Operations Manual are secondary fallbacks.
 > Estimated token usage: 30k–60k.
 
 **Save output as:** `context/p3a_Decision_Safety_Brief_[ClientName].html`
 
-> **Before sending:** replace `href="#"` on the "Watch the Demo" button with
-> the real demo video link.
+> **Before recording:** confirm the brief contains no solution/ROI/stakeholder
+> sections — the recorded page must hold nothing that gives away the diagnosis.
+
+---
+
+### p3b_First_Video_Script.md — First Video Script + Paid Follow-Up
+
+Two outputs in one doc: **Part A** the 2–3 min video narration (problem-first,
+Regret-Gap beat, reply-ask close — NO price), and **Part B** the 3-message
+follow-up that sells the paid consultation *after the prospect replies*, wrapped in
+a guarantee + the stakes number + one proof point.
+
+**Attach to Claude:**
+| File | Role |
+|------|------|
+| `prompts/phase3_first_touch/p3b_First_Video_Script.md` | Prompt |
+| `context/p0a_Decision_Card_[ClientName].md` | PRIMARY — bottleneck, Confidence Signal, Emotion Map, stakes figure |
+| `context/p0b_Problem_Register_[ClientName].md` | PRIMARY — current/future problems, research-transparency rows |
+| `context/p3a_Decision_Safety_Brief_[ClientName].html` | The brief being walked through (screen mapping) |
+| `context/p4a_Business_Operations_Manual.docx` | OPTIONAL — for the proof-of-competence line |
+
+> Estimated token usage: 20k–45k.
+
+**Save output as:** `context/p3b_First_Video_Script_[ClientName].docx`
+
+> **Before sending Part B Message 2:** fill the `[CONSULTATION_FEE]` placeholder.
+
+---
+
+### p3c_Consultation_Playbook.md — Live Consultation (the first PAID gate)
+
+The playbook for the live paid call (~45–60 min). Three parts: **A** the call
+script with the discovery questions sequenced, **B** the shared Live Capture Sheet
+filled in front of the client, **C** the client-facing Operational Diagnosis they
+keep (the deliverable that justifies the fee). Diagnoses fully and sketches
+solution direction — never shows working software.
+
+**Attach to Claude:**
+| File | Role |
+|------|------|
+| `prompts/phase3_first_touch/p3c_Consultation_Playbook.md` | Prompt |
+| `context/p0a_Decision_Card_[ClientName].md` | PRIMARY — Discovery Questions §9, Required Proof Table §7, ROI ladder |
+| `context/p0b_Problem_Register_[ClientName].md` | PRIMARY — problems, Manual Operations Mapping, Stakeholder Map |
+| `context/p3a_Decision_Safety_Brief_[ClientName].html` | OPTIONAL — the wording the client already saw |
+
+> Estimated token usage: 25k–50k.
+
+**Save output as:** `context/p3c_Consultation_Playbook_[ClientName].docx`
+
+> **After the call:** feed the captured numbers back into the Decision Card §8 to
+> upgrade L2 estimates to L1 — this raises the Confidence Signal for Phases 4 & 5.
 
 ---
 
@@ -539,21 +630,25 @@ Shown on-screen alongside the Proposal during the pitch video.
 ## How the Phases Connect
 
 ```
-Phase 0        Phase 1        Phase 2       Phase 3          Phase 4               Phase 5
-──────────     ──────────     ──────────    ────────────     ──────────────────    ────────────────
-p0a_ Card  →  p1_ files  →  p2_ Warming   p3_ Decision     p4a_ Ops Manual       p5a_ Proposal
-p0b_ Reg       (parallel)    (parallel)    Safety Brief     p4b_ Report      →   p5b_ Pitch Script
- ↓                                        (always built)     p4c_ Tech Spec        p5c_ Blueprint
- feeds all                                                   p4d_ Portals
- phases 3-5                                                  p4e_ Demo Pitch
+Phase 0       Phase 1      Phase 2     Phase 3 (first touch)   Phase 3 (diagnosis)  Phase 4            Phase 5
+──────────    ──────────   ──────────  ─────────────────────   ───────────────────  ─────────────────  ────────────────
+p0a_ Card  →  p1_ files →  p2_ Warming  p3a_ Brief (trimmed)    p3c_ Consultation    p4a_ Ops Manual    p5a_ Proposal
+p0b_ Reg      (parallel)   (parallel)   p3b_ Video + follow-up   (live, PAID)    →  p4b_ Report    →  p5b_ Pitch Script
+ ↓                                       (FREE — reply ask)      → upgrades L2→L1   p4c_ Tech Spec     p5c_ Blueprint
+ feeds all                                      │                  in Decision Card  p4d_ Portals
+ phases 3-5                                     ▼ reply                              p4e_ Demo Pitch
+                                         p3b follow-up sells the PAID consultation
 ```
 
-**Phases 2 and 3 run in parallel** — start LinkedIn comments on Day 1 while
-preparing and recording the outcome report video.
+**Phases 2 and 3 (first touch) run in parallel** — start LinkedIn comments on Day 1
+while preparing and recording the first video.
 
-**Phase 4 only starts after prospect engagement** — a reply, a watched video,
-or a booked call. Do not invest 60k–130k tokens on the full analysis stack until
-there is confirmed interest.
+**The paid consultation (p3c) only runs after the prospect replies** and agrees to
+the paid session. Its captured numbers flow back into the Decision Card, upgrading
+L2 estimates to L1 and raising the Confidence Signal for Phases 4 and 5.
+
+**Phase 4 only starts after the paid consultation** — a confirmed, paying prospect.
+Do not invest 60k–130k tokens on the full analysis stack until then.
 
 **Phase 5 runs 5a → 5b → 5c in order** — the pitch script reads the proposal,
 the blueprint reads both.
@@ -568,7 +663,9 @@ the blueprint reads both.
 | 0 | p0b_ Problem Register | Prompt + p0a_ + 3 p1_ files | 30k–60k |
 | 1 | p1_ (each) | Prompt + one raw file | 10k–40k |
 | 2 | p2_ | Prompt + CEO LinkedIn + Ops Manual | 20k–50k |
-| 3 | p3_ | Prompt + Decision Card + Problem Register | 30k–60k |
+| 3 | p3a_ Brief (trimmed) | Prompt + Decision Card + Problem Register + Owner LinkedIn | 30k–60k |
+| 3 | p3b_ Video Script + follow-up | Prompt + Decision Card + Problem Register + Brief | 20k–45k |
+| 3 | p3c_ Consultation Playbook | Prompt + Decision Card + Problem Register | 25k–50k |
 | 4 | p4a_ | Prompt + all p1_ context files | 60k–130k |
 | 4 | p4b_ | Prompt + p4a_ only | 30k–70k |
 | 4 | p4c_ | Prompt + p4a_ + p4b_ | 60k–120k |
