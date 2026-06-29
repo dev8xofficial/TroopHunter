@@ -37,6 +37,10 @@ Two rules thread through every stage:
 > (Phase 3). The demo (Phase 4) and proposal (Phase 5) still carry the legacy free
 > CTAs and have not yet been converted.
 
+**Running the funnel:** the prompts generate the *deliverables*; how a human *runs*
+the pipeline — channel/automation discipline, funnel metrics, the Abdul bottleneck,
+and guarantee rules — lives in **`OPERATING_DISCIPLINE.md`**.
+
 ---
 
 ## File Naming Convention
@@ -93,6 +97,7 @@ PHASE 5 — Proposal       Decision Card + Problem Register + Tech Spec → Prop
 treeraise/
 ├── prompts/
 │   ├── README.md
+│   ├── OPERATING_DISCIPLINE.md     ← process rules (channel, metrics, scaling, guarantee)
 │   ├── phase1_research/
 │   │   ├── p1a_Website.md
 │   │   ├── p1b_Linkedin_Company.md
@@ -395,10 +400,20 @@ The recorded brief. **Trimmed** so it cannot leak the diagnosis on screen:
 
 ### p3b_First_Video_Script.md — First Video Script + Paid Follow-Up
 
-Two outputs in one doc: **Part A** the 2–3 min video narration (problem-first,
-Regret-Gap beat, reply-ask close — NO price), and **Part B** the 3-message
-follow-up that sells the paid consultation *after the prospect replies*, wrapped in
-a guarantee + the stakes number + one proof point.
+Outputs in one doc, hardened after a Phase-3 stress test:
+- **Pre-flight QA gate** — a minimum-specificity threshold (≥3 verifiable, public-
+  sourced problems) + a human approval + a version guard that the brief is the
+  trimmed p3a. Confident wrongness on a cold CEO is the most expensive failure.
+- **Part 0 — DM wrapper & delivery** — the wrapper message that earns the click and
+  disarms the cold context, **mandatory burned-in captions** (for muted viewing),
+  and **mobile recording** rules (zoom per element, no full-page scroll).
+- **Part A — the 2–3 min video** — problem-first, the Regret-Gap beat (decoupled
+  from the Beat-3 unknowns), reply-ask close — NO price.
+- **Part B — the branched follow-up** that sells the paid consultation *after a
+  reply*: the cooperative path (Msg 1 qualitative-only, no number-extraction → Msg 2
+  offer with guarantee + stakes + legitimacy + fee-anchoring → Msg 3 nudge), the
+  **Correction Branch** (diagnosis wrong), and the **Silent-Watcher Path** (watched,
+  no reply).
 
 **Attach to Claude:**
 | File | Role |

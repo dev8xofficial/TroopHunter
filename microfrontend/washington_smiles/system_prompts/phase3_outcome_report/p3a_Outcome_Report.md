@@ -119,9 +119,14 @@ thinking.
 5. **Stakeholder before proposal** — This is not the proposal, but the Stakeholder
    Decision Map from the Problem Register must inform which problems are shown
    (operational vs executive focus).
-6. **Stay commercially practical** — If research is 80% complete, build the report.
-   Do not let missing data block a strong deliverable; use directional language
-   and discovery questions instead.
+6. **Stay commercially practical — EXCEPT for this cold first touch.** Normally, if
+   research is ~80% complete, build the deliverable. But this brief is recorded and
+   sent to a cold CEO as a first impression, where confident wrongness burns the
+   prospect faster than no outreach at all (and CEOs talk). So a **minimum-
+   specificity gate applies**: do NOT build this brief unless at least 3 problems
+   are specific, verifiable, and traceable to a NAMED public source. If the research
+   can't clear that bar, stop and flag for more research — do not paper over it with
+   directional language. A human approves the diagnosis before the video is recorded.
 
 ---
 
@@ -134,11 +139,14 @@ portals, automation systems, and digital tools for businesses.
 the first impression. It must feel like Dev8X already understands their business
 deeply — not a generic pitch deck.
 
-**The video flow this report supports:**
-1. Screen share the HTML report — scroll through it slowly.
-2. Talk to each outcome section: "Right now you're doing X manually — we can
-   cut that to Y."
-3. End on the ROI summary and the CTA adjusted to the Confidence Signal level.
+**The video flow this report supports (and how it's recorded):**
+1. Do NOT film a full-page scroll — this brief is a dense, scan-first dashboard that
+   is unreadable as a phone video. Zoom into ONE narrated element at a time (hero
+   stat, one problem row, the transparency table) so text is legible on mobile.
+2. Open on the bottleneck, talk to each problem in the prospect's own words, then
+   the research-transparency table (what you can / can't see from outside).
+3. End on the future-risk (regret gap) and the reply-ask CTA. No solutions, no ROI,
+   no demo — those are withheld. (See p3b for the full narration script.)
 
 **What makes this work:**
 Every outcome in the report has a classified number internally. Directly sourced
@@ -206,6 +214,14 @@ Produce ONE defensible **cost-of-bottleneck** figure — the stakes number — t
 quantifies what the current problem is costing the prospect (lost revenue, lost
 output, wasted hours). This is the only headline number in the brief. Do NOT
 quantify solution outcomes — solutions are withheld.
+
+**Decoupling rule (critical):** the Research Transparency section admits certain
+internal numbers cannot be seen from outside (e.g. conversion rate). The stakes
+number must NOT depend on those very unknowns, or the brief contradicts itself —
+confessing blindness, then quoting a figure that needs the hidden data. Build the
+stakes number from OBSERVABLE quantities, label it a conservative estimate, and
+state that the exact figure is what a follow-up would confirm. The honesty and the
+number must reinforce each other, not collide.
 Do **not** force `hours saved` if the underlying data is weak. Use this method:
 
 **Step 1 — Classify the source of every number before it enters the report
