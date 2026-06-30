@@ -5,37 +5,37 @@
 #### Target CEO — Key Themes
 
 - **Transportation as community equity** — frames mobility gaps in rural NC as barriers to healthcare, jobs, and education, not just inconvenience
-- **Infrastructure-free B2B model** — the core pitch to municipalities is delivering microtransit without requiring capital investment or physical infrastructure
-- **Proof-of-concept before scale** — Bladen County B2C pilot is explicitly positioned as a model-validation step before B2B municipal roll-out
+- **Infrastructure-free B2B model** — the pitch to municipalities is microtransit without requiring capital investment or physical infrastructure
+- **Proof-of-concept before scale** — the Bladen County B2C pilot is explicitly positioned as a model-validation step before B2B municipal roll-out
 - **Built from $0, organically** — repeated across multiple ventures (Carolina Elite Baseball, USAPB, Rideit); "started from the bottom" is a core identity marker
-- **Community relationships as the engine** — describes business growth through community trust, not ads or VC money
-- **Serial entrepreneurship** — simultaneously running a scout career, a nonprofit, and a tech startup; treats parallel execution as normal
+- **Community relationships as the engine** — describes business growth through trust and word of mouth, not ad spend or VC money
+- **Entrepreneurship accessibility** — actively advocates for making entrepreneurship accessible to underserved rural founders (Right to Start Coalition)
 
 ---
 
 #### Target CEO — Likely Pain Points
 
-- **Custom technology platform not yet built** — actively posted on Upwork for a Full Stack Developer to build a dispatch, reservation, and GPS tracking SaaS from scratch; this is the most pressing operational blocker between pilot and scale
-- **Government procurement credibility** — municipalities require proof the product works before they contract; the tech demo gap is real pre-launch
-- **Multi-tenant scale requirement** — the job posting explicitly calls for white-label / multi-tenant architecture to support future county and municipal expansion beyond Bladen
-- **Pre-revenue capital constraints** — previously posted seeking early-stage investors; the platform is not yet generating commercial revenue
-- **B2B sales cycle length** — government and municipal deals move slowly; maintaining pipeline momentum without a fully deployed product is difficult
+- **Driver and rider recruitment across a wide footprint** — pre-screening drivers in four counties at once (Bladen, Columbus, Cumberland, Robeson) without a visible paid acquisition engine
+- **Pre-launch visibility with no apparent media budget** — driving app pre-downloads and sign-ups ahead of launch relies on organic posts and personal network, not paid creative
+- **Standing out against incumbents** — positioning against "bigger traditional rideshare companies" on rate and reliability requires content that builds trust fast, not just functional messaging
+- **Proving the model before the B2B pitch** — Bladen County is the validation case municipalities will judge before committing; weak local traction undercuts the entire B2B narrative
+- **Lean, founder-led operation** — Ray appears to be running marketing, recruitment, and community outreach personally alongside scouting and nonprofit work, with no visible dedicated marketing function
 
 ---
 
-#### Dev8X — Relevant Overlap
+#### Nick Flint — Relevant Overlap
 
-- **Full-stack SaaS development** — Dev8X builds microservices and Next.js-based platforms at exactly the complexity level Rideit's job posting describes: dispatch APIs, real-time GPS, RBAC, notifications, admin dashboards
-- **Multi-tenant and white-label architecture** — Dev8X's monorepo structure with multiple isolated microfrontends is a working demonstration of the multi-tenant architecture Rideit's job posting lists as a requirement
-- **Pilot-to-enterprise sequencing** — Abdul has taken B2B products from MVP through enterprise-scale deployment; the Bladen County → municipal scale path is a pattern Dev8X has navigated
-- **Real-time systems experience** — GPS tracking, live dispatch, ETA calculation, and geofencing are within Dev8X's technical scope (Node.js, React, microservices)
-- **Startup-to-scale without VC dependency** — both Abdul and Ray have built businesses from the ground up without institutional funding; the operating discipline and timeline expectations are aligned
+- **UGC video ad creation** — directly applicable to driver recruitment and rider sign-up campaigns across Rideit's four-county pre-launch footprint; content built to feel native to the feed rather than like a corporate transit ad
+- **Paid media strategy on a lean budget** — Nick's core differentiator is performance-first creative for brands without large ad budgets, which matches a pre-revenue startup recruiting across multiple rural counties simultaneously
+- **Retention marketing (email/SMS via Klaviyo)** — useful for converting pre-download sign-ups into active riders and drivers once the app goes live, closing the gap between interest and usage
+- **Performance-over-polish philosophy** — Nick positions himself as someone who understands media-buying and retention, not just production, which mirrors Ray's "function over flash" approach to building trust community by community
+- **Solo operator, outsourced specialists model** — Nick runs nickflintness.com lean, sourcing contractors only where needed; the same scrappy, do-more-with-less operating posture Ray describes across his ventures
 
 ---
 
 #### Shared Ground
 
-Both Abdul and Ray are serial entrepreneurs who built multiple businesses from $0 through community relationships and direct execution — not funding rounds or outside capital. The invisible thread is: real products built by people who've had to make every dollar count, solving problems that incumbents won't touch.
+Both Nick and Ray are lean, founder-led operators who've built visibility and trust without big budgets or institutional backing — Nick through performance-driven content for brands, Ray through direct community relationships for transit. The invisible thread is: traction earned, not bought, and both understand that proof has to exist before anyone scales it.
 
 ---
 
@@ -43,17 +43,17 @@ Both Abdul and Ray are serial entrepreneurs who built multiple businesses from $
 
 #### Post 1
 **Post excerpt:** "Transportation access is one of the biggest gaps in many of our communities. Microtransit offers a smarter, more flexible way to serve residents and I'm excited about the work we're doing to bring these solutions to local governments across North Carolina."
-**Why selected:** The microtransit-for-local-governments framing invites a substantive operational perspective — specifically on what actually moves municipalities to act — without requiring any mention of Dev8X.
+**Why selected:** The community-access framing invites a substantive observation about what actually makes a transit pilot stick locally, without requiring any mention of Nick's business.
 **Comment timing:** Day 1
 
 #### Post 2
 **Post excerpt:** "Excited to share that Rideit's first B2C pilot will be launching soon in Bladen County, NC. This pilot will help us test and refine our model... our broader focus remains on B2B micro-transportation solutions for cities and municipalities looking to improve mobility without building their own infrastructure."
-**Why selected:** The explicit pilot-before-B2B logic creates a natural opening to reference Dev8X's own experience with the same sequencing, making the self-mention feel observed rather than inserted.
+**Why selected:** The explicit pilot-before-B2B logic, paired with Ray's open invitation to connect, creates a natural opening to reference Nick's own experience getting early-stage launches noticed before there's a track record.
 **Comment timing:** Day 3
 
 #### Post 3
-**Post excerpt:** "It was an honor to be apart of the Right to Start Coalition event... Big thanks to ABC11 and Elaina Athans for taking the time to speak with me about Rideit... Excited to keep pushing the conversation forward about making entrepreneurship accessible to all."
-**Why selected:** The entrepreneurship-in-rural-NC framing creates genuine peer-to-peer common ground — two founders building without institutional backing — making a connection ask land as a natural next step rather than a commercial move.
+**Post excerpt:** "Thankful to be able to share hurdles everyday business owners face and the opportunities/jobs Rideit will provide to rural NC... Excited to keep pushing the conversation forward about making entrepreneurship accessible to all."
+**Why selected:** The entrepreneurship-in-rural-NC framing creates genuine peer-to-peer common ground — two founders building visibility without institutional backing — making a connection ask land as the natural next step.
 **Comment timing:** Day 5
 
 ---
@@ -62,28 +62,28 @@ Both Abdul and Ray are serial entrepreneurs who built multiple businesses from $
 
 #### Comment 1 — Day 1
 
-Most municipalities open the conversation at "what infrastructure do we need to build." The solutions that skip that question entirely are the ones that actually get to a second meeting.
+The technology rarely decides if a transit pilot survives its first six months — word of mouth in the community does. That's the harder system to build.
 
 **Stage:** Establish Presence
-**What this does:** Positions Abdul as someone who understands the specific friction in government sales — not transportation broadly — which signals operational experience without revealing any agenda.
+**What this does:** Positions Nick as someone who understands what actually determines early-stage traction for a community service, not just transportation logistics, without revealing any agenda.
 
 ---
 
 #### Comment 2 — Day 3
 
-Piloting locally before pitching municipalities is the right order. We learned that at Dev8X — a working product ends conversations that a deck never closes.
+I see this constantly producing content for early-stage launches — community trust outpaces ad spend long before there's a track record. Worth watching how Bladen responds.
 
 **Stage:** Deepen the Thread
-**What this does:** Introduces Dev8X naturally by mirroring Ray's own pilot logic back to him, creating a moment of genuine recognition between two founders who've navigated the same proof-of-concept problem.
+**What this does:** Weaves in Nick's actual work naturally by mirroring Ray's own pilot logic, signaling shared experience without naming the business or making an offer.
 
 ---
 
 #### Comment 3 — Day 5
 
-The harder part is rarely the idea — it's building infrastructure fast enough to match the vision. Worth connecting — seems like we're circling the same problems.
+The hardest infrastructure in early-stage ventures isn't physical — it's the trust built one community at a time. Sending a connection request — worth having this conversation properly.
 
 **Stage:** The Ask
-**What this does:** Anchors the connection ask to a shared operational reality rather than a compliment or a pitch, making the request feel like a natural conclusion to three days of peer-level exchange.
+**What this does:** Anchors the connection ask to a shared operational reality from three days of genuine exchange, rather than a compliment or a pitch.
 
 ---
 
@@ -92,4 +92,4 @@ The harder part is rarely the idea — it's building infrastructure fast enough 
 **When to send:** Send when Ray replies to Comment 2 or 3. If no reply, send immediately after Comment 3 while the thread is still visible in his notifications.
 
 **Request message:**
-Been following the Rideit build — the B2B microtransit model for municipalities is a space I find genuinely interesting. We've navigated similar infrastructure problems at Dev8X. Worth a conversation.
+Been following the Rideit launch — getting a rural NC microtransit service noticed across four counties without a big ad budget is a real problem, and one I work on for early-stage brands daily. Worth a conversation.
