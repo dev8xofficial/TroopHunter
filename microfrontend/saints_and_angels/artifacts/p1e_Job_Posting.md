@@ -1,84 +1,49 @@
-WordPress Website Repair and Optimization
-Posted 6 days ago
-Worldwide
+---
+platform: Upwork
+job_title: Website Redesign for Professional Look
+company: Bridgeway Advisors
+location: Worldwide
+remote: true
+employment_type: Contract
+engagement: Hourly
+hours_per_week: Less than 30
+duration: 1 to 3 months
+experience_level: Intermediate
+compensation: $15.00 – $40.00/hr
+posted_at: 5 days ago
+---
 
-Summary
-We are seeking an experienced developer to repair and optimize our existing website. The project includes fixing bugs, improving site performance, and enhancing the overall user experience. The ideal candidate should have a strong background in WordPress, Elementor Pro, WooCommerce, HTML, CSS, and JavaScript.  www.saints-angels.com.
+# Website Redesign for Professional Look — Bridgeway Advisors — Job Posting
 
-Featured Job
-Less than 30 hrs/week
-Hourly
-1 to 3 months
-Duration
-Expert
-I am willing to pay higher rates for the most experienced freelancers
-$10.00
+## Role Summary
 
--
+Bridgeway Advisors operates two related, regulatorily-separated web properties — Bridgeway Advisors and Bridgeway Securities — currently built on Wix. The Web Designer is hired to redesign both sites for a more professional, on-brand appearance, ensure the content is easy for the internal team to maintain going forward, and evaluate whether migrating from Wix to WordPress is the right long-term platform choice. The primary outcome is two polished, easily updatable sites delivered within a 4-week, part-time engagement.
 
-$35.00
+## Responsibilities
 
-Hourly
-Project Type:Ongoing project
-You will be asked to answer the following questions when submitting a proposal:
+- Redesign the current Bridgeway Advisors website for a more professional appearance.
+- Evaluate and advise on migrating the site from Wix to WordPress for easier long-term management.
+- Build two separate sites: Bridgeway Securities (may include deal highlights) and Bridgeway Advisors (may not include deal highlights, but must include a visible link to the Bridgeway Securities site).
+- Structure the site(s) with Home, About, Team, Content, Mission, and Contact Us sections.
+- Build the Content section in a format the internal team can update themselves going forward, similar in structure to referenced insights pages (J.P. Morgan Treasury Insights, Baird Wealth Market Insights).
+- Build a Team page showing all 5 team members' photos immediately visible without scrolling, with clickable profiles for expanded bios (with future video support), modeled on a referenced "Experienced, Impactful Team" page layout.
+- Build a Mission page modeled on a referenced nonprofit-style layout, to be populated with information and videos supplied after hiring.
+- Recreate a top-of-page navigation "runner" denoting site sections, modeled on referenced examples.
+- Build a "Recent Capital Markets Transactions" feature for the homepage, modeled on a referenced example site.
 
-Describe a WordPress/Elementor site you repaired (not built). What issues did you fix? Describe your experience with custom HTML, CSS, JavaScript, and Elementor. Will you create a backup and use a staging site before making any changes? Yes No
-Please provide links to 3–5 live WordPress/Elementor websites you personally built or repaired.
-Describe your recent experience with similar projects
-What frameworks have you worked with?
-Skills and Expertise
-Mandatory skills
-Search Engine Optimization
-Web Development
-Elementor
-HTML
-WooCommerce
-JavaScript
-PHP
-CSS
-Nice-to-have skills
-Web Design
-WordPress
-Preferred qualifications
-Talent Type:
-Independent
-Job Success Score:
-At least 90%
-Include Rising Talent:
-Yes
-English level:
-Fluent
-Activity on this job
-Proposals:
-20 to 50
-Last viewed by client:
-5 days ago
-Interviewing:
-1
-Invites sent:
-0
-Unanswered invites:
-0
-Upgrade your membership to see the bid range
-You’ll need Connects to bid. They’re like credits that show clients you’re serious. Learn more
+## Requirements
 
-Required Connects to submit a proposal: 26
-Available Connects: 0
-About the client
-Payment method verified
-Phone number verified
-Rating is 5.0 out of 5.
-5.0
-4.99 of 9 reviews
-United States
-Chicago4:43 AM
-23 jobs posted
-83% hire rate, 3 open jobs
-$17K total spent
-19 hires, 6 active
-$14.88 /hr avg hourly rate paid
-264 hours
-Member since Mar 26, 2016
-Job link
-https://www.upwork.com/jobs/~022070109140176582836
-Copy link
+##### Must Have
+
+- Web design expertise.
+- Graphic design expertise.
+- Prior experience with comparable website redesign projects (work samples required in proposal).
+
+##### Nice to Have
+
+- Web development experience.
+- WordPress experience.
+
+## Compensation & Terms
+
+- Project type: Ongoing project

@@ -1,287 +1,202 @@
-Peter Canellis
-· 3rd
+---
+platform: LinkedIn
+profile_type: person
+name: Peter Canellis
+headline: "Sound Healer | Founder, Saints & Angels Healing Through Sound | Nervous System Reset Experiences | Chicago"
+location: Chicago, Illinois, United States
+followers: 3,283
+connections: 500+
+---
 
-Sound Healer | Founder, Saints & Angels Healing Through Sound | Nervous System Reset Experiences | Chicago
+# Peter Canellis — LinkedIn Profile
 
-Chicago, Illinois, United States
+## Summary
 
-·
-
-Contact info
-
-
-Saints and Angels Healing Through Sound
-
-
-DePaul University
-
-3,283 followers
-
-·
-
-500+
-
-connections
-
-
-Follow
-Message
-
-About
-I’m Peter — a Sound Balancer and the founder of Saints & Angels Healing Through Sound in Chicago.
-I’ve been a DJ and music creator for over 30 years, and at some point I realized something: sound doesn’t just entertain people… it changes people. It shifts the nervous system, clears the mind, and helps the body let go of what it’s been holding.
-That’s the heart of what I do now.
-My work is designed for people who feel “on” all the time — stressed, tense, mentally overloaded, emotionally heavy, or simply disconnected. I guide people into a true nervous system reset, like turning your phone off and finally letting the system reboot. You don’t have to force anything. The sound does the work — your job is to receive it.
+I'm Peter — a Sound Balancer and the founder of Saints & Angels Healing Through Sound in Chicago.
+I've been a DJ and music creator for over 30 years, and at some point I realized something: sound doesn't just entertain people… it changes people. It shifts the nervous system, clears the mind, and helps the body let go of what it's been holding.
+That's the heart of what I do now.
+My work is designed for people who feel "on" all the time — stressed, tense, mentally overloaded, emotionally heavy, or simply disconnected. I guide people into a true nervous system reset, like turning your phone off and finally letting the system reboot. You don't have to force anything. The sound does the work — your job is to receive it.
 I blend ancient instruments (crystal singing bowls, gongs, tuning forks, chimes, drum) with modern sound design and my lifelong musical ear. The result is a grounded, immersive experience that helps people regulate, release, and come back to themselves.
-What I offer
-Weekly Community Sound Baths (consistent nervous system care, like a reset ritual)
-Private Sound Balancing (1:1) for individuals
-Couples Sessions (for connection, calm, and shared nervous system regulation)
-Private Group Sound Baths (friends, celebrations, milestones, healing circles)
-Healing Events (signature themed journeys + immersive sound experiences)
-Workshops & Trainings (education + tools people can take into real life)
-Astrology + Sound Events (sound baths paired with astrology insights)
-Birthday Sound Baths (a powerful way to celebrate and reset your next year)
-Corporate wellness (team nervous system reset)
+
+What I offer:
+- Weekly Community Sound Baths (consistent nervous system care, like a reset ritual)
+- Private Sound Balancing (1:1) for individuals
+- Couples Sessions (for connection, calm, and shared nervous system regulation)
+- Private Group Sound Baths (friends, celebrations, milestones, healing circles)
+- Healing Events (signature themed journeys + immersive sound experiences)
+- Workshops & Trainings (education + tools people can take into real life)
+- Astrology + Sound Events (sound baths paired with astrology insights)
+- Birthday Sound Baths (a powerful way to celebrate and reset your next year)
+- Corporate wellness (team nervous system reset)
+
 Teams hire me when their people are running with 20 tabs open — deadlines, meetings, Slack, life, pressure. These sessions help your team downshift, regulate, and return clearer, calmer, and more connected.
-If you’re looking to collaborate, book a private experience, or bring sound-based nervous system support into your workplace or community, I’d love to connect.
+
+If you're looking to collaborate, book a private experience, or bring sound-based nervous system support into your workplace or community, I'd love to connect.
+
 Feel it to Heal it.
 — Peter
 
-Experience
-Saints and Angels Healing Through Sound logo
-Saints and Angels Healing Through Sound
+## Experience
 
-6 yrs
+#### Sound Facilitator, Audio Producer — Saints and Angels Healing Through Sound
 
-Sound Facilitator, Audio Producer
+dates: March 2021 – Present
+duration: 5 yrs 5 mos
+location: Chicago, Illinois (On-site)
+employment_type: Full-time
 
-Full-time
+I'm the founder and sole Sound Balancer behind Saints & Angels Healing Through Sound—an immersive sound healing studio in Chicago focused on nervous system reset. I bring 30 years of DJing and music production into healing work, blending acoustic instruments with modern sound design to help clients downshift from "always on" into calm, regulation, and clarity—like turning your phone off, closing every tab, and letting the system reboot.
 
-Mar 2021 - Present · 5 yrs 5 mos
-
-Chicago Illinois · On-site
-
-I’m the founder and sole Sound Balancer behind Saints & Angels Healing Through Sound—an immersive sound healing studio in Chicago focused on nervous system reset.
-I bring 30 years of DJing and music production into healing work, blending acoustic instruments with modern sound design to help clients downshift from “always on” into calm, regulation, and clarity—like turning your phone off, closing every tab, and letting the system reboot.
 What I offer (facilitated by me):
-Weekly community sound baths
-Private 1:1 Sound Balancing sessions
-Couples sessions for co-regulation and connection
-Private group sound baths (friends, celebrations, intentional gatherings)
-Signature healing events + themed sound journeys
-Workshops & trainings (education + practical tools)
-Astrology + Sound events
-Birthday Sound Bath events
-Corporate wellness / team reset:
-I design and facilitate nervous system reset experiences for teams—helping people regulate, release stress, and truly turn off without forcing meditation or performance.
-Tools I use:
-Crystal singing bowls, gongs, chimes, tuning forks, shamanic drum, and layered soundscapes (digital + acoustic immersion).
+- Weekly community sound baths
+- Private 1:1 Sound Balancing sessions
+- Couples sessions for co-regulation and connection
+- Private group sound baths (friends, celebrations, intentional gatherings)
+- Signature healing events + themed sound journeys
+- Workshops & trainings (education + practical tools)
+- Astrology + Sound events
+- Birthday Sound Bath events
 
-Thumbnail for Main Studio
-Thumbnail for Main Studio
-Thumbnail for Main Studio
-Thumbnail for Sound Bath and Astrology
-Thumbnail for Oracle Reading after Sound Bath 
-Thumbnail for Session in Progress
-+6
+Corporate wellness / team reset: I design and facilitate nervous system reset experiences for teams—helping people regulate, release stress, and truly turn off without forcing meditation or performance.
 
- Mindfulness Meditation, Audio Recording and +4 skills
+Tools I use: crystal singing bowls, gongs, chimes, tuning forks, shamanic drum, and layered soundscapes (digital + acoustic immersion).
 
-Sound Healing
+#### Sound Healing — Self-Employed
 
-Self-employed
+dates: August 2020 – Present
+duration: 6 yrs
+location: Chicago, Illinois, United States (Hybrid)
 
-Aug 2020 - Present · 6 yrs
+#### Membership Director — ClubCorp
 
-Chicago, Illinois, United States · Hybrid
+dates: March 2021 – October 2022
+duration: 1 yr 8 mos
+location: Chicago, Illinois, United States
+employment_type: Full-time
 
- sound healing, Energy Healing and +3 skills
+Creating memorable and magical experiences for members. Helping members expand their personal and professional networks.
 
-ClubCorp logo
-Membership Director
+#### Lakeshore Sport & Fitness
 
-ClubCorp · Full-time
+employment_type: Full-time
+duration: 4 yrs 6 mos (combined, across two roles below)
 
-Mar 2021 - Oct 2022 · 1 yr 8 mos
+##### Director – Enterprise Sales and New Business Development
 
-Chicago, Illinois, United States
+dates: January 2017 – March 2020
+duration: 3 yrs 3 mos
+location: Greater Chicago Area (Aon Center Location)
 
-Creating memorable and magical experiences for members.  Helping members expand their personal and professional networks.
+- Achieved a 30% increase in member retention rates by designing innovative/immersive programs and effective membership engagement events.
+- Spearheaded new business development efforts, led sales and marketing strategy, and oversaw sales operations across Lakeshore SF locations.
+- Won numerous 6-figure, multi-year partnerships, most notably with Expedia, the National Association of Realtors, Magellan Development Group, Baker Tilly, Kraft, KPMG, and the Booth School of Business, by implementing location-based sales strategy.
+- Generated higher quality leads and boosted overall conversion rates by developing and launching company-wide client referral and reference programs.
 
-Thumbnail for Group Dinner.jpg
-Thumbnail for Framebar South View.jpg
-Thumbnail for 2 - Blueprint Lounge 9-21.jpg
-Thumbnail for Blueprint Lounge 9-21.jpg
-Thumbnail for Bigshots Lounge 2 9-7-21.jpg
-Thumbnail for MET Full House.jpg
- Direct Sales, New Business Development and +29 skills
+##### Sales Director
 
-Lakeshore Sport & Fitness logo
-Lakeshore Sport & Fitness
-
-Full-time · 4 yrs 6 mos
-
-Director – Enterprise Sales and New Business Development
-
-Jan 2017 - Mar 2020 · 3 yrs 3 mos
-
-Greater Chicago Area - Aon Center Location
-
-Achieved a 30% increase in member retention rates by designing innovative/immersive programs and effective membership engagement events. 
-
-*  Spearheaded new business development efforts, led sales and marketing strategy, and oversaw sales operations across Lakeshore SF locations. 
-
-*   Won numerous 6-figure, multi-year partnerships, most notably with Expedia, the National Association of Realtors, Magellan Development Group, Baker Tilly, Kraft, KPMG, and the Booth School of Business, by implementing location-based sales strategy.
-
-*  Generated higher quality leads and boosted overall conversion rates by developing and launching company-wide client referral and reference programs.
-
- Direct Sales, New Business Development and +28 skills
-
-Sales Director
-
-Oct 2015 - Jan 2017 · 1 yr 4 mos
-
-Chicago, Illinois, United States
+dates: October 2015 – January 2017
+duration: 1 yr 4 mos
+location: Chicago, Illinois, United States
 
 Envisioned and commenced a cross-functional sales training program that resulted in a company-wide growth in up-sell and cross-sell revenue.
 
- Direct Sales, New Business Development and +30 skills
+#### Concept Artist — Cycle To The Beat
 
-Concept Artist
+dates: October 2015 – March 2020
+duration: 4 yrs 6 mos
+location: Chicago, Illinois, United States
+employment_type: Freelance
 
-Cycle To The Beat · Freelance
+A One of a Kind Indoor Cycling experience. With the use of technology Cycle to the Beat created a one of kind experience that resonated with the members well beyond our expectations. DJ Canellis conceptualized and created a futuristic immersive experience that helped riders disassociate themselves from the working thereby improving their performance.
 
-Oct 2015 - Mar 2020 · 4 yrs 6 mos
+#### Sales Director — Lakeshore Sport & Fitness
 
-Chicago, Illinois, United States
-
-A One of a Kind Indoor Cycling experience.  With the use of technology Cycle to the Beat created a one of kind experience that resonated with the members well beyond our expectations.  DJ Canellis conceptualized and created a futuristic immersive experience that helped riders disassociate themselves from the working thereby improving their performance.  
-
- Virtual Reality (VR), Customer Experience and +6 skills
-
-Lakeshore Sport & Fitness logo
-Sales Director
-
-Lakeshore Sport & Fitness · Full-time
-
-Mar 2011 - Jan 2014 · 2 yrs 11 mos
-
-Chicago, Illinois, United States
+dates: March 2011 – January 2014
+duration: 2 yrs 11 mos
+location: Chicago, Illinois, United States
+employment_type: Full-time
 
 Recruited, hired, and oversaw day-to-day operations for 6-8 associates teams while successfully coaching and leading the teams to exceed sales goals during 8 out of 12 months year over year.
 
- Direct Sales, New Business Development and +30 skills
+## Education
 
-Education
-DePaul University logo
-DePaul University
+#### B.S., Economics and Finance — DePaul University
 
-B.S, Economics and finance
+dates: 1986 – 1990
+field: Economics and Finance
 
-1986 – 1990
+#### Certificate of Participation, Pranic Healing — Institute for Inner Studies Publishing Foundation India Private Limited
 
-INSTITUTE FOR INNER STUDIES PUBLISHING FOUNDATION INDIA PRIVATE LIMITED
+dates: March 2023 – March 2023
+field: Pranic Healing
 
-Certificate of Participation, Pranic Healing
+*(LinkedIn indicates 5 total education entries; only these 2 were captured in the scrape.)*
 
-Mar 2023 – Mar 2023
+## Skills
 
- Mindfulness Meditation and Energy Healing
+- Holistic Health — associated with Sound Healing at Saints and Angels Healing Through Sound
+- Alternative Energy — associated with Sound Healing at Saints and Angels Healing Through Sound
 
-Thumbnail for Pranic Psychotherapy
-Thumbnail for Advanced Pranic Healing
-Thumbnail for Pranic Healing Course
-Show all 5 educations
-Licenses & certifications
-Schwinn Indoor Cyling Certification
+*(LinkedIn indicates additional skills beyond these 2; the scrape was truncated before capturing the full list.)*
 
-Schwinn
+## Certifications
 
-Issued Sep 2017
+- **Schwinn Indoor Cycling Certification** — Schwinn — Issued September 2017
 
- Fitness
+## Volunteering
 
-Volunteering
+*(Not part of the defined schema sections; included here since the source data contains it and it is genuine, non-redundant signal.)*
 
-Sound Specialist
+#### Sound Specialist — Gilda's Club Chicago
 
-Gilda's Club Chicago
+dates: February 2023 – Present
+duration: 3 yrs 6 mos
+cause: Health
 
-Feb 2023 - Present · 3 yrs 6 mos
+My soundscapes bring order to turbulent energy caused by disease. I'm here to help with finding your inner harmony and peace, providing calming frequencies and vibrations that will leave you feeling relaxed in body, mind & spirit. Let go of stress while journeying inward and explore the breadth of what lies within – tap into your visionary side then expand consciousness through exhilarating sounds! Join me on the 3rd Wednesday of the month at 4pm at Luxxe Honor Wellness Center in La Grange, Il.
 
-Health
+#### Music Professional DJ — Proud to Run
 
-My soundscapes bring order to turbulent energy caused by disease. I'm here to help with finding your inner harmony and peace, providing calming frequencies and vibrations that will leave you feeling relaxed in body, mind & spirit. Let go of stress while journeying inward and explore the breadth of what lies within – tap into your visionary side then expand consciousness through exhilarating sounds! Join me on the 3rd Wednesday of the month at 4pm at Luxxe Honor Wellness Center in La Grange, Il… more
+dates: June 2018 – June 2022
+duration: 4 yrs 1 mo
+cause: Health
 
+Provided Running To The Beat DJ Services as a Sponsor. Run to the Power of The Beat.
 
-Music Professional DJ
+*(LinkedIn indicates 5 total volunteer experiences; only these 2 were captured in the scrape.)*
 
-Proud to Run
+## Posts
 
-Jun 2018 - Jun 2022 · 4 yrs 1 mo
+#### Post 1
 
-Health
-
-Provided Running To The Beat DJ Services as a Sponsor.  Run to the Power of The Beat
-
-Show all 5 volunteer experiences
-Skills
-Holistic Health
-
-
-Sound Healing at Saints and Angels Healing Through Sound
-
-Alternative Energy
-
-
-Sound Healing at Saints and Angels Healing Through Sound
-
-Show all
-
-
-Posts
-
-View Peter Canellis’  graphic link
-Peter CanellisPeter Canellis
-   • 3rd+Verified • 3rd+
-Sound Healer | Founder, Saints & Angels Healing Through Sound | Nervous System Reset Experiences | ChicagoSound Healer | Founder, Saints & Angels Healing Through Sound | Nervous System Reset Experiences | Chicago
-1yr •  1 year ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 1yr
+hashtags: [#SoundHealingAwarenessMonth, #MentalHealthAwareness, #HealingThroughSound, #VibrationalMedicine, #soundbath, #soundhealing]
 
 May is Sound Healing Awareness Month.
 
-Sound is more than something we hear — it’s something we feel, something that heals.
+Sound is more than something we hear — it's something we feel, something that heals.
 At Saints and Angels Sound Healing, we believe in the power of sound to calm the mind, heal the body, and awaken the soul.
 
 This May, we invite you to join the movement:
- • Share the message.
- • Experience the vibration.
- • Inspire healing, clarity, and connection through sound.
+- Share the message.
+- Experience the vibration.
+- Inspire healing, clarity, and connection through sound.
 
-Whether you’re a wellness advocate, a mental health supporter, or someone looking to reset your energy — your voice matters.
+Whether you're a wellness advocate, a mental health supporter, or someone looking to reset your energy — your voice matters.
 Together, we can raise awareness of the incredible potential sound has to transform lives.
 
 Join us. Feel it. Share it.
-hashtag#SoundHealingAwarenessMonth hashtag#MentalHealthAwareness hashtag#HealingThroughSound hashtag#VibrationalMedicine hashtag#soundbath hashtag#soundhealing
 
-Saints and Angels Sound Healing (@soundhealingchicago) • Instagram profile
-instagram.com
-lovelike
-3
+external_link: Instagram profile — Saints and Angels Sound Healing (@soundhealingchicago)
 
-Like
+---
 
-Comment
+#### Post 2
 
-View Peter Canellis’  graphic link
-Peter CanellisPeter Canellis
-   • 3rd+Verified • 3rd+
-Sound Healer | Founder, Saints & Angels Healing Through Sound | Nervous System Reset Experiences | ChicagoSound Healer | Founder, Saints & Angels Healing Through Sound | Nervous System Reset Experiences | Chicago
-1yr •  1 year ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 1yr
+hashtags: [#soundbath, #soundhealing, #wellnessjourney, #healingthroughsound]
 
 Hey beautiful soul,
 
@@ -293,109 +208,74 @@ And if you loved your experience, reply to this email and tell me what shifted f
 
 With sound + light,
 Peter
-Saints and Angels Healing Through Sound 
+Saints and Angels Healing Through Sound
 
-hashtag#soundbath hashtag#soundhealing
-hashtag#wellnessjourney
-hashtag#healingthroughsound
+---
 
+#### Post 3
 
-
-View Peter Canellis’  graphic link
-Peter CanellisPeter Canellis
-   • 3rd+Verified • 3rd+
-Sound Healer | Founder, Saints & Angels Healing Through Sound | Nervous System Reset Experiences | ChicagoSound Healer | Founder, Saints & Angels Healing Through Sound | Nervous System Reset Experiences | Chicago
-1yr •  1 year ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 1yr
+hashtags: [#HeartHealing, #GuidedMeditation, #528Hz, #ThetaWaves, #SoundHealing, #EmotionalHealing, #HealingThroughSound, #EnergyMedicine, #InsightTimer, #LoveFrequency, #AngelicHealing]
 
 New Release: Guided Meditation for Heart Healing — Part 1
 Featuring 528 Hz Love Frequency + 4 Hz Theta Wave (30 Minutes) 💚🕊️
-I’m honored to share Part 1 of this heartfelt, guided sound meditation — created to support deep emotional healing, heart activation, and a gentle return to inner peace.
-This session combines 528 Hz, known as the “Love Frequency,” with 4 Hz Theta brainwave entrainment to open and balance the heart center. 
+
+I'm honored to share Part 1 of this heartfelt, guided sound meditation — created to support deep emotional healing, heart activation, and a gentle return to inner peace.
+
+This session combines 528 Hz, known as the "Love Frequency," with 4 Hz Theta brainwave entrainment to open and balance the heart center.
+
 🕯️ This meditation is perfect for those processing grief, seeking forgiveness, or simply wanting to soften and open their energetic heart space.
 🎧 Experience it with headphones for the full energetic depth.
-Listen now on Insight Timer
+Listen now on Insight Timer.
 
 In sound we are born. In sound we are healed.
 – Peter Canellis | Saints and Angels Healing Through Sound
-hashtag#HeartHealing hashtag#GuidedMeditation hashtag#528Hz hashtag#ThetaWaves hashtag#SoundHealing hashtag#EmotionalHealing hashtag#HealingThroughSound hashtag#EnergyMedicine hashtag#InsightTimer hashtag#LoveFrequency hashtag#AngelicHealing
 
-Meditation For Heart Healing
+---
 
+#### Post 4
 
-View Peter Canellis’  graphic link
-Peter CanellisPeter Canellis
-   • 3rd+Verified • 3rd+
-Sound Healer | Founder, Saints & Angels Healing Through Sound | Nervous System Reset Experiences | ChicagoSound Healer | Founder, Saints & Angels Healing Through Sound | Nervous System Reset Experiences | Chicago
-1yr •  1 year ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 1yr
+hashtags: [#DRIFT, #GuidedMeditation, #SoundHealing, #RelaxationJourney, #InsightTimer, #MindBodySoul, #YouAreEnough, #MeditationTime]
 
 🌟 Just Released on Insight Timer! 🌟
 Introducing DRIFT – my newest guided meditation designed to help you float effortlessly into a state of deep relaxation and self-renewal. Allow yourself to drift away on soothing soundscapes and immersive frequencies, guiding you through layers of tension and stress, and bringing you back to a state of centered calm.
 ✨ Take a moment for yourself. Relax. Drift. You are worth it. ✨
-Listen now on Insight Timer. 💫🧘‍♂️✨ hashtag#DRIFT hashtag#GuidedMeditation hashtag#SoundHealing hashtag#RelaxationJourney hashtag#InsightTimer hashtag#MindBodySoul hashtag#YouAreEnough hashtag#MeditationTime
+Listen now on Insight Timer. 💫🧘‍♂️✨
 
+---
 
+#### Post 5
 
-View Peter Canellis’  graphic link
-Peter CanellisPeter Canellis
-   • 3rd+Verified • 3rd+
-Sound Healer | Founder, Saints & Angels Healing Through Sound | Nervous System Reset Experiences | ChicagoSound Healer | Founder, Saints & Angels Healing Through Sound | Nervous System Reset Experiences | Chicago
-1yr •  1 year ago • Visible to anyone on or off LinkedIn
+type: original
+timestamp: 1yr
 
-Follow
+✨ It's Been One Whole Year! ✨
+Wow, I can't believe it's already been a year since I started Saints and Angels Healing Through Sound! This journey has been amazing — from the first sound bath to building out our cozy studio and connecting with so many incredible souls along the way.
+If you know me, you know how much I believe in the power of sound to heal, calm, and bring us back to center. Over this past year, I've had the chance to create a space where people can let go, find balance, and reconnect with themselves. Each session, every sound bath — it's all been so fulfilling.
+I put together a little video to mark this milestone, sharing some thoughts about the journey and what's next. It's short, but from the heart. I'd love for you to take a look and let me know what you think!
+Thanks to everyone who's been part of this — whether you joined a session, stopped by the studio, or just supported from afar. Here's to more sound, more healing, and more good vibes ahead! 🙏❤️
 
-✨ It’s Been One Whole Year! ✨
-Wow, I can’t believe it’s already been a year since I started Saints and Angels Healing Through Sound! This journey has been amazing — from the first sound bath to building out our cozy studio and connecting with so many incredible souls along the way.
-If you know me, you know how much I believe in the power of sound to heal, calm, and bring us back to center. Over this past year, I’ve had the chance to create a space where people can let go, find balance, and reconnect with themselves. Each session, every sound bath — it’s all been so fulfilling.
-I put together a little video to mark this milestone, sharing some thoughts about the journey and what’s next. It’s short, but from the heart. I’d love for you to take a look and let me know what you think!
-Thanks to everyone who’s been part of this — whether you joined a session, stopped by the studio, or just supported from afar. Here’s to more sound, more healing, and more good vibes ahead! 🙏❤️
+external_link: youtube.com — "Celebrating One Year of Sound Healing - Packages & Gratitude"
 
-Celebrating One Year of Sound Healing - Packages & Gratitude
-youtube.com
-lovelike
-6
-2 comments
+---
 
-Like
+#### Post 6
 
-Comment
+type: original
 
+Discover the healing power of sound at Saints and Angels Healing Through Sound in Chicago. Book your session today and experience deep relaxation and holistic well-being.
 
-Discover the healing power of sound at Saints and Angels Healing Through Sound in Chicago. Book your session today and experience deep relaxation and holistic well-being. Visit https://lnkd.in/gSRpuZyC
-Activate to view larger image,
-Discover the healing power of sound at Saints and Angels Healing Through Sound in Chicago. Book your session today and experience deep relaxation and holistic well-being. Visit www.healingthroughsoundchicago.com
-Activate to view larger image,
-likelove
-7
+external_link: https://www.healingthroughsoundchicago.com
 
-Like
+---
 
-Comment
+#### Post 7
 
+type: original
+timestamp: 1yr
+hashtags: [#SoundHealing, #Wellness, #InnerPeace, #SaintsAndAngelsHealing]
 
-View Peter Canellis’  graphic link
-Peter CanellisPeter Canellis
-   • 3rd+Verified • 3rd+
-Sound Healer | Founder, Saints & Angels Healing Through Sound | Nervous System Reset Experiences | ChicagoSound Healer | Founder, Saints & Angels Healing Through Sound | Nervous System Reset Experiences | Chicago
-1yr •  1 year ago • Visible to anyone on or off LinkedIn
-
-Follow
-
-Experience transformative healing with Saints and Angels Healing Through Sound in Chicago. Our tailored sound bath sessions, led by our dedicated sound facilitator Peter, utilize The Drift™ technique to promote deep relaxation and inner peace. Whether you’re seeking personal healing, corporate wellness, or celebrating special occasions, our sound therapy sessions cater to all needs. Join our community and discover the profound impact of sound on your well-being. Visit our Healing Instrument Showroom to explore a curated selection of crystal singing bowls and more. Embrace the power of sound for holistic health. 🌟 hashtag#SoundHealing hashtag#Wellness hashtag#InnerPeace hashtag#SaintsAndAngelsHealing
-
-Experience transformative healing with Saints and Angels Healing Through Sound in Chicago. Our tailored sound bath sessions, led by our dedicated sound facilitator Peter, utilize The Drift™ technique to promote deep relaxation and inner peace. Whether you’re seeking personal healing, corporate wellness, or celebrating special occasions, our sound therapy sessions cater to all needs. Join our community and discover the profound impact of sound on your well-being. Visit our Healing Instrument Showroom to explore a curated selection of crystal singing bowls and more. Embrace the power of sound for holistic health. 🌟 #SoundHealing #Wellness #InnerPeace #SaintsAndAngelsHealing
-
-Experience transformative healing with Saints and Angels Healing Through Sound in Chicago. Our tailored sound bath sessions, led by our dedicated sound facilitator Peter, utilize The Drift™ technique to promote deep relaxation and inner peace. Whether you’re seeking personal healing, corporate wellness, or celebrating special occasions, our sound therapy sessions cater to all needs. Join our community and discover the profound impact of sound on your well-being. Visit our Healing Instrument Showroom to explore a curated selection of crystal singing bowls and more. Embrace the power of sound for holistic health. 🌟 #SoundHealing #Wellness #InnerPeace #SaintsAndAngelsHealing
-
-Experience transformative healing with Saints and Angels Healing Through Sound in Chicago. Our tailored sound bath sessions, led by our dedicated sound facilitator Peter, utilize The Drift™ technique to promote deep relaxation and inner peace. Whether you’re seeking personal healing, corporate wellness, or celebrating special occasions, our sound therapy sessions cater to all needs. Join our community and discover the profound impact of sound on your well-being. Visit our Healing Instrument Showroom to explore a curated selection of crystal singing bowls and more. Embrace the power of sound for holistic health. 🌟 #SoundHealing #Wellness #InnerPeace #SaintsAndAngelsHealing
-Activate to view larger image,
-likelovesupport
-8
-1 comment
-
-Like
-
-Comment
+Experience transformative healing with Saints and Angels Healing Through Sound in Chicago. Our tailored sound bath sessions, led by our dedicated sound facilitator Peter, utilize The Drift™ technique to promote deep relaxation and inner peace. Whether you're seeking personal healing, corporate wellness, or celebrating special occasions, our sound therapy sessions cater to all needs. Join our community and discover the profound impact of sound on your well-being. Visit our Healing Instrument Showroom to explore a curated selection of crystal singing bowls and more. Embrace the power of sound for holistic health. 🌟
