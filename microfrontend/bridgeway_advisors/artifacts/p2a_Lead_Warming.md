@@ -1,95 +1,64 @@
-## Lead Warming Plan — Ray Johnson / Rideit
+Lead Warming Plan — Isaac Taylor / Bridgeway Advisors
+Analysis
+Target CEO — Key Themes
 
-### Analysis
+Believes in "Learning by Doing" — hands-on skill-building over theory
+Committed to expanding access to finance careers for students from all backgrounds
+Treats mentorship and "giving back" as core to leadership, not a side project
+Draws on classic value-investing wisdom (Buffett) — sees leadership as continual self-improvement and careful choice of role models
+Publicly credits collaborators and team members by name — relationship-forward, low-ego communication style
+Frames his firm's identity around mission (access, opportunity) as much as dealmaking
 
-#### Target CEO — Key Themes
+Target CEO — Likely Pain Points
 
-- **Transportation as community equity** — frames mobility gaps in rural NC as barriers to healthcare, jobs, and education, not just inconvenience
-- **Infrastructure-free B2B model** — the core pitch to municipalities is delivering microtransit without requiring capital investment or physical infrastructure
-- **Proof-of-concept before scale** — Bladen County B2C pilot is explicitly positioned as a model-validation step before B2B municipal roll-out
-- **Built from $0, organically** — repeated across multiple ventures (Carolina Elite Baseball, USAPB, Rideit); "started from the bottom" is a core identity marker
-- **Community relationships as the engine** — describes business growth through community trust, not ads or VC money
-- **Serial entrepreneurship** — simultaneously running a scout career, a nonprofit, and a tech startup; treats parallel execution as normal
+Building brand credibility for a young, boutique advisory (founded 2025) against the legacy firms he came from (BofA, JPM)
+Running mission-driven programs (bootcamps, mentorship) alongside core revenue-generating advisory work with a small team
+Sourcing and developing specialized capital-markets/treasury talent — a narrow, competitive hiring pool
+Scaling personal involvement (he spent the two hours himself with 50 students) without it bottlenecking as the firm grows
+Differentiating a founder-led boutique in a crowded capital markets advisory space
 
----
+Dev8X — Relevant Overlap
 
-#### Target CEO — Likely Pain Points
+Both are founder-led firms of similar scale — small, senior-heavy teams building credibility against much larger incumbents in their fields
+Both invest personal time developing junior talent rather than only hiring "finished" people — a real overlap with Isaac's "Learning by Doing" stance
+If Bridgeway's bootcamp and mentorship programs still run on manual coordination, Dev8X's work building internal tools/platforms is directly applicable
+Both operate where technical skill alone doesn't differentiate — client trust and clear communication matter as much as raw expertise
+(Flag: tighten this with a real Dev8X case study or service line once available — right now it's grounded in public info, not the ops manual)
 
-- **Custom technology platform not yet built** — actively posted on Upwork for a Full Stack Developer to build a dispatch, reservation, and GPS tracking SaaS from scratch; this is the most pressing operational blocker between pilot and scale
-- **Government procurement credibility** — municipalities require proof the product works before they contract; the tech demo gap is real pre-launch
-- **Multi-tenant scale requirement** — the job posting explicitly calls for white-label / multi-tenant architecture to support future county and municipal expansion beyond Bladen
-- **Pre-revenue capital constraints** — previously posted seeking early-stage investors; the platform is not yet generating commercial revenue
-- **B2B sales cycle length** — government and municipal deals move slowly; maintaining pipeline momentum without a fully deployed product is difficult
+Shared Ground
+Both Isaac and Abdul are founders of young, small, expertise-driven firms who talk about their work in terms of who they're developing, not just what they're delivering — that's the thread the three comments build on.
 
----
+Post Selection
+Post 1
+Post excerpt: Isaac thanks the professionals who supported Bridgeway's Spring Finance Bootcamp and describes his belief in "Learning by Doing" — 50 students forecasting AbbVie, Eli Lilly, or Walmart and presenting to senior professionals.
+Why selected: Recent, and the "Learning by Doing" line is a genuine methodology claim that invites a sharp, specific reply rather than congratulations.
+Comment timing: Day 1
+Post 2
+Post excerpt: Isaac shares a Warren Buffett quote about choosing role models carefully and continually striving to improve while accepting perfection isn't attainable.
+Why selected: A personal, low-traffic reflection post (not an event or program announcement) — the right register to add a first personal detail without it reading like an introduction.
+Comment timing: Day 3
+Post 3
+Post excerpt: Isaac reshares a Medtronic Principal Treasury Analyst opening focused on capital markets, liquidity, and executive-ready financial storytelling, noting it's "a great team."
+Why selected: The only post that sits directly in Isaac's professional domain (capital markets talent) rather than in his mission/education content — the ask lands as relevant to his actual work, not just friendly.
+Comment timing: Day 5
 
-#### Dev8X — Relevant Overlap
+Comments
+Comment 1 — Day 1
+Five year forecasts force conclusions in a way lectures never do. The real skill students walk away with is defending a number under pushback, not building the model itself.
+Stage: Establish Presence
+What this does: Gets Abdul noticed as someone who thinks past the surface of training programs, on a post fresh enough that the comment won't be buried.
 
-- **Full-stack SaaS development** — Dev8X builds microservices and Next.js-based platforms at exactly the complexity level Rideit's job posting describes: dispatch APIs, real-time GPS, RBAC, notifications, admin dashboards
-- **Multi-tenant and white-label architecture** — Dev8X's monorepo structure with multiple isolated microfrontends is a working demonstration of the multi-tenant architecture Rideit's job posting lists as a requirement
-- **Pilot-to-enterprise sequencing** — Abdul has taken B2B products from MVP through enterprise-scale deployment; the Bladen County → municipal scale path is a pattern Dev8X has navigated
-- **Real-time systems experience** — GPS tracking, live dispatch, ETA calculation, and geofencing are within Dev8X's technical scope (Node.js, React, microservices)
-- **Startup-to-scale without VC dependency** — both Abdul and Ray have built businesses from the ground up without institutional funding; the operating discipline and timeline expectations are aligned
+Comment 2 — Day 3
+Choosing who to learn from is the harder call once technical skills are table stakes. Same instinct shapes how we build teams at Dev8X.
+Stage: Deepen the Thread
+What this does: Gives Isaac his first low-key data point that Abdul runs something real, without turning the comment into an introduction.
 
----
+Comment 3 — Day 5
+Capital markets hires who can explain the role to leadership in plain language are rare. Same hiring problem, different industry. Sending a connection request — worth having this conversation properly.
+Stage: The Ask
+What this does: Lands the ask on a post in Isaac's own professional wheelhouse, so the connection reads as domain-relevant rather than just warm.
 
-#### Shared Ground
-
-Both Abdul and Ray are serial entrepreneurs who built multiple businesses from $0 through community relationships and direct execution — not funding rounds or outside capital. The invisible thread is: real products built by people who've had to make every dollar count, solving problems that incumbents won't touch.
-
----
-
-### Post Selection
-
-#### Post 1
-**Post excerpt:** "Transportation access is one of the biggest gaps in many of our communities. Microtransit offers a smarter, more flexible way to serve residents and I'm excited about the work we're doing to bring these solutions to local governments across North Carolina."
-**Why selected:** The microtransit-for-local-governments framing invites a substantive operational perspective — specifically on what actually moves municipalities to act — without requiring any mention of Dev8X.
-**Comment timing:** Day 1
-
-#### Post 2
-**Post excerpt:** "Excited to share that Rideit's first B2C pilot will be launching soon in Bladen County, NC. This pilot will help us test and refine our model... our broader focus remains on B2B micro-transportation solutions for cities and municipalities looking to improve mobility without building their own infrastructure."
-**Why selected:** The explicit pilot-before-B2B logic creates a natural opening to reference Dev8X's own experience with the same sequencing, making the self-mention feel observed rather than inserted.
-**Comment timing:** Day 3
-
-#### Post 3
-**Post excerpt:** "It was an honor to be apart of the Right to Start Coalition event... Big thanks to ABC11 and Elaina Athans for taking the time to speak with me about Rideit... Excited to keep pushing the conversation forward about making entrepreneurship accessible to all."
-**Why selected:** The entrepreneurship-in-rural-NC framing creates genuine peer-to-peer common ground — two founders building without institutional backing — making a connection ask land as a natural next step rather than a commercial move.
-**Comment timing:** Day 5
-
----
-
-### Comments
-
-#### Comment 1 — Day 1
-
-Most municipalities open the conversation at "what infrastructure do we need to build." The solutions that skip that question entirely are the ones that actually get to a second meeting.
-
-**Stage:** Establish Presence
-**What this does:** Positions Abdul as someone who understands the specific friction in government sales — not transportation broadly — which signals operational experience without revealing any agenda.
-
----
-
-#### Comment 2 — Day 3
-
-Piloting locally before pitching municipalities is the right order. We learned that at Dev8X — a working product ends conversations that a deck never closes.
-
-**Stage:** Deepen the Thread
-**What this does:** Introduces Dev8X naturally by mirroring Ray's own pilot logic back to him, creating a moment of genuine recognition between two founders who've navigated the same proof-of-concept problem.
-
----
-
-#### Comment 3 — Day 5
-
-The harder part is rarely the idea — it's building infrastructure fast enough to match the vision. Worth connecting — seems like we're circling the same problems.
-
-**Stage:** The Ask
-**What this does:** Anchors the connection ask to a shared operational reality rather than a compliment or a pitch, making the request feel like a natural conclusion to three days of peer-level exchange.
-
----
-
-### Connection Request Note
-
-**When to send:** Send when Ray replies to Comment 2 or 3. If no reply, send immediately after Comment 3 while the thread is still visible in his notifications.
-
-**Request message:**
-Been following the Rideit build — the B2B microtransit model for municipalities is a space I find genuinely interesting. We've navigated similar infrastructure problems at Dev8X. Worth a conversation.
+Connection Request Note
+When to send: Send immediately after Comment 3 — the comment itself states a request is coming, so it should follow the same day to keep the sequence coherent.
+Request message (optional):
+Been following your posts on training the next generation of finance talent — different industry, same instinct at Dev8X. Figured it was worth connecting directly.
