@@ -16,12 +16,48 @@ from selenium.webdriver.support.ui import WebDriverWait
 import config
 
 
+def _page_has_loading_overlay(driver: WebDriver) -> bool:
+    script = """
+    const selectors = arguments[0];
+    const texts = arguments[1];
+    const bodyText = (document.body && document.body.innerText || '').toLowerCase();
+
+    for (const selector of selectors) {
+        const elements = Array.from(document.querySelectorAll(selector));
+        if (elements.some(el => {
+            const style = window.getComputedStyle(el);
+            const visible = el.offsetParent !== null && style.visibility !== 'hidden' && style.display !== 'none';
+            const rect = el.getBoundingClientRect();
+            return visible && rect.width > 0 && rect.height > 0;
+        })) {
+            return true;
+        }
+    }
+
+    for (const text of texts) {
+        if (bodyText.includes(text)) {
+            return true;
+        }
+    }
+
+    return false;
+    """
+    return bool(
+        driver.execute_script(
+            script,
+            config.LOADER_INDICATOR_SELECTORS,
+            config.LOADER_TEXT_PATTERNS,
+        )
+    )
+
+
 def wait_for_page_ready(driver: WebDriver) -> None:
     """
     Block until the current page is reasonably ready for scraping.
 
-    This waits for the browser's document.readyState to become 'complete'
-    and for the main content selector to be present in the DOM.
+    This waits for the browser's document.readyState to become 'complete',
+    for the main content selector to be present in the DOM, and for common
+    loading/verification overlays to disappear.
     """
     try:
         WebDriverWait(driver, config.PAGE_LOAD_TIMEOUT).until(
@@ -39,4 +75,14 @@ def wait_for_page_ready(driver: WebDriver) -> None:
         )
     except TimeoutException:
         # If the main selector never appears, we still proceed with whatever is available.
+        pass
+
+    try:
+        WebDriverWait(
+            driver,
+            config.LOADER_WAIT_TIMEOUT,
+            poll_frequency=config.PAGE_READY_POLL_INTERVAL,
+        ).until_not(_page_has_loading_overlay)
+    except TimeoutException:
+        # If a loader stays visible beyond the timeout, proceed anyway.
         pass

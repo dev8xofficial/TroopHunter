@@ -6,8 +6,16 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { inputGate, renderHealthGate, schemaGate } from '../src/guardrails.js';
-import type { RenderResult } from '../src/schema.js';
+import {
+  briefComprehensionGate,
+  hardConstraintGate,
+  inputGate,
+  renderHealthGate,
+  schemaGate,
+} from '../src/guardrails.js';
+import type { ModelProvider } from '../src/model.js';
+import type { Brief, RenderResult } from '../src/schema.js';
+import type { Page } from 'playwright';
 
 describe('Guardrails', () => {
   // ─── Input Gate ──────────────────────────────────────────────────
@@ -68,6 +76,66 @@ describe('Guardrails', () => {
   });
 
   // ─── Render Health Gate ──────────────────────────────────────────
+
+  describe('briefComprehensionGate', () => {
+    const brief: Brief = {
+      client: 'TestCo',
+      industry: 'Tech',
+      audience: 'Developers',
+      goal: 'Generate leads',
+      section: {
+        name: 'hero',
+        content: { headline: 'Build Better' },
+      },
+    };
+
+    it('passes when the preflight finds no missing facts or mismatches', async () => {
+      const provider: ModelProvider = {
+        id: 'fake',
+        complete: async () => ({
+          text: JSON.stringify({
+            restated_goal: 'Generate leads',
+            restated_audience: 'Developers',
+            restated_constraints: ['Hero section for TestCo'],
+            missing_required_facts: [],
+            material_mismatches: [],
+            confidence: 0.9,
+          }),
+          usage: { input: 10, output: 5 },
+        }),
+      };
+      const budget = { current: 0, max: 2 };
+
+      const result = await briefComprehensionGate(provider, brief, budget);
+
+      expect(result.pass).toBe(true);
+      expect(result.violations).toEqual([]);
+      expect(result.usage).toEqual({ input: 10, output: 5 });
+      expect(budget.current).toBe(1);
+    });
+
+    it('fails closed on material mismatches', async () => {
+      const provider: ModelProvider = {
+        id: 'fake',
+        complete: async () => ({
+          text: JSON.stringify({
+            restated_goal: 'Sell enterprise software',
+            restated_audience: 'Restaurants',
+            restated_constraints: [],
+            missing_required_facts: [],
+            material_mismatches: ['Audience conflicts with the stated industry and goal.'],
+            confidence: 0.4,
+          }),
+          usage: { input: 8, output: 6 },
+        }),
+      };
+
+      const result = await briefComprehensionGate(provider, brief, { current: 0, max: 1 });
+
+      expect(result.pass).toBe(false);
+      expect(result.violations.some(v => v.rule === 'material-mismatch')).toBe(true);
+    });
+  });
 
   describe('renderHealthGate', () => {
     const validTsx = `
@@ -161,6 +229,41 @@ export default function Section() {
       const result = await renderHealthGate(reactOnlyTsx, healthyRender);
       const importViolations = result.violations.filter(v => v.rule === 'import-allowlist');
       expect(importViolations.length).toBe(0);
+    });
+  });
+
+  describe('hardConstraintGate', () => {
+    it('blocks missing brief content as a hard violation', async () => {
+      const brief: Brief = {
+        client: 'TestCo',
+        industry: 'Tech',
+        audience: 'Developers',
+        goal: 'Generate leads',
+        section: {
+          name: 'hero',
+          content: {
+            headline: 'Build Better',
+            cta: { text: 'Start Now', href: '/start' },
+          },
+        },
+      };
+
+      let evaluateCall = 0;
+      const page = {
+        evaluate: async () => {
+          evaluateCall += 1;
+          if (evaluateCall === 1) {
+            return { scrollWidth: 375, clientWidth: 375 };
+          }
+          return 'A different rendered page';
+        },
+      } as unknown as Page;
+
+      const result = await hardConstraintGate(page, brief);
+      const contentViolation = result.violations.find(v => v.rule === 'content-present');
+
+      expect(result.pass).toBe(false);
+      expect(contentViolation?.severity).toBe('serious');
     });
   });
 

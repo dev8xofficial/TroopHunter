@@ -27,22 +27,39 @@ import type {
   ProjectDesignSystem,
   SectionOutput,
   Artifact,
+  LibraryEntry,
 } from './schema.js';
 import { getProvider, type ModelProvider } from './model.js';
 import { generate, GeneratorError } from './generator.js';
 import { render, copyAssetsToHarness, cleanup } from './eyes.js';
-import { inputGate, renderHealthGate, hardConstraintGate, tokenAllowlistGate } from './guardrails.js';
+import {
+  briefComprehensionGate,
+  inputGate,
+  renderHealthGate,
+  hardConstraintGate,
+  tokenAllowlistGate,
+} from './guardrails.js';
 import { critique } from './critic.js';
 import { appendIteration, writeRunConfig } from './trace.js';
 import { serializeFeedback } from './prompts.js';
 import { crystallize } from './crystallizer.js';
+import { retrieveLibraryForBrief } from './library.js';
 import {
   readBrand,
   readPDS,
   readArtifact,
   writeArtifact,
+  writeArtifactQA,
   getSectionRunDir,
 } from './store.js';
+import { runWholeArtifactQA } from './qa.js';
+import {
+  budgetFromConfig,
+  checkCostBudget,
+  formatCostSummary,
+  summarizeRunResults,
+  validateProductionReadiness,
+} from './production.js';
 
 /**
  * Run the full generate→render→screenshot→critique→edit loop.
@@ -101,6 +118,23 @@ export async function runLoop(
   }
   console.log('✅ Input gate passed.');
 
+  // ── Provider + brief comprehension preflight ────────────────────
+  console.log(`\n🤖 Initializing ${cfg.provider} provider (${cfg.modelId})...`);
+  const provider = await getProvider(cfg);
+
+  console.log('\n🧭 Running brief comprehension gate...');
+  const comprehensionResult = await briefComprehensionGate(provider, brief, modelCalls);
+  totalTokens.input += comprehensionResult.usage.input;
+  totalTokens.output += comprehensionResult.usage.output;
+  if (!comprehensionResult.pass) {
+    console.error('❌ Brief comprehension gate failed:');
+    for (const v of comprehensionResult.violations) {
+      console.error(`  • [${v.severity}] ${v.message}`);
+    }
+    return makeResult('ABORTED', outDir, 0, totalTokens, startTime);
+  }
+  console.log('✅ Brief comprehension gate passed.');
+
   // ── Copy assets to harness ───────────────────────────────────────
   let rewrittenAssets: Record<string, string> = {};
   if (brief.section.assets) {
@@ -109,6 +143,7 @@ export async function runLoop(
   }
 
   // ── Assemble input bundle (I1 precedence) ────────────────────────
+  const softLibrary = await retrieveLibraryForBrief(cfg, brief, 5);
   const bundle: InputBundle = {
     brief: {
       ...brief,
@@ -121,11 +156,9 @@ export async function runLoop(
     hardBrand: brand && brand.status === 'frozen' ? brand : undefined,
     hardSystem: pds && pds.status === 'foundation-frozen' ? pds : undefined,
     ctxShots: ctxShots && ctxShots.length > 0 ? ctxShots : undefined,
+    softLibrary: softLibrary.length > 0 ? softLibrary : undefined,
   };
-
-  // ── Get provider ─────────────────────────────────────────────────
-  console.log(`\n🤖 Initializing ${cfg.provider} provider (${cfg.modelId})...`);
-  const provider = await getProvider(cfg);
+  const constraintBrandData = getConstraintBrandData(brandData, brand);
 
   // ── State ────────────────────────────────────────────────────────
   let bestSoFar: {
@@ -134,6 +167,7 @@ export async function runLoop(
     candidateId: string;
     iteration: number;
     hardPass: boolean;
+    shots: Record<string, string>;
   } | null = null;
 
   let lastFeedback: string | undefined;
@@ -209,7 +243,14 @@ export async function runLoop(
       const candDir = join(iterDir, candidate.id);
       let renderResult;
       try {
-        renderResult = await render(candidate.tsx, candidate.id, cfg.breakpoints, cfg, join(candDir, 'render'));
+        renderResult = await render(
+          candidate.tsx,
+          candidate.id,
+          cfg.breakpoints,
+          cfg,
+          join(candDir, 'render'),
+          async page => (await hardConstraintGate(page, bundle.brief, constraintBrandData)).violations,
+        );
       } catch (err) {
         console.error(`  ❌ Render failed for ${candidate.id}:`, err instanceof Error ? err.message : err);
         continue;
@@ -255,8 +296,12 @@ export async function runLoop(
             totalTokens.output += repairResult.usage.output;
 
             const repairRender = await render(
-              repairResult.tsx, `${candidate.id}-repair${repair}`,
-              cfg.breakpoints, cfg, join(candDir, 'render'),
+              repairResult.tsx,
+              `${candidate.id}-repair${repair}`,
+              cfg.breakpoints,
+              cfg,
+              join(candDir, 'render'),
+              async page => (await hardConstraintGate(page, bundle.brief, constraintBrandData)).violations,
             );
             const repairHealth = await renderHealthGate(repairResult.tsx, repairRender);
 
@@ -284,11 +329,23 @@ export async function runLoop(
         }
       }
 
-      // Hard-constraint gate — we need a page for axe-core
-      // For Phase 0, we run hardConstraintGate checks that don't need a page
-      // The full axe-core check happens via the rendered page
+      // Hard constraints are collected during render while the Playwright page is live.
       let hardPass = true;
       const hardViolations: string[] = [];
+
+      for (const violation of renderResult.hardViolations ?? []) {
+        hardViolations.push(`[${violation.rule}] ${violation.message}`);
+        if (violation.severity === 'critical' || violation.severity === 'serious') {
+          hardPass = false;
+        }
+      }
+
+      if (!hardPass) {
+        console.log(`  ⚠ Hard-constraint gate FAILED for ${candidate.id}`);
+        for (const violation of renderResult.hardViolations ?? []) {
+          console.log(`    • [${violation.severity}] ${violation.message}`);
+        }
+      }
 
       // Token-allowlist gate (Phase 1) — check frozen PDS tokens
       if (bundle.hardSystem && bundle.hardSystem.status === 'foundation-frozen') {
@@ -366,6 +423,7 @@ export async function runLoop(
           candidateId: candidate.id,
           iteration: iter,
           hardPass: candidate.hardPass,
+          shots: candidate.shots,
         };
       } else {
         // Eligible beats non-eligible; among same eligibility, higher weighted_total wins
@@ -383,6 +441,7 @@ export async function runLoop(
             candidateId: candidate.id,
             iteration: iter,
             hardPass: candidate.hardPass,
+            shots: candidate.shots,
           };
         }
       }
@@ -443,6 +502,7 @@ export async function runLoop(
   // ── Write final output ─────────────────────────────────────────
   const finalDir = join(outDir, 'final');
   mkdirSync(finalDir, { recursive: true });
+  let finalShots: Record<string, string> | undefined;
 
   if (bestSoFar) {
     writeFileSync(join(finalDir, 'Section.tsx'), bestSoFar.tsx);
@@ -450,16 +510,27 @@ export async function runLoop(
     // Copy best shots to final
     const finalShotsDir = join(finalDir, 'shots');
     mkdirSync(finalShotsDir, { recursive: true });
+    finalShots = {};
     // Re-render the best for clean final shots
     try {
       const finalRender = await render(bestSoFar.tsx, 'final', cfg.breakpoints, cfg, finalDir);
       for (const [bp, path] of Object.entries(finalRender.shots)) {
         const destPath = join(finalShotsDir, `${bp}.png`);
         try { copyFileSync(path, destPath); } catch { /* ignore */ }
+        finalShots[bp] = destPath;
       }
     } catch {
       // If re-render fails, copy from best iteration
       console.warn('⚠ Final re-render failed, using iteration shots.');
+      for (const [bp, path] of Object.entries(bestSoFar.shots)) {
+        const destPath = join(finalShotsDir, `${bp}.png`);
+        try {
+          copyFileSync(path, destPath);
+          finalShots[bp] = destPath;
+        } catch {
+          finalShots[bp] = path;
+        }
+      }
     }
 
     console.log(`\n${'═'.repeat(50)}`);
@@ -475,7 +546,7 @@ export async function runLoop(
   // Cleanup
   await cleanup();
 
-  return makeResult(terminalState, outDir, iterationCount, totalTokens, startTime, bestSoFar);
+  return makeResult(terminalState, outDir, iterationCount, totalTokens, startTime, bestSoFar, finalShots);
 }
 
 // ─── Helpers ───────────────────────────────────────────────────────
@@ -513,17 +584,37 @@ function makeResult(
   totalTokens: { input: number; output: number },
   startTime: number,
   best?: { tsx: string; scores: DimensionScores; candidateId: string } | null,
+  finalShots?: Record<string, string>,
 ): RunResult {
   return {
     state,
     finalTsx: best?.tsx,
-    finalShots: undefined,
+    finalShots,
     bestScore: best?.scores,
     iterations,
     totalTokens: { ...totalTokens },
     totalDurationMs: Date.now() - startTime,
     traceFile: join(outDir, 'trace.jsonl'),
     outDir,
+  };
+}
+
+function getConstraintBrandData(
+  brandData?: BrandData,
+  brand?: BrandFoundation,
+): BrandData | undefined {
+  if (brandData) {
+    return brandData;
+  }
+  if (!brand || brand.status !== 'frozen') {
+    return undefined;
+  }
+
+  return {
+    client_id: brand.client_id,
+    palette: brand.identity.palette.map(({ role, value }) => ({ role, value })),
+    typography: brand.identity.typography,
+    logo_ref: brand.identity.logo_ref,
   };
 }
 
@@ -539,6 +630,7 @@ export function assembleBundle(
   brand?: BrandFoundation,
   pds?: ProjectDesignSystem,
   ctxShots?: { sectionName: string; breakpoint: string; path: string }[],
+  softLibrary?: LibraryEntry[],
 ): InputBundle {
   return {
     brief,
@@ -546,6 +638,7 @@ export function assembleBundle(
     hardBrand: brand && brand.status === 'frozen' ? brand : undefined,
     hardSystem: pds && pds.status === 'foundation-frozen' ? pds : undefined,
     ctxShots: ctxShots && ctxShots.length > 0 ? ctxShots : undefined,
+    softLibrary: softLibrary && softLibrary.length > 0 ? softLibrary.slice(0, 5) : undefined,
   };
 }
 
@@ -587,6 +680,16 @@ export async function runSiteLoop(
   surface: 'website' | 'product',
   sections: { name: string; brief: Brief; briefPath: string; brandData?: BrandData }[],
 ): Promise<{ artifact: Artifact; results: RunResult[] }> {
+  const productionReadiness = validateProductionReadiness(cfg);
+  for (const warning of productionReadiness.warnings) {
+    console.warn(`Production warning [${warning.rule}]: ${warning.message}`);
+  }
+  if (cfg.productionMode && !productionReadiness.pass) {
+    throw new Error(
+      `Production readiness failed: ${productionReadiness.violations.map(v => v.message).join('; ')}`,
+    );
+  }
+
   // Load brand
   const brand = readBrand(clientId);
   if (!brand || brand.status !== 'frozen') {
@@ -677,7 +780,22 @@ export async function runSiteLoop(
 
   // Update artifact
   artifact.sections = builtSections;
-  artifact.status = builtSections.every(s => s.status === 'approved') ? 'approved' : 'in-progress';
+  const finalPds = readPDS(clientId, surface);
+  const qaReport = runWholeArtifactQA(artifact, brand, finalPds, { threshold: cfg.threshold });
+  writeArtifactQA(clientId, surface, qaReport);
+
+  const costSummary = summarizeRunResults(results);
+  const budgetViolations = checkCostBudget(costSummary, budgetFromConfig(cfg));
+  console.log(formatCostSummary(costSummary));
+  for (const violation of budgetViolations) {
+    console.warn(`Budget warning [${violation.rule}]: ${violation.message}`);
+  }
+
+  artifact.status = builtSections.length > 0 &&
+    builtSections.every(s => s.status === 'approved') &&
+    qaReport.pass
+    ? 'approved'
+    : 'in-progress';
   writeArtifact(clientId, surface, artifact);
 
   return { artifact, results };

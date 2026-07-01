@@ -16,12 +16,12 @@ loadDotenv({ path: resolve(import.meta.dirname, '..', '.env') });
 
 // ─── Schema ────────────────────────────────────────────────────────
 
-const ProviderSchema = z.enum(['agent-sdk', 'api', 'local']).default('api');
+const ProviderSchema = z.enum(['agent-sdk', 'api', 'local']).default('agent-sdk');
 
 const ConfigSchema = z.object({
   // Provider
   provider: ProviderSchema,
-  modelId: z.string().default('claude-sonnet-4-20250514'),
+  modelId: z.string().default('claude-sonnet-4-6'),
 
   // Render breakpoints
   breakpoints: z.array(z.number().int().positive()).default([1440, 768, 375]),
@@ -45,6 +45,20 @@ const ConfigSchema = z.object({
   ollamaBaseUrl: z.string().url().default('http://localhost:11434'),
   ollamaModel: z.string().default('llava'),
 
+  // Embeddings (Phase 2 Library). local-hash is deterministic and key-free.
+  embeddingProvider: z.enum(['local-hash', 'ollama']).default('local-hash'),
+  embeddingModel: z.string().default('ade-local-hash-v1'),
+
+  // Phase 4 production/autonomy controls.
+  productionMode: z.boolean().default(false),
+  harness: z.enum(['vite', 'next']).default('vite'),
+  autonomyRung: z.number().int().min(0).max(4).default(0),
+  maxTokensPerSection: z.number().int().positive().default(200_000),
+  maxSecondsPerSection: z.number().positive().default(300),
+  maxUsdPerSection: z.number().positive().default(50),
+  generatorModelId: z.string().optional(),
+  criticModelId: z.string().optional(),
+
   // Anthropic API key (only for provider=api)
   anthropicApiKey: z.string().optional(),
 
@@ -66,6 +80,12 @@ export interface CLIOverrides {
   maxIters?: number;
   threshold?: number;
   headed?: boolean;
+  productionMode?: boolean;
+  harness?: 'vite' | 'next';
+  autonomyRung?: number;
+  maxTokensPerSection?: number;
+  maxSecondsPerSection?: number;
+  maxUsdPerSection?: number;
 }
 
 /**
@@ -90,6 +110,16 @@ export function buildConfig(overrides: CLIOverrides = {}): Config {
     maxModelCalls: parseIntEnv('ADE_MAX_MODEL_CALLS'),
     ollamaBaseUrl: process.env.ADE_OLLAMA_BASE_URL,
     ollamaModel: process.env.ADE_OLLAMA_MODEL,
+    embeddingProvider: process.env.ADE_EMBEDDING_PROVIDER,
+    embeddingModel: process.env.ADE_EMBEDDING_MODEL,
+    productionMode: overrides.productionMode ?? parseBoolEnv('ADE_PRODUCTION'),
+    harness: overrides.harness ?? process.env.ADE_HARNESS,
+    autonomyRung: overrides.autonomyRung ?? parseIntEnv('ADE_AUTONOMY_RUNG'),
+    maxTokensPerSection: overrides.maxTokensPerSection ?? parseIntEnv('ADE_MAX_TOKENS_PER_SECTION'),
+    maxSecondsPerSection: overrides.maxSecondsPerSection ?? parseFloatEnv('ADE_MAX_SECONDS_PER_SECTION'),
+    maxUsdPerSection: overrides.maxUsdPerSection ?? parseFloatEnv('ADE_MAX_USD_PER_SECTION'),
+    generatorModelId: process.env.ADE_GENERATOR_MODEL,
+    criticModelId: process.env.ADE_CRITIC_MODEL,
     anthropicApiKey: process.env.ANTHROPIC_API_KEY || undefined,
     headed: overrides.headed ?? parseBoolEnv('ADE_HEADED'),
     harnessPort: parseIntEnv('ADE_HARNESS_PORT'),

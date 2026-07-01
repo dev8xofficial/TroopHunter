@@ -41,6 +41,17 @@ export const BriefSchema = z.object({
 
 export type Brief = z.infer<typeof BriefSchema>;
 
+export const BriefComprehensionSchema = z.object({
+  restated_goal: z.string().min(1),
+  restated_audience: z.string().min(1),
+  restated_constraints: z.array(z.string()).default([]),
+  missing_required_facts: z.array(z.string()).default([]),
+  material_mismatches: z.array(z.string()).default([]),
+  confidence: z.number().min(0).max(1).default(1),
+});
+
+export type BriefComprehension = z.infer<typeof BriefComprehensionSchema>;
+
 // ─── BrandData (spec 03 §3.1) ──────────────────────────────────────
 
 export const PaletteEntrySchema = z.object({
@@ -62,6 +73,20 @@ export const BrandDataSchema = z.object({
 });
 
 export type BrandData = z.infer<typeof BrandDataSchema>;
+
+// ─── Shared enums ─────────────────────────────────────────────────
+
+export const SurfaceSchema = z.enum(['website', 'product']);
+export type Surface = z.infer<typeof SurfaceSchema>;
+
+export const AutonomyRungSchema = z.union([
+  z.literal(0),
+  z.literal(1),
+  z.literal(2),
+  z.literal(3),
+  z.literal(4),
+]);
+export type AutonomyRung = z.infer<typeof AutonomyRungSchema>;
 
 // ─── DimensionScores (spec 03 §6) ──────────────────────────────────
 
@@ -144,6 +169,7 @@ export const RenderResultSchema = z.object({
   shots: z.record(z.string(), z.string()), // breakpoint → file path
   consoleErrors: z.array(z.string()),
   hasErrorOverlay: z.boolean(),
+  hardViolations: z.array(ViolationSchema).optional(),
   domInfo: z.object({
     bodyHeight: z.number(),
     hasText: z.boolean(),
@@ -162,6 +188,63 @@ export const ReferenceRefSchema = z.object({
 });
 
 export type ReferenceRef = z.infer<typeof ReferenceRefSchema>;
+
+// ─── Library Entry (spec 03 §2) - Phase 2 soft memory ──────────────
+
+export const LibraryEntryTypeSchema = z.enum([
+  'principle',
+  'pattern',
+  'component-recipe',
+  'anti-pattern',
+]);
+
+export const LibraryContextFitSchema = z.object({
+  domain: z.string().min(1),
+  audience: z.string().min(1),
+  personality: z.array(z.string()).default([]),
+  goal: z.string().min(1),
+  feel: z.array(z.string()).default([]),
+});
+
+export const LibraryOutcomeSchema = z.object({
+  human_verdict: z.string().min(1),
+  confidence: z.number().min(0).max(1),
+  times_used: z.number().int().min(0),
+});
+
+export const LibraryEmbeddingSchema = z.object({
+  model_id: z.string().min(1),
+  text: z.string().min(1),
+  vector: z.array(z.number()),
+});
+
+export const LibraryEntrySchema = z.object({
+  id: z.string().min(1),
+  type: LibraryEntryTypeSchema,
+  title: z.string().min(1),
+
+  // Embedded problem-space fields.
+  intent: z.string().min(1),
+  context_fit: LibraryContextFitSchema,
+
+  // Payload returned on a retrieval hit. This is reusable craft knowledge.
+  construction: z.array(z.string()).default([]),
+  rationale: z.array(z.string()).default([]),
+  pairs_with: z.array(z.string()).default([]),
+  avoid: z.array(z.string()).default([]),
+  recipe_values: z.record(z.string(), z.string()).optional(),
+  provenance: z.array(z.string()).default([]),
+  outcome: LibraryOutcomeSchema,
+  tags: z.array(z.string()).default([]),
+  created_at: z.string(),
+  updated_at: z.string(),
+
+  // Stored with the flat-file vector record, never used as prompt payload.
+  embedding: LibraryEmbeddingSchema,
+});
+
+export type LibraryEntry = z.infer<typeof LibraryEntrySchema>;
+export type LibraryEntryType = z.infer<typeof LibraryEntryTypeSchema>;
 
 // ─── BrandFoundation (spec 03 §3.2) — Phase 1 ─────────────────────
 
@@ -231,7 +314,7 @@ export type ComponentRecipe = z.infer<typeof ComponentRecipeSchema>;
 export const ProjectDesignSystemSchema = z.object({
   client_id: z.string().min(1),
   version: z.number().int().min(1).default(1),
-  surface: z.enum(['website', 'product']),
+  surface: SurfaceSchema,
   status: z.enum(['open', 'foundation-frozen']),
   inherits: z.string().min(1),   // → BrandFoundation.client_id
   tokens: DesignTokensSchema,
@@ -262,12 +345,26 @@ export type SectionOutput = z.infer<typeof SectionOutputSchema>;
 export const ArtifactSchema = z.object({
   artifact_id: z.string().min(1),
   client_id: z.string().min(1),
-  surface: z.enum(['website', 'product']),
+  surface: SurfaceSchema,
   status: z.enum(['in-progress', 'approved', 'delivered']),
   sections: z.array(SectionOutputSchema),
 });
 
 export type Artifact = z.infer<typeof ArtifactSchema>;
+
+export const ArtifactQAReportSchema = z.object({
+  artifact_id: z.string().min(1),
+  client_id: z.string().min(1),
+  surface: SurfaceSchema,
+  pass: z.boolean(),
+  checked_at: z.string(),
+  section_count: z.number().int().min(0),
+  average_score: z.number().min(0).max(100),
+  summary: z.string(),
+  violations: z.array(ViolationSchema),
+});
+
+export type ArtifactQAReport = z.infer<typeof ArtifactQAReportSchema>;
 
 // ─── InputBundle (extended for Phase 1) ────────────────────────────
 
@@ -284,6 +381,8 @@ export const InputBundleSchema = z.object({
     breakpoint: z.string(),
     path: z.string(),
   })).optional(),
+  // Phase 2 additions:
+  softLibrary: z.array(LibraryEntrySchema).max(5).optional(),
 });
 
 export type InputBundle = z.infer<typeof InputBundleSchema>;
@@ -307,13 +406,20 @@ export const RunResultSchema = z.object({
 
 export type RunResult = z.infer<typeof RunResultSchema>;
 
-// ─── VerdictEntry (human blind verdict — 0.15) ─────────────────────
+// ─── VerdictEntry (human verdict log — 0.15, expanded in Phase 3) ───────────
 
 export const VerdictEntrySchema = z.object({
   run_id: z.string(),
   section: z.string(),
   preferred: z.enum(['iter0', 'final']),
   rating: z.enum(['bad', 'weak', 'good', 'strong']),
+  human_verdict: z.enum(['approve', 'reject']).optional(),
+  candidate_id: z.string().optional(),
+  critic_score: z.number().min(0).max(100).optional(),
+  critic_verdict: z.enum(['pass', 'fail']).optional(),
+  threshold: z.number().min(0).max(100).optional(),
+  reviewer: z.string().optional(),
+  source: z.enum(['blind-pair', 'approval', 'calibration']).optional(),
   notes: z.string().optional(),
   timestamp: z.string(),
 });
@@ -324,11 +430,14 @@ export type VerdictEntry = z.infer<typeof VerdictEntrySchema>;
 
 const SCHEMA_REGISTRY: Record<string, z.ZodType> = {
   brief: BriefSchema,
+  briefComprehension: BriefComprehensionSchema,
   brandData: BrandDataSchema,
   criticOutput: CriticOutputSchema,
   runRecord: RunRecordSchema,
   verdictEntry: VerdictEntrySchema,
   dimensionScores: DimensionScoresSchema,
+  libraryEntry: LibraryEntrySchema,
+  artifactQAReport: ArtifactQAReportSchema,
   // Phase 1:
   brandFoundation: BrandFoundationSchema,
   brandIdentity: BrandIdentitySchema,
@@ -360,4 +469,3 @@ export function validate<T = unknown>(
     error: result.error.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('; '),
   };
 }
-

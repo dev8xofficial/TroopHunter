@@ -6,11 +6,11 @@ import { describe, it, expect } from 'vitest';
 import { z } from 'zod';
 
 // Re-define the schema here to test independently of process.env side effects
-const ProviderSchema = z.enum(['agent-sdk', 'api', 'local']).default('api');
+const ProviderSchema = z.enum(['agent-sdk', 'api', 'local']).default('agent-sdk');
 
 const ConfigSchema = z.object({
   provider: ProviderSchema,
-  modelId: z.string().default('claude-sonnet-4-20250514'),
+  modelId: z.string().default('claude-sonnet-4-6'),
   breakpoints: z.array(z.number().int().positive()).default([1440, 768, 375]),
   maxIters: z.number().int().positive().default(4),
   variations: z.number().int().positive().default(1),
@@ -23,6 +23,16 @@ const ConfigSchema = z.object({
   maxModelCalls: z.number().int().positive().default(30),
   ollamaBaseUrl: z.string().url().default('http://localhost:11434'),
   ollamaModel: z.string().default('llava'),
+  embeddingProvider: z.enum(['local-hash', 'ollama']).default('local-hash'),
+  embeddingModel: z.string().default('ade-local-hash-v1'),
+  productionMode: z.boolean().default(false),
+  harness: z.enum(['vite', 'next']).default('vite'),
+  autonomyRung: z.number().int().min(0).max(4).default(0),
+  maxTokensPerSection: z.number().int().positive().default(200_000),
+  maxSecondsPerSection: z.number().positive().default(300),
+  maxUsdPerSection: z.number().positive().default(50),
+  generatorModelId: z.string().optional(),
+  criticModelId: z.string().optional(),
   anthropicApiKey: z.string().optional(),
   headed: z.boolean().default(false),
   harnessPort: z.number().int().positive().default(5199),
@@ -33,13 +43,16 @@ describe('Config', () => {
     const result = ConfigSchema.safeParse({});
     expect(result.success).toBe(true);
     if (result.success) {
-      expect(result.data.provider).toBe('api');
-      expect(result.data.modelId).toBe('claude-sonnet-4-20250514');
+      expect(result.data.provider).toBe('agent-sdk');
+      expect(result.data.modelId).toBe('claude-sonnet-4-6');
       expect(result.data.breakpoints).toEqual([1440, 768, 375]);
       expect(result.data.maxIters).toBe(4);
       expect(result.data.threshold).toBe(80);
       expect(result.data.genTemperature).toBe(0.7);
       expect(result.data.criticTemperature).toBe(0.2);
+      expect(result.data.productionMode).toBe(false);
+      expect(result.data.harness).toBe('vite');
+      expect(result.data.autonomyRung).toBe(0);
     }
   });
 

@@ -7,7 +7,47 @@
  * @module prompts
  */
 
-import type { InputBundle, BrandData, BrandFoundation, ProjectDesignSystem } from './schema.js';
+import type { Brief, InputBundle } from './schema.js';
+
+export function buildBriefComprehensionPrompt(brief: Brief): { system: string; user: string } {
+  const contentEntries = Object.entries(brief.section.content)
+    .map(([key, value]) => `  ${key}: ${JSON.stringify(value)}`)
+    .join('\n');
+
+  const system = `You are an input-comprehension checker for an autonomous design engine.
+
+Your job is NOT to design anything. Restate the brief faithfully and identify material ambiguities before generation spend.
+
+Return ONLY JSON with this shape:
+{
+  "restated_goal": "string",
+  "restated_audience": "string",
+  "restated_constraints": ["string"],
+  "missing_required_facts": ["string"],
+  "material_mismatches": ["string"],
+  "confidence": 0.0
+}
+
+Rules:
+- Do not invent missing facts.
+- Put only facts that block correct design execution in missing_required_facts.
+- Put contradictions or mismatches between business goal, audience, section, assets, and content in material_mismatches.
+- If the brief is sufficient, both arrays must be empty.`;
+
+  const user = `Check this design brief for comprehension before generation:
+
+Client: ${brief.client}
+Industry: ${brief.industry}
+${brief.location ? `Location: ${brief.location}\n` : ''}Audience: ${brief.audience}
+Goal: ${brief.goal}
+Section: ${brief.section.name}
+Content:
+${contentEntries || '  (no content fields)'}
+Assets:
+${brief.section.assets ? JSON.stringify(brief.section.assets, null, 2) : '  (none)'}`;
+
+  return { system, user };
+}
 
 // ─── Generator Prompt (spec 05 §6.1) ──────────────────────────────
 
@@ -16,11 +56,29 @@ export function buildGeneratorPrompt(
   feedback?: string,
 ): { system: string; user: string } {
   const { brief, brandData } = bundle;
+  const hardBrand = bundle.hardBrand?.status === 'frozen' ? bundle.hardBrand : undefined;
   const section = brief.section;
 
   // Build brand constraints block
   let brandBlock = '';
-  if (brandData) {
+  if (hardBrand) {
+    const paletteLines = hardBrand.identity.palette
+      .map(p => `  - ${p.role}: ${p.value}${p.usage ? ` (${p.usage})` : ''}`)
+      .join('\n');
+    const typeLines = hardBrand.identity.typography
+      .map(t => `  - ${t.role}: "${t.family}" (fallback: ${t.fallback})`)
+      .join('\n');
+    brandBlock = `
+BRAND FOUNDATION (HARD LAW - frozen v${hardBrand.version}; you MUST obey it):
+  Palette:
+${paletteLines}
+  Typography:
+${typeLines}
+  Personality: ${hardBrand.identity.personality.join(', ')}
+  Tone: ${hardBrand.identity.tone}
+  Motion voice: ${hardBrand.identity.motion_voice}
+`;
+  } else if (brandData) {
     const paletteLines = brandData.palette
       .map(p => `  - ${p.role}: ${p.value}`)
       .join('\n');
@@ -82,6 +140,27 @@ ALREADY-BUILT SECTIONS (screenshots attached — your section must be visually C
 `;
   }
 
+  // Build Library block (Phase 2 - soft cross-project memory)
+  let libraryBlock = '';
+  if (bundle.softLibrary && bundle.softLibrary.length > 0) {
+    const entries = bundle.softLibrary.slice(0, 5).map((entry, index) => {
+      const construction = entry.construction.slice(0, 4).map(item => `      - ${item}`).join('\n');
+      const avoid = entry.avoid.slice(0, 3).map(item => `      - ${item}`).join('\n');
+      return `  ${index + 1}. ${entry.title} (${entry.type}, confidence ${entry.outcome.confidence.toFixed(2)})
+     Intent: ${entry.intent}
+     Best fit: ${entry.context_fit.domain}; ${entry.context_fit.audience}; goal: ${entry.context_fit.goal}
+     Construction:
+${construction || '      - No construction notes'}
+     Avoid:
+${avoid || '      - No avoid notes'}`;
+    }).join('\n');
+
+    libraryBlock = `
+SOFT LIBRARY MEMORY (direction only - synthesize, do not copy; hard brand/system/brief always override this):
+${entries}
+`;
+  }
+
   // Build content block
   const contentEntries = Object.entries(section.content)
     .map(([key, value]) => {
@@ -122,7 +201,7 @@ YOU MUST OBEY THESE RULES (violations will be rejected):
 6. ALL text content must come from the brief content provided below — do not invent headlines, descriptions, or CTAs.
 7. Design must be fully responsive across 1440px, 768px, and 375px viewports.
 8. Do NOT wrap the output in markdown code fences or any other formatting — output ONLY the raw .tsx code.
-${brandData ? '9. Use ONLY the brand palette colors provided — no other colors except white, black, and transparent.' : ''}`;
+${hardBrand || brandData ? '9. Use ONLY the hard brand palette colors and design-system palette colors provided - no other colors except white, black, transparent, and approved neutral ramps.' : ''}`;
 
   const user = `Design and build a "${section.name}" section for ${brief.client}.
 
@@ -136,7 +215,7 @@ ${brandBlock}
 SECTION: "${section.name}"
 CONTENT:
 ${contentEntries}
-${assetsBlock}${pdsBlock}${ctxBlock}${feedbackBlock}
+${assetsBlock}${pdsBlock}${ctxBlock}${libraryBlock}${feedbackBlock}
 Produce a complete, polished, production-quality React + TypeScript component. Default export the component. Use Tailwind CSS for all styling. Make it visually stunning — this should look like a premium, professionally designed section.`;
 
   return { system, user };
@@ -176,10 +255,20 @@ export function buildCriticPrompt(
   candidateIds: string[],
 ): { system: string; user: string } {
   const { brief, brandData } = bundle;
+  const hardBrand = bundle.hardBrand?.status === 'frozen' ? bundle.hardBrand : undefined;
 
   // Build brand reference for the critic
   let brandRef = '';
-  if (brandData) {
+  if (hardBrand) {
+    brandRef = `
+BRAND FOUNDATION (judge adherence to this frozen hard store):
+  Palette: ${hardBrand.identity.palette.map(p => `${p.role}=${p.value}`).join(', ')}
+  Typography: ${hardBrand.identity.typography.map(t => `${t.role}="${t.family}"`).join(', ')}
+  Personality: ${hardBrand.identity.personality.join(', ')}
+  Tone: ${hardBrand.identity.tone}
+  Motion: ${hardBrand.identity.motion_voice}
+`;
+  } else if (brandData) {
     brandRef = `
 BRAND CONSTRAINTS (judge adherence to these):
   Palette: ${brandData.palette.map(p => `${p.role}=${p.value}`).join(', ')}
@@ -218,7 +307,7 @@ Your evaluation must be returned as valid JSON matching this exact structure:
       "candidate_id": "<id>",
       "scores": {
         "brand_adherence": <0-100>,
-        "system_adherence": null,
+        "system_adherence": <0-100 when a design system exists, otherwise null>,
         "brief_fit": <0-100>,
         "craft": <0-100>,
         "weighted_total": <computed>

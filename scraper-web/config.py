@@ -24,6 +24,30 @@ WINDOW_SIZE: str = "1600,900"
 
 # Pause between opening tabs / requests (seconds) to reduce rate limiting risk.
 REQUEST_PAUSE_SECONDS: float = 2.0
+PAGE_READY_POLL_INTERVAL: float = 0.5
+LOADER_WAIT_TIMEOUT: int = 30
+LOADER_INDICATOR_SELECTORS: list[str] = [
+    "[role='status']",
+    "[aria-busy='true']",
+    ".loading",
+    ".spinner",
+    ".loader",
+    ".loading-overlay",
+    ".page-loader",
+    "#loader",
+    ".lds-ring",
+    ".preloader",
+    ".modal-backdrop",
+    ".overlay",
+]
+LOADER_TEXT_PATTERNS: tuple[str, ...] = (
+    "one moment",
+    "checking your browser",
+    "verifying your browser",
+    "please wait",
+    "loading",
+    "just a moment",
+)
 
 MAIN_CONTENT_SELECTOR: str = "body"
 

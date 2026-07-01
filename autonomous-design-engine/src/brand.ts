@@ -17,7 +17,6 @@ import type {
   BrandIdentity,
   Brief,
 } from './schema.js';
-import { BrandIdentitySchema } from './schema.js';
 import { schemaGate } from './guardrails.js';
 import {
   readBrand,
@@ -44,6 +43,10 @@ export async function deriveBrand(
   brief: Brief,
   provider: ModelProvider,
 ): Promise<BrandFoundation> {
+  if (brandData.client_id.trim() === '') {
+    throw new BrandError('BrandData client_id is required.', 'INVALID_CLIENT');
+  }
+
   const { system, user } = buildDeriveBrandPrompt(brandData, brief);
 
   const result = await provider.complete({
@@ -147,6 +150,7 @@ export function approveBrand(
 
     const frozen: BrandFoundation = {
       ...existing,
+      version: existing.version + 1,
       status: 'frozen',
       approved_by: approvedBy,
       approved_at: new Date().toISOString(),
@@ -172,6 +176,13 @@ export async function reDeriveBrand(
   brief: Brief,
   provider: ModelProvider,
 ): Promise<BrandFoundation> {
+  if (updatedBrandData.client_id !== clientId) {
+    throw new BrandError(
+      `BrandData client_id "${updatedBrandData.client_id}" does not match requested client "${clientId}".`,
+      'CLIENT_MISMATCH',
+    );
+  }
+
   const lockId = lockClient(clientId);
   try {
     const existing = readBrand(clientId);
@@ -184,8 +195,8 @@ export async function reDeriveBrand(
       `brand-data v${newVersion} + brief (${brief.client} / ${brief.industry})`;
 
     // Write as draft (user must re-approve)
-    writeBrand(clientId, foundation);
-    console.log(`🔄 Brand re-derived for "${clientId}" → v${newVersion} (draft)`);
+    writeBrand(clientId, foundation, existing ? existing.version : null);
+    console.log(`Brand re-derived for "${clientId}" -> v${newVersion} (draft)`);
     return foundation;
   } finally {
     unlockClient(clientId, lockId);
@@ -198,9 +209,17 @@ export async function reDeriveBrand(
  * Save a derived brand foundation as a draft.
  */
 export function saveBrandDraft(clientId: string, foundation: BrandFoundation): void {
+  if (foundation.client_id !== clientId) {
+    throw new BrandError(
+      `Brand foundation client_id "${foundation.client_id}" does not match "${clientId}".`,
+      'CLIENT_MISMATCH',
+    );
+  }
+
   const lockId = lockClient(clientId);
   try {
-    writeBrand(clientId, foundation);
+    const existing = readBrand(clientId);
+    writeBrand(clientId, foundation, existing ? existing.version : null);
   } finally {
     unlockClient(clientId, lockId);
   }
@@ -237,24 +256,39 @@ export function checkPaletteAccessibility(
     textColors.push(palette[0]); // darkest likely first
   }
 
-  // Check each text-on-surface pair
+  let hasAccessibleTextPair = false;
+  let bestTextPair = { ratio: 0, text: '', surface: '' };
+  let hasAccessibleAccentPair = accentColors.length === 0;
+  let bestAccentPair = { ratio: 0, accent: '', surface: '' };
+
+  // Check that the palette contains usable primary pairings.
   for (const surface of surfaceColors) {
     for (const text of textColors) {
       const ratio = contrastRatio(text.value, surface.value);
-      if (ratio < 4.5) {
-        issues.push(
-          `Low contrast: "${text.role}" (${text.value}) on "${surface.role}" (${surface.value}) = ${ratio.toFixed(2)}:1 (need ≥4.5:1 AA)`
-        );
+      if (ratio > bestTextPair.ratio) {
+        bestTextPair = { ratio, text: text.role, surface: surface.role };
       }
+      if (ratio >= 4.5) hasAccessibleTextPair = true;
     }
     for (const accent of accentColors) {
       const ratio = contrastRatio(accent.value, surface.value);
-      if (ratio < 3.0) {
-        issues.push(
-          `Low contrast: "${accent.role}" (${accent.value}) on "${surface.role}" (${surface.value}) = ${ratio.toFixed(2)}:1 (need ≥3:1 for large text/UI)`
-        );
+      if (ratio > bestAccentPair.ratio) {
+        bestAccentPair = { ratio, accent: accent.role, surface: surface.role };
       }
+      if (ratio >= 3.0) hasAccessibleAccentPair = true;
     }
+  }
+
+  if (!hasAccessibleTextPair) {
+    issues.push(
+      `No accessible text/surface pairing found. Best was "${bestTextPair.text}" on "${bestTextPair.surface}" at ${bestTextPair.ratio.toFixed(2)}:1; need >=4.5:1 AA.`,
+    );
+  }
+
+  if (!hasAccessibleAccentPair) {
+    issues.push(
+      `No accessible accent/surface pairing found. Best was "${bestAccentPair.accent}" on "${bestAccentPair.surface}" at ${bestAccentPair.ratio.toFixed(2)}:1; need >=3:1 for large text/UI.`,
+    );
   }
 
   return issues;

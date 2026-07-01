@@ -12,7 +12,7 @@ import { chromium, type Browser, type Page } from 'playwright';
 import { writeFileSync, unlinkSync, renameSync, existsSync, mkdirSync, copyFileSync } from 'fs';
 import { join, resolve, dirname } from 'path';
 import { spawn, type ChildProcess } from 'child_process';
-import type { RenderResult } from './schema.js';
+import type { RenderResult, Violation } from './schema.js';
 import type { Config } from './config.js';
 
 // Module-level state (reused across candidates)
@@ -32,6 +32,7 @@ export async function render(
   breakpoints: number[],
   config: Config,
   outDir: string,
+  pageCheck?: (page: Page, width: number) => Promise<Violation[]>,
 ): Promise<RenderResult> {
   // 1. Write tsx to harness/src/candidate/Section.tsx (atomic)
   writeCandidateFile(tsx);
@@ -49,6 +50,7 @@ export async function render(
   const harnessUrl = `http://localhost:${config.harnessPort}`;
   const shots: Record<string, string> = {};
   const consoleErrors: string[] = [];
+  const hardViolations: Violation[] = [];
   let hasErrorOverlay = false;
   let domInfo: RenderResult['domInfo'] = undefined;
 
@@ -123,6 +125,20 @@ export async function render(
         });
       }
 
+      if (pageCheck) {
+        try {
+          hardViolations.push(...await pageCheck(page, width));
+        } catch (err) {
+          hardViolations.push({
+            gate: 'hard-constraint',
+            rule: 'page-check-error',
+            message: `Hard constraint page check failed: ${err instanceof Error ? err.message : String(err)}`,
+            severity: 'serious',
+            fixable: true,
+          });
+        }
+      }
+
       // Screenshot
       const shotDir = join(outDir, 'shots');
       if (!existsSync(shotDir)) {
@@ -141,8 +157,21 @@ export async function render(
     shots,
     consoleErrors,
     hasErrorOverlay,
+    hardViolations: dedupeViolations(hardViolations),
     domInfo,
   };
+}
+
+function dedupeViolations(violations: Violation[]): Violation[] {
+  const seen = new Set<string>();
+  return violations.filter(violation => {
+    const key = `${violation.gate}:${violation.rule}:${violation.message}`;
+    if (seen.has(key)) {
+      return false;
+    }
+    seen.add(key);
+    return true;
+  });
 }
 
 /**

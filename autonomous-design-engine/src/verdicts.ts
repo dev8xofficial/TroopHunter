@@ -8,10 +8,132 @@
  * @module verdicts
  */
 
-import { appendFileSync, existsSync, mkdirSync } from 'fs';
+import { appendFileSync, existsSync, mkdirSync, readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { createInterface } from 'readline';
 import type { VerdictEntry } from './schema.js';
+import { VerdictEntrySchema } from './schema.js';
+
+export type HumanDecision = 'approve' | 'reject';
+export type HumanRating = 'bad' | 'weak' | 'good' | 'strong';
+
+export interface RecordHumanVerdictInput {
+  runId: string;
+  section: string;
+  decision: HumanDecision;
+  rating?: HumanRating;
+  preferred?: 'iter0' | 'final';
+  notes?: string;
+  candidateId?: string;
+  criticScore?: number;
+  criticVerdict?: 'pass' | 'fail';
+  threshold?: number;
+  reviewer?: string;
+  source?: 'blind-pair' | 'approval' | 'calibration';
+  timestamp?: string;
+}
+
+const RATING_SCORE: Record<HumanRating, number> = {
+  bad: 0,
+  weak: 1,
+  good: 2,
+  strong: 3,
+};
+
+/**
+ * Return the canonical verdicts.jsonl path for a run directory or JSONL file.
+ */
+export function verdictsPath(outDirOrFile: string): string {
+  return outDirOrFile.endsWith('.jsonl')
+    ? outDirOrFile
+    : join(outDirOrFile, 'verdicts.jsonl');
+}
+
+/**
+ * Append one validated human verdict to verdicts.jsonl.
+ */
+export function appendVerdict(outDirOrFile: string, entry: VerdictEntry): VerdictEntry {
+  const validation = VerdictEntrySchema.safeParse(entry);
+  if (!validation.success) {
+    throw new Error(`Invalid verdict entry: ${validation.error.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
+  }
+
+  const outPath = verdictsPath(outDirOrFile);
+  const dir = dirname(outPath);
+  if (!existsSync(dir)) {
+    mkdirSync(dir, { recursive: true });
+  }
+
+  appendFileSync(outPath, JSON.stringify(validation.data) + '\n', { flush: true });
+  return validation.data;
+}
+
+/**
+ * Read verdicts.jsonl from a run directory or explicit JSONL file.
+ * Invalid lines are skipped so one bad manual edit does not poison the run.
+ */
+export function readVerdicts(outDirOrFile: string): VerdictEntry[] {
+  const outPath = verdictsPath(outDirOrFile);
+  if (!existsSync(outPath)) {
+    return [];
+  }
+
+  const lines = readFileSync(outPath, 'utf-8').split('\n').filter(line => line.trim());
+  const entries: VerdictEntry[] = [];
+  for (let i = 0; i < lines.length; i++) {
+    try {
+      const parsed = JSON.parse(lines[i]);
+      const validation = VerdictEntrySchema.safeParse(parsed);
+      if (validation.success) {
+        entries.push(validation.data);
+      } else {
+        console.warn(`verdicts.jsonl line ${i + 1}: invalid verdict - ${validation.error.message}`);
+      }
+    } catch {
+      console.warn(`verdicts.jsonl line ${i + 1}: invalid JSON, skipping`);
+    }
+  }
+  return entries;
+}
+
+/**
+ * Record an explicit approve/reject decision for calibration.
+ */
+export function recordHumanVerdict(
+  outDirOrFile: string,
+  input: RecordHumanVerdictInput,
+): VerdictEntry {
+  const rating = input.rating ?? (input.decision === 'approve' ? 'good' : 'weak');
+  return appendVerdict(outDirOrFile, {
+    run_id: input.runId,
+    section: input.section,
+    preferred: input.preferred ?? 'final',
+    rating,
+    human_verdict: input.decision,
+    candidate_id: input.candidateId,
+    critic_score: input.criticScore,
+    critic_verdict: input.criticVerdict,
+    threshold: input.threshold,
+    reviewer: input.reviewer,
+    source: input.source ?? 'approval',
+    notes: input.notes,
+    timestamp: input.timestamp ?? new Date().toISOString(),
+  });
+}
+
+export function ratingToScore(rating: HumanRating): number {
+  return RATING_SCORE[rating];
+}
+
+export function isPositiveHumanVerdict(entry: VerdictEntry): boolean {
+  if (entry.human_verdict === 'approve') {
+    return true;
+  }
+  if (entry.human_verdict === 'reject') {
+    return false;
+  }
+  return entry.preferred === 'final' && ratingToScore(entry.rating) >= RATING_SCORE.good;
+}
 
 /**
  * Run an interactive blind verdict session for a run.
@@ -81,16 +203,12 @@ export async function captureVerdict(
     section,
     preferred: preferredLabel === 'final' ? 'final' : 'iter0',
     rating,
+    source: 'blind-pair',
     notes: notes.trim() || undefined,
     timestamp: new Date().toISOString(),
   };
 
-  // Write to verdicts.jsonl
-  const dir = dirname(outPath);
-  if (!existsSync(dir)) {
-    mkdirSync(dir, { recursive: true });
-  }
-  appendFileSync(outPath, JSON.stringify(entry) + '\n', { flush: true });
+  appendVerdict(outPath, entry);
 
   console.log(`\n  ✅ Verdict recorded: preferred ${entry.preferred}, rated ${entry.rating}`);
   console.log(`  Saved to: ${outPath}\n`);

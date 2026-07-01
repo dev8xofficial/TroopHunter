@@ -11,12 +11,15 @@
 import { readdirSync, existsSync } from 'fs';
 import { join } from 'path';
 import { readTrace } from './trace.js';
-import type { RunRecord } from './schema.js';
+import type { RunRecord, VerdictEntry } from './schema.js';
+import { readVerdicts } from './verdicts.js';
+import { calibrateFromRecords, formatCalibrationSummary } from './calibration.js';
+import { formatCostSummary, summarizeTraceCost } from './production.js';
 
 /**
  * Generate and print a report from trace.jsonl.
  */
-export function generateReport(dir: string, scanAll = false): void {
+export function generateReport(dir: string, scanAll = false, threshold = 80): void {
   if (scanAll) {
     // Scan all subdirectories for trace.jsonl
     if (!existsSync(dir)) {
@@ -40,6 +43,8 @@ export function generateReport(dir: string, scanAll = false): void {
     console.log(`${'═'.repeat(60)}\n`);
 
     const allGains: number[] = [];
+    const allRecords: RunRecord[] = [];
+    const allVerdicts: VerdictEntry[] = [];
 
     for (const runDir of runDirs) {
       const records = readTrace(runDir);
@@ -47,12 +52,17 @@ export function generateReport(dir: string, scanAll = false): void {
 
       const gain = printRunReport(runDir, records);
       if (gain !== null) allGains.push(gain);
+      allRecords.push(...records);
+      allVerdicts.push(...readVerdicts(runDir));
     }
 
     // Summary
     if (allGains.length > 0) {
       printSummary(allGains);
     }
+
+    printCost(allRecords);
+    printCalibration(allRecords, allVerdicts, threshold);
   } else {
     // Single run
     const records = readTrace(dir);
@@ -66,7 +76,26 @@ export function generateReport(dir: string, scanAll = false): void {
     console.log(`${'═'.repeat(60)}\n`);
 
     printRunReport(dir, records);
+    printCost(records);
+    printCalibration(records, readVerdicts(dir), threshold);
   }
+}
+
+function printCost(records: RunRecord[]): void {
+  console.log(`${'='.repeat(60)}`);
+  console.log('  Phase 4 Scale Metrics');
+  console.log(`${'='.repeat(60)}`);
+  console.log(formatCostSummary(summarizeTraceCost(records)));
+  console.log('');
+}
+
+function printCalibration(records: RunRecord[], verdicts: VerdictEntry[], threshold: number): void {
+  console.log(`${'='.repeat(60)}`);
+  console.log('  Phase 3 Taste Calibration');
+  console.log(`${'='.repeat(60)}`);
+  const summary = calibrateFromRecords(records, verdicts, threshold);
+  console.log(formatCalibrationSummary(summary));
+  console.log('');
 }
 
 function printRunReport(dir: string, records: RunRecord[]): number | null {

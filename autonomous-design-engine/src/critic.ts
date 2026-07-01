@@ -23,6 +23,91 @@ export class CriticError extends Error {
 }
 
 /**
+ * Normalize a Critic reply after schema validation.
+ *
+ * Pairwise ranking is a stronger signal than close absolute scores, so a
+ * model-provided ranking is preserved first and completed with score fallback.
+ */
+export function normalizeCriticOutput(
+  output: CriticOutput,
+  candidateIds: string[],
+  threshold: number,
+  hasSystem: boolean,
+): CriticOutput {
+  const allowed = new Set(candidateIds);
+  const byId = new Map(output.candidates
+    .filter(candidate => allowed.has(candidate.candidate_id))
+    .map(candidate => [candidate.candidate_id, candidate]));
+
+  const candidates = candidateIds.map(candidateId => {
+    const candidate = byId.get(candidateId) ?? {
+      candidate_id: candidateId,
+      scores: {
+        brand_adherence: 50,
+        system_adherence: null,
+        brief_fit: 50,
+        craft: 50,
+        weighted_total: 50,
+      },
+      verdict: 'fail' as const,
+      feedback: 'Critic omitted this candidate; using fail-closed neutral score.',
+    };
+
+    const scores = candidate.scores;
+    if (scores.system_adherence === undefined) {
+      scores.system_adherence = null;
+    }
+    scores.weighted_total = computeWeightedTotal(scores, hasSystem);
+    candidate.verdict = scores.weighted_total >= threshold ? 'pass' : 'fail';
+    return candidate;
+  });
+
+  const candidateById = new Map(candidates.map(candidate => [candidate.candidate_id, candidate]));
+  const seen = new Set<string>();
+  const pairwiseRanking = (output.ranking ?? []).filter(candidateId => {
+    if (!allowed.has(candidateId) || seen.has(candidateId)) {
+      return false;
+    }
+    seen.add(candidateId);
+    return true;
+  });
+
+  const scoreFallback = candidateIds
+    .filter(candidateId => !seen.has(candidateId))
+    .sort((a, b) => {
+      const candidateA = candidateById.get(a)!;
+      const candidateB = candidateById.get(b)!;
+      const scoreDelta = candidateB.scores.weighted_total - candidateA.scores.weighted_total;
+      if (scoreDelta !== 0) {
+        return scoreDelta;
+      }
+      return candidateB.scores.craft - candidateA.scores.craft;
+    });
+
+  return {
+    ...output,
+    candidates,
+    ranking: [...pairwiseRanking, ...scoreFallback],
+  };
+}
+
+export function computeWeightedTotal(
+  scores: CriticOutput['candidates'][number]['scores'],
+  hasSystem: boolean,
+): number {
+  return hasSystem
+    ? Math.round(
+      scores.brand_adherence * 0.25 +
+      (scores.system_adherence ?? 0) * 0.25 +
+      scores.brief_fit * 0.25 +
+      scores.craft * 0.25,
+    )
+    : Math.round(
+      scores.brand_adherence * 0.35 + scores.brief_fit * 0.30 + scores.craft * 0.35,
+    );
+}
+
+/**
  * Critique rendered screenshots of candidates.
  * Uses vision (screenshots as images), fresh context (I2).
  */
@@ -36,6 +121,7 @@ export async function critique(
 ): Promise<CriticOutput> {
   const candidateIds = Object.keys(shots);
   const { system, user } = buildCriticPrompt(bundle, candidateIds);
+  const hasSystem = bundle.hardSystem?.status === 'foundation-frozen';
 
   // Build image refs from screenshots (vision)
   const images: ImageRef[] = [];
@@ -118,21 +204,7 @@ export async function critique(
   // Schema Gate validation
   const gateResult = schemaGate<CriticOutput>('criticOutput', parsed);
   if (gateResult.data) {
-    // Compute weighted_total if not provided correctly
-    for (const candidate of gateResult.data.candidates) {
-      const s = candidate.scores;
-      if (s.system_adherence === undefined) {
-        s.system_adherence = null;
-      }
-      // Phase 0 weighting: brand 35%, brief 30%, craft 35%
-      s.weighted_total = Math.round(
-        s.brand_adherence * 0.35 + s.brief_fit * 0.30 + s.craft * 0.35,
-      );
-      // Set verdict based on threshold
-      candidate.verdict = s.weighted_total >= threshold ? 'pass' : 'fail';
-    }
-
-    return gateResult.data;
+    return normalizeCriticOutput(gateResult.data, candidateIds, threshold, hasSystem);
   }
 
   // Schema validation failed — one more try with re-ask
