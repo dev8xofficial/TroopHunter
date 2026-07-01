@@ -1,265 +1,250 @@
 ---
 platform: LinkedIn
 profile_type: person
-name: Ansar Manzar
-url: https://www.linkedin.com/in/ansarmanzar/
-headline: Mobile & Enterprise Software | Full-time Freelancer
-location: Houston, Texas, United States
-connections: 490
-website: https://www.upwork.com/freelancers/~0128011234cafc13fb?viewMode=1
-scraped_at: ~2026
+name: Giovanni Pugliese
+headline: Helping marketers with smarter CRM and BI integrations
+location: Fort Lauderdale, Florida, United States
+followers: 4,022
+connections: 500+
 linkedin_footer: [About, Accessibility, User Agreement, Privacy Policy, Cookie Policy, Copyright Policy, Brand Policy, Guest Controls, Community Guidelines]
 ---
 
-# Ansar Manzar — LinkedIn Profile
+# Giovanni Pugliese — LinkedIn Profile
 
-## Summary
+## About
 
-Greeting,
+I am a driven marketing and overall web technologist whom is passionate about assisting marketing and sales teams and professionals with overall campaign execution and reporting.  With over 20 years of expertise in overall web development and 11 years of Marketing Automation solution design, I lead a growing team of consultants specialized in digital marketing, email, landing page, template design, marketing automation, CRM , and complex system integrations and development. We love assisting marketing teams bring all of these technologies together and generating marketing business intelligence solutions. 
 
-I am a seasoned Full Stack Developer with in-depth knowledge of MERN stack technologies, combined with a strong drive to produce robust, scalable web applications. I possess significant experience in frontend and backend development, with competency in crafting exceptional user experiences. My cross-platform mobile development skills include React Native and Flutter, which makes it easy to build applications on different platforms and engage users accordingly. Proactive and results-driven Development Team with an established capability of leading and motivating project teams to deliver efficiently and effectively on project objectives.
-
-What you get with me and my team:
-
-- Enhanced Delivery Process
-- Project Initiation and Planning
-- Comprehensive project consultation in defining scope, goals, and deliverables
-- Strategic selection of technology stack in line with the goals of the project
-- Robust planning of a project involving resource allocation and risk mitigation
-- Human-centric development and design
-- User-centric design phase that includes wireframing and prototyping
-- Frontend and backend solution development following best practices and standards
-- Careful integration of databases for the integrity of data and performance
-- Extensive testing cycle to ensure the quality of the product
-- Confirmed Deployment and Launch on app stores, Apple Store and Google Play Store
-- Smooth deployment of applications on target platforms
-- Performance and scalability optimization
-- Strong security implemented for protecting sensitive data
-- Well-organized launch and post-launch support
-- Ongoing Maintenance and Support
-- Pro-active bug fixing and performance monitoring
-- Continuous improvement by adding features and updating
-- Client Support – Dedicated 24/7 Support to clients to answer queries and resolve problems
-
-Feel free to contact me for a completely free professional consultation and an exceptional service experience!
+Today’s marketer deals with (amongst other things) SEO, SEM, the website, CMS, CRM, responsive emails, responsive landing pages, forms, gated forms, content creation, marketing automation, facebook and facebook pages, twitter, instagram, webinars, videos, account based marketing, Api’s, integrations, plugins, webhooks, ERP's, BI software…and so many other acronyms not listed here. We are a web agency focused on speaking and understanding ‘marketer’ and guiding you through the maze that is Martech.
 
 ## Experience
 
-#### Full Stack Developer — Freelance
+#### President — Atlas Global Solutions, Inc.
 
-dates: Jan 2023 – Present
-duration: 3 yrs 6 mos
-location: Remote
+dates: Mar 2009 - Present
+duration: 17 yrs 4 mos
 employment_type: Freelance
 
-#### Full Stack Developer — Codefied
+I lead a growing team of consultants specialized in digital marketing, email, landing page, template design, marketing automation, CRM , and complex system integrations and development. We love assisting marketing teams bring all of these technologies together and generating marketing business intelligence solutions. 
 
-dates: Jan 2020 – Nov 2022
-duration: 2 yrs 11 mos
-location: Houston, TX, US
-employment_type: Full-time
+Today’s marketer deals with (amongst other things) SEO, SEM, the website, CMS, CRM, responsive emails, responsive landing pages, forms, gated forms, content creation, marketing automation, facebook and facebook pages, twitter, instagram, webinars, videos, account based marketing, Api’s, integrations, plugins, webhooks, ERP's, BI software…and so many other acronyms not listed here. We are a web agency focused on speaking and understanding ‘marketer’ and guiding you through the maze that is Martech.
+
+#### Marketing Automation and CRM / Web Technology Consultant — Bluewolf
+
+dates: Jan 2015 - Jan 2019
+duration: 4 yrs 1 mo
+location: Miami,Florida
+employment_type: Independent contractor
+
+Independent contractor consulting in Salesforce Marketing Cloud and Salesforce technologies.
+
+#### Senior Developer, Solution Architect, Contractor — DemandGen
+
+dates: Feb 2011 - Jun 2015
+duration: 4 yrs 5 mos
+
+#### Senior Developer, Consultant — Astadia
+
+dates: Dec 2010 - Oct 2011
+duration: 11 mos
+
+#### Web Developement Lead — TradeStation Securities
+
+dates: 1997 - 2008
+duration: 11 yrs
 
 ## Education
 
-#### Harford Community College
+#### BS, Computer Science — Florida International University
 
-dates: 2022 – 2026
+dates: 1999 – 2005
 
 ## Skills
 
-- Mobile Application Development
-- Doctrine (PHP)
+- Agile Methodologies (19 endorsements)
+- Software Project Management (14 endorsements, Endorsed by 2 colleagues at TradeStation)
+
+## Recommendations
+
+#### Recommendation from Jesus Cortes
+
+relationship: Broker at Commercial 1 Real Estate, Inc.
+date: May 6, 2013
+
+I have enjoyed both a professional and personal relationship with Giovanni for over 30 years which makes me uniquely qualified to recommend him on many levels.  He is a great friend, family man and business partner.  Giovanni is one of the few individuals that I will defer my opinion to on software and systems development based on his wealth of knowledge.  Giovanni has strong people and technical skills which combine to make him a valued friend, capable partner and highly productive individual that is capable of taking on any challenge.
 
 ## Posts
 
 #### Post 1
 
 type: original
-timestamp: ~1yr
+timestamp: 8mo
+hashtags:
 
-A quick question to turn around a terrible day:
-
-What's the best way I can use the next 5 minutes?
-
-Yes, that's usually enough.
-
-- 5 minutes of exercise.
-- 5 minutes of reading.
-- 5 minutes of talking.
-- 5 minutes of something that gets you back to yourself.
-
-When you're off course, a movement of a few degrees can get you to land in New York or into the ocean.
-
-Your day is exactly the same way.
-
-One slight change now can totally alter where you end up.
-
-Never doubt the power of 5 good minutes.
-
----
+Hi everyone. I'm hoping someone is in need if an experienced Marketing automation and Salesforce architect who is also proficient in AI development. Beyond the years of working in the Salesforce ecosystem my skills set now covers all things AI. I work in agentic programing and implementation, AI content creation in various modalities , AI analysis and support of customer comunicatios, conversational agents, and really anything AI related in support of Marketing, CRM and CMS related. If you or someone you know has a need for this, please reach out. Thank you.
 
 #### Post 2
 
 type: original
-timestamp: ~1yr
+timestamp: 9mo
+hashtags:
 
-Perfection isn't power, action is. Let's stop hiding and start doing. 🦸
-
-Stop waiting for the "perfect time."
-
-You already have everything you need.
-
----
+Hey everyone,
+I'm really excited (and a little nervous) to share something I've been pouring my life into. After 25 years deep in the world of marketing automation and CRM, I've seen firsthand how much small businesses have to struggle with their marketing.
+I decided to build the solution I wish I'd had from day one.
+It's an AI Revenue Team – a set of agents (think of it as a virtual team) that handles your SEO, content creation, website chat, 24/7 answering service, and the whole marketing pipeline so you can focus on what you do best. The objective of this team to to generate leads, nurture leads, help sales and help post sale.
+Today is launch day, and I want to make a truly crazy offer exclusively for the first 15 founding members.
+Here’s the deal, plain and simple:
+You pay a one-time $149 setup fee. I deploy your website, which includes all of the AI team agents and their magic. That's it to get started.
+Now, here's the most important part—the founder's guarantee:
+Use the entire system for a month. If you're not completely blown away, just cancel the subscription. You get to keep the website, no questions asked.
+Your absolute worst-case scenario is you get a professional website for just $149 (600.000 cop). This "keep the website" guarantee is my personal thank you for being a founder and it disappears forever after these 15 spots are filled.
+I'd be honored to have friends in my linked in network be the very first to try it out. If it's not a fit for you, then perhaps you have a connection that may benefit from it. If you're already shopping for a website, it's really a no lose scenario. Have a development, marketing and sales / crm architect build your site for $149 . But get ready because it's more than a website, it's a suite of team members that work 24 hours a day, 7 days a week with only one goal - get more leads, get more sales.
+You can schedule a demo or claim a spot here: ninjateam.ai
+Happy to answer any and all questions in the comments or shoot me a dm!
 
 #### Post 3
 
 type: original
-timestamp: ~1yr
+timestamp: 3yr
+hashtags:
 
-Before you build your website – answer these questions.
-
-Not everyone has the time or resources to conduct in-depth research on their target audience or analyze competitors.
-
-But answering these 10 questions honestly will bring you closer to creating a website that resonates.
-
-It's not about colors or photos. It's about something much bigger.
-
-Your website isn't just a digital business card. It's a strategic tool to attract clients and drive conversions.
-
-Here's a list of questions to help you build a website that doesn't just look good – but works:
-
-1. Traffic Sources — How will clients find your website? Ads, social media, organic search, or referrals?
-2. Primary Goal (Conversion) — What do you want clients to do on your site? Contact you, book a meeting, make a purchase, or explore your offer? How will you guide users to take that action?
-3. Ideal Client Profile (ICP) — Who is your dream client? What are their needs, pain points, and what are they searching for?
-4. Tone and Style of Communication — How should your brand communicate? Professional, friendly, or a mix of both?
-5. Unique Selling Proposition (USP) — What sets you apart from competitors? What makes your offer stand out from the rest?
-6. Client Benefits — What will clients gain by choosing you? Create a list of benefits that will convince them to take action.
-7. Numbers and Social Proof — What data can build trust? Years in business, number of clients, testimonials, or case studies?
-8. Visual Style — What style reflects your brand best? Professional, modern, elegant, or minimalist? Remember: your visual style must align with your brand's communication and target audience.
-9. References and Aspirations — Do you have examples of websites you admire? What inspires you about them?
-10. Website Structure and Content Flow — What's the logical flow of your website? How will the content guide your client seamlessly from one section to the next?
-
-Before you start designing – answer these questions. It's the first step to creating a website that works.
-
----
+Activate to view larger image,
+graphical user interface, text, application
+Activate to view larger image,
 
 #### Post 4
 
 type: original
-timestamp: ~1yr
+timestamp: 3yr
+hashtags:
 
-"That's not my job" saved my career.
-
-And I'll tell you why.
-
-Everyone says: always help, do everything, be a team player.
-
-But here's the hard truth: being the person who does everything is the fastest way to burn out.
-
-What actually works:
-
-1. Set clear boundaries
-2. Master your core role
-3. Help strategically
-
-The most successful people I know? They say no to most things so they can say yes to what matters.
-
-Because here's what happens when you do everything:
-
-- Your main work suffers
-- Your energy depletes
-- Your growth stalls
-- Your value decreases
-
-The real signs of a team player:
-
-→ Doing your job exceptionally well
-→ Teaching others to do theirs
-→ Helping in true emergencies
-→ Setting healthy boundaries
-
-Sometimes "that's not my job" means: "I respect my role enough to do it well."
-
-Remember: success isn't about doing everything. It's about doing the right things extremely well.
-
----
+Activate to view larger image,
+graphical user interface, text, application
+Activate to view larger image,
 
 #### Post 5
 
 type: original
-timestamp: ~1yr
+timestamp: 4yr
+hashtags: [#mindset, #businessmindset, #workbetter, #keepgrowing, #keepmovingforward, #businessadvice, #lifeadvice]
 
-A concept everyone should know: Inversion Thinking.
+*
+*
+*
+*
 
-It's often easier to solve a problem by first asking what would guarantee failure.
-
-Here's how it works:
-
-Instead of asking how to succeed, ask:
-- What habits would make me unhealthy?
-- What behaviors would ruin my relationships?
-- What actions would kill my career?
-
-Spot the mistakes that lead to failure, and you'll know exactly what to avoid.
-
-To be healthier:
-- Stay inside all day → Get outside
-- Skip workouts → Move more
-- Make excuses → Show up consistently
-
-To grow your career:
-- Blame others → Take responsibility
-- Work in isolation → Collaborate
-- Avoid feedback → Ask for feedback regularly
-
-By identifying failure first, you remove obstacles and make success inevitable.
-
-Charlie Munger said it best: "It is remarkable how much long-term advantage people like us have gotten by trying to be consistently not stupid, instead of trying to be very intelligent."
-
----
+Activate to view larger image,
+graphical user interface, text, application
+Activate to view larger image,
 
 #### Post 6
 
 type: original
-timestamp: ~1yr
-hashtags: [#webdesign, #webdevelopment, #techlife]
+timestamp: 4yr
+hashtags: [#inpiration, #leadership, #leadingtheway, #quotestoremember, #businessmindset, #businessstrategist]
 
-Happy New Year 2025!!
+*
+*
+*
+*
+ 
 
-Web Designers and Web Developers: Two sides of the same coin! Designers create the beautiful visuals, while developers bring them to life with code. Both are crucial for a successful website.
+These beautiful lines are what I read when I go doubtful; it clears my head to help me dare over doubt when I want to win! 
 
-Web Designer — Focus: Visual appeal, UX/UI. Role: Creates the look and feel of a website. Key Skills: Creativity, design software (Figma, Adobe XD).
+To dare is better than to doubt,
+For doubt is always grieving;
+’Tis faith that finds the riddles out;
+The prize is for believing.
 
-Web Developer — Focus: Functionality, coding. Role: Brings the design to life with code. Key Skills: Programming languages (HTML, CSS, JavaScript), problem-solving.
+ 
 
-In simpler terms: Designer is the artist, creating the website's appearance. Developer is the builder, making the website work.
+Henry Burton
 
----
+ 
+
+*
+*
+*
+* 
 
 #### Post 7
 
 type: original
-timestamp: ~1yr
-hashtags: [#TechHumor, #SoftwareDevelopment, #Programming]
+timestamp: 4yr
+hashtags: [#learning, #communication, #leader, #habits, #worksmarter, #bestadvice]
 
-Understanding Tech Roles Through a Restaurant Analogy:
+*
+*
+*
+*
+ 
 
-- Frontend: The beautiful and welcoming restaurant ambiance where customers enjoy their experience.
-- Backend: The bustling kitchen ensuring everything runs smoothly behind the scenes.
-- API: The waiter seamlessly delivering orders between the customers and the kitchen.
-- Full Stack: The all-in-one food truck owner managing the ambiance, cooking, and customer service on their own.
+Consistency consistently outperforms strategies.
+To be a great leader, you should carry incremental steps every day to achieve your goal.
+-Read one page a day
+-Walk 1 mile daily
+-Exercise for 10 minutes a day
+-Network with one person per day
+- Listen more, talk less!
+- Never stop learning
+-Make communication powerful
+Small habits accumulate over time and generate the highest return on investment. 
+What is that one habit you perform every day?
 
-This analogy perfectly captures the essence of software development roles. Which one resonates with you?
+Please share it in the comments section below.
 
----
+ 
+
+*
+*
+*
+*
+ 
 
 #### Post 8
 
 type: original
-timestamp: ~1yr
+timestamp: 4yr
+hashtags:
 
-Time to flip it…
+Activate to view larger image,
+graphical user interface, text, application
+Activate to view larger image,
 
-There are 15 days left till 2025. What are you gonna do about it?
+#### Post 9
 
-Who's ready to make 2025 phenomenal????
+type: original
+timestamp: 4yr
+hashtags: [#salesforce, #develpmentproject, #companyculture, #salesforcecertified, #salesforcedeveloper, #salesforceconsultant]
+
+*
+*
+*
+*
+ 
+
+As a Salesforce certified consultant and owner of a certified Salesforce partner company, I know how important it is to keep an open mind and a holistic view of our client's companies when developing a project. We pride ourselves on the care and discipline we put into every task. 
+
+ 
+
+*
+*
+*
+*
+ 
+
+#### Post 10
+
+type: original
+timestamp: 4yr
+hashtags: [#leaders, #leadershipbyexample, #teamdynamics, #culturefirst]
+
+Leaders are the answers to the questions Google can't find! 
+
+ 
+
+*
+*
+*
+*

@@ -53,6 +53,13 @@ export async function crystallize(
     );
   }
 
+  if (brand.client_id !== clientId) {
+    throw new CrystallizerError(
+      `Brand client_id "${brand.client_id}" does not match requested client "${clientId}"`,
+      'CLIENT_MISMATCH',
+    );
+  }
+
   // Check if PDS already exists and is frozen
   const existing = readPDS(clientId, surface);
   if (existing && existing.status === 'foundation-frozen') {
@@ -127,28 +134,35 @@ export async function crystallize(
     }
   }
 
-  const pds: ProjectDesignSystem = {
-    client_id: clientId,
-    version: existing ? existing.version + 1 : 1,
-    surface,
-    status: 'foundation-frozen',
-    inherits: brand.client_id,
-    tokens: tokensResult.data,
-    components,
-    foundation_from: sectionName,
-    foundation_frozen_at: new Date().toISOString(),
-  };
-
   // Write to store
   const lockId = lockClient(clientId);
   try {
-    writePDS(clientId, surface, pds);
-    console.log(`🔒 PDS crystallized for ${clientId}/${surface} from "${sectionName}" (v${pds.version})`);
+    const current = readPDS(clientId, surface);
+    if (current && current.status === 'foundation-frozen') {
+      throw new CrystallizerError(
+        `PDS for ${clientId}/${surface} was frozen by another operation (v${current.version}).`,
+        'ALREADY_FROZEN',
+      );
+    }
+
+    const pds: ProjectDesignSystem = {
+      client_id: clientId,
+      version: current ? current.version + 1 : 1,
+      surface,
+      status: 'foundation-frozen',
+      inherits: brand.client_id,
+      tokens: tokensResult.data,
+      components,
+      foundation_from: sectionName,
+      foundation_frozen_at: new Date().toISOString(),
+    };
+
+    writePDS(clientId, surface, pds, current ? current.version : null);
+    console.log(`PDS crystallized for ${clientId}/${surface} from "${sectionName}" (v${pds.version})`);
+    return pds;
   } finally {
     unlockClient(clientId, lockId);
   }
-
-  return pds;
 }
 
 // ─── Add Component (later sections extend the PDS) ─────────────────

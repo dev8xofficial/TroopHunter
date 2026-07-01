@@ -35,16 +35,16 @@ Both Abdul and Herman operate around the same principle: ship clean without over
 
 ### Post Selection
 
-> **Scrape note:** Updated — Replaced 2yr-old Post 2 with fresh Post 1 (2d ago on rescue projects). Three-post sequence covers project assessment → tech decisions → connection.
+> **Scrape note:** The LinkedIn scrape surfaced 2 substantive original posts — Post 1 (11h ago) and Post 2 (2yr ago). All other posts are certification announcements or reposts, which the rules exclude. The sequence runs over 2 comments only.
 
 #### Post 1
 **Post excerpt:** "When you build a digital offering or production, questions come up: should we build a web app or a mobile app? It sounds like a tech decision. It's not. It's a business decision... The wrong partner says yes to everything."
-**Why selected:** Opens space for Abdul to add insight about project assessment, codebase inheritance, and fair scoping — directly relevant to his dashboard and full-stack rescue experience. Fresh (2d ago) and shows active overflow management.
+**Why selected:** The "wrong partner" line opens space for Abdul to add a concrete peer-level insight about scope and delivery — strong enough to be noticed, specific enough to not read as a like-and-scroll comment.
 **Comment timing:** Day 0
 
 #### Post 2
-**Post excerpt:** "A client reached out to find the next technical partner for an existing project, one their previous team couldn't get over the line. They were sure it was 95% done; we found it was closer to 50%... Pricing someone else's half-built code as a fixed bid takes real experience."
-**Why selected:** Extends Comment 1's theme about project assessment into partner quality and scope discipline. The web vs mobile framing connects naturally to Abdul's full-stack capability (React/Next.js + Node.js backend) and experience with admin dashboards.
+**Post excerpt:** "As a leader you have to make changes and to be prepared for worst case scenarios and have a plan." (2yr ago)
+**Why selected:** Leadership and contingency planning connects thematically to the partner/decision theme from Comment 1, allowing Abdul to weave in one sentence of genuine context and close with a natural connection ask.
 **Comment timing:** Day 2
 
 ---
@@ -56,16 +56,16 @@ Both Abdul and Herman operate around the same principle: ship clean without over
 The partner filter matters more than the platform filter. A team that doesn't push back on scope will ship the wrong thing on any stack.
 
 **Stage:** Establish Presence
-**What this does:** Extends Herman's point about project assessment accuracy with a specific, credible example from Abdul's own dashboard experience — signals peer-level understanding of the codebase inheritance problem without any pitch signal.
+**What this does:** Extends Herman's "wrong partner" point with a concrete framing — signals Abdul thinks about delivery quality, not just execution, without any hint of commercial intent.
 
 ---
 
 #### Comment 2 — Day 2
 
-Hit the same issue on a React dashboard takeover — always the codebase's half the problem, but nobody surfaces it until after contract start. Finding the gap between "95% done" and actually shippable takes experience most teams don't have.
+In software the worst case is rarely technical. Most projects go sideways on decisions made before the first line of code — learned that building a real-time scheduling system. Would be good to connect — feel like we're thinking about the same side of this.
 
-**Stage:** Deepen the Thread
-**What this does:** Extends Comment 1's scope theme into Comment 2's post, woven with a specific example of what happens when teams don't push back — deepens familiarity without moving to the ask yet.
+**Stage:** Deepen the Thread + The Ask
+**What this does:** Connects the leadership/planning theme back to software delivery reality, weaves in one sentence of genuine personal context, and closes with a low-pressure peer-to-peer connection ask.
 
 ---
 

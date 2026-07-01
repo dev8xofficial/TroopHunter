@@ -9,6 +9,7 @@ import {
   RunRecordSchema,
   CriticOutputSchema,
   DimensionScoresSchema,
+  RenderResultSchema,
   VerdictEntrySchema,
   validate,
 } from '../src/schema.js';
@@ -158,6 +159,34 @@ describe('Schema Validation', () => {
       };
 
       const result = CriticOutputSchema.safeParse(output);
+      expect(result.success).toBe(true);
+    });
+  });
+
+  describe('RenderResultSchema', () => {
+    it('accepts hard constraint violations collected during render', () => {
+      const result = RenderResultSchema.safeParse({
+        candidate_id: 'iter0-cand1',
+        shots: { '375': 'shots/375.png' },
+        consoleErrors: [],
+        hasErrorOverlay: false,
+        hardViolations: [
+          {
+            gate: 'hard-constraint',
+            rule: 'no-placeholder',
+            message: 'Placeholder text detected',
+            severity: 'serious',
+            fixable: true,
+          },
+        ],
+        domInfo: {
+          bodyHeight: 900,
+          hasText: true,
+          fontsLoaded: true,
+          imagesLoaded: true,
+        },
+      });
+
       expect(result.success).toBe(true);
     });
   });

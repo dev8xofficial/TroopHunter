@@ -1,7 +1,7 @@
 /**
  * ADE — Guardrails (deterministic gates)
  *
- * No model calls (spec 11 §2.1). Gates:
+ * Deterministic gates plus the required brief-comprehension model preflight:
  * - inputGate: validate brief + brand-data
  * - renderHealthGate: syntax check + render validation
  * - hardConstraintGate: a11y, responsive, content, color allowlist
@@ -20,12 +20,19 @@ import type { Page } from 'playwright';
 import type {
   Brief,
   BrandData,
+  BriefComprehension,
   RenderResult,
   GateResult,
   Violation,
   ProjectDesignSystem,
 } from './schema.js';
 import { BriefSchema, BrandDataSchema, validate } from './schema.js';
+import type { ModelProvider } from './model.js';
+import { buildBriefComprehensionPrompt } from './prompts.js';
+
+export interface BriefComprehensionGateResult extends GateResult {
+  usage: { input: number; output: number };
+}
 
 // ─── Input Gate (spec 11 §2.1) ─────────────────────────────────────
 
@@ -123,6 +130,106 @@ export function inputGate(brief: unknown, brandData?: unknown, briefPath?: strin
   return {
     pass: violations.filter(v => v.severity === 'critical' || v.severity === 'serious').length === 0,
     violations,
+  };
+}
+
+export async function briefComprehensionGate(
+  provider: ModelProvider,
+  brief: Brief,
+  maxModelCalls: { current: number; max: number },
+): Promise<BriefComprehensionGateResult> {
+  if (maxModelCalls.current >= maxModelCalls.max) {
+    return {
+      pass: false,
+      usage: { input: 0, output: 0 },
+      violations: [{
+        gate: 'brief-comprehension',
+        rule: 'model-call-budget',
+        message: 'No model-call budget remains for the required brief comprehension preflight.',
+        severity: 'serious',
+        fixable: true,
+      }],
+    };
+  }
+
+  const { system, user } = buildBriefComprehensionPrompt(brief);
+  maxModelCalls.current++;
+
+  let result;
+  try {
+    result = await provider.complete({
+      system,
+      messages: [{ role: 'user', content: user }],
+      maxTokens: 1_000,
+      temperature: 0,
+      schemaName: 'briefComprehension',
+    });
+  } catch (err) {
+    return {
+      pass: false,
+      usage: { input: 0, output: 0 },
+      violations: [{
+        gate: 'brief-comprehension',
+        rule: 'model-call-failed',
+        message: `Brief comprehension preflight failed: ${err instanceof Error ? err.message : String(err)}`,
+        severity: 'serious',
+        fixable: true,
+      }],
+    };
+  }
+
+  const parsed = parseJsonObject(result.text);
+  if (!parsed.ok) {
+    return {
+      pass: false,
+      usage: result.usage,
+      violations: [{
+        gate: 'brief-comprehension',
+        rule: 'invalid-json',
+        message: `Brief comprehension returned invalid JSON: ${parsed.error}`,
+        severity: 'serious',
+        fixable: true,
+      }],
+    };
+  }
+
+  const schemaResult = schemaGate<BriefComprehension>('briefComprehension', parsed.value);
+  if (!schemaResult.data) {
+    return {
+      pass: false,
+      usage: result.usage,
+      violations: schemaResult.violations.map(violation => ({
+        ...violation,
+        gate: 'brief-comprehension',
+      })),
+    };
+  }
+
+  const comprehension = schemaResult.data;
+  const violations: Violation[] = [];
+  for (const fact of comprehension.missing_required_facts) {
+    violations.push({
+      gate: 'brief-comprehension',
+      rule: 'missing-required-fact',
+      message: fact,
+      severity: 'serious',
+      fixable: true,
+    });
+  }
+  for (const mismatch of comprehension.material_mismatches) {
+    violations.push({
+      gate: 'brief-comprehension',
+      rule: 'material-mismatch',
+      message: mismatch,
+      severity: 'serious',
+      fixable: true,
+    });
+  }
+
+  return {
+    pass: violations.length === 0,
+    violations,
+    usage: result.usage,
   };
 }
 
@@ -288,7 +395,7 @@ export async function hardConstraintGate(
         gate: 'hard-constraint',
         rule: 'content-present',
         message: `Brief content missing from rendered output: "${content.slice(0, 80)}"`,
-        severity: 'moderate',
+        severity: 'serious',
         fixable: true,
       });
     }
@@ -355,6 +462,20 @@ export function schemaGate<T>(schemaName: string, raw: unknown): { data: T | nul
 }
 
 // ─── Helpers ───────────────────────────────────────────────────────
+
+function parseJsonObject(text: string): { ok: true; value: unknown } | { ok: false; error: string } {
+  let jsonText = text.trim();
+  const fenceMatch = jsonText.match(/```(?:json)?\s*\n?([\s\S]*?)\n?\s*```/);
+  if (fenceMatch) {
+    jsonText = fenceMatch[1].trim();
+  }
+
+  try {
+    return { ok: true, value: JSON.parse(jsonText) };
+  } catch (err) {
+    return { ok: false, error: err instanceof Error ? err.message : String(err) };
+  }
+}
 
 function detectContradictions(brief: Brief): string[] {
   const contradictions: string[] = [];
@@ -642,8 +763,160 @@ export function tokenAllowlistGate(
     }
   }
 
+  // 3. Tailwind named color classes. Neutral ramps are allowed; chromatic
+  // named colors drift from the frozen PDS unless they are token keys.
+  const tokenColorKeys = new Set(Object.keys(pds.tokens.color).map(k => k.toLowerCase()));
+  const neutralNames = new Set([
+    'white', 'black', 'transparent', 'current',
+    'slate', 'gray', 'zinc', 'neutral', 'stone',
+  ]);
+  const chromaticNames = new Set([
+    'red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald',
+    'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple',
+    'fuchsia', 'pink', 'rose',
+  ]);
+  const namedColorClass = /\b(?:bg|text|border|from|via|to|fill|stroke)-([a-z]+)(?:-\d{2,3})?\b/g;
+  while ((match = namedColorClass.exec(codeWithoutComments)) !== null) {
+    const name = match[1].toLowerCase();
+    if (chromaticNames.has(name) && !neutralNames.has(name) && !tokenColorKeys.has(name)) {
+      violations.push({
+        gate: 'token-allowlist',
+        rule: 'color-tailwind-named',
+        message: `Off-system Tailwind named color: ${match[0]} is not a frozen color token`,
+        severity: 'serious',
+        fixable: true,
+      });
+    }
+  }
+
+  // 4. Arbitrary Tailwind values for type, space, radius, shadow, and motion.
+  const tokenSets = makeTokenSets(pds);
+  const arbitraryClass = /\b([!a-zA-Z0-9:_-]+)-\[(.+?)\]/g;
+  while ((match = arbitraryClass.exec(codeWithoutComments)) !== null) {
+    const rawPrefix = match[1];
+    const rawValue = match[2];
+    const prefix = rawPrefix.split(':').pop()?.replace(/^!/, '') ?? rawPrefix;
+    const value = normalizeTokenValue(rawValue);
+
+    if (rawValue.trim().startsWith('#') || (isColorPrefix(prefix) && looksLikeColorValue(rawValue))) {
+      continue;
+    }
+
+    const category = classifyTokenPrefix(prefix);
+    if (!category) continue;
+
+    const allowed = tokenSets[category];
+    if (!isTokenValueAllowed(value, allowed)) {
+      violations.push({
+        gate: 'token-allowlist',
+        rule: category,
+        message: `Off-system ${category} value: ${match[0]} is not in the design system tokens`,
+        severity: 'serious',
+        fixable: true,
+      });
+    }
+  }
+
+  // 5. Inline font-family values are type tokens too.
+  const fontFamilyPattern = /fontFamily\s*:\s*['"`]([^'"`]+)['"`]/g;
+  while ((match = fontFamilyPattern.exec(codeWithoutComments)) !== null) {
+    const family = normalizeTokenValue(match[1]);
+    if (!isTokenValueAllowed(family, tokenSets.type)) {
+      violations.push({
+        gate: 'token-allowlist',
+        rule: 'type',
+        message: `Off-system font family: "${match[1]}" is not in the design system type tokens`,
+        severity: 'serious',
+        fixable: true,
+      });
+    }
+  }
+
   return {
     pass: violations.filter(v => v.severity === 'critical' || v.severity === 'serious').length === 0,
     violations,
   };
+}
+
+type TokenCategory = 'type' | 'space' | 'radius' | 'shadow' | 'motion';
+
+function makeTokenSets(pds: ProjectDesignSystem): Record<TokenCategory, Set<string>> {
+  const type = new Set<string>();
+  for (const value of Object.values(pds.tokens.type)) {
+    addNormalized(type, value);
+    for (const unit of value.match(/\d+(?:\.\d+)?(?:px|rem|em|%|vw|vh|ch|lh)/g) ?? []) {
+      addNormalized(type, unit);
+    }
+    const familyPart = value.replace(/^\s*[\d.]+[a-z%]+(?:\/[\d.]+[a-z%]+)?\s*/i, '').trim();
+    if (familyPart) addNormalized(type, familyPart);
+  }
+
+  return {
+    type,
+    space: valueSet(pds.tokens.space),
+    radius: valueSet(pds.tokens.radius),
+    shadow: valueSet(pds.tokens.shadow),
+    motion: valueSet(pds.tokens.motion),
+  };
+}
+
+function valueSet(values: Record<string, string>): Set<string> {
+  const set = new Set<string>();
+  for (const value of Object.values(values)) addNormalized(set, value);
+  return set;
+}
+
+function addNormalized(set: Set<string>, value: string): void {
+  set.add(normalizeTokenValue(value));
+}
+
+function normalizeTokenValue(value: string): string {
+  return value
+    .trim()
+    .replace(/^['"]|['"]$/g, '')
+    .replace(/_/g, ' ')
+    .replace(/\s+/g, ' ')
+    .toLowerCase();
+}
+
+function isTokenValueAllowed(value: string, allowed: Set<string>): boolean {
+  if (allowed.has(value)) return true;
+  for (const token of allowed) {
+    if (token.includes(value) || value.includes(token)) return true;
+  }
+  return false;
+}
+
+function isColorPrefix(prefix: string): boolean {
+  return ['bg', 'text', 'border', 'from', 'via', 'to', 'fill', 'stroke', 'outline'].includes(prefix);
+}
+
+function looksLikeColorValue(value: string): boolean {
+  const normalized = value.trim().toLowerCase();
+  return (
+    normalized.startsWith('#') ||
+    normalized.startsWith('rgb(') ||
+    normalized.startsWith('rgba(') ||
+    normalized.startsWith('hsl(') ||
+    normalized.startsWith('hsla(') ||
+    normalized.startsWith('color:') ||
+    normalized.startsWith('var(--color')
+  );
+}
+
+function classifyTokenPrefix(prefix: string): TokenCategory | null {
+  if (['text', 'leading', 'tracking', 'font'].includes(prefix)) return 'type';
+  if (prefix === 'rounded' || prefix.startsWith('rounded-')) return 'radius';
+  if (prefix === 'shadow') return 'shadow';
+  if (['duration', 'delay', 'ease', 'animate'].includes(prefix)) return 'motion';
+
+  const spacePrefixes = [
+    'p', 'px', 'py', 'pt', 'pr', 'pb', 'pl',
+    'm', 'mx', 'my', 'mt', 'mr', 'mb', 'ml',
+    'gap', 'gap-x', 'gap-y', 'space-x', 'space-y',
+    'inset', 'inset-x', 'inset-y', 'top', 'right', 'bottom', 'left',
+  ];
+  if (spacePrefixes.includes(prefix)) return 'space';
+
+  return null;
 }

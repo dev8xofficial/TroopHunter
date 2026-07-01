@@ -9,6 +9,7 @@ from selenium.common.exceptions import TimeoutException, WebDriverException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 
+from helpers import navigation
 import config
 
 
@@ -257,6 +258,7 @@ def crawl_website(
             if not safe_navigate(driver, current_url):
                 print(f"[warn] Skipping {current_url} after navigation retries.")
                 continue
+            navigation.wait_for_page_ready(driver)
             # Add wait for DOM stability
             time.sleep(0.5)
             
@@ -320,6 +322,7 @@ def crawl_website_batch(
                 if not safe_navigate(driver, current_url):
                     print(f"[warn] Skipping {current_url} after navigation retries.")
                     continue
+                navigation.wait_for_page_ready(driver)
                 # Add wait for DOM stability
                 time.sleep(0.5)
                 pages_loaded += 1

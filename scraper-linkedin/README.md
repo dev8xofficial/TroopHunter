@@ -66,6 +66,7 @@ If `python` resolves to system Python after activation, use the venv binary dire
 ```
 
 The scraper will:
+
 1. Open the specified public LinkedIn URL.
 2. Scroll downward in random increments, waiting seconds in between.
 3. Stop when it reaches the absolute bottom OR the `--max-scrolls` limit.
@@ -95,6 +96,8 @@ Then visit `http://127.0.0.1:5000/`. Enter the LinkedIn URL and your max-scroll 
 
 ## Why Sequential DOM Extraction?
 
-By grabbing exactly what the browser paints (`h1`-`h6`, `p`, `ul`, `ol` tags) from top-to-bottom, we sidestep the need to maintain fragile, highly specific CSS selectors (`.feed-shared-update-v2__description` etc.) which LinkedIn frequently obfuscates and rotates. 
+By grabbing exactly what the browser paints (`h1`-`h6`, `p`, `ul`, `ol` tags) from top-to-bottom, we sidestep the need to maintain fragile, highly specific CSS selectors (`.feed-shared-update-v2__description` etc.) which LinkedIn frequently obfuscates and rotates.
 
 The resulting Markdown resembles a clean article summarizing the company description, headers, and any visible posts.
+
+venv\Scripts\python main.py "https://www.linkedin.com/company/capacitacionhazmat/" --max-scrolls 150 --no-headless

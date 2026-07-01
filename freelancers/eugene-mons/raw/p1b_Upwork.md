@@ -1,20 +1,31 @@
-Eugene M.
+ages
+Search
+
+Search category:
+Jobs
+
+
+
+Account Settings
+Pablo B A.
+Status: Offline
+Pablo B A.
 Verified
- Savage, MN, USA – 3:01 am local time
+ Payson, UT, USA – 5:40 am local time
 Available now
 100% Job Success
-Top Rated
-$100K+
+Top Rated Plus
+$50K+
 Total earnings
-76
+14
 Total jobs
-3,273
+800
 Total hours
 Hours per week
-As Needed - Open to Offers
+More than 30 hrs/week
 Open to contract to hire New
 Avg. response
-0-4 hours
+4-8 hours
 Languages
 English:  Native or Bilingual
 Verifications
@@ -24,189 +35,250 @@ Verified
 Phone number: 
 Verified
 Verified
-Associated with
-EMSoft
-EMSoft
-1,515 hours
-100% Job Success
-Top Rated
+Education
+Devmountain
+Computer science
+2014-2014
+Utah Tech University
+Bachelor of Engineering (BEng), Computer science
+2010-2014
+React | Next | React Native | Angular | Vue | Node Developer
+$70.00/hr
 
+Hello, I'm Pablo Arcia, a passionate and bilingual IT professional with a wealth of experience spanning over a decade in the dynamic world of Software Development. My journey has been an exhilarating one, filled with numerous accomplishments and the acquisition of valuable skills that enable me to bring innovative solutions to life.
 
-AI-Driven Full Stack Developer | React, Next.js, Laravel, PHP & SaaS
-$35.00/hr
+🚀 My Skills:
 
-⭐⭐⭐⭐ "Eugene is a smart, highly communicative, and competent developer. He was able to quickly solve our issues and we are eager to work with him again."
+I thrive in the world of web and mobile development, and my skill set is a testament to that.
 
-"Struggling with slow, outdated web apps or complex tech issues? "
+- HTML5, CSS3, Javascript, Typescript
+- React, Next.js, Gatsby, Angular, Vue
+- React Native, Flutter
+- Node, Express
+- Python, Django
+- PHP, Wordpress, Shopify
+- AWS, GCP, etc
 
-I specialize in optimizing and transforming digital experiences with cutting-edge AI and modern web technologies. With 15+ years of experience in full-stack development, I’ve built and optimized scalable, high-performance web applications that help businesses drive growth.
+🔮 A Passion for Learning:
 
-My expertise lies in solving complex problems and delivering high-performance solutions across various industries, from SaaS and e-commerce to enterprise-level applications. I focus on creating robust, user-friendly web apps that not only meet your technical requirements but also drive business growth.
+I am a self-starter with an insatiable thirst for knowledge. Technology never stops evolving, and I embrace every opportunity to learn and apply new skills, which ultimately benefits my clients. You can trust that I stay at the forefront of industry trends and emerging technologies, ready to incorporate them into your projects.
 
-✅ Case Study 1:
-Project: API Integration for E-Commerce:
+🛠️ Tools and Platforms:
 
-I worked with an e-commerce platform to integrate a custom API for real-time product data and inventory management. This resulted in a 25% reduction in cart abandonment and improved overall user engagement. The integration streamlined operations and allowed for seamless product updates, driving a 30% increase in monthly sales.
+Working with tools such as Jira, Trello, Asana, and Monday, I ensure organized and efficient project management. My proficiency in version control systems like Git, Github, Bitbucket, and Gitlab guarantees seamless collaboration and code management.
+Plus, I'm well-versed in cloud platforms like AWS, Azure, GCP, and Heroku, enabling you to scale your applications with ease. When it comes to testing, I rely on the best, using Jasmine, Jest, Mocha, Chai, and Enzyme to ensure the robustness of your software.
 
-✅ Case Study 2:
-Project: WordPress Maintenance & PHP Upgrade:
+🌈 Innovative Ideas and Cost Savings:
 
-For a WordPress client, I handled PHP upgrades from v7.4 to 8.x, ensuring full compatibility and improved site performance. This upgrade reduced load times by 40%, improved SEO rankings, and fixed critical security vulnerabilities. The client reported a significant drop in page load times, leading to a better user experience and higher conversion rates.
+As an easy-going individual, I foster open communication and collaboration. I don't just follow your requirements; I actively engage in the creative process, offering valuable suggestions to enhance your ideas and optimize your budget. Your satisfaction is my priority, and I'm dedicated to providing exceptional work.
 
-✅ What I Can Do for You:
-- Build scalable apps with React, Next.js, and Laravel.
-- Develop AI-powered solutions to enhance user experience and automate tasks.
-- Integrate APIs (payments, inventory, marketing tools, etc.).
-- Optimize MySQL & PostgreSQL for faster performance.
-- Maintain & upgrade existing WordPress sites for better security and performance.
-- Integrate Vue.js for modern, responsive web apps.
-- Troubleshoot and optimize systems for scalability, security, and speed.
+Client satisfaction and delivering top-notch work are at the core of my mission. Let's turn your visions into reality, with quality, creativity, and a touch of tech magic.
 
-✅ Industries I Work With:
-- SaaS & Tech Platforms
-- E-Commerce & Retail
-- AI Solutions
-- Healthtech & Fintech
-- Real Estate & Property
-
-💼 If you need a reliable, results-driven developer to create or optimize your web application, integrate AI, or improve performance, let's connect! I’m here to help you achieve scalable, user-friendly solutions that drive business results.
-
-
-
-KEYWORDS:
-Full Stack Developer, React Developer, Next.js Developer, AI Solutions, AI Integration, Laravel Development, PHP Developer, Web Application Development, SaaS Development, MySQL Optimization, PostgreSQL Development, API Integration, WordPress Maintenance, E-commerce Development, Vue.js Development, Database Optimization, Web Performance Optimization, Custom API Integration, Frontend Development, Backend Development, Mobile App Development.
-
-
+Reach out to me today, and let's make your projects shine! ✨
 less
 Work history
 Insights from completed jobs
 
 Clear Communicator
-17
-Reliable
-12
-Solution Oriented
-12
-Committed to Quality
-11
+6
 Collaborative
-10
+6
+Committed to Quality
+5
+Reliable
+5
 Detail Oriented
-10
-Professional
 3
-Accountable for Outcomes
+Solution Oriented
+3
+Professional
 2
 
-Completed jobs (74)
-
-
-
-Move web site to new server including all content and networking config
+Completed jobs (14)
+Lead Node.js Developer for AI Platform Backend
 Rating is 5.0 out of 5.
 5.0
-Jun 3, 2026 - Jun 12, 2026
-Endorsed by client
-Solution Oriented
-Clear Communicator
-Detail Oriented
-$247.50
-$45.00 /hr
-5 hours
-Expert WordPress Developer Needed for Web Hosting and Gravity Forms
-Rating is 5.0 out of 5.
-5.0
-May 20, 2026 - Jun 6, 2026
-Endorsed by client
-Solution Oriented
-Clear Communicator
-$175.00
-$35.00 /hr
-5 hours
-Senior Developer Needed – Figma to Production Web App (Iframe Embedded) – Insurance Quoting Flow
-Rating is 5.0 out of 5.
-5.0
-May 7, 2026 - Jun 6, 2026
-"Eugene was amazing to work with! He took the project, setup the environment and was able complete the work for our website project. Eugene is very skilled and knowledgeable with react and full stack development. We have internal developers in our company, but he was the one leading our team and get them up to speed. If I have any programming needs in the future, I will definitely use Eugene for any future Upwork contracts." Less
+Apr 14, 2026 - Jun 18, 2026
+"Great expeirence with Pablo. Strong dev"
 
 Endorsed by client
 Committed to Quality
-Solution Oriented
-Detail Oriented
-$3,150.00
-$35.00 /hr
-90 hours
-Duplicate existing website and edit PHP files
+Clear Communicator
+$16,025.00
+$50.00 /hr
+321 hours
+Next.js + React developer needed for long term project
 Rating is 5.0 out of 5.
 5.0
-Nov 26, 2025 - May 14, 2026
-"Eugene did an excellent job duplicating and improving the website and data base of a company we purchased. He was responsive and knowledgeable."
+Oct 27, 2025 - Dec 11, 2025
+"Outstanding Freelancer
+We had over 90 applicants for this job and interviewed more than a dozen highly qualified candidates. Pablo stood out immediately as the most skilled, organized, and reliable professional in the group. His communication was clear and consistent, his technical abilities were exceptional, and he delivered every part of the project with precision and attention to detail.
+Pablo took time to fully understand the requirements, offered thoughtful recommendations, and executed the work far beyond our expectations. He approaches tasks with a level of professionalism and care that is rare to find, and he consistently demonstrated initiative, problem-solving ability, and a genuine commitment to quality.
 
-Endorsed by client
-Solution Oriented
-Detail Oriented
-$5,490.00
-$45.00 /hr
-122 hours
-Expert WordPress Developer Needed for Web Hosting and Gravity Forms
-Rating is 5.0 out of 5.
-5.0
-Apr 21, 2026 - May 12, 2026
-"Working with Eugene was great, he was hard working, resourceful and timely."
+I would absolutely hire him again and strongly recommend him to anyone looking for a top-tier freelancer. Pablo is an asset to any project, and I’m confident he will continue to excel on the Upwork platform." Less
 
 Endorsed by client
 Reliable
+Committed to Quality
+Solution Oriented
 Clear Communicator
 Detail Oriented
-$700.00
-$35.00 /hr
-20 hours
-Clone and recreate 3 sites
-Apr 15, 2026 - May 9, 2026
-No feedback given
+Professional
+$9,810.00
+$60.00 /hr
+164 hours
+Solana Token Project
+Rating is 4.7 out of 5.
+4.7
+May 23, 2025 - Jun 11, 2025
+$3,120.00
+$65.00 /hr
+48 hours
+Expert React Developer Needed
+Rating is 5.0 out of 5.
+5.0
+Apr 3, 2025 - Apr 28, 2025
+"Thanks."
 
 $200.00
 Fixed price
-Contract Web Deveoper
+AI Project
 Rating is 5.0 out of 5.
 5.0
-Feb 6, 2026 - Mar 21, 2026
-"We had a great experience with Eugene. He was responsive, efficient and did a really good job."
+Sep 9, 2024 - Sep 21, 2024
+$1,400.00
+$70.00 /hr
+20 hours
+Full-Stack Web Developer (Tailwind CSS, Next.JS, Node.JS)
+Rating is 5.0 out of 5.
+5.0
+Jun 20, 2024 - Aug 7, 2024
+"Pablo did a great job! Very professional, very responsive. Overall a wonderful lead developer to work with."
 
 Endorsed by client
-Reliable
-Committed to Quality
-Solution Oriented
+Professional
 Clear Communicator
-Detail Oriented
-$360.00
-$45.00 /hr
+Collaborative
+$560.00
+$70.00 /hr
 8 hours
-Connect JSON Inventory Feed for WordPress Site via Elfsight Apps
+Need code for website designed in Figma. Will deploy on my own.
 Rating is 5.0 out of 5.
 5.0
-Nov 21, 2025 - Mar 4, 2026
-$4,060.00
-$35.00 /hr
-156 hours
-Full Stack Developer | Inventory Management Application
-Upgrade PHP from v7.4 to 8.x on cellstream.com web server
+May 16, 2024 - May 24, 2024
+"Pablo was great, quick to respond, and really patient with any feedback/changes that needed to be made. Also, he was extremely efficient with timing and got me my finished project within a quick turnaround time and to my specifications (in terms of design). Thank you!" Less
+
+Endorsed by client
+Clear Communicator
+Reliable
+Collaborative
+$1,200.00
+$60.00 /hr
+20 hours
+Marketing Web Developer + Technologist
 Rating is 5.0 out of 5.
 5.0
-Feb 14, 2026 - Feb 20, 2026
-"Eugene is exactly as advertised, no oversell, no questionable behavior, just solid communication, solid delivery and he took the time to make sure I was happy with the results which was above and beyond. If I need help on my project, Eugene will be first on my list and I hope he is available. 10 out of 10." Less
+Jan 31, 2024 - Mar 22, 2024
+$100.00
+$60.00 /hr
+2 hours
+Senior Vue.js NestJS Full Stack Developer
+Rating is 5.0 out of 5.
+5.0
+Jan 2, 2024 - Mar 14, 2024
+"We will use Pablo again soon. He is very smart and worked great with the team!"
+
+Endorsed by client
+Collaborative
+$15,038.33
+$70.00 /hr
+215 hours
+Fix css/html formatting error on webpage
+Rating is 5.0 out of 5.
+5.0
+Dec 1, 2023 - Dec 5, 2023
+"Pablo was an excellent developer. Very communicative, performed services on time and completed with attention to detail."
 
 Endorsed by client
 Committed to Quality
 Clear Communicator
+Reliable
 Detail Oriented
-$173.25
-$45.00 /hr
-4 hours
-Full Stack Developer | PHP Upgrade for WordPress 
-Soft Delete for Portal Storage
-Rating is 5.0 out of 5.
-5.0
-Dec 2, 2025 - Jan 15, 2026
-$2,500.00
-Fixed price
+$69.00
+$60.00 /hr
+1 hour
+Pagination
+
+Current page 1 of 21
+
+go to page2
+Current page 1 of 2
+Portfolio
+
+Allbirds - Shopify
+
+Unicity - React, Next, Node, Express
+
+IslandPay - React Native, Typescript, Fastlane, SauceLabs
+Pagination
+
+Current page 1 of 21
+
+go to page2
+Current page 1 of 2
+Skills
+React
+React Native
+Next.js
+TypeScript
+Node.js
+ExpressJS
+Vue.js
+Angular 6
+GraphQL
+WordPress
+Shopify
+JavaScript
+Python
+Flutter
+Tailwind CSS
+Employment history
+Senior Frontend developer - React, Gatsby, Storybook | Cove
+January 2021 - June 2023
+
+- Rebuild three web applications, resulting in improved user engagement, 30% faster page load times, and an average user rating of 4.8/5
+- Integrated APIs and 3rd-party services, resulting in enhanced functionality, streamlined payment processing, resulting in a 20% increase in transaction success rates and elevated user experience
+- Mentored to three interns and junior developers of Cove
+less
+Senior Frontend Developer - React, Next | Pando Software
+February 2020 - January 2021
+
+- Enhanced code base by implementing a dedicated 'services' folder to encapsulate API interaction functions, reduce development time by 10%
+- Researched and developed Optimizely for A/B testing, resulting in data- driven decision-making, augmented user engagement, and a 15% increase in conversion rates
+Senior Full Stack Developer - React, Next, Typescript, Node | Unicity International
+April 2018 - February 2020
+
+- Led team in re-architecting internal app, improving rendering and adding features with ES6, React, Redux, and Material-UI, achieved faster load times (25%) and increased user productivity (+20%) - Received assignment as mentor for five Interns/Jr Developers based on the ability to teach complex concepts in a simple/understandable way
+Front End Developer - React, Javascript | SolutionStream
+August 2017 - March 2018
+
+- Developed application by collaborating with the client to implement best practices for modern React applications, resulting in reduced bug reports by 40%, and optimized application performance
+- Optimized codebase by migrating to modern JavaScript (ES6), removing lodash, and setting new styling standards for components, resulting in upgraded performance, and 20% decrease in average bundle size
+- Built 3+ custom, enterprise-level React applications
+less
+Junior Software Engineer- React, Angular, Typescript | Domo, Inc
+June 2015 - August 2017
+
+- Created dozens of components by using AngularJS, React, TypeScript, and Redux and by writing unit tests to assert other components’ functionality using Chai, Mocha, and Enzyme
+- Added value to the Domo App Builder by creating and testing 100+ infographics using JavaScript, d3.js, and Adobe Illustrator
+Other experiences
+React Native Cross-Platform Mobile Development Expert
+
+As a seasoned React Native Developer specializing in cross-platform mobile development, I bring a wealth of experience in creating high-performance applications compatible with both iOS and Android platforms.
+
+My expertise includes developing feature-rich mobile solutions, optimizing UI/UX experiences, and integrating third-party functionalities seamlessly
+
+If you are in search of a skilled React Native Developer for your cross-platform mobile development needs, I am confident in my ability to contribute to the success of your project.
+
+Looking forward to the opportunity to collaborate on your next project!
+less

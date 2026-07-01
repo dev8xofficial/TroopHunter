@@ -8,12 +8,44 @@
  */
 
 import { Command } from 'commander';
-import { resolve } from 'path';
-import { readFileSync, existsSync } from 'fs';
+import { dirname, join, resolve } from 'path';
+import { readFileSync, existsSync, readdirSync } from 'fs';
+import { randomUUID } from 'crypto';
 import { buildConfig } from './config.js';
-import { runLoop } from './orchestrator.js';
+import { runLoop, runSectionLoop, runSiteLoop } from './orchestrator.js';
 import { generateReport } from './report.js';
-import type { Brief, BrandData } from './schema.js';
+import { readTrace } from './trace.js';
+import { BriefSchema, BrandDataSchema } from './schema.js';
+import type {
+  Brief,
+  BrandData,
+  Artifact,
+  SectionOutput,
+  Surface,
+  AutonomyRung,
+  RunRecord,
+  VerdictEntry,
+  ProjectDesignSystem,
+  ArtifactQAReport,
+} from './schema.js';
+import { deriveBrand, saveBrandDraft, approveBrand, reDeriveBrand } from './brand.js';
+import { crystallize } from './crystallizer.js';
+import { getProvider } from './model.js';
+import {
+  getSectionRunDir,
+  readArtifact,
+  readArtifactQA,
+  readBrand,
+  readPDS,
+  writeArtifact,
+  writeArtifactQA,
+} from './store.js';
+import { readLibrary, getLibraryDir } from './library.js';
+import { writeBackArtifact } from './writeback.js';
+import { readVerdicts, recordHumanVerdict } from './verdicts.js';
+import { runCrossSurfaceBrandQA, runWholeArtifactQA } from './qa.js';
+import { calibrateFromRecords } from './calibration.js';
+import { formatAutonomyPolicy, recommendAutonomyPolicy } from './autonomy.js';
 
 const program = new Command();
 
@@ -112,12 +144,14 @@ program
   .description('Generate a report from trace.jsonl')
   .option('--out <dir>', 'Run output directory')
   .option('--all <dir>', 'Scan all run directories under this path')
+  .option('--threshold <n>', 'Calibration threshold (0-100)', '80')
   .action(async (opts) => {
     try {
+      const threshold = parseNumberOption(opts.threshold, 'threshold');
       if (opts.out) {
-        generateReport(resolve(opts.out));
+        generateReport(resolve(opts.out), false, threshold);
       } else if (opts.all) {
-        generateReport(resolve(opts.all), true);
+        generateReport(resolve(opts.all), true, threshold);
       } else {
         console.error('❌ Specify --out <dir> or --all <dir>');
         process.exit(1);
@@ -128,6 +162,588 @@ program
     }
   });
 
-// ─── Parse ─────────────────────────────────────────────────────────
+// ─── Verdict Capture ───────────────────────────────────────────────
+
+program
+  .command('verdict')
+  .description('Record a human approve/reject verdict for Critic calibration')
+  .requiredOption('--out <dir>', 'Run output directory')
+  .requiredOption('--decision <decision>', 'Human decision: approve or reject')
+  .option('--rating <rating>', 'Human rating: bad, weak, good, or strong')
+  .option('--notes <text>', 'Human notes for rubric calibration')
+  .option('--run-id <id>', 'Run id (defaults to trace.jsonl)')
+  .option('--section <name>', 'Section name/id (defaults to trace.jsonl)')
+  .option('--candidate-id <id>', 'Candidate id (defaults to final trace record)')
+  .option('--critic-score <n>', 'Critic score being judged')
+  .option('--critic-verdict <verdict>', 'Critic verdict: pass or fail')
+  .option('--threshold <n>', 'Threshold used by the Critic')
+  .option('--reviewer <name>', 'Reviewer name')
+  .action((opts) => {
+    try {
+      const outDir = resolve(opts.out);
+      const records = readTrace(outDir);
+      const traceRecord = opts.candidateId
+        ? records.find(record => record.candidate_id === opts.candidateId)
+        : records[records.length - 1];
+      const decision = parseDecision(opts.decision);
+      const rating = opts.rating ? parseRating(opts.rating) : undefined;
+      const criticVerdict = opts.criticVerdict
+        ? parseCriticVerdict(opts.criticVerdict)
+        : traceRecord?.verdict;
+      const criticScore = opts.criticScore !== undefined
+        ? parseNumberOption(opts.criticScore, 'critic-score')
+        : traceRecord?.scores.weighted_total;
+      const threshold = opts.threshold !== undefined
+        ? parseNumberOption(opts.threshold, 'threshold')
+        : undefined;
+      const runId = opts.runId ?? traceRecord?.run_id;
+      const section = opts.section ?? traceRecord?.section_id;
+
+      if (!runId || !section) {
+        console.error('Error: could not infer --run-id and --section from trace.jsonl. Provide them explicitly.');
+        process.exit(1);
+      }
+
+      const entry = recordHumanVerdict(outDir, {
+        runId,
+        section,
+        decision,
+        rating,
+        notes: opts.notes,
+        candidateId: opts.candidateId ?? traceRecord?.candidate_id,
+        criticScore,
+        criticVerdict,
+        threshold,
+        reviewer: opts.reviewer,
+        source: 'approval',
+      });
+
+      console.log(`Recorded ${entry.human_verdict} verdict for ${entry.run_id}/${entry.section}.`);
+      console.log(`Saved to ${outDir}\\verdicts.jsonl`);
+    } catch (err) {
+      console.error('Error:', err instanceof Error ? err.message : err);
+      process.exit(1);
+    }
+  });
+
+const design = program
+  .command('design')
+  .description('Design workflows: brand foundation, sections, sites, and Library learning');
+
+design
+  .command('brand')
+  .description('Derive, re-derive, or approve a frozen Brand Foundation')
+  .requiredOption('--client <id>', 'Client id')
+  .option('--context <path>', 'Brief JSON used as business context')
+  .option('--brand-data <path>', 'BrandData JSON file with provided palette/type')
+  .option('--approve', 'Approve and freeze the current brand draft')
+  .option('--approved-by <name>', 'Approver name for --approve', 'human')
+  .option('--rederive', 'Re-derive from changed brand-data/context')
+  .option('--model <id>', 'Model ID')
+  .action(async (opts) => {
+    try {
+      if (opts.approve) {
+        const frozen = approveBrand(opts.client, opts.approvedBy);
+        console.log(JSON.stringify(frozen, null, 2));
+        return;
+      }
+
+      if (!opts.context || !opts.brandData) {
+        console.error('Error: design brand requires --context and --brand-data unless --approve is used.');
+        process.exit(1);
+      }
+
+      const cfg = buildConfig({ model: opts.model });
+      const brief = loadBrief(opts.context);
+      const brandData = loadBrandData(opts.brandData);
+
+      if (brandData.client_id !== opts.client) {
+        console.error(`Error: brand-data client_id "${brandData.client_id}" does not match --client "${opts.client}".`);
+        process.exit(1);
+      }
+
+      const provider = await getProvider(cfg);
+      const existing = readBrand(opts.client);
+      if (existing && !opts.rederive) {
+        console.error(`Error: brand for "${opts.client}" already exists. Use --rederive to create a new draft version or --approve to freeze it.`);
+        process.exit(1);
+      }
+
+      const foundation = opts.rederive
+        ? await reDeriveBrand(opts.client, brandData, brief, provider)
+        : await deriveBrand(brandData, brief, provider);
+
+      if (!opts.rederive) {
+        saveBrandDraft(opts.client, foundation);
+      }
+
+      console.log(JSON.stringify(foundation, null, 2));
+      console.log(`Brand draft saved for "${opts.client}" (v${foundation.version}). Run design brand --client ${opts.client} --approve when ready.`);
+    } catch (err) {
+      console.error('Error:', err instanceof Error ? err.message : err);
+      process.exit(1);
+    }
+  });
+
+design
+  .command('section')
+  .description('Design one section against a frozen brand and optional frozen PDS')
+  .requiredOption('--client <id>', 'Client id')
+  .option('--surface <surface>', 'Surface: website or product', 'website')
+  .requiredOption('--name <name>', 'Section name')
+  .requiredOption('--content <path>', 'Brief JSON for this section')
+  .option('--brand-data <path>', 'Optional BrandData JSON fallback for Phase 0-style palette/type')
+  .option('--variations <n>', 'Candidates per iteration')
+  .option('--max-iters <n>', 'Max loop iterations')
+  .option('--threshold <n>', 'Pass score (0-100)')
+  .option('--model <id>', 'Model ID')
+  .option('--production', 'Enable production readiness checks')
+  .option('--harness <type>', 'Render harness: vite or next')
+  .option('--autonomy-rung <n>', 'Requested autonomy rung (0-4)')
+  .option('--max-tokens-per-section <n>', 'Production token cap per section')
+  .option('--max-seconds-per-section <n>', 'Production latency cap per section')
+  .option('--max-usd-per-section <n>', 'Production spend cap per section')
+  .option('--headed', 'Show the browser while rendering')
+  .action(async (opts) => {
+    try {
+      const surface = parseSurface(opts.surface);
+      const cfg = buildConfig({
+        model: opts.model,
+        variations: opts.variations ? parseInt(opts.variations, 10) : undefined,
+        maxIters: opts.maxIters ? parseInt(opts.maxIters, 10) : undefined,
+        threshold: opts.threshold ? parseInt(opts.threshold, 10) : undefined,
+        productionMode: opts.production,
+        harness: opts.harness ? parseHarness(opts.harness) : undefined,
+        autonomyRung: opts.autonomyRung ? parseAutonomyRung(opts.autonomyRung) : undefined,
+        maxTokensPerSection: opts.maxTokensPerSection ? parseIntegerOption(opts.maxTokensPerSection, 'max-tokens-per-section') : undefined,
+        maxSecondsPerSection: opts.maxSecondsPerSection ? parseNumberOption(opts.maxSecondsPerSection, 'max-seconds-per-section') : undefined,
+        maxUsdPerSection: opts.maxUsdPerSection ? parseNumberOption(opts.maxUsdPerSection, 'max-usd-per-section') : undefined,
+        headed: opts.headed,
+      });
+
+      const briefPath = resolve(opts.content);
+      const brief = loadBrief(briefPath);
+      if (brief.section.name !== opts.name) {
+        console.warn(`Section name in brief ("${brief.section.name}") differs from --name ("${opts.name}"). Using brief's name.`);
+      }
+
+      const brand = readBrand(opts.client);
+      if (!brand || brand.status !== 'frozen') {
+        console.error(`Error: frozen brand for "${opts.client}" not found. Run design brand --client ${opts.client} --approve first.`);
+        process.exit(1);
+      }
+
+      const brandData = opts.brandData ? loadBrandData(opts.brandData) : undefined;
+      const pds = readPDS(opts.client, surface) ?? undefined;
+      const artifact = readArtifact(opts.client, surface);
+      const ctxShots = artifact?.sections.flatMap(section =>
+        Object.entries(section.screenshots).map(([breakpoint, path]) => ({
+          sectionName: section.name,
+          breakpoint,
+          path,
+        })),
+      );
+      const outDir = getSectionRunDir(opts.client, surface, brief.section.name);
+
+      const result = await runSectionLoop(
+        cfg,
+        brief,
+        brandData,
+        outDir,
+        briefPath,
+        brand,
+        pds,
+        ctxShots && ctxShots.length > 0 ? ctxShots : undefined,
+      );
+
+      upsertSectionArtifact(opts.client, surface, brief.section.name, result);
+
+      if (!pds && result.state === 'APPROVED' && result.finalTsx) {
+        const provider = await getProvider(cfg);
+        await crystallize(result.finalTsx, brief.section.name, brand, opts.client, surface, provider);
+      }
+
+      process.exit(result.state === 'APPROVED' ? 0 : result.state === 'ESCALATED' ? 2 : 3);
+    } catch (err) {
+      console.error('Error:', err instanceof Error ? err.message : err);
+      process.exit(1);
+    }
+  });
+
+design
+  .command('site')
+  .description('Sequence multiple sections from a site plan')
+  .requiredOption('--client <id>', 'Client id')
+  .option('--surface <surface>', 'Surface: website or product', 'website')
+  .requiredOption('--plan <path>', 'Site plan JSON')
+  .option('--variations <n>', 'Candidates per iteration')
+  .option('--max-iters <n>', 'Max loop iterations')
+  .option('--threshold <n>', 'Pass score (0-100)')
+  .option('--model <id>', 'Model ID')
+  .option('--production', 'Enable production readiness checks')
+  .option('--harness <type>', 'Render harness: vite or next')
+  .option('--autonomy-rung <n>', 'Requested autonomy rung (0-4)')
+  .option('--max-tokens-per-section <n>', 'Production token cap per section')
+  .option('--max-seconds-per-section <n>', 'Production latency cap per section')
+  .option('--max-usd-per-section <n>', 'Production spend cap per section')
+  .option('--headed', 'Show the browser while rendering')
+  .action(async (opts) => {
+    try {
+      const surface = parseSurface(opts.surface);
+      const cfg = buildConfig({
+        model: opts.model,
+        variations: opts.variations ? parseInt(opts.variations, 10) : undefined,
+        maxIters: opts.maxIters ? parseInt(opts.maxIters, 10) : undefined,
+        threshold: opts.threshold ? parseInt(opts.threshold, 10) : undefined,
+        productionMode: opts.production,
+        harness: opts.harness ? parseHarness(opts.harness) : undefined,
+        autonomyRung: opts.autonomyRung ? parseAutonomyRung(opts.autonomyRung) : undefined,
+        maxTokensPerSection: opts.maxTokensPerSection ? parseIntegerOption(opts.maxTokensPerSection, 'max-tokens-per-section') : undefined,
+        maxSecondsPerSection: opts.maxSecondsPerSection ? parseNumberOption(opts.maxSecondsPerSection, 'max-seconds-per-section') : undefined,
+        maxUsdPerSection: opts.maxUsdPerSection ? parseNumberOption(opts.maxUsdPerSection, 'max-usd-per-section') : undefined,
+        headed: opts.headed,
+      });
+
+      const sections = loadSitePlan(opts.plan);
+      const { artifact, results } = await runSiteLoop(cfg, opts.client, surface, sections);
+      console.log(`Site run complete for ${opts.client}/${surface}: ${artifact.status}`);
+      console.log(`Sections: ${artifact.sections.length}; states: ${results.map(r => r.state).join(', ')}`);
+      process.exit(results.every(r => r.state === 'APPROVED') ? 0 : 2);
+    } catch (err) {
+      console.error('Error:', err instanceof Error ? err.message : err);
+      process.exit(1);
+    }
+  });
+
+design
+  .command('qa')
+  .description('Run whole-artifact and optional cross-surface QA')
+  .requiredOption('--client <id>', 'Client id')
+  .option('--surface <surface>', 'Surface: website or product', 'website')
+  .option('--threshold <n>', 'Pass score (0-100)', '80')
+  .option('--cross-surface', 'Also check website/product brand reuse')
+  .action((opts) => {
+    try {
+      const surface = parseSurface(opts.surface);
+      const threshold = parseNumberOption(opts.threshold, 'threshold');
+      const brand = readBrand(opts.client);
+      const artifact = readArtifact(opts.client, surface);
+      const pds = readPDS(opts.client, surface);
+
+      if (!artifact) {
+        console.error(`Error: artifact not found for ${opts.client}/${surface}.`);
+        process.exit(1);
+      }
+
+      const report = runWholeArtifactQA(artifact, brand, pds, { threshold });
+      writeArtifactQA(opts.client, surface, report);
+      printQAReport(report);
+
+      if (opts.crossSurface) {
+        if (!brand) {
+          console.error(`Error: frozen brand not found for ${opts.client}.`);
+          process.exit(1);
+        }
+        const artifacts = (['website', 'product'] as const)
+          .map(s => readArtifact(opts.client, s))
+          .filter((value): value is Artifact => value !== null);
+        const systems = (['website', 'product'] as const)
+          .map(s => readPDS(opts.client, s))
+          .filter((value): value is ProjectDesignSystem => value !== null);
+        const cross = runCrossSurfaceBrandQA(brand, artifacts, systems);
+        console.log(`Cross-surface QA: ${cross.pass ? 'pass' : 'fail'} (${cross.violations.length} issue(s))`);
+        for (const violation of cross.violations) {
+          console.log(`- [${violation.severity}] ${violation.rule}: ${violation.message}`);
+        }
+      }
+
+      process.exit(report.pass ? 0 : 2);
+    } catch (err) {
+      console.error('Error:', err instanceof Error ? err.message : err);
+      process.exit(1);
+    }
+  });
+
+design
+  .command('autonomy')
+  .description('Evaluate the earned autonomy rung from human calibration data')
+  .option('--out <dir>', 'Run output directory')
+  .option('--all <dir>', 'Scan run directories under this path')
+  .option('--requested-rung <n>', 'Requested autonomy rung (0-4)', '0')
+  .option('--current-rung <n>', 'Current autonomy rung (0-4)', '0')
+  .option('--threshold <n>', 'Calibration threshold (0-100)', '80')
+  .action((opts) => {
+    try {
+      const records: RunRecord[] = [];
+      const verdicts: VerdictEntry[] = [];
+
+      if (opts.out) {
+        records.push(...readTrace(resolve(opts.out)));
+        verdicts.push(...readVerdicts(resolve(opts.out)));
+      } else if (opts.all) {
+        for (const runDir of collectTraceDirs(resolve(opts.all))) {
+          records.push(...readTrace(runDir));
+          verdicts.push(...readVerdicts(runDir));
+        }
+      } else {
+        console.error('Error: specify --out <dir> or --all <dir>.');
+        process.exit(1);
+      }
+
+      const threshold = parseNumberOption(opts.threshold, 'threshold');
+      const requestedRung = parseAutonomyRung(opts.requestedRung);
+      const currentRung = parseAutonomyRung(opts.currentRung);
+      const summary = calibrateFromRecords(records, verdicts, threshold);
+      const policy = recommendAutonomyPolicy(summary, requestedRung, currentRung);
+
+      console.log(formatAutonomyPolicy(policy));
+      console.log(`Calibration verdicts: ${summary.total}`);
+      console.log(`Agreement: ${(summary.recommendedAccuracy * 100).toFixed(0)}%; false-pass rate: ${(summary.falsePassRate * 100).toFixed(0)}%`);
+    } catch (err) {
+      console.error('Error:', err instanceof Error ? err.message : err);
+      process.exit(1);
+    }
+  });
+
+design
+  .command('learn')
+  .description('Write approved artifact patterns back to the soft Library')
+  .requiredOption('--client <id>', 'Client id')
+  .option('--surface <surface>', 'Surface: website or product', 'website')
+  .option('--brief <path...>', 'Brief JSON files for approved sections')
+  .option('--human-verdict <text>', 'Human verdict summary', 'approved')
+  .action(async (opts) => {
+    try {
+      const surface = parseSurface(opts.surface);
+      const cfg = buildConfig();
+      const artifact = readArtifact(opts.client, surface);
+      if (!artifact) {
+        console.error(`Error: artifact not found for ${opts.client}/${surface}.`);
+        process.exit(1);
+      }
+
+      const briefs = Array.isArray(opts.brief)
+        ? opts.brief.map((briefPath: string) => loadBrief(briefPath))
+        : undefined;
+      const entries = await writeBackArtifact(cfg, {
+        artifact,
+        briefs,
+        brand: readBrand(opts.client),
+        pds: readPDS(opts.client, surface),
+        humanVerdict: opts.humanVerdict,
+      });
+
+      console.log(`Learned ${entries.length} Library entr${entries.length === 1 ? 'y' : 'ies'} into ${getLibraryDir()}.`);
+      for (const entry of entries) {
+        console.log(`- ${entry.id}: ${entry.title}`);
+      }
+    } catch (err) {
+      console.error('Error:', err instanceof Error ? err.message : err);
+      process.exit(1);
+    }
+  });
+
+design
+  .command('show')
+  .description('Inspect client stores and Library state')
+  .option('--client <id>', 'Client id')
+  .option('--surface <surface>', 'Surface: website or product', 'website')
+  .action((opts) => {
+    try {
+      const library = readLibrary();
+      console.log(`Library: ${library.length} entries (${getLibraryDir()})`);
+      if (!opts.client) return;
+
+      const surface = parseSurface(opts.surface);
+      const brand = readBrand(opts.client);
+      const pds = readPDS(opts.client, surface);
+      const artifact = readArtifact(opts.client, surface);
+      const qa = readArtifactQA(opts.client, surface);
+      console.log(`Brand: ${brand ? `${brand.status} v${brand.version}` : 'missing'}`);
+      console.log(`PDS ${surface}: ${pds ? `${pds.status} v${pds.version}` : 'missing'}`);
+      console.log(`Artifact ${surface}: ${artifact ? `${artifact.status}, ${artifact.sections.length} sections` : 'missing'}`);
+      console.log(`QA ${surface}: ${qa ? `${qa.pass ? 'pass' : 'fail'}, ${qa.violations.length} issue(s)` : 'missing'}`);
+    } catch (err) {
+      console.error('Error:', err instanceof Error ? err.message : err);
+      process.exit(1);
+    }
+  });
 
 program.parse();
+
+function loadBrief(path: string): Brief {
+  const filePath = resolve(path);
+  if (!existsSync(filePath)) {
+    throw new Error(`Brief file not found: ${filePath}`);
+  }
+  const parsed = JSON.parse(readFileSync(filePath, 'utf-8'));
+  const result = BriefSchema.safeParse(parsed);
+  if (!result.success) {
+    throw new Error(`Invalid brief: ${result.error.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
+  }
+  return result.data;
+}
+
+function loadBrandData(path: string): BrandData {
+  const filePath = resolve(path);
+  if (!existsSync(filePath)) {
+    throw new Error(`Brand-data file not found: ${filePath}`);
+  }
+  const parsed = JSON.parse(readFileSync(filePath, 'utf-8'));
+  const result = BrandDataSchema.safeParse(parsed);
+  if (!result.success) {
+    throw new Error(`Invalid brand-data: ${result.error.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
+  }
+  return result.data;
+}
+
+function parseSurface(surface: string): Surface {
+  if (surface !== 'website' && surface !== 'product') {
+    throw new Error(`Invalid surface "${surface}". Expected website or product.`);
+  }
+  return surface;
+}
+
+function parseNumberOption(value: string, name: string): number {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) {
+    throw new Error(`Invalid ${name}: "${value}" is not a number.`);
+  }
+  return parsed;
+}
+
+function parseIntegerOption(value: string, name: string): number {
+  const parsed = parseNumberOption(value, name);
+  if (!Number.isInteger(parsed)) {
+    throw new Error(`Invalid ${name}: "${value}" is not an integer.`);
+  }
+  return parsed;
+}
+
+function parseHarness(value: string): 'vite' | 'next' {
+  if (value !== 'vite' && value !== 'next') {
+    throw new Error(`Invalid harness "${value}". Expected vite or next.`);
+  }
+  return value;
+}
+
+function parseAutonomyRung(value: string | number): AutonomyRung {
+  const parsed = typeof value === 'number' ? value : parseIntegerOption(value, 'autonomy-rung');
+  if (parsed < 0 || parsed > 4) {
+    throw new Error(`Invalid autonomy rung "${value}". Expected 0, 1, 2, 3, or 4.`);
+  }
+  return parsed as AutonomyRung;
+}
+
+function parseDecision(decision: string): 'approve' | 'reject' {
+  if (decision !== 'approve' && decision !== 'reject') {
+    throw new Error(`Invalid decision "${decision}". Expected approve or reject.`);
+  }
+  return decision;
+}
+
+function parseRating(rating: string): 'bad' | 'weak' | 'good' | 'strong' {
+  if (rating !== 'bad' && rating !== 'weak' && rating !== 'good' && rating !== 'strong') {
+    throw new Error(`Invalid rating "${rating}". Expected bad, weak, good, or strong.`);
+  }
+  return rating;
+}
+
+function parseCriticVerdict(verdict: string): 'pass' | 'fail' {
+  if (verdict !== 'pass' && verdict !== 'fail') {
+    throw new Error(`Invalid critic verdict "${verdict}". Expected pass or fail.`);
+  }
+  return verdict;
+}
+
+function loadSitePlan(planPath: string): { name: string; brief: Brief; briefPath: string; brandData?: BrandData }[] {
+  const absolutePlan = resolve(planPath);
+  if (!existsSync(absolutePlan)) {
+    throw new Error(`Site plan not found: ${absolutePlan}`);
+  }
+
+  const plan = JSON.parse(readFileSync(absolutePlan, 'utf-8')) as {
+    sections?: { name?: string; brief?: string; content?: string; brandData?: string; brand_data?: string }[];
+  };
+
+  if (!Array.isArray(plan.sections) || plan.sections.length === 0) {
+    throw new Error('Site plan must contain a non-empty sections array.');
+  }
+
+  const baseDir = dirname(absolutePlan);
+  return plan.sections.map((section, index) => {
+    const briefRef = section.brief ?? section.content;
+    if (!briefRef) {
+      throw new Error(`Site plan section ${index + 1} is missing "brief" or "content".`);
+    }
+    const briefPath = resolve(baseDir, briefRef);
+    const brief = loadBrief(briefPath);
+    const brandRef = section.brandData ?? section.brand_data;
+    return {
+      name: section.name ?? brief.section.name,
+      brief,
+      briefPath,
+      brandData: brandRef ? loadBrandData(resolve(baseDir, brandRef)) : undefined,
+    };
+  });
+}
+
+function collectTraceDirs(rootDir: string): string[] {
+  if (!existsSync(rootDir)) {
+    return [];
+  }
+
+  return readdirSync(rootDir, { withFileTypes: true })
+    .filter(entry => entry.isDirectory())
+    .map(entry => join(rootDir, entry.name))
+    .filter(dir => existsSync(join(dir, 'trace.jsonl')));
+}
+
+function printQAReport(report: ArtifactQAReport): void {
+  console.log(`QA ${report.client_id}/${report.surface}: ${report.pass ? 'pass' : 'fail'}`);
+  console.log(report.summary);
+  console.log(`Average score: ${report.average_score.toFixed(1)}; sections: ${report.section_count}`);
+  for (const violation of report.violations) {
+    console.log(`- [${violation.severity}] ${violation.rule}: ${violation.message}`);
+  }
+}
+
+function upsertSectionArtifact(
+  clientId: string,
+  surface: 'website' | 'product',
+  sectionName: string,
+  result: Awaited<ReturnType<typeof runSectionLoop>>,
+): Artifact {
+  const artifact = readArtifact(clientId, surface) ?? {
+    artifact_id: `${clientId}-${surface}-${randomUUID().slice(0, 8)}`,
+    client_id: clientId,
+    surface,
+    status: 'in-progress' as const,
+    sections: [],
+  };
+
+  const section: SectionOutput = {
+    section_id: `${clientId}_${sectionName}`,
+    name: sectionName,
+    code: { component: result.finalTsx ?? '' },
+    screenshots: result.finalShots ?? {},
+    final_score: result.bestScore ?? {
+      brand_adherence: 0,
+      system_adherence: null,
+      brief_fit: 0,
+      craft: 0,
+      weighted_total: 0,
+    },
+    status: result.state === 'APPROVED' ? 'approved' : 'draft',
+  };
+
+  artifact.sections = [
+    ...artifact.sections.filter(existing => existing.name !== sectionName),
+    section,
+  ];
+  artifact.status = artifact.sections.length > 0 && artifact.sections.every(existing => existing.status === 'approved')
+    ? 'approved'
+    : 'in-progress';
+  writeArtifact(clientId, surface, artifact);
+  return artifact;
+}

@@ -31,21 +31,23 @@ import {
   BrandFoundationSchema,
   ProjectDesignSystemSchema,
   ArtifactSchema,
+  ArtifactQAReportSchema,
   type BrandFoundation,
   type ProjectDesignSystem,
   type Artifact,
+  type ArtifactQAReport,
 } from './schema.js';
 
 // ─── Configuration ─────────────────────────────────────────────────
 
-const PROJECTS_DIR = './projects';
+let projectsDir = process.env.ADE_PROJECTS_DIR ?? './projects';
 
 function projectDir(clientId: string): string {
-  return join(PROJECTS_DIR, clientId);
+  return join(projectsDir, clientId);
 }
 
 function surfaceDir(clientId: string, surface: string): string {
-  return join(PROJECTS_DIR, clientId, surface);
+  return join(projectsDir, clientId, surface);
 }
 
 // ─── Generic atomic read/write ─────────────────────────────────────
@@ -81,7 +83,10 @@ export function atomicWrite(filePath: string, data: unknown): void {
 /**
  * Read + schema-validate. Corrupt/incompatible data caught at load (F-STO-05).
  */
-export function atomicRead<T>(filePath: string, schema: z.ZodType<T>): T | null {
+export function atomicRead<T>(
+  filePath: string,
+  schema: z.ZodType<T>,
+): T | null {
   if (!existsSync(filePath)) {
     return null;
   }
@@ -117,7 +122,10 @@ function writeVersionSnapshot(basePath: string, data: unknown, version: number):
     mkdirSync(versionsDir, { recursive: true });
   }
   const versionFile = join(versionsDir, `v${version}.json`);
-  writeFileSync(versionFile, JSON.stringify(data, null, 2), { flush: true });
+  writeFileSync(versionFile, JSON.stringify(data, null, 2), {
+    flag: 'wx',
+    flush: true,
+  });
 }
 
 /**
@@ -158,14 +166,33 @@ export function lockClient(clientId: string): string {
   }
 
   const lockId = randomUUID().slice(0, 8);
-  activeLocks.set(clientId, { lockId, timestamp: Date.now() });
-
-  // Also write a lock file for cross-process safety
   const lockPath = join(projectDir(clientId), '.lock');
+  mkdirSync(projectDir(clientId), { recursive: true });
+
   try {
-    mkdirSync(projectDir(clientId), { recursive: true });
-    writeFileSync(lockPath, JSON.stringify({ lockId, timestamp: Date.now() }), { flush: true });
-  } catch { /* best effort */ }
+    writeFileSync(
+      lockPath,
+      JSON.stringify({ lockId, timestamp: Date.now() }, null, 2),
+      { flag: 'wx', flush: true },
+    );
+  } catch (err) {
+    const stale = readLockFile(lockPath);
+    if (!stale || Date.now() - stale.timestamp < LOCK_TIMEOUT_MS) {
+      throw new Error(
+        `Client "${clientId}" is locked` +
+        (stale ? ` (lock: ${stale.lockId}, age: ${Math.round((Date.now() - stale.timestamp) / 1000)}s).` : '.'),
+      );
+    }
+
+    unlinkSync(lockPath);
+    writeFileSync(
+      lockPath,
+      JSON.stringify({ lockId, timestamp: Date.now() }, null, 2),
+      { flag: 'wx', flush: true },
+    );
+  }
+
+  activeLocks.set(clientId, { lockId, timestamp: Date.now() });
 
   return lockId;
 }
@@ -181,8 +208,29 @@ export function unlockClient(clientId: string, lockId: string): void {
 
   const lockPath = join(projectDir(clientId), '.lock');
   try {
-    if (existsSync(lockPath)) unlinkSync(lockPath);
+    const fileLock = readLockFile(lockPath);
+    if (fileLock?.lockId === lockId) {
+      unlinkSync(lockPath);
+    }
   } catch { /* best effort */ }
+}
+
+function readLockFile(lockPath: string): { lockId: string; timestamp: number } | null {
+  if (!existsSync(lockPath)) return null;
+
+  try {
+    const parsed = JSON.parse(readFileSync(lockPath, 'utf-8')) as {
+      lockId?: unknown;
+      timestamp?: unknown;
+    };
+    if (typeof parsed.lockId === 'string' && typeof parsed.timestamp === 'number') {
+      return { lockId: parsed.lockId, timestamp: parsed.timestamp };
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
 }
 
 // ─── Brand Foundation store ────────────────────────────────────────
@@ -192,7 +240,7 @@ export function unlockClient(clientId: string, lockId: string): void {
  */
 export function readBrand(clientId: string): BrandFoundation | null {
   const filePath = join(projectDir(clientId), 'brand.json');
-  return atomicRead(filePath, BrandFoundationSchema);
+  return atomicRead<BrandFoundation>(filePath, BrandFoundationSchema);
 }
 
 /**
@@ -203,19 +251,34 @@ export function readBrand(clientId: string): BrandFoundation | null {
 export function writeBrand(
   clientId: string,
   foundation: BrandFoundation,
-  expectedVersion?: number,
+  expectedVersion?: number | null,
 ): void {
   const filePath = join(projectDir(clientId), 'brand.json');
+  const existing = readBrand(clientId);
 
   // Optimistic version check
   if (expectedVersion !== undefined) {
-    const existing = readBrand(clientId);
-    if (existing && existing.version !== expectedVersion) {
+    if (expectedVersion === null && existing) {
+      throw new Error(
+        `Version conflict: expected no existing brand but found v${existing.version}.`,
+      );
+    }
+    if (expectedVersion !== null && existing && existing.version !== expectedVersion) {
       throw new Error(
         `Version conflict: expected v${expectedVersion} but found v${existing.version}. ` +
         `Another operation may have modified the brand.`
       );
     }
+  }
+
+  if (foundation.client_id !== clientId) {
+    throw new Error(`Brand client_id mismatch: ${foundation.client_id} cannot be written under ${clientId}.`);
+  }
+
+  if (existing && foundation.version <= existing.version) {
+    throw new Error(
+      `Version conflict: new brand version v${foundation.version} must be greater than existing v${existing.version}.`,
+    );
   }
 
   // Write current + version snapshot
@@ -230,7 +293,7 @@ export function writeBrand(
  */
 export function readPDS(clientId: string, surface: string): ProjectDesignSystem | null {
   const filePath = join(surfaceDir(clientId, surface), 'pds.json');
-  return atomicRead(filePath, ProjectDesignSystemSchema);
+  return atomicRead<ProjectDesignSystem>(filePath, ProjectDesignSystemSchema);
 }
 
 /**
@@ -241,17 +304,32 @@ export function writePDS(
   clientId: string,
   surface: string,
   pds: ProjectDesignSystem,
-  expectedVersion?: number,
+  expectedVersion?: number | null,
 ): void {
   const filePath = join(surfaceDir(clientId, surface), 'pds.json');
+  const existing = readPDS(clientId, surface);
 
   if (expectedVersion !== undefined) {
-    const existing = readPDS(clientId, surface);
-    if (existing && existing.version !== expectedVersion) {
+    if (expectedVersion === null && existing) {
+      throw new Error(
+        `PDS version conflict: expected no existing PDS but found v${existing.version}.`,
+      );
+    }
+    if (expectedVersion !== null && existing && existing.version !== expectedVersion) {
       throw new Error(
         `PDS version conflict: expected v${expectedVersion} but found v${existing.version}.`
       );
     }
+  }
+
+  if (pds.client_id !== clientId || pds.surface !== surface) {
+    throw new Error(`PDS identity mismatch: cannot write ${pds.client_id}/${pds.surface} under ${clientId}/${surface}.`);
+  }
+
+  if (existing && pds.version <= existing.version) {
+    throw new Error(
+      `PDS version conflict: new version v${pds.version} must be greater than existing v${existing.version}.`,
+    );
   }
 
   atomicWrite(filePath, pds);
@@ -265,7 +343,7 @@ export function writePDS(
  */
 export function readArtifact(clientId: string, surface: string): Artifact | null {
   const filePath = join(surfaceDir(clientId, surface), 'artifact.json');
-  return atomicRead(filePath, ArtifactSchema);
+  return atomicRead<Artifact>(filePath, ArtifactSchema);
 }
 
 /**
@@ -281,10 +359,34 @@ export function writeArtifact(
 }
 
 /**
+ * Read the latest whole-artifact QA report for a client + surface.
+ */
+export function readArtifactQA(clientId: string, surface: string): ArtifactQAReport | null {
+  const filePath = join(surfaceDir(clientId, surface), 'qa.json');
+  return atomicRead<ArtifactQAReport>(filePath, ArtifactQAReportSchema);
+}
+
+/**
+ * Write the latest whole-artifact QA report for a client + surface.
+ */
+export function writeArtifactQA(
+  clientId: string,
+  surface: string,
+  report: ArtifactQAReport,
+): void {
+  if (report.client_id !== clientId || report.surface !== surface) {
+    throw new Error(`QA report identity mismatch: cannot write ${report.client_id}/${report.surface} under ${clientId}/${surface}.`);
+  }
+
+  const filePath = join(surfaceDir(clientId, surface), 'qa.json');
+  atomicWrite(filePath, report);
+}
+
+/**
  * Get the projects directory path for external use.
  */
 export function getProjectsDir(): string {
-  return PROJECTS_DIR;
+  return projectsDir;
 }
 
 /**
@@ -292,4 +394,9 @@ export function getProjectsDir(): string {
  */
 export function getSectionRunDir(clientId: string, surface: string, sectionName: string): string {
   return join(surfaceDir(clientId, surface), 'runs', sectionName);
+}
+
+export function setProjectsDirForTest(dir: string): void {
+  projectsDir = dir;
+  activeLocks.clear();
 }
