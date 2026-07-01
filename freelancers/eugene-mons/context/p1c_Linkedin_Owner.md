@@ -1,265 +1,311 @@
 ---
 platform: LinkedIn
 profile_type: person
-name: Ansar Manzar
-url: https://www.linkedin.com/in/ansarmanzar/
-headline: Mobile & Enterprise Software | Full-time Freelancer
-location: Houston, Texas, United States
-connections: 490
-website: https://www.upwork.com/freelancers/~0128011234cafc13fb?viewMode=1
-scraped_at: ~2026
+name: Pablo Arcia
+headline: Staff Software Engineer @ Obie
+location: Salt Lake City Metropolitan Area
+connections: 500+
+languages:
+  - English (Native or bilingual proficiency)
+  - Spanish (Native or bilingual proficiency)
 linkedin_footer: [About, Accessibility, User Agreement, Privacy Policy, Cookie Policy, Copyright Policy, Brand Policy, Guest Controls, Community Guidelines]
 ---
 
-# Ansar Manzar — LinkedIn Profile
+# Pablo Arcia — LinkedIn Profile
 
-## Summary
+## About
 
-Greeting,
-
-I am a seasoned Full Stack Developer with in-depth knowledge of MERN stack technologies, combined with a strong drive to produce robust, scalable web applications. I possess significant experience in frontend and backend development, with competency in crafting exceptional user experiences. My cross-platform mobile development skills include React Native and Flutter, which makes it easy to build applications on different platforms and engage users accordingly. Proactive and results-driven Development Team with an established capability of leading and motivating project teams to deliver efficiently and effectively on project objectives.
-
-What you get with me and my team:
-
-- Enhanced Delivery Process
-- Project Initiation and Planning
-- Comprehensive project consultation in defining scope, goals, and deliverables
-- Strategic selection of technology stack in line with the goals of the project
-- Robust planning of a project involving resource allocation and risk mitigation
-- Human-centric development and design
-- User-centric design phase that includes wireframing and prototyping
-- Frontend and backend solution development following best practices and standards
-- Careful integration of databases for the integrity of data and performance
-- Extensive testing cycle to ensure the quality of the product
-- Confirmed Deployment and Launch on app stores, Apple Store and Google Play Store
-- Smooth deployment of applications on target platforms
-- Performance and scalability optimization
-- Strong security implemented for protecting sensitive data
-- Well-organized launch and post-launch support
-- Ongoing Maintenance and Support
-- Pro-active bug fixing and performance monitoring
-- Continuous improvement by adding features and updating
-- Client Support – Dedicated 24/7 Support to clients to answer queries and resolve problems
-
-Feel free to contact me for a completely free professional consultation and an exceptional service experience!
+In my current role, I lead high-leverage engineering work that makes critical business workflows more reliable and scalable. This includes carrier onboarding, renewals automation, quoting resiliency, and internal operational tooling. I work across the stack with TypeScript, Node.js, GraphQL, and React, with a focus on correctness, observability, and simplifying complex systems so teams can ship faster with fewer production issues. I also mentor other engineers and help drive standards and practices that improve quality over time.
 
 ## Experience
 
-#### Full Stack Developer — Freelance
+#### Staff Software Engineer — Obie
 
-dates: Jan 2023 – Present
-duration: 3 yrs 6 mos
-location: Remote
-employment_type: Freelance
-
-#### Full Stack Developer — Codefied
-
-dates: Jan 2020 – Nov 2022
-duration: 2 yrs 11 mos
-location: Houston, TX, US
+dates: Jan 2025 - Present
+duration: 1 yr 6 mos
+location: Chicago, Illinois, United States · Remote
 employment_type: Full-time
+
+I lead high-leverage engineering work that makes critical business workflows more reliable and scalable. This includes carrier onboarding, renewals automation, quoting resiliency, and internal operational tooling. I work across the stack with TypeScript, Node.js, GraphQL, and React, with a focus on correctness, observability, and simplifying complex systems so teams can ship faster with fewer production issues. I also mentor other engineers and help drive standards and practices that improve quality over time.
+
+#### Senior Software Engineer — Obie
+
+dates: Apr 2021 - Dec 2024
+duration: 3 yrs 9 mos
+employment_type: Full-time
+
+#### Senior Front-End Web Developer — Cove
+
+dates: Nov 2020 - Jan 2023
+duration: 2 yrs 3 mos
+location: Orem, Utah, United States
+employment_type: Contract
+
+- Rebuild three web applications, resulting in improved user engagement, 30% faster page load times, and an average user rating of 4.8/5
+- Integrated APIs and 3rd-party services, resulting in enhanced functionality, streamlined payment processing, resulting in a 20% increase in transaction success rates and elevated user experience
+- Mentored to three interns and junior developers of Cove
+
+#### Senior Front-End Web Developer — Pando Software
+
+dates: Nov 2020 - Apr 2021
+duration: 6 mos
+location: Orem, Utah, United States
+employment_type: Contract
+
+- Enhanced code base by implementing a dedicated 'services' folder to encapsulate API interaction functions, reduce development time by 10%
+- Researched and developed Optimizely for A/B testing, resulting in data- driven decision-making, augmented user engagement, and a 15% increase in conversion rates
+
+#### Sr Web Developer — Unicity International
+
+dates: Jan 2020 - Nov 2020
+duration: 11 mos
+location: Orem, Utah
+
+Lead Developer in charge of creating service to keep track of errors for our internal application using Node, FireStore, hosting it in AWS, and creating DNS link to access server at a custom subdomain
+Helped increase our recurring revenue by completely rewriting our ‘Auto Refills’ site using React, React Router, Redux, Material-UI; and updated the flow of the site to make creating, viewing, and updating auto orders easier and more intuitive.
+
+Maintained multiple legacy apps written in AngularJS by fixing bugs and adding new features
+Helped backend improve endpoints by discussing implementation details for existing and new features
+Lead Developer in charge of improving internal application by re-architecting a major part of it to enhance rendering and by building new features using ES6, React, React Router, Redux, and Material-UI
+Improved development workflow by implementing a process for planning/architecting apps using UML diagrams, setting up Storybook on internal React applications, training peers on how to use Storybook for development, and creating and enforcing style guide for how to structure components and write code
+Was assigned as mentor for Interns/Jr Developers because of my ability to teach complex concepts in a simple/understandable way
+
+#### Web Developer — (Company not specified)
+
+dates: Apr 2018 - Jan 2020
+duration: 1 yr 10 mos
+employment_type: Full-time
+
+Maintained multiple legacy apps written in AngularJS by fixing bugs and adding new features
+Helped backend improve endpoints by discussing implementation details for existing and new features
+Lead Developer in charge of improving internal application by re-architecting a major part of it to enhance rendering and by building new features using ES6, React, React Router, Redux, and Material-UI
+Improved development workflow by implementing a process for planning/architecting apps using UML diagrams, setting up Storybook on internal React applications, training peers on how to use Storybook for development, and creating and enforcing style guide for how to structure components and write code
+Was assigned as mentor for Interns/Jr Developers because of my ability to teach complex concepts in a simple/understandable way
+
+#### Front End Developer — Rural Data Centers
+
+dates: Feb 2018 - Mar 2018
+duration: 2 mos
+location: Orem, UT
+employment_type: Full-time
+
+Responsible for delegating assignments to the junior staff and assisting them in the completion of said assignments when needed
+Create designs and implement features based off requirements from the product management team
+Worked with 3rd party APIs to create additional functionality
+In charge of building new features using Angular 5 and Bootstrap 4
 
 ## Education
 
-#### Harford Community College
+#### Full Stack Web Development, Computer Software Engineering — Devmountain
 
-dates: 2022 – 2026
+dates: 2014 – 2014
+
+#### High School Diploma, General Studies — Mountain View High School
+
+dates: 2005 – 2006
 
 ## Skills
 
-- Mobile Application Development
-- Doctrine (PHP)
+- jQuery
+- JavaScript
 
 ## Posts
+All activity
 
-#### Post 1
+Posts
 
-type: original
-timestamp: ~1yr
+Comments
 
-A quick question to turn around a terrible day:
+Images
 
-What's the best way I can use the next 5 minutes?
+Articles
+Loaded 5 Posts posts
+Feed post number 1
+View Eugene Mons’ open to work graphic link
+Eugene Mons
+ • 3rd+
+CEO at EMSoft | We build and fix SaaS and web platforms for businesses
+2mo •  
 
-Yes, that's usually enough.
+Follow
 
-- 5 minutes of exercise.
-- 5 minutes of reading.
-- 5 minutes of talking.
-- 5 minutes of something that gets you back to yourself.
+Most companies don’t have a payment problem — they have a conversion problem.
+Small decisions in payment integration can easily cost you 10–20% of revenue.
+Here’s what actually makes a difference
+…more
 
-When you're off course, a movement of a few degrees can get you to land in New York or into the ocean.
+Payment Integration: What Actually Impacts Conversion
+Eugene Mons
+like
+3
 
-Your day is exactly the same way.
+Like
 
-One slight change now can totally alter where you end up.
+Comment
 
-Never doubt the power of 5 good minutes.
+Repost
 
----
+Send
+Feed post number 2
+View Eugene Mons’ open to work graphic link
+Eugene Mons
+ • 3rd+
+CEO at EMSoft | We build and fix SaaS and web platforms for businesses
+2mo •  
 
-#### Post 2
+Follow
 
-type: original
-timestamp: ~1yr
+At some point, most growing systems hit the same phase.
+Not when they stop working — 
+but when they become hard to trust.
 
-Perfection isn't power, action is. Let's stop hiding and start doing. 🦸
+We often step into projects where:
+– the system “works”, but barely 
+– integrations are fragile 
+– performance is unpredictable 
+– every change creates new issues 
+– deployments feel risky 
+– bugs reappear in different places 
+– small fixes take way too long 
+– no one is fully sure how everything is connected 
 
-Stop waiting for the "perfect time."
+At that point, it’s no longer about adding features.
 
-You already have everything you need.
+It’s about stabilizing what’s already there:
+– making systems predictable 
+– cleaning up how services interact 
+– restoring confidence in the codebase 
 
----
+Not because the team is bad.
+But because the system grew faster than it was designed for.
+At that point, it’s no longer about building.
+It’s about untangling.
+If you’re dealing with something like this — feel free to DM me. Happy to take a look and help.
+…more
+Activate to view larger image,
+diagram
 
-#### Post 3
+See content credentials
+Activate to view larger image,
+like
+1
+1 repost
 
-type: original
-timestamp: ~1yr
+Like
 
-Before you build your website – answer these questions.
+Comment
 
-Not everyone has the time or resources to conduct in-depth research on their target audience or analyze competitors.
+Repost
 
-But answering these 10 questions honestly will bring you closer to creating a website that resonates.
+Send
+Feed post number 3
+View Eugene Mons’ open to work graphic link
+Eugene Mons
+ • 3rd+
+CEO at EMSoft | We build and fix SaaS and web platforms for businesses
+3mo •  
 
-It's not about colors or photos. It's about something much bigger.
+Follow
 
-Your website isn't just a digital business card. It's a strategic tool to attract clients and drive conversions.
+Just published a new article on Laravel + AI and how conversational reporting can replace slow, outdated reporting workflows.
 
-Here's a list of questions to help you build a website that doesn't just look good – but works:
+Most companies still rely on dashboards, exports, and manual reports.
 
-1. Traffic Sources — How will clients find your website? Ads, social media, organic search, or referrals?
-2. Primary Goal (Conversion) — What do you want clients to do on your site? Contact you, book a meeting, make a purchase, or explore your offer? How will you guide users to take that action?
-3. Ideal Client Profile (ICP) — Who is your dream client? What are their needs, pain points, and what are they searching for?
-4. Tone and Style of Communication — How should your brand communicate? Professional, friendly, or a mix of both?
-5. Unique Selling Proposition (USP) — What sets you apart from competitors? What makes your offer stand out from the rest?
-6. Client Benefits — What will clients gain by choosing you? Create a list of benefits that will convince them to take action.
-7. Numbers and Social Proof — What data can build trust? Years in business, number of clients, testimonials, or case studies?
-8. Visual Style — What style reflects your brand best? Professional, modern, elegant, or minimalist? Remember: your visual style must align with your brand's communication and target audience.
-9. References and Aspirations — Do you have examples of websites you admire? What inspires you about them?
-10. Website Structure and Content Flow — What's the logical flow of your website? How will the content guide your client seamlessly from one section to the next?
+But the future is simpler:
 
-Before you start designing – answer these questions. It's the first step to creating a website that works.
+→ Ask a question
+→ Get an answer
+→ Make a decision
 
----
+In the article I cover:
 
-#### Post 4
+Laravel as a control layer
+safe AI reporting architecture
+why AI should never touch the DB directly
+how conversational BI changes ERP/CRM products
 
-type: original
-timestamp: ~1yr
+Article: https://lnkd.in/g8HMqpWk
+…more
 
-"That's not my job" saved my career.
+Revolutionizing Business Intelligence: Laravel + AI for Conversational Reporting
+Eugene Mons
+1 comment
 
-And I'll tell you why.
+Like
 
-Everyone says: always help, do everything, be a team player.
+Comment
 
-But here's the hard truth: being the person who does everything is the fastest way to burn out.
+Repost
 
-What actually works:
+Send
+Feed post number 4
+View Eugene Mons’ open to work graphic link
+Eugene Mons
+ • 3rd+
+CEO at EMSoft | We build and fix SaaS and web platforms for businesses
+3mo •  
 
-1. Set clear boundaries
-2. Master your core role
-3. Help strategically
+Follow
 
-The most successful people I know? They say no to most things so they can say yes to what matters.
 
-Because here's what happens when you do everything:
+Revolutionizing Business Intelligence: Laravel + AI for Conversational Reporting
+Eugene Mons
 
-- Your main work suffers
-- Your energy depletes
-- Your growth stalls
-- Your value decreases
+Like
 
-The real signs of a team player:
+Comment
 
-→ Doing your job exceptionally well
-→ Teaching others to do theirs
-→ Helping in true emergencies
-→ Setting healthy boundaries
+Repost
 
-Sometimes "that's not my job" means: "I respect my role enough to do it well."
+Send
+Feed post number 5
+View Eugene Mons’ open to work graphic link
+Eugene Mons
+ • 3rd+
+CEO at EMSoft | We build and fix SaaS and web platforms for businesses
+3mo •  
 
-Remember: success isn't about doing everything. It's about doing the right things extremely well.
+Follow
 
----
+We use AI in our development process every day.
 
-#### Post 5
+It doesn’t replace developers — but it significantly increases speed.
 
-type: original
-timestamp: ~1yr
+In many cases, tasks that used to take hours now take minutes.
 
-A concept everyone should know: Inversion Thinking.
+Things like:
+– debugging 
+– exploring codebases 
+– writing boilerplate 
+– testing edge cases 
 
-It's often easier to solve a problem by first asking what would guarantee failure.
+AI helps move faster.
 
-Here's how it works:
+But speed without structure creates problems.
 
-Instead of asking how to succeed, ask:
-- What habits would make me unhealthy?
-- What behaviors would ruin my relationships?
-- What actions would kill my career?
+What we’ve learned:
+AI works best when paired with real engineering decisions.
 
-Spot the mistakes that lead to failure, and you'll know exactly what to avoid.
+Otherwise, you end up with:
+– inconsistent logic 
+– fragile systems 
+– hidden bugs 
 
-To be healthier:
-- Stay inside all day → Get outside
-- Skip workouts → Move more
-- Make excuses → Show up consistently
+The real advantage is not just speed.
 
-To grow your career:
-- Blame others → Take responsibility
-- Work in isolation → Collaborate
-- Avoid feedback → Ask for feedback regularly
+It’s speed + control.
 
-By identifying failure first, you remove obstacles and make success inevitable.
+Used correctly, AI can multiply productivity.
+Used incorrectly, it multiplies technical debt.
 
-Charlie Munger said it best: "It is remarkable how much long-term advantage people like us have gotten by trying to be consistently not stupid, instead of trying to be very intelligent."
+Curious how others are using AI in their workflow.
+…more
+1 comment
 
----
+Like
 
-#### Post 6
+Comment
 
-type: original
-timestamp: ~1yr
-hashtags: [#webdesign, #webdevelopment, #techlife]
+Repost
 
-Happy New Year 2025!!
-
-Web Designers and Web Developers: Two sides of the same coin! Designers create the beautiful visuals, while developers bring them to life with code. Both are crucial for a successful website.
-
-Web Designer — Focus: Visual appeal, UX/UI. Role: Creates the look and feel of a website. Key Skills: Creativity, design software (Figma, Adobe XD).
-
-Web Developer — Focus: Functionality, coding. Role: Brings the design to life with code. Key Skills: Programming languages (HTML, CSS, JavaScript), problem-solving.
-
-In simpler terms: Designer is the artist, creating the website's appearance. Developer is the builder, making the website work.
-
----
-
-#### Post 7
-
-type: original
-timestamp: ~1yr
-hashtags: [#TechHumor, #SoftwareDevelopment, #Programming]
-
-Understanding Tech Roles Through a Restaurant Analogy:
-
-- Frontend: The beautiful and welcoming restaurant ambiance where customers enjoy their experience.
-- Backend: The bustling kitchen ensuring everything runs smoothly behind the scenes.
-- API: The waiter seamlessly delivering orders between the customers and the kitchen.
-- Full Stack: The all-in-one food truck owner managing the ambiance, cooking, and customer service on their own.
-
-This analogy perfectly captures the essence of software development roles. Which one resonates with you?
-
----
-
-#### Post 8
-
-type: original
-timestamp: ~1yr
-
-Time to flip it…
-
-There are 15 days left till 2025. What are you gonna do about it?
-
-Who's ready to make 2025 phenomenal????
+Send

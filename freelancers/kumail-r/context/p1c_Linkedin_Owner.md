@@ -16,7 +16,7 @@ linkedin_footer: [About, Accessibility, User Agreement, Privacy Policy, Cookie P
 
 As the Co-Founder & COO of Expedey, I lead a team of highly skilled engineers, designers, and strategists to deliver scalable, high-performance web and mobile applications. Our mission? To help businesses innovate, automate, and scale with technology.
 
-With 7+ years of experience in full-stack development, cloud architecture, and product strategy, I have worked with startups and enterprises to turn their ideas into profitable, high-impact digital solutions. My expertise spans AI, blockchain, SaaS, cloud computing (AWS/GCP), and enterprise software development.
+With 7+ years of experience in full-stack development, cloud architecture, and product strategy, I have worked with startups and enterprises to turn their ideas into profitable, high-impact digital solutions. My expertise spans AI, blockchain, SaaS, cloud computing (AWS/GCP), and enterprise sI applications aren't about replacing people but augmenting them. Imagine a research assistant that surfaces relevant studies while you draft a proposal, or a customer‑supporoftware development.
 
 At Expedey, we don't just write code—we solve business problems with technology. Whether it's launching an MVP, scaling a SaaS platform, integrating AI, or modernizing legacy systems, we bring strategy, execution, and innovation together.
 

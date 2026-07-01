@@ -1,295 +1,247 @@
 ---
 platform: Upwork
 profile_type: freelancer
-name: Anser M.
-headline: Principal AI Engineer & Full Stack Developer | Mobile App Developer
-location: Houston, TX, USA
-hourly_rate: "$35.00/hr"
-job_success_score: "94%"
-total_jobs: 36
-total_hours: 4433
-total_earnings: "$100K+"
-response_time: "0–4 hours"
-availability: "More than 30 hrs/week"
+name: Pablo Arcia
+headline: React | Next | React Native | Angular | Vue | Node Developer
+location: Payson, UT, USA
+hourly_rate: $70.00/hr
+job_success_score: 100%
+total_jobs: 14
+total_hours: 800
+total_earnings: $50K+
+response_time: 4-8 hours
+availability: More than 30 hrs/week
 badge: Top Rated Plus
-member_since: ~2024 (GitHub linked since 2024)
 languages:
   - English (Native or Bilingual)
-verified: true
-associated_accounts:
-  - TECHVADERS INC. (229 hrs, 90% JSS, Rising Talent)
-  - TECHVADERS (303 hrs, 70% JSS)
 ---
 
-# Anser M. — Upwork Profile
+# Pablo Arcia — Upwork Profile
 
 ## Overview
 
-👋 Hi, I'm Anser! an Upwork Top-Rated Plus Principal AI Engineer, Mobile App Developer & Full Stack Developer, 📱 Flutter Developer, and React Native Developer with 7+ years of experience turning bold product ideas into live, scalable applications on iOS, Android, and the web.
+Hello, I'm Pablo Arcia, a passionate and bilingual IT professional with a wealth of experience spanning over a decade in the dynamic world of Software Development. My journey has been an exhilarating one, filled with numerous accomplishments and the acquisition of valuable skills that enable me to bring innovative solutions to life.
 
-I've shipped 17+ live mobile apps, AI agents and SaaS platforms, helped startups secure $8.5M+ in seed funding through AI-powered MVPs, and scaled products to 10M+ active users.
+🚀 My Skills:
 
-"Anser is always running in the background and available for questions and is very responsive. Each week I receive a memorandum of what has been accomplished, which always aligns with the project objectives."
-— GoVo, Long-term client, $21K+ contract, 833+ hours
+I thrive in the world of web and mobile development, and my skill set is a testament to that.
 
-"Had an outstanding experience working with Anser. He delivered our React Native migration and feature updates in under 24 hours. I'd happily hire him again."
-— Verified Upwork Client
+- HTML5, CSS3, Javascript, Typescript
+- React, Next.js, Gatsby, Angular, Vue
+- React Native, Flutter
+- Node, Express
+- Python, Django
+- PHP, Wordpress, Shopify
+- AWS, GCP, etc
 
-📱 Mobile App Development
-- Flutter and React Native, cross-platform iOS and Android from a single codebase
-- Native iOS with Swift and SwiftUI, Native Android with Kotlin and Jetpack Compose
-- Offline-first architecture, real-time sync, push notifications, background services
-- In-app purchases, Stripe, PayPal and payment gateway integration
-- App Store and Google Play deployment, TestFlight, Fastlane CI/CD, automated testing
-- Pixel-perfect UI/UX implementation directly from Figma
-- State management with Redux Toolkit, TanStack Query, Zustand, Bloc and Provider
-- Deep linking, custom animations, camera, video, audio and chat integrations
+🔮 A Passion for Learning:
 
-Apps I've built and shipped:
-- Opty Sleep: AI-powered sleep optimization app in the health and wellness space
-- Chaser the Network: Social networking platform scaled to thousands of active users
-- Race Command: Real-time mobile command app for motorsports, currently in progress
-- Medalite: BLE-connected LED light therapy mask controller built in Flutter
+I am a self-starter with an insatiable thirst for knowledge. Technology never stops evolving, and I embrace every opportunity to learn and apply new skills, which ultimately benefits my clients. You can trust that I stay at the forefront of industry trends and emerging technologies, ready to incorporate them into your projects.
 
-🔌 IoT and BLE Mobile Apps
+🛠️ Tools and Platforms:
 
-I build mobile apps that talk directly to hardware over Bluetooth Low Energy, which is a rare skill set most mobile developers don't have.
+Working with tools such as Jira, Trello, Asana, and Monday, I ensure organized and efficient project management. My proficiency in version control systems like Git, Github, Bitbucket, and Gitlab guarantees seamless collaboration and code management.
+Plus, I'm well-versed in cloud platforms like AWS, Azure, GCP, and Heroku, enabling you to scale your applications with ease. When it comes to testing, I rely on the best, using Jasmine, Jest, Mocha, Chai, and Enzyme to ensure the robustness of your software.
 
-- BLE SDK integration in Flutter and React Native
-- ESP32 firmware communication via BLE
-- NFC, AR, and IoT monitoring and control apps
+🌈 Innovative Ideas and Cost Savings:
 
-Medalite is a great example. It's a Flutter app connected to an ESP32-powered LED light therapy mask via BLE. Users build custom light sequences for meditation, sleep optimization, breathwork, and ketamine-assisted therapy. Full real-time BLE communication with a medically focused UX.
+As an easy-going individual, I foster open communication and collaboration. I don't just follow your requirements; I actively engage in the creative process, offering valuable suggestions to enhance your ideas and optimize your budget. Your satisfaction is my priority, and I'm dedicated to providing exceptional work.
 
-🌐 Full Stack Development
+Client satisfaction and delivering top-notch work are at the core of my mission. Let's turn your visions into reality, with quality, creativity, and a touch of tech magic.
 
-Frontend: React.js, Next.js 15 (App Router, SSR/SSG, Server Components), TypeScript, Angular, Vue.js, Nuxt.js, Tailwind CSS, Material UI, Framer Motion
-Backend: Node.js, NestJS, Express.js, Python (FastAPI, Django, Flask), Java Spring Boot, Laravel, PHP
-APIs: RESTful API design, GraphQL with Apollo, WebSockets with Socket.io, event-driven microservices
-Databases: Firebase Realtime DB and Firestore, PostgreSQL with pgvector, MongoDB, MySQL, Redis, SQLite
-Cloud and DevOps: AWS (EC2, S3, Lambda, SageMaker), GCP, Azure, Docker, Kubernetes, GitHub Actions, Jenkins CI/CD
-
-🤖 AI App Development
-- OpenAI, Claude, Groq and Gemini API integration
-- LangChain and LlamaIndex for RAG pipelines and AI agents
-- AI-powered MVP development for funded startups
-- pgvector and Pinecone for vector databases
-- No-code AI tools: Cursor AI, v0 by Vercel, Bolt.new, Lovable
-
-🏭 Industries: Healthcare, Fintech, IoT and Firmware, E-commerce, Real Estate, Entertainment, Fitness, Social Networking, Education, Automotive
-
-🤝 How I Work
-
-Every client gets a clear milestone plan before any code is written. Scope, timeline, and deliverables are agreed on upfront so we both know exactly what success looks like. On hourly contracts I send weekly memos covering exactly what was completed that week, what is coming next, and anything that needs your input. I respond within 48 hours guaranteed and I never go silent mid-project. Billing breakdowns are always provided in writing at each milestone so there are no surprises on the invoice.
-
-I treat every project as unique. I align your business goals with technical execution and make smart decisions around features, budget, and timelines. My code is clean, organized, and built to scale with your product as it grows.
-
-💼 Why Clients Work With Me Long Term
-
-I have active contracts that have been running for 6 to 12 months because clients do not have to chase me. They get consistent updates, predictable delivery, and a developer who genuinely cares about the outcome of their product, not just closing a ticket.
+Reach out to me today, and let's make your projects shine! ✨
 
 ## Skills
 
-- AI Agent Development
-- Artificial Intelligence
-- Machine Learning
-- Mobile App Development
-- Full-Stack Development
-- AI App Development
-- AI Mobile App Development
-- Computer Vision
-- Flutter
-- React Native
-- iOS Development
-- Android App Development
-- Swift
-- Internet of Things
-- Generative AI
-- Python
-- Node.js
-- TypeScript
+- HTML5
+- CSS3
+- Javascript
+- Typescript
+- React
 - Next.js
-- Supabase
+- Gatsby
+- Angular
+- Vue
+- React Native
+- Flutter
+- Node
+- Express
+- Python
+- Django
+- PHP
+- Wordpress
+- Shopify
+- AWS
+- GCP
 
 ## Work History
 
----
+#### Lead Node.js Developer for AI Platform Backend
 
-#### App Development & Claude Code Tutoring Needed
-
+client_rating: 5.00
+hours_billed: 321
 contract_type: Hourly
-dates: Mar 26, 2026 – May 20, 2026
-budget: $80.00 ($40.00/hr)
+dates: Apr 14, 2026 - Jun 18, 2026
+budget: $16,025.00 ($50.00/hr)
+
+**Client review:**
+Great expeirence with Pablo. Strong dev
+
+#### Next.js + React developer needed for long term project
+
+client_rating: 5.00
+hours_billed: 164
+contract_type: Hourly
+dates: Oct 27, 2025 - Dec 11, 2025
+budget: $9,810.00 ($60.00/hr)
+
+**Client review:**
+Outstanding Freelancer
+We had over 90 applicants for this job and interviewed more than a dozen highly qualified candidates. Pablo stood out immediately as the most skilled, organized, and reliable professional in the group. His communication was clear and consistent, his technical abilities were exceptional, and he delivered every part of the project with precision and attention to detail.
+
+Pablo took time to fully understand the requirements, offered thoughtful recommendations, and executed the work far beyond our expectations. He approaches tasks with a level of professionalism and care that is rare to find, and he consistently demonstrated initiative, problem-solving ability, and a genuine commitment to quality.
+
+I would absolutely hire him again and strongly recommend him to anyone looking for a top-tier freelancer. Pablo is an asset to any project, and I’m confident he will continue to excel on the Upwork platform.
+
+#### Solana Token Project
+
+client_rating: 4.70
+hours_billed: 48
+contract_type: Hourly
+dates: May 23, 2025 - Jun 11, 2025
+budget: $3,120.00 ($65.00/hr)
+
+**Client review:**
+Thanks.
+
+#### Expert React Developer Needed
+
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Apr 3, 2025 - Apr 28, 2025
+budget: $1,400.00
+
+#### AI Project
+
+client_rating: 5.00
+hours_billed: 20
+contract_type: Hourly
+dates: Sep 9, 2024 - Sep 21, 2024
+budget: $1,400.00 ($70.00/hr)
+
+#### Full-Stack Web Developer (Tailwind CSS, Next.JS, Node.JS)
+
+client_rating: 5.00
+hours_billed: 8
+contract_type: Hourly
+dates: Jun 20, 2024 - Aug 7, 2024
+budget: $560.00 ($70.00/hr)
+
+**Client review:**
+Pablo did a great job! Very professional, very responsive. Overall a wonderful lead developer to work with.
+
+#### Need code for website designed in Figma. Will deploy on my own.
+
+client_rating: 5.00
 hours_billed: 2
-
----
-
-#### Race Command mobile app development
-
-contract_type: Fixed-price
-dates: May 29, 2025 – Apr 23, 2026
-budget: $6,400.00
-
----
-
-#### Mobile Application Development for iOS and Android
-
-client_rating: 4.0
-contract_type: Fixed-price
-dates: Mar 17, 2026 – Mar 20, 2026
-budget: $300.00
-
----
-
-#### Firebase Web App Help – Export Feature, Backend Integration, and Secure Deployment
-
-contract_type: Fixed-price
-dates: May 7, 2025 – Nov 5, 2025
-budget: $900.00
-
----
-
-#### SEO and Google Ads
-
 contract_type: Hourly
-dates: Nov 27, 2024 – Nov 5, 2025
-budget: $380.00 ($20.00/hr)
-hours_billed: 19
-
----
-
-#### Review Android App
-
-client_rating: 1.0
-contract_type: Hourly
-dates: Feb 16, 2025 – Aug 23, 2025
-budget: $2,460.00 ($30.00/hr)
-hours_billed: 82
+dates: May 16, 2024 - May 24, 2024
+budget: $1,200.00 ($60.00/hr)
 
 **Client review:**
-"My Experience With Freelancer Anser Manzer – A Public Warning. In February of this year, I hired a freelancer named Anser Manzer, who represented themselves as running an agency with..." [truncated in source]
+Pablo was great, quick to respond, and really patient with any feedback/changes that needed to be made. Also, he was extremely efficient with timing and got me my finished project within a quick turnaround time and to my specifications (in terms of design). Thank you!
 
-**Freelancer response:**
-"We regret that this project ended with disappointment for both sides, but we need to clarify several misrepresentations in Jay's review.
+#### Marketing Web Developer + Technologist
 
-In our 7+ years of working with Upwork clients, we have always taken ownership of our mistakes. Even in this project, when Google rejected the app due to incorrect login credentials, we accepted responsibility and resolved it.
-
-The claim that Jay suffered financial loss without reciprocation is misleading. A dedicated team of five (including Abdul, Mansoor, Rohail, myself, and another team's developer added later) worked on this project for over three months without charging a single additional dollar after charging the first few weeks. I personally paid their salaries out of pocket associated with the project, despite the fact that weekly calls, builds, and debugging continued. We told him that we would not charge him 'in good faith' until the app was live. He did not ask to pay for the efforts during these months of work. Only asked us after the app was live and then suddenly ended the contract before we could discuss the tasks memo document in a meeting. Meaning the actual financial loss was borne by us as well.
-
-The central bottleneck was Google Play's strict compliance against native SMS. From the outset, we advised Jay that such functionality would not pass review. He, however, insisted that we attempt to publish with SMS enabled. To respect that request, we implemented multiple changes: added proper disclosure pop-ups for foreground services, corrected a Firebase-driven YouTube link issue, and repeatedly updated permissions and forms as requested by the client.
-
-Despite our warnings, the app continued to be rejected, as expected, since Google explicitly does not permit native SMS. This was eventually confirmed when the client themselves appealed to Google, and the response matched what our developers had already communicated weeks earlier. The app was only accepted once SMS was removed, exactly as we advised him, not the other way around.
-
-The client describes our weekly updates as failures. This is inaccurate. Each build iteration addressed compliance changes, UI refinements, disclosure implementations, and permission workflows. Builds were regularly sent to the client for testing, and hours-long recordings of our calls confirm that progress was being made. The narrative that nothing was done ignores the countless hours invested in navigating policy roadblocks, most of which were caused by constraints in the original feature set.
-
-Throughout the project, our team faced repeated verbal mistreatment, including expletive language and insults during calls. Despite this, we never retaliated, never 'shut down' communication, and consistently showed empathy for the client's frustration. Even when accused of delivering the 'same build,' we calmly asked the client to run the app live on their device, which immediately proved that features were present and working.
-
-We went beyond industry norms by offering a full refund after cancellation of contract, despite already taking both financial and reputational losses. The client refused our offer of refund by rejecting our request to remove the damaging review first, then later demanded additional legal disclaimers before accepting. At that point, the refund request became one-sided and unreasonable, and we could not proceed. Also, Upwork does not bind us to process a refund if 180 days have passed since the last payment, so as per platform's policy, we will not be able to process the refund anyway.
-
-This project was not perfect; timelines extended, and frustration grew on both sides. But to portray us as negligent or incompetent is unfair. We worked for months without further compensation, absorbed real financial losses, navigated strict Google policies, and ultimately got the app live. The client, meanwhile, walked away with both an app and a refund offer they declined due to their own conditions.
-
-We acknowledge lessons learned. In the future, we will enforce stricter time-based validation and stop work the moment the client contradicts platform compliance. But it is important that the public record reflects the full picture. This was not neglect, but a case where our professionalism and goodwill were extended far beyond what was reciprocated."
-
----
-
-#### Python & API Integration Specialist for MERN CRM with NLP Model
-
-client_rating: 5.0
-contract_type: Fixed-price
-dates: Aug 12, 2025 – Aug 13, 2025
-budget: $50.00
-
-**Client review:**
-"Absolutely top notch work and delivered quickly. Great communication and a real problem solver. Highly recommended!"
-
----
-
-#### Developer Needed for Data-Driven Government Transparency Platform
-
-client_rating: 5.0
+client_rating: 5.00
+hours_billed: 20
 contract_type: Hourly
-dates: Jun 26, 2025 – Aug 6, 2025
-budget: $1,500.00 ($25.00/hr)
-hours_billed: 40
+dates: Jan 31, 2024 - Mar 22, 2024
+budget: $100.00 ($60.00/hr)
 
-**Client review:**
-"When we explained to Anser Mazer what we needed, he understood exactly what was being asked for, even though we used layman terms. Glad we found him!"
+#### Senior Vue.js NestJS Full Stack Developer
 
----
-
-#### Full-Stack Engineer: Flutter Dart Next.js React Node.js NestJS Firebase Firestore CodeMagic Vercel
-
-client_rating: 5.0
+client_rating: 5.00
+hours_billed: 215
 contract_type: Hourly
-dates: May 13, 2025 – Jul 29, 2025
-budget: $4,825.00 ($25.00/hr)
-hours_billed: 193
-
----
-
-#### React Native Developer Needed to Migrate Existing Project
-
-client_rating: 5.0
-contract_type: Fixed-price
-dates: Jul 31, 2025 – Aug 1, 2025
-budget: $100.00
+dates: Jan 2, 2024 - Mar 14, 2024
+budget: $15,038.33 ($70.00/hr)
 
 **Client review:**
-"Had an outstanding experience working with Anser — he delivered our React Native migration and feature updates in under 24 hours. I'd happily hire him again."
+We will use Pablo again soon. He is very smart and worked great with the team!
 
-## Certifications & Tests
+#### Fix css/html formatting error on webpage
 
-- **Building RAG Agents with LLMs** — NVIDIA — Issued March 2025
-- **Professional Machine Learning Engineer** — Google Cloud — Issued May 2024
-- **Expert Mobile Application Developer** — University of Georgia — Issued June 2019
+client_rating: 5.00
+hours_billed: 1
+contract_type: Hourly
+dates: Dec 1, 2023 - Dec 5, 2023
+budget: $69.00 ($60.00/hr)
+
+**Client review:**
+Pablo was an excellent developer. Very communicative, performed services on time and completed with attention to detail.
+
+## Portfolio
+
+#### Allbirds - Shopify
+
+#### Unicity - React, Next, Node, Express
+
+#### IslandPay - React Native, Typescript, Fastlane, SauceLabs
 
 ## Employment History
 
----
+#### Senior Frontend developer — React, Gatsby, Storybook — Cove
 
-#### Native iOS Engineer — Codefied.co
+dates: January 2021 - June 2023
 
-dates: May 2023 – April 2025
+- Rebuild three web applications, resulting in improved user engagement, 30% faster page load times, and an average user rating of 4.8/5
+- Integrated APIs and 3rd-party services, resulting in enhanced functionality, streamlined payment processing, resulting in a 20% increase in transaction success rates and elevated user experience
+- Mentored to three interns and junior developers of Cove
 
----
+#### Senior Frontend Developer — React, Next — Pando Software
 
-#### React Native Engineer — ATTNEST
+dates: February 2020 - January 2021
 
-dates: March 2019 – May 2023
+- Enhanced code base by implementing a dedicated 'services' folder to encapsulate API interaction functions, reduce development time by 10%
+- Researched and developed Optimizely for A/B testing, resulting in data- driven decision-making, augmented user engagement, and a 15% increase in conversion rates
 
----
+#### Senior Full Stack Developer — React, Next, Typescript, Node — Unicity International
 
-#### Backend Engineer — (Remote, unnamed company)
+dates: April 2018 - February 2020
 
-Backend Node.js engineer. Replaced Firebase real-time notifications with a custom Node.js module now live in production; currently handling ongoing maintenance.
+- Led team in re-architecting internal app, improving rendering and adding features with ES6, React, Redux, and Material-UI, achieved faster load times (25%) and increased user productivity (+20%) - Received assignment as mentor for five Interns/Jr Developers based on the ability to teach complex concepts in a simple/understandable way
 
----
+#### Front End Developer — React, Javascript — SolutionStream
 
-#### Frontend Developer — (Two unnamed companies)
+dates: August 2017 - March 2018
 
-3 years of frontend development focused on React.js and Next.js across two companies.
+- Developed application by collaborating with the client to implement best practices for modern React applications, resulting in reduced bug reports by 40%, and optimized application performance
+- Optimized codebase by migrating to modern JavaScript (ES6), removing lodash, and setting new styling standards for components, resulting in upgraded performance, and 20% decrease in average bundle size
+- Built 3+ custom, enterprise-level React applications
+
+#### Junior Software Engineer — React, Angular, Typescript — Domo, Inc
+
+dates: June 2015 - August 2017
+
+- Created dozens of components by using AngularJS, React, TypeScript, and Redox and by writing unit tests to assert other components’ functionality using Chai, Mocha, and Enzyme
+- Added value to the Domo App Builder by creating and testing 100+ infographics using JavaScript, d3.js, and Adobe Illustrator
 
 ## Education
 
----
+#### Computer science — Devmountain
 
-#### Bachelor of Business Administration — Houston Community College
+dates: 2014-2014
 
-dates: 2022 – 2026
-field: Management Information Systems
+#### Bachelor of Engineering (BEng), Computer science — Utah Tech University
 
----
-
-#### High School Degree — The American Foundation School
-
-dates: 2006 – 2019
-field: Computer Science
+dates: 2010-2014
 
 ## Overflow Signals
 
-- **Active team operation** — Freelancer response to the 1-star review explicitly names a team of five (Abdul, Mansoor, Rohail, himself, and a fifth developer); "we" language is used throughout the overview and response, and two associated Upwork accounts (TECHVADERS INC. and TECHVADERS) are linked to this profile, confirming an agency structure with subcontractors.
-- **High booking rate / sustained workload** — 4,433 total hours billed across 36 jobs; multiple concurrent active contracts visible in recent work history (Race Command running ~11 months, Firebase project ~6 months, Full-Stack Flutter/Next.js contract 193 hrs over 2.5 months), indicating near-continuous demand.
-- **Project scale** — The GoVo contract cited in the overview ran to 833+ hours and $21K+; the Race Command contract billed $6,400 fixed-price over nearly a year; the Full-Stack Engineer contract billed 193 hours. Multiple large-scope engagements run simultaneously.
-- **Rate tier mismatch vs. scope** — Profile billing rate is $35/hr (low for a self-described Principal AI Engineer managing a 5-person team), suggesting the account wins volume through competitive pricing but cannot physically absorb all incoming work without subcontracting or overflow.
-- **Job type match** — Work history contains directly relevant projects: React Native migration, Flutter development, Next.js/Node.js/NestJS full-stack contracts, Firebase backend work — all within a frontend/full-stack specialist's wheelhouse.
-- **Client review language** — Reviews cite "always running in the background," "responded quickly," "delivered in under 24 hours," and "understood exactly what was being asked" — signals a reliable operator who handles independently, likely to pass discrete tasks to trusted overflow developers rather than hand-holding them.
+- **High booking rate** — 800 total hours across 14 jobs with recent contracts showing consistent work (Apr 2026–Jun 2026: 321 hours on AI Platform Backend; Oct 2025–Dec 2025: 164 hours on Next.js/React project)
+- **Rate tier** — Hourly rates of $50–70/hr across recent contracts, above $50/hr threshold indicating premium positioning
+- **Project scale** — Multiple substantial engagements: 321-hour AI Platform Backend, 215-hour Vue.js/NestJS full-stack project, 164-hour long-term Next.js/React project
+- **Client review language** — Reviews consistently highlight "exceptional technical abilities", "professional and responsive", "very smart and worked great with the team", "excellent developer. Very communicative"
+- **Job type match** — Work history spans full-stack React/Next.js/Node.js, Vue.js/NestJS, React Native, and mobile development — directly aligned with frontend/full-stack work Abdul can do
+- **Availability gap** — Availability shows "More than 30 hrs/week" despite high hourly rates and consistent large projects, suggesting limited capacity for additional work

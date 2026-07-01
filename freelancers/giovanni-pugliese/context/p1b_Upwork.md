@@ -1,295 +1,268 @@
 ---
 platform: Upwork
 profile_type: freelancer
-name: Anser M.
-headline: Principal AI Engineer & Full Stack Developer | Mobile App Developer
-location: Houston, TX, USA
-hourly_rate: "$35.00/hr"
-job_success_score: "94%"
-total_jobs: 36
-total_hours: 4433
-total_earnings: "$100K+"
-response_time: "0–4 hours"
-availability: "More than 30 hrs/week"
+name: Giovanni P.
+headline: AI SaaS & CRM Partner | Salesforce / Hubspot / Automation | Full Stack
+location: Ft. Lauderdale, FL, USA
+hourly_rate: $60.00/hr
+job_success_score: 100%
+total_jobs: 81
+total_hours: 7,344
+total_earnings: $600K+
+response_time: +24 hours
+availability: As Needed - Open to Offers
 badge: Top Rated Plus
-member_since: ~2024 (GitHub linked since 2024)
 languages:
   - English (Native or Bilingual)
-verified: true
-associated_accounts:
-  - TECHVADERS INC. (229 hrs, 90% JSS, Rising Talent)
-  - TECHVADERS (303 hrs, 70% JSS)
+  - Spanish (Native or Bilingual)
 ---
 
-# Anser M. — Upwork Profile
+# Giovanni P. — Upwork Profile
 
 ## Overview
 
-👋 Hi, I'm Anser! an Upwork Top-Rated Plus Principal AI Engineer, Mobile App Developer & Full Stack Developer, 📱 Flutter Developer, and React Native Developer with 7+ years of experience turning bold product ideas into live, scalable applications on iOS, Android, and the web.
+AI SaaS & Salesforce CRM partner for B2B teams, Founders | Full stack, automation
+Expert-vetted · 100% JSS · $600K+. 15+ years in Salesforce and CRM - plus recent AI-SaaS production work from concept to launch. One partner for both.
 
-I've shipped 17+ live mobile apps, AI agents and SaaS platforms, helped startups secure $8.5M+ in seed funding through AI-powered MVPs, and scaled products to 10M+ active users.
+Most clients don't hire me for a single tool.
+They hire me because something in the business isn't working and it usually sits at the intersection of systems, data, and automation. Leads fall through. CRM doesn't match how the team sells.
+An AI product idea is stuck before production. Marketing and sales fight over bad data.
 
-"Anser is always running in the background and available for questions and is very responsive. Each week I receive a memorandum of what has been accomplished, which always aligns with the project objectives."
-— GoVo, Long-term client, $21K+ contract, 833+ hours
+I'm an Expert-vetted partner independently verified at Upwork's highest tier.
+81 completed engagements.
+Top-rated Plus.
+Clients come back because I treat their outcome like my own, not a ticket queue.
 
-"Had an outstanding experience working with Anser. He delivered our React Native migration and feature updates in under 24 hours. I'd happily hire him again."
-— Verified Upwork Client
 
-📱 Mobile App Development
-- Flutter and React Native, cross-platform iOS and Android from a single codebase
-- Native iOS with Swift and SwiftUI, Native Android with Kotlin and Jetpack Compose
-- Offline-first architecture, real-time sync, push notifications, background services
-- In-app purchases, Stripe, PayPal and payment gateway integration
-- App Store and Google Play deployment, TestFlight, Fastlane CI/CD, automated testing
-- Pixel-perfect UI/UX implementation directly from Figma
-- State management with Redux Toolkit, TanStack Query, Zustand, Bloc and Provider
-- Deep linking, custom animations, camera, video, audio and chat integrations
+TWO TRACKS, ONE PARTNER
 
-Apps I've built and shipped:
-- Opty Sleep: AI-powered sleep optimization app in the health and wellness space
-- Chaser the Network: Social networking platform scaled to thousands of active users
-- Race Command: Real-time mobile command app for motorsports, currently in progress
-- Medalite: BLE-connected LED light therapy mask controller built in Flutter
+▸ SALESFORCE & CRM (15+ years)
+Architecture, custom development, and integrations across Salesforce, Pardot, and Marketo. Financial Services Cloud and multi-LoB data segregation. Reporting and dashboards sales actually uses. Marketing stack unification, one engagement ran 627 hours connecting Salesforce, Pardot, WooCommerce, QuickBooks, and Google Analytics because the business needed one source of truth.
 
-🔌 IoT and BLE Mobile Apps
+▸ AI-SAAS & AUTOMATION (production-proven)
+Full-stack AI product delivery for founders - not prototypes.
+Recent: partnered on NotaryAgentAi from concept to user-tested, production-ready platform. SMS lead intake, AI workflow orchestration, sub-10-second auto-acceptance, Google Calendar booking, telecom compliance resolved. Node.js, Twilio/Telnyx, Supabase, Playwright.
+Client: "would recommend to other founders building SaaS, AI automation, or telecommunications applications."
 
-I build mobile apps that talk directly to hardware over Bluetooth Low Energy, which is a rare skill set most mobile developers don't have.
+▸ WHERE BOTH MEET
+The best engagements use both tracks - AI products that connect to CRM, CRM systems that trigger intelligent automations, full-stack apps with Salesforce as the data layer.
+React + Salesforce integration delivered in one week.
+CommerceHub order automation.
+Lead attribution from Google Analytics into Salesforce.
+This is the work most freelancers split across three contractors.
 
-- BLE SDK integration in Flutter and React Native
-- ESP32 firmware communication via BLE
-- NFC, AR, and IoT monitoring and control apps
 
-Medalite is a great example. It's a Flutter app connected to an ESP32-powered LED light therapy mask via BLE. Users build custom light sequences for meditation, sleep optimization, breathwork, and ketamine-assisted therapy. Full real-time BLE communication with a medically focused UX.
+HOW I PARTNER WITH YOU
 
-🌐 Full Stack Development
+I start with what success looks like for your business - then work backward.
+I push back when the approach won't deliver. When problems surface, I stay until the root cause is fixed.
 
-Frontend: React.js, Next.js 15 (App Router, SSR/SSG, Server Components), TypeScript, Angular, Vue.js, Nuxt.js, Tailwind CSS, Material UI, Framer Motion
-Backend: Node.js, NestJS, Express.js, Python (FastAPI, Django, Flask), Java Spring Boot, Laravel, PHP
-APIs: RESTful API design, GraphQL with Apollo, WebSockets with Socket.io, event-driven microservices
-Databases: Firebase Realtime DB and Firestore, PostgreSQL with pgvector, MongoDB, MySQL, Redis, SQLite
-Cloud and DevOps: AWS (EC2, S3, Lambda, SageMaker), GCP, Azure, Docker, Kubernetes, GitHub Actions, Jenkins CI/CD
+Clients describe me as responsive, collaborative, and solution-oriented.
+Several said I took the time to understand their needs before writing a line of code.
 
-🤖 AI App Development
-- OpenAI, Claude, Groq and Gemini API integration
-- LangChain and LlamaIndex for RAG pipelines and AI agents
-- AI-powered MVP development for funded startups
-- pgvector and Pinecone for vector databases
-- No-code AI tools: Cursor AI, v0 by Vercel, Bolt.new, Lovable
+I'm founder of Atlas Global Solutions - a small, experienced team since 2009.
+Larger engagements: me as lead partner with team capacity.
+Focused work: me directly.
 
-🏭 Industries: Healthcare, Fintech, IoT and Firmware, E-commerce, Real Estate, Entertainment, Fitness, Social Networking, Education, Automotive
+PROOF
+→ AI-SaaS: "Instrumental in helping bring NotaryAgentAi from concept to a production-ready platform… would absolutely work with Giovanni again."
 
-🤝 How I Work
+→ CRM/Full stack: "Worked through any roadblocks quickly with a full understanding of what I needed. Turnaround time was great."
 
-Every client gets a clear milestone plan before any code is written. Scope, timeline, and deliverables are agreed on upfront so we both know exactly what success looks like. On hourly contracts I send weekly memos covering exactly what was completed that week, what is coming next, and anything that needs your input. I respond within 48 hours guaranteed and I never go silent mid-project. Billing breakdowns are always provided in writing at each milestone so there are no surprises on the invoice.
+→ Partnership: "Took the time to truly understand our project needs and worked with us to complete the project exactly how we had envisioned."
 
-I treat every project as unique. I align your business goals with technical execution and make smart decisions around features, budget, and timelines. My code is clean, organized, and built to scale with your product as it grows.
+→ Trust: "Thorough, transparent, and efficient… took extra measure to ensure we were happy customers."
 
-💼 Why Clients Work With Me Long Term
 
-I have active contracts that have been running for 6 to 12 months because clients do not have to chase me. They get consistent updates, predictable delivery, and a developer who genuinely cares about the outcome of their product, not just closing a ticket.
+TECHNICAL DEPTH (WHEN YOU NEED IT)
+
+Salesforce (Apex, Flows, FSC, Connected Apps)
+AI-SaaS (Node.js, LLM orchestration, Playwright)
+Full stack (React, APIs, auth)
+Automation (Twilio, workflow pipelines, integrations).
+
+Eastern US (Ft. Lauderdale, FL).
+English and Spanish
+Fixed-price or hourly.
+
+Tell me what success looks like - CRM build, AI-SaaS product, or both connected.
+I'll tell you honestly if I'm the right partner.
+
+Giovanni
 
 ## Skills
 
-- AI Agent Development
-- Artificial Intelligence
-- Machine Learning
-- Mobile App Development
-- Full-Stack Development
-- AI App Development
-- AI Mobile App Development
-- Computer Vision
-- Flutter
-- React Native
-- iOS Development
-- Android App Development
-- Swift
-- Internet of Things
-- Generative AI
-- Python
-- Node.js
+- Salesforce CRM
+- PHP
+- WordPress
+- Twilio API
+- React
+- JavaScript
 - TypeScript
-- Next.js
+- Node.js
+- Python
+- Ruby on Rails
 - Supabase
+- Airtable
+- Shopify
+- Next.js
+- DevOps
+- Apex
+- C#
+- Pardot Marketing
+- Data Analytics & Visualization Software
+- Business Intelligence
 
 ## Work History
 
----
+#### AI Automation Engineer for SnapDocs SMS Lead Intake & Auto-Acceptance System
 
-#### App Development & Claude Code Tutoring Needed
-
+client_rating: 5.00
+hours_billed: 272
 contract_type: Hourly
-dates: Mar 26, 2026 – May 20, 2026
-budget: $80.00 ($40.00/hr)
-hours_billed: 2
-
----
-
-#### Race Command mobile app development
-
-contract_type: Fixed-price
-dates: May 29, 2025 – Apr 23, 2026
-budget: $6,400.00
-
----
-
-#### Mobile Application Development for iOS and Android
-
-client_rating: 4.0
-contract_type: Fixed-price
-dates: Mar 17, 2026 – Mar 20, 2026
-budget: $300.00
-
----
-
-#### Firebase Web App Help – Export Feature, Backend Integration, and Secure Deployment
-
-contract_type: Fixed-price
-dates: May 7, 2025 – Nov 5, 2025
-budget: $900.00
-
----
-
-#### SEO and Google Ads
-
-contract_type: Hourly
-dates: Nov 27, 2024 – Nov 5, 2025
-budget: $380.00 ($20.00/hr)
-hours_billed: 19
-
----
-
-#### Review Android App
-
-client_rating: 1.0
-contract_type: Hourly
-dates: Feb 16, 2025 – Aug 23, 2025
-budget: $2,460.00 ($30.00/hr)
-hours_billed: 82
+dates: Nov 21, 2025 - Jun 13, 2026
+budget: $19,040.00 ($70.00/hr)
 
 **Client review:**
-"My Experience With Freelancer Anser Manzer – A Public Warning. In February of this year, I hired a freelancer named Anser Manzer, who represented themselves as running an agency with..." [truncated in source]
+Giovanni was instrumental in helping bring NotaryAgentAi from concept to a production-ready AI automation platform. He demonstrated strong technical expertise across Node.js, SMS automation, Twilio, Telnyx, Google Calendar integration, Supabase, Playwright, and AI workflow orchestration.
 
-**Freelancer response:**
-"We regret that this project ended with disappointment for both sides, but we need to clarify several misrepresentations in Jay's review.
+Throughout the project, Giovanni was responsive, collaborative, and persistent in solving complex technical challenges, including carrier compliance, 10DLC registration, SMS deliverability, automation workflows, and production deployment issues.
 
-In our 7+ years of working with Upwork clients, we have always taken ownership of our mistakes. Even in this project, when Google rejected the app due to incorrect login credentials, we accepted responsibility and resolved it.
+He consistently approached problems with a solutions-oriented mindset and was willing to investigate issues deeply until root causes were identified. His communication was clear, professional, and proactive throughout the engagement.
 
-The claim that Jay suffered financial loss without reciprocation is misleading. A dedicated team of five (including Abdul, Mansoor, Rohail, myself, and another team's developer added later) worked on this project for over three months without charging a single additional dollar after charging the first few weeks. I personally paid their salaries out of pocket associated with the project, despite the fact that weekly calls, builds, and debugging continued. We told him that we would not charge him 'in good faith' until the app was live. He did not ask to pay for the efforts during these months of work. Only asked us after the app was live and then suddenly ended the contract before we could discuss the tasks memo document in a meeting. Meaning the actual financial loss was borne by us as well.
+The result is a highly functional platform that has been user-tested and is ready for production rollout. I would absolutely work with Giovanni again and would recommend him to other founders building SaaS, AI automation, workflow automation, or telecommunications-related applications.
 
-The central bottleneck was Google Play's strict compliance against native SMS. From the outset, we advised Jay that such functionality would not pass review. He, however, insisted that we attempt to publish with SMS enabled. To respect that request, we implemented multiple changes: added proper disclosure pop-ups for foreground services, corrected a Firebase-driven YouTube link issue, and repeatedly updated permissions and forms as requested by the client.
+#### React App — Salesforce API Integration & Authentication
 
-Despite our warnings, the app continued to be rejected, as expected, since Google explicitly does not permit native SMS. This was eventually confirmed when the client themselves appealed to Google, and the response matched what our developers had already communicated weeks earlier. The app was only accepted once SMS was removed, exactly as we advised him, not the other way around.
-
-The client describes our weekly updates as failures. This is inaccurate. Each build iteration addressed compliance changes, UI refinements, disclosure implementations, and permission workflows. Builds were regularly sent to the client for testing, and hours-long recordings of our calls confirm that progress was being made. The narrative that nothing was done ignores the countless hours invested in navigating policy roadblocks, most of which were caused by constraints in the original feature set.
-
-Throughout the project, our team faced repeated verbal mistreatment, including expletive language and insults during calls. Despite this, we never retaliated, never 'shut down' communication, and consistently showed empathy for the client's frustration. Even when accused of delivering the 'same build,' we calmly asked the client to run the app live on their device, which immediately proved that features were present and working.
-
-We went beyond industry norms by offering a full refund after cancellation of contract, despite already taking both financial and reputational losses. The client refused our offer of refund by rejecting our request to remove the damaging review first, then later demanded additional legal disclaimers before accepting. At that point, the refund request became one-sided and unreasonable, and we could not proceed. Also, Upwork does not bind us to process a refund if 180 days have passed since the last payment, so as per platform's policy, we will not be able to process the refund anyway.
-
-This project was not perfect; timelines extended, and frustration grew on both sides. But to portray us as negligent or incompetent is unfair. We worked for months without further compensation, absorbed real financial losses, navigated strict Google policies, and ultimately got the app live. The client, meanwhile, walked away with both an app and a refund offer they declined due to their own conditions.
-
-We acknowledge lessons learned. In the future, we will enforce stricter time-based validation and stop work the moment the client contradicts platform compliance. But it is important that the public record reflects the full picture. This was not neglect, but a case where our professionalism and goodwill were extended far beyond what was reciprocated."
-
----
-
-#### Python & API Integration Specialist for MERN CRM with NLP Model
-
-client_rating: 5.0
+client_rating: 5.00
 contract_type: Fixed-price
-dates: Aug 12, 2025 – Aug 13, 2025
-budget: $50.00
+dates: May 19, 2026 - May 26, 2026
+budget: $1,500.00
 
 **Client review:**
-"Absolutely top notch work and delivered quickly. Great communication and a real problem solver. Highly recommended!"
+Giovanni was outstanding to work with. Worked through any roadblocks we encountered quickly with a full understanding of what I needed. Turnaround time was great. He was very helpful and listened to what I was trying to create. I hope to do more with him in the future!
 
----
+#### Hubspot Newsletter Template Design
 
-#### Developer Needed for Data-Driven Government Transparency Platform
-
-client_rating: 5.0
-contract_type: Hourly
-dates: Jun 26, 2025 – Aug 6, 2025
-budget: $1,500.00 ($25.00/hr)
-hours_billed: 40
-
-**Client review:**
-"When we explained to Anser Mazer what we needed, he understood exactly what was being asked for, even though we used layman terms. Glad we found him!"
-
----
-
-#### Full-Stack Engineer: Flutter Dart Next.js React Node.js NestJS Firebase Firestore CodeMagic Vercel
-
-client_rating: 5.0
-contract_type: Hourly
-dates: May 13, 2025 – Jul 29, 2025
-budget: $4,825.00 ($25.00/hr)
-hours_billed: 193
-
----
-
-#### React Native Developer Needed to Migrate Existing Project
-
-client_rating: 5.0
+client_rating: 5.00
 contract_type: Fixed-price
-dates: Jul 31, 2025 – Aug 1, 2025
+dates: Apr 29, 2026 - May 6, 2026
 budget: $100.00
 
 **Client review:**
-"Had an outstanding experience working with Anser — he delivered our React Native migration and feature updates in under 24 hours. I'd happily hire him again."
+Giovanni did a great job on our newsletter layout. He was great to work with!
 
-## Certifications & Tests
+#### Build Modern SaaS Landing Page Website From Scratch (HTML/CSS/JS + GitHub Pages)
 
-- **Building RAG Agents with LLMs** — NVIDIA — Issued March 2025
-- **Professional Machine Learning Engineer** — Google Cloud — Issued May 2024
-- **Expert Mobile Application Developer** — University of Georgia — Issued June 2019
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Nov 14, 2025 - Nov 17, 2025
+budget: $5.00
+
+**Client review:**
+I had an incredible experience working with this Giovanni on my TextFlow website. They were fast, responsive, and extremely detail-oriented. Every section was built exactly how I wanted—even better than I expected. The site looks modern, clean, and professional, and they handled all design and functionality flawlessly.
+
+Communication was smooth, revisions were done quickly, and they took initiative to improve parts of the site I didn't even think about. I really appreciate the extra effort and care put into the project.
+
+Highly recommend! I'll definitely be working with them again for future updates and projects.
+
+#### React js developer to edit a website
+
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Nov 13, 2025 - Nov 14, 2025
+budget: $50.00
+
+#### Salesforce.com Consultant
+
+client_rating: 5.00
+hours_billed: 408
+contract_type: Hourly
+dates: Nov 21, 2022 - Feb 12, 2025
+budget: $46,881.66 ($115.00/hr)
+
+#### Update to google analytics integration
+
+client_rating: 5.00
+contract_type: Fixed-price
+dates: Jan 18, 2024 - Oct 2, 2024
+budget: $892.50
+
+**Client review:**
+Giovanni was a pleasure to work with. He was thorough, transparent, and efficient in completing the job. He and his team stayed on top of the project and took extra measure to ensure we we're happy customers. Would definitely hire Giovanni again. Thank you!
+
+#### Salesforce Developer
+
+client_rating: 5.00
+hours_billed: 80
+contract_type: Hourly
+dates: Jun 24, 2024 - Jul 23, 2024
+budget: $4,800.00 ($60.00/hr)
+
+#### Agency to Manage WordPress, Salesforce, and Pardot
+
+client_rating: 4.00
+hours_billed: 586
+contract_type: Hourly
+dates: Feb 28, 2022 - Nov 8, 2022
+budget: $46,893.34 ($80.00/hr)
+
+#### IWR Website development for ECommerce
+
+client_rating: 4.70
+contract_type: Fixed-price
+dates: Jan 29, 2021 - Jul 8, 2022
+budget: $10,080.00
+
+**Client review:**
+Gio is a great guy and he has a solid team. My only recommendation for a customer is to scope out every detail as much as possible so you guide the development process and avoid being told something is out of scope.
+
+## Portfolio
+
+#### AI Workflow Automation & Integration - Production Systems
+
+#### AI SaaS Development - Concept to Production
+
+#### Salesforce CRM Development, Flows & Custom Architecture
 
 ## Employment History
 
----
+#### Senior Consultant — Blue Wolf Group...an IBM company.
 
-#### Native iOS Engineer — Codefied.co
+dates: January 2015 - Present
 
-dates: May 2023 – April 2025
+I serve as a senior consultant for Eloqua campaigns and solutions as well as a technical resource for complex CRM integrations, CRM Custom development and custom scripting and development integrating various systems.
 
----
+#### CEO — Atlas Global Solutions, Inc.
 
-#### React Native Engineer — ATTNEST
+dates: March 2009 - Present
 
-dates: March 2019 – May 2023
+In March 2009 I founded a consulting company based on my core development competencies. However, in 2010 the company took a decided turn in focusing this development model around Marketing and CRM systems. Since then the company has grown into a small, experienced group of developers assisting other agencies and B2B companies implement various levels of work revolving the web, marketing and CRM technologies.
 
----
+#### Marketing Automation | CRM | Web Technology consultant — Demandgen International
 
-#### Backend Engineer — (Remote, unnamed company)
+dates: February 2010 - January 2015
 
-Backend Node.js engineer. Replaced Firebase real-time notifications with a custom Node.js module now live in production; currently handling ongoing maintenance.
+My responsibilities included designing and archtitecting campaigns. Within that role I implemented various nurtures, lead scoring programs, email templates, landing page templates, form and form processing, campaign workflows, and CRM adminstration. In additon, as a technical resource I worked on complex CRM integrations, CRM Custom development and custom scripting and development integrating various systems.
 
----
+#### Lead Web Engineer — TradeStation Technologies
 
-#### Frontend Developer — (Two unnamed companies)
+dates: July 1997 - September 200008
 
-3 years of frontend development focused on React.js and Next.js across two companies.
+In 1997, in a few months I went from being a technical support lead to white box testing and options software lead in the company. Shortly thereafter I was made lead of the web team. The complexity of the technology used in high end, world leading brokerage firm, and my experience in working both in ASP.NET ( 1.0 ) and the early versions of PHP to what they have evolved into today gave me an invaluable base which I leveraged to begin my consulting career.
 
 ## Education
 
----
+#### Bachelors of Science — Florida International University
 
-#### Bachelor of Business Administration — Houston Community College
-
-dates: 2022 – 2026
-field: Management Information Systems
-
----
-
-#### High School Degree — The American Foundation School
-
-dates: 2006 – 2019
-field: Computer Science
+dates: 2000-2006
 
 ## Overflow Signals
 
-- **Active team operation** — Freelancer response to the 1-star review explicitly names a team of five (Abdul, Mansoor, Rohail, himself, and a fifth developer); "we" language is used throughout the overview and response, and two associated Upwork accounts (TECHVADERS INC. and TECHVADERS) are linked to this profile, confirming an agency structure with subcontractors.
-- **High booking rate / sustained workload** — 4,433 total hours billed across 36 jobs; multiple concurrent active contracts visible in recent work history (Race Command running ~11 months, Firebase project ~6 months, Full-Stack Flutter/Next.js contract 193 hrs over 2.5 months), indicating near-continuous demand.
-- **Project scale** — The GoVo contract cited in the overview ran to 833+ hours and $21K+; the Race Command contract billed $6,400 fixed-price over nearly a year; the Full-Stack Engineer contract billed 193 hours. Multiple large-scope engagements run simultaneously.
-- **Rate tier mismatch vs. scope** — Profile billing rate is $35/hr (low for a self-described Principal AI Engineer managing a 5-person team), suggesting the account wins volume through competitive pricing but cannot physically absorb all incoming work without subcontracting or overflow.
-- **Job type match** — Work history contains directly relevant projects: React Native migration, Flutter development, Next.js/Node.js/NestJS full-stack contracts, Firebase backend work — all within a frontend/full-stack specialist's wheelhouse.
-- **Client review language** — Reviews cite "always running in the background," "responded quickly," "delivered in under 24 hours," and "understood exactly what was being asked" — signals a reliable operator who handles independently, likely to pass discrete tasks to trusted overflow developers rather than hand-holding them.
+- **High booking rate** — 7,344 total hours across 81 jobs with recent contracts (Nov 2025–Jun 2026) showing continuous demand; 3 jobs currently in progress
+- **Rate tier** — Hourly rates of $60–115/hr across recent contracts, well above $50/hr threshold, indicating premium positioning that limits volume capacity
+- **Project scale** — Multiple large engagements: 627-hour marketing stack unification, 586-hour agency management, 408-hour Salesforce consulting, and 272-hour AI-SaaS build
+- **Team mentions** — Overview explicitly states "I'm founder of Atlas Global Solutions - a small, experienced team since 2009. Larger engagements: me as lead partner with team capacity" and client review notes "he has a solid team"
+- **Client review language** — Reviews consistently highlight "instrumental in helping bring NotaryAgentAi from concept to production-ready", "worked through roadblocks quickly", "thorough, transparent, and efficient", "would absolutely work with Giovanni again"
+- **Job type match** — Work history spans full-stack React/Node.js, AI-SaaS (Node.js, Twilio, Supabase, Playwright), Salesforce architecture, and CRM integrations — directly aligned with frontend, full-stack, and backend work
+- **Agency or team profile signals** — Founder of Atlas Global Solutions since 2009; "small, experienced team"; "we" language in overview; client review explicitly mentions "he and his team stayed on top of the project"
