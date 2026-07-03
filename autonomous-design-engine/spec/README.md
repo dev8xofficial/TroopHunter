@@ -494,7 +494,15 @@ The gated loop on **one section**, from a brief, no memory — the cheapest test
 | 10 | [10-failure-modes.md](./10-failure-modes.md) | **Single source of truth for every failure** (spec + impl) |
 | 11 | [11-guardrails-and-invariants.md](./11-guardrails-and-invariants.md) | **The solutions** — guardrail layer, invariants, resilience, integrity |
 
-**If you only read three:** `00` (why), `05` (the engine), `07` (what we build first). Before implementing, also read `10` (failure modes) and `11` (the guardrails that close them).
+**The continuous-improvement (R&D) layer** — how the system gets *better than itself* over time (docs 00–11 describe the system; 12–14 describe how it improves):
+
+| # | Document | What you'll learn |
+|---|---|---|
+| 12 | [12-design-constitution.md](./12-design-constitution.md) | The **living** design constitution — thin principles the judge is grounded in; what is deliberately left to the AI; the self-amendment protocol |
+| 13 | [13-evaluation-charter.md](./13-evaluation-charter.md) | The **anchor** — a small, human-owned, held-out benchmark and the measurement rigor that lets autonomy be trusted |
+| 14 | [14-research-agenda.md](./14-research-agenda.md) | The **gap map** — every known weakness (A–N) as a prioritised, falsifiable research bet (R1–R18) |
+
+**If you only read three:** `00` (why), `05` (the engine), `07` (what we build first). Before implementing, also read `10` (failure modes) and `11` (the guardrails that close them). For the improvement program, start at `14` (the gap map), then `12` and `13` (its first two artifacts).
 
 ---
 
@@ -520,13 +528,19 @@ The gated loop on **one section**, from a brief, no memory — the cheapest test
 | **Pass Gate** | A section is approved only if deterministic checks AND the Critic pass. |
 | **Best-so-far** | The best candidate seen in a run, always retained so a run never ends worse than its best attempt. |
 | **The route / the destination** | Route = how to design (AI's freedom). Destination = brand/requirements (locked). |
+| **Inner / outer loop** | Inner = generate → self-critique → revise (the engine, `05`). Outer = constitution + preference data + reward model + standing evals — how quality *compounds* across projects (`12`–`14`). |
+| **Design Constitution** | A thin, *living* set of design principles (not rules) the Critic is grounded in; the system proposes amendments, a human ratifies (`12`). |
+| **Evaluation Charter / golden core** | A small, human-owned, held-out benchmark that anchors "good" and catches regressions; the measuring stick that makes autonomy trustworthy (`13`). |
+| **Reward / preference model** | A learned model of design quality trained on accumulated human verdicts — the compounding judge that augments/distills the prompted Critic (`14` R4). |
+| **Research agenda (R-series)** | The prioritised, falsifiable bets (R1–R18) that raise the quality ceiling, in the same "measure, don't predict" culture as the H-series (`14`). |
 
 ---
 
 ## Status & next step
 
-- **Spec:** v0.2, complete for Phase 0 understanding and validation (now includes failure modes + guardrails).
+- **Spec:** v0.3 — system docs (00–11) complete for Phase 0; a continuous-improvement R&D layer (12–14) now seeds the outer loop (constitution, evaluation charter, gap map).
 - **Code:** none yet (intentional).
-- **Next action:** when this spec is accepted, build **Phase 0** (the MVP in [07](./07-mvp-cli.md)), run it on the Burkes hero + ~10 briefs, and measure **H1** ([08](./08-hypotheses-and-validation.md)). Let that evidence decide whether to proceed.
+- **Next action (build):** when this spec is accepted, build **Phase 0** (the MVP in [07](./07-mvp-cli.md)), run it on the Burkes hero + ~10 briefs, and measure **H1** ([08](./08-hypotheses-and-validation.md)). Let that evidence decide whether to proceed.
+- **Next action (R&D):** the improvement program is deliberately *research-first* — no change ships until it shows a measured gain on the [evaluation charter's](./13-evaluation-charter.md) benchmark. Start with **R1** (build the benchmark) since every other bet is measured against it ([14](./14-research-agenda.md)).
 
 > Guiding principle, inherited from our own logs: **report observed numbers, never predicted ones.** Every metric in this spec is a target to measure against — not a claim.
