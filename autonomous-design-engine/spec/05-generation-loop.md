@@ -130,6 +130,7 @@ Rules:
 - **Pairwise over absolute.** When ranking candidates, the Critic compares them head-to-head ("A or B, and why") — far more reliable than absolute 0–100 scores. Absolute scores are still recorded for trend tracking.
 - **Feedback must be actionable.** Each fail returns specific, addressable notes ("the CTA competes with the headline; the photo is cropped too tight at 375") — not "make it better."
 - **The Critic is a proxy, not an oracle.** It is the system's weakest link; it is calibrated over time by human verdicts (see `08` H3/H8). Until then, a human spot-checks Critic "passes."
+- **Beyond the section.** The same Critic capability also runs as a **Phase-Exit Review** ([11 §2.3](./11-guardrails-and-invariants.md)) on the non-section artifacts (brand, design system, library entry), each with its own rubric — the four dimensions above are the *section* rubric, not the Critic's only job.
 
 ---
 

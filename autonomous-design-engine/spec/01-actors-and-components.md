@@ -12,7 +12,7 @@
 | **Client Input** | Data source | Provide business context, content, assets, and optionally ≤5 references | context = **hard**, references = **soft** |
 | **Orchestrator** | AI agent | Run a project: comprehend the brief, sequence sections, assemble inputs, run guardrail gates, enforce consistency, trigger write-back | — (executes policy) |
 | **Generator** | AI agent | Produce the code (React + TypeScript component) for one section | — |
-| **Critic / Judge** | AI agent | Score & rank rendered output against brand + system + brief + quality; decide pass/fail | — (applies the rubric) |
+| **Critic / Judge** | AI agent | Score & rank rendered output against brand + system + brief + quality, and **Phase-Exit-Review each phase artifact** (brand, design system, library entry) before it becomes law downstream; decide pass/fail — always in fresh context | — (applies the rubric) |
 | **Browser (the "Eyes")** | Tool | Render output and screenshot it at each breakpoint | — (reports facts) |
 | **Guardrail Layer** | Tool (deterministic) | Run the deterministic gates — input, render-health, hard-constraint (a11y/token/responsive), schema, de-identification — and gate the loop | — (enforces the hard floor) |
 | **Global Library** | Memory store | Hold cross-project, de-identified design knowledge; answer retrieval queries | **soft** (retrieved as direction) |
@@ -115,6 +115,9 @@ Looks at the **rendered screenshots** (not the code, not a thought-process doc) 
 - Scores against a rubric (brand adherence, design-system adherence, brief fit, craft/quality).
 - For multiple candidates, **ranks pairwise** (more reliable than absolute scores).
 - Emits a pass/fail + targeted, actionable feedback for the next iteration.
+
+The same judging capability also runs as a **Phase-Exit Review** ([11 §2.3](./11-guardrails-and-invariants.md)) at the *other* artifact boundaries — on a derived **Brand Foundation**, a crystallized **Project Design System**, and a distilled **Library entry** — each with its own rubric (these are *data/strategy* artifacts, so the review judges strategy fit and abstraction altitude, not pixels). This widens *where* the Critic runs, not *what* it does: still subjective-only, still in a context **fresh** from whatever produced the artifact (I2), so it remains one component, not two.
+
 The Critic is the system's proxy for taste; it is the weakest link and improves only as human verdicts calibrate it (see `08` H3/H8).
 
 ### 3.6 Browser — the Eyes (the Eyes capability)

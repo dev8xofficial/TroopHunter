@@ -64,6 +64,40 @@ APPROVED  ⇔  (all deterministic Hard-Constraint checks PASS)   AND   (Critic v
 
 This splits the job correctly: **deterministic checks own the objective floor; the Critic owns subjective quality.** The Critic can no longer "pass" something that fails contrast or drifts off-system, and it is never asked to *measure* what code can measure. (Closes the F-QF-* and F-JDG false-pass classes at the structural level.)
 
+### 2.3 Phase-Exit Review — the Pass Gate, generalized to every artifact
+
+The composite Pass Gate above runs at **one** boundary: an approved section. But a section is not the only artifact that becomes a hard input to a later stage. A **Brand Foundation** becomes law for every surface; a **Project Design System** becomes law for every later section; a **Library entry** becomes retrieved direction for every future project. Today each of those is produced and then handed **straight to a human** with no automated review — so an off-brief brand (F-BRD-01), a mis-crystallized system (F-PDS-01), or a badly-abstracted entry (F-WB-02) reaches the human cold, and if the human misses it, the error **propagates to everything downstream**.
+
+The **Phase-Exit Review** closes this by applying the *same composite pattern* at **every** artifact boundary, not just the section one:
+
+```
+An artifact may become an input to a later stage ONLY after it passes its Phase-Exit Gate:
+
+   ┌─ deterministic checks ──┐   ┌──── fresh-context Critic review ────┐   ┌─── human ────┐
+   │ objective, per artifact  │ ∧ │ subjective, per-artifact rubric,    │ ∧ │ at high-stakes │
+   │ (a11y / tokens / schema /│   │ actionable feedback, BOUNDED        │   │ boundaries,    │
+   │  de-id …)                │   │ review → fix → re-check (≤1–2 tries)│   │ until the      │
+   └──────────────────────────┘   └─────────────────────────────────────┘   │ ladder earns   │
+                                                                             │ its removal    │
+                                                                             └────────────────┘
+```
+
+Key properties:
+
+- **It is not a new component or a monolithic "master judge."** It is the existing pair — the deterministic Guardrail Layer (objective) and a **fresh-context Critic** (subjective, I2) — invoked at more boundaries. The Critic review here is an **LLM call and therefore never part of the deterministic Guardrail Layer**; it is the *subjective* half of the composite gate, run on a non-section artifact.
+- **Each boundary has its own rubric**, because the artifacts differ in kind — most are *data/strategy*, not rendered pixels, so the review judges different things than the section (pixel) Critic:
+
+  | Boundary | Review rubric (subjective) | Deterministic half | Closes |
+  |---|---|---|---|
+  | **Brand Foundation** (derived → before approval) | does the derived personality/tone/motion voice fit the business context + provided palette/type? are the 2–3 directions distinct and justified? | palette a11y/contrast (F-BRD-04) | F-BRD-01 |
+  | **Project Design System** (crystallized → before freeze) | do the extracted tokens faithfully capture the hero *without over- or under-specifying*? is the foundation complete enough for later sections, not over-fitted to one? (`04` §3) | schema-valid tokens | F-PDS-01 |
+  | **Library entry** (abstracted → before insert) | is the abstraction at a *transferable* altitude — general enough to reuse, specific enough to be useful? (`04` §6) | de-identification gate (F-WB-01) | F-WB-02 |
+  | **Section** (already gated) | brand/system/brief/craft on rendered pixels (`05` §4) | Hard-Constraint Gate | F-GEN-*, F-QF-* |
+  | **Assembled artifact** (already gated) | cross-section coherence (`06` §5) | responsive / overflow | F-CON-03 |
+
+- **Bounded, not iterative.** Unlike the section Eyes-loop (up to `max_iters`), a phase-exit review is a *gate*, not the engine: **≤1–2 review→fix→re-check** cycles, then escalate to the human. A single review that hands back fixes and lets them through **unverified** is forbidden — that is the open-loop "final exam" the loop replaced (`05` §8); the fix is always re-checked.
+- **It catches bad; it does not certify good.** The Critic is a proxy, not an oracle (`05` §4, §8 below). The Phase-Exit Review is a **pre-human filter + hard floor**, never a reason to remove the human gate at a high-stakes boundary before that boundary's Critic↔human agreement is proven (H8, autonomy ladder `09` §2). It is precisely the surface on which that agreement is *measured*, per boundary.
+
 ---
 
 ## 3. Loop-integrity solutions (bounded, non-regressing, recorded)
@@ -142,6 +176,7 @@ These are guarantees the implementation must uphold and tests must assert. They 
 | **I10** | Every run terminates in exactly one recorded state: approved / escalated / aborted. | bounded loop + escalation | F-LOOP-*, F-SPEC-05 |
 | **I11** | Render-valid screenshots are a precondition for design critique. | render-health gate | F-EYE-05 |
 | **I12** | Reported quality numbers are observed (human-anchored), never predicted or Critic-only. | measurement discipline | F-SPEC-05, F-JDG-02 |
+| **I13** | No artifact becomes a hard input to a later stage without passing its **Phase-Exit Gate** (deterministic checks ∧ fresh-context Critic review); hard-store artifacts additionally require human approval until the autonomy ladder earns its removal. | Phase-Exit Review (§2.3) + human gate | F-BRD-01, F-PDS-01, F-WB-02, error propagation |
 
 ---
 
@@ -157,6 +192,7 @@ Every failure class in [10](./10-failure-modes.md) is addressed by at least one 
 | **Guardrail Layer — Schema Gate** | F-MOD-03, F-GEN-06 |
 | **Guardrail Layer — De-identification Gate** | F-WB-01 |
 | **Composite Pass Gate** | F-JDG-04 (false pass), F-QF-*, F-PDS-02 |
+| **Phase-Exit Review (§2.3)** | F-BRD-01, F-PDS-01, F-WB-02 (error propagation at phase boundaries) |
 | **Best-so-far + bounded loop** | F-LOOP-01/02/04/05, F-MOD-04 |
 | **Durable trace + terminal-state** | F-STO-04, observability across F-LOOP-* |
 | **Resilience rules** | F-MOD-01/02/05/06, F-MEM-03/05/07, F-GEN-06 |
@@ -186,6 +222,7 @@ The cheap, high-value guardrails belong in the **MVP** (Phase 0) — they cost l
 | Best-so-far + bounded loop + durable trace + terminal-state | ✅ | — |
 | Resilience (retries, streaming, refusal, pinned model) | ✅ | — |
 | De-identification Gate | — (no Library in MVP) | ✅ Phase 2 |
+| **Phase-Exit Review (brand / PDS / library)** | — (no hard stores or Library in MVP) | ✅ Phase 1 (brand, PDS) · Phase 2 (library) |
 | Versioning / concurrency / referential integrity | minimal (atomic writes + trace) | ✅ when hard stores exist |
 | Brief Comprehension step | ✅ (lightweight) | richer later |
 
@@ -199,6 +236,6 @@ The cheap, high-value guardrails belong in the **MVP** (Phase 0) — they cost l
 - **The loop gains gates:** render-health before critique; hard-constraint checks as part of the pass; pass = deterministic ∧ Critic ([05](./05-generation-loop.md)).
 - **Stores gain integrity rules:** atomic, versioned, locked, durably traced ([03](./03-data-model.md) §8).
 - **Inputs gain a comprehension step** and injection safety.
-- **The Critic shrinks** to its proper job: subjective quality only. Everything objective moves to code.
+- **The Critic shrinks in *what*, widens in *where*:** its job stays subjective-quality-only (everything objective moves to code), but the same fresh-context judge now runs as a **Phase-Exit Review** on each phase artifact (brand, design system, library entry) before that artifact becomes law downstream (§2.3), not only on section pixels.
 
 This is the difference between a system that *describes* its failure modes and one that is *engineered against them*.

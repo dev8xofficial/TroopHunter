@@ -102,6 +102,8 @@ One section is enough to lock the **foundation** — colors, type scale, spacing
 
 The design system is **frozen at the core, extensible at the component layer** — exactly how human design systems are built (a token + component core first, more components as new screens demand them). Consistency is still guaranteed: the tokens every section draws from never move; only the *set of available components* grows. (Schema + rule in `03` §4; this resolves open question #4 in `09`.)
 
+**Reviewed before it becomes law.** Because the foundation is extracted from a *single* section, a bad extraction (a hero that over- or under-specifies tokens — F-PDS-01) would lock an error into every later section. So crystallization output passes a **Phase-Exit Review** before it is frozen ([11 §2.3](./11-guardrails-and-invariants.md)): a fresh-context Critic checks the candidate tokens against the brand and the approved hero — *are these the right primitives? is anything over-fitted to this one section, or missing something later sections will need?* — and returns an over/under-specified foundation for bounded correction. Only a reviewed foundation is frozen; the human still signs off, but on a pre-filtered system.
+
 ---
 
 ## 4. The "one hero → three stores" fan-out
@@ -168,6 +170,7 @@ What makes it *smarter* rather than a junk drawer:
 - Entries are **evidence-weighted**. One project → `confidence: low` (a hypothesis). Corroboration across projects + positive human verdicts → confidence rises. Rejected/under-performing patterns are down-weighted or deleted.
 - Retrieval ranks by **similarity × confidence**, so validated knowledge surfaces and unproven guesses sink.
 - This is where **human taste accretes** into the system: every approve/reject verdict re-weights the Library. Over time it reflects *what has actually worked for us, judged by us* — the whole point of Goal B, and why the judge (taste) is the long-term bottleneck (`09`).
+- **Altitude is reviewed before an entry is stored.** The hardest part of distillation is picking the right *altitude* — too specific and the entry never transfers, too vague and it never helps (F-WB-02). So after de-identification and abstraction, each candidate entry passes a **Phase-Exit Review** ([11 §2.3](./11-guardrails-and-invariants.md)): a fresh-context Critic judges whether the lesson is at a transferable altitude (a reusable *pattern*, not a one-off instance and not an empty generality) and returns a mis-abstracted entry for bounded re-distillation before it can pollute retrieval.
 
 ---
 

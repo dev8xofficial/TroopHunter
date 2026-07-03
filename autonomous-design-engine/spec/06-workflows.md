@@ -33,6 +33,7 @@ sequenceDiagram
     participant O as Orchestrator
     participant R as Retriever
     participant G as Generator
+    participant C as Critic (fresh ctx)
     participant BF as Brand Foundation
 
     U->>O: design brand --client burkes --context brief.md --brand-data brand-data.json [--refs ...]
@@ -41,7 +42,9 @@ sequenceDiagram
     R-->>O: top-k Library entries
     O->>G: DERIVE the rest from givens + business context (+soft direction)
     G-->>O: derived BrandFoundation (personality, tone, motion, color-usage) grounded in the givens
-    O->>U: present derived foundation for approval
+    O->>C: PHASE-EXIT REVIEW — does the derived strategy fit the business context + givens? (fresh ctx)
+    C-->>O: pass · or targeted issues → bounded re-derive (≤1–2) before a human sees it
+    O->>U: present reviewed foundation for approval
     alt approved
         U-->>O: approve
         O->>BF: write status=frozen (palette/type=provided · rest=derived)
@@ -51,7 +54,7 @@ sequenceDiagram
     end
 ```
 
-**Burkes:** the Lead provides only the **givens** — a warm-neutral palette + humanist display / clean UI families (`brand-data.json`). From those plus the real-estate business context, the AI **derives** the personality `[trust, legacy, reliable, modern]`, an assured/editorial tone, and a restrained cinematic motion voice; the Lead approves; it freezes. Disagreement is resolved by re-deriving (adjust an input), not by hand-editing a derived field. (This same frozen brand is reused in §6 for the product.)
+**Burkes:** the Lead provides only the **givens** — a warm-neutral palette + humanist display / clean UI families (`brand-data.json`). From those plus the real-estate business context, the AI **derives** the personality `[trust, legacy, reliable, modern]`, an assured/editorial tone, and a restrained cinematic motion voice; the Lead approves; it freezes. Disagreement is resolved by re-deriving (adjust an input), not by hand-editing a derived field. Before the Lead is asked to approve, a **Phase-Exit Review** (a fresh-context Critic, [11 §2.3](./11-guardrails-and-invariants.md)) checks that the derived strategy actually fits the business context and the given palette/type, returning an off-brief derivation for bounded re-derivation first — so the human reviews a pre-filtered result, not a cold draft (F-BRD-01). (This same frozen brand is reused in §6 for the product.)
 
 ---
 
@@ -62,16 +65,20 @@ sequenceDiagram
     participant O as Orchestrator
     participant L as Loop (05)
     participant U as Design Lead
+    participant C as Critic (fresh ctx)
     participant PDS as Project Design System
 
     O->>L: design section "hero" (system OPEN)
     L-->>O: approved hero (passed Critic)
     O->>U: present hero
     U-->>O: approve (taste verdict recorded)
-    O->>PDS: CRYSTALLIZE → freeze FOUNDATION (tokens) + hero components (status: open→foundation-frozen)
+    O->>O: CRYSTALLIZE → extract candidate FOUNDATION (tokens) + hero components
+    O->>C: PHASE-EXIT REVIEW — do the tokens capture the hero without over/under-specifying? (fresh ctx)
+    C-->>O: pass · or issues → bounded correction (≤1–2)
+    O->>PDS: freeze reviewed foundation (status: open→foundation-frozen)
 ```
 
-The hero is designed with the loop; on human approval its **foundation** (tokens) is frozen into the Project Design System and the hero's components are locked. Later sections build against those frozen tokens and may *add* new components, never change them (`04` §3, `03` §4). The verdict is recorded for Library write-back and Critic calibration.
+The hero is designed with the loop; on human approval its **foundation** (tokens) is extracted, **Phase-Exit-Reviewed** (a fresh-context Critic checks the crystallized tokens against the brand + hero for over/under-specification before they become law — [11 §2.3](./11-guardrails-and-invariants.md)), then frozen into the Project Design System and the hero's components are locked. Later sections build against those frozen tokens and may *add* new components, never change them (`04` §3, `03` §4). The verdict is recorded for Library write-back and Critic calibration.
 
 ---
 
@@ -101,11 +108,14 @@ flowchart LR
     A["assemble sections → full artifact"] --> Q["whole-artifact QA<br/>(Critic pass over the assembled page:<br/>cross-section coherence, nav, responsive)"]
     Q -->|pass| D["deliver"]
     Q -->|fail| FIX["re-loop the offending section"]
-    D --> WB["write-back:<br/>distill de-identified entries + verdicts → Library"]
+    D --> WB["write-back:<br/>distill de-identified entries + verdicts"]
+    WB --> PER["Phase-Exit Review<br/>(abstraction altitude:<br/>transferable, not too specific/vague)"]
+    PER -->|pass| LIB[("Library")]
+    PER -->|fail| REAB["bounded re-abstraction"]
 ```
 
-- **QA** is a Critic pass over the *assembled* artifact, catching cross-section issues a per-section pass can't (inconsistent nav, rhythm breaks across sections).
-- **Write-back** runs once, post-delivery (`04` §6).
+- **QA** is a Critic pass over the *assembled* artifact, catching cross-section issues a per-section pass can't (inconsistent nav, rhythm breaks across sections). *(This whole-artifact QA is itself a Phase-Exit Review — the artifact-level instance of the same pattern, [11 §2.3](./11-guardrails-and-invariants.md).)*
+- **Write-back** runs once, post-delivery (`04` §6); each distilled entry passes a **Phase-Exit Review** of its abstraction altitude before it enters the Library, so a too-specific or too-vague lesson is re-abstracted rather than stored (F-WB-02).
 
 ---
 
@@ -155,6 +165,8 @@ HUMAN gates (destination):                 AI runs unattended (route):
   • section approval / taste verdict         • retrieval + synthesis
   • final delivery sign-off                  • crystallization (mechanical)
                                              • write-back distillation
+                                             • PHASE-EXIT REVIEW before each human gate
+                                               (pre-filters brand / PDS / entries — 11 §2.3)
 ```
 
-Over successive projects, as the Critic calibrates to human verdicts (`08` H8), the human gates can be relaxed — the **autonomy ladder** in `09`. Early on, every Critic "pass" is human-spot-checked; later, only exceptions are.
+Over successive projects, as the Critic calibrates to human verdicts (`08` H8), the human gates can be relaxed — the **autonomy ladder** in `09`. Early on, every Critic "pass" is human-spot-checked; later, only exceptions are. The **Phase-Exit Review** ([11 §2.3](./11-guardrails-and-invariants.md)) sits just *inside* each human gate: it never replaces the human, but it pre-filters what reaches them, and its per-boundary agreement with the human is exactly what the ladder measures before a gate is relaxed.

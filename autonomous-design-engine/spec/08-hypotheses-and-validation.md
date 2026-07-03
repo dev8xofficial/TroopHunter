@@ -70,8 +70,8 @@ The ordering is also a **dependency order**: H1 must hold before H2–H8 are wor
 
 ### H8 — Taste calibration
 - **Statement:** The judge's verdicts can be calibrated toward human verdicts over successive projects (feeding verdicts back).
-- **Test:** Track Critic↔human agreement over time as human verdicts accumulate and are used to tune the rubric / examples.
-- **Pass metric:** agreement **rises** across batches (a positive trend), trending toward a usable threshold for relaxing human gates.
+- **Test:** Track Critic↔human agreement over time as human verdicts accumulate and are used to tune the rubric / examples. Track it **per boundary** — section, brand, design system, and library each have their own **Phase-Exit Review** ([11 §2.3](./11-guardrails-and-invariants.md)) and calibrate independently (agreement on brand strategy is a different measurement than agreement on section craft).
+- **Pass metric:** agreement **rises** across batches (a positive trend), trending toward a usable threshold for relaxing human gates — **a gate is relaxed only where its own boundary's agreement clears the bar.**
 - **This is the hardest and longest** — it is the open research problem (`09`), not an MVP deliverable.
 
 ---

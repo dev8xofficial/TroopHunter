@@ -32,6 +32,7 @@
 | **MP-10** | **Render-health gate before critique** — verify the render is valid (no error overlay, fonts/images loaded, non-blank, settled) *before* the Critic judges; repair render issues separately from design | misattributing render bugs to design |
 | **MP-11** | **Provider resilience** — retries with backoff, refusal fallbacks, timeouts, streaming for large output, pinned model id | model API failures, refusals, version drift |
 | **MP-12** | **Human gate at the destination** — brand approval + section sign-off remain human until Critic↔human agreement is proven; autonomy ladder gated on measured agreement | over-automation, false passes |
+| **MP-13** | **Phase-Exit Review** — a fresh-context Critic review of each *phase artifact* (Brand Foundation, Project Design System, Library entry) against a per-artifact rubric, run **before** the human gate; bounded review→fix→re-check; a pre-human filter that stops a bad artifact propagating downstream, and the surface on which per-boundary Critic↔human agreement is calibrated ([11 §2.3](./11-guardrails-and-invariants.md)) | error propagation from unreviewed phase artifacts, off-brief brand, mis-crystallization, bad abstraction |
 
 ---
 
@@ -252,9 +253,9 @@
 - **Root cause:** Weak mapping from business context to visual identity; model default style.
 - **Detection:** Human rejects at the brand approval gate; mismatch with the business context obvious.
 - **Impact:** Re-work at the foundation level; everything downstream would inherit the error.
-- **Mitigation:** Human approval gate before freeze ([06 §2](./06-workflows.md)); derive 2–3 directions with rationale tied to the business context; **re-derive (don't hand-patch)** on rejection [MP-12].
+- **Mitigation:** A **Phase-Exit Review** of the derived brand against the business context + provided givens **before** the human sees it — catches an off-brief derivation early and returns it for bounded re-derivation ([11 §2.3](./11-guardrails-and-invariants.md)) [MP-13]; human approval gate before freeze ([06 §2](./06-workflows.md)); derive 2–3 directions with rationale tied to the business context; **re-derive (don't hand-patch)** on rejection [MP-12].
 - **Recovery:** Enrich an input; re-derive and re-present.
-- **Validation:** Human approval rate; context-match rubric.
+- **Validation:** Human approval rate; context-match rubric; Phase-Exit-Review↔human agreement at the brand boundary (feeds H8).
 
 ### F-BRD-02 — Brand drift after freeze
 **Level:** impl · **Severity:** High · **Area:** Brand
@@ -296,9 +297,9 @@
 - **Root cause:** One section may not represent the full system; extractor misreads the hero (open question #4, [09](./09-roadmap-and-open-questions.md)).
 - **Detection:** Later sections repeatedly fight the frozen tokens; humans note token values "feel off" system-wide.
 - **Impact:** Every later section inherits the error; expensive to undo.
-- **Mitigation:** Freeze only the **foundation** after section 1 and grow components ([04 §3](./04-memory-and-consistency.md)); the Crystallizer extracts conservatively; human reviews the crystallized system once.
+- **Mitigation:** A **Phase-Exit Review** of the crystallized system against the brand + hero **before** it is frozen — flags over- or under-specified tokens for bounded correction, catching a bad foundation before it becomes law ([11 §2.3](./11-guardrails-and-invariants.md)) [MP-13]; freeze only the **foundation** after section 1 and grow components ([04 §3](./04-memory-and-consistency.md)); the Crystallizer extracts conservatively; human reviews the crystallized system once.
 - **Recovery:** Allow a one-time foundation correction with explicit re-version (rare, audited); re-emit affected sections.
-- **Validation:** Phase-1 study: does a hero alone yield a correct foundation? (relates to H4).
+- **Validation:** Phase-1 study: does a hero alone yield a correct foundation? (relates to H4); Phase-Exit-Review↔human agreement at the crystallization boundary.
 
 ### F-PDS-02 — Token contradiction by a later section
 **Level:** spec+impl · **Severity:** High · **Area:** Consistency
@@ -606,7 +607,7 @@
 - **Root cause:** Wrong altitude during distillation (open question #3).
 - **Detection:** Entries never retrieved (too specific) or always retrieved but unhelpful (too vague).
 - **Impact:** Library doesn't compound (H6).
-- **Mitigation:** Tag by type (principle/pattern/recipe); favor the mid "pattern" altitude; let retrieval+reuse select altitude [MP-9].
+- **Mitigation:** A **Phase-Exit Review** of each distilled entry's abstraction altitude **before** insert — too-specific or too-vague entries are returned for bounded re-abstraction ([11 §2.3](./11-guardrails-and-invariants.md)) [MP-13]; tag by type (principle/pattern/recipe); favor the mid "pattern" altitude; let retrieval+reuse select altitude [MP-9].
 - **Recovery:** Re-distill at a better altitude; merge/split entries.
 - **Validation:** Track retrieval+reuse rates by altitude; measure H6.
 
