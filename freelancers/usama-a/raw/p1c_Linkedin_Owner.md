@@ -1,5 +1,5 @@
 Usama Asfoor
-· 2nd
+· 3rd
 
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
 
@@ -20,11 +20,8 @@ Item 12
 connections
 
 
-Pearl is a mutual connection
-
-
 Follow
-Message Usama
+Message
 
 Sales Insights
 
@@ -33,13 +30,8 @@ Key signals
 
 Usama posted in the past 30 days
 
-People who can introduce you
-
-
-Pearl Prak, your connection
-
-Retry Sales Navigator
-Cancel anytime. No hidden fees.
+Try Sales Navigator for $0
+1-month free trial with 24/7 support. We’ll remind you 7 days before your trial ends.
 
 About
 I built a software for people who live on LinkedIn.
@@ -48,7 +40,7 @@ Item 12 is the sales command center I wish existed: prospect and enrich, run age
 
 Less tab-switching. Less admin. More pipeline.
 
-Chill about the process, serious about the problem. Still experimenting — still shipping.… more
+Chill about the process, serious about the problem. Still experimenting — still shipping.
 
 Top skills
 
@@ -63,17 +55,73 @@ Database Development
 
 Mobile Application Development
 
-SaaS DevelopmenFeatured
-Media
+SaaS Development
+
+Web Design
+
+Web Development
+
+iOS Development
+
+Cloud Management
+
+Cybersecurity
+
+Request services
+Show all
 
 
-Try Item 12: The #1 Way to Manage Linkedin Networking
+Experience
+Founder
 
-Item 12 helps you save time and generate more leads on LinkedIn. It’s not only short-term outreach automation: scan profile QR codes at conferences, auto-enroll contacts into agent workflows, and schedule LinkedIn posts that build your name and attract inbound leads.View Usama Asfoor’s  graphic link
+Item 12 · Full-time
+
+Apr 2026 - Present · 4 mos
+
+Link AI logo
+Success Coach
+
+Link AI · Full-time
+
+Mar 2024 - Present · 2 yrs 5 mos
+
+Powering sales professionals, founders, and more with an AI search engine + autopilot outreach tool for LinkedIn. Giving you powerful personalization and time saving lead generation at your fingertips
+
+a. Development Agency logo
+Founder
+
+a. Development Agency · Full-time
+
+Feb 2023 - Present · 3 yrs 6 mos
+
+San Francisco Bay Area
+
+We are a full-service IT and software development company, trusted by clients across all 7 continents. We specialize in building custom web, mobile, and SaaS applications, full-stack solutions, and MVPs for startups. Our team develops AI apps, chatbots, CRM systems, and workflow automations, along with no-code tools and dashboards. We handle API integrations, real-time systems, CRM customizations, marketing automations, responsive UI/UX, scalable backends, microservices, fintech systems, and provide ongoing maintenance and support.
+
+
+Education
+UC Berkeley School of Information logo
+UC Berkeley School of Information
+
+Masters of information, Cybersecurity
+
+Aug 2021 – Aug 2023
+
+UC Berkeley Extension logo
+UC Berkeley Extension
+
+Cybersecurity
+
+Aug 2021 – Feb 2022
+
+Completed a boot camp at UC Berkeley that is dedicated to the field of cybersecurity with an A+ academic average. In a matter of 6 months, I strongly enhanced my knowledge in hacking, and incorporated it with many real world-like projects and assignments. This experience helped me gain a lot of cyber maturity knowledge. I now have a great understanding of the aspects of a cyber attack and learned different risk mitigation strategies, front end and back end integrations, and also using open source intelligence tools. I dove into multiple projects that simulate real world instances, using different TTPs (Tactics Techniques and Procedures) on each phase of the cyber kill chain. On top of studying and implementing attacks, I also learned the art of defense using IDS, IPS, network firewalls and recognizing data patterns using analytic tools and SEIM applications. This bootcamp greatly impacted my never-ending journey of learning, and kick started my trip down the cyber security rabbit hole.
+
+
+View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
-5d •  5 days ago • Visible to anyone on or off LinkedIn
+1w •  1 week ago • Visible to anyone on or off LinkedIn
 
 Follow
 
@@ -91,23 +139,18 @@ Full Item 12 vs LinkMCP breakdown (plus when ConnectSafely fits):
 https://lnkd.in/gjBqXfET 
  
 What's your team's non-negotiable — Navigator filters, CRM inbox, or human review before send?
-…more
-like
-2
+likelove
+3
 
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 2
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
-6d •  6 days ago • Visible to anyone on or off LinkedIn
+1w •  1 week ago • Visible to anyone on or off LinkedIn
 
 Follow
 
@@ -131,24 +174,19 @@ I wrote the full setup + 5 copy-paste prompts we actually use:
 https://lnkd.in/gYZkVXt5 
  
 If you've tried LinkedIn MCP — what broke first: setup, or trusting it not to auto-send?
-…more
-like
-2
+likelove
+3
 1 comment
 
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 3
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
-1w •  1 week ago • Visible to anyone on or off LinkedIn
+2w •  2 weeks ago • Visible to anyone on or off LinkedIn
 
 Follow
 
@@ -177,21 +215,18 @@ https://lnkd.in/gr9zeigM
 Free tier includes MCP. LinkedIn search is free. 
  
 What's your #1 use case — inbox, search, or pipeline?
-…more
+love
+1
 
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 4
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
-1w •  1 week ago • Visible to anyone on or off LinkedIn
+2w •  2 weeks ago • Visible to anyone on or off LinkedIn
 
 Follow
 
@@ -215,7 +250,6 @@ Full 2026 comparison → https://lnkd.in/gYReE_fA
 What would you add to this list? 
  
 hashtag#LinkedInSales hashtag#CRM hashtag#B2BSales hashtag#SalesOps hashtag#MCP
-…more
 like
 8
 2 comments
@@ -224,16 +258,12 @@ like
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 5
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
-4w •  0 months ago • Visible to anyone on or off LinkedIn
+1mo •  1 month ago • Visible to anyone on or off LinkedIn
 
 Follow
 
@@ -242,7 +272,6 @@ I'm thrilled to announce the launch of Item12.com, a powerful LinkedIn CRM desig
 With Item12, you can streamline your workflows and enhance your outreach efforts. Our platform features a unique MCP that seamlessly integrates with Claude, allowing you to run various workflows for searching, prospecting, outreach, analytics, and posting. 
  
 If you are looking to boost your sales efficiency or elevate your marketing strategies, then try it for free at item12.com!
-…more
 Activate to view larger image,
 graphical user interface
 Activate to view larger image,
@@ -252,14 +281,10 @@ like
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 6
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
 1yr •  1 year ago • Visible to anyone on or off LinkedIn
 
@@ -268,26 +293,39 @@ Follow
 Previously live
 
 Play
+
+Back to start of video
+
+Skip back 10 seconds
+
+Skip ahead 10 seconds
+Current time 0:08/Duration 1:24:19
+1x
+
+Playback speed
+
+Open Captions Menu
+
+Unmute
+
+Turn fullscreen on
+i kind of
 Event ended
 
 Free Workshop: My AI-Powered LinkedIn Lead Generation Formula
  Linkedin Live
 
-likelove
+likelovesupport
 11
 36 comments
 
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 7
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
 11mo •  11 months ago • Visible to anyone on or off LinkedIn
 
@@ -338,9 +376,19 @@ Quality leads. Increased conversions.
 Which of these strategies have you tried? Let's discuss in the comments!
 
 hashtag#LinkedIn hashtag#LeadGeneration hashtag#ArtificialIntelligence hashtag#AI
-…more
 
 Play
+Remaining time 
+0:17
+1x
+
+Playback speed
+
+Turn closed captions on
+
+Unmute
+
+Turn fullscreen on
 likelove
 8
 1 comment
@@ -348,14 +396,10 @@ likelove
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 8
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
 11mo •  11 months ago • Visible to anyone on or off LinkedIn
 
@@ -413,7 +457,6 @@ They become adept enough to exploit this one.
 Did you find this enlightening? 
 
 ♻️ Repost to share with your network ♻️
-…more
 likelovesupport
 6
 1 comment
@@ -421,14 +464,10 @@ likelovesupport
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 9
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
 11mo •  11 months ago • Visible to anyone on or off LinkedIn
 
@@ -474,7 +513,6 @@ That’s how you get noticed.
 That’s how you generate leads.
 
 Which of these techniques have you mastered so far?👇
-…more
 likeloveinsightful
 15
 1 comment
@@ -482,14 +520,10 @@ likeloveinsightful
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 10
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
 11mo •  11 months ago • Visible to anyone on or off LinkedIn
 
@@ -524,16 +558,12 @@ likesupportlove
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 11
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
-11mo •  11 months ago • Visible to anyone on or off LinkedIn
+1yr •  1 year ago • Visible to anyone on or off LinkedIn
 
 Follow
 
@@ -572,23 +602,18 @@ Try this approach and tell me how it goes!
 P.S. - How do approach your LinkedIn connection requests?
 
 hashtag#LinkedinMarketing hashtag#LeadGeneration hashtag#DigitalMarketing hashtag#SocialSelling
-…more
 likelove
 5
 
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 12
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
-11mo •  11 months ago • Visible to anyone on or off LinkedIn
+1yr •  1 year ago • Visible to anyone on or off LinkedIn
 
 Follow
 
@@ -643,23 +668,18 @@ They adapt to master this voyage.
 Found this informative?
 
 ♻️ Remember to share with your professional tribe ♻️
-…more
 insightfullike
 4
 
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 13
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
-11mo •  11 months ago • Visible to anyone on or off LinkedIn
+1yr •  1 year ago • Visible to anyone on or off LinkedIn
 
 Follow
 
@@ -718,25 +738,31 @@ Which of these strategies are you using?
 hashtag#AI hashtag#LeadGeneration hashtag#LinkedIn hashtag#EngageToConvert hashtag#StrategyIsKey
 
 Share your thoughts below - I'd love your insights!
-…more
 
 Play
+Remaining time 
+0:36
+1x
+
+Playback speed
+
+Turn closed captions on
+
+Unmute
+
+Turn fullscreen on
 insightful
 2
 
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 14
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
-11mo •  11 months ago • Visible to anyone on or off LinkedIn
+1yr •  1 year ago • Visible to anyone on or off LinkedIn
 
 Follow
 
@@ -788,32 +814,37 @@ Which of these hashtag#AILeadGen strategies have you used?
 Let's start a conversation; comment with your choice, and why!
 
 hashtag#LeadGeneration hashtag#AI hashtag#LinkedInLeads hashtag#AIChatbots hashtag#PredictiveAnalytics hashtag#ContentCuration hashtag#CRM hashtag#CustomerInsights
-…more
 
 Play
+Remaining time 
+0:17
+1x
+
+Playback speed
+
+Turn closed captions on
+
+Unmute
+
+Turn fullscreen on
 likesupportlove
 15
 
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 15
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
-11mo •  11 months ago • Visible to anyone on or off LinkedIn
+1yr •  1 year ago • Visible to anyone on or off LinkedIn
 
 Follow
 
 Sales and generating leads is super stressful. Make sure you are enjoying your life in the process guys🤌
 
 hashtag#sales hashtag#marketing hashtag#leadgeneration
-…more
 Activate to view larger image,
 No alternative text description for this image
 Activate to view larger image,
@@ -823,16 +854,12 @@ love
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 16
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
-11mo •  11 months ago • Visible to anyone on or off LinkedIn
+1yr •  1 year ago • Visible to anyone on or off LinkedIn
 
 Follow
 
@@ -887,21 +914,16 @@ They build meaningful relationships.
 Found this helpful?
 
 ♻️ Feel free to share with your network. ♻️
-…more
 likeloveinsightful
 12
 
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 17
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
 1yr •  1 year ago • Visible to anyone on or off LinkedIn
 
@@ -969,23 +991,29 @@ What AI strategies have you explored for LinkedIn Lead Generation?
 hashtag#ArtificialIntelligence hashtag#LeadGeneration hashtag#LinkedInStrategies hashtag#AIinMarketing 
 
 Drop a comment below, let's get talking!
-…more
 
 Play
+Remaining time 
+0:37
+1x
+
+Playback speed
+
+Turn closed captions on
+
+Unmute
+
+Turn fullscreen on
 lovelike
 3
 
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 18
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
 1yr •  1 year ago • Visible to anyone on or off LinkedIn
 
@@ -1014,21 +1042,16 @@ Got an engaging LinkedIn success story? Share in the comments below.
 hashtag#LinkedIn hashtag#LeadGeneration hashtag#Networking hashtag#BusinessGrowth
 
 ☑️ Share this with your network and follow me for more insights.
-…more
 lovelike
 3
 
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 19
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
 1yr •  1 year ago • Visible to anyone on or off LinkedIn
 
@@ -1086,7 +1109,6 @@ They become tough enough to sail through this one.
 Found this insightful?
 
 ♻️ Share with your network and let's keep learning. ♻️
-…more
 likeloveinsightful
 18
 2 comments
@@ -1094,14 +1116,10 @@ likeloveinsightful
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 20
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
 1yr •  1 year ago • Visible to anyone on or off LinkedIn
 
@@ -1147,21 +1165,16 @@ That’s how you generate leads.
 That’s how you make sales.
 
 Which of these have you already implemented?👇
-…more
 love
 2
 
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 21
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
 1yr •  1 year ago • Visible to anyone on or off LinkedIn
 
@@ -1208,21 +1221,16 @@ That's the way to ignite conversations.
 That's your ticket to lead generation.
 
 So, which of these strategies have you tested? 👇
-…more
 love
 2
 
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 22
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
 1yr •  1 year ago • Visible to anyone on or off LinkedIn
 
@@ -1235,7 +1243,6 @@ The art of generating leads on LinkedIn is far from dead - in fact, it's thrivin
 I recently discovered the power of leveraging Link AI's top performing campaigns to supercharge my own lead generation efforts. By analyzing their strategies and techniques, I was able to adapt and implement them into my own campaigns with incredible results. The key? Personalization, engagement, and providing value to your audience every step of the way.
 
 To help you unlock the full potential of lead generation on LinkedIn, I've put together a free guide with all the tips and tricks you need to succeed. Click the link in my profile to get your hands on it now and start generating leads like never before! 🌐💼 hashtag#LeadGeneration hashtag#LinkedInLeads hashtag#LinkAI hashtag#FreeGuide
-…more
 Activate to view larger image,
 No alternative text description for this image
 Activate to view larger image,
@@ -1246,14 +1253,10 @@ lovelike
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 23
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
 1yr •  1 year ago • Visible to anyone on or off LinkedIn
 
@@ -1266,7 +1269,6 @@ LinkedIn isn't just a platform for connecting with professionals - it's a powerh
 I recently discovered the power of Link AI's top performing campaigns and decided to implement their strategies for lead generation. The results were astounding - I saw a significant increase in inbound leads and engagement from my target audience.
 
 I've put together a free guide detailing how you can replicate this success for yourself. Check out the link in my profile to get your hands on it and start generating leads like never before. Don't miss out on this valuable resource! hashtag#LinkedInLeadGeneration hashtag#FreeGuide hashtag#LinkAISuccess
-…more
 Activate to view larger image,
 No alternative text description for this image
 Activate to view larger image,
@@ -1276,14 +1278,10 @@ love
 Like
 
 Comment
-
-Repost
-
-Send
 Feed post number 24
 View Usama Asfoor’s  graphic link
 Usama AsfoorUsama Asfoor
-   • 2ndVerified • 2nd
+   • 3rd+Verified • 3rd+
 Founder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & AnalyticsFounder @ Item12.com | Platform for Sales & Marketing Teams That Live on LinkedIn 👔 | Linkedin CRM, MCP, Agentic Follow-Up & Analytics
 1yr •  1 year ago • Visible to anyone on or off LinkedIn
 
@@ -1296,7 +1294,6 @@ The art of generating leads on LinkedIn isn't dead - in fact, it's more powerful
 I recently discovered the secret to success in lead generation on LinkedIn by taking inspiration from the top performing campaigns of Link AI. By implementing their strategies and tactics, I was able to see a significant increase in leads and conversions for my own business.
 
 I wanted to share my learnings with you all, so I've put together a free guide on how to replicate these results for yourself. Head to my profile to check it out and kickstart your lead generation efforts on LinkedIn today! Let's connect and grow together. 💡 hashtag#LeadGeneration hashtag#LinkedInTips hashtag#FreeGuide
-…more
 Activate to view larger image,
 No alternative text description for this image
 Activate to view larger image,
@@ -1306,93 +1303,3 @@ likeloveinsightful
 Like
 
 Comment
-
-Repost
-
-Send
-
-Experience
-Founder
-
-Item 12 · Full-time
-
-Apr 2026 - Present · 3 mos
-
-Link AI logo
-Success Coach
-
-Link AI · Full-time
-
-Mar 2024 - Present · 2 yrs 4 mos
-
-Powering sales professionals, founders, and more with an AI search engine + autopilot outreach tool for LinkedIn. Giving you powerful personalization and time saving lead generation at your fingertips
-
-a. Development Agency logo
-Founder
-
-a. Development Agency · Full-time
-
-Feb 2023 - Present · 3 yrs 5 mos
-
-San Francisco Bay Area
-
-We are a full-service IT and software development company, trusted by clients across all 7 continents. We specialize in building custom web, mobile, and SaaS applications, full-stack solutions, and MVPs for startups. Our team develops AI apps, chatbots, CRM systems, and workflow automations, along with no-code tools and dashboards. We handle API integrations, real-time systems, CRM customizations, marketing automations, responsive UI/UX, scalable backends, microservices, fintech systems, and provide ongoing maintenance and support.… more
-
-Education
-UC Berkeley School of Information logo
-UC Berkeley School of Information
-
-Masters of information, Cybersecurity
-
-Aug 2021 – Aug 2023
-
-UC Berkeley Extension logo
-UC Berkeley Extension
-
-Cybersecurity
-
-Aug 2021 – Feb 2022
-
-Completed a boot camp at UC Berkeley that is dedicated to the field of cybersecurity with an A+ academic average. In a matter of 6 months, I strongly enhanced my knowledge in hacking, and incorporated it with many real world-like projects and assignments. This experience helped me gain a lot of cyber maturity knowledge. I now have a great understanding of the aspects of a cyber attack and learned different risk mitigation strategies, front end and back end integrations, and also using open source intelligence tools. I dove into multiple projects that simulate real world instances, using different TTPs (Tactics Techniques and Procedures) on each phase of the cyber kill chain. On top of studying and implementing attacks, I also learned the art of defense using IDS, IPS, network firewalls and recognizing data patterns using analytic tools and SEIM applications. This bootcamp greatly impacted my never-ending journey of learning, and kick started my trip down the cyber security rabbit hole.
-
-Show all 3 educations
-Skills (42)
-JavaScript
-
-Mobile Application Development
-
-Show all
-Interests
-
-Top Voices
-
-Companies
-
-Groups
-
-Newsletters
-
-Schools
-
-Marcus Chan 
-
-· 2nd
-
-Sales org underperforming despite trying everything? I help CEOs, founders & B2B sales leaders use their own data to pinpoint the best 3 moves to grow revenue | $195M ex-Fortune 500 leader | WSJ bestseller | 700+ Clients
-
-102,151 followers
-
-
-Follow
-
-Kashish Gupta 
-
-· 2nd
-
-Co-CEO @ Hightouch | AI for Marketers
-
-28,800 followers
-
-
-Follow
-Show all
