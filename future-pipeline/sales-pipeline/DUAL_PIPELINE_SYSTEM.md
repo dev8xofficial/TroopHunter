@@ -67,9 +67,9 @@ Unaware → Curious → Concerned → Trusting → Committed → Paying
 |---|-------|------|-------------|--------------|--------|
 | 0 | Intelligence | Internal | Research the prospect. Decision Card + Problem Register + Lead Qualification. | Intelligence Package (internal) | ✅ Exists |
 | 1 | Warming | Free | 2-3 weeks of LinkedIn engagement. Genuine comments. Build familiarity. | Comment sequence (p2a) | ✅ Exists |
-| 2 | 🔥 First Video | Free | Personalized video proving you understand their problem. DM + video. | Brief (p3a) + Video (p3b) + DM wrapper | ✅ Exists |
-| 3 | 🔥 Messaging | Free | Reply handling, objection responses, every scenario covered. | Follow-up sequence + War-game responses | 🔥 BUILD NOW |
-| 4 | 🔥 Consultation | **PAID** | Live 45-60 min diagnosis. Capture real numbers. Leave-behind document. | Playbook (p3c) + Operational Diagnosis | ✅ Exists |
+| 2 | 🔥 First Video | Free | Personalized video proving you understand their problem. DM + video. | Brief (p3a) + Video Script (p3, Part A) + DM wrapper | ✅ Exists |
+| 3 | 🔥 Messaging | Free | Reply handling, objection responses, every scenario covered. | Follow-up sequence + full War-game matrix (p3, Part B) | ✅ Exists |
+| 4 | 🔥 Consultation | **PAID** | Live 45-60 min diagnosis. Capture real numbers. Leave-behind document. | Call script + capture sheet + Operational Diagnosis (p3, Parts C-E) | ✅ Exists |
 | 5 | Demo | **PAID** | Working prototype built around their operations. | Demo portals (p4d) + Pitch (p4e) | Future |
 | 6 | Proposal | **PAID** | Full proposal + pitch video + blueprint. | Proposal suite (p5a-c) | Future |
 | 7 | Build + Expand | **PAID** | Development, delivery, training, expansion discovery. | Project deliverables | Future |
@@ -254,9 +254,7 @@ Comparing → Impressed → Convinced → Trusting → Committed → Paying
 |--------|---------|--------|
 | `p2a_Lead_Warming` | LinkedIn engagement | ✅ |
 | `p3a_Decision_Safety_Brief` | Problem-only brief (HTML) | ✅ |
-| `p3b_First_Video_Script` | Video + follow-up Messages 1-3 | ✅ |
-| `p3c_Consultation_Playbook` | Live paid consultation | ✅ |
-| `p3d_Objection_Playbook` | War-game responses | 🔥 BUILD NOW |
+| `p3_Consultancy_Engagement_Playbook` | Video script + DM wrapper (Part A), full follow-up/war-game system (Part B), live consultation call script + capture sheet + leave-behind (Parts C-E), operating procedures (Part F). Merges and supersedes `p3b_First_Video_Script`, `p3c_Consultation_Playbook`, `p3d_Objection_Playbook`. | ✅ |
 | `p3e_Internal_Briefing_Kit` | Stakeholder one-pager | Future |
 | `p4a-p4e` | Demo stack | Future (convert to paid) |
 | `p5a-p5c` | Proposal suite | Future |
