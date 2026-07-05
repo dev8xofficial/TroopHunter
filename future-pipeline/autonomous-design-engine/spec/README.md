@@ -501,8 +501,9 @@ The gated loop on **one section**, from a brief, no memory — the cheapest test
 | 12 | [12-design-constitution.md](./12-design-constitution.md) | The **living** design constitution — thin principles the judge is grounded in; what is deliberately left to the AI; the self-amendment protocol |
 | 13 | [13-evaluation-charter.md](./13-evaluation-charter.md) | The **anchor** — a small, human-owned, held-out benchmark and the measurement rigor that lets autonomy be trusted |
 | 14 | [14-research-agenda.md](./14-research-agenda.md) | The **gap map** — every known weakness (A–N) as a prioritised, falsifiable research bet (R1–R18) |
+| 15 | [15-execution-roadmap.md](./15-execution-roadmap.md) | The **execution roadmap** — a realistic solo, ~8 hrs/week plan: weekly tasks, prioritisation, milestones, kill-gates, and a blunt critique of the endeavour |
 
-**If you only read three:** `00` (why), `05` (the engine), `07` (what we build first). Before implementing, also read `10` (failure modes) and `11` (the guardrails that close them). For the improvement program, start at `14` (the gap map), then `12` and `13` (its first two artifacts).
+**If you only read three:** `00` (why), `05` (the engine), `07` (what we build first). Before implementing, also read `10` (failure modes) and `11` (the guardrails that close them). For the improvement program, start at `14` (the gap map), then `12` and `13` (its first two artifacts). To actually *do it* under real time limits, read `15` (the roadmap).
 
 ---
 
