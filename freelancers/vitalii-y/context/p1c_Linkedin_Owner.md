@@ -1,192 +1,128 @@
-Vitalii Yakymenko
-· 2nd
+---
+platform: LinkedIn
+profile_type: person
+name: Vitalii Yakymenko
+headline: CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
+location: North Olmsted, Ohio, United States
+connections: 500+
+linkedin_footer: [About, Accessibility, User Agreement, Privacy Policy, Cookie Policy, Copyright Policy, Brand Policy, Guest Controls, Community Guidelines]
+---
 
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
+# Vitalii Yakymenko — LinkedIn Profile
 
-North Olmsted, Ohio, United States
+## Summary
 
-·
-
-Contact info
-
-
-Galaxy IT Inc.
-
-Book a free consultation 
-
-500+
-
-connections
-
-
-Franco is a mutual connection
-
-Connect
-Message
-
-Sales Insights
-
-Key signals
-
-
-Vitalii posted in the past 30 days
-
-People who can introduce you
-
-
-Franco Varriano, your connection
-
-Retry Sales Navigator
-Cancel anytime. No hidden fees.
-
-About
 I’m an Entrepreneur&CTO focused on one thing: building web systems that move the client’s business forward - growth, sales, automation.
 Over 10+ years, I’ve gone from an engineer to someone who designs entire systems: 
 from the business model → to the technical logic → to a scalable platform.
-Over the years, I’ve seen a simple pattern: when technology is tailored to the business model, the results always exceed expectations. 
+Over the years, I’ve seen a simple pattern: when technology is tailored to the business model, the results always exceed expectations.
 So, I don’t just “build websites.” I build solutions that either make money or save money.
-Clients come to me in three cases: 
-— when there’s an idea, and they need to understand how to properly turn it into a system; 
-— when there’s a problem, and they need technical logic that actually solves it; 
+Clients come to me in three cases:
+— when there’s an idea, and they need to understand how to properly turn it into a system;
+— when there’s a problem, and they need technical logic that actually solves it;
 — when there’s a finished design, and it’s important to make it work for the business, not just look good.
 
 My focus: scalability, architecture, processes, integrations, automation.Everything that makes a digital product not just “pretty,” but built to last.
 
-I work with businesses that want more than abstract “development”, they want CTO-level thinking: system thinking, predictability, and results. If you’re planning to build, scale, or automate, let’s connect.… more
+I work with businesses that want more than abstract “development”, they want CTO-level thinking: system thinking, predictability, and results. If you’re planning to build, scale, or automate, let’s connect.
 
-Top skills
+## Experience
 
-Web Development • Process Engineering
+#### Galaxy IT Inc.
 
-Services
-Web Development
+##### Chief Technology Officer
+dates: Feb 2018 – Present
+duration: 8 yrs 6 mos
+location: United States · On-site
+employment_type: Full-time
 
-Web Design
+##### Chief Executive Officer
+dates: Feb 2018 – May 2025
+duration: 7 yrs 4 mos
 
-SaaS Development
+As CEO of my Ohio web development agency for 10 years, I’ve learned it's about people, relationships, and evolution.
 
-Request services
-Show allFeatured
-Post
+I set our direction, build a strong team, and nurture client partnerships. I'm hands-on with financial strategy, optimizing operations and fostering learning.
 
-As promised, I am sharing where I had the great honor of visiting! 
-A few days ago, I received an award for my significant contribution to US business. 🚀 
+My role:
+- Strategic vision
+- Team leadership
+- Client relations
+- Financial oversight
+- Operational efficiency
+- Innovation
+- Growth
 
-I also had the honor of meeting many interesting people from various fields and Congressman Bradley James Sherman.
+Success means consistency, adaptability, and serving both clients and team. Fellow leaders know the deal.
 
-For me, as a US business owner, this is a great reminder that I am moving in the right direction. 
-My 10+ years of experience, hundreds of projects, and clear technological approaches and optimization of our clients' business processes Galaxy IT Inc. are of great importance.
+#### Team Lead Manager — Soukbox Deals
 
-I will definitely share my insights as an entrepreneur with you very soon!
+dates: Dec 2016 – Jan 2017
+duration: 2 mos
 
-#Leadership #Networking #Entrepreneurship 
+- headed the department of IT development in American E-commerce company.
+- managed team of 5 developers to improve and develop new internal projects of the company
 
+#### Junior Full-Stack Developer — Panda Code
 
-14 reactions14
+dates: Jun 2015 – Dec 2016
+duration: 1 yr 7 mos
 
-Post
+I developed more than 40+E-commerce projects mainly on OpenCart
+Expanded my understanding of Web-development from the practioner's side
 
-I am happy to work on projects that operate on a national scale.
+## Skills
 
-Scroll through the carousel, where I talk about my approach and my team's implementation of the project, as well as our results during the work.
-You can read a more detailed case study on the Galaxy IT Inc.
+##### Top Skills
 
+- Web Development
+- Process Engineering
 
-Case Galaxy IT Inc.
+##### Other Skills
 
-5 reactions5
+- Leadership
+- Engineering
+- HiPerGator
 
-Post
+## Certifications
 
-Proud of my team! Not just for writing clean code, but for building systems that actually move businesses forward.
+- **HiPerGator** — University of Florida — Issued Feb 2026
+- **Senior Member IEEE** — IEEE — Issued Jan 2026
+- **Young Professionals Certificate**
+- **Certificate_2026**
 
-This project is one of those moments when you look at the result and think: yeah, that’s what happens when tech and logic work together.
+## Posts
 
-Swipe through to see how we did it
+#### Post 1
 
-
-Case Galaxy IT Inc. (ecom)
-
-5 reactions5
-All activity
-
-Posts
-
-Comments
-
-Videos
-
-Images
-
-More
-Loaded 40 Posts posts
-Feed post number 1
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-1w •  1 week ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 1w
+hashtags: [#OhioTech, #TechCommunity, #Networking, #GalaxyIT, #Innovation, #Growth]
 
 Just a month ago, I attended my first OhioX event to dive deeper into the local tech community. Today, I’m thrilled to share that I have officially joined OhioX as an individual member! 🚀
 For us at Galaxy IT Inc. | Custom Web Development, staying connected with forward-thinking leaders, innovators, and tech enthusiasts is vital. The energy in the Ohio tech ecosystem is incredible, and I'm excited to contribute, collaborate, and grow alongside this amazing community.
 Next stop: Morning Tech in Cleveland! Looking forward to meeting many of you there. Let’s build the future together! 💻✨
-hashtag#OhioTech hashtag#TechCommunity hashtag#Networking hashtag#GalaxyIT hashtag#Innovation hashtag#Growth
-Activate to view larger image,
-graphical user interface, text, application, email
-Activate to view larger image,
-likelove
-12
-6 comments
 
-Like
+---
 
-Comment
+#### Post 2
 
-Repost
-
-Send
-Feed post number 2
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-2w •  2 weeks ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 2w
+hashtags: []
 
 When I'm not CEO&Founder, I'm just a dad and a husband. 😄 
 This is my motivation and my dose of inspiration and energy.
 
 just a dump photo
-…more
 
-No alternative text description for this image
+---
 
-No alternative text description for this image
+#### Post 3
 
-No alternative text description for this image
-Activate to view larger image,
-likelove
-12
-4 comments
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 3
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-3w •  3 weeks ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 3w
+hashtags: []
 
 AI is not “good” or “bad.” It’s not a magic pill for business growth, but ignoring the impact of AI in today’s world is foolish.
 
@@ -200,27 +136,14 @@ The better question is:
 “Are our systems, processes, and architecture mature enough to use AI safely and effectively?”
 
 Subscribe if you’re committed to sustainable business growth.
-Media player modal window
-video append of 225075b failed for segment #2 in playlist 1-placeholder-uri-1
-like
-6
-2 comments
 
-Like
+---
 
-Comment
+#### Post 4
 
-Repost
-
-Send
-Feed post number 4
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-3w •  3 weeks ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 3w
+hashtags: []
 
 If I provided poor service to my clients, I would have gone out of business long ago. Really. 
 In the American development market, and especially in Ohio, where all entrepreneurs know each other through a single handshake, a bad reputation can destroy a business in a matter of months.
@@ -259,27 +182,14 @@ Real business is built on people like that.
 I just don’t know how to do things poorly, and I teach my team the same. This is the foundation of our corporate culture.
 
 Sound familiar? What are the biggest screw-ups you’ve encountered from contractors in your business? 👇
-Activate to view larger image,
-No alternative text description for this image
-Activate to view larger image,
-like
-3
 
-Like
+---
 
-Comment
+#### Post 5
 
-Repost
-
-Send
-Feed post number 5
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-4w •  0 months ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: article
+timestamp: 4w
+hashtags: []
 
 What should clients do if they want everything (and more) on their website right away?
 I’m constantly talking to business owners who want to either update their websites, build one from scratch, or migrate from a website builder to a custom site (often, when clients have run into limitations with a free patform, they no longer face those restrictions on a custom site and want to have everything on their website).
@@ -303,33 +213,15 @@ At Galaxy IT Inc., we usually work in sprints with staged releases. And it a one
 And honestly, this approach works much better long-term.
 Then improvements happen in the next sprints - based on actual usage, not assumptions.
 
-More of me thought read in the article! (This is all based on my experience and cases)
+Article title: The “feature cult”: how businesses slowly kill their own products by adding too much functionality
 
+---
 
-Web Systems expert DigestWeb Systems expert Digest
+#### Post 6
 
-Subscribe
-Subscribe to {:entityName}
-The “feature cult”: how businesses slowly kill their own products by adding too much functionality
-Vitalii Yakymenko
-like
-4
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 6
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-1mo •  1 month ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 1mo
+hashtags: []
 
 Over the years I’ve spent managing development, I’ve noticed a pattern. 
 My best projects the ones that took off, scaled exponentially, and generated the most revenue for clients have always been stories of trust. 
@@ -351,25 +243,16 @@ When my expertise is heeded, we don’t just write code based on the brief. We h
 
 That’s why you need to turn to a team of developers - for the expertise that will strengthen your business.
 And when a business trusts the team’s technical expertise rather than trying to micromanage the code, the result is an enterprise-grade product.
-Your document has finished loading
-like
-5
 
-Like
+---
 
-Comment
+#### Post 7
 
-Repost
+type: repost
+timestamp: 1mo
+hashtags: []
 
-Send
-Feed post number 7
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-1mo •  1 month ago • Visible to anyone on or off LinkedIn
-
-Follow
+Reposted from Galaxy IT Inc. | Custom Web Development
 
 Here is a ecommerce case study I’m personally proud of - this is one of a lot of projects where we looked past the code and focused on building architectural resilience.
 
@@ -377,36 +260,13 @@ This project is the 100% embodiment of my philosophy: technical excellence isn't
 
 When we took this on, we didn't just build features. We built a system designed to scale without breaking, ensuring that our client's growth was never bottlenecked by their own technology.
 
-Galaxy IT Inc. | Custom Web DevelopmentGalaxy IT Inc. | Custom Web Development
-148 followers148 followers
-1mo •  1 month ago • Visible to anyone on or off LinkedIn
+---
 
-Follow
-Here is a ecommerce case study I’m personally proud of - this is one of a lot of projects where we looked past the code and focused on building architectural resilience.
+#### Post 8
 
-This project is the 100% embodiment of my philosophy: technical excellence isn't just a "nice-to-have," it is the essential foundation for massive revenue growth.
-
-When we took this on, we didn't just build features. We built a system designed to scale without breaking, ensuring that our client's growth was never bottlenecked by their own technology.
-…more
-Your document has finished loading
-like
-4
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 8
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-1mo •  1 month ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 1mo
+hashtags: []
 
 Why 100% compliance with your Scope of Work (SOW) is the fastest way to lose money. 📉
 
@@ -433,27 +293,14 @@ For any SMB, your software should be a profit-protecting asset, not a budget-dra
 I believe a true tech partner isn't someone who tells you what you want to hear—it’s someone who tells you what you need to hear to keep your business resilient.
 
 Have you ever received "clean code" that resulted in a broken business process? Let’s talk in the comments. 👇
-Activate to view larger image,
-No alternative text description for this image
-Activate to view larger image,
-like
-3
 
-Like
+---
 
-Comment
+#### Post 9
 
-Repost
-
-Send
-Feed post number 9
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-1mo •  1 month ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: article
+timestamp: 1mo
+hashtags: []
 
 Why implementing AI in your business can kill it? - for e-commerce business owners.
 I'm talking about what is usually not talked about.
@@ -464,43 +311,21 @@ The numbers are approximate, but very clear.
 But this is only one side of AI in business.
 If you want to find out how AI can kill your business and what you should never do, then read my article.
 
+Article title: Why can implementing AI in your business in eсommerce actually kill it? - for e-commerce business owners
 
-Web Systems expert DigestWeb Systems expert Digest
+---
 
-Subscribe
-Subscribe to {:entityName}
-Why can implementing AI in your business in eсommerce actually kill it? - for e-commerce business owners
-Vitalii Yakymenko
-like
-4
-2 comments
+#### Post 10
 
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 10
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-1mo •  1 month ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: repost
+timestamp: 1mo
+hashtags: [#CloudNirvana, #ArtificialIntelligence, #Leadership, #Infrastructure, #FutureOfWork, #SystemsThinking, #Innovation, #EnterpriseTechnology, #DigitalTransformation, #CommunityLearning]
 
 Great afternoon at Cloud Nirvana Cleveland yesterday. Grateful to James Gehring and the whole Cloud Nirvana community for creating a space where these conversations actually happen.
 And hearing Anthony Joy walk through how Cleveland Metroparks is using AI across the zoo and parks system was one of those moments where you realize the technology is already out there doing real work, quietly.
 Still learning. Glad to be in this community.
-View James Gehring’s  graphic link
-James GehringJames Gehring
-   • 3rd+Premium • 3rd+
-Creator of the Strategic Growth Engine™ - Helping organizations turn critical initiatives into engines of sustainable growth.Creator of the Strategic Growth Engine™ - Helping organizations turn critical initiatives into engines of sustainable growth.
-1mo • Edited •  1 month ago • Edited • Visible to anyone on or off LinkedIn
 
-Follow
+Reposted from James Gehring:
 Yesterday’s Cloud Nirvana Cleveland gathering was one of THOSE afternoons. You put smart, experienced people in a room together, remove the corporate theater, and the conversation gets real very quickly.
 
 Sean Erikson kicked things off with a discussion around patterns and the GitHub project Cloud Nirvana has been building so people can openly share practical AI knowledge, approaches, and implementation ideas as a community. That set the tone for the entire day.
@@ -527,86 +352,38 @@ What made the day work so well was how interactive it all became. The live podca
 
 I left yesterday feeling genuinely grateful to be part of a community willing to have these conversations honestly, thoughtfully, and together while all of us are still actively learning what this next era of technology is going to require from people, organizations, and leadership itself.
 
-hashtag#CloudNirvana hashtag#ArtificialIntelligence hashtag#Leadership hashtag#Infrastructure hashtag#FutureOfWork hashtag#SystemsThinking hashtag#Innovation hashtag#EnterpriseTechnology hashtag#DigitalTransformation hashtag#CommunityLearning
-…more
+---
 
-No alternative text description for this image
+#### Post 11
 
-No alternative text description for this image
-
-No alternative text description for this image
-
-No alternative text description for this image
-+13
-Activate to view larger image,
-with Vitalii Yakymenko and 19 others
-likecelebrate
-4
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 11
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-1mo •  1 month ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 1mo
+hashtags: []
 
 Quick question for my network
 What do you actually want to read about on LinkedIn?
 As a CTO and Agency Owner with 10+ years in the engineering trenches, I want to make sure the insights I share here are driving real value for you.
 
 I’ll go first 👇
-like
-3
-1 comment
 
-Like
+---
 
-Comment
+#### Post 12
 
-Repost
-
-Send
-Feed post number 12
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-1mo • Edited •  1 month ago • Edited • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 1mo
+hashtags: [#CloudNirvana, #OhioTech, #Cleveland, #NortheastOhio]
 
 Going to Cloud Nirvana Cleveland tonight, it's always good to connect with Ohio's cloud and engineering community close to home.
 If you're going, let's find each other.
 
+---
 
-hashtag#CloudNirvana hashtag#OhioTech hashtag#Cleveland hashtag#NortheastOhio
-like
-4
+#### Post 13
 
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 13
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-1mo •  1 month ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 1mo
+hashtags: []
 
 Yesterday I attended the Ohio Tech Summit at the Ohio Union OhioX.
 
@@ -629,57 +406,24 @@ There's definitely something to think about it for me as the Founder IT company 
 
 And what I definitely realized yesterday is that next year I'm 100% going to this event, so thank you Chris Berry and the team for creating such a great event for Ohio!
 
-No alternative text description for this image
+---
 
-No alternative text description for this image
+#### Post 14
 
-No alternative text description for this image
-
-No alternative text description for this image
-+2
-Activate to view larger image,
-likelove
-12
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 14
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-1mo •  1 month ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 1mo
+hashtags: []
 
 Big and great event OhioX 
 A lot interesting people. A lot interesting information here.
-Activate to view larger image,
-No alternative text description for this image
-Activate to view larger image,
-like
-5
 
-Like
+---
 
-Comment
+#### Post 15
 
-Repost
-
-Send
-Feed post number 15
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-1mo •  1 month ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 1mo
+hashtags: []
 
 I’ve been attending meetups for years, but I’ll be honest: I don’t get out to public events nearly as much as I should. (The photo is from one of the events, by the way.)
 
@@ -692,27 +436,14 @@ I’m excited to dive into the local tech ecosystem and see what’s pushing the
 If you’re attending, or if you’re in the Ohio area and can make it out tomorrow - let's connect! I’d love to meet up, talk shop, and share ideas.
 If you'll be there, let's connect and say hello each other. 
 I’d love to see you or feel free to reach out!
-Activate to view larger image,
-No alternative text description for this image
-Activate to view larger image,
-likelovecelebrate
-15
 
-Like
+---
 
-Comment
+#### Post 16
 
-Repost
-
-Send
-Feed post number 16
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-1mo •  1 month ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 1mo
+hashtags: []
 
 I’m thrilled to be a part of it this week at the Ohio Tech Summit OhioX!
 
@@ -720,25 +451,14 @@ I’m looking forward to diving into the local ecosystem and connecting with the
 For me, these events are all about the exchange of ideas, finding those strategic insights that spark new solutions.
 
 If you’ll be there, let’s connect!
-likecelebrate
-10
-1 comment
 
-Like
+---
 
-Comment
+#### Post 17
 
-Repost
-
-Send
-Feed post number 17
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-1mo •  1 month ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: article
+timestamp: 1mo
+hashtags: []
 
 I will never recommend a jet engine when an EV is more than enough. I truly believe that knowing where to draw that line is a CTO’s most important responsibility.
 
@@ -756,33 +476,15 @@ Here’s a pro-tip: instead of hiring three managers to manually check orders, i
 You aren’t buying technology!
 you’re buying a tool to capitalize your business. My responsibility is to ensure that every dollar you invest in that tool delivers maximum efficiency and zero waste.
 
-I’ve shared a deeper breakdown of these principles in my latest article.
+Article title: Why are we so afraid of simplicity and how it burns millions? - insights CTO
 
+---
 
-Web Systems expert DigestWeb Systems expert Digest
+#### Post 18
 
-Subscribe
-Subscribe to {:entityName}
-Why are we so afraid of simplicity and how it burns millions? - insights CTO
-Vitalii Yakymenko
-like
-4
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 18
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-1mo •  1 month ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 1mo
+hashtags: []
 
 Rest is part of the job. Yes, I’m saying it out loud on LinkedIn.
 
@@ -802,66 +504,31 @@ None of your projects will suffer as much as your anxiety tells you while you’
 4. And finally, time spent with my family gives me a clear perspective on why I’m growing my company and what I’m actually building for.
 
 Business owners, let’s be real, when was the last time you took a REAL vacation?
-Activate to view larger image,
-No alternative text description for this image
-Activate to view larger image,
-like
-4
 
-Like
+---
 
-Comment
+#### Post 19
 
-Repost
-
-Send
-Feed post number 19
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-1mo •  1 month ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: repost
+timestamp: 1mo
+hashtags: [#GreaterCLE, #AllIn]
 
 Cleveland keeps showing up. From materials science to web infrastructure, this region has the fundamentals. Looking forward to continuing this conversation at the Ohio Tech Summit on May 14, see you in Columbus.
 
-Greater Cleveland PartnershipGreater Cleveland Partnership
-45,109 followers45,109 followers
-1mo • Edited •  1 month ago • Edited • Visible to anyone on or off LinkedIn
-
-Follow
+Reposted from Greater Cleveland Partnership:
 “At CGI, we’re finding success in communities across the country that are emerging as the next generation tech hubs, and Cleveland certainly is at the forefront of innovation.”—Debadutta (Deb) M., Senior Vice President & Business Unit Leader - U.S., Mid-Atlantic, CGI
 
 A global IT and consulting firm is expanding its footprint in Greater Cleveland. CGI has opened a new office in Independence, signaling a deeper commitment to the region and plans to grow its local workforce from 130 to as many as 300 professionals over the next 12–18 months. 
 
 In a conversation with GCP, company leadership pointed to Cleveland’s strong talent base and growing momentum in sectors like cybersecurity and healthcare technology as key drivers behind the investment.
 
-🔗 Learn More: https://lnkd.in/g3uae2gJ
+---
 
-hashtag#GreaterCLE hashtag#AllIn CGI Team NEO OhioX City of Cleveland - City Hall JobsOhio
-…more
-Activate to view larger image,
-No alternative text description for this image
-Activate to view larger image,
-like
-3
+#### Post 20
 
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 20
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-2mo •  2 months ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 2mo
+hashtags: []
 
 In e-commerce, there is a dangerous illusion that if the frontend works quickly and buttons are pressed, then the system is ready to work. But for a large business with custom CRM logic and thousands of site visits, the real problem lies deeper.
 When a product is created “quickly”, developers often ignore architectural flexibility. What does this mean for you in practice?
@@ -878,38 +545,20 @@ A beautiful interface on a crooked foundation is the shortest path to losses on 
 
 We build e-commerce systems on Laravel/React that can withstand thousands of visits and hundreds of orders per day without "lags". We create products where the technical foundation is designed for years of continuous development.
 Are you planning a large-scale release or switching to a custom CRM? Let's discuss your technical roadmap.
-Activate to view larger image,
-No alternative text description for this image
-Activate to view larger image,
-like
-4
 
-Like
+---
 
-Comment
+#### Post 21
 
-Repost
-
-Send
-Feed post number 21
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-2mo •  2 months ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: repost
+timestamp: 2mo
+hashtags: [#Startups, #Founders, #Innovation, #HardTech, #Entrepreneurship, #Leadership, #Drones, #Autonomy, #DroneDelivery, #AI, #PhysicalAI]
 
 Constraint as a competitive advantage is what I personally experienced when building Galaxy IT from scratch in Ohio. When there is no budget for the "right" stack, you choose Laravel not because it is fashionable, but because it is stable, scalable and will not let the client down in 3 years.
 Beth Flippo builds a physical product in the most difficult environment - real airspace. We build digital systems for business. But the logic is the same: constraint makes you think, not spend.
 By the way, I will be at the Ohio Tech Summit on May 14 - Beth is speaking there. If you are also going - I will be glad to meet you in person 👋
-View Beth Flippo’s  graphic link
-Beth FlippoBeth Flippo
-   • 3rd+Premium • 3rd+
-CEO & Founder at Dexa | ex-Goldman | Fast Company Next Big Things in TechCEO & Founder at Dexa | ex-Goldman | Fast Company Next Big Things in Tech
-2mo • Edited •  2 months ago • Edited • Visible to anyone on or off LinkedIn
 
-Follow
+Reposted from Beth Flippo:
 Not having money is one of the greatest advantages we’ve ever had.
 It forces a different kind of thinking.
 
@@ -958,30 +607,13 @@ We succeeded because of it.
 
 And that’s exactly why we’re going to win.
 
-hashtag#Startups hashtag#Founders hashtag#Innovation hashtag#HardTech hashtag#Entrepreneurship hashtag#Leadership hashtag#Drones hashtag#Autonomy hashtag#DroneDelivery hashtag#AI hashtag#PhysicalAI
-Dexa
-…more
-Activate to view larger image,
-No alternative text description for this image
-Activate to view larger image,
-like
-3
+---
 
-Like
+#### Post 22
 
-Comment
-
-Repost
-
-Send
-Feed post number 22
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-2mo •  2 months ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 2mo
+hashtags: []
 
 When you are just planning to launch an e-commerce, the biggest temptation is to hire someone cheape to just brick the first version of the site. 
 
@@ -999,26 +631,14 @@ But you should to build so that each subsequent brick of your business falls int
 
 We still have clients on support, for whom we made a website 8 years ago and these sites are still working, and at the same time clients have the opportunity to develop this business, enter new markets etc. 
 And we make these changes to the site, without rewriting the foundation.
-Your document has finished loading
-likesupport
-5
-1 comment
 
-Like
+---
 
-Comment
+#### Post 23
 
-Repost
-
-Send
-Feed post number 23
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-2mo •  2 months ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: article
+timestamp: 2mo
+hashtags: []
 
 Custom Build vs. Off-the-Shelf: What's your pick for scaling a business?
 
@@ -1033,31 +653,15 @@ And join my newsletter below.
 I use it to share deep dives from my 10+ years of experience as a CTO across the US and European markets. 
 Let me know what technical hurdles you want me to deconstruct next. 🙌
 
+Article title: Why do standard CMSs become a ceiling for businesses, while custom development opens the door to scalability?
 
-Web Systems expert DigestWeb Systems expert Digest
+---
 
-Subscribe
-Subscribe to {:entityName}
-Why do standard CMSs become a ceiling for businesses, while custom development opens the door to scalability?
-Vitalii Yakymenko
-like
-4
+#### Post 24
 
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 24
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-2mo •  2 months ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 2mo
+hashtags: []
 
 When your entire online store and custom CRM are based on the knowledge of one or two developers, this is the most dangerous point of failure for your business. If they disappear, get sick, or want to go on vacation, your growth stops along with their work.
 
@@ -1070,28 +674,14 @@ What you get when working with the Galaxy IT team:
 📍 Focus on the main thing. You buy your peace of mind and confidence.
 
 Projects at Galaxy IT Inc. | Custom Web Development do not rely on one person, they rely on processes that we have been building for 10 years. We take full technical responsibility for your e-com so you can focus on marketing and sales.
-Activate to view larger image,
-No alternative text description for this image
-Activate to view larger image,
-like
-3
-1 comment
 
-Like
+---
 
-Comment
+#### Post 25
 
-Repost
-
-Send
-Feed post number 25
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-2mo •  2 months ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 2mo
+hashtags: []
 
 You can hire a team to write the perfect code. But are you sure that this code won’t “eat” your margin in six months?
 
@@ -1108,28 +698,14 @@ When tech. led understands your business process (from warehouse to checkout), y
 
 You deserve a team that knows how to say “no” to you if your technical order leads to losses in the future. At Galaxy IT, my 10 years of engineering experience works as a filter for your development investments.
 Are you preparing to launch or scale and want to hear an honest assessment from the CTO?
-Activate to view larger image,
-No alternative text description for this image
-Activate to view larger image,
-like
-7
-1 comment
 
-Like
+---
 
-Comment
+#### Post 26
 
-Repost
-
-Send
-Feed post number 26
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-2mo •  2 months ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 2mo
+hashtags: []
 
 Have you ever had moments when you wanted to close your business?
 I have been a co-founder of an IT company Galaxy IT Inc. and CTO for 9 years. And it was difficult more than once, but I always knew what peak I was going to.
@@ -1140,35 +716,13 @@ I am a Senior Member of IEEE. Our clients are large e-commerce stores with tens 
 
 If you have periods when it is difficult for you, then know that everything will be fine.
 
-Play
-Remaining time 
-0:16
-1x
+---
 
-Playback speed
+#### Post 27
 
-Unmute
-
-Turn fullscreen on
-like
-8
-1 comment
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 27
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-2mo •  2 months ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: article
+timestamp: 2mo
+hashtags: []
 
 Business owners, how much do you spend on CRM per month?
 What if I told you that more often (but not always) it is more profitable for businesses to have their own custom CRM?
@@ -1179,32 +733,15 @@ How did you deal with this and what conclusions did you draw?
 
 Read my article, I write there without embellishment about things that business owners sometimes do not even think about. And I have my own opinion from a technical point of view.
 
+Article title: Why is renting a CRM system a risk to your business's growth?
 
-Web Systems expert DigestWeb Systems expert Digest
+---
 
-Subscribe
-Subscribe to {:entityName}
-Why is renting a CRM system a risk to your business's growth?
-Vitalii Yakymenko
-like
-5
-1 comment
+#### Post 28
 
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 28
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-2mo •  2 months ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 2mo
+hashtags: []
 
 I used to be afraid of losing a client. I agreed to "quick features", to crooked logic, etc. I thought that the client always knows better.
 I was wrong.
@@ -1220,26 +757,14 @@ In the US, no one forgives mistakes in security or stability. If I see that your
 Because I want the client to pay for the work, writing the code, and a ready-made technically good result. You pay first for your business based on technical solutions to work, then scale and always bring profit.
 
 I am looking for partners who value honest expertise above convenient agreement. Those who understand: a real Senior is not someone who knows all the functions of a programming language, but someone who knows when not to use them.
-Your document has finished loading
-like
-3
-1 comment
 
-Like
+---
 
-Comment
+#### Post 29
 
-Repost
-
-Send
-Feed post number 29
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-3mo •  3 months ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 3mo
+hashtags: []
 
 I don't play with "fashionable technologies" for clients' money. 🛑
 A mistake many tech teams make is to use everything at once. A new library? We need to try it! A hype tech stack? Let's implement it! Some people think that this is "true prof development".
@@ -1267,24 +792,14 @@ I always follow the principle of not “seeing how we can do it” but “seeing
 Because the client actually trusts us with more than just development. After all, I am used to building reliable systems that work for years. Because the client's success is MY reputation.
 
 And what is most important for you when choosing a tech partner: innovation or confidence in the future? Let's discuss? 👇
-likesupport
-9
 
-Like
+---
 
-Comment
+#### Post 30
 
-Repost
-
-Send
-Feed post number 30
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-3mo •  3 months ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 3mo
+hashtags: []
 
 AM I AFRAID OF AI? 🚫
 
@@ -1311,28 +826,14 @@ Of course, we at Galaxy IT Inc. | Custom Web Development use AI to be fast, more
 I believe that hype will pass. Quality engineering will remain. This is my firm position as CTO and founder Tech company .
 
 Do you agree or do you think I'm too conservative? Let's discuss in the comments.
-Activate to view larger image,
-No alternative text description for this image
-Activate to view larger image,
-like
-6
-1 comment
 
-Like
+---
 
-Comment
+#### Post 31
 
-Repost
-
-Send
-Feed post number 31
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-3mo •  3 months ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: article
+timestamp: 3mo
+hashtags: []
 
 MVP = Minimum Viable Product. Not Minimum Quality Product.
 Do you understand the difference? 
@@ -1344,57 +845,27 @@ If you have your own idea and it needs an MVP - I advise you to read my article.
 
 And I am always open to collaborations. I have a team ready to build it right from day one.
 
+Article title: Your MVP isnt minimal, its just broken: rethinking the build fast, fix later mentality
 
-Web Systems expert DigestWeb Systems expert Digest
+---
 
-Subscribe
-Subscribe to {:entityName}
-Your MVP isnt minimal, its just broken: rethinking the build fast, fix later mentality
-Vitalii Yakymenko
-like
-2
+#### Post 32
 
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 32
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-3mo •  3 months ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 3mo
+hashtags: [#GDG, #GoogleDevelopers, #Cleveland, #WebDevelopment, #TechCommunity]
 
 Excited to share that I’ve become a member of Google Developer Group (GDG) Cleveland! 🚀
 Being part of the GDG community is a great opportunity to connect with talented developers, exchange knowledge, and explore the latest Google technologies.
 Looking forward to upcoming events, learning experiences, and collaborations with fellow innovators around the world! 💡
-hashtag#GDG hashtag#GoogleDevelopers hashtag#Cleveland hashtag#WebDevelopment hashtag#TechCommunity
 
-GDG Cleveland Member | Google Developer Program | Google for Developers
-developers.google.com
-like
-4
+---
 
-Like
+#### Post 33
 
-Comment
-
-Repost
-
-Send
-Feed post number 33
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-3mo •  3 months ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 3mo
+hashtags: []
 
 Thinking of scaling from Europe to the US? The code is the same. The business DNA is not.
 I’ve spent years building custom solutions for both markets, and here is the hard truth: 
@@ -1411,27 +882,14 @@ Custom development here is about extreme flexibility building an architecture th
 Custom development and design isn't just about writing code from scratch. It’s about Market Adaptation! If you are expanding to the US, you don't have time to wait for your team to "learn the market”. You need a partner who already speaks the language of American business and can back you up technologically from day one.
 
 Ready to scale or launch your MVP for the US market? Let’s skip the guesswork. I’m opening a few slots this week for a 15-minute Intro Call to audit your current product roadmap and see how we can optimize it for the States.
-Activate to view larger image,
-No alternative text description for this image
-Activate to view larger image,
-likelove
-5
 
-Like
+---
 
-Comment
+#### Post 34
 
-Repost
-
-Send
-Feed post number 34
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-3mo •  3 months ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: original
+timestamp: 3mo
+hashtags: []
 
 I’m a CTO. Here’s how I help brands scale.
 
@@ -1443,36 +901,13 @@ We bake scalability into the DNA so you don’t have to "rip and replace" your t
 
 I know exactly what it takes to build an e-commerce powerhouse that scales for years, not months. If you’re looking for a tech partner to take the "how-to" off your plate and deliver a turnkey solution, let’s talk.
 
-Play
-Remaining time 
-0:33
-1x
+---
 
-Playback speed
+#### Post 35
 
-Turn closed captions on
-
-Unmute
-
-Turn fullscreen on
-likelove
-4
-
-Like
-
-Comment
-
-Repost
-
-Send
-Feed post number 35
-View Vitalii Yakymenko’s  graphic link
-Vitalii YakymenkoVitalii Yakymenko
-   • 2ndVerified • 2nd
-CTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech LeadershipCTO & Founder Galaxy IT Inc. | Building Scalable Custom Web Systems that Drive Revenue & Automation | Senior Member IEEE | 10+ Years of Tech Leadership
-3mo •  3 months ago • Visible to anyone on or off LinkedIn
-
-Follow
+type: article
+timestamp: 3mo
+hashtags: []
 
 When I am asked how I feel about AI or whether I am afraid that AI will replace developers, I say that I am NOT AFRAID!
 
@@ -1483,175 +918,4 @@ And this is the foundation when you work with client businesses. Has anyone ever
 
 Read more in my article, and if you are interested in cooperation - let's connect.
 
-
-Web Systems expert DigestWeb Systems expert Digest
-
-Subscribe
-Subscribe to {:entityName}
-Why "just use AI" is the worst technical advice your business can get right now
-Vitalii Yakymenko
-like
-7
-2 comments
-
-Like
-
-Comment
-
-Repost
-
-Send
-Experience
-Galaxy IT Inc. logo
-Galaxy IT Inc.
-
-8 yrs 6 mos
-
-Chief Technology Officer
-
-Full-time
-
-Feb 2018 - Present · 8 yrs 6 mos
-
-United States · On-site
-
- Back-End Web Development
-
-Chief Executive Officer
-
-Feb 2018 - May 2025 · 7 yrs 4 mos
-
-As CEO of my Ohio web development agency for 10 years, I’ve learned it's about people, relationships, and evolution.
-
-I set our direction, build a strong team, and nurture client partnerships. I'm hands-on with financial strategy, optimizing operations and fostering learning.
-
-My role:
-Strategic vision
-Team leadership
-Client relations
-Financial oversight
-Operational efficiency
-Innovation
-Growth
-
-Success means consistency, adaptability, and serving both clients and team. Fellow leaders know the deal.… more
-
- Business Strategy, Innovation Development and +12 skills
-
-Soukbox Deals logo
-Team Lead Manager
-
-Soukbox Deals
-
-Dec 2016 - Jan 2017 · 2 mos
-
-- headed the department of IT development in American E-commerce company.
-- managed team of 5 developers to improve and develop new internal projects of the company
-
- HTML, Laravel and +2 skills
-
-Panda Code logo
-Junior Full-Stack Developer
-
-Panda Code
-
-Jun 2015 - Dec 2016 · 1 yr 7 mos
-
-I developed more than 40+E-commerce projects mainly on OpenCart
-Expanded my understanding of Web-development from the practioner's side
-
- HTML and Web Development
-
-Connected apps
-
-PhpStorm, a JetBrains IDE
-
-Integrated Development Environments (IDE)
-
-Develops, runs, and updates PHP applications in PhpStorm using Rename refactoring, Git actions, and the integrated terminal.
-
-Licenses & certifications (12)
-University of Florida logo
-HiPerGator
-
-University of Florida
-
-Issued Feb 2026
-
-Credential ID 344b0d86-14d1-4bf6-9b09-add5737d5a82
-
-Show credential
- Engineering, Cloud Security and +1 skill
-
-IEEE logo
-Senior Member IEEE 
-
-IEEE
-
-Issued Jan 2026
-
-Credential ID 101585347
-
- Engineering, Advancement and +1 skill
-
-Thumbnail for Young Professionals Certificate
-Thumbnail for Certificate_2026
-Show all 12 licenses
-Skills (41)
-Leadership
-
-
-Chief Executive Officer at Galaxy IT Inc. | Custom Web Development
-
-1 endorsement
-
-Engineering
-
-
-Senior Member IEEE 
-
-
-HiPerGator
-
-Show all
-Languages
-English
-
-Professional working proficiency
-
-Ukrainian
-
-Interests
-
-Top Voices
-
-Companies
-
-Groups
-
-Newsletters
-
-Schools
-
-Gary Vaynerchuk 
-
-· 2nd
-
-Chairman – VaynerX, CEO – VaynerMedia, Creator – VeeFriends
-
-5,968,501 followers
-
-
-Follow
-
-Rick Watson 
-
-· 2nd
-
-Founder, RMW Commerce | Strategy for Executives in Retail, Supply Chain & AI | Host of The Watson Weekly
-
-68,951 followers
-
-
-Follow
-Show all
+Article title: Why "just use AI" is the worst technical advice your business can get right now

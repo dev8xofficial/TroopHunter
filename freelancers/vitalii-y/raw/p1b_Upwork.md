@@ -243,6 +243,508 @@ go to page3
 go to page4
 ...
 Current page 1 of 13
+Completed jobs (125)
+
+In progress (2)
+Figma Design to code conversion
+Rating is 5.0 out of 5.
+5.0
+Jun 4, 2025 - Jun 7, 2025
+Freelancer's response
+
+"I was glad to convert your Figma designs into HTML/CSS. It is an honor for me that our relationship has grown into a long-term collaboration, as this is not our… See more
+$150.00
+Fixed price
+HTML Email Specialist
+Feb 12, 2025 - May 7, 2025
+No feedback given
+
+$45.00
+$30.00 /hr
+2 hours
+Changes to the existing HTML/CSS layout
+May 22, 2023 - Apr 25, 2025
+No feedback given
+
+$20.84
+$25.00 /hr
+1 hour
+Stock Analysis Platform
+Mar 12, 2025 - Apr 18, 2025
+No feedback given
+
+$1,738.34
+$35.00 /hr
+64 hours
+Website developer needed to program a landing page + info website promoting an app
+May 2, 2023 - Apr 10, 2025
+No feedback given
+
+$1,170.83
+$25.00 /hr
+47 hours
+maimon edits+bremsor
+Apr 18, 2024 - Apr 10, 2025
+No feedback given
+
+$841.00
+Fixed price
+Figma Design to code conversion
+Rating is 5.0 out of 5.
+5.0
+Mar 26, 2025 - Apr 9, 2025
+$160.00
+Fixed price
+Make little fixes in exists website.
+Nov 9, 2023 - Apr 7, 2025
+No feedback given
+
+$50.00
+Fixed price
+Figma design to layouts conversion
+Rating is 5.0 out of 5.
+5.0
+Mar 3, 2025 - Mar 11, 2025
+$200.00
+$50.00 /hr
+4 hours
+Convert Figma design into HTML & CSS layout
+Rating is 5.0 out of 5.
+5.0
+Dec 30, 2024 - Jan 15, 2025
+$250.00
+$50.00 /hr
+5 hours
+Pagination
+
+go to page1
+
+Current page 2 of 132
+
+go to page3
+
+go to page4
+...
+
+Completed jobs (125)
+
+In progress (2)
+Convert Figma design to Landing page layouts
+Rating is 5.0 out of 5.
+5.0
+Dec 24, 2024 - Dec 30, 2024
+"I had the pleasure of working with Vitalii on converting a Figma design into an HTML/CSS layout, and the results were fantastic! The attention to detail was impeccable, and the..." See more
+
+Endorsed by client
+Collaborative
+Clear Communicator
+Reliable
+Committed to Quality
+Professional
+$200.00
+$50.00 /hr
+4 hours
+Create HTML/CSS/JS from Figma
+Rating is 5.0 out of 5.
+5.0
+Oct 22, 2024 - Oct 23, 2024
+$500.00
+Fixed price
+Web Design & Frontend Development
+Rating is 5.0 out of 5.
+5.0
+May 2, 2023 - Jul 20, 2024
+$2,125.00
+$25.00 /hr
+Front end developer
+Rating is 5.0 out of 5.
+5.0
+Feb 28, 2023 - Jun 24, 2024
+"Vitalii and the team are experts at what they do and would highly recommend them!"
+
+Endorsed by client
+Committed to Quality
+$33,816.65
+$20.00 /hr
+1,691 hours
+Front-end/ back-end OpenCart Ecommerce web development
+Rating is 5.0 out of 5.
+5.0
+Oct 18, 2022 - Dec 11, 2023
+"Vitaly and his team showed a high level of professionalism in web development, they have found an approach to solving the most complex problems, and were able to work with..." See more
+
+Endorsed by client
+Professional
+Solution Oriented
+$2,695.00
+Fixed price
+New ECommerce Site Design UI/UX
+Rating is 4.5 out of 5.
+4.5
+Jan 21, 2023 - Nov 13, 2023
+"Very good quality work of design with high degree of flexibility and iterations. The project did unfortunatley not completly finish after the project manager left the team."
+
+Endorsed by client
+Committed to Quality
+$1,510.00
+Fixed price
+🧇 WAFFLE PANTRY | Service > E-commerce | Industry > food & beverages 
+responsive HTML & Javascript/CSS for animations
+Rating is 5.0 out of 5.
+5.0
+Mar 9, 2023 - Nov 8, 2023
+"excellent job"
+
+$770.00
+Fixed price
+Website for a cake shop
+Mar 31, 2023 - Nov 2, 2023
+No feedback given
+
+$1,020.00
+Fixed price
+🍰 Cake Shop | Industry -> Food & beverages | Service -> E-Commerce 
+Designer for New Webpage
+Rating is 4.7 out of 5.
+4.7
+May 10, 2023 - Oct 1, 2023
+"Always great work from this guys !! Will keep collaborating with them!!"
+
+Endorsed by client
+Committed to Quality
+Collaborative
+$1,850.00
+Fixed price
+Web design and front-end development of a landing page
+Rating is 5.0 out of 5.
+5.0
+Jul 27, 2023 - Sep 15, 2023
+"I had the pleasure of collaborating with them for 3 projects already. The websites they crafted not only met but far exceeded my exacting standards and creative vision. What truly..." See more
+
+Endorsed by client
+Accountable for Outcomes
+Collaborative
+Committed to Quality
+Professional
+Solution Oriented
+$425.00
+Fixed price
+
+
+Completed jobs (125)
+
+In progress (2)
+MMA landing page
+Rating is 5.0 out of 5.
+5.0
+Aug 3, 2023 - Sep 15, 2023
+"The website truly exceeded my expectations. They created something so quickly that was nothing short of perfection, precisely in line with my standards and vision. What stood out most was..." See more
+
+Endorsed by client
+Accountable for Outcomes
+Committed to Quality
+Professional
+$350.00
+Fixed price
+Develop Danin Technologies website frontend
+Rating is 5.0 out of 5.
+5.0
+Jun 20, 2023 - Jul 25, 2023
+"Precise work, as usual - highly recommended"
+
+Endorsed by client
+Detail Oriented
+$750.00
+Fixed price
+Website Front-End Development - Responsive HTML/CSS layouts polishing
+Mar 3, 2023 - Jul 17, 2023
+No feedback given
+
+$80.00
+Fixed price
+Design request for app
+Mar 31, 2023 - Jul 17, 2023
+No feedback given
+
+$400.00
+Fixed price
+Review website mockup and provide feedback
+Rating is 5.0 out of 5.
+5.0
+Mar 17, 2023 - Jun 13, 2023
+$175.00
+Fixed price
+2 Page Website in Tailwind CSS
+Jul 27, 2021 - Jun 9, 2023
+No feedback given
+
+$4,133.34
+$25.00 /hr
+165 hours
+Website Design
+Aug 16, 2021 - Jun 9, 2023
+No feedback given
+
+$119.17
+$25.00 /hr
+3 hours
+Banner Design
+Jan 15, 2023 - Jun 9, 2023
+No feedback given
+
+$151.67
+$35.00 /hr
+4 hours
+Landing Page Design
+Rating is 5.0 out of 5.
+5.0
+Jan 23, 2023 - May 23, 2023
+$760.00
+Fixed price
+Website design audit and redesign
+Rating is 5.0 out of 5.
+5.0
+Feb 28, 2023 - May 17, 2023
+"I loved the proposed design."
+
+$350.00
+$35.00 /hr
+10 hours
+Pagination
+...
+
+go to page3
+
+Current page 4 of 134
+
+go to page5
+...
+Completed jobs (125)
+
+In progress (2)
+Back
+Aug 26, 2021 - May 3, 2023
+No feedback given
+
+$4,637.50
+$35.00 /hr
+133 hours
+SaaS Real Estate CRM Platform with Property Search and Deal Workflow
+HTML5 Web Developer Expert is needed (agency or independent freelancer)
+Rating is 5.0 out of 5.
+5.0
+Aug 2, 2022 - May 3, 2023
+"Great job, will hire again!"
+
+$1,700.00
+Fixed price
+Frontend programmer - price is just a placeholder
+Jul 16, 2022 - May 3, 2023
+No feedback given
+
+$350.00
+Fixed price
+HTML/CSS layout for a Privacy Policy web page
+Rating is 5.0 out of 5.
+5.0
+Apr 21, 2023 - May 1, 2023
+"Always a positive experience working with them. They always deliver without any issues."
+
+Endorsed by client
+Collaborative
+Reliable
+$100.00
+Fixed price
+Designt & Front-End for Landing Page.
+Rating is 5.0 out of 5.
+5.0
+Mar 10, 2023 - Apr 11, 2023
+"Always the best"
+
+$350.00
+Fixed price
+Design and Build a Website for My Watch Buying Business.
+Rating is 5.0 out of 5.
+5.0
+Mar 3, 2023 - Apr 4, 2023
+"Very good communication skills. Understood the scope and requirements. They offered guidance on other issues my business was facing that was very helpul. Overall very happy to have come across..." See more
+
+Endorsed by client
+Clear Communicator
+Solution Oriented
+$750.00
+Fixed price
+Figma to RTL HTML/CSS/JS
+Rating is 5.0 out of 5.
+5.0
+Feb 17, 2023 - Mar 15, 2023
+"Excellent quality of work, high commitment to schedule, content and precise delivery. I would gladly work again with Vitali."
+
+Endorsed by client
+Committed to Quality
+Reliable
+Detail Oriented
+Collaborative
+$2,700.00
+Fixed price
+PM Live | Web Development in Entertainment & Media industry
+Frontend developer needed for ongoing work
+Rating is 5.0 out of 5.
+5.0
+Nov 22, 2022 - Mar 10, 2023
+$800.00
+Fixed price
+Create Graphics Icons
+Rating is 5.0 out of 5.
+5.0
+Jan 17, 2023 - Mar 10, 2023
+$150.00
+Fixed price
+Jakub Patka website
+Rating is 5.0 out of 5.
+5.0
+Sep 28, 2022 - Dec 21, 2022
+"We worked with Vitalii on many projects and we are happy to have him and his team on the board."
+
+Endorsed by client
+Collaborative
+$400.00
+Fixed price
+Pagination
+...
+
+go to page4
+
+Current page 5 of 135
+
+go to page6
+...
+Completed jobs (125)
+
+In progress (2)
+Simple Page for Event
+Rating is 5.0 out of 5.
+5.0
+Nov 30, 2022 - Dec 21, 2022
+"I always work with the team and I can only say amazing things about them!!!"
+
+$140.00
+Fixed price
+Website Development
+Rating is 5.0 out of 5.
+5.0
+Oct 24, 2022 - Dec 13, 2022
+"We worked with Vitaliy on our brand new website development. Vitaliy and his team delivered great work on this development project and we enjoyed working with them. His communication was..." See more
+
+Endorsed by client
+Collaborative
+Clear Communicator
+Reliable
+Committed to Quality
+$950.00
+Fixed price
+Fixes CSS/HTML/JS for some pages
+Rating is 5.0 out of 5.
+5.0
+Nov 28, 2022 - Dec 13, 2022
+"Great as always. Looking forward for other cooperations."
+
+$100.00
+Fixed price
+Web Developer - Responsive Landing Page HTML coding
+Rating is 5.0 out of 5.
+5.0
+Nov 12, 2022 - Nov 28, 2022
+"Vitaliy is easy to work with. Respond timely."
+
+Endorsed by client
+Collaborative
+Reliable
+$150.00
+Fixed price
+Javascript (dash js)
+Rating is 5.0 out of 5.
+5.0
+Nov 4, 2022 - Nov 7, 2022
+"I never thought that anyone would do this job successfully, but he did it."
+
+Endorsed by client
+Committed to Quality
+$160.00
+Fixed price
+UI/UX expert needed for web and app platform
+Rating is 5.0 out of 5.
+5.0
+Oct 21, 2022 - Nov 3, 2022
+"Very satisfied with the work done and the communication was smooth and timely throughout the whole proces. It was done very quickly as well.
+Kudos :-)"
+
+Endorsed by client
+Clear Communicator
+Reliable
+$150.00
+Fixed price
+New Website Design
+Rating is 4.7 out of 5.
+4.7
+Jul 13, 2022 - Sep 19, 2022
+$1,040.00
+Fixed price
+Frontend programmer for DHL website - price is just a placeholder
+Rating is 5.0 out of 5.
+5.0
+Feb 8, 2022 - Jul 25, 2022
+"our cooperation is one of the best"
+
+Endorsed by client
+Collaborative
+$250.00
+Fixed price
+UX Design
+Rating is 5.0 out of 5.
+5.0
+Feb 4, 2022 - Apr 20, 2022
+$591.00
+Fixed price
+Frontend programmer
+Rating is 5.0 out of 5.
+5.0
+Feb 23, 2022 - Mar 17, 2022
+"very good cooperation
+job done very fast"
+
+Endorsed by client
+Collaborative
+$98.00
+Fixed price
+Pagination
+...
+
+go to page5
+
+Current page 6 of 136
+
+go to page7
+...
+
+Completed jobs (125)
+
+In progress (2)
+SAS Development / NG
+Jun 8, 2025 - Present
+Job in progress
+
+$460.84
+$35.00 /hr
+13 hours
+AWS & Laravel Developer for Live Project Edits
+May 11, 2025 - Present
+Job in progress
+
+$4,567.51
+$35.00 /hr
+130 hours
+
 Portfolio
 
 Industrial Website Backend Support with Server Migration and Stability

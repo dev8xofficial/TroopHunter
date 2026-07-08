@@ -55,6 +55,7 @@ Copy the fixed block exactly as written. No modifications.
 
 **Paragraph 3 — Ask (1–2 sentences):**
 One clear, low-friction ask. Options:
+
 - Ask if they ever pass work on when they are overbooked.
 - Ask if a trial task is a comfortable way to start.
 - Ask a specific question about their current project type that makes the offer feel relevant.
@@ -74,7 +75,7 @@ The ask must be answerable in two sentences or less. Zero pressure framing.
 - Every sentence must earn its place — if removing it changes nothing, remove it.
 - Read the full message aloud before finalising. If any sentence sounds rehearsed
   or salesy, rewrite it.
-- Total word count must land between 100 and 150. Count before finalising.
+- Total word count must land between 100 and 250. Count before finalising.
 
 ---
 
@@ -108,14 +109,14 @@ Paragraph 2 must match the fixed block verbatim.]
 
 ## WHAT TO ATTACH
 
-| File | Role |
-|------|------|
-| `system_prompts/phase3_outreach/p3b_Medium_Message.md` | This prompt |
-| `[prospect]/context/p1a_Website.md` | Prospect website context |
-| `[prospect]/context/p1b_Upwork.md` | Prospect Upwork — work history, overflow signals |
-| `[prospect]/context/p1c_Linkedin_Owner.md` | Prospect LinkedIn — posts and voice |
-| `[prospect]/context/p2a_Lead_Warming.md` | Warming angle and comment engagement |
-| `[prospect]/context/p3x_Strategy.md` | Strategy decision and variable block brief |
-| `_shared/abdul.md` | Abdul's fixed blocks — Paragraph 2 comes from here verbatim |
+| File                                                   | Role                                                        |
+| ------------------------------------------------------ | ----------------------------------------------------------- |
+| `system_prompts/phase3_outreach/p3b_Medium_Message.md` | This prompt                                                 |
+| `[prospect]/context/p1a_Website.md`                    | Prospect website context                                    |
+| `[prospect]/context/p1b_Upwork.md`                     | Prospect Upwork — work history, overflow signals            |
+| `[prospect]/context/p1c_Linkedin_Owner.md`             | Prospect LinkedIn — posts and voice                         |
+| `[prospect]/context/p2a_Lead_Warming.md`               | Warming angle and comment engagement                        |
+| `[prospect]/context/p3x_Strategy.md`                   | Strategy decision and variable block brief                  |
+| `_shared/abdul.md`                                     | Abdul's fixed blocks — Paragraph 2 comes from here verbatim |
 
 **Save output as:** `[prospect]/artifacts/p3b_Message_[Name].md`
