@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carini Group — Decision Safety Brief | Dev8X</title>
+  <style>
+    :root {
+      --navy: #0f1c2e;
+      --navy-mid: #162338;
+      --navy-light: #1e3352;
+      --blue: #2563eb;
+      --blue-light: #3b82f6;
+      --blue-pale: #dbeafe;
+      --green: #16a34a;
+      --green-pale: #dcfce7;
+      --amber: #d97706;
+      --amber-pale: #fef3c7;
+      --red: #dc2626;
+      --red-pale: #fee2e2;
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-400: #94a3b8;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1e293b;
+      --text: #1e293b;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.1), 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--gray-50);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── LAYOUT (stacked white "cards" on a soft gray page) ── */
+    .page { max-width: 960px; margin: 0 auto; padding: 0 24px 64px; }
+    section { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); box-shadow: var(--shadow); padding: 36px 40px; margin-top: 20px; }
+    .page > section:first-child { margin-top: 28px; }
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 8px;
+    }
+    h2 { font-size: 24px; font-weight: 700; color: var(--navy); margin-bottom: 24px; letter-spacing: -0.01em; }
+    h3 { font-size: 17px; font-weight: 600; color: var(--navy); margin-bottom: 12px; }
+    p { color: var(--gray-700); line-height: 1.65; }
+
+    /* ── HERO (full-bleed; sits ABOVE .page — never inside it. No negative margins) ── */
+    .hero { background: var(--navy); color: var(--white); position: relative; overflow: hidden; border: none; border-radius: 0; box-shadow: none; margin: 0; padding: 0; }
+    .hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 420px; height: 420px; background: radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 70%); pointer-events: none; }
+    .hero-inner { max-width: 960px; margin: 0 auto; padding: 48px 40px; position: relative; z-index: 1; }
+    .hero-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px; margin-bottom: 40px; }
+    .hero-meta-brand {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55);
+    }
+    .hero-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+    .hero-meta-date { font-size: 12px; color: rgba(255,255,255,0.5); }
+    .hero-headline {
+      font-size: clamp(28px, 4vw, 40px); font-weight: 700; line-height: 1.2;
+      letter-spacing: -0.02em; color: var(--white); max-width: 680px; margin-bottom: 16px;
+    }
+    .hero-headline em { font-style: normal; color: #60a5fa; }
+    .hero-subhead {
+      font-size: 16px; color: rgba(255,255,255,0.6); max-width: 580px;
+      margin-bottom: 44px; line-height: 1.6;
+    }
+    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 36px; }
+    .hero-stat {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius); padding: 20px 22px;
+    }
+    .hero-stat-value { font-size: 30px; font-weight: 800; color: var(--white); letter-spacing: -0.02em; line-height: 1; margin-bottom: 6px; }
+    .hero-stat-value.accent { color: #60a5fa; }
+    .hero-stat-value.green { color: #4ade80; }
+    .hero-stat-value.amber { color: #fbbf24; }
+    .hero-stat-label { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.4; margin-bottom: 6px; }
+    .hero-stat-source { font-size: 11px; color: rgba(255,255,255,0.45); font-style: italic; }
+
+    /* ── AT-A-GLANCE (a bordered box INSIDE .hero-inner, below the stats) ── */
+    .glance-strip { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(255,255,255,0.14); border-radius: var(--radius); overflow: hidden; }
+    .glance-item { padding: 16px 20px; border-right: 1px solid rgba(255,255,255,0.14); }
+    .glance-item:last-child { border-right: none; }
+    .glance-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); margin-bottom: 5px;
+    }
+    .glance-value { font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.4; font-weight: 500; }
+
+    /* ── GENERIC CARDS / GRIDS ── */
+    .card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
+    .card-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    /* ── DESIRED OUTCOME (SECTION 2) ── */
+    .outcome-section { background: var(--white); }
+    .two-col-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+    .outcome-card { border-radius: var(--radius); padding: 22px 24px; border-left: 4px solid var(--blue); background: var(--blue-pale); }
+    .outcome-card h3 { color: var(--navy); font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; margin-bottom: 8px; }
+    .outcome-card p { color: var(--gray-700); font-size: 14px; line-height: 1.55; }
+    .timing-callout { background: var(--amber-pale); border: 1px solid #fde68a; border-radius: var(--radius-sm); padding: 16px 20px; display: flex; align-items: flex-start; gap: 12px; }
+    .timing-callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .timing-callout-text { font-size: 14px; color: #92400e; line-height: 1.5; }
+    .timing-callout-text strong { color: #78350f; }
+
+    /* ── PROBLEM TABLE (SECTION 3) ── */
+    .table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 16px; }
+    .problem-table, .research-table { min-width: 720px; width: 100%; }
+    .problem-table { border-collapse: collapse; font-size: 14px; }
+    .problem-table th {
+      background: var(--gray-100); text-align: left; padding: 11px 16px; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-600); border-bottom: 2px solid var(--gray-200);
+    }
+    .problem-table td { padding: 14px 16px; vertical-align: top; border-bottom: 1px solid var(--gray-100); line-height: 1.5; color: var(--gray-700); }
+    .problem-table tr:last-child td { border-bottom: none; }
+    .problem-table tr:hover td { background: var(--gray-50); }
+    .problem-num {
+      display: inline-flex; width: 22px; height: 22px; background: var(--navy); color: var(--white);
+      border-radius: 50%; font-size: 11px; font-weight: 700; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .impact-badge { display: inline-block; padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+    .impact-critical { background: var(--red); color: #fff; }
+    .impact-high { background: var(--red-pale); color: #991b1b; }
+    .impact-med { background: var(--amber-pale); color: #92400e; }
+
+    /* ── RESEARCH TRANSPARENCY (SECTION 3B) ── */
+    .transparency-section { background: var(--gray-50); }
+    .research-table {
+      border-collapse: collapse; font-size: 13.5px; background: var(--white);
+      border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+    }
+    .research-table th {
+      background: var(--navy); color: rgba(255,255,255,0.8); text-align: left; padding: 12px 16px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+    }
+    .research-table td { padding: 14px 16px; border-bottom: 1px solid var(--gray-100); vertical-align: top; color: var(--gray-700); line-height: 1.5; }
+    .research-table tr:last-child td { border-bottom: none; }
+    .research-table td:first-child { font-weight: 600; color: var(--navy); width: 22%; }
+
+    /* ── FUTURE RISK CARDS (SECTION 4) — color-coded top accent (r1/r2/r3) ── */
+    .risk-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .risk-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 22px; position: relative; overflow: hidden; }
+    .risk-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .risk-card.r1::before { background: var(--red); }
+    .risk-card.r2::before { background: var(--amber); }
+    .risk-card.r3::before { background: var(--blue); }
+    .risk-card-when { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-400); font-weight: 700; margin-bottom: 6px; }
+    .risk-card-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
+    .risk-card-break { font-size: 13px; color: var(--gray-600); margin-bottom: 12px; line-height: 1.5; }
+    .risk-card-prevent { font-size: 12px; color: var(--green); font-weight: 600; padding-top: 10px; border-top: 1px solid var(--gray-100); line-height: 1.45; }
+
+    /* ── SOLUTION CARDS (SECTION 5) ── */
+    .solutions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .sol-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; }
+    .sol-card.featured { grid-column: 1 / -1; }
+    .sol-card-header { background: var(--navy); padding: 16px 20px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    .sol-card-name { font-size: 14px; font-weight: 700; color: var(--white); line-height: 1.3; }
+    .proof-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 9px; border-radius: 20px; flex-shrink: 0; white-space: nowrap; }
+    .proof-visible { background: #166534; color: #bbf7d0; }
+    .proof-partial { background: #92400e; color: #fde68a; }
+    .proof-future { background: var(--navy-light); color: var(--blue-pale); }
+    .sol-card-body { padding: 18px 20px; }
+    .sol-field-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 4px; margin-top: 12px; }
+    .sol-field-label:first-child { margin-top: 0; }
+    .sol-field-text { font-size: 13.5px; color: var(--gray-700); line-height: 1.5; }
+    .sol-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; padding: 14px; background: var(--gray-50); border-radius: var(--radius-sm); border: 1px solid var(--gray-100); }
+    .sol-metric { text-align: center; }
+    .sol-metric-icon { font-size: 15px; line-height: 1; margin-bottom: 5px; }
+    .sol-metric-val { font-size: 18px; font-weight: 800; color: var(--navy); line-height: 1; margin-bottom: 4px; }
+    .sol-metric-val.green { color: var(--green); }
+    .sol-metric-val.blue { color: var(--blue); }
+    .sol-metric-label { font-size: 11px; color: var(--gray-600); line-height: 1.3; margin-bottom: 3px; }
+    .sol-metric-source { font-size: 10px; color: var(--gray-400); font-style: italic; line-height: 1.2; }
+    .sol-divider { height: 1px; background: var(--gray-100); margin: 14px 0; }
+    .ba-item { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--gray-600); margin-bottom: 7px; line-height: 1.4; }
+    .ba-check { color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .ba-arrow { color: var(--blue); font-weight: 700; flex-shrink: 0; margin: 0 2px; }
+    .ba-before { color: var(--gray-400); }
+    .ba-after { color: var(--navy); font-weight: 600; }
+
+    /* ── ROI / OPERATIONAL IMPACT (SECTION 6) — light card; dark panel only for number treatment ── */
+    .roi-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+    .roi-stat { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 18px 16px; text-align: center; }
+    .roi-stat-val { font-size: 28px; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; margin-bottom: 5px; line-height: 1; }
+    .roi-stat-val.green { color: var(--green); }
+    .roi-stat-val.blue { color: var(--blue); }
+    .roi-stat-label { font-size: 12px; color: var(--gray-500); line-height: 1.4; }
+    .chart-container { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 24px; margin-bottom: 24px; }
+    .chart-container canvas { display: block; width: 100% !important; height: auto !important; }
+    .chart-title { font-size: 13px; font-weight: 600; color: var(--gray-700); margin-bottom: 16px; }
+    /* number-treatment: the ONE dark panel — colored dots + source badges */
+    .numbers-panel { background: var(--navy); color: var(--white); border-radius: var(--radius-sm); padding: 24px; }
+    .numbers-panel-title { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.85); margin-bottom: 16px; }
+    .nt-rows { display: flex; flex-direction: column; gap: 10px; }
+    .nt-row { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 10px 14px; background: rgba(255,255,255,0.06); border-radius: 6px; font-size: 12.5px; }
+    .nt-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .nt-green { background: #4ade80; }
+    .nt-blue { background: #60a5fa; }
+    .nt-amber { background: #fbbf24; }
+    .nt-desc { color: rgba(255,255,255,0.78); line-height: 1.5; }
+    .nt-desc strong { color: var(--white); }
+    .nt-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+    .badge-green { background: rgba(74,222,128,0.15); color: #4ade80; }
+    .badge-blue { background: rgba(96,165,250,0.18); color: #93c5fd; }
+    .badge-amber { background: rgba(251,191,36,0.15); color: #fbbf24; }
+
+    /* ── STAKEHOLDER (SECTION 7) ── */
+    .stakeholder-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .sh-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 18px; }
+    .sh-role { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 4px; }
+    .sh-name { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+    .sh-row { margin-bottom: 9px; }
+    .sh-row-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-400); margin-bottom: 2px; }
+    .sh-row-text { font-size: 12.5px; color: var(--gray-700); line-height: 1.4; }
+    .sh-note { font-size: 13px; color: var(--gray-600); font-style: italic; }
+
+    /* ── CTA (SECTION 8) — the section IS a navy gradient card; light text ── */
+    .cta-section { background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 100%); border: none; padding: 44px 48px; text-align: center; color: var(--white); }
+    .cta-box { max-width: 560px; margin: 0 auto; }
+    .cta-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #60a5fa; margin-bottom: 12px; }
+    .cta-headline { font-size: 26px; font-weight: 700; color: var(--white); margin-bottom: 14px; letter-spacing: -0.01em; line-height: 1.3; }
+    .cta-body { font-size: 15px; color: rgba(255,255,255,0.68); line-height: 1.6; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { display: inline-block; background: var(--blue); color: var(--white); padding: 13px 28px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; text-decoration: none; letter-spacing: 0.01em; transition: background 0.15s; }
+    .btn-primary:hover { background: var(--blue-light); }
+    .btn-secondary { display: inline-block; background: var(--white); color: var(--navy); border: 1px solid var(--gray-300); padding: 13px 28px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; text-decoration: none; transition: border-color 0.15s; }
+    .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* ── TIMELINE STRIP (required roadmap module) ── */
+    .timeline-strip { display: flex; align-items: flex-start; gap: 0; padding: 28px 0 0; position: relative; flex-wrap: wrap; }
+    .timeline-phase { flex: 1; position: relative; padding-right: 20px; min-width: 220px; }
+    .timeline-phase:last-child { padding-right: 0; }
+    .timeline-dot { width: 34px; height: 34px; border-radius: 50%; background: var(--blue); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; margin-bottom: 10px; position: relative; z-index: 1; box-shadow: 0 0 0 4px var(--white); }
+    .timeline-phase::after { content: ''; position: absolute; top: 16px; left: 32px; right: 20px; height: 1px; background: var(--gray-200); }
+    .timeline-phase:last-child::after { display: none; }
+    .timeline-label { font-size: 11px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .timeline-desc { font-size: 12.5px; color: var(--gray-600); line-height: 1.4; }
+
+    /* ── UTILITIES ── */
+    .divider { height: 1px; background: var(--gray-200); margin: 32px 0; }
+    .mt-8 { margin-top: 8px; } .mt-16 { margin-top: 16px; } .mt-24 { margin-top: 24px; } .mt-32 { margin-top: 32px; }
+    .mb-0 { margin-bottom: 0; }
+
+    /* ── FOOTER (fixed — never restyle) ── */
+    .footer { background: var(--navy); padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-brand { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; }
+    .footer-note { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+    /* ── RESPONSIVE ── */
+    /* Tablet: relax the densest grids before the full single-column collapse */
+    @media (max-width: 900px) {
+      .roi-stat-grid, .card-grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .risk-cards, .stakeholder-cards, .card-grid-3 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 720px) {
+      section { padding: 24px; }
+      .hero-inner { padding: 36px 24px; }
+      .glance-strip { grid-template-columns: 1fr; }
+      .glance-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.14); }
+      .glance-item:last-child { border-bottom: none; }
+      .hero-stats { grid-template-columns: 1fr; }
+      .two-col-cards { grid-template-columns: 1fr; }
+      .card-grid-2, .card-grid-3, .card-grid-4 { grid-template-columns: 1fr; }
+      .risk-cards { grid-template-columns: 1fr; }
+      .solutions-grid { grid-template-columns: 1fr; }
+      .roi-stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .stakeholder-cards { grid-template-columns: 1fr; }
+      .nt-row { grid-template-columns: auto 1fr; }
+      .nt-badge { grid-column: 2; justify-self: start; margin-top: 4px; }
+      .cta-section { padding: 32px 24px; }
+      .timeline-phase { flex: 1 1 100%; padding-right: 0; }
+      .timeline-phase::after { display: none; }
+      .footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+    @media print {
+      .hero-stats { grid-template-columns: repeat(3, 1fr); }
+      .roi-stat-grid { grid-template-columns: repeat(4, 1fr); }
+      section { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-meta">
+        <span class="hero-meta-brand">Dev8X · Decision Safety Brief</span>
+        <div class="hero-meta-dot"></div>
+        <span class="hero-meta-date">Prepared for Carini Group — July 2026</span>
+      </div>
+      <h1 class="hero-headline">Your demand engine is compounding faster than your firm can <em>catch what it generates</em></h1>
+      <p class="hero-subhead">Four national-media appearances in 90 days — a new international audience every few weeks, all landing on one English-only intake, cleared by one person.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value accent">4</div>
+          <div class="hero-stat-label">national-media appearances in 90 days — no system catching what they send</div>
+          <div class="hero-stat-source">from Alex's LinkedIn</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value amber">50%</div>
+          <div class="hero-stat-label">of the client base is international — met by an English-only intake</div>
+          <div class="hero-stat-source">from Carini Group's materials</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value green">5–7</div>
+          <div class="hero-stat-label">outside parties per deal, relayed by hand across an 8-step close</div>
+          <div class="hero-stat-source">from the operations manual</div>
+        </div>
+      </div>
+      <div class="glance-strip">
+        <div class="glance-item"><div class="glance-label">Current Bottleneck</div><div class="glance-value">Six inbound channels, one English-only intake, one person clearing all of it by hand</div></div>
+        <div class="glance-item"><div class="glance-label">What It's Costing</div><div class="glance-value">Every media wave and referral Alex can't reach in time is a lost international deal — the exact figure is what 20 minutes of discovery confirms</div></div>
+        <div class="glance-item"><div class="glance-label">Recommended Next Step</div><div class="glance-value">Reply to confirm the read</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page">
+
+    <section class="outcome-section">
+      <div class="section-label">Desired Outcome</div>
+      <h2>The Growth Already in Motion — and the One Layer Missing</h2>
+      <div class="two-col-cards">
+        <div class="outcome-card">
+          <h3>What's Already Working</h3>
+          <p>A genuine demand engine: a founder-brand earning national media in three languages, a referral flywheel where clients become friends, and boutique speed — contracts in one to two weeks. Half the book is international. The hard part — generating high-intent demand — is already solved.</p>
+        </div>
+        <div class="outcome-card">
+          <h3>The Missing Layer</h3>
+          <p>Everything that engine generates converges on one English-only contact form and one person. No CRM, no shared pipeline, no multilingual intake, no nurture for the referral base. The firm's capacity is capped by Alex's available hours — not by market demand.</p>
+        </div>
+      </div>
+      <div class="timing-callout">
+        <span class="timing-callout-icon">⏱</span>
+        <span class="timing-callout-text"><strong>The momentum is compounding right now.</strong> Each RAI or La7 segment opens a finite 48–72 hour attention window. Without an intake layer behind it, every appearance is a promise the firm can't yet keep at scale.</span>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Current State</div>
+      <h2>What's Standing Between the Demand and the Deals</h2>
+      <div class="table-scroll">
+        <table class="problem-table">
+          <thead>
+            <tr><th>#</th><th>Current Challenge</th><th>Business Impact</th><th>Pressure</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="problem-num">1</span></td>
+              <td>Six inbound channels — referrals, international network, media, website, LinkedIn, and events — all funnel to one English-only contact form and one person, with no routing or async capture.</td>
+              <td>The entire top of the funnel is capped by Alex's real-time availability; media leads expire inside a 48–72 hour window.</td>
+              <td><span class="impact-badge impact-critical">Critical</span></td>
+            </tr>
+            <tr>
+              <td><span class="problem-num">2</span></td>
+              <td>The firm serves a 50% international clientele with a founder fluent in three languages — yet the digital intake is English-only, with no language toggle and no auto-response.</td>
+              <td>The firm's single biggest differentiator is absent at the highest-intent moment, creating friction before Alex can engage.</td>
+              <td><span class="impact-badge impact-high">High</span></td>
+            </tr>
+            <tr>
+              <td><span class="problem-num">3</span></td>
+              <td>All qualification, follow-up, and relationship memory lives with Alex personally — the three-person team has no CRM and no shared pipeline.</td>
+              <td>Deal capacity equals Alex's hours; client context can't pass to Eddie or Vivek without a full briefing from him first.</td>
+              <td><span class="impact-badge impact-high">High</span></td>
+            </tr>
+            <tr>
+              <td><span class="problem-num">4</span></td>
+              <td>Every deal runs an 8-step lifecycle across 5–7 external parties — attorneys, title, banks, inspectors, contractors — all relayed manually by the agent.</td>
+              <td>The boutique's 1–2 week speed depends on Alex personally chasing each party; every coordination hour is an hour not spent originating deals.</td>
+              <td><span class="impact-badge impact-high">High</span></td>
+            </tr>
+            <tr>
+              <td><span class="problem-num">5</span></td>
+              <td>Referrals and repeat clients are the firm's own stated highest-quality lead source — yet there is zero systematic re-engagement; all client communication is manual.</td>
+              <td>The best pipeline is left to go dormant between transactions; warm leads that don't close immediately are quietly lost.</td>
+              <td><span class="impact-badge impact-med">Medium</span></td>
+            </tr>
+            <tr>
+              <td><span class="problem-num">6</span></td>
+              <td>The firm is actively hiring agents but has no documented onboarding, playbook, or shared system for a new hire to run a deal independently.</td>
+              <td>Each hire consumes Alex-time before earning revenue — adding headcount deepens the bottleneck instead of relieving it.</td>
+              <td><span class="impact-badge impact-med">Medium</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="transparency-section">
+      <div class="section-label">Research Transparency</div>
+      <h2>What We Know and Where We'd Like Your Confirmation</h2>
+      <div class="table-scroll">
+        <table class="research-table">
+          <thead>
+            <tr><th>Claim</th><th>Evidence We Used</th><th>What We'd Like to Confirm With You</th><th>Open Question</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Media appearances generate international inquiry the current setup can't fully capture.</td>
+              <td>Four appearances in 90 days on LinkedIn (RAI, La7, Newsmax, Azione); a single English-only contact form; no CRM named anywhere in public materials.</td>
+              <td>How many inquiries arrive after an appearance, and how you handle them today.</td>
+              <td>Alex may respond personally and fast — which confirms the single-point bottleneck rather than refuting it.</td>
+            </tr>
+            <tr>
+              <td>Alex is the sole intake, relationship, and coordination layer.</td>
+              <td>Every company post reposts Alex; testimonials describe him handling each step; the operations manual states he personally oversees all high-value deals and coordinates every outside party.</td>
+              <td>Whether anyone else fields first contact — or runs a deal end-to-end without you.</td>
+              <td>Informal light systems — email folders, WhatsApp threads — may already exist that Alex doesn't perceive as a gap.</td>
+            </tr>
+            <tr>
+              <td>The firm's highest-quality channel — referrals and repeat clients — has no systematic nurture.</td>
+              <td>The operations manual ranks referrals and the international network as the highest-quality inbound, and states communication is manual with "no automated drip campaigns."</td>
+              <td>What happens with a past client 6–12 months after closing today.</td>
+              <td>Alex may keep those relationships warm personally — which again ties retention to his available hours.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">What's Ahead</div>
+      <h2>What Breaks If the Gap Stays Open</h2>
+      <p>Alex built Carini Group to grow international volume without growing the team proportionally — the media engine exists to do exactly that. The three risks below are what stands between that ambition and the bottleneck quietly holding it back.</p>
+      <div class="risk-cards mt-24">
+        <div class="risk-card r1">
+          <div class="risk-card-when">Accelerating now</div>
+          <div class="risk-card-title">Media reach outgrows the firm's ability to serve it</div>
+          <div class="risk-card-break">Each new appearance reaches a wider international audience with the same one-person, English-only intake behind it. In HNW networks, word of a missed response travels as fast as word of excellence.</div>
+          <div class="risk-card-prevent">→ stands directly between Alex and the international growth the media is designed to create; it grows with every appearance, it does not shrink.</div>
+        </div>
+        <div class="risk-card r2">
+          <div class="risk-card-when">Next hiring cycle</div>
+          <div class="risk-card-title">Hiring onto no system deepens the bottleneck</div>
+          <div class="risk-card-break">Agents joining a firm with no CRM, playbook, or shared pipeline stay dependent on Alex for every interaction. Those who can't operate independently within 60–90 days underperform or leave.</div>
+          <div class="risk-card-prevent">→ each hire meant to free Alex instead recreates the bottleneck at his desk; "direct access to Alex" quietly becomes the ceiling on the whole firm.</div>
+        </div>
+        <div class="risk-card r3">
+          <div class="risk-card-when">12–24 months out</div>
+          <div class="risk-card-title">The ceiling moves from capture to throughput</div>
+          <div class="risk-card-break">Even if every lead is caught, the 8-step, 5–7-party manual coordination and an un-nurtured referral base cap how many deals actually close — while commercial and residential funneled through one lane dilute both brands.</div>
+          <div class="risk-card-prevent">→ the boutique speed that is Alex's signature is the first thing to break under the volume his brand is earning; the constraint doesn't disappear, it relocates.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-box">
+        <div class="cta-eyebrow">One Quick Thing</div>
+        <h2 class="cta-headline">Tell me where I got it right — and where I didn't</h2>
+        <p class="cta-body">Some of this is drawn straight from Carini Group's own website, LinkedIn, and operations materials; a few reads are from the outside and could be off. Reply with a yes, or a "you missed something" — I'd rather know now than assume.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Dev8X · Decision Safety Brief · Carini Group</span>
+    <span class="footer-note">Prepared July 2026 · Confidential</span>
+  </div>
+</body>
+</html>
