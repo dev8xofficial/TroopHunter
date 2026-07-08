@@ -354,6 +354,21 @@ clearly interested but stuck on trust. (The fit-check script itself lives in
 `p3d_Consultation_Playbook.md` §F.8, generated once the call is actually
 scheduled.)
 
+**Minimum-viable fit-check structure (use this if the call happens before
+`p3d_Consultation_Playbook.md` exists — this is a bridge, not a replacement for
+§F.8; discard it once §F.8 is generated):**
+1. Open with the same spirit as the video's reply ask: ask which flagged
+   problem matters most to him, and why now — this keeps the call anchored to
+   what he already told you in Message 1, not a fresh pitch.
+2. Answer ORIENTING questions only — how the paid session works, what the
+   guarantee covers, what he keeps either way. Never answer DIAGNOSTIC
+   questions (his numbers, a specific recommendation, "what would you build")
+   on this call — redirect those with the Branch S line below.
+3. Close with a direct yes/no, not a soft maybe: "Does this feel worth the
+   paid session, or should I leave it here?"
+If the call drifts into free diagnosis at any point, treat it as Branch S
+mid-call and stop answering substantive questions.
+
 ### BRANCH K — "Let Me Think About It"
 > "Of course — it's a real decision and I respect that. One thing to sit with:
 > the [bottleneck] costs roughly [stakes number] every month it stays as-is.
