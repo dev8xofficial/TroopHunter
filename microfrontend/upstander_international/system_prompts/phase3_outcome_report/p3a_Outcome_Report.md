@@ -20,12 +20,37 @@ This prompt operates under the Decision-Led Proof Framework v2.
 2. **Decision Emotion:** Structure content to trigger Recognition, Relief, Fear
    of Inaction, Trust, and Momentum in sequence. Emotion labels are internal
    only and must never be printed in the report.
-3. **Narrative Formula:** The output MUST follow this exact sequence:
-   - Future Outcome → Current Bottleneck → Proof → Safe Change → Strategic Unlock
-   - Before writing, verify your outline maps to this sequence. Flag any section
-     that doesn't.
+3. **Narrative Formula (truncated — this brief is a trailer, not the movie):** The
+   output MUST follow only the first three beats and then STOP:
+   - Future Outcome → Current Bottleneck → Proof of Understanding
+   - It must NOT contain Safe Change or Strategic Unlock. Solutions, "what gets
+     built", ROI dashboards, and build recommendations are WITHHELD — they are the
+     paid consultation's payload, not the first video's.
+   - Before writing, verify your outline stops at Proof of Understanding. Flag any
+     solution or ROI section that creeps in.
 4. **Always Built:** Adjust tone based on the Confidence Signal.
 5. **Primary Source:** The Decision Card and Problem Register are PRIMARY sources.
+
+### THE HOLD-BACK RULE (critical — this is the first-video brief)
+
+This brief is screen-recorded as the FREE first video. Its job is to prove you
+understand the problem and STOP — so the prospect wants the paid consultation. It
+must prove depth and withhold the roadmap.
+
+**SHOW:** the bottleneck (as a cost/stakes figure), the desired outcome, the
+current problems in the prospect's own words, the research transparency table, the
+future risks, and ONE stakes number quantifying the cost of the bottleneck.
+
+**NEVER SHOW (withheld — these are the paid consultation's payload):**
+- Any solution, feature, or "what gets built" (no solution cards).
+- Any ROI dashboard, operational-impact chart, hours-saved math, or per-solution
+  metrics.
+- Any build timeline, team, phases, or cost.
+- Any price, demo link, or calendar link. The brief ends on a REPLY ask only.
+
+If a section below describes solutions, ROI, or a build, it is omitted from this
+brief. The recorded page must contain nothing the prospect can scroll to that gives
+away the diagnosis.
 
 ### Client-Facing Surface Rule (critical)
 
@@ -94,9 +119,14 @@ thinking.
 5. **Stakeholder before proposal** — This is not the proposal, but the Stakeholder
    Decision Map from the Problem Register must inform which problems are shown
    (operational vs executive focus).
-6. **Stay commercially practical** — If research is 80% complete, build the report.
-   Do not let missing data block a strong deliverable; use directional language
-   and discovery questions instead.
+6. **Stay commercially practical — EXCEPT for this cold first touch.** Normally, if
+   research is ~80% complete, build the deliverable. But this brief is recorded and
+   sent to a cold CEO as a first impression, where confident wrongness burns the
+   prospect faster than no outreach at all (and CEOs talk). So a **minimum-
+   specificity gate applies**: do NOT build this brief unless at least 3 problems
+   are specific, verifiable, and traceable to a NAMED public source. If the research
+   can't clear that bar, stop and flag for more research — do not paper over it with
+   directional language. A human approves the diagnosis before the video is recorded.
 
 ---
 
@@ -109,11 +139,14 @@ portals, automation systems, and digital tools for businesses.
 the first impression. It must feel like Dev8X already understands their business
 deeply — not a generic pitch deck.
 
-**The video flow this report supports:**
-1. Screen share the HTML report — scroll through it slowly.
-2. Talk to each outcome section: "Right now you're doing X manually — we can
-   cut that to Y."
-3. End on the ROI summary and the CTA adjusted to the Confidence Signal level.
+**The video flow this report supports (and how it's recorded):**
+1. Do NOT film a full-page scroll — this brief is a dense, scan-first dashboard that
+   is unreadable as a phone video. Zoom into ONE narrated element at a time (hero
+   stat, one problem row, the transparency table) so text is legible on mobile.
+2. Open on the bottleneck, talk to each problem in the prospect's own words, then
+   the research-transparency table (what you can / can't see from outside).
+3. End on the future-risk (regret gap) and the reply-ask CTA. No solutions, no ROI,
+   no demo — those are withheld. (See p3b for the full narration script.)
 
 **What makes this work:**
 Every outcome in the report has a classified number internally. Directly sourced
@@ -175,9 +208,20 @@ Do not start writing HTML until this mapping is complete internally.
   "from TreeRaise's own published materials", "calculated estimate", or
   "industry reference point"). Never display the L1/L2/L3/L4 codes.
 
-### 3. Outcome Quantification Method
+### 3. Stakes-Number Quantification Method
 
-For every solution, produce the most defensible quantified outcome set available.
+Produce ONE defensible **cost-of-bottleneck** figure — the stakes number — that
+quantifies what the current problem is costing the prospect (lost revenue, lost
+output, wasted hours). This is the only headline number in the brief. Do NOT
+quantify solution outcomes — solutions are withheld.
+
+**Decoupling rule (critical):** the Research Transparency section admits certain
+internal numbers cannot be seen from outside (e.g. conversion rate). The stakes
+number must NOT depend on those very unknowns, or the brief contradicts itself —
+confessing blindness, then quoting a figure that needs the hidden data. Build the
+stakes number from OBSERVABLE quantities, label it a conservative estimate, and
+state that the exact figure is what a follow-up would confirm. The honesty and the
+number must reinforce each other, not collide.
 Do **not** force `hours saved` if the underlying data is weak. Use this method:
 
 **Step 1 — Classify the source of every number before it enters the report
@@ -270,29 +314,11 @@ If those conditions are not met, choose a stronger KPI instead.
   comparison is defensible.
 - Use: Minimal (< 25%), Moderate (25–60%), Significant (60–80%), Near-Full (> 80%)
 
-### 4. Solutions to Include
+### 4. Solutions — WITHHELD
 
-Include between 4 and 7 solution cards — one per major transformation area.
-Choose only solutions that are directly supported by pain points in the attached
-files. Do not pad with generic solutions.
-
-For each solution card include:
-- Solution name (specific, not generic — e.g. "Automated Campaign Dashboard",
-  not "Dashboard")
-- The current-state problem (one sentence, in plain language)
-  - **Must reference the Problem Register row number** this card solves
-- The solution (one sentence, what gets built)
-- Proof Status: Visible in Demo / Described Only / Future State
-- Three outcome metrics:
-  - One **primary operational KPI** chosen from the most defensible metric type
-    for that workflow
-  - Up to two supporting metrics such as cost impact, effort reduction,
-    capacity increase, response-time reduction, tasks automated, or hours saved
-    when justified
-  - **Every metric must include a client-facing source note** such as
-    "from [Prospect]'s own published materials", "[Estimated]", "calculated
-    estimate", or "industry reference point". Do not show L1/L2/L3 labels.
-- A before/after comparison (2–3 bullet points showing the specific change)
+Do not include solution cards. Solutions, "what gets built", and per-solution
+metrics are the paid consultation's payload and must not appear in this brief.
+(See the Hold-Back Rule above.)
 
 ### 5. Report Structure
 
@@ -305,13 +331,15 @@ The HTML report must contain exactly these sections in this order:
   or internal validation badge. Confidence should affect wording, not appear as
   a visible label.
 - The hero must work as a 15-second executive scan:
-  - One strong headline
+  - One strong headline naming the bottleneck (not a solution outcome)
   - One short subhead (maximum 1 sentence)
-  - Three headline outcome stat cards pulled from the biggest wins in the report
+  - Three headline stat cards framing the COST and SCALE of the problem — the single
+    strongest stakes figure (cost of the bottleneck) plus two problem-scale numbers.
+    Never a solution outcome or ROI win.
   - One compact "At a Glance" strip showing:
     - Current bottleneck
-    - Strongest operational unlock
-    - Recommended next step
+    - What it is costing (the stakes number)
+    - Recommended next step (a reply — not a demo)
 - The hero must feel calm, spacious, and premium. Avoid a crowded first screen.
 - Do not stack multiple equally loud elements on top of each other. The visual
   hierarchy must be:
@@ -342,9 +370,9 @@ The HTML report must contain exactly these sections in this order:
 - Do not repeat the same idea in the headline, subhead, stat cards, and glance
   strip. Each layer should add a different level of understanding.
 - Directly sourced metrics only in the hero headline. If no directly sourced
-  metrics exist, use directional language in the hero (e.g. "Significantly
-  reduces manual coordination overhead") and place the strongest calculated
-  estimate in the subhead with an "[Estimated]" label.
+  stakes figure exists, use directional language in the hero (e.g. "A meaningful
+  share of new revenue is slipping through this gap") and place the strongest
+  calculated cost estimate in the subhead with an "[Estimated]" label.
 - Source notes under hero stats must use plain language such as
   "TreeRaise published goal", "from TreeRaise's own materials", or
   "calculated estimate". Do not show internal classification codes.
@@ -387,102 +415,85 @@ research feel disciplined at a glance.
 This shows the CEO that the research is disciplined without exposing the Proof
 Ledger terminology. Internally, this creates Trust; do not name the emotion.
 
-#### Section 4 — Future Problem Register
-- Show the top 3 future problems as compact risk cards or a clean 3-row table.
-- For each future problem include:
+#### Section 4 — Future Problem Register (the Regret Gap)
+
+This section creates Fear of Inaction through the prospect's OWN ambition — not
+through guilt or judgment. The lever is the gap between the future they have
+publicly committed to and the bottleneck quietly blocking it. Pressure their goal,
+never their character. Use only real, evidenced mechanisms — never a manufactured
+problem.
+
+- Open with one short lead-in line that names the prospect's **stated goal** (pull
+  the Primary Goal from the Decision Card §1 and, where available, the CEO's own
+  words from the owner profile, p1c). Frame the future risks as the things standing
+  between them and that goal.
+- Show the top 3 future problems as the 3 risk cards. For each include:
   - Risk title
-  - What likely breaks in 12–24 months
-  - How the recommended build prevents that outcome
-- Keep each entry to short, punchy business language rather than long warnings.
+  - What likely breaks in 12–24 months (the real compounding mechanism from the
+    Future Problem Register)
+  - **The regret-gap line:** how this widens the distance to their stated goal —
+    e.g. "→ stands directly between you and [their stated goal]; at scale it grows,
+    it does not shrink." Do NOT reference a Dev8X build or solution here (withheld).
+- Calibrate tone to the CEO's communication style (from the Decision Emotion Map
+  §10 and the owner profile): visionary → frame against the vision they broadcast;
+  operator → compounding operational drag; numbers-driven → the stakes number
+  growing year over year; mission-driven → the people they exist to serve, stated
+  as their goal, never as your accusation.
+- Keep each entry short and punchy. No long warnings, no shame, no finger-pointing.
 
-Internally, this creates Fear of Inaction: the buyer sees what breaks in 12–24
-months if no change happens. Do not name the emotion.
+Internally, this creates Fear of Inaction via the regret gap. Do not name the
+emotion, and never make the risk about the buyer's competence — only about the
+distance between their ambition and the unaddressed bottleneck.
 
-#### Section 5 — What Gets Built to Remove the Bottleneck
-- Solution cards (4–7 maximum).
-- Each card must reference a specific current problem from Section 3.
-- Each card must be highly visual and easy to scan. Use a card layout with:
-  - Solution name
-  - Problem solved
-  - What gets built
-  - Proof Status (Visible in Demo / Described Only / Future State)
-  - Three outcome metrics
-  - 2–3 before/after bullets
-- Metrics must use client-facing source notes on each. Do not show ROI Integrity
-  labels or L1/L2/L3 codes.
-- Limit prose inside each card:
-  - Problem text: max 25 words
-  - Solution text: max 30 words
-  - Before/after bullets: max 12 words each where possible
+#### Section 5 — WITHHELD (no solution cards)
 
-Internally, this creates Relief: the buyer sees the solution to their deepest
-frustration. Do not name the emotion.
+Omitted from this brief. Solutions and "what gets built" are the paid
+consultation's payload. The brief stops at Proof of Understanding (Section 3B) and
+the future risks (Section 4), then goes straight to the CTA. Do NOT render a
+solutions section.
 
-#### Section 6 — Projected Operational Impact
-- This section must feel like an executive summary dashboard, not a text block.
-- Include:
-  - A stat card grid using the **most defensible summary KPIs available** for
-    this prospect. Examples: tasks automated, workflows automated, process speed
-    improvement, response-time reduction, output capacity increase, revenue
-    opportunities unlocked, error reduction, break-even month, or annual hours
-    only when hours are defensible
-  - One horizontal bar chart based on the **strongest comparable KPI available
-    across the chosen solutions**
-  - One compact "How We Treated Every Number in This Report" panel
-- Group the visible explanations by client-facing source basis:
-  - **From [Prospect]'s own published materials:** shown as confident projections
-  - **Calculated estimates:** shown with stated assumptions and "[Estimated]"
-    label where useful
-  - **Industry reference points:** shown as "based on comparable platforms; not
-    specific to [Prospect]"
-- Do not include a note saying L3/L4 metrics were excluded from headlines.
-  Instead, say plainly that headline figures are limited to numbers that can be
-  tied directly to the prospect's materials.
+#### Section 6 — WITHHELD (no ROI dashboard)
+Omitted from this brief. No stat-card ROI grid, no impact chart, no "how we treated
+every number" panel. The single stakes number lives in the hero; trust is carried
+by the Research Transparency table (Section 3B). Do NOT render an ROI section or a
+Chart.js chart.
 
-If hours cannot be measured confidently, do not force an hours-based chart or
-hours-based summary cards. Replace them with a more credible KPI family.
+#### Section 7 — WITHHELD (no stakeholder section)
 
-Use a client-readable subheading such as "How We Treated Every Number in This
-Report". Internally, this creates Trust through honest labelling; do not name the
-emotion or the internal integrity system.
+Cut from the recorded brief to keep it tight on the narrated beats. Stakeholder
+mapping happens live in the paid consultation. Do NOT render a stakeholder section.
 
-#### Section 7 — Stakeholder Confidence / Decision Context
-- If stakeholder data is available: show an abbreviated stakeholder map as
-  compact cards, not long prose.
-- Each stakeholder card should show:
-  - Name / role
-  - What matters most to them
-  - What risk they will care about
-- If data is thin, use: "Stakeholder mapping recommended during discovery."
+#### Section 8 — Recommended Next Action (CTA) — the REPLY ask
 
-#### Section 8 — Recommended Next Action (CTA)
-Adjust dynamically based on the Confidence Signal from the Decision Card, but do
-not name the Confidence Signal in the report.
+The brief never asks for money, a demo, or a meeting. It ends on a single
+low-friction REPLY ask. No "Watch the Demo" button, no calendar link, no price, no
+`href`-linked button at all. The CTA is plain text inviting the prospect to reply
+and confirm whether the diagnosis is accurate.
+
+Adjust the wording by Confidence Signal (do not name the Signal in the report):
 
 - **High Confidence:**
-  - Headline: "See exactly how this gets built — in 6 minutes"
-  - Button: "Watch the Demo →"
-  - One paragraph, plain language, no pressure.
+  - Headline: "Did I read your operation right?"
+  - Body: one short paragraph inviting a direct reply to confirm or correct.
+  - No button. Plain ask: "Reply and tell me — I want to know if I got it right."
 
 - **Medium Confidence:**
-  - Headline: "Watch the demo — and let us know where we got it right"
-  - Button: "Watch the Demo →"
-  - One paragraph acknowledging some numbers are estimated and inviting
-    feedback.
+  - Headline: "Tell me where I got it right — and where I didn't"
+  - Body: one paragraph noting some figures are estimated and inviting correction.
+  - No button. Plain ask: "Reply with a yes, or a 'you missed something'."
 
 - **Low Confidence:**
-  - Headline: "Watch the demo — then let us validate these numbers in a
-    20-minute call"
-  - Button 1: "Watch the Demo →"
-  - Button 2: "Book a 20-Minute Call →"
-  - One paragraph framing the report as research-based hypotheses, not
-    confirmed facts.
+  - Headline: "Does this match what you're seeing inside?"
+  - Body: one paragraph framing the brief as outside-in observations, not confirmed
+    facts, and inviting his read.
+  - No button. Plain ask: "Reply and let me know if I'm close."
 
-Always include the demo CTA. Add a discovery call CTA alongside it when
-confidence is Low.
+Never include a demo link, a calendar link, a price, or any payment language. The
+paid consultation is offered only after the prospect replies (handled in the
+follow-up sequence, p3b Part B).
 
-Internally, this creates Momentum: the next step feels smaller than the problem.
-Do not name the emotion.
+Internally, this creates Momentum: replying feels smaller than the problem. Do not
+name the emotion.
 
 ### 5A. Readability Constraints
 
@@ -506,12 +517,11 @@ executive, without changing the underlying content.
 
 Prioritise this visual hierarchy throughout the report:
 
-1. Headline outcome
-2. Bottleneck / business problem
-3. Build recommendation
-4. Quantified impact
-5. Research transparency
-6. Next action
+1. Bottleneck / business problem
+2. Stakes — what the bottleneck is costing
+3. Current problems
+4. Research transparency
+5. Next action (the reply ask)
 
 When deciding between a paragraph and a visual module, choose the visual module
 unless the paragraph adds essential nuance that would otherwise be lost.
@@ -863,11 +873,13 @@ inline — no external files except Chart.js loaded from CDN.
     <section>…</section>                                     <!-- Section 3: Current Problems -->
     <section class="transparency-section">…</section>        <!-- Section 3B -->
     <section>…</section>                                     <!-- Section 4: Future Risks -->
-    <section>…</section>                                     <!-- Section 5: Solutions -->
-    <section>…</section>                                     <!-- Section 6: Operational Impact -->
-    <section>…</section>                                     <!-- Section 7: Stakeholders -->
-    <section class="cta-section">…</section>                 <!-- Section 8: CTA -->
+    <section class="cta-section">…</section>                 <!-- Section 8: CTA (reply ask) -->
   </div>
+  <!-- Sections 5 (Solutions), 6 (ROI), 7 (Stakeholders) are WITHHELD — not rendered. -->
+  <!-- After Section 4 (Future Risks), go straight to the Section 8 CTA. -->
+  <!-- The hero glow + numbers panel + solutions/ROI/stakeholder/chart components in -->
+  <!-- 6C are unused by this brief; do not render them. -->
+  <!-- (legacy reference removed below) -->
   <div class="footer">…</div>                                <!-- see 6C-FOOTER -->
   <script> /* Chart.js init — see 6C-CHART */ </script>
 </body>
@@ -891,7 +903,8 @@ with real content. Do not leave brackets in the output.
     <h1 class="hero-headline">[≤16-word headline; wrap <em>one phrase</em> in em for the blue accent; no manual <br>]</h1>
     <p class="hero-subhead">[≤24-word subhead clarifying bottleneck + what the brief covers]</p>
     <div class="hero-stats">
-      <!-- exactly 3 .hero-stat, each from a directly-sourced (L1) headline win.
+      <!-- exactly 3 .hero-stat: the single stakes figure (cost of the bottleneck)
+           plus two problem-scale numbers. NEVER a solution outcome or ROI win.
            Tint each value with one variant for visual rhythm: accent (blue),
            amber, green — in that order. The hero glow is automatic (CSS); no markup. -->
       <div class="hero-stat">
@@ -911,10 +924,10 @@ with real content. Do not leave brackets in the output.
       </div>
     </div>
     <div class="glance-strip">
-      <!-- exactly 3 .glance-item: Current bottleneck / Strongest unlock / Recommended next step -->
+      <!-- exactly 3 .glance-item: Current bottleneck / What it's costing / Recommended reply -->
       <div class="glance-item"><div class="glance-label">Current Bottleneck</div><div class="glance-value">[phrase]</div></div>
-      <div class="glance-item"><div class="glance-label">Strongest Unlock</div><div class="glance-value">[phrase]</div></div>
-      <div class="glance-item"><div class="glance-label">Recommended Next Step</div><div class="glance-value">[phrase]</div></div>
+      <div class="glance-item"><div class="glance-label">What It's Costing</div><div class="glance-value">[the stakes figure]</div></div>
+      <div class="glance-item"><div class="glance-label">Recommended Next Step</div><div class="glance-value">Reply to confirm the read</div></div>
     </div>
   </div>
 </section>
@@ -975,12 +988,18 @@ accent, in that order.
     <div class="risk-card-when">[e.g. 12–18 months out]</div>
     <div class="risk-card-title">[risk title]</div>
     <div class="risk-card-break">[what breaks in 12–24 months]</div>
-    <div class="risk-card-prevent">→ [how the recommended build prevents this]</div>
+    <div class="risk-card-prevent">→ [regret-gap line — how this widens the distance to their stated goal; "grows at scale, does not shrink". NO Dev8X build/solution reference]</div>
   </div>
   <div class="risk-card r2"><!-- same structure --></div>
   <div class="risk-card r3"><!-- same structure --></div>
 </div>
 ```
+
+> **WITHHELD COMPONENTS — `6C-SOLUTIONS`, `6C-ROI`, `6C-CHART`, `6C-STAKEHOLDER`
+> are NOT rendered in this brief.** Their templates are retained below only for
+> reference. The recorded brief contains only: hero, outcome, problems, research
+> transparency, future risks, and the reply-ask CTA. Do not output any solution,
+> ROI, chart, or stakeholder markup.
 
 **6C-SOLUTIONS** (Section 5) — `.solutions-grid` of `.sol-card` (4–7 cards). The
 **first card carries `featured`** (`class="sol-card featured"`) so the strongest
@@ -1093,29 +1112,22 @@ exists; each card has `.sh-role`, `.sh-name`, and `.sh-row`s (What matters most 
 Risk they care about). If data is thin, render one `.card` with a single
 `<p class="sh-note">Stakeholder mapping recommended during discovery.</p>`.
 
-**6C-CTA** (Section 8) — the `.cta-section` itself is a navy→blue gradient card
-(light text); the inner `.cta-box` just centers the copy. The demo button `href`
-must be a real hosted/shareable URL (or `#` if none yet) — **never** a local
-`file:///…` path, which is broken for the recipient. Pick the variant by
-Confidence Signal; the **markup is identical**, only copy and button count change:
-- High → one `.btn-primary` "Watch the Demo →"
-- Medium → one `.btn-primary` "Watch the Demo →" (copy invites feedback on estimates)
-- Low → `.btn-primary` "Watch the Demo →" + `.btn-secondary` "Book a 20-Minute Call →"
+**6C-CTA** (Section 8) — the `.cta-section` is a navy→blue gradient card (light
+text); the inner `.cta-box` centers the copy. This brief's CTA is a **REPLY ask**:
+NO button, NO `href`, NO demo link, NO calendar, NO price. Render only the eyebrow,
+a confidence-adjusted headline, and one short paragraph ending in a plain-text
+reply ask. Omit `.cta-buttons` entirely.
 ```html
 <section class="cta-section">
   <div class="cta-box">
-    <div class="cta-eyebrow">Recommended Next Step</div>
-    <h2 class="cta-headline">[confidence-adjusted headline]</h2>
-    <p class="cta-body">[one short paragraph]</p>
-    <div class="cta-buttons">
-      <a class="btn-primary" href="#">Watch the Demo →</a>
-      <!-- add .btn-secondary only when confidence is Low -->
-    </div>
+    <div class="cta-eyebrow">One Quick Thing</div>
+    <h2 class="cta-headline">[confidence-adjusted headline — see Section 8]</h2>
+    <p class="cta-body">[one short paragraph ending in a plain reply ask — no button]</p>
   </div>
 </section>
 ```
-A `.timeline-strip` (3–4 `.timeline-phase`) showing the phased roadmap is the
-required sequence module; place it inside Section 5 or Section 6.
+Do NOT render a `.timeline-strip` / phased-roadmap module — a roadmap implies a
+build plan, which is withheld from this brief.
 
 **6C-FOOTER** (fixed — appears once, after `.page`; swap only company + date):
 ```html
@@ -1141,17 +1153,9 @@ required sequence module; place it inside Section 5 or Section 6.
 - The first viewport should look clean enough to pause on during a screen
   recording without feeling cramped.
 
-**Charts:**
-- Use Chart.js loaded from:
-  `https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js`
-- Section 6 must include at minimum:
-  - One horizontal bar chart using the most defensible comparable KPI across the
-    chosen solutions
-  - One number/stat card grid using the most defensible summary KPIs available
-- Charts must use real numbers calculated from the solution cards — no placeholder
-  data
-- If `hours saved` is weak or speculative, do not use it as the chart axis or
-  as the lead stat card. Use a stronger KPI instead.
+**Charts:** None. This brief contains no ROI chart and no Chart.js usage. The
+Chart.js `<script>` tag may be omitted from `<head>`. The single stakes number
+lives in the hero stat cards, not a chart.
 
 **Visual modules required across the page (each maps to exactly ONE locked
 component from 6C — the canonical choice below overrides any "X or Y" wording):**
@@ -1160,9 +1164,8 @@ component from 6C — the canonical choice below overrides any "X or Y" wording)
 - Current-state problems → `6C-PROBLEMS` (`.problem-table` — always a table, never cards)
 - Research transparency → `6C-RESEARCH` (`.research-table`)
 - Future risks → `6C-RISKS` (`.risk-cards` — always 3 cards, never a table)
-- Solutions → `6C-SOLUTIONS` (`.sol-card` grid)
-- ROI stat grid + chart + numbers panel → `6C-ROI`
-- Phased roadmap → `.timeline-strip` (`6C-CTA` note), always present
+- Reply-ask CTA → `6C-CTA` (no buttons)
+- (Solutions, ROI grid/chart, stakeholders, roadmap → WITHHELD — not rendered)
 
 **Copy discipline:**
 - Prefer short sentences and short blocks.
@@ -1193,9 +1196,8 @@ component from 6C — the canonical choice below overrides any "X or Y" wording)
   at regular intervals
 - Do not bury the most important insight inside a paragraph
 
-**Stat display pattern for solution cards** (illustrative of *content only* — the
-binding markup is the `.sol-card` template in `6C-SOLUTIONS` above; do not invent
-a different card from this sketch):
+**Stat display pattern (LEGACY — not used in this brief; solutions are withheld.
+Retained for reference only):**
 ``` 
 ┌─────────────────────────────────────────┐
 │ [Solution Name]                 [Tag]   │
@@ -1232,7 +1234,8 @@ what keeps every report visually identical):
 3. Section order and wrappers match 6B exactly.
 4. The footer matches `6C-FOOTER` exactly (only company + date changed).
 5. Each section uses its single canonical component (table for problems, 3 cards
-   for risks, `.sol-card` grid for solutions, etc.) — no per-report substitutions.
+   for risks) — no per-report substitutions. Confirm NO solutions, ROI, chart,
+   stakeholder, or roadmap sections are present — they are withheld from this brief.
 
 Then sanity-check the content against these questions:
 1. Can a busy CEO understand the value in under 90 seconds of scanning?
