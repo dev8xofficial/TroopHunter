@@ -3,6 +3,7 @@
 ### Analysis
 
 #### Target CEO — Key Themes
+
 - Readiness over scheduled maintenance — "Is the vehicle ready to go right now?" rather than relying on calendar-based service intervals
 - The "Detection → Notification → Recovery" framework as the core lens for solving downtime
 - Fleet downtime as an operations and accountability problem, not just a driver inconvenience — "operations doesn't get to shrug"
@@ -11,6 +12,7 @@
 - Vehicle technology is advancing fast, but power systems are lagging behind that progress
 
 #### Target CEO — Likely Pain Points
+
 - Unplanned downtime disrupts routes, schedules, and SLAs with no early warning between service intervals
 - Selling simultaneously through dealer, direct-to-consumer, and fleet channels creates a more complex go-to-market than a typical e-commerce business
 - Driving warm, targeted paid traffic to a novel product with low category awareness and getting little add-to-cart activity
@@ -18,12 +20,14 @@
 - Building trust for a $399 purchase from a still largely unknown brand
 
 #### Dev8X — Relevant Overlap
+
 - Dev8X builds connected hardware-plus-app products, the same architecture Altricity runs (embedded device, mobile app, cloud monitoring, alerts)
 - Abdul has direct experience with the exact problem Altricity is currently hiring for — improving conversion on a novel product with little category awareness and warm traffic that isn't converting
 - Dev8X's work integrating telemetry and IoT data into usable dashboards mirrors what Power System Telematics needs as it scales across fleet customers
 - Both companies navigate a multi-channel commercialization model — direct, partner/dealer, and enterprise — rather than a single-funnel ecommerce play
 
 #### Shared Ground
+
 Both are founders who took a problem everyone shrugs off — readiness, not just visibility — and built it into a connected hardware-and-software system. That "treat it as a system, not a tool" instinct is the thread tying all three comments together.
 
 ---
@@ -31,16 +35,19 @@ Both are founders who took a problem everyone shrugs off — readiness, not just
 ### Post Selection
 
 #### Post 1
+
 **Post excerpt:** Darin lists routine maintenance items (oil, filters, tires, brakes) and notes most organizations plan around service intervals — then asks whether the better question is "Is the vehicle ready to go right now?"
 **Why selected:** Recent (2 weeks), invites a strong opinion on predictive readiness vs. scheduled maintenance, and the thread is still uncrowded.
 **Comment timing:** Day 1
 
 #### Post 2
+
 **Post excerpt:** A driver's car won't start and he shrugs it off — but Darin argues that's the moment it stops being a driver problem and becomes an operations problem that fleets are accountable for.
 **Why selected:** Builds directly on Post 1's readiness theme with a sharper narrative about ownership and accountability, creating a natural opening for Abdul to share a parallel experience.
 **Comment timing:** Day 3
 
 #### Post 3
+
 **Post excerpt:** Recapping conversations at CONEXPO with fleet operators and telematics providers, Darin notes telematics shows where equipment is but not whether the power system is about to fail — and asks how fleets are thinking about that gap.
 **Why selected:** The post ends with an open invitation for discussion, making it the natural place to extend a direct, low-pressure connection ask.
 **Comment timing:** Day 5
@@ -50,6 +57,7 @@ Both are founders who took a problem everyone shrugs off — readiness, not just
 ### Comments
 
 #### Comment 1 — Day 1
+
 The scheduling mindset is the real gap — most fleets plan around calendars, not actual system state. Readiness needs to be a continuous signal, not a checkbox.
 
 **Stage:** Establish Presence
@@ -58,6 +66,7 @@ The scheduling mindset is the real gap — most fleets plan around calendars, no
 ---
 
 #### Comment 2 — Day 3
+
 Same gap we hit building connected hardware at Dev8X — telemetry told us location, never readiness. The fix was treating power state as a first-class signal, not an afterthought.
 
 **Stage:** Deepen the Thread
@@ -66,6 +75,7 @@ Same gap we hit building connected hardware at Dev8X — telemetry told us locat
 ---
 
 #### Comment 3 — Day 5
+
 That gap between knowing where a vehicle is and knowing it'll start is exactly where we've spent years building. Sending a connection request — worth having this conversation properly.
 
 **Stage:** The Ask

@@ -14,7 +14,7 @@
 #### Target CEO — Likely Pain Points
 
 - **No ongoing technical partner** — DMC's own operations manual states the website is "built and maintained by outside freelance developers hired one project at a time, on platforms like Upwork," and names this as a gap it wants closed with "more structured, ongoing technical support" instead of one-off jobs.
-- **Manual, form-based intake** — client requests, consultations, and insurance checks currently run through a basic request form and staff inbox rather than a connected intake or scheduling system.
+- **Manual, form-based intake** — client requests, consultations, and insurance checks currently run through a basic Web3Forms request form and staff inbox rather than a connected intake or scheduling system.
 - **State-by-state credentialing overhead** — DMC operates across 8 states, each with its own licensing and insurance-acceptance rules, and announces each new state individually rather than through any visible systemized rollout.
 - **Founder is the de facto tech and marketing department** — there is no in-house technical or marketing team; Makoto personally drives brand, content, and contractor relationships on top of a clinical caseload, two teaching roles, and ADARA leadership.
 - **Complexity inside a "specialized" niche** — DMC already serves a narrow population (Deaf-led ASL therapy), yet within that niche it must still differentiate for DeafBlind clients, immigrants, hearing family members, and multiple insurance/state combinations — exactly the kind of fragmented requirements generic software tends to ignore.
