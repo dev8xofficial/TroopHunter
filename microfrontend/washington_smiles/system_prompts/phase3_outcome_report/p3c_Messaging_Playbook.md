@@ -126,8 +126,24 @@ invent problems, numbers, or questions.
       copied from that finalized script, not re-derived from the Decision Card.
 - [ ] `[CONSULTATION_FEE]` is left as a placeholder unless a real fee has been
       set for this engagement.
+- [ ] **Message 2 has been sentence-counted and word-counted** against the Length
+      Discipline table below (6–8 sentences, ≤210 words, ≤45 words per sentence).
+      Every message in this document respects its cap in the Message Length table.
 
 If any box is unchecked, STOP and flag it rather than guessing.
+
+### MESSAGE LENGTH TABLE (applies to every message and branch in this document)
+
+| Message | Sentences | Words |
+|---|---|---|
+| Message 1 | 2–3 | ≤ 65 |
+| **Message 2 (consultation offer)** | **6–8** | **≤ 210** |
+| Message 3 | 2–3 | ≤ 60 |
+| Every war-game branch reply | 2–5 | ≤ 90 |
+
+These are the messages a busy founder reads on a phone, in a thread, between
+meetings. Length is not thoroughness — in a DM it is friction. If an element will
+not fit, merge it into an adjacent sentence; never add a paragraph.
 
 ---
 
@@ -206,30 +222,52 @@ Must contain, in this order:
    Anchoring (below).
 7. **The Ask** — a single low-friction ask: reply to confirm, then send times.
 
-Length: 6–8 sentences. Confident. No pressure. No discounting.
+**LENGTH DISCIPLINE (hard limits — a violation blocks the deliverable):**
 
-**Template shapes:**
-> "What I'd normally do next is a working session — about 45 minutes — where I
-> walk through everything I've found alongside the numbers only you can
-> provide. You walk away with a documented operational diagnosis you keep."
+| Constraint | Limit |
+|---|---|
+| Sentences | **6–8**, counted. Not "about eight." |
+| Words | **≤ 210** |
+| Paragraphs | **3–4**, each 1–3 sentences |
+| Longest single sentence | **≤ 45 words** |
 
-> "Based on what I can see, [bottleneck] is costing you somewhere around
-> [exact stakes number from the video] a year. The session pins that exact
-> figure down."
+This is a **chat DM, not an email.** It is read in a narrow mobile column, in a
+thread, by a man who has already given you one reply. A 300-word block reads as a
+sales letter and gets skimmed to the price — at which point the guarantee, the
+stakes, and the legitimacy line have all been skipped, and the fee is naked.
+Every sentence he has to scroll past is a sentence that dilutes the ask.
 
-> "If you don't walk away with something worth more than the fee, you don't
-> pay. You decide, not me. And the documented diagnosis is yours to keep
-> either way."
+**Seven elements, not seven paragraphs.** The elements above are a *checklist of
+what must be present*, never a paragraph structure. Merge them. Guarantee and
+"you decide, not me" belong in one sentence. Proof-of-competence and legitimacy
+belong in one sentence. Price and anchor belong in one sentence. If an element
+repeats something an earlier sentence already established, **cut the later one** —
+e.g. if the reframe already says the session uses the numbers only he has, do not
+add "the session pins the exact figure down" afterwards.
 
-> "[The exact proof-of-competence line from the video's Beat 5]."
+**Assemble it as ONE message.** Below is the shape, fully merged — match this
+density, not this wording. Personalise every bracket except `[CONSULTATION_FEE]`.
 
-> "Dev8X is a registered studio — payment runs through a proper invoice, not a
-> personal transfer."
+> What I'd normally do next is a 45-minute working session, putting everything I
+> found alongside the [two or three] numbers only you have: [name them, drawn from
+> the video's Beat 3 confessions]. It's the first session of a fixed package, and
+> if the diagnosis lands, a working demo and then the build follow — but all
+> you're deciding today is whether it's worth the session fee.
+>
+> [One-sentence L1 restatement of the gap.] [One sentence carrying the exact
+> stakes number and its exact caveat from Beat 4, against what they have actually
+> collected.]
+>
+> If you don't walk away with something worth more than the fee, you don't pay,
+> and the documented diagnosis is yours to keep either way — you decide that, not
+> me. [Exact proof-of-competence line from Beat 5], and Dev8X is a registered
+> studio, so payment runs through a proper invoice, not a personal transfer.
+>
+> The session is [CONSULTATION_FEE], against [stakes number] you're not
+> collecting right now. Reply to confirm and I'll send over a couple of time
+> options.
 
-> "The session is [CONSULTATION_FEE]. Against [stakes number], it's a small
-> investment to know exactly where you stand."
-
-> "If that sounds right, reply and I'll send over a couple of time options."
+Confident. No pressure. No discounting. **Count the sentences before you ship it.**
 
 **FEE ANCHORING (applies to the price in Message 2):**
 - **Not too high** — the leap from free video to paying a stranger is fragile;
