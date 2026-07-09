@@ -17,6 +17,13 @@ input:     p0a_Decision_Card_UpstanderInternational.md (d0_v2)
 > the actual portal HTML files.** Mismatches between screen names here and live
 > portal navigation must be resolved before any deliverable is built.
 
+> **📌 ADDENDUM (2026-07-09):** A new research file, `p1f_Youtube_Owner_upstander_international.md`,
+> was added after this register's original generation. It documents an active YouTube
+> channel (25,000 subscribers, daily posting cadence, 2,000–3,500 views/video),
+> manually verified rather than scraped. This adds **Problem 9** below and a new
+> Proof Ledger row and Discovery Question. It does not change the confidence
+> classification or invalidate any prior finding.
+
 ---
 
 ## Current Problem Register
@@ -31,6 +38,7 @@ input:     p0a_Decision_Card_UpstanderInternational.md (d0_v2)
 | 6 | Book sales route off-site to Amazon with no email capture, upsell, or cross-sell to courses — the shop, books category, and product pages all terminate with "Buy on Amazon" CTA | p1a_Website.md pp. 2, 22, 27; p1c_Linkedin_Owner.md Posts 14–17 (active 2026 book re-release and launch activity) | Dr. Dibinga — losing the customer relationship and downstream course cross-sell opportunity at the point of maximum buyer intent | Supporting Goal #5 (publish and promote new books) and Supporting Goal #4 (personal brand authority) | No visible proof screen currently — **discovery question required before build** | **No — discovery question** |
 | 7 | No speaking/keynote inquiry pathway — the contact page captured no form content in the scrape, there is no speaker inquiry form, no booking calendar link, and no structured intake for institutional buyers | p1a_Website.md p. 12 ("No contact details or form content captured"); p1e_Job_Posting.md ("contact form or lead capture mechanism" listed as required); p1c_Linkedin_Owner.md (Posts 1, 23, 26, 28 — active speaking calendar with no web-based booking path) | Event planners and institutional buyers who arrive from LinkedIn or media looking to book Dr. Dibinga | Supporting Goal #3 (expand speaking/keynote reach to corporate and institutional buyers) | Speaker Inquiry / Contact Form Demo Screen | **Yes** |
 | 8 | Two disconnected, contradictory digital properties — upstanderonline.com (courses) and omekongo.com (brand/biography) have separate navigation, different contact emails, different copyright addresses, and no cross-linking | p1a_Website.md (two distinct site sections with separate nav structures, contact info, and copyright; omekongo.com copyright: "PO Box 70, Boston, MA"; upstanderonline.com footer: DC 20020) | Dr. Dibinga — brand authority is diluted; SEO value is split; buyers arriving at either domain cannot find a complete picture of his offerings | **Primary Goal** — a single professional, conversion-focused presence | No visible proof screen currently — **discovery question required about which domain becomes primary before architecture decisions** | **No — discovery question** |
+| 9 | Active daily YouTube channel (25,000 subscribers, 2,000–3,500 views per video) has no confirmed conversion path into either course — the channel is a second, larger, and more frequent audience source than the speaking calendar, feeding the same broken checkout and email-capture infrastructure as Problems 1 and 2 | p1f_Youtube_Owner_upstander_international.md (manually verified channel review, 2026-07-09) | Dr. Dibinga — his most frequent audience touchpoint produces zero measurable course conversion | **Primary Goal** — website that turns visitors into leads/customers; compounds Problems 1 and 2 rather than introducing a new root cause | Reuses Site Audit Screen / Working Checkout Flow (same fix as Problem 1) — channel-to-site linking itself is unverified | **Partial** — the underlying broken checkout is provable; whether video descriptions currently link anywhere is a discovery question |
 
 ---
 
@@ -86,6 +94,7 @@ The following maps each Problem with Can Demo Prove It = Yes or Partial to the s
 | The site can be handed off and self-managed by a solo operator | Job posting explicitly states "easy for the client to edit and manage post-handoff" as a required deliverable; Dr. Dibinga's Upwork history (24 hires, $19,900) confirms that the current site is NOT self-manageable | Buyer must see: a CMS editing session where three realistic post-handoff tasks are completed without developer involvement (add a speaking date, update a book listing, edit course copy) | Demo: CMS Self-Editing Screen | "Every designer says this and then it breaks when I touch it" | "We will test this in the handoff session with the exact tasks you would perform week-to-week — if you cannot complete them unassisted, the handoff is not complete" |
 | Email capture / lead funnel is absent and can be built in | MailPoet pages return empty (p1a_Website.md pp. 23, 24); no opt-in form captured on any page in scrape; job posting requires "lead capture mechanism" as a deliverable | Buyer must see: a working opt-in form connected to a triggered first email, with the email visible in an inbox within 60 seconds of signup | Demo: Lead Capture / Email Opt-in Screen | "My MailPoet was set up to do this" | "MailPoet is installed but not rendering — we can show the empty page alongside the working replacement; the goal is the same, the infrastructure is different" |
 | The speaking inquiry pathway is broken | Contact page captured no form content in scrape (p1a_Website.md p. 12); no booking calendar, no structured intake visible | Buyer must see: a speaker inquiry form with appropriate qualification fields and an automated acknowledgement email triggered on submission | Demo: Speaker Inquiry / Contact Form Screen | "People book me through LinkedIn, not the website" | "LinkedIn DMs are not scalable as an institutional intake process — a structured form qualifies the buyer before you spend time on the call" |
+| A daily, high-subscriber YouTube channel is producing audience attention with no confirmed course conversion path | 25,000 subscribers, near-daily posting, 2,000–3,500 views per video (p1f_Youtube_Owner_upstander_international.md, manually verified 2026-07-09) — same broken checkout confirmed in p1a_Website.md applies regardless of traffic source | Buyer must see: the channel's subscriber count and posting cadence, framed against the same 404 checkout already shown for Problem 1 | Demo: Site Audit Screen (reused) — channel stat introduced verbally, not from a portal screen | "My videos aren't meant to sell courses" | "They don't need to be a sales pitch — but every video description and channel link is a free placement for a course CTA that currently has nowhere working to send people" |
 
 > **L3/L4 Enforcement Check:** No L3 (proxy) or L4 (excluded) metrics appear in the Proof Ledger. The 1% industry conversion rate benchmark from the Decision Card §8 is excluded from all Proof Ledger claims per the ROI Integrity Ladder. All claims above are anchored to L1 sourced metrics only.
 
@@ -137,6 +146,8 @@ The following questions must be answered to strengthen L2/L3 metrics to L1 and t
 
 8. **[Identifies decision-blocking concern not visible in research]** "You have 18 five-star reviews on Upwork and $19,900 invested in digital work. What has made those investments feel less-than-satisfying — is it the technical outcome, the time it takes, the need to re-explain yourself with each new hire, or something else?"
 
+9. **[Resolves Problem 9 — YouTube-to-course conversion path]** "Your YouTube channel posts almost daily to 25,000 subscribers. Do your video descriptions or pinned comments currently link to either course? If someone finishes a video and wants to learn more, where does that click actually go today?"
+
 ---
 
 ## Cross-Check Summary
@@ -144,7 +155,8 @@ The following questions must be answered to strengthen L2/L3 metrics to L1 and t
 | Validation Area | Status | Action Required Before Build |
 |---|---|---|
 | Portal HTML screen names verified | ⚠ BLOCKED — portal HTML files not attached | Attach portal HTML files and verify all 5 "Yes" proof screens exist in portal navigation before demo script is written |
-| All L1 metrics confirmed | ✅ Pass — 16 students, $199 price, 6,000+ audience, $50 job budget all sourced directly from research files | No action required |
+| All L1 metrics confirmed | ✅ Pass — 16 students, $199 price, 6,000+ audience, $50 job budget, 25,000 YouTube subscribers, and 2,000–3,500 views/video all sourced directly from research files | No action required |
+| YouTube-to-course link status verified | ⚠ OPEN — whether video descriptions link to a course page is unverified | Ask Discovery Question 9 above before treating Problem 9 as fully provable |
 | L3/L4 metrics excluded from lead claims | ✅ Pass — 1% industry conversion benchmark and SEO traffic uplift excluded from all claims above | No action required |
 | L2 metrics labelled with [Estimated] | ✅ Pass — revenue gap calculation is not a lead claim in this register; will require [Estimated] label when cited in report or proposal | Flag for report writer |
 | Problems 6 and 8 excluded from lead claims | ✅ Pass — both marked as discovery questions only | Confirm in discovery before architecture decisions are made |
