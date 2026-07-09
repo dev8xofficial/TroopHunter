@@ -39,7 +39,7 @@ Dr. Dibinga needs a professional, conversion-optimized website built from the gr
 
 **Confidence Level:** High (4.60)
 
-**Confirmation Basis:** The Upwork job posting (p1e_Job_Posting.md) is a direct procurement document with explicit deliverables, platform preferences, and conversion framing. The broken state of the existing site (multiple 404 errors, 16 total students on a $199 course, thin instructor profile) independently corroborates the urgency.
+**Confirmation Basis:** The Upwork job posting (p1e_Job_Posting.md) is a direct procurement document with explicit deliverables, platform preferences, and conversion framing. The broken state of the existing site (multiple 404 errors, 16 total students on a $199 course, thin instructor profile) independently corroborates the urgency. A subsequent research pass (p1f_Youtube_Owner_upstander_international.md, added 2026-07-09) further corroborates this: Dr. Dibinga runs an active YouTube channel with 25,000 subscribers and posts nearly daily, drawing 2,000–3,500 views per video — a second, larger, and continuously compounding audience-acquisition engine feeding the same broken conversion infrastructure. This does not change the numeric score (still 4.60, still High) but strengthens the existing classification with an independent, freshly-verified evidence source.
 
 ---
 
@@ -101,6 +101,7 @@ Evidence:         - Job posting filed March 7, 2026 with 2 hires already made
 | Corporate DEI market is primary revenue expansion target | Partially confirmed | p1a_Website.md pages 14, 17, 20; p1c_Linkedin_Owner.md |
 | Preferred platform (WordPress, Webflow, Systeme.io, Kajabi) | Confirmed | p1e_Job_Posting.md |
 | No CRM, email capture, or lead funnel visible on current site | Confirmed | p1a_Website.md (MailPoet pages return empty) |
+| Active daily YouTube channel (25,000 subscribers, 2,000–3,500 views/video) with no confirmed course conversion path | Confirmed (channel/metrics); Open (whether videos link to courses) | p1f_Youtube_Owner_upstander_international.md |
 
 ---
 
@@ -163,6 +164,9 @@ Low-confidence claims listed here: SEO organic traffic growth (insufficient base
 | Job posting budget | $50 fixed | L1 | Sourced | Support — frames budget reality, not a headline |
 | Total Upwork spend (all projects) | $19,900 | L1 | Sourced | Support — confirms he pays for digital work consistently |
 | Speaking audience reach (cited personally) | 6,000+ students in one year | L1 | Sourced | Lead — contrast against 16 enrolled creates powerful gap metric |
+| YouTube subscribers | 25,000 | L1 | Sourced | Lead — second, independent audience-scale metric (p1f_Youtube_Owner.md) |
+| YouTube views per video (typical) | 2,000–3,500 | L1 | Sourced | Lead — daily, compounding exposure with no confirmed course link |
+| Estimated annual YouTube video views | ~912,500 [Estimated] | L2 | Estimated | Support with "[Estimated]" — states assumption (avg views × 365 daily uploads); never presented as unique people reached |
 | Estimated revenue loss from broken checkout | ~$X,XXX | L2 | Estimated | Support with "[Estimated]" — must state assumption |
 | Industry avg course conversion rate (solo educator) | 1–3% | L3 | Proxy | Illustrative only — never headline; must note "Industry benchmark" |
 | SEO traffic uplift from new site | Unknown | L4 | Excluded | Remove from all deliverables |
@@ -171,6 +175,7 @@ Low-confidence claims listed here: SEO organic traffic growth (insufficient base
 1. **16 students enrolled** on a $199 course despite months of active speaking and media engagement — the conversion gap is the headline.
 2. **6,000+ students reached in one speaking year** (cited by Dr. Dibinga) vs. 16 online — a ratio that makes the bottleneck visceral without any estimation.
 3. **$199 course price** × enrollment gap = the revenue floor the buyer already understands.
+4. **25,000 YouTube subscribers, daily uploads, 2,000–3,500 views per video** — a second, independent, and continuously compounding audience source, also disconnected from any confirmed course conversion path (p1f_Youtube_Owner.md).
 
 ### ROI Integrity Enforcement Rules (Per Framework §11)
 
@@ -187,7 +192,7 @@ Low-confidence claims listed here: SEO organic traffic growth (insufficient base
 - [x] Scanned all metrics in this section
 - [x] Confirmed NO L3/L4 metrics in hero headline list
 - [x] All L2 metrics have "[Estimated]" label ready
-- [x] Hero headline list has 3 confirmed L1 metrics — no discovery questions needed to proceed
+- [x] Hero headline list has 4 confirmed L1 metrics — no discovery questions needed to proceed
 
 ---
 
@@ -209,9 +214,9 @@ No Low ratings. Adoption readiness (Medium) should be addressed with a clear pla
 
 | Emotion | Trigger for THIS Prospect | Deliverable Placement | Strength |
 |---|---|---|---|
-| Recognition | Show him the exact 404 errors on his own course pages alongside the 16-student enrollment count — he will feel immediately seen because this is a pain he lives daily but may not have quantified | Report §2 opening, Demo Hook (audit screen) | High |
+| Recognition | Show him the exact 404 errors on his own course pages alongside the 16-student enrollment count — he will feel immediately seen because this is a pain he lives daily but may not have quantified. The daily YouTube channel (25,000 subscribers, 2,000–3,500 views/video) sharpens this further: he is generating fresh audience attention literally every day, not just at speaking events, with no confirmed path from either into a course sale | Report §2 opening, Demo Hook (audit screen) | High |
 | Relief | A working course checkout flow demo — seeing the R.E.A.Ch! course actually purchasable in one click resolves the deepest operational frustration | Demo Screen 3, Report Card #1 | High |
-| Fear of Inaction | With three books launching in 2026 and an active speaking calendar, every month without a converting site is a month of inbound traffic that vanishes — frame the cost as "audience you've already earned, revenue you're not collecting" | Report §4, Demo Before vs. After (audience reach vs. enrollment) | High |
+| Fear of Inaction | With three books launching in 2026, an active speaking calendar, and a YouTube channel publishing daily to 25,000 subscribers, every day without a converting site is a day of fresh inbound attention that vanishes — frame the cost as "audience you've already earned, revenue you're not collecting," and note that the YouTube channel makes this compounding daily, not just annually | Report §4, Demo Before vs. After (audience reach vs. enrollment) | High |
 | Trust | Be explicit that the $50 job-posting scope will produce a rebuilt site, not a converting one — and show what "conversion-focused" actually means with a checklist. Acknowledge what this engagement cannot guarantee (SEO results, organic traffic) | Report §8, Proposal §4B | Medium |
 | Momentum | Offer a free site audit deliverable (PDF of the broken pages + revenue gap calculation) as the next step — it is zero-risk, immediately useful, and positions Dev8X as the provider who did the homework | Report §9 CTA, Demo closing slide | High |
 
@@ -249,6 +254,7 @@ Deliver a free, one-page "Site Conversion Audit" PDF to Dr. Dibinga at omekongo@
 | `p1b_Linkedin_Company.md` | Company LinkedIn — org size, tagline, activity | ✓ |
 | `p1c_Linkedin_Owner.md` | Owner LinkedIn — goals, speaking calendar, book launches | ✓ |
 | `p1e_Job_Posting.md` | Hiring signals — primary goal confirmation | ✓ |
+| `p1f_Youtube_Owner_upstander_international.md` | YouTube channel — 25,000 subscribers, daily posting cadence, 2,000–3,500 views/video (manually verified, added 2026-07-09) | ✓ |
 | `p1d_Faith_Based_Guide.md` | Product guide | Not provided |
 | `p1d_Nonprofit_Guide.md` | Product guide | Not provided |
 | `p1d_School_Guide.md` | Product guide | Not provided |
