@@ -200,16 +200,40 @@ Produce all four of these alongside the script.
 
 ### 0.1 — The wrapper message (DM text sent with the video)
 The line beside the video decides the watch rate. It must:
-- **Disarm the cold context up front** (defuses suspicion before it forms): one
-  honest line on who Abdul is and why he made *this specific* video for *them*.
+- **The first ~7 words are the whole game — draft them first, as a standalone
+  hook.** LinkedIn's inbox row and push notification show roughly 7 words
+  before the client has to open the message to see more. Whatever sits in
+  those 7 words IS the pitch. Confirmed against a real client's skip
+  behavior: an opener like "You've probably seen me in your comments" reads
+  as filler in that window and gets skipped without opening — no hook, no
+  reason to open, feels like wasted time. The 7-word opener must be specific
+  to their business and curiosity-inducing — never a pleasantry, never
+  relationship context, never a greeting.
+- **Acknowledge the light prior contact — never claim total coldness — but
+  only AFTER the hook, inside the body of the message.** By the time this
+  sends, he has already seen Abdul's name across several comments on his own
+  posts (Stage 0 warming) and accepted the connection request. Do NOT write
+  "we've never spoken" or "this is out of the blue" — it's not true, and a CEO
+  who has already seen your name will register the mismatch. This
+  acknowledgment is only read once the message is opened — it must never
+  occupy the 7-word preview window.
 - Tease the bottleneck without giving it away — earn curiosity, don't summarise.
 - Carry a light legitimacy signal (Dev8X is a real studio) so paying later isn't a
   leap from nowhere.
 - 2–3 sentences, peer-to-peer, zero hype, no link-spam phrasing.
-- Example shape: "We've never spoken, so this is out of the blue — I run a small
-  dev studio (Dev8X) and spent an hour on how [Company] takes on new patients. I
-  recorded a 3-minute read of where I think it's leaking. No pitch — tell me if I'm
-  wrong."
+- Example shape: "Found something in your new patient intake. You've probably
+  seen me in your comments a few times — I run a small dev studio (Dev8X) and
+  spent an hour looking at how [Company] takes on new patients. Recorded a
+  3-minute read of where I think it's leaking. No pitch — tell me if I'm
+  wrong." — note the hook ("Found something in your new patient intake") now
+  leads; the comment acknowledgment moved to the second sentence, safely past
+  the preview window.
+- **The 7-word-hook-first rule applies to every cold or dormant-thread DM in
+  this system** — the second wrapper below, and the silent-watcher touch
+  (`p3c` Branch B). Warm, active-thread replies (Message 1, Message 3 in
+  `p3c`) carry less preview risk since the client already opened the
+  conversation, but leading with substance over pleasantries never hurts
+  there either.
 - If the video is not watched 5–7 days later, produce a second, shorter wrapper
   with a different angle. Never more than 2 wrapper attempts.
 

@@ -177,6 +177,18 @@ Must contain, in this order:
    diagnosis he keeps. Own it as a paid, valuable diagnosis rather than
    over-protesting "this isn't a sales call" — a sophisticated buyer sees the
    staircase (demo → proposal → build); denying the obvious becomes a tell.
+   Session 1 is the Operational Diagnosis; the consultation is sold as a fixed
+   multi-session **package** (defined sessions, set deliverables, one price) —
+   the full package and the stages beyond it are defined in
+   `p3e_Engagement_Journey.md`, not re-invented here.
+   - **Light staircase acknowledgment (one line, NO later-stage prices):** name
+     that the diagnosis is the first step and a working demo, then the build, are
+     the natural steps after it — but all he's deciding today is whether the
+     diagnosis is worth the fee. Reveal the SHAPE, never a demo or build price
+     (that violates the disclosure rule in `p3e`). Template shape: *"This is the
+     first step — if the diagnosis lands, the natural next step is a working demo,
+     then the build itself. All you're deciding today is whether the diagnosis is
+     worth the session fee."*
 2. **The Stakes Tie-Back** — reference the EXACT stakes number and phrasing from
    the video's Beat 4 (see Alignment Rule) so the fee looks small against what
    he's losing.
@@ -277,8 +289,13 @@ A correction is the strongest argument FOR the paid diagnosis, not against it.
 Most prospects watch, are impressed, and never reply — replying costs effort,
 silence costs nothing.
 **ONE touch only, 4–6 days after the video:**
-> "No need to reply to the video — one quick question: is [bottleneck]
-> actually what's slowing [their goal], or am I off?"
+> "Is [bottleneck] actually what's slowing [their goal]? No need to reply to
+> the video itself — just curious if I'm off."
+- **Same 7-word-preview rule as the wrapper (`p3b` Part 0.1):** this lands in
+  a dormant thread, so lead with the specific tease, not the reply-bar
+  mechanics. "No need to reply to the video" as an opener wastes the visible
+  preview on meta-commentary instead of the hook — put the actual question
+  first, put the low-friction framing second.
 - Lower the reply bar to near zero — a yes/no answer.
 - Do NOT re-pitch or repeat the video. Lead with ONE new observation or a
   single sharp question.
@@ -428,7 +445,15 @@ updated framing. If NOT (hiring, management, compliance):
 > summary they can review? One page covering what I found and what the session
 > would cover. That way they have context before you discuss it."
 If yes: send a one-page summary (headline, top 3 problems, stakes number, what
-the consultation delivers) — keep it forwardable.
+the consultation delivers) — keep it forwardable. If the client has already paid
+for and experienced a session, the **Engagement Journey one-pager**
+(`p3e_Engagement_Journey.md`) is the purpose-built forwardable artifact for this
+— it is self-contained and shows the whole path with only the consultation
+package priced. Do not forward it to a still-cold prospect (see the timing rule
+in `p3e`).
+> Post-payment template line: "Here's a short page that walks through exactly
+> how we work together, step by step. Happy to jump on a call with both of you
+> if anything's unclear."
 If "I'll just tell them":
 > "Got it. If any questions come up, happy to jump on a quick call with both of
 > you — sometimes it's easier to hear it directly."
@@ -454,6 +479,12 @@ A POSITIVE signal — they're bringing others into the conversation.
 Always encourage forwarding. Offer to engage the new person directly — don't
 make the original prospect your salesperson. If the forwarded person reaches
 out: treat them as a warm lead.
+If this happens AFTER a paid session, swap the summary for the Engagement
+Journey one-pager (`p3e_Engagement_Journey.md`) — it's built exactly for this:
+> "Here's a short page that walks through exactly how we work together, step
+> by step. Happy to jump on a call with both of you if anything's unclear."
+Pre-payment, keep sending the light summary — `p3e` is never forwarded to a
+still-cold contact (see the timing rule in `p3e`).
 
 ### BRANCH S — Free Consulting Extraction
 The prospect keeps asking detailed questions to get free advice without

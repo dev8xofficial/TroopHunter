@@ -100,10 +100,11 @@ This prompt operates under the Decision-Led Proof Framework v2.
 
 ## PRE-FLIGHT CHECK (mandatory — clear this before generating)
 
-- [ ] The prospect has explicitly agreed to pay for the consultation (a "yes"
-      to Message 2, or a later branch that resolved to a booking).
-- [ ] Payment is confirmed or scheduled to be confirmed before the call (see
-      Part F.1) — this prompt assumes that is in motion, it does not chase it.
+- [ ] The prospect has explicitly agreed to book the consultation package (a
+      "yes" to Message 2, or a later branch that resolved to a booking).
+- [ ] The package price and session count are set and communicated (see Part
+      F.1) — payment itself is NOT collected before the call; it is asked for
+      at the end of the session, only once the client confirms it was worth it.
 - [ ] `p3b_First_Video_Script_[ClientName].docx` and
       `p3c_Messaging_Playbook_[ClientName].docx` are attached as PRIMARY inputs.
 
@@ -171,8 +172,9 @@ Abdul | [Month Year]
 - [ ] Discovery Questions reviewed (Decision Card + Problem Register)
 - [ ] Cost formula pre-loaded with blanks
 - [ ] Recording permission question ready
-- [ ] Invoice/payment confirmed (see Part F.1 — payment happens BEFORE the
-      call, not after)
+- [ ] Package scope/price communicated (see Part F.1 — payment happens AFTER
+      the call, only once the client confirms it was worth it; nothing to
+      confirm here)
 
 ### SECTION 0 — Setup & Frame (⏱ 0:00, ~3 min)
 🎯 GOAL: Reset expectation — this is a working session producing a kept
@@ -249,12 +251,23 @@ cost calculation, and the direction of the fix. That's theirs to keep.
 🗣/TELL: "The next step, if you want to take it, is I build the direction we
 just sketched into a working system around your operations and walk you
 through it."
+🗣/TELL: State plainly that the demo is a **paid step, carrying the same
+guarantee as this session** — worth it or you don't pay. Frame it as: *"I price
+the demo once you've decided this diagnosis landed, so the number is based on
+something real, not a guess."* This keeps the trust pattern intact: every gate is
+paid, and every paid gate is guaranteed.
+🖥 SHOW (optional, if the client is engaged): the **Engagement Journey one-pager**
+(`p3e_Engagement_Journey.md`) — the full Consultation → Demo → Build path on one
+screen. This is the sanctioned moment to reveal the whole staircase, because the
+client has now paid once and found it worth it. Leave it with them; it is
+forwardable to stakeholders.
 🗣 ASK (from the Stakeholder Decision Map): "Who else should be in the room
 when I walk through the working version?" Capture names and roles — this
 identifies decision-makers early, not at the proposal stage when it's too
 late.
-📌 NOTE: Do NOT quote a build price here. The demo is the next gate; pricing
-comes after the demo (see Part F.7 for the approved response if pushed).
+📌 NOTE: Do NOT quote the demo price OR a build price here. The demo is the next
+gate; its price is revealed at that gate, the build's only in the proposal (see
+`p3e` disclosure rule and Part F.7 for the approved response if pushed).
 
 ---
 
@@ -286,8 +299,14 @@ facing tone, clean and professional, no internal framework language.
    shown plainly.
 5. **The Direction of the Fix** — the conceptual solution direction (named
    capabilities + the manual work each removes). NO working solution, NO cost.
-6. **Recommended Next Step** — the working demo, built around their
-   operations.
+6. **Recommended Next Step** — the working demo, built around their operations,
+   stated as a **paid step carrying the same guarantee** as this session. Do NOT
+   state the demo price or a build price in the leave-behind (disclosure rule,
+   `p3e`) — name the demo as the next step and that it's priced when they arrive
+   at it. Optionally close with the full path (Consultation → Demo → Build) as a
+   short "How We Work" recap, or attach/link the Engagement Journey one-pager
+   (`p3e_Engagement_Journey.md`) so the path travels with the diagnosis to any
+   stakeholder.
 
 📌 NOTE: Part E is also a system input — the upgraded, confirmed Problem
 Register plus the seed of the solution architecture. It feeds directly into
@@ -302,18 +321,34 @@ Reproduce it with the client's name and fee substituted where marked.
 
 ## F.1 — Payment Timing & Invoice
 
-Payment is collected BEFORE the consultation, not after. The guarantee
-protects the client (full refund if not worth it), so pre-payment is not a
-risk to them — it's a commitment signal.
+**Reversed from an earlier draft of this system, by design (NEW):** the
+consultation is sold as a **fixed multi-session package** (1–4 sessions, set
+deliverables, ONE package price), defined per client in
+`p3e_Engagement_Journey.md`. This playbook scripts **Session 1 — the Operational
+Diagnosis**; any additional sessions in the package reuse the same facilitation
+conventions (Part C annotation legend, tone rules) and each produce their own
+named deliverable. The package has one price, decided and communicated up
+front — but that price is NOT collected up front.
 
-**Process:** prospect agrees in `p3c_Messaging_Playbook.md` → Abdul sends
-invoice → payment confirmed → calendar invite sent → pre-call message sent →
-consultation happens → **this prompt runs**.
+**Payment is asked for at the end of a session, never before, and only once the
+client confirms it was worth it.** This removes refund logistics entirely: there
+is nothing to refund, because nothing is collected until after the client has
+already judged the value. See F.6a for the full end-of-session mechanic (the
+three outcomes: pay & continue, the Guarantee Save, or a no-charge exit).
 
-**Invoice format:** professional, branded, from Dev8X. Include: session
-description ("Operational Diagnosis — [Company Name]"), fee
-`[CONSULTATION_FEE]`, payment terms (due before session), the guarantee stated
-on the invoice, Dev8X registration/business details.
+**Process:** prospect agrees in `p3c_Messaging_Playbook.md` → package scope and
+price communicated (`p3e`) → calendar invite(s) sent → pre-call message sent →
+session happens → end-of-session guarantee checkpoint (F.6a) → IF confirmed
+worth it, invoice sent and payment collected THEN (covering every session
+delivered so far as one combined amount) → **this prompt runs** once Session 1
+is complete and the checkpoint has resolved.
+
+**Invoice format:** professional, branded, from Dev8X, sent only after the
+client confirms the value at the checkpoint. Include: package description
+("Operational Consultation — [Company Name]", listing the sessions and the
+deliverable each produced), the fee `[CONSULTATION_PACKAGE_FEE]` (or the
+combined amount if a Guarantee Save bundled multiple sessions), payment terms
+(due on receipt), Dev8X registration/business details.
 
 ## F.2 — Pre-Call Confirmation Message (24–48 hours before)
 
@@ -365,13 +400,18 @@ step that makes the rest of the pipeline defensible.
 > 3. As we discussed, the next step is building the direction we sketched into
 >    a working system and walking you through it. I'll include the details in
 >    the diagnosis document.
+> As we discussed, I've also put together a short page on how we work from
+> here — one link, no login, so you (or anyone else on your side) can see the
+> path at a glance.
+>
 > Thanks again for your time."
 
 **When the diagnosis is delivered (N days later):**
 > "The Operational Diagnosis is attached. Everything we confirmed together is
-> in there — your numbers, the cost calculation, and the direction. If you
-> want to see it working, let me know and I'll outline what the demo looks
-> like."
+> in there — your numbers, the cost calculation, and the direction. I've also
+> included a one-page look at how we work from here — three steps, one at a
+> time, so nothing's a surprise later. If you want to see it working, let me
+> know and I'll outline what the demo looks like."
 
 **If no response (7 days after delivery):**
 > "Just checking in — did the diagnosis match what you expected? Any
@@ -388,9 +428,53 @@ After this: stop. 90-day re-engagement with a fresh insight.
 |------|--------|
 | Who judges "worth it" | The client. Always. Do not argue. |
 | Diagnosis delivery | Delivered and kept regardless of payment status — it was real work. |
-| Refund handling | Honour immediately. A rare refund protects the reputation the whole system runs on. |
-| Tracking | Track refund rate. A spike = research/QA problem upstream, not a guarantee problem. |
+| Payment handling | Never collected until the client confirms it was worth it (see F.1). No refunds to process — nothing is charged until after the verdict. |
+| Tracking | Track the no-charge-exit rate (F.6a, outcome 3). A spike = research/QA problem upstream, not a guarantee problem. |
 | Abuse prevention | State the guarantee once. Don't over-emphasise it. Someone determined to game it isn't a real prospect anyway. |
+
+### F.6a — The End-of-Session Checkpoint (NEW — the guarantee's actual mechanic)
+
+At the end of every session, ask directly: "Was this worth it to you?" There are
+three possible outcomes:
+
+**1. "Yes, worth it."**
+→ Invoice and collect payment now, covering every session delivered so far as
+one combined amount. If the package has more sessions, schedule the next one.
+If the package is complete, move to the leave-behind (Part E) and the demo
+tee-up (Section 6).
+
+**2. "Not worth it — but not necessarily done." (the Guarantee Save)**
+Don't argue or defend — ask one honest, open question first:
+> "Fair enough — I'd rather hear that now than have you pay for something that
+> didn't land. Can I ask what felt off, or what was missing?"
+If the answer suggests more depth would resolve it, offer the Save:
+> "That's actually useful — that's exactly what the next session would dig
+> into. Let's do that one on me tonight, no charge for today, and once you've
+> seen the fuller picture we settle up together for both. Fair?"
+No payment is collected at this checkpoint. Whatever is eventually paid covers
+ALL sessions delivered, combined into one invoice at the next "yes" checkpoint.
+**Maximum ONE Guarantee Save per client** — offering it twice reads as
+negotiating, not diagnosing. If the client hesitates again after the extra
+session, treat it as outcome 3.
+
+**3. "Not worth it — I'm done." (true exit)**
+> "That's completely fair, and I appreciate you being straight with me. No
+> charge today — everything we covered is yours to keep either way. If
+> anything changes down the line, I'm here."
+No payment, ever, for this engagement. The diagnosis/documents produced so far
+are theirs to keep. Graceful, no argument. Re-engage in 90 days per the
+standard nurture path.
+
+**Fallback — no next session exists to defer to:** if outcome 2 fires on the
+LAST session already in the package (nothing left to extend into), the Save
+becomes an ad hoc offer of one additional session beyond the original package
+scope, framed identically ("one more, on me tonight"). If the client declines
+that too, it resolves to outcome 3.
+
+**Open question, not yet decided:** whether this same three-way checkpoint
+extends to the paid demo stage once that prompt exists, or whether the demo's
+higher build-readiness bar warrants a stricter checkpoint. Flag for a decision
+when the demo-stage prompt is built.
 
 ## F.7 — Consultation Contingencies
 
@@ -472,9 +556,9 @@ in video/messaging, 1–2 in consultation, 1 in demo/proposal). Beyond 5, qualit
 drops — personalisation IS the product.
 
 **Pipeline stage codes:** W (Warming) · V (Video Sent) · R (Replied) · M1
-(Message 1) · M2 (Message 2) · SC (Scheduled) · CO (Completed) · DD (Diagnosis
-Delivered) · DM (Demo) · PR (Proposal) · X (Exited — note reason) · NR
-(Nurture / 90-day queue).
+(Message 1) · M2 (Message 2) · SC (Scheduled) · CO (Completed) · GS (Guarantee
+Save offered — NEW code, see F.6a) · DD (Diagnosis Delivered) · DM (Demo) · PR
+(Proposal) · X (Exited — note reason) · NR (Nurture / 90-day queue).
 
 ---
 

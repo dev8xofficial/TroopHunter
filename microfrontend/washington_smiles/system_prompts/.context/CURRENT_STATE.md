@@ -4,7 +4,7 @@
 > Updated after every session. Any AI reads this to know exactly where
 > things stand.
 
-**Last updated:** 2026-07-05
+**Last updated:** 2026-07-09
 
 ---
 
@@ -19,15 +19,27 @@ Messaging System ............. ✅ DOCUMENTED (Execution Playbook, Phase 2)
   - War-game branches ........ ✅ Done (19 branches: A through S)
   - LinkedIn conn. request ... ✅ Done
   - Timing & exit criteria ... ✅ Done
-Consultation Phase ........... ✅ DOCUMENTED (Execution Playbook, Phase 3)
-  - Pre-consultation logistics ✅ Done (payment, invoice, pre-call msg)
+Consultation Phase ........... ✅ DOCUMENTED (now p3d_Consultation_Playbook.md)
+  - Fixed multi-session package ✅ Done — 1-4 sessions, one price (p3e canonical)
+  - Payment model ............ ✅ REVISED 2026-07-09 — post-paid on
+                                  confirmation, not prepaid; no refund logic
   - Call structure (6 sections) ✅ Done
-  - Post-call follow-up ...... ✅ Done
+  - End-of-session checkpoint  ✅ NEW 2026-07-09 — the Guarantee Save (§F.6a):
+                                  pay & continue / save (max once) / true exit
+  - Post-call follow-up ...... ✅ Done, now references p3e journey map
   - Leave-behind structure ... ✅ Done
-  - Guarantee rules .......... ✅ Done
-  - Contingencies ............ ✅ Done (6 scenarios in Appendix A)
-  - 15-min fit check script .. ✅ Done (Appendix B)
-  - Multi-prospect tracking .. ✅ Done (Appendix C)
+  - Guarantee rules .......... ✅ Done, rewritten for post-paid model
+  - Contingencies ............ ✅ Done (Part F.7)
+  - 15-min fit check script .. ✅ Done (Part F.8)
+  - Multi-prospect tracking .. ✅ Done (Part F.9, +GS tracking code)
+Messaging Playbook ............ ✅ NEW FILE — p3c_Messaging_Playbook.md
+  - Happy path + 19 branches . ✅ Done (split out from old p3b)
+  - Staircase acknowledgment . ✅ NEW 2026-07-08 — Message 2 now names the
+                                  Consultation → Demo → Build path (shape only)
+Engagement Journey Map ........ ✅ NEW FILE — p3e_Engagement_Journey.md
+  - Commercial ladder def'n .. ✅ Canonical source for p3c/p3d to reference
+  - Disclosure rule .......... ✅ Shows all 3 stages, prices only the gate
+  - Timing rule .............. ✅ Never shown to a cold/unpaid prospect
 
 SYSTEM ARCHITECTURE
 ══════════════════════════════════════════════════
@@ -72,10 +84,22 @@ AI CONTEXT SYSTEM
 These are documented in `DUAL_PIPELINE_SYSTEM.md` but not implemented:
 
 ### Prompt Files to Build
-- [ ] `p0c_Lead_Qualification_Score` — Go/No-Go scoring (rubric exists in DUAL_PIPELINE_SYSTEM.md)
+- [x] ~~`p3d_Objection_Playbook`~~ — SUPERSEDED. The war-game matrix was built
+      directly into `p3c_Messaging_Playbook.md` instead of as a separate file.
+      The `p3d` name went to the Consultation Playbook instead.
+- [x] ~~`p3e_Internal_Briefing_Kit`~~ — SUPERSEDED/BUILT as
+      `p3e_Engagement_Journey.md` (2026-07-08) — broader scope than originally
+      planned: not just a research briefing, but the full forwardable
+      Consultation → Demo → Build map with the disclosure rule.
+- [ ] **A paid, guaranteed demo-gate prompt** (working name: `p4f` or a new
+      `p3f`) — the exact next gap. `p3d` and `p3e` both reference a demo stage
+      that "carries the same guarantee" but no prompt exists yet to run it.
+      Open question carried over: does the Guarantee Save checkpoint (p3d
+      §F.6a) reuse here, or does a working prototype need a stricter rule?
+- [ ] `p0c_Lead_Qualification_Score` — Go/No-Go scoring (rubric referenced in
+      the missing `DUAL_PIPELINE_SYSTEM.md` — confirm that file's whereabouts
+      before relying on the rubric existing anywhere)
 - [ ] `p1f_Competitor_Analysis` — What their competitors do digitally
-- [ ] `p3d_Objection_Playbook` — War-game responses as a Claude prompt (logic exists in EXECUTION_PLAYBOOK.md)
-- [ ] `p3e_Internal_Briefing_Kit` — One-pager the CEO forwards to stakeholders
 - [ ] `p4f_Post_Demo_Follow_Up` — Demo → proposal bridge sequence
 - [ ] `p5d_Negotiation_Playbook` — Price/scope/timeline negotiation
 - [ ] `p6a_Project_Kickoff` — Onboarding + milestone structure
@@ -90,27 +114,54 @@ These are documented in `DUAL_PIPELINE_SYSTEM.md` but not implemented:
 - [ ] `w2b_Pipeline_Transfer` — Move Upwork client to Consultancy Pipeline
 
 ### System Changes Needed
-- [ ] Convert Phase 4 (Demo) to a paid gate
+- [ ] Convert Phase 4 (Demo) to a paid gate — **the active blocker**; see the
+      new prompt-file gap above
 - [ ] Convert Phase 5 (Proposal) to include paid elements
-- [ ] Define the complete pricing matrix (consultation fee, demo fee, build pricing)
+- [ ] Define the complete pricing matrix (consultation fee, demo fee, build
+      pricing) — the consultation fee is now a per-client PACKAGE fee (1-4
+      sessions, one price, set from operation complexity per `p3e`), not a
+      flat number — see Decision 9 in MEMORY.md
 - [ ] Build CRM tracking and automation rules
-- [ ] Update README.md to match new architecture
+- [x] ~~Update README.md to match new architecture~~ — DONE 2026-07-09,
+      Phase 3 section rewritten to match the actual p3a-e file set
+- [ ] Locate or rebuild `DUAL_PIPELINE_SYSTEM.md` and `EXECUTION_PLAYBOOK.md`
+      — referenced everywhere in `.context/` as complete but absent from disk
+      (discovered 2026-07-09)
 
 ---
 
 ## Open Questions (Unanswered)
 
-1. **What is the consultation fee?** — Placeholder `[CONSULTATION_FEE]` is used throughout. The actual number affects token economics.
-2. **Has the pipeline been run on a real prospect?** — TreeRaise appears in the prompts but unclear if it's a real engagement or a test case.
-3. **What are the current reply and conversion rates?** — No data yet from actual runs.
-4. **Are demo portals built by Claude realistic enough?** — p4d generates HTML demos, but unclear if they need manual polishing.
-5. **What's the target deal size?** — Minimum project size affects whether the pipeline overhead is justified.
+1. **What is the consultation fee?** — Placeholder `[CONSULTATION_FEE]` /
+   `[CONSULTATION_PACKAGE_FEE]` is used throughout (they must resolve to the
+   same number — see `p3e`). Now a per-client package price set from
+   operation complexity (Decision 9), not a flat figure — still needs an
+   actual pricing method/range defined.
+2. **Does the Guarantee Save checkpoint (p3d §F.6a) extend to the demo
+   stage** once that prompt exists, or does a working prototype — harder to
+   walk away from once seen — need a stricter pay-or-walk rule? Flagged, not
+   decided.
+3. **Has the pipeline been run on a real prospect?** — Partially, per this
+   session: the user reports Stage 0 warming is live (4-5 comments +
+   accepted connection request) on an actual prospect, ahead of the video
+   send. TreeRaise elsewhere in the prompts still appears to be a
+   template/reference case, not this engagement.
+4. **What are the current reply and conversion rates?** — No data yet from actual runs.
+5. **Are demo portals built by Claude realistic enough?** — p4d generates HTML demos, but unclear if they need manual polishing.
+6. **What's the target deal size?** — Minimum project size affects whether the pipeline overhead is justified.
 
 ---
 
 ## Immediate Next Steps (When Work Resumes)
 
-1. **Define the consultation fee** — This unblocks the pricing in all messaging templates
-2. **Run the pipeline on a real prospect** — Test the full flow from research → video → messaging
-3. **Build `p3d_Objection_Playbook`** — Convert the war-game branches from the Execution Playbook into a Claude prompt that generates personalized objection responses
-4. **Update existing `p3b_First_Video_Script`** — Align it with the Execution Playbook's expanded beat structure and new war-game branches
+1. **Build the demo-gate prompt** — the active architecture gap; `p3d`/`p3e`
+   both point at a paid, guaranteed demo stage that doesn't exist as a prompt
+   yet.
+2. **Define the consultation package pricing method** — Decision 9 fixed the
+   *model* (one package, one price, sessions from complexity) but not the
+   actual numbers/ranges.
+3. **Locate or rebuild `DUAL_PIPELINE_SYSTEM.md` / `EXECUTION_PLAYBOOK.md`**
+   — confirm whether they exist somewhere else before treating anything that
+   depends on them (e.g. the lead-qualification rubric) as available.
+4. **Continue the live prospect through Stage 1** — the video/DM wrapper is
+   next once Stage 0 warming (comments + connection) is confirmed accepted.
