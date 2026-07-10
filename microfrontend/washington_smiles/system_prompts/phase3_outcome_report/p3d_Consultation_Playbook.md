@@ -6,18 +6,55 @@ Your task is to read the attached files and generate a single `.docx` covering
 the live capture sheet, the client-facing leave-behind diagnosis, and the
 engagement operating procedures.
 
+> **Phase 3 chain:** `p3a` brief → `p3b` video → `p3c` messaging → **`p3d` consultation** → `p3e` journey map.
+> Each stage proves depth and withholds the next stage's payload (the Hold-Back Rule).
+> Money is never asked for inside a deliverable (the Two-Step Money Rule).
+> Payment is **post-paid**: nothing is collected before a session (Decision 8).
+> Canonical sources — package shape: `p3e` · pricing method and every rule for speaking
+> the number: `p3c` §B.1a · quotation: the raw `p1*` research, never a derived artifact.
+
+---
+
+## PRONOUNS AND ADDRESS (fix this before writing a word)
+
+**This prompt uses "they/the client" and occasionally "he" as generic placeholders.
+Neither says anything about the prospect.** Read the owner's real name and pronouns
+from `p0a_Decision_Card` and `p1c_Linkedin_Owner` and use theirs in every 🗣 ASK
+block, every follow-up email, and throughout the client-facing leave-behind (Part E).
+
+> The live Washington Smiles prospect is **Dr. Melissa Smith — she/her.**
+
+Part E is a document she keeps and forwards. A stray "he" in a deliverable she paid
+for is not a typo; it is proof it came off a shelf.
+
+
 ## DO NOT RUN THIS SPECULATIVELY
 
-**This prompt is only run once the prospect has actually replied "yes" to
-Message 2 in `p3c_Messaging_Playbook.md` and agreed to pay for the
-consultation.** Generating this deliverable before that point spends tokens on
-a call script and diagnosis structure for a prospect who may never convert —
-most prospects who watch the video never reply, and most who reply never pay.
-Do not pre-generate this "just in case." If you are being asked to run this
-prompt and there is no confirmed paid booking, stop and say so.
+**This prompt is only run once the prospect has replied "yes" to Message 2 in
+`p3c_Messaging_Playbook.md` and a session is on the calendar.** Generating this
+deliverable before that point spends tokens on a call script for a prospect who may
+never convert — most who watch the video never reply, and most who reply never book.
+Do not pre-generate this "just in case." If there is no confirmed booking, stop and
+say so.
 
-Three phases, one goal: **deliver the diagnosis, and leave the call with the L1
-numbers that make everything after it stronger.**
+📌 **There is no such thing as a "paid booking" in this system.** Under the post-paid
+model (Decision 8), nothing is collected before the session. The gate for running this
+prompt is a **confirmed calendar slot**, not a payment. Any sentence in this document
+that conditions work on money already received is a leftover from the superseded
+prepay model and must be read as a bug.
+
+---
+
+## THE GOVERNING IDEA
+
+The consultation's job, in one line: **convert the outside-in hypothesis into an
+inside-out confirmed diagnosis, using the client's own real numbers** — then sketch
+where the fix points. The video's honest-limit beat said *"what I can't see yet is X,
+Y, Z."* The call is where you ask those exact questions.
+
+Those answers upgrade L2 estimates into **L1 facts**, the single most valuable output
+of this stage, because they strengthen every deliverable that follows. **And where the
+client cannot answer, the inability itself is the L1 fact** — see Section 2.
 
 ---
 
@@ -54,25 +91,13 @@ alter its substance.
 
 ---
 
-## THE GOVERNING IDEA
-
-The consultation's job, in one line: **convert the outside-in hypothesis into
-an inside-out confirmed diagnosis, using the client's own real numbers** — then
-sketch where the fix points. The video's honest-limit beat said *"what I can't
-see yet is X, Y, Z."* The call is where you ask those exact questions and get
-the real numbers. Those answers upgrade L2 estimates into **L1 facts** — the
-single most valuable output of this stage, because it strengthens every
-deliverable that follows (demo, proposal).
-
----
-
 ## FRAMEWORK OVERRIDE (applies to entire prompt)
 
 This prompt operates under the Decision-Led Proof Framework v2.
 
 1. **Narrative arc:** Recognition deepens (Section 1) → Proof, in their own
    numbers (Section 2–3) → first Relief (Section 4, solution direction) →
-   Momentum again (Section 6, the demo tee-up). Do NOT chase Relief early —
+   Momentum again (Section 7, the demo tee-up). Do NOT chase Relief early —
    Relief comes from the solution, and the solution stays withheld until
    Section 4. Emotion labels are internal only; never printed in output.
 2. **ROI Integrity:** Section 3 exists specifically to capture the L1 numbers
@@ -91,8 +116,8 @@ This prompt operates under the Decision-Led Proof Framework v2.
 
 | Stage | SHOWS | WITHHOLDS |
 |-------|-------|-----------|
-| Video + Messaging (already done) | The bottleneck, problems, honest-limit boundary, stakes number, proof of competence, the guarantee | Any solution, feature, ROI table, build detail |
-| **Consultation (this prompt)** | The full confirmed diagnosis, the client's real numbers, the cost of the bottleneck computed live, solution DIRECTION (named capabilities only) | Working software, screen-by-screen features, build timeline, team, build price |
+| Video + Messaging (already done) | The bottleneck, problems, honest-limit boundary, stakes number *(or a directional statement)*, proof of competence *(only if a real one existed)*, the guarantee, the fee as a ceiling | Any solution, feature, ROI table, build detail |
+| **Consultation (this prompt)** | The full confirmed diagnosis, the client's real numbers **or the named gaps where they don't exist**, the cost of the bottleneck computed live **when every factor is a client-supplied number**, solution DIRECTION (named capabilities only) | Working software, screen-by-screen features, build timeline, team, build price |
 | Demo (next gate, future) | Working prototype, proof it solves their problems | Build price, timeline, team |
 | Proposal (future) | Scope, timeline, pricing, deliverables | The build itself |
 
@@ -100,17 +125,19 @@ This prompt operates under the Decision-Led Proof Framework v2.
 
 ## PRE-FLIGHT CHECK (mandatory — clear this before generating)
 
-- [ ] The prospect has explicitly agreed to book the consultation package (a
-      "yes" to Message 2, or a later branch that resolved to a booking).
+- [ ] The prospect has explicitly agreed to the consultation package and a session
+      is scheduled (a "yes" to Message 2, or a later branch that resolved to a
+      booking).
 - [ ] The package price and session count are set and communicated (see Part
       F.1) — payment itself is NOT collected before the call; it is asked for
       at the end of the session, only once the client confirms it was worth it.
 - [ ] `p3b_First_Video_Script_[ClientName].docx` and
       `p3c_Messaging_Playbook_[ClientName].docx` are attached as PRIMARY inputs.
+- [ ] The client's name and pronouns are confirmed from the research and printed at
+      the top of the output.
 
-If the first box is unchecked, STOP and output only: "No confirmed paid booking
-— do not generate the Consultation Playbook yet. Wait for a 'yes' in the
-messaging stage."
+If the first box is unchecked, STOP and output only: "No confirmed booking — do not
+generate the Consultation Playbook yet. Wait for a 'yes' in the messaging stage."
 
 ---
 
@@ -132,7 +159,7 @@ messaging stage."
   with you" column becomes live questions in Section 2
 - Manual Operations Mapping — workflows to quantify and sketch fixes for
 - Discovery Questions — merge with the Decision Card's into one sequenced set
-- Stakeholder Decision Map — who else must attend the demo (Section 6)
+- Stakeholder Decision Map — who else must attend the demo (Section 7)
 
 Do not start generating until this extraction is complete internally.
 
@@ -189,10 +216,14 @@ micro-commitment.
 🖥 SHOW: The Current Problem Register from the brief.
 For each of the top 3–4 problems **exactly as named in the video's Beat 2** (see
 Alignment Rule):
-🗣 ASK: "Last time I flagged [problem in their words] — is that right? What did
-I get wrong?"
+🗣 ASK: "Last time I flagged [problem in their words]. Where did I get that wrong?"
 👂 LISTEN-FOR: Confirmation or correction. Capture corrections verbatim.
 ✍ CAPTURE: Confirmed problem statement (their wording wins over yours).
+📌 NOTE: **One question, not two.** The tone rules above forbid stacking, and
+"is that right? What did I get wrong?" is two questions that arrive together — the
+client answers the easy one ("yeah, that's right") and the valuable one is lost.
+Asking only for the correction presupposes nothing about the answer while making it
+socially easy to disagree, which is the whole point of this section.
 
 ### SECTION 2 — Capture the Real Numbers (⏱ ~11:00, ~18 min) — THE CORE
 🎯 GOAL: Get the L1 numbers the video and messages could not see.
@@ -210,22 +241,92 @@ For EACH question, render:
 → **strengthens:** [which downstream claim/demo screen/proposal figure]
 ✍ CAPTURE: [field name in the Live Capture Sheet]
 
-Cover every Discovery Question that unlocks an L1 metric. If the client
-doesn't know a number, capture it as "to confirm" — do not pressure or
-fabricate. Never stack three questions in one breath. Ask, then listen.
+Cover every Discovery Question that unlocks an L1 metric. Never stack three questions
+in one breath. Ask, then listen.
+
+### "I don't know" is not a failure — it is the finding
+
+**This is the most important note in the document, and the one a facilitator is most
+likely to get wrong under pressure.**
+
+When a client cannot answer "how many hours a week does each manager lose to this?"
+or "what's your collections rate per location?", the instinct is to feel the session
+slipping — to press, to guess with them, or to move on quickly and quietly. All three
+are wrong.
+
+**The inability to answer IS an L1 fact, and often the most valuable one on the call.**
+It is not an embarrassment for the client and must never be allowed to feel like one.
+It is direct, first-party confirmation of the bottleneck the video diagnosed from the
+outside. A business that cannot produce a number does not have a measurement problem;
+it has the operational problem that makes the number unmeasurable.
+
+Say so, plainly and without triumph:
+> "That's not a gap in your knowledge — it's the thing itself. If that number existed
+> anywhere, one of your managers would have it. Nobody does, and that's exactly what
+> I couldn't see from outside."
+
+✍ CAPTURE it as a finding, not a blank: **"Not currently measured anywhere in the
+group"** — attributed, dated, and quoted in the leave-behind. Never as "to confirm,"
+which implies you failed to ask properly.
+
+> For Washington Smiles this is the **expected** outcome, not the edge case. The
+> Decision Card marks every operational metric L4/Excluded, and the diagnosed
+> bottleneck is precisely that performance data lives in five places and no dashboard.
+> A call where Dr. Smith cannot produce those numbers has not gone badly. It has
+> proved the entire thesis, from the inside, in her own voice.
+
+**Do not pressure and do not fabricate.** A number the client guessed at under social
+pressure is L3 dressed as L1, and it will poison the demo and the proposal downstream
+— the exact confident-wrongness failure this framework exists to prevent.
 
 ### SECTION 3 — Quantify the Cost, Live (⏱ ~29:00, ~8 min)
 🎯 GOAL: Make the bottleneck concrete and expensive — in THEIR numbers.
 🖥 SHOW: The Live Capture Sheet cost block.
 🔢 COMPUTE: Build the cost-of-bottleneck calculation on screen from the numbers
-just captured. Derive the formula from the primary bottleneck, e.g.:
+just captured. **Derive the formula from the actual bottleneck type** — the example
+below is a lead-loss shape and fits almost no operational engagement:
 ```
-[lost units/month] × [conversion rate] × [value per unit] × 12 = [annual cost]
+lead-loss shape:   [lost units/month] × [conversion rate] × [value per unit] × 12
+labour shape:      [hours/week] × [loaded hourly cost] × [people] × 52
+leakage shape:     [monthly production] × [uncollected %] × 12
+capacity shape:    [unfilled slots/week] × [value per slot] × 52
 ```
+Pick the shape the bottleneck actually has. A dental group's manual multi-location
+operations is a **labour + leakage** problem, not a funnel problem. Using the wrong
+formula produces a number that is arithmetically fine and obviously irrelevant, and
+the client will say so.
+
 🗣 ASK: "Does that match your gut, or is it higher than you expected?"
+
 📌 NOTE: This is now THEIR number, not your estimate. Let it land. Don't rush
 past it — silence after the number is powerful. This number anchors every
 future conversation (demo, proposal, pricing).
+
+📌 NOTE — **THE COMPUTATION GATE (do not skip).** Every factor in the formula must be
+a number the client actually gave you in Section 2. **If any factor is missing, do NOT
+compute.** Do not substitute an industry benchmark (L3), do not invite the client to
+guess, and do not quietly narrow the formula until it resolves. A cost figure derived
+partly from air, produced live in a session the client is paying for, is the single
+most expensive mistake available on this call — and unlike the video, there is a human
+in the room to ask "where did that come from?"
+
+**When the gate blocks — and for Washington Smiles it very likely will — the section
+does not collapse. It inverts, and it becomes stronger.** Put the formula on screen
+with its blanks visible and name what is missing:
+
+> "This is the equation. These two boxes we filled in together. This one is empty —
+> and it's empty everywhere in your group, not just on this call. That's what the
+> bottleneck actually costs you: not a number you're losing, but a number you can't
+> see. Until it's measured, nobody can tell you whether the fix is worth a thousand
+> dollars or fifty."
+
+✍ CAPTURE: the completed formula, the filled factors, **and the named gaps.** The
+empty boxes are the deliverable. They are the specification for what the system must
+instrument first, and they carry directly into the demo scope and the proposal.
+
+📌 NOTE — **If the numbers disprove the diagnosis, say so immediately.** See Part F.7,
+*The numbers contradict the hypothesis.* This is the moment the whole pipeline's
+integrity is tested, and it is tested in front of a paying client.
 
 ### SECTION 4 — Solution Direction (⏱ ~37:00, ~10 min)
 🎯 GOAL: First Relief. Show the SHAPE of the fix — direction only, no working
@@ -241,12 +342,39 @@ the client pushes ("can I see it?"), the approved line is:
 > your operations, and walk you through it."
 
 ### SECTION 5 — Leave-Behind Handoff (⏱ ~47:00, ~3 min)
-🎯 GOAL: Close the value loop — confirm what they're getting for the fee.
+🎯 GOAL: Close the value loop — confirm what they're getting.
 🗣/TELL: State that within [N] days they'll receive the written Operational
 Diagnosis (Part E) — everything confirmed today: problems, their numbers, the
-cost calculation, and the direction of the fix. That's theirs to keep.
+cost calculation (or the named gaps), and the direction of the fix. Theirs to keep,
+whatever they decide in the next two minutes.
 
-### SECTION 6 — Tee Up the Demo + Stakeholders (⏱ ~50:00, ~7 min) — Momentum
+### SECTION 6 — The Checkpoint (⏱ ~50:00, ~4 min) — THE MONEY MOMENT
+🎯 GOAL: Ask the guarantee question, and ask for payment.
+
+**This section did not exist in earlier drafts of this playbook, and its absence was
+the single largest hole in the system.** Every other moment in this business is
+scripted to the sentence — and the one moment revenue actually happens was left to
+improvisation, at the end of a long call, by a person who finds it uncomfortable.
+That is how post-paid businesses quietly fail to collect.
+
+Run the full three-outcome mechanic exactly as written in **F.6a**, including the
+scripted payment ask. Do not paraphrase it. Do not soften it. Do not skip it because
+the call "went well" — a call that went well is precisely the call where the ask is
+easy and forgetting it is expensive.
+
+📌 NOTE — **ORDERING IS LOAD-BEARING.** The checkpoint comes BEFORE the demo tee-up,
+and Section 7 runs **only on outcome 1 ("yes, worth it").** Pitching the next paid
+gate to a client who has not yet said this one was worth it inverts the entire
+hold-back chain: it asks them to buy the sequel before they have reviewed the film. It
+also makes the guarantee question rhetorical, because a client who has just been sold
+the next step cannot comfortably answer "no" to the current one — which means you
+never learn the truth, and the no-charge-exit rate (F.6) stops measuring anything.
+
+### SECTION 7 — Tee Up the Demo + Stakeholders (⏱ ~54:00, ~6 min) — Momentum
+**Run only if the checkpoint resolved to outcome 1.** On outcome 2 (Guarantee Save),
+the demo tee-up moves to the end of the *next* session. On outcome 3 (exit), it never
+happens — close warmly and stop.
+
 🎯 GOAL: Make the paid demo the obvious next step; identify who must attend.
 🗣/TELL: "The next step, if you want to take it, is I build the direction we
 just sketched into a working system around your operations and walk you
@@ -258,9 +386,13 @@ something real, not a guess."* This keeps the trust pattern intact: every gate i
 paid, and every paid gate is guaranteed.
 🖥 SHOW (optional, if the client is engaged): the **Engagement Journey one-pager**
 (`p3e_Engagement_Journey.md`) — the full Consultation → Demo → Build path on one
-screen. This is the sanctioned moment to reveal the whole staircase, because the
-client has now paid once and found it worth it. Leave it with them; it is
-forwardable to stakeholders.
+screen. Leave it with them; it is forwardable to stakeholders.
+📌 NOTE: `p3e`'s own timing rule sanctions this reveal only once **"the client has
+paid once and found it worth it."** Before Section 6 that condition is false — they
+have neither paid nor judged. Showing the full staircase to a client who has not yet
+confirmed the value turns an honest disclosure into a sales ladder, which is exactly
+what Decision 11 was written to avoid. **After** outcome 1, the condition is true and
+the one-pager is the right artifact.
 🗣 ASK (from the Stakeholder Decision Map): "Who else should be in the room
 when I walk through the working version?" Capture names and roles — this
 identifies decision-makers early, not at the proposal stage when it's too
@@ -268,6 +400,11 @@ late.
 📌 NOTE: Do NOT quote the demo price OR a build price here. The demo is the next
 gate; its price is revealed at that gate, the build's only in the proposal (see
 `p3e` disclosure rule and Part F.7 for the approved response if pushed).
+
+📌 **TIMING RECONCILIATION.** Sections 0–7 as budgeted run to ~60 minutes, not 45.
+This is a **60-minute call**; say so when booking (F.2) and in Section 0. The old
+budget quietly overran 45 minutes and then triggered F.7's over-time protocol on every
+single call. If time is genuinely short, cut Section 7 — never Section 6.
 
 ---
 
@@ -296,7 +433,11 @@ facing tone, clean and professional, no internal framework language.
 3. **Your Numbers** — the captured L1 metrics in a clean table, labelled "from
    your own figures."
 4. **What This Is Costing You** — the quantified annual cost, calculation
-   shown plainly.
+   shown plainly. **If the computation gate blocked (Section 3), this section shows
+   the formula with its blanks and names what is unmeasured.** Do not omit the
+   section, and do not fill the blanks with benchmarks to make it look finished — the
+   empty boxes are the finding, and they are the specification for what the system
+   must instrument first.
 5. **The Direction of the Fix** — the conceptual solution direction (named
    capabilities + the manual work each removes). NO working solution, NO cost.
 6. **Recommended Next Step** — the working demo, built around their operations,
@@ -337,11 +478,16 @@ already judged the value. See F.6a for the full end-of-session mechanic (the
 three outcomes: pay & continue, the Guarantee Save, or a no-charge exit).
 
 **Process:** prospect agrees in `p3c_Messaging_Playbook.md` → package scope and
-price communicated (`p3e`) → calendar invite(s) sent → pre-call message sent →
-session happens → end-of-session guarantee checkpoint (F.6a) → IF confirmed
-worth it, invoice sent and payment collected THEN (covering every session
-delivered so far as one combined amount) → **this prompt runs** once Session 1
-is complete and the checkpoint has resolved.
+price communicated (`p3e`) → calendar invite(s) sent → **this prompt runs** (it
+produces the script Abdul walks into the room with) → pre-call message sent (F.2) →
+session happens → end-of-session guarantee checkpoint (F.6a) → IF confirmed worth it,
+invoice sent that night, for the package price → leave-behind delivered within [N]
+days regardless of the outcome.
+
+📌 An earlier draft of this line said *"this prompt runs once Session 1 is complete."*
+That is impossible — this prompt **generates the Session 1 call script.** It runs
+after the booking and before the call. Nothing downstream of the session depends on
+it, and everything inside the session does.
 
 **Invoice format:** professional, branded, from Dev8X, sent only after the
 client confirms the value at the checkpoint. Include: package description
@@ -372,7 +518,7 @@ combined amount if a Guarantee Save bundled multiple sessions), payment terms
 | Doesn't join within 20 min | "Looks like today didn't work out. No worries — happy to reschedule. Let me know what works." | 20 min after start |
 | First no-show | Offer one reschedule, no penalty | Same day |
 | Second no-show | "I want to make sure the timing works for you. When you're ready to lock in a time, let me know." | After second miss |
-| Third no-show | Stop. Do not chase. If they reach out later, reschedule with payment re-confirmed. | — |
+| Third no-show | Stop. Do not chase. If they reach out later, reschedule normally. | — |
 
 **Rescheduling:** first reschedule, no friction ("Of course — let me know what
 works better"). Second reschedule, gentle check ("Happy to move it — want to
@@ -392,19 +538,32 @@ step that makes the rest of the pipeline defensible.
 
 ## F.5 — Post-Consultation Follow-Up Sequence
 
-**Same-day email (within 2 hours):**
+📌 **This whole sequence assumes checkpoint outcome 1.** On outcome 2 (Guarantee
+Save), send only the diagnosis and the next session's calendar invite — no demo
+mention, no Engagement Journey page. On outcome 3 (exit), send only the diagnosis and
+one line of thanks. Sending "here's how we work from here" to someone who has just
+told you it wasn't worth it is the tone-deaf message that ends an otherwise graceful
+exit, and it converts a possible 90-day return into a permanent one.
+
+**Same-day email (within 2 hours) — outcome 1 only:**
 > "Thanks for the session today — it was a productive one. A few things:
 > 1. The written Operational Diagnosis will be in your inbox within [N] days.
-> 2. The cost figure we landed on — [annual cost] — is probably the most
->    important number that came out of today.
+> 2. [If a cost figure was computed:] The cost figure we landed on — [annual cost] —
+>    is probably the most important number that came out of today.
+>    [If the computation gate blocked:] The most important thing that came out of
+>    today is which numbers don't exist anywhere in the group yet. They're listed in
+>    the diagnosis, and they're the first thing any system would have to fix.
 > 3. As we discussed, the next step is building the direction we sketched into
 >    a working system and walking you through it. I'll include the details in
 >    the diagnosis document.
-> As we discussed, I've also put together a short page on how we work from
-> here — one link, no login, so you (or anyone else on your side) can see the
-> path at a glance.
+> I've also put together a short page on how we work from here — one link, no login,
+> so you (or anyone else on your side) can see the path at a glance.
 >
 > Thanks again for your time."
+
+📌 The invoice goes out tonight, separately, exactly as stated on the call (F.6a).
+Do not attach it to this email and do not mention money in it. A thank-you note that
+doubles as a bill is neither.
 
 **When the diagnosis is delivered (N days later):**
 > "The Operational Diagnosis is attached. Everything we confirmed together is
@@ -434,14 +593,56 @@ After this: stop. 90-day re-engagement with a fresh insight.
 
 ### F.6a — The End-of-Session Checkpoint (NEW — the guarantee's actual mechanic)
 
-At the end of every session, ask directly: "Was this worth it to you?" There are
-three possible outcomes:
+At the end of every session, ask the guarantee question. Then, on a yes, **ask for the
+money out loud.**
+
+### The guarantee question — how to ask it
+
+Do **not** ask "was this worth it to you?" It is a yes/no question posed to someone
+who has just spent an hour with you, and politeness will answer it. You will hear
+"yeah, that was great, thanks" from a client who then never opens the invoice — and
+you will have no idea why, because they told you it was fine.
+
+Ask for the judgement, not for reassurance:
+
+> "Before we wrap — the deal was that you only pay if this was worth more than the
+> fee, and you're the one who decides that. So: was it?"
+
+Restating the terms first does two things. It reminds them that "no" is genuinely
+available, which is the only way "yes" carries information. And it makes the next
+sentence — the ask — feel like the agreed procedure rather than a request.
+
+**Then be quiet.** The silence after this question is uncomfortable for exactly as
+long as it needs to be. Do not fill it, do not soften it, do not start listing what
+they got. Whoever speaks first has answered.
+
+---
 
 **1. "Yes, worth it."**
-→ Invoice and collect payment now, covering every session delivered so far as
-one combined amount. If the package has more sessions, schedule the next one.
-If the package is complete, move to the leave-behind (Part E) and the demo
-tee-up (Section 6).
+
+**Ask for payment in the same breath, on the call, in plain words.** Not "I'll send
+something over." Not a hopeful email tomorrow. The single most common way a post-paid
+business fails is that the seller, having done the hard work, cannot bring themselves
+to do the easy part — and a "yes" that is never converted into an invoice while the
+client is still in the room decays within days.
+
+> "Good — then I'll send the invoice through tonight, [amount], due on receipt. The
+> diagnosis document follows within [N] days either way."
+
+That is the whole script. It is one sentence, it is not a request for permission, and
+it names the amount out loud so nobody discovers it later in a PDF. **Do not
+apologise, do not thank them for paying, and do not explain the fee again** — the
+price was agreed in Message 2 and re-agreed by their "yes" ten seconds ago. Any
+justification offered now reopens a decision that is already closed.
+
+📌 The invoice covers every session delivered so far as one combined amount — **it is
+the package price, not a per-session charge** (Decision 9). If the package has more
+sessions, schedule the next one before leaving the call. If the package is complete,
+move to the demo tee-up (Section 7).
+
+📌 If the client says yes and then asks to pay later, agree immediately and without
+friction — then send the invoice tonight anyway. Never chase payment inside the same
+week as a session; it converts a professional relationship into a collections one.
 
 **2. "Not worth it — but not necessarily done." (the Guarantee Save)**
 Don't argue or defend — ask one honest, open question first:
@@ -449,10 +650,18 @@ Don't argue or defend — ask one honest, open question first:
 > didn't land. Can I ask what felt off, or what was missing?"
 If the answer suggests more depth would resolve it, offer the Save:
 > "That's actually useful — that's exactly what the next session would dig
-> into. Let's do that one on me tonight, no charge for today, and once you've
-> seen the fuller picture we settle up together for both. Fair?"
-No payment is collected at this checkpoint. Whatever is eventually paid covers
-ALL sessions delivered, combined into one invoice at the next "yes" checkpoint.
+> into. Nothing owed for today. Let's do that one, and you decide at the end of it,
+> for the whole thing. Fair?"
+
+📌 **Do not say "settle up for both" or "we'll combine them."** The package has ONE
+price (Decision 9); there is no "both" to settle. Incremental-sounding language here
+reintroduces exactly the per-session pricing anxiety the fixed package was designed to
+remove, and it does so at the moment the client is already unconvinced. The extra
+session costs them nothing extra — say that, because it is true and it is the whole
+strength of the offer.
+
+No payment is collected at this checkpoint. Whatever is eventually paid is the package
+price, invoiced once, at the next "yes" checkpoint.
 **Maximum ONE Guarantee Save per client** — offering it twice reads as
 negotiating, not diagnosing. If the client hesitates again after the extra
 session, treat it as outcome 3.
@@ -477,6 +686,32 @@ higher build-readiness bar warrants a stricter checkpoint. Flag for a decision
 when the demo-stage prompt is built.
 
 ## F.7 — Consultation Contingencies
+
+**The numbers contradict the hypothesis** (no contingency existed for this, and at
+Medium confidence it is a live possibility): Section 2 produces real figures, and they
+show the bottleneck you diagnosed is small, or is not the expensive one. Say it
+immediately, in the room, before you are asked.
+
+> "I'll be straight with you — that's smaller than I expected, and it means the thing
+> I flagged isn't your most expensive problem. Let's spend the rest of this working
+> out what is."
+
+Then **actually do that.** Turn the remaining time into open discovery on what the
+numbers *did* surface. Do not defend the original diagnosis, do not quietly reframe it
+as having been right all along, and do not steer back toward a solution you had
+already imagined building.
+
+At the checkpoint, **make the guarantee the first thing you mention, not the last.**
+A client who watched you abandon your own thesis the moment the evidence turned is
+witnessing the most persuasive thing this business can show anyone — and a great many
+of them will pay precisely because of it. Some won't. That is what the guarantee is
+for, and a no-charge exit here is a cost of doing honest work, not a failure.
+
+📌 This is the moment the entire pipeline's integrity is tested, in front of a paying
+client, with money on the table. Everything upstream — Beat 3's honest limit, the ROI
+Integrity Ladder, the QA gate — exists so that this moment is survivable. Feed the
+correction back into the Decision Card (F.4) and treat it as the most valuable output
+the engagement produced.
 
 **The problem isn't solvable with web/automation:** be honest immediately. "Based
 on what you've told me, this looks more like a [hiring / process / management]
@@ -525,7 +760,7 @@ reduce the trust gap, let them meet Abdul, assess credibility.
 
 | Time | What Happens |
 |------|-------------|
-| 0:00 | "Thanks for taking the time. This is just a quick fit check — not a diagnosis. I want to make sure the session would actually be useful for you before you invest in it." |
+| 0:00 | "Thanks for taking the time. This is just a quick fit check — not a diagnosis. I want to make sure the session would actually be useful before you give up an hour for it." |
 | 1:00 | "Tell me a bit about [Company] — what's the main thing keeping you up at night operationally?" (Let them talk. Listen.) |
 | 5:00 | "Based on what I researched, the thing I'd want to dig into most is [primary bottleneck]. Does that match?" |
 | 8:00 | "The session would go deep on that — get your real numbers, calculate what it's costing, and map the direction of a fix. You keep the documented diagnosis regardless." |
@@ -590,7 +825,7 @@ Follow the SKILL.md docx instructions. Match the formatting conventions of
   heading styles, ready to export and send.
 - Part F tables rendered as real docx tables.
 - The Pre-Flight Check result stated at the very top (all boxes checked, or
-  the "no confirmed paid booking" stop message).
+  the "no confirmed booking" stop message).
 - Page breaks before Part C, Part E, and Part F.
 
 **Save output as:** `context/p3d_Consultation_Playbook_[ClientName].docx`

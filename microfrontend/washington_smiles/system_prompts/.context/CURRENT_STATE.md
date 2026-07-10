@@ -154,14 +154,30 @@ These are documented in `DUAL_PIPELINE_SYSTEM.md` but not implemented:
 
 ## Immediate Next Steps (When Work Resumes)
 
-1. **Build the demo-gate prompt** — the active architecture gap; `p3d`/`p3e`
+**From Session 1 (2026-07-05) — status as of 2026-07-09:**
+1. ~~Define the consultation fee~~ — PARTIALLY RESOLVED: the *model* is now
+   defined (one fixed package, one price — Decision 9), but the actual
+   number/range is still open. Carried forward as item 5 below.
+2. ~~Run the pipeline on a real prospect~~ — IN PROGRESS: per this session,
+   Stage 0 warming (comments + accepted connection request) is confirmed live
+   on an actual prospect. Carried forward as item 4 below.
+3. ~~Build `p3d_Objection_Playbook`~~ — SUPERSEDED: the war-game matrix was
+   built directly into `p3c_Messaging_Playbook.md` instead; the `p3d` name
+   went to the Consultation Playbook. See "Prompt Files to Build" above.
+4. ~~Update existing `p3b_First_Video_Script`~~ — DONE: p3b now scripts video
+   + DM wrapper only (messaging split to p3c), and its wrapper message was
+   fixed twice more this session — see Session 2 log.
+
+**New from Session 2 (2026-07-08 to 2026-07-09):**
+5. **Build the demo-gate prompt** — the active architecture gap; `p3d`/`p3e`
    both point at a paid, guaranteed demo stage that doesn't exist as a prompt
    yet.
-2. **Define the consultation package pricing method** — Decision 9 fixed the
+6. **Define the consultation package pricing method** — Decision 9 fixed the
    *model* (one package, one price, sessions from complexity) but not the
-   actual numbers/ranges.
-3. **Locate or rebuild `DUAL_PIPELINE_SYSTEM.md` / `EXECUTION_PLAYBOOK.md`**
+   actual numbers/ranges. (This is item 1's carry-forward.)
+7. **Locate or rebuild `DUAL_PIPELINE_SYSTEM.md` / `EXECUTION_PLAYBOOK.md`**
    — confirm whether they exist somewhere else before treating anything that
    depends on them (e.g. the lead-qualification rubric) as available.
-4. **Continue the live prospect through Stage 1** — the video/DM wrapper is
+8. **Continue the live prospect through Stage 1** — the video/DM wrapper is
    next once Stage 0 warming (comments + connection) is confirmed accepted.
+   (This is item 2's carry-forward.)

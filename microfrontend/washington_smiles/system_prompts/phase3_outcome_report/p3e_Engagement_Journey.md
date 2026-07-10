@@ -14,6 +14,33 @@ consultation package.** `p3c_Messaging_Playbook.md` and
 package structure — they must not redefine it. If the stages, the package
 sessions, or the disclosure rules change, they change HERE first.
 
+**Division of authority (do not blur it):** `p3e` owns the **package shape** — how
+many sessions, what each delivers, that there is one price. `p3c` §B.1a owns the
+**pricing method and every rule for how the number is spoken.** This page states the
+price; it does not decide it, and it does not invent its own way of framing it.
+
+> **Phase 3 chain:** `p3a` brief → `p3b` video → `p3c` messaging → `p3d` consultation → **`p3e` journey map**.
+> Each stage proves depth and withholds the next stage's payload (the Hold-Back Rule).
+> Money is never asked for inside a deliverable (the Two-Step Money Rule).
+> Payment is **post-paid**: nothing is collected before a session (Decision 8).
+> Canonical sources — package shape: `p3e` · pricing method and every rule for speaking
+> the number: `p3c` §B.1a · quotation: the raw `p1*` research, never a derived artifact.
+
+---
+
+## PRONOUNS AND ADDRESS (fix this before writing a word)
+
+**This prompt uses "the buyer / the client / he" as generic placeholders.** Read the
+owner's real name and pronouns from `p0a_Decision_Card` and `p1c_Linkedin_Owner` and
+use theirs throughout.
+
+> The live Washington Smiles prospect is **Dr. Melissa Smith — she/her.**
+
+This page is the most forwardable artifact in the system — it is built to be read by
+a partner, a board, or a CTO the prospect has to convince. A wrong pronoun here does
+not just embarrass Abdul in front of the buyer; it embarrasses **the buyer** in front
+of the people she forwarded it to.
+
 ---
 
 ## THE GOVERNING IDEA (read this before anything else)
@@ -67,9 +94,10 @@ This prompt operates under the Decision-Led Proof Framework v2.
 2. **ROI Integrity:** any number on this page must be L1/L2 and must match the
    exact stakes figure already used in the video and messages (see the Alignment
    Rule below). No new numbers, no ROI tables, no per-solution metrics.
-3. **Confidence Signal:** read it from the Decision Card. It controls how firmly
-   the consultation package price and the demo/build framing are phrased (see
-   Confidence Signal Adjustments at the end).
+3. **Confidence Signal:** read it from the Decision Card. It controls how firmly the
+   **diagnosis** and the demo/build framing are phrased — **never the price**, which
+   is derived once via `p3c` §B.1a and does not move with confidence (see Confidence
+   Signal Adjustments at the end).
 4. **Primary Sources:** the finalized video and messaging outputs are PRIMARY for
    anything already said to the client; the Decision Card and Problem Register are
    PRIMARY for everything else.
@@ -78,7 +106,7 @@ This prompt operates under the Decision-Led Proof Framework v2.
 
 | Stage | SHOWS | WITHHOLDS |
 |-------|-------|-----------|
-| Video + Messaging (done) | Bottleneck, problems, honest-limit boundary, stakes number, proof of competence, guarantee | Any solution, feature, ROI table, build detail |
+| Video + Messaging (done) | Bottleneck, problems, honest-limit boundary, stakes number *(or a directional statement)*, proof of competence *(only if a real one existed)*, guarantee, the fee as a ceiling | Any solution, feature, ROI table, build detail |
 | **Engagement Journey (this page)** | The three-stage path, each stage's deliverable, the guarantee across stages, the Consultation package price only | Demo price, build price, any solution/feature/screen/timeline/team |
 | Consultation (`p3d`) | Full confirmed diagnosis, real numbers, cost computed live, solution DIRECTION | Working software, screens, build timeline, team, build price |
 | Demo (paid, guaranteed — future prompt) | Working prototype, proof it solves their problems | Build price, timeline, team |
@@ -92,8 +120,11 @@ This page is a continuation of the same conversation as the video, the messages,
 and (if already held) the consultation — not a fresh pitch. Before drafting:
 1. Read the finalized `p3b_First_Video_Script_[ClientName].docx` and
    `p3c_Messaging_Playbook_[ClientName].docx`.
-2. Reuse the EXACT stakes number and phrasing, the EXACT bottleneck wording, and
-   the same proof-of-competence line. Never re-derive an independent version.
+2. Reuse the EXACT stakes number, its phrasing **and its frozen time unit**, and the
+   EXACT bottleneck wording. Reuse the proof-of-competence line **only if the video
+   carried one** — if it did not, this page carries none either, and never
+   substitutes a generic capability claim. Never re-derive an independent version of
+   anything already said.
 3. If the consultation has already happened, align the "what you keep" language
    for Stage 1 with the actual Operational Diagnosis deliverable from `p3d`.
 
@@ -105,16 +136,24 @@ This page is NOT sent to a cold prospect. Revealing a three-stage paid ladder to
 someone who has not yet replied kills trust-to-reply. It is introduced only at
 one of these moments, whichever comes first:
 
-- **At the consultation tee-up** (`p3d` Section 6) — once the client has paid for
-  and experienced the first session, and the full path now reads as helpful
-  transparency, not an upsell.
+- **At the demo tee-up** (`p3d` **Section 7**) — which runs only *after* the
+  end-of-session checkpoint (`p3d` §F.6a) has resolved to "yes, worth it." At that
+  moment the client has judged the value and agreed to pay, and the full path reads
+  as helpful transparency rather than an upsell.
 - **When a stakeholder needs context** (`p3c` Branch P / Branch R) — the client
   must brief a partner/board/CTO and needs a forwardable, self-contained map.
 - **Bundled with the written Operational Diagnosis** (`p3d` Part E) as the
   "Recommended Next Steps" companion, so the path travels with the deliverable.
 
-The earliest legitimate moment is **after the client has paid Dev8X once and
-found it worth it.** Never before.
+The earliest legitimate moment is **after the client has confirmed the first session
+was worth it.** Never before.
+
+📌 Under the post-paid model (Decision 8) the money may not have physically moved yet
+when this page is first shown — the invoice goes out that night. **The gate is the
+client's verdict, not the cleared payment.** Do not read "has paid once" literally and
+withhold the page from someone who has just said yes; and do not read it loosely and
+show the page to someone who has not been asked yet. On a Guarantee Save (outcome 2)
+or an exit (outcome 3), this page is **not sent.**
 
 ---
 
@@ -166,10 +205,14 @@ to different numbers.
 ### STAGE 1 — Consultation (the priced gate)
 - The fixed multi-session package defined above.
 - What they keep: the Operational Diagnosis + any per-session documents.
-- The guarantee, stated once.
+- The guarantee, stated once — **fused into the same sentence as the price**, never
+  adjacent to it (`p3c` §B.1a). Separated, the price reads as real and the guarantee
+  reads as a disclaimer bolted on afterwards.
 - **This is the only stage with a visible price** — `[CONSULTATION_PACKAGE_FEE]`,
-  anchored against the stakes number (never stated in a vacuum). Apply the Fee
-  Framing from the Confidence Signal Adjustments.
+  stated once, in the ceiling frame, anchored against the stakes number. **If the
+  video carried no stakes figure, anchor structurally** (`p3c`, *Anchoring Without a
+  Number*) — a bare price anchored to nothing is the one thing this page may never
+  show. Never the last element on the page: end on the next step, not the money.
 
 ### STAGE 2 — Demo (paid, guaranteed — price withheld)
 - A working prototype built around THEIR operation, proving the direction solves
@@ -235,8 +278,16 @@ Brief the client already saw. Do NOT invent a new design.
 - [ ] The consultation package sessions (1–4) and their deliverables are defined
       from the Problem Register's actual complexity — not padded.
 - [ ] `[CONSULTATION_PACKAGE_FEE]` is the only visible price; demo and build
-      prices are withheld.
-- [ ] The stakes number matches the video and messages exactly.
+      prices are withheld. It resolves to the SAME number as `[CONSULTATION_FEE]`
+      in `p3c`/`p3d`, derived once via `p3c` §B.1a.
+- [ ] The price is stated in the **ceiling frame**, once, fused to the guarantee,
+      and is not the last element on the page.
+- [ ] The stakes number **and its time unit** match the video and messages exactly.
+      If the video carried no figure, the structural anchor is used instead.
+- [ ] The client's name and pronouns are confirmed from the research.
+- [ ] **The timing gate is satisfied:** the client has confirmed the first session was
+      worth it, or a stakeholder needs a forwardable map (`p3c` Branch P / R). This
+      page is never generated for a cold prospect.
 
 If any box is unchecked, STOP and flag it rather than guessing.
 
@@ -244,11 +295,20 @@ If any box is unchecked, STOP and flag it rather than guessing.
 
 ## CONFIDENCE SIGNAL ADJUSTMENTS
 
-| Signal | Consultation package price | Demo/Build framing |
-|--------|----------------------------|--------------------|
-| **High** | Stated plainly, anchored against the stakes number | Direct: "the natural next steps" |
+**Confidence never moves the number** (`p3c` §B.1a). It moves how firmly the
+*diagnosis* is asserted around it. A lower price does not compensate for a shakier
+diagnosis; it advertises one.
+
+| Signal | How the diagnosis is framed | Demo/Build framing |
+|--------|-----------------------------|--------------------|
+| **High** | Stated plainly as their reality | Direct: "the natural next steps" |
 | **Medium** | "Based on the numbers you gave me" + guarantee leaned on | "if the diagnosis lands, the next step is…" |
-| **Low** | Lead on the rigor of the method and the guarantee; price framed against a stakes range | Positioned as validation of the direction, not a foregone conclusion |
+| **Low** | Lead on the rigor of the method and the guarantee | Positioned as validation of the direction, not a foregone conclusion |
+
+The package price itself is identical in all three rows. It is derived once, via
+`p3c` §B.1a (reference class → band → floor → discretionary threshold → digits), and
+stated on this page in the **ceiling frame**: *"the most it can cost you is X, and
+only if you tell me it was worth more than that."* Never as "the fee is X."
 
 Authority comes from method, not certainty — source it from the rigor of the
 process, never from pretending to be sure about numbers you can't see.

@@ -1,0 +1,61 @@
+---
+name: open-questions
+type: knowledge-base / tracker
+scope: autonomous-design-engine (ADE)
+purpose: >
+  Standing questions that need a HUMAN decision before certain work can proceed
+  confidently. Any agent picking up ADE work should check this file and, if it
+  can get an answer from the user, update this file and (if load-bearing)
+  propagate the answer into decisions-and-conventions.md and the relevant spec doc.
+---
+
+# ADE — Open Questions (needs a human decision)
+
+> Ordered roughly by how much the answer would change everything downstream. Unlike the spec's own "open research questions" (`09 §5`, which are about *design/architecture* unknowns), these are mostly about **direction and process** — questions only the project owner can answer.
+
+## 1. What is ADE actually for? — UNRESOLVED, asked directly, not yet answered
+
+**The single biggest lever on the whole plan.** Four candidate answers, each implying a materially different roadmap:
+- **A product** (to sell) — needs users, differentiation, and go-to-market long before "calibrated taste" matters.
+- **A personal tool** (to actually use) — should stay narrow and get *used*, not broad and complete.
+- **A research/portfolio project** (to learn and demonstrate) — should optimize for interesting, well-documented, measurable results, not completeness.
+- **An open-ended intellectual pursuit** — timeline and "done" don't really apply the same way.
+
+**Why it matters:** prioritization in `spec/15` is currently generic because this hasn't been answered. Resolving it should trigger a re-tuning of the roadmap's priorities (this was explicitly offered at the end of the session that produced `spec/15` — see `chat-history.md §13`).
+
+**Status:** asked directly at the end of the roadmap-building conversation. **No answer given yet as of this writing.**
+
+## 2. Build vs. buy — is building ADE from scratch the right bet?
+
+Given how fast tools like v0, Lovable, Framer AI, Figma AI, and Anthropic's own Artifacts are commoditizing AI-driven UI generation: what is ADE's *durable* differentiation? The working thesis is "the compounding, taste-calibrated Library" (H6) — but is that worth 3–6 solo years to build, versus building just the differentiated layer (taste/memory/calibration) *on top of* an existing generation tool rather than rebuilding generation from scratch?
+
+**Suggested resolution point:** revisit explicitly at the Phase-0 / H1 gate (~month 5), once there's real evidence the core loop works.
+
+## 3. Taste governance — whose taste is ground truth?
+
+When there's more than one reviewer (now or later), and they disagree, who resolves it — a single named "design lead" with final say, rolling consensus, a weighted panel? This is a prerequisite for:
+- Ratifying Design Constitution amendments (`spec/12 §7`).
+- Ratifying Evaluation Charter golden-core additions (`spec/13`).
+- The Phase-Exit Review / autonomy-ladder mechanism generally (spec `09 §2`, `11 §2.3`) — "a gate is relaxed only where its own boundary's agreement clears the bar," but *whose* agreement, if there's more than one rater?
+
+Tracked in the spec as failure **F-HUM-02** (reviewer-taste overfitting) and **J4** in the research agenda (`14`). **Currently answered by default as "whoever is running the project," since there's one developer** — revisit if/when a second reviewer joins.
+
+## 4. Can the compounding-Library thesis (H6) even be tested at solo project volume?
+
+H6 ("project N+1 beats N via the Library") likely needs *many* completed projects to show a measurable signal. A solo developer at ~8 hrs/week may complete only a handful of real projects a year. **Open question: is there a realistic volume plan (e.g. deliberately running many small/synthetic briefs through the pipeline, not just real client work) to generate enough data points to test H6 at all** — or should Phase 2 be scoped down/deferred until real project volume exists?
+
+## 5. Pro-credit Terms of Service — is automated/near-production use actually permitted?
+
+The entire dev access model depends on the Claude Pro plan's Agent-SDK credit sustaining an **automated, repeated, potentially high-volume** workload (the generation loop calling the model many times per section, across many briefs). This has not been confirmed against the actual ToS. **Action needed:** check the current Anthropic Claude Pro / Agent SDK terms for automated-use restrictions before scaling up run volume, and before treating this as a viable path all the way to "significantly improved" (~12–18 months of usage).
+
+## 6. What is "good enough to actually use for real work" — separate from the H-series gates?
+
+`spec/15 §6` defines "significantly improved" as a hypothesis-gate bar (H1+H2+H4+one R-bet, ~12–18 months out). But there may be a **narrower, earlier bar** — "good enough that I'd actually use this instead of hand-building a section" — that's worth defining separately, since an ever-improving system has no natural finish line (`15 §9.5`, the "never done" problem). **Not yet defined.** Consider defining this explicitly, likely well before month 12.
+
+## 7. Antigravity's actual cross-tool-instruction convention — unconfirmed
+
+While setting up the cross-agent knowledge base (`chat-history.md §14`), it was explicitly flagged that the assistant does not know with confidence what file/convention Google's Antigravity reads for project instructions (unlike `AGENTS.md` for Codex and `CLAUDE.md` for Claude Code, both fairly well-established). **Action needed:** check Antigravity's own docs or test empirically whether it reads `AGENTS.md`, a `CLAUDE.md`-equivalent, or something else, and update `AGENTS.md`/`CLAUDE.md` at the ADE root accordingly if a third pointer file is needed.
+
+## 8. What actually happened to the Phase-0 scaffolding relative to this conversation?
+
+While building this knowledge base, real Phase-0 implementation files (`src/`, `tests/`, `harness/`, `spike.ts`, `package.json`, etc.) were discovered already present at `future-pipeline/autonomous-design-engine/`, dated *before* the planning conversation this knowledge base preserves — but **this conversation never discussed or reviewed that code**. Open question for whoever picks this up next: **what is the actual current state of that code** — does it reflect an early, possibly since-superseded draft of Phase 0 (e.g. before the harness-hardening fixes in `chat-history.md §3` — per-candidate nonce, Tailwind Play CDN, asset/font provisioning, import allowlist, JSONL trace — were specified), or is it already up to date with them? **This needs a direct read of `src/`, `harness/`, and `spike.ts` against the current `IMPLEMENTATION_PLAN.md` before any further build work continues on it**, so effort isn't wasted building against an outdated version of the plan, or conversely, so already-good code isn't needlessly rewritten.
