@@ -48,12 +48,24 @@ When starting work on this project, read these files in order:
    is the Two-Step Money Rule.
 
 3. **Never present unverified data as fact.** The ROI Integrity Ladder
-   classifies all metrics as L1 (verified by client), L2 (estimated from
-   public data), L3 (inferred), or L4 (industry benchmark). Only L1 and
-   L2 are headlined; L3/L4 are support.
+   classifies all metrics as **L1 (sourced/verified)**, **L2 (estimated from
+   public data, labelled)**, **L3 (industry-benchmark proxy — illustrative only)**,
+   or **L4 (unknown — excluded, discovery required)**. Only L1 and L2 may be
+   headlined. L3 is never used in a hero, headline, or opening statement. L4 is
+   removed, not guessed. *(Corrected 2026-07-10 — this rule previously had L3 and
+   L4 inverted relative to `p0a_Decision_Card`, which is the authority.)*
 
 4. **Confident wrongness is the most expensive failure.** If the research
    is thin, say so. Never paper over gaps with confident language.
+
+4b. **Quote from the raw research, never from a derived artifact.** `p0a`/`p0b`
+   are primary for judgement; the raw `p1*` files are primary for quotation.
+   Re-verify every quote in the run that uses it, and cite by distinctive phrase —
+   post numbers are not stable across scrapes. See Decision 12.
+
+4c. **Check pronouns before anything ships.** The prompts use "he" as a generic
+   placeholder. The live prospect is Dr. Melissa Smith, she/her. This error reads
+   perfectly to everyone except the person receiving it.
 
 5. **No solution cards, no ROI dashboard, no build timeline in the free
    video.** The video shows problems only.
@@ -94,6 +106,19 @@ CSS variables and markup patterns.
 | Fee-Anchoring | Anchor the consultation fee against the stakes number, never against competitors |
 | Abdul Bottleneck | Abdul is the single human throughput limiter; AI maximizes his hours |
 | Decision-Led Proof Framework (v2) | The overall philosophy governing the entire system |
+| Psychological Spine | The 12 named rules in `p3b` that make a cold video earn a reply |
+| Open Loop | A question the prospect asked publicly and never resolved; the strongest cold open |
+| Assembly Rule | Never tell them a new fact — join two things they already said |
+| Peak Line | The one sentence designed to be remembered and quoted back |
+| Reactance Guard | Never diagnose their competence; their work is the hero, its format is the bottleneck |
+| Regulatory Fit | Match gain/loss framing to the prospect's orientation (ceiling vs. erosion) |
+| Quote Provenance Check | Every spoken quote re-verified against raw `p1*` research, this run |
+| Research Freshness Pin | Confirm p1 still contains the posts p0a/p0b cite — by phrase, not post number |
+| Ceiling Frame | "The most it can cost you is X" — the fee is a ceiling, not a price |
+| Reference Class | The category the buyer compares your price to. Never developer time. |
+| Discretionary Threshold | The fee must sit below the point where the buyer needs approval |
+| Computation Gate | Never compute a live cost from a factor the client did not supply |
+| The Checkpoint | The three-way end-of-session guarantee question; precedes the demo tee-up |
 
 ## Session Protocol
 

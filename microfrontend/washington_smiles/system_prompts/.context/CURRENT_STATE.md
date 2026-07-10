@@ -4,7 +4,19 @@
 > Updated after every session. Any AI reads this to know exactly where
 > things stand.
 
-**Last updated:** 2026-07-09
+**Last updated:** 2026-07-10
+
+> ## ⚠ BLOCKERS BEFORE THE NEXT SEND
+>
+> **1. `p1c_Linkedin_Owner.md` is stale.** The June re-scrape dropped the posts the
+> entire diagnosis rests on (7, 8, 9, 16, 21, 24). Restore or merge from git
+> `967a668c`. All four Phase 3 prompts now formally require it. See MEMORY.md
+> Known Issue 6.
+>
+> **2. The consultation fee has no number.** The *method* is now fully defined
+> (`p3c` §B.1a). Step 1 needs a real St. Louis dental-coach / Rockefeller-implementer
+> rate; everything downstream derives from it. `[CONSULTATION_FEE]` must not be sent
+> as a placeholder, and Branch F ("what will this cost?") always arrives eventually.
 
 ---
 
@@ -62,6 +74,32 @@ AI CONTEXT SYSTEM
 .context/MEMORY.md ........... ✅ Created
 .context/CURRENT_STATE.md .... ✅ Created (this file)
 .context/SESSION_LOG.md ...... ✅ Created
+
+PHASE 3 HARDENING (Session 3, 2026-07-10)
+══════════════════════════════════════════════════
+p3b Video Script ............. ✅ REBUILT — 778 lines
+  - Psychological Spine ...... ✅ 12 named rules (Decision 13)
+  - Quote Provenance Check ... ✅ NEW (Decision 12)
+  - Research Freshness Pin ... ✅ NEW — post numbers are not stable IDs
+  - Proof-of-competence ...... ✅ Now omittable when no real proof exists
+  - Pronoun guard ............ ✅ NEW
+p3c Messaging Playbook ....... ✅ REBUILT — 1298 lines, 25 branches (was 19)
+  - §B.1a The Consultation Fee ✅ NEW — the pricing model (Decisions 14, 15)
+  - Anchoring Without a Number ✅ NEW — mandatory; the live client has no figure
+  - 3 Alignment Traps ........ ✅ NEW — frozen time unit / no number / no proof
+  - Branches T,U,V,W,X,Y ..... ✅ NEW — incl. "we're building it ourselves" (the
+                                  Decision Card's own #1 named risk) and "yes"
+  - Goal corrected ........... ✅ "sit down for it," not "pay for it"
+p3d Consultation Playbook .... ✅ REBUILT — 849 lines
+  - Checkpoint before demo ... ✅ Section 6 / Section 7 (Decision 16)
+  - Scripted payment ask ..... ✅ NEW — the money moment had no words at all
+  - "I don't know" = finding . ✅ NEW (Decision 17)
+  - The Computation Gate ..... ✅ NEW (Decision 18)
+  - Numbers-disprove-thesis .. ✅ NEW F.7 contingency
+p3e Engagement Journey ....... ✅ AUDITED — 346 lines
+  - Confidence≠price fixed ... ✅ Contradicted §B.1a
+  - Timing rule repointed .... ✅ To p3d Section 7, post-verdict
+All four ..................... ✅ Shared spine + Phase 3 chain banner
 ```
 
 ---
@@ -168,7 +206,23 @@ These are documented in `DUAL_PIPELINE_SYSTEM.md` but not implemented:
    + DM wrapper only (messaging split to p3c), and its wrapper message was
    fixed twice more this session — see Session 2 log.
 
-**New from Session 2 (2026-07-08 to 2026-07-09):**
+**New from Session 3 (2026-07-10) — do these first, in this order:**
+
+A. **Restore `p1c` from git `967a668c`** (or merge the 26 recent posts back into the
+   180-post file). Nothing else can run correctly until this is done — the prompts
+   now require p1c for quotation, pronouns, the open loop, the emotional vocabulary,
+   the announced scale event, and the pricing reference class.
+B. **Set the consultation fee** via `p3c` §B.1a. Needs one real external number: what
+   a dental-practice coach or Rockefeller/EOS implementer charges in St. Louis.
+   Dr. Smith is **Band B** (five locations, several systems, sole decision-maker).
+C. **Regenerate `p3a` → `p3b`** against the restored research and the rebuilt prompt.
+   Verify the open loop (Post 16), the ceiling frame, and the Peak Line appear.
+D. **Then `p3c`** — check Message 2 holds together with a structural anchor rather
+   than a stakes figure, since no L1/L2 cost number exists for this client.
+E. Answer the still-open pricing question in `p3e`: `[CONSULTATION_PACKAGE_FEE]` and
+   `[CONSULTATION_FEE]` must resolve to the same number.
+
+**Carried from Session 2 (2026-07-08 to 2026-07-09):**
 5. **Build the demo-gate prompt** — the active architecture gap; `p3d`/`p3e`
    both point at a paid, guaranteed demo stage that doesn't exist as a prompt
    yet.

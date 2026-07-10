@@ -205,6 +205,90 @@ bait-and-switch.
 `p3c` Message 2 carries a one-line acknowledgment of the staircase (shape
 only, no prices).
 
+### Decision 12: Raw research is primary for quotation
+**Date:** 2026-07-10
+**Decision:** `p0a`/`p0b` are PRIMARY for **judgement** (bottleneck, Confidence
+Signal, emotion map). The raw `p1*` files are PRIMARY for **quotation.** Every
+sentence attributed to the prospect must be re-verified against the raw file, in
+the run that writes the deliverable, with a printed provenance line. Cite by
+distinctive phrase — **post numbers are not stable identifiers across scrapes.**
+**Rationale:** Discovered the hard way. `p0a`/`p0b` were correctly generated
+2026-05-21 from a 26-post p1c; a 2026-06-13 re-scrape replaced p1c with 180 posts
+that dropped the recent operational ones. The Decision Card was orphaned from its
+source, and the video script was about to quote posts that no longer resolved. An
+AI reviewing it concluded "fabrication" — wrong, but the video was still unsafe.
+**Status:** Accepted. Enforced by the Quote Provenance Check and Research
+Freshness Pin in `p3b`'s QA gate.
+
+### Decision 13: The Psychological Spine
+**Date:** 2026-07-10
+**Decision:** The first video is governed by 12 named, enforceable rules, checked
+before output. A script can hit every beat and still land dead.
+**Rationale:** The prompt had structure but no theory of *why a stranger's video
+makes a proud CEO reply.* Three further rules (Steal the Thunder, the Useless
+Detail Rule, the Disqualifier) were drafted and **rejected by the user**: outside-in
+research can be wrong, and hyper-specific claims risk losing the client. The p1c
+drift bug proves the point for the Useless Detail Rule especially.
+**Status:** Accepted. See `p3b` § THE PSYCHOLOGICAL SPINE.
+
+### Decision 14: A stated price, with the client as final judge — never "pay what you want"
+**Date:** 2026-07-10
+**Decision:** The consultation always carries a firm, stated number. Never
+pay-what-you-want, never a suggested donation.
+**Rationale:** The user asked whether to just let clients name the price. The
+post-paid guarantee **already is** pay-what-you-want — the client is already the
+sole judge of value. Removing the number buys no additional safety and costs four
+things: it swaps an easy yes/no for the hard job of appraising a stranger's work
+(and hard jobs get deferred); it removes the only quality signal available to a
+studio with no portfolio; it destroys the anchor for the demo and the build; and it
+reclassifies a professional service as a tip.
+**Status:** Accepted. See `p3c` §B.1a.
+
+### Decision 15: Confidence never moves the price
+**Date:** 2026-07-10
+**Decision:** The Confidence Signal governs how firmly the *diagnosis* is asserted.
+It never adjusts the fee.
+**Rationale:** A lower fee does not compensate for a shakier diagnosis; it
+advertises one. A seller who discounts because he is unsure has told the buyer he
+is unsure and charged him for the privilege of noticing. The guarantee — not the
+price — is what carries a Medium-confidence offer.
+**Status:** Accepted. Enforced in `p3c` and `p3e` Confidence tables.
+
+### Decision 16: The checkpoint precedes the demo tee-up
+**Date:** 2026-07-10
+**Decision:** In the consultation call, the end-of-session guarantee checkpoint is
+Section 6; the demo tee-up is Section 7 and runs **only** on outcome 1.
+**Rationale:** The old order pitched the next paid gate before the client had said
+the current one was worth anything — inverting the hold-back chain, and making the
+guarantee question rhetorical. A client who has just been sold the sequel cannot
+comfortably answer "no" to the film, so the no-charge-exit rate stops measuring
+anything upstream. Also fixes `p3e`'s timing rule, whose own sanction condition
+("has paid once and found it worth it") was false at the moment it was invoked.
+**Status:** Accepted. `p3d` Sections 6–7, `p3e` timing rule.
+
+### Decision 17: "I don't know" is an L1 finding
+**Date:** 2026-07-10
+**Decision:** When a client cannot produce a number, the inability IS the finding.
+Capture it as *"not currently measured anywhere in the group"* — never as
+"to confirm," which implies the question was asked badly.
+**Rationale:** A business that cannot produce a number does not have a measurement
+problem; it has the operational problem that makes the number unmeasurable. That is
+first-party confirmation of an outside-in diagnosis, and it is often the most
+valuable output of the call. For Washington Smiles it is the **expected** outcome —
+every operational metric in the Decision Card is L4/Excluded.
+**Status:** Accepted. `p3d` Section 2.
+
+### Decision 18: The Computation Gate
+**Date:** 2026-07-10
+**Decision:** Never compute a live cost figure from any factor the client did not
+supply. No benchmarks, no guessing together, no narrowing the formula until it
+resolves. When the gate blocks, put the formula on screen with its blanks named.
+**Rationale:** A number derived partly from air, produced live in a session the
+client is paying for, is the most expensive mistake available on the call — and
+unlike the video, there is a human in the room to ask where it came from. The empty
+boxes are the deliverable: they specify what the system must instrument first.
+**Status:** Accepted. `p3d` Section 3.
+
 ---
 
 ## 3. The 95-Client Recovery Thesis
@@ -267,9 +351,48 @@ Cost per paid consultation: ~$200-560 in token costs.
 
 ### Fee-Anchoring
 The consultation fee is always anchored against the stakes number, never
-against competitors. "A few hundred against the [stakes] you're losing every
-year." Anchoring against competitors invites price comparison. Anchoring
-against stakes makes the fee look tiny.
+against competitors. Anchoring against competitors invites price comparison.
+Anchoring against stakes makes the fee look tiny. **If the video carried no stakes
+number** (a directional volume statement instead), anchor structurally — against
+their own scale, or against the unknown itself — and say plainly why no figure
+exists. A bare price anchored to nothing is the one thing that may never be sent.
+
+### The Ceiling Frame
+Under post-paid, the fee is not a price — **it is a ceiling.** *"The most it can
+cost you is X, and only if you tell me it was worth more than that."* That is the
+literal description of the deal, and it turns the scariest sentence in the message
+into the most reassuring one. Corollary: **price and guarantee must share one
+sentence.** Separated, the price reads as real and the guarantee reads as a
+disclaimer bolted on afterwards.
+
+### The Reference Class (the most consequential pricing decision)
+Every price is understood by comparison to a category the buyer already knows. They
+pick it instantly and automatically; the only leverage is to pick it for them first.
+**Never let the reference class be developer time** — it is a commodity comparison,
+globally shoppable, and it caps the build price by implication. The reference class
+is advisory work the client already pays for and respects: a coach, an implementer,
+a fractional executive. For Dr. Smith: a business coach (Post 44, named) and
+Rockefeller Habits / DEO (Post 119). A studio priced in dev-hours is bought in
+dev-hours forever.
+
+### The Discretionary Threshold
+The fee must sit below the number at which the buyer needs someone else's approval.
+Cross it and you have not raised your price — you have added a stakeholder, a
+meeting, and three weeks. If a sole decision-maker suddenly needs to "check with
+someone" (`p3c` Branch P), that is **pricing feedback**, and it is the most valuable
+signal the pipeline can produce. Do not rescue the deal by discounting.
+
+### The Floor
+`§6` puts token cost per *acquired* consultation at $200–560, before Abdul's ~2.5
+hours. So "works if the fee is ≥$500" is **break-even, not a price.** At $500 the
+entire front end runs at a loss on Abdul's labour.
+
+### Never Bill Them For Your Effort
+Unsolicited effort creates obligation, and obligation creates avoidance. A CEO who
+feels they *owe* a stranger a considered reply resolves the discomfort by never
+opening the message again. Let the artifact carry the effort; never narrate it.
+This bans "the research I did is still valid" from the exit branch, and any hours
+figure aimed at the client.
 
 ### The Decoupling Rule
 The stakes number in Beat 4 of the video must NOT be built from unknowns
@@ -341,6 +464,26 @@ The initial review identified 8 major weaknesses in the existing pipeline:
    so this is out of the blue") — contradicted Part 0.4's own warming-comment
    sequence, which already runs before the connection request. **RESOLVED
    2026-07-09** — wrapper now acknowledges the prior light contact.
+
+6. **⚠ `p1c_Linkedin_Owner.md` on disk is STALE and orphans the diagnosis.**
+   The 2026-06-13 re-scrape (180 posts) **dropped** the recent operational posts
+   that `p0a`/`p0b` are built on — Posts 7, 8, 9, 16, 21, 24. The words
+   `bottleneck`, `collections`, `scorecard`, `huddle` appear **zero times** in the
+   current file. The good capture (26 curated recent posts) is in git at
+   **`967a668c`**. All four Phase 3 prompts now formally require p1c — for
+   quotation, pronouns, the open loop, the emotional vocabulary, the announced
+   scale event, and the pricing reference class. **STILL OPEN — restore or merge
+   before running anything.** Note: `EOS` was never in the research at all; the
+   real framework signal is `#rockefellerhabits` / `#DEO` (Post 119). Anywhere
+   `p0a`/`p0b` say "EOS," treat it as unverified.
+
+7. **All prompts were written with masculine pronouns; the prospect is a woman.**
+   Dr. Melissa Smith, she/her. Fixed with a Pronouns and Address section at the top
+   of `p3b`/`p3c`/`p3d`/`p3e` (2026-07-10), but the generic "he" remains in the
+   prompt bodies as placeholder text — a generated deliverable must be checked for
+   stray pronouns before it is sent or recorded. This is the cheapest way to lose
+   the client, and it reads perfectly to everyone except the one person who
+   receives it.
 
 ---
 

@@ -172,3 +172,108 @@
 - `DUAL_PIPELINE_SYSTEM.md` / `EXECUTION_PLAYBOOK.md` — confirm whether they exist anywhere before relying on anything that cites them
 - Web Services Pipeline prompts not built
 - Post-sale pipeline not built
+
+---
+
+## Session 3 — 2026-07-10
+
+**AI Model:** Claude (Sonnet 5, then Opus 4.8)
+**Focus:** Hardening the entire Phase 3 chain — narrative, psychology, pricing,
+and the live call — against a real, imminent send to Dr. Melissa Smith.
+
+### What Was Discussed
+
+1. **A research-provenance bug was discovered, and an AI accusation was
+   retracted.** Reviewing the generated Washington Smiles video script, the AI
+   reported that four verbatim "quotes from her own posts" (the Office Manager
+   Playbook / three pillars, manager overwhelm, "productive scheduling," the
+   bottleneck post) appeared nowhere in `p1c_Linkedin_Owner.md`, and called it
+   fabrication. **The user pushed back — correctly.** Git history showed the
+   quotes are real: `p0a`/`p0b` were generated 2026-05-21 from a p1c containing
+   **26 curated recent posts**; on 2026-06-13 p1c was re-scraped and replaced
+   with **180 posts** that dropped the recent operational ones. The diagnosis
+   was correctly sourced; its source was later overwritten beneath it. Post
+   numbers are not stable across scrapes. The good capture lives at git
+   `967a668c`.
+
+2. **The first video's narrative was rebuilt around a psychological spine.**
+   The prompt had good structure (hold-back, decoupling, ROI integrity) but no
+   theory of *why a stranger's video makes a proud CEO reply.* Twelve named,
+   enforceable rules were added. Three more (Steal the Thunder, the Useless
+   Detail Rule, the Disqualifier) were drafted and **removed at the user's
+   direction** — his reasoning: outside-in research may be wrong, and hyper-
+   specific claims risk losing the client. That reasoning is strongest for the
+   Useless Detail Rule, which the p1c drift bug would have turned into a
+   landmine.
+
+3. **The consultation fee was designed from first principles.** The user asked
+   whether to simply say "pay whatever you think is appropriate." Answer: no —
+   the post-paid guarantee **already is** pay-what-you-want, and removing the
+   number costs the anchor, the quality signal, and the price ladder without
+   buying any additional safety. Built §B.1a: the ceiling frame, the reference-
+   class method, complexity bands, floor/discretionary-threshold checks, and
+   eleven presentation rules.
+
+4. **`p3c` was audited end to end, twice** — first the messages and branches,
+   then the framing sections that govern them. 25 branches now (was 19).
+
+5. **`p3d` was audited.** The end-of-session checkpoint ran *after* the demo
+   tee-up, meaning every call pitched the next paid gate before the client had
+   said the current one was worth anything. Reordered. The moment revenue
+   actually happens had **no script at all**.
+
+6. **`p3e` was audited** (never previously reviewed) and all four prompts were
+   formatted into one system with a shared spine and a Phase 3 chain banner.
+
+### Decisions Made
+
+| # | Decision | Rationale |
+|---|----------|-----------|
+| 12 | Raw `p1*` research is PRIMARY for **quotation**; `p0a`/`p0b` are PRIMARY only for **judgement** | A derived artifact can drift from the research beneath it. Every spoken quote must be re-verified against the raw file, in the run that writes the script, with a printed provenance line. Cite by distinctive phrase — post numbers are not stable identifiers. |
+| 13 | The Psychological Spine — 12 named rules governing the video's narrative | A script can hit every beat and still land dead. The spine is what produces a reply: open loops, the Assembly Rule, emotional vocabulary, announced scale events, autonomy preservation, the Peak Line, the reactance guard, identity transition, regulatory fit, reply friction, the indebtedness trap, concreteness. |
+| 14 | A stated price with the client as final judge — never "pay what you want" | The guarantee already makes the client the sole judge of value. Removing the number swaps an easy yes/no for the hard job of appraising a stranger's work, removes the only quality signal available to a studio with no portfolio, and destroys the anchor for the demo and build. |
+| 15 | Confidence Signal never moves the price | A lower fee does not compensate for a shakier diagnosis; it advertises one. Confidence governs how firmly the *diagnosis* is asserted. The guarantee — not the price — carries a Medium-confidence offer. |
+| 16 | The end-of-session checkpoint precedes the demo tee-up | Pitching the next paid gate before the client has judged this one inverts the hold-back chain and makes the guarantee question rhetorical — a client who has just been sold the sequel cannot comfortably say "no" to the current step, so the no-charge-exit rate stops measuring anything. |
+| 17 | "I don't know" is an L1 finding, not a failed question | When a client cannot produce a number, the inability *is* first-party confirmation of the bottleneck. Capture it as "not currently measured anywhere in the group" — never as "to confirm." For Washington Smiles this is the expected outcome, not the edge case. |
+| 18 | The Computation Gate — never compute a cost from a factor the client did not supply | A figure derived partly from air, produced live in a paid session, is the most expensive mistake available on the call. When the gate blocks, the formula goes on screen with its blanks named: the empty boxes are the deliverable. |
+
+### Files Modified
+
+| File | Change |
+|------|--------|
+| `p3b_First_Video_Script.md` | Pronoun guard; Quote Provenance Check + Research Freshness Pin in the QA gate; **The Psychological Spine** (12 rules); **What We Deliberately Do Not Do**; proof-of-competence line made omittable; beats 1–5 rewired to the spine; `p1c`/`p1a` added to WHAT TO ATTACH (415 → 778 lines) |
+| `p3c_Messaging_Playbook.md` | Pronoun guard; three Alignment Traps (frozen time unit / no stakes number / no proof line); **Anchoring Without a Number**; **§B.1a — The Consultation Fee** (ceiling frame, reference class, bands, floor, discretionary threshold, 11 presentation rules); goal corrected from "get them to pay" to "get them to sit down"; Branch A split into two messages; Branches F, G, H, I, J, L, M, N, P, S rewritten; new Branches **T** (building it ourselves), **U** (volunteers numbers), **V** (feels invasive), **W** (payment mechanics), **X** (why pay if guaranteed), **Y** (the "yes"); unanswered-message counter; not-watched ownership ruling (609 → 1298 lines) |
+| `p3d_Consultation_Playbook.md` | Pronoun guard; post-paid language throughout ("paid booking" retired); **Section 6 = the Checkpoint**, Section 7 = demo tee-up, run only on outcome 1; scripted payment ask + rewritten guarantee question; "I don't know" as the finding; the Computation Gate + four formula shapes; new F.7 contingency *the numbers contradict the hypothesis*; F.1 process-order logic bug fixed; F.5 gated on outcome; timing rebudgeted to 60 min (615 → 849 lines) |
+| `p3e_Engagement_Journey.md` | Pronoun guard; authority boundary (p3e owns package *shape*, p3c §B.1a owns *pricing*); Confidence table no longer flexes price; timing rule repointed to `p3d` Section 7 + post-paid verdict gate; proof-of-competence made conditional; pre-flight hardened (287 → 346 lines) |
+| All four | Shared **Phase 3 chain banner**; consistent section spine; Hold-Back Chain rows reconciled |
+
+### What The Research Actually Says (verified against git `967a668c`)
+
+Load-bearing, and easy to lose again if p1c is re-scraped:
+
+- **Post 16 — the open loop.** *"'bottleneck' didn't exist in my vocabulary two
+  weeks ago… once you see them, you can't unsee them… Anyway, off to question
+  every process I've ever touched."* She publicly announced an audit she has
+  not done. The cold open should hand it to her.
+- **Post 10 — the stated goal.** *"True leadership isn't about how much you can
+  carry. It's about how well the organization performs when you don't carry it all."*
+- **Post 12 — the admission.** *"I used to lead like the Wizard of Oz… I still
+  catch myself doing too much behind the scenes."*
+- **Post 9 — the identity transition.** *"From operator to leader. From control
+  to trust."* Plus her emotional vocabulary: *heavy*, *blind spots*.
+- **Post 44 — the reference class.** She pays a business coach, by name.
+  Post 119: `#rockefellerhabits #DEO`. **Not EOS** — that was never in the research.
+- **Post 21 — the announced scale event.** Hiring Associate Managers across the org.
+- **Her headline:** *"the best dang dental group on the planet."*
+
+### Open Items Carried Forward
+
+- **`p1c` on disk is still the stale 180-post June scrape.** Restore or merge from
+  git `967a668c` before running any prompt — all four now formally require it.
+- **The consultation fee number.** §B.1a Step 1 needs a real St. Louis dental-coach
+  or Rockefeller-implementer rate. Everything downstream derives from it.
+- The demo-gate prompt still doesn't exist — unchanged active architecture gap
+- Whether the Guarantee Save extends to the demo stage — still open
+- `DUAL_PIPELINE_SYSTEM.md` / `EXECUTION_PLAYBOOK.md` — still absent from disk
+- Web Services Pipeline prompts not built
+- Post-sale pipeline not built
