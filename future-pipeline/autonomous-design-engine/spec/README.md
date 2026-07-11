@@ -491,7 +491,7 @@ The gated loop on **one section**, from a brief, no memory — the cheapest test
 | 7 | [07-mvp-cli.md](./07-mvp-cli.md) | **What we build first** — the CLI loop, build-ready |
 | 8 | [08-hypotheses-and-validation.md](./08-hypotheses-and-validation.md) | The assumptions, each falsifiable, with metrics |
 | 9 | [09-roadmap-and-open-questions.md](./09-roadmap-and-open-questions.md) | Build phases, autonomy ladder, cost, risks, open problems |
-| 10 | [10-failure-modes.md](./10-failure-modes.md) | **Single source of truth for every failure** (spec + impl) |
+| 10 | [10-failure-modes.md](./10-failure-modes.md) | **Single source of truth for every failure** (spec + impl) — an index; full entries split across companion files **10a–10e** by theme |
 | 11 | [11-guardrails-and-invariants.md](./11-guardrails-and-invariants.md) | **The solutions** — guardrail layer, invariants, resilience, integrity |
 
 **The continuous-improvement (R&D) layer** — how the system gets *better than itself* over time (docs 00–11 describe the system; 12–14 describe how it improves):

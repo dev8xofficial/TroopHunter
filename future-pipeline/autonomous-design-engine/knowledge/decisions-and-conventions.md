@@ -88,7 +88,11 @@ purpose: >
 
 ADE is **significantly improved** when, unattended, it can take a brief and produce a consistent multi-section artifact that: (a) passes the deterministic floor, (b) demonstrably improves across iterations (H1), (c) a human rates good-or-close ≥50% of the time (H2), (d) holds zero token drift across sections (H4), and (e) at least one outer-loop bet (e.g. R3) shows a *measured* gain on the benchmark. This is **not** full autonomy — that remains the long-term north star.
 
-Estimated at this cadence (solo, ~8 hrs/week): **≈ 12–18 months** (= Phase 0 + Phase 1 + R1 + R3).
+**Updated commitment: ~3–4 hrs/day (~21–25 effective hrs/week), not the original ~1 hr/day (~8 hrs/week).** Estimated at the new cadence: **≈ 4–6 months** (= Phase 0 + Phase 1 + R1 + R3) — down from ≈ 12–18 months, because build-heavy phases compress close to linearly with hours/day. Note: Phase 2 onward (H6, H8) does **not** compress as cleanly — those need real accumulated projects/verdicts over calendar time, not just coding hours. Full detail + the "hours/week is a re-pluggable parameter" framing: `spec/15 §0, §1, §4, §6`.
+
+## The problem ledger (spec `15 §2.1`)
+
+Every area in the failure catalogue (`10`) and every research bet (`14`) is assigned an explicit bucket — **NOW** (Phase 0), **NEXT** (Phase 1 + R1/R3), **LATER** (Phase 2–4 + R2/R4+), or **DEFERRED / accepted risk** (an explicit, logged decision not to solve something at this scope, e.g. full production-hardening, non-marketing surfaces, accessibility depth beyond axe-core — revisit only if the purpose question below resolves toward "product"). The Phase-0 weekly table (`15 §3`) additionally tags which specific failure IDs each week's work closes, so "which problem gets solved which week" is explicit, not implicit.
 
 ## Known project state as of this writing (not something this conversation built, discovered while writing this knowledge base)
 
