@@ -66,6 +66,9 @@
 | F-INP-04 | Malformed / invalid brief file | impl | Low | 10a |
 | F-INP-05 | Missing or broken content/assets | impl | Med | 10a |
 | F-INP-06 | Prompt injection via brief/content | impl | High | 10a |
+| F-INP-07 | Malformed / wrong-format visual assets | impl | Med | 10a |
+| F-INP-08 | Non-English / mixed-language brief comprehension gap | spec | Med | 10a |
+| F-INP-09 | Content-robustness fragility | spec+impl | Med | 10a |
 | **Reference processing** | | | | |
 | F-REF-01 | Reference treated as template (cloning) | spec | High | 10a |
 | F-REF-02 | Reference over-influence | spec | Med | 10a |
@@ -76,6 +79,8 @@
 | F-BRD-02 | Brand drift after freeze | impl | High | 10a |
 | F-BRD-03 | Brand too vague to constrain | spec | Med | 10a |
 | F-BRD-04 | Accessibility-hostile brand baked in | spec | High | 10a |
+| F-BRD-05 | Incomplete token model | spec | Med | 10a |
+| F-BRD-06 | Brand staleness with no refresh trigger | spec | Med | 10a |
 | **Design System & Crystallization** | | | | |
 | F-PDS-01 | Incorrect/premature crystallization | spec | High | 10a |
 | F-PDS-02 | Token contradiction by later section | spec+impl | High | 10a |
@@ -88,12 +93,14 @@
 | F-GEN-04 | Hallucinated imports/dependencies | impl | Med | 10a |
 | F-GEN-05 | Placeholder / incomplete output | impl | Med | 10a |
 | F-GEN-06 | Output truncated (max_tokens) | impl | Med | 10a |
+| F-GEN-07 | Numeric / data rendering inaccuracy | spec+impl | High | 10a |
 | **Render → screenshot (Eyes)** | | | | |
 | F-EYE-01 | Render failure / blank screenshot | impl | High | 10b |
 | F-EYE-02 | Harness / dev-server flakiness | impl | Med | 10b |
 | F-EYE-03 | Fonts/images not loaded at capture | impl | Med | 10b |
 | F-EYE-04 | Capture before settle (timing) | impl | Med | 10b |
 | F-EYE-05 | Render bug misjudged as bad design | spec+impl | High | 10b |
+| F-EYE-06 | Async/data-driven components never signal render-ready | impl | Med | 10b |
 | **Judging (Taste)** | | | | |
 | F-JDG-01 | Unreliable Critic (taste ceiling) | spec | High | 10b |
 | F-JDG-02 | Reward hacking | spec | High | 10b |
@@ -120,6 +127,7 @@
 | F-MEM-06 | Soft memory obeyed as hard law | spec | Med | 10c |
 | F-MEM-07 | Vector store unavailable / slow | impl | Med | 10c |
 | F-MEM-08 | Retrieval nondeterminism / flat-file scaling | impl | Med | 10c |
+| F-MEM-09 | Same-domain retrieval suppresses cross-domain novelty | spec | Med | 10c |
 | **Library write-back & learning** | | | | |
 | F-WB-01 | De-identification leak | spec+impl | High | 10c |
 | F-WB-02 | Over- / under-abstraction | spec | Med | 10c |
@@ -127,6 +135,7 @@
 | F-WB-04 | Bad-pattern enshrinement | spec | High | 10c |
 | F-WB-05 | Library poisoning / monoculture | spec | Med | 10c |
 | F-WB-06 | Confidentiality / strategy leak via patterns | spec+impl | High | 10c |
+| F-WB-07 | Approved-then-reconsidered patterns already taught the Library | spec | Med | 10c |
 | F-LRN-01 | No compounding (H6 fails) | spec | High | 10c |
 | F-LRN-02 | Calibration non-transfer across domains | spec | Med | 10c |
 | **Consistency & coherence** | | | | |
@@ -148,6 +157,7 @@
 | F-QF-01 | Accessibility violations pass | spec+impl | High | 10d |
 | F-QF-02 | Quality floor LLM-judged (unreliable) | spec | Med | 10d |
 | F-QF-03 | Accessibility depth / false compliance | spec+impl | High | 10d |
+| F-QF-04 | Performance / Core Web Vitals claimed but never measured | spec | Med | 10d |
 | **Storage, versioning, integrity** | | | | |
 | F-STO-01 | Partial write / corruption | impl | High | 10d |
 | F-STO-02 | Un-versioned mutation of hard store | impl | High | 10d |
@@ -179,6 +189,7 @@
 | F-LEG-02 | Unlicensed fonts / imagery | impl | High | 10e |
 | F-LEG-03 | Dark patterns / manipulative design | spec | High | 10e |
 | F-LEG-04 | Missing regulatory / disclaimer content | spec+impl | Med | 10e |
+| F-LEG-05 | Representation / bias risk in imagery | spec | Med | 10e |
 | **Production parity** | | | | |
 | F-PAR-01 | Judged engine ≠ shipped engine (cross-browser) | impl | High | 10e |
 | F-PAR-02 | Harness Tailwind ≠ production build | impl | High | 10e |
@@ -196,6 +207,7 @@
 | F-OPS-04 | Unbounded storage growth / no retention | impl | Low | 10e |
 | F-OPS-05 | Vendor lock-in / ToS / model deprecation | spec+impl | Med | 10e |
 | F-OPS-06 | End-to-end latency / throughput blowup | impl | Med | 10e |
+| F-OPS-07 | Supply-chain risk in harness/toolchain dependencies | impl | Med | 10e |
 
 ---
 
@@ -222,5 +234,6 @@ This catalogue maps onto every area in the system docs: input ([07](./07-mvp-cli
 - **v0.3** — a pre-implementation red-team pass added five surfaces the original catalogue under-covered: **security (F-SEC-\*)**, **legal/IP/ethics (F-LEG-\*)**, **production parity (F-PAR-\*)**, **output code quality (F-COD-\*)**, and **operations/reproducibility (F-OPS-\*)** — plus additions to existing areas (F-JDG-07, F-QF-03, F-MEM-08, F-WB-06, F-HUM-04, F-SUR-04, F-SPEC-06); several tie to the R&D program in [12](./12-design-constitution.md)–[14](./14-research-agenda.md).
 - **v0.4** — added **loop dynamics & search (F-LOOP-\*)**: this resolved a real, pre-existing gap where [11](./11-guardrails-and-invariants.md) referenced `F-LOOP-01/02/04/05` five times with no corresponding entries anywhere in this file, and formalized two search-dynamics problems (greedy local-optimum trapping, scalarization hiding Pareto-dominant candidates) that had only ever existed as research bets (R7/R8 in [14](./14-research-agenda.md)) without a catalogued failure behind them.
 - **v0.5** — this file split into 5 theme files (**10a–10e**) as the catalogue outgrew a single document; the "additions to existing areas" entries from v0.3 were merged into their natural home area (e.g. F-JDG-07 now sits with F-JDG-01–06 in [10b](./10b-failures-eyes-judging-and-loop.md)) rather than staying segregated by when they were added. No content was changed, only reorganized — every ID and every field is identical to before.
+- **v0.6** — a targeted audit cross-checked every gap raised across the full planning conversation (the A–N clusters, the 19-cluster exhaustive hunt, and the search-dynamics work) against what had actually landed here, and added **12 genuine misses** that earlier passes named in discussion but never gave a catalogued entry: **F-INP-07/08/09** (wrong-format assets, non-English comprehension, content-robustness fragility), **F-BRD-05/06** (incomplete token model, brand staleness), **F-GEN-07** (numeric/data rendering inaccuracy — High severity, a real trust failure), **F-EYE-06** (async components never signal ready), **F-MEM-09** (same-domain retrieval suppresses cross-domain novelty — the mirror image of F-MEM-02's pollution), **F-WB-07** (approved-then-reconsidered patterns already taught the Library), **F-QF-04** (performance/Core Web Vitals claimed but never measured — closing a gap F-QF-02 itself names but doesn't close), **F-LEG-05** (representation/bias risk in imagery, forward-looking), and **F-OPS-07** (supply-chain risk in the harness/rendering toolchain, distinct from F-OPS-05's model-vendor risk). F-OPS-01's mitigation was also enriched to include structured logging/alerting, which an earlier summary had implied but the entry itself hadn't stated. This pass deliberately did **not** add every conceivable minor gap (e.g. Windows path/encoding quirks, several small token-schema details folded into F-BRD-05 instead of getting separate IDs) — the goal was genuine, load-bearing misses, not exhaustive padding.
 
 New failures discovered during implementation should be appended to the relevant theme file (10a–10e) with the same 8-field structure and a new `F-<AREA>-NN` id, and added to the index above — this file and its 5 companions stay the single source of truth.

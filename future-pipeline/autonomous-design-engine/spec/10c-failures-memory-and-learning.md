@@ -86,6 +86,16 @@
 - **Recovery:** Pin the Library version; rebuild the index.
 - **Validation:** Retrieval parity at a fixed Library version; recall at scale.
 
+### F-MEM-09 — Same-domain retrieval suppresses cross-domain novelty
+**Level:** spec · **Severity:** Med · **Area:** Retrieval
+- **Description:** Retrieval matches a brief's problem-space to the *most similar* entries — so a fintech brief retrieves fintech patterns, a real-estate brief retrieves real-estate patterns. This is the opposite failure from F-MEM-02 (pollution from *irrelevant* entries): here the entries are *too relevant*, converging generation toward the category mean rather than surfacing the cross-domain transfers (e.g. fintech borrowing editorial restraint from fashion) that produce genuinely differentiated work.
+- **Root cause:** Pure similarity-ranked retrieval has no mechanism for deliberate serendipity or cross-domain transfer.
+- **Detection:** Retrieved entries are always same-domain; output diversity across same-domain briefs is low; the system never surfaces a cross-domain pattern even when one would fit.
+- **Impact:** Works *against* the "distinctiveness over generic" goal (F-GEN-02, [12](./12-design-constitution.md) P4) — the Library can make output more consistently competent and simultaneously more generic.
+- **Mitigation:** A deliberate cross-domain / "wildcard" retrieval slot alongside same-domain top-k, tested as research bet **R11** ([14](./14-research-agenda.md)).
+- **Recovery:** N/A — a creativity ceiling, not a correctness failure.
+- **Validation:** The R11 experiment — human distinctiveness ratings, cross-domain-augmented retrieval vs. same-domain-only.
+
 ---
 
 ## Library write-back & learning
@@ -149,6 +159,16 @@
 - **Mitigation:** Abstraction-altitude review at write-back ([11 §2.3](./11-guardrails-and-invariants.md)) that also gates *strategic* specificity; per-client access controls if multi-tenant [MP-7, MP-13].
 - **Recovery:** Re-abstract or purge; notify if breached.
 - **Validation:** Adversarial write-back that preserves strategy; assert it is blocked.
+
+### F-WB-07 — Approved-then-reconsidered patterns already taught the Library
+**Level:** spec · **Severity:** Med · **Area:** Write-back / learning
+- **Description:** An artifact is human-approved (a true pass at the time) and written back to the Library — but is later reconsidered as mediocre (e.g. after seeing it in context, or as taste standards rise). Unlike F-WB-04 (a *false* pass feeding the Library), this is a *genuine* pass whose write-back has already happened by the time anyone reconsiders it — there is no mechanism to revisit an entry after the fact.
+- **Root cause:** Write-back is a one-time event triggered by approval; there is no periodic re-evaluation of already-written entries against updated taste.
+- **Detection:** A human, reviewing older Library entries, flags one as no longer representative of current standards.
+- **Impact:** The Library can carry forward lessons that were reasonable once but are now subtly wrong, with no trigger to catch this.
+- **Mitigation:** A periodic Library-curation pass (already gestured at by MP-9's "periodic curation") that explicitly re-evaluates older high-confidence entries against current human verdicts, not only new write-backs.
+- **Recovery:** Down-weight or retire the reconsidered entry, same mechanism as F-WB-04's recovery.
+- **Validation:** A curation pass that surfaces at least one previously-approved entry for human reconsideration.
 
 ### F-LRN-01 — No compounding (H6 fails)
 **Level:** spec · **Severity:** High · **Area:** Learning

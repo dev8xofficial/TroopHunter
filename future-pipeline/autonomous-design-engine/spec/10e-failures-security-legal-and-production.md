@@ -100,6 +100,16 @@
 - **Recovery:** Add required content; re-emit.
 - **Validation:** A financial brief; assert the checklist fires.
 
+### F-LEG-05 — Representation / bias risk in imagery
+**Level:** spec · **Severity:** Med · **Area:** Ethics
+- **Description:** If the system ever selects, crops, or generates imagery featuring people (stock photo selection, or future image generation), it risks representation/bias issues — homogeneous or stereotyped representation across race, age, ability, or body type, unexamined by any current process.
+- **Root cause:** No representation/bias consideration exists anywhere in the current image-handling path, because imagery is currently client-provided only — this is a forward-looking gap, not yet triggered.
+- **Detection:** A human audit of imagery choices across multiple projects for representation patterns.
+- **Impact:** Reputational and ethical risk if/when the system gains any imagery-selection or generation capability (ties to research bet **R15**, [14](./14-research-agenda.md)).
+- **Mitigation:** Add an explicit representation/bias consideration to the constitution ([12](./12-design-constitution.md)) and to any future imagery-selection/generation capability *before* it ships, not after.
+- **Recovery:** N/A yet — currently out of scope since the system doesn't select/generate imagery; revisit when R15 is built.
+- **Validation:** Not yet testable; flagged here so R15's build explicitly includes this check from day one rather than retrofitting it.
+
 ---
 
 ## Production parity
@@ -198,7 +208,7 @@
 - **Root cause:** Sampling variance; retrieval drift; no system-state snapshot.
 - **Detection:** Re-run variance; inability to reproduce a past run.
 - **Impact:** Unfair A/Bs; un-debuggable regressions; eroded trust.
-- **Mitigation:** A deterministic eval mode (pinned seed/temperature, frozen retrieval); versioned **system-state snapshots** per run (prompts+model+constitution+Library version) [MP-8, MP-11].
+- **Mitigation:** A deterministic eval mode (pinned seed/temperature, frozen retrieval); versioned **system-state snapshots** per run (prompts+model+constitution+Library version); structured logging/alerting on quality regressions in the trace, not just raw scores [MP-8, MP-11].
 - **Recovery:** Reproduce from the snapshot.
 - **Validation:** Re-run in deterministic mode; assert identical output.
 
@@ -251,3 +261,13 @@
 - **Mitigation:** Parallelize where safe; adaptive effort ([14](./14-research-agenda.md) R12); cache prefixes; cap end-to-end wall-clock [MP-5].
 - **Recovery:** Cap and escalate; reduce breadth.
 - **Validation:** Track wall-clock/artifact; alert on budget breach.
+
+### F-OPS-07 — Supply-chain risk in harness / rendering-toolchain dependencies
+**Level:** impl · **Severity:** Med · **Area:** Vendor / Security
+- **Description:** The render harness depends on Playwright, Vite, and the Tailwind Play CDN — third-party tooling that could itself be compromised, deprecated, or behave differently across versions, distinct from F-OPS-05's model-*vendor* lock-in (this is about the *rendering toolchain*, not the LLM provider).
+- **Root cause:** Standard third-party dependency risk, not specific to ADE but unaddressed by any existing entry (F-SEC-01 covers *generated code* being untrusted, not the *harness's own dependencies*).
+- **Detection:** A dependency audit (e.g. `npm audit`) flags a vulnerable package; a Playwright/Vite version bump silently changes render behavior.
+- **Impact:** A compromised or silently-changed toolchain dependency could affect every render — a single point of failure across the whole pipeline.
+- **Mitigation:** Pin toolchain versions explicitly (mirroring F-MOD-05's model-pinning discipline); run dependency audits on a schedule; treat a toolchain version bump as a change requiring re-baselining against the benchmark, the same as a model change.
+- **Recovery:** Roll back the toolchain version; patch the vulnerability; re-baseline.
+- **Validation:** A dependency-audit check in CI/the review cadence; a deliberate toolchain-version bump triggers a re-baseline per the same discipline as F-MOD-05.

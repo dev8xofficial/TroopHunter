@@ -56,6 +56,16 @@
 - **Recovery:** Discard the contaminated critique; fix render; re-critique.
 - **Validation:** Inject render defects; assert they never reach the design Critic.
 
+### F-EYE-06 — Async/data-driven components never signal render-ready
+**Level:** impl · **Severity:** Med · **Area:** Eyes
+- **Description:** A component that fetches data or otherwise renders asynchronously may finish its initial mount before its async content resolves, so `window.__ADE_READY_ID__` fires before the *real* content is visible — the opposite failure of F-EYE-04 (capturing too early relative to *animation*, here it's too early relative to *data*).
+- **Root cause:** The ready signal is wired to mount + fonts-ready, not to a component's own async completion.
+- **Detection:** Screenshots show loading placeholders/skeletons instead of final content despite the ready signal having fired.
+- **Impact:** The Critic judges a loading state as if it were the finished design (a variant of F-EYE-05).
+- **Mitigation:** Require async-data components to signal their own readiness (e.g. an explicit `data-ade-ready` hook) that the harness waits on in addition to mount+fonts; forbid unsignaled async fetches in Phase 0's import-allowlisted output.
+- **Recovery:** Re-capture once the component's own readiness signal fires.
+- **Validation:** A component with a simulated async delay; assert capture waits for its specific readiness signal, not just mount.
+
 ---
 
 ## Self-evaluation & judging (Taste)

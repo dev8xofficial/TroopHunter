@@ -36,6 +36,16 @@
 - **Recovery:** Fix and re-audit.
 - **Validation:** Keyboard-trap / SR-broken fixtures; assert detection beyond axe.
 
+### F-QF-04 — Performance / Core Web Vitals claimed but never deterministically measured
+**Level:** spec · **Severity:** Med · **Area:** Quality floor
+- **Description:** "Performance" is named as a quality-floor item (F-QF-02's description explicitly lists it) but, unlike contrast/a11y which get a real deterministic checker (axe-core), no equivalent checker exists for Core Web Vitals (LCP/CLS/INP), bundle weight, or unused-CSS — performance is claimed as covered but has no actual measurement.
+- **Root cause:** F-QF-02 correctly identifies that objective floor items must be deterministically checked, but performance specifically was never given its own checker, unlike a11y and responsive-overflow.
+- **Detection:** No performance metric appears anywhere in the trace or gate results despite F-QF-02 listing "performance" as in scope.
+- **Impact:** A real quality dimension is claimed as enforced but silently isn't — the same gap F-QF-02 itself warns against, applied to performance specifically.
+- **Mitigation:** Add a real Core-Web-Vitals/bundle-weight checker to the hard-constraint gate (e.g. via Lighthouse or a similar deterministic tool), closing the gap F-QF-02 names but doesn't fully close; ties to production-parity validation [MP-15].
+- **Recovery:** Add the missing checker; re-gate previously-approved sections against it once available.
+- **Validation:** A section with an oversized unoptimized asset; assert the new checker catches it where F-QF-02's generic framing did not.
+
 ---
 
 ## Storage, versioning & data integrity

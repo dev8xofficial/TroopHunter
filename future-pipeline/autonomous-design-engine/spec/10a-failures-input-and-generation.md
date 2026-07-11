@@ -66,6 +66,36 @@
 - **Recovery:** Reject the run; quarantine the offending input.
 - **Validation:** Red-team briefs with injected instructions; assert hard constraints still hold.
 
+### F-INP-07 — Malformed / wrong-format visual assets
+**Level:** impl · **Severity:** Med · **Area:** Input
+- **Description:** A supplied asset (logo, hero image) loads without error but is wrong in ways that break the design: CMYK colorspace rendering off in a browser, too-low resolution for its display size, wrong aspect ratio forcing distortion or bad cropping, or a raster logo with a baked-in white/colored background that clashes with the section behind it.
+- **Root cause:** Asset validation (F-INP-05) checks *existence*, not *fitness* — no colorspace/resolution/aspect-ratio/background check.
+- **Detection:** A pre-flight image-metadata check (colorspace, dimensions, alpha channel) flags a mismatch against the section's expected display size.
+- **Impact:** A technically "successful" render that looks broken or unprofessional — undetected by the render-health gate, which only checks that *something* loaded.
+- **Mitigation:** Pre-flight asset *fitness* check (colorspace = sRGB, minimum resolution for the display size, alpha/background check for logos) alongside the existing existence check [MP-1].
+- **Recovery:** Flag the specific defect to the human; request a corrected asset or auto-convert where safe (e.g. CMYK→sRGB).
+- **Validation:** Supply a CMYK JPEG and an under-resolution logo; assert both are flagged before generation.
+
+### F-INP-08 — Non-English / mixed-language brief comprehension gap
+**Level:** spec · **Severity:** Med · **Area:** Input
+- **Description:** The Brief Comprehension step ([11 §6](./11-guardrails-and-invariants.md)) and the Generator's understanding of tone/goal are tuned on English-language briefs; a non-English or mixed-language brief risks misread intent, lost nuance, or silently defaulting to English-centric design conventions.
+- **Root cause:** No explicit multilingual handling in the comprehension step; untested outside English.
+- **Detection:** Restatement accuracy drops on non-English briefs; a native speaker flags misread nuance.
+- **Impact:** F-INP-01-style misinterpretation, specifically concentrated on non-English clients — a systematic gap, not a random one.
+- **Mitigation:** Test the comprehension step explicitly against non-English/mixed-language briefs before claiming broad applicability; flag brief language and surface confidence accordingly.
+- **Recovery:** Route low-confidence comprehension to human clarification rather than proceeding.
+- **Validation:** A held-out set of non-English briefs in the benchmark ([13](./13-evaluation-charter.md)); track restatement accuracy by brief language.
+
+### F-INP-09 — Content-robustness fragility
+**Level:** spec+impl · **Severity:** Med · **Area:** Input / Generation
+- **Description:** The system is validated on one content length and shape per section; real content varies (a much longer headline, a missing optional field, an unusually short or long CTA), and layouts tuned to the sample content can break or look unbalanced under realistic variation the system was never tested against.
+- **Root cause:** No content-stress testing — the render-health and hard-constraint gates check the *given* content renders, not that the design *tolerates* plausible variation.
+- **Detection:** Re-run the same approved section with stress-test content (2x/3x length, missing optional fields, minimal content); layout breaks or looks unbalanced.
+- **Impact:** Designs that pass every gate on sample content still break in real use once real client content is substituted — a silent, deferred failure.
+- **Mitigation:** A content-stress matrix (min/max length, missing-optional-field, long-unbroken-string cases) as part of the hard-constraint gate, not just the as-given content; tested as research bet **R10** ([14](./14-research-agenda.md)).
+- **Recovery:** Regenerate with the stress case fed back as a hard constraint.
+- **Validation:** The R10 experiment — escaped-failure rate on held-out content variations, before vs. after the stress matrix.
+
 ---
 
 ## Reference processing
@@ -154,6 +184,26 @@
 - **Mitigation:** Run contrast/a11y checks on the brand at approval time; require accessible primary pairings [MP-1].
 - **Recovery:** Adjust palette / add accessible variants before freeze.
 - **Validation:** Automated contrast check over brand pairings as an approval gate.
+
+### F-BRD-05 — Incomplete token model
+**Level:** spec · **Severity:** Med · **Area:** Brand
+- **Description:** The brand/token schema is validated against the *provided* palette+typography but doesn't anticipate several real needs: semantic/state colors (error, success, warning) for later interactive sections, a dark-mode/theming axis, fluid (not just fixed-px) type/space scales, or a standard interoperable token-export format (e.g. DTCG/Style-Dictionary).
+- **Root cause:** The schema was designed around the MVP's static marketing sections, not the fuller range of needs later sections/surfaces will have.
+- **Detection:** A later section needs a semantic color, dark mode, or fluid scale the frozen tokens can't express (ties to F-PDS-04's "foundation cannot express a later need," but at the *brand* level, before crystallization even happens).
+- **Impact:** Forces either a contradiction or an awkward workaround once a real need arises (e.g. a form's error state, or a client asking for dark mode).
+- **Mitigation:** Extend the token schema to include semantic-color slots, a theming axis, and fluid-scale support from the brand-derivation step, even if unused initially; adopt a standard export format for future interoperability.
+- **Recovery:** Add the missing token category via the additive-extension policy (F-PDS-04's mechanism) rather than a breaking change.
+- **Validation:** Schema completeness check against a checklist of known real-world token needs.
+
+### F-BRD-06 — Brand staleness with no refresh trigger
+**Level:** spec · **Severity:** Med · **Area:** Brand
+- **Description:** A frozen Brand Foundation has no mechanism to flag that it may be aesthetically dated — unlike the Library, which at least decays confidence by age/disuse (F-WB-05), a frozen brand simply stays frozen indefinitely with no periodic "does this still look current?" check.
+- **Root cause:** Brand freezing (correctly) prevents accidental drift, but has no corresponding *deliberate* re-evaluation trigger.
+- **Detection:** No automated signal; only a human noticing the brand "feels dated" after enough calendar time has passed.
+- **Impact:** A silently aging brand identity that nothing in the system ever flags for reconsideration.
+- **Mitigation:** A periodic (e.g. annual) brand-freshness check as a deliberate, human-triggered re-derivation event — never automatic, since brand changes must stay human-approved (F-BRD-02's immutability rule still applies).
+- **Recovery:** Re-derive on the same givens with updated context if the human confirms staleness; version-bump per the existing re-derivation mechanism.
+- **Validation:** Track brand age against a human "still feels current?" spot-check.
 
 ---
 
@@ -262,3 +312,13 @@
 - **Mitigation:** Stream the Generator call; generous `max_tokens`; per-section (not whole-page) scope keeps output bounded [MP-11].
 - **Recovery:** Retry with higher budget or split the section.
 - **Validation:** Generate intentionally large sections; assert completeness.
+
+### F-GEN-07 — Numeric / data rendering inaccuracy
+**Level:** spec+impl · **Severity:** High · **Area:** Generation
+- **Description:** Numeric content from the brief — prices, statistics, dates, addresses — is transposed, rounded incorrectly, or otherwise rendered wrong in the generated output, unlike prose content which is checked for *presence* (F-GEN-05) but not *accuracy*.
+- **Root cause:** The content-presence check (F-GEN-05) verifies brief strings appear in the DOM; it does not verify numeric/structured values are reproduced *exactly*, and the model can silently "improve" or misremember a number during generation.
+- **Detection:** A deterministic diff of every numeric/structured brief value against the rendered DOM's corresponding value.
+- **Impact:** A wrong price or statistic is a trust and correctness failure far more serious than an aesthetic one — this is the kind of error a client notices immediately and never forgives.
+- **Mitigation:** Extend the content-presence check to an **exact-match check on all numeric/structured brief fields**, not just string presence; treat any mismatch as a hard-constraint violation [MP-1].
+- **Recovery:** Feed the exact mismatch back as hard feedback; never approve with a numeric mismatch outstanding.
+- **Validation:** A brief with several precise numeric values; assert the gate catches an injected transposition.
