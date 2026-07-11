@@ -24,19 +24,72 @@ input:     p0a_Decision_Card_UpstanderInternational.md (d0_v2)
 > Proof Ledger row and Discovery Question. It does not change the confidence
 > classification or invalidate any prior finding.
 
+> **🔴 ADDENDUM (2026-07-11) — LIVE RE-VERIFICATION. Problems 1, 4, and 7 are SUPERSEDED.
+> Do not use them as lead claims in any deliverable.** `p1a_Website.md` was scraped
+> 2026-05-21. A live check of the production site on 2026-07-11 (52 days later) found:
+> - **Problem 1 (checkout 404) — SUPERSEDED.** The exact URL captured as "Page Not
+>   Found" in the original scrape still 404s, but the R.E.A.Ch! product page now
+>   renders a full working page ($199, 8 modules, 3 testimonials, a present "Add to
+>   Cart" button) and the `/cart/` page — `type: error` in the original scrape — now
+>   renders a working empty-cart state. Whether a live click-through completes without
+>   error is genuinely unknown; it cannot be confirmed by an automated fetch, only by a
+>   human clicking it. **Decisive evidence, supplied by the client directly:** a second
+>   Upwork job — *"LMS Website Access Control & Digital Learning Platform
+>   Optimization,"* $225 fixed-price, **posted 2026-07-08 (3 days before this
+>   addendum), 1 hire already made** — scoped explicitly to *"course permissions, user
+>   access, and enrollment workflows."* This is a live, paid, in-progress engagement on
+>   exactly the problem Beat 1 of the first video script was built around. **Do not
+>   open the video on the checkout. If it is not already fixed, it is being paid to be
+>   fixed right now.**
+> - **Problem 4 (course content invisible) — SUPERSEDED.** The R.E.A.Ch! page now
+>   shows a full 8-module breakdown and 3 testimonials (Les Brown, Angela Kinamore,
+>   Kimberly Wines). `p1a`'s "module detail not rendered" finding no longer holds.
+> - **Problem 7 (no speaker/contact form) — SUPERSEDED.** `/contact/` — `type: error`
+>   in the original scrape — now renders a full working form (Name, Email, Comments).
+> - **Problem 2 (no email capture) — CONFIRMED STILL TRUE, BUT RESCOPED.** MailPoet's
+>   subscription page on upstanderonline.com is still an unrendered `[mailpoet_page]`
+>   shortcode — unchanged from the original scrape. **However, the blanket framing "no
+>   email capture anywhere" is no longer accurate and must not be used**: omekongo.com
+>   (his bio/brand site) has a working newsletter signup ("Subscribe to UPstander News
+>   and get informed, up-to-date news from Dr. Omékongo"). The corrected finding is
+>   narrower and sharper: **the newsletter lives on omekongo.com and never mentions
+>   either course; the courses live on upstanderonline.com and have no way to join a
+>   list.** Neither domain links the two together. This finding is UNTOUCHED by the new
+>   LMS-access-control job (a different technical domain — marketing capture, not
+>   enrollment permissions) and is the safest available lead claim as of this
+>   addendum.
+> - **Enrollment count ("16 students") — NO LONGER CONFIRMED, DO NOT USE.** The
+>   instructor listing page now shows two bare, unlabeled numbers ("2" and "11") near
+>   the instructor's name with no "students"/"courses" label visible to an automated
+>   fetch. This may reflect a genuine count change, a template change, or a fetch
+>   limitation — it is not known which. **No hero metric may cite an enrollment count
+>   until a human confirms the current label and number directly in a browser.**
+> - **Problem 5 (L.E.A.D. corporate pathway) — STILL PARTIAL/WEAK, reconfirmed.** The
+>   L.E.A.D. detail page still shows no course description or module breakdown and
+>   sits behind an unexplained password prompt. This finding is unchanged and remains
+>   available as supporting evidence, not a lead claim (still Partial per the original
+>   register).
+>
+> **Verdict:** four of five previously-provable claims have moved in 52 days, and one
+> of the four moved because of a specific, paid, dated action the client took three
+> days before this check. The site is under active, ongoing remediation. Any
+> deliverable built before this addendum (`p3a_New_Output_Report.html`,
+> `p3b_First_Video_Script_UpstanderInternational.docx`) is stale and must not be sent
+> as-is.
+
 ---
 
 ## Current Problem Register
 
 | # | Current Problem | Research Source | Who Feels It | What It Blocks | Demo Proof Screen | Can Demo Prove It |
 |---|---|---|---|---|---|---|
-| 1 | Course checkout path returns 404 errors — R.E.A.Ch! and L.E.A.D. course detail and purchase pages are broken or empty, making it impossible for a visitor to complete a purchase | p1a_Website.md pp. 8, 19, 31, 37, 44, 46, 48, 50 | Dr. Dibinga (lost revenue) and prospective course buyers (no purchase path) | **Primary Goal** — website that turns visitors into leads/customers | Site Audit Screen (current 404 walkthrough) + Working Checkout Flow (proposed) | **Yes** |
-| 2 | Email capture / lead funnel does not exist — all MailPoet pages return empty, there is no opt-in form on any page, and no email sequence is triggered on signup | p1a_Website.md pp. 23, 24; p1e_Job_Posting.md (lead capture mechanism listed as required deliverable) | Dr. Dibinga — every speaking engagement and media appearance drives traffic that collects no contact data | **Primary Goal** — "turns visitors into leads or customers" | Lead Capture / Email Opt-in Demo Screen | **Yes** |
+| 1 | Course checkout path returns 404 errors — R.E.A.Ch! and L.E.A.D. course detail and purchase pages are broken or empty, making it impossible for a visitor to complete a purchase | p1a_Website.md pp. 8, 19, 31, 37, 44, 46, 48, 50 | Dr. Dibinga (lost revenue) and prospective course buyers (no purchase path) | **Primary Goal** — website that turns visitors into leads/customers | Site Audit Screen (current 404 walkthrough) + Working Checkout Flow (proposed) | ⚠ **SUPERSEDED 2026-07-11** — see addendum. Product/cart pages now render live; a paid $225 job targeting "enrollment workflows" was posted 3 days prior, 1 hire made. Do not use. |
+| 2 | Email capture / lead funnel does not exist ON THE COURSE SITE — MailPoet pages on upstanderonline.com return empty, and there is no opt-in form on any of its pages. ⚠ RESCOPED 2026-07-11: a working newsletter DOES exist on the sister site, omekongo.com ("Subscribe to UPstander News"). The finding is not absence of capture — it is that the capture lives on one domain and the courses live on another, with no link between them. See addendum. | p1a_Website.md pp. 23, 24; p1e_Job_Posting.md (lead capture mechanism listed as required deliverable); live re-check 2026-07-11 (omekongo.com newsletter form, upstanderonline.com MailPoet still unrendered) | Dr. Dibinga — every speaking engagement, video, and newsletter signup drives an audience that never reaches the $199 course, and vice versa | **Primary Goal** — "turns visitors into leads or customers" | Lead Capture / Email Opt-in Demo Screen | **Yes — STRONGEST REMAINING LEAD CLAIM as of 2026-07-11.** Independently confirmed on both domains; untouched by the new LMS/enrollment freelance job (different technical domain). |
 | 3 | Site is not self-manageable post-handoff — the current WordPress/Masteriyo stack is broken at a structural level and requires repeated freelancer intervention for any update | p1e_Job_Posting.md ("easy for the client to edit and manage post-handoff"); p1a_Website.md (24-hires / $19,900 Upwork history confirms pattern of recurring tech spend); p1c_Linkedin_Owner.md (solo operator, no in-house dev) | Dr. Dibinga — sole decision-maker and site manager of a 1-person organisation | **Primary Goal** — sustainable site that does not require ongoing paid intervention; three books launching in 2026 will require frequent content updates | CMS Self-Editing Demo Screen (realistic post-handoff tasks: new speaking date, book listing, course update) | **Yes** |
-| 4 | Course module content is invisible to prospective buyers — all course detail pages render no module structure, leaving visitors with no visibility into what they are purchasing for $199 | p1a_Website.md pp. 11, 14, 17, 18 (all show "Module detail not rendered in scraped output") | Prospective course buyers — cannot evaluate a $199 purchase without seeing course structure | **Primary Goal** (course sales conversion) and Supporting Goal #2 (scale online course revenue) | Course Detail Page with Visible Modules and Learning Outcomes Demo Screen | **Partial** — demo can show a correctly structured course page; existing content must be migrated and validated |
+| 4 | Course module content is invisible to prospective buyers — all course detail pages render no module structure, leaving visitors with no visibility into what they are purchasing for $199 | p1a_Website.md pp. 11, 14, 17, 18 (all show "Module detail not rendered in scraped output") | Prospective course buyers — cannot evaluate a $199 purchase without seeing course structure | **Primary Goal** (course sales conversion) and Supporting Goal #2 (scale online course revenue) | Course Detail Page with Visible Modules and Learning Outcomes Demo Screen | ⚠ **SUPERSEDED 2026-07-11** — see addendum. R.E.A.Ch! now shows 8 full modules + 3 testimonials live. Do not use. |
 | 5 | No dedicated corporate / institutional buyer pathway — the L.E.A.D. corporate course has multiple broken detail pages and no B2B inquiry flow, landing page, or framing for institutional procurement | p1a_Website.md pp. 14, 17, 19, 20, 38, 44, 46 (L.E.A.D. pages are thin, duplicated, or errors); p1c_Linkedin_Owner.md (AARP, Berkeley Carroll, Special Needs Network — corporate calendar is active but site cannot capture these leads); Decision Card §4 | Dr. Dibinga and institutional buyers — the fastest revenue growth pathway has no functioning entry point on the site | Supporting Goal #3 (expand speaking/keynote reach to corporate buyers) and Supporting Goal #2 (scale L.E.A.D. course revenue) | Corporate Landing Page / B2B Inquiry Form Demo Screen | **Partial** — demo can show the page structure; pricing and institutional scope require discovery |
 | 6 | Book sales route off-site to Amazon with no email capture, upsell, or cross-sell to courses — the shop, books category, and product pages all terminate with "Buy on Amazon" CTA | p1a_Website.md pp. 2, 22, 27; p1c_Linkedin_Owner.md Posts 14–17 (active 2026 book re-release and launch activity) | Dr. Dibinga — losing the customer relationship and downstream course cross-sell opportunity at the point of maximum buyer intent | Supporting Goal #5 (publish and promote new books) and Supporting Goal #4 (personal brand authority) | No visible proof screen currently — **discovery question required before build** | **No — discovery question** |
-| 7 | No speaking/keynote inquiry pathway — the contact page captured no form content in the scrape, there is no speaker inquiry form, no booking calendar link, and no structured intake for institutional buyers | p1a_Website.md p. 12 ("No contact details or form content captured"); p1e_Job_Posting.md ("contact form or lead capture mechanism" listed as required); p1c_Linkedin_Owner.md (Posts 1, 23, 26, 28 — active speaking calendar with no web-based booking path) | Event planners and institutional buyers who arrive from LinkedIn or media looking to book Dr. Dibinga | Supporting Goal #3 (expand speaking/keynote reach to corporate and institutional buyers) | Speaker Inquiry / Contact Form Demo Screen | **Yes** |
+| 7 | No speaking/keynote inquiry pathway — the contact page captured no form content in the scrape, there is no speaker inquiry form, no booking calendar link, and no structured intake for institutional buyers | p1a_Website.md p. 12 ("No contact details or form content captured"); p1e_Job_Posting.md ("contact form or lead capture mechanism" listed as required); p1c_Linkedin_Owner.md (Posts 1, 23, 26, 28 — active speaking calendar with no web-based booking path) | Event planners and institutional buyers who arrive from LinkedIn or media looking to book Dr. Dibinga | Supporting Goal #3 (expand speaking/keynote reach to corporate and institutional buyers) | Speaker Inquiry / Contact Form Demo Screen | ⚠ **SUPERSEDED 2026-07-11** — see addendum. /contact/ now renders a full working form (Name, Email, Comments). Do not use. |
 | 8 | Two disconnected, contradictory digital properties — upstanderonline.com (courses) and omekongo.com (brand/biography) have separate navigation, different contact emails, different copyright addresses, and no cross-linking | p1a_Website.md (two distinct site sections with separate nav structures, contact info, and copyright; omekongo.com copyright: "PO Box 70, Boston, MA"; upstanderonline.com footer: DC 20020) | Dr. Dibinga — brand authority is diluted; SEO value is split; buyers arriving at either domain cannot find a complete picture of his offerings | **Primary Goal** — a single professional, conversion-focused presence | No visible proof screen currently — **discovery question required about which domain becomes primary before architecture decisions** | **No — discovery question** |
 | 9 | Active daily YouTube channel (25,000 subscribers, 2,000–3,500 views per video) has no confirmed conversion path into either course — the channel is a second, larger, and more frequent audience source than the speaking calendar, feeding the same broken checkout and email-capture infrastructure as Problems 1 and 2 | p1f_Youtube_Owner_upstander_international.md (manually verified channel review, 2026-07-09) | Dr. Dibinga — his most frequent audience touchpoint produces zero measurable course conversion | **Primary Goal** — website that turns visitors into leads/customers; compounds Problems 1 and 2 rather than introducing a new root cause | Reuses Site Audit Screen / Working Checkout Flow (same fix as Problem 1) — channel-to-site linking itself is unverified | **Partial** — the underlying broken checkout is provable; whether video descriptions currently link anywhere is a discovery question |
 

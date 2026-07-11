@@ -10,6 +10,34 @@ version:   d0_v2
 
 ---
 
+> **🔴 ADDENDUM (2026-07-11) — LIVE RE-VERIFICATION, SUPERSEDES PARTS OF SECTIONS 3, 4, 5, 8.**
+> A live check of upstanderonline.com on 2026-07-11 (52 days after the `p1a` scrape) found
+> the checkout page, cart page, contact page, and R.E.A.Ch! course content page all now
+> render working content — see `p0b_Problem_Register_upstander_international.md`'s matching
+> addendum for the full row-by-row detail. **Decisive evidence, supplied by the client
+> directly:** a second Upwork job, *"LMS Website Access Control & Digital Learning Platform
+> Optimization,"* $225 fixed-price, posted 2026-07-08 (3 days before this check), scoped to
+> *"course permissions, user access, and enrollment workflows,"* with **1 hire already made.**
+> This confirms active, paid, in-progress remediation on exactly the checkout/enrollment
+> bottleneck this Decision Card was built around.
+>
+> **What still holds:** the email-capture gap, rescoped — a working newsletter exists on
+> omekongo.com but not on upstanderonline.com, and neither domain links the two together
+> (was Problem 2, now the strongest remaining lead claim). The YouTube channel metrics
+> (25,000 subscribers, daily cadence) are external and unaffected. The L.E.A.D. corporate
+> course page is still thin and password-gated, unchanged.
+>
+> **What no longer holds, and must not be used in any deliverable:** the checkout-404 claim
+> (Section 3's primary bottleneck evidence), the "16 students enrolled" hero metric (Section
+> 8 — the instructor page now shows two unlabeled numbers, unconfirmed), the invisible-module
+> claim, and the broken-contact-page claim.
+>
+> `p3a_New_Output_Report.html` and `p3b_First_Video_Script_UpstanderInternational.docx` were
+> both built before this addendum and are stale. Both require regeneration before any
+> outreach is sent.
+
+---
+
 ## Section 1 — Desired Outcome: Scored Goal Table
 
 ### Scoring Basis
@@ -159,7 +187,7 @@ Low-confidence claims listed here: SEO organic traffic growth (insufficient base
 
 | Metric | Value | Level | Label | Usage Rule |
 |---|---|---|---|---|
-| Current enrolled students on platform | 16 | L1 | Sourced | Lead — directly demonstrates conversion failure |
+| Current enrolled students on platform | 16 | L1 | Sourced | ⚠ **RETRACTED 2026-07-11 — DO NOT USE.** Live re-check found the instructor page now shows two unlabeled numbers; the "16" label no longer resolves. Do not headline until a human confirms the current figure in a browser. |
 | R.E.A.Ch! course price | $199 | L1 | Sourced | Lead — anchor for revenue-per-student math |
 | Job posting budget | $50 fixed | L1 | Sourced | Support — frames budget reality, not a headline |
 | Total Upwork spend (all projects) | $19,900 | L1 | Sourced | Support — confirms he pays for digital work consistently |
@@ -172,10 +200,11 @@ Low-confidence claims listed here: SEO organic traffic growth (insufficient base
 | SEO traffic uplift from new site | Unknown | L4 | Excluded | Remove from all deliverables |
 
 **Hero Headline Metrics (L1 only — use these in report and demo):**
-1. **16 students enrolled** on a $199 course despite months of active speaking and media engagement — the conversion gap is the headline.
-2. **6,000+ students reached in one speaking year** (cited by Dr. Dibinga) vs. 16 online — a ratio that makes the bottleneck visceral without any estimation.
-3. **$199 course price** × enrollment gap = the revenue floor the buyer already understands.
-4. **25,000 YouTube subscribers, daily uploads, 2,000–3,500 views per video** — a second, independent, and continuously compounding audience source, also disconnected from any confirmed course conversion path (p1f_Youtube_Owner.md).
+1. ⚠ **RETRACTED 2026-07-11.** ~~16 students enrolled on a $199 course~~ — see addendum above. Do not use until reconfirmed live.
+2. ⚠ **RETRACTED — pre-existing issue, not caused by the 2026-07-11 check.** ~~6,000+ students reached in one speaking year~~ traces to a January 2014 blog post (`p1a_Website.md` line 908) — twelve years old, not a current annual figure. Already excluded in `p3b`'s QA gate; flagged here so it is never reintroduced.
+3. **$199 course price** — reconfirmed live 2026-07-11, still accurate. Usable only as a unit price, not multiplied against the retracted enrollment count.
+4. **25,000 YouTube subscribers, daily uploads, 2,000–3,500 views per video** — external to the website, unaffected by the 2026-07-11 site changes, still solid (p1f_Youtube_Owner.md).
+5. **NEW (2026-07-11):** omekongo.com runs a working newsletter that never mentions either course; upstanderonline.com runs both courses with no working opt-in of its own. Two independently-confirmed-live facts, safe to use as the new lead claim.
 
 ### ROI Integrity Enforcement Rules (Per Framework §11)
 
