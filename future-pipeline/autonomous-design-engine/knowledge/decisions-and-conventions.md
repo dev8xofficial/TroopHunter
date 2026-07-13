@@ -97,3 +97,20 @@ Every area in the failure catalogue (`10`) and every research bet (`14`) is assi
 ## Known project state as of this writing (not something this conversation built, discovered while writing this knowledge base)
 
 Real Phase-0 implementation scaffolding **already exists** at `future-pipeline/autonomous-design-engine/`: `src/`, `tests/`, `harness/`, `briefs/`, `spike.ts`, `package.json` (+ installed `node_modules/`), `.env.example`, `tsconfig.json`, `vitest.config.ts`, and an `old-design-experiment/` folder. File timestamps place this **before** the planning/R&D conversation that produced specs `10`(red-team)/`12`–`15`. **This knowledge base does not describe the code's contents** — read it directly; it was never discussed in the conversation this knowledge base preserves.
+
+## The execution plan and the "detailed specification per phase" convention (load-bearing — read before doing any phase work)
+
+The **single authoritative execution plan is [`spec/15-execution-roadmap.md`](../spec/15-execution-roadmap.md)** — phase-gated (0 → 1 → 2 → 3 → 4), with the problem ledger (`15 §2.1`) bucketing every failure area and research bet into NOW/NEXT/LATER/DEFERRED. There is no other execution plan; when the question is "what do I do next / will this resolve the failures," the answer comes from `spec/15`, not from anywhere else.
+
+**Convention: executing a phase produces a "detailed specification" doc for that phase** (a consolidation of the canonical design docs into one buildable spec, grounded against the actual `src/` code). Mapping:
+
+| Phase | Detailed spec | Note |
+|---|---|---|
+| Phase 0 (Eyes/MVP) | [`spec/16`](../spec/16-phase-0-detailed-specification.md) | — |
+| Phase 1 (Brand + Consistency) | [`spec/17`](../spec/17-phase-1-detailed-specification.md) | — |
+| Phase 2 (Memory / Library) | [`spec/36`](../spec/36-phase-2-detailed-specification.md) | numbered **36**, not 18, because `18–35` were already taken by the R-series (below). It is a **sibling of 16/17**, not part of the R-series. |
+| Phase 3 / Phase 4 | (future) | would continue at 37 / 38 by the same rule. |
+
+**Standing conventions for these phase specs** (apply when writing or deepening one): a **revision-history footer** at the bottom (mirroring `10-failure-modes.md`'s style); **Mermaid diagrams** (sequence / state / data-flow / ER) matching the style used across `spec/`; a **failure-coverage map** tying the phase to the specific `F-*` IDs it closes; and honest grounding against the real `src/` code — where the code diverges from the design, say so in the spec (e.g. `spec/36` flags that the Phase-2 abstraction-altitude Phase-Exit Review is specified but not yet implemented, and that the default hash-embedding must not be used to evaluate H6).
+
+**Critical distinction — the R-series (R1–R18) is NOT a parallel phase track and must never be treated as one.** `spec/14-research-agenda.md` (detailed in `spec/18`–`35`) is a **separate, optional menu of judgment/taste-improvement research bets**. `spec/15` only threads **four of the eighteen** into the actual plan, at specific weeks: **R1** (benchmark, Phase 1 wk17), **R2** (feedback channel, Phase 2 wk23), **R3 + R4** (constitution / reward model, Phase 3 wk28–33). **R5–R18 are explicitly LATER / DEFERRED — "may never be reached at solo scale"** (`15 §2.1`). Do **not** turn the R-series into a build checklist, and do **not** generate per-bet execution plans for R-bets unless `spec/15` actually schedules that bet at the current phase. When asked "what's next," check `spec/15`'s phase gate and problem ledger — never "which Rn is next in numeric order." (This distinction is recorded because it was previously misread — an Rn bet was treated as the next thing to build outside the phase plan; the correction is the point of this entry.)
