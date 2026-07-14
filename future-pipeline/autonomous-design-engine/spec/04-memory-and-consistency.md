@@ -42,11 +42,11 @@ flowchart TB
 - **Within one artifact** (hero → about): the **Project Design System** keeps sections consistent.
 - **Across artifacts** (website ↔ product): the **Brand Foundation**, sitting above both, keeps them recognizably one brand while each surface adapts to its context.
 
-> **Lock the primitives, free the composition.** Color, type, spacing, motion, component styles are locked; layout and section structure are free. *Atoms fixed, arrangements free* — consistent without being monotonous.
+> **Lock the primitives, free the composition.** Color, type, spacing, motion, component styles are locked; layout and section structure are free. *Atoms fixed, arrangements free* — sections share tokens, but not layout. The Critic explicitly rewards purpose-appropriate variation, ensuring distinct sections do not become hero-clones (F-CON-02).
 
 ### 2.1 The Brand Foundation itself: provided givens → derived strategy
 
-The hierarchy above *starts* at the Brand Foundation — but **how is the brand itself decided?** By the same **fix-then-derive** discipline that crystallization (§3) uses one level down. The human provides only the **givens they own** — palette + typography (a small `BrandData` file, `03` §3.1) — and the AI **derives** the rest of the foundation (personality, tone, motion voice, color-usage rules) from those givens plus the business context.
+The hierarchy above *starts* at the Brand Foundation — but **how is the brand itself decided?** By the same **fix-then-derive** discipline that crystallization (§3) uses one level down. The human provides only the **givens they own** — palette + typography (a small `BrandData` file, `03` §3.1) — and the AI **derives** the rest of the foundation (personality, tone, motion voice, color-usage rules) from those givens plus the business context. It produces **2–3 distinct directions**, each with rationale tied to the business context.
 
 ```
    PROVIDED (givens — facts you own)        DERIVED (AI strategy, grounded in givens + brief)
@@ -63,7 +63,7 @@ Two rules make this safe:
 - **Derive in dependency order; never patch a derived leaf.** Because every derived element is computed *from* the givens, there is no derived decision a human overrides after the fact — which is exactly what would otherwise leave the motion/tone rationale **stale** when colors change. Disagree with a derived element? Change an input (enrich the brief, or adjust a given) and **re-derive** — a new `version` (`03` §3.2), not a hand-edit.
 - **Minimal givens keep the strategy objective.** Every adjective a human supplies anchors the AI's search. Providing only the visual essentials lets its brand strategy stay un-anchored; the human still holds a **veto** (approval), just not the pen. This is the Goal-B autonomy principle applied to the brand layer: constrain the *facts*, free the *strategy*.
 
-Both the provided givens and the approved derived foundation are **hard** (they sit at rank 2 of the precedence in §7); the only difference is who authored each element, recorded per-element in `provenance` (`03` §3.2).
+Both the provided givens and the approved derived foundation are **hard** inputs. On approval, this frozen Brand Foundation is wired into the Generator's **authority-tagged input bundle as `hard`**. This means it explicitly outranks soft inputs (references/Library), and the Critic explicitly scores a `brand_adherence` dimension. The only difference is who authored each element, recorded per-element in `provenance` (`03` §3.2).
 
 ---
 
@@ -91,7 +91,7 @@ Before crystallization the AI is choosing the system; after, it is obeying it. T
 
 ### Freeze the foundation, grow the components
 
-One section is enough to lock the **foundation** — colors, type scale, spacing, radii, motion, and the components the hero actually used. But a hero cannot contain *every* component (no cards, forms, tables, or empty/error states). So crystallization is **not** "freeze everything after section 1." It is:
+One section is enough to lock the **foundation** — colors, type scale, spacing, radii, motion, and the components the hero actually used. The Crystallizer extracts these tokens **conservatively**. But a hero cannot contain *every* component (no cards, forms, tables, or empty/error states). So crystallization is **not** "freeze everything after section 1." It freezes *only* the foundation:
 
 ```
    After section 1:   FOUNDATION (tokens)        → FROZEN, never changed
@@ -101,6 +101,10 @@ One section is enough to lock the **foundation** — colors, type scale, spacing
 ```
 
 The design system is **frozen at the core, extensible at the component layer** — exactly how human design systems are built (a token + component core first, more components as new screens demand them). Consistency is still guaranteed: the tokens every section draws from never move; only the *set of available components* grows. (Schema + rule in `03` §4; this resolves open question #4 in `09`.)
+
+**Component reuse & deduplication:** Before adding a new component, the Crystallizer retrieves existing ones to **reuse or extend**. Near-duplicates are merged at crystallization rather than accumulated. The system tracks the unique-vs-total component ratio across sections to prevent component-layer bloat (F-PDS-03).
+
+**Token extension policy:** While the foundation tokens are frozen, a genuinely new, unmet token need may arise. We use an **additive, namespaced extension policy**: a new token that doesn't alter existing ones may be added (via a versioned bump), but any extension that touches the frozen foundation must escalate to a human. Extension frequency is tracked; high frequency indicates section 1 was the wrong anchor.
 
 **Reviewed before it becomes law.** Because the foundation is extracted from a *single* section, a bad extraction (a hero that over- or under-specifies tokens — F-PDS-01) would lock an error into every later section. So crystallization output passes a **Phase-Exit Review** before it is frozen ([11 §2.3](./11-guardrails-and-invariants.md)): a fresh-context Critic checks the candidate tokens against the brand and the approved hero — *are these the right primitives? is anything over-fitted to this one section, or missing something later sections will need?* — and returns an over/under-specified foundation for bounded correction. Only a reviewed foundation is frozen; the human still signs off, but on a pre-filtered system.
 
@@ -140,7 +144,12 @@ flowchart LR
     TOPK --> BUNDLE["fed into the loop as<br/><b>SOFT direction</b> (may diverge)"]
 ```
 
-The query is built from the **brief**, embedded, and matched nearest-neighbor against the embedded problem-space of each entry (see `03` §2.1). Returned entries are **soft** — the Generator synthesizes from them and may depart. The *hard* constraints come from Brand/System, never from here.
+The query is built from the **brief**, embedded, and matched nearest-neighbor against the embedded problem-space of each entry (see `03` §2.1).
+
+**Retrieval rules (C2.3):**
+- **Ranked by similarity × confidence.** Validated knowledge surfaces; unproven guesses sink. A strict similarity **threshold** and small `top-k` prevents pollution (F-MEM-02).
+- **Non-blocking (optional).** On store failure or an empty Library (cold start), the system proceeds on brand+brief alone (F-MEM-05, F-MEM-07). Cold-start *is* the MVP.
+- **Soft framing.** Retrieved entries are framed as **"direction, may diverge"**. The Critic rewards brief-fit, not entry-resemblance (F-MEM-06). The *hard* constraints come from Brand/System, never from here.
 
 **Burkes query example:**
 `"hero · B2B real estate · audience: sellers/investors · personality: trust, legacy, modern · goal: lead-gen · feel: warm, editorial"`
@@ -150,27 +159,19 @@ The query is built from the **brief**, embedded, and matched nearest-neighbor ag
 
 ## 6. Write-back — how the Library gets smarter (not just bigger)
 
-After an artifact is approved, **Learning Write-back** distills it into the Library.
+After a **human-approved** artifact is finalized (an unapproved artifact can never produce a Library entry, preventing F-WB-04), **Learning Write-back** distills it into the Library through a strict pipeline (C2.5, C2.7):
 
-```mermaid
-flowchart TB
-    A["approved artifact"] --> DEID["de-identify<br/>(strip client name, copy, exact tokens)"]
-    DEID --> ABS["abstract<br/>(instance → transferable pattern/principle)"]
-    ABS --> DEDUP{near-duplicate<br/>entry exists?}
-    DEDUP -->|yes| MERGE["MERGE<br/>raise confidence · add variation"]
-    DEDUP -->|no| CREATE["CREATE new entry<br/>confidence = low"]
-    MERGE --> LIB[("Global Library")]
-    CREATE --> LIB
-    HV["human verdict"] --> MERGE
-    HV --> CREATE
-```
+1. **De-identification Gate:** Block on any client name, PII, exact brand token, or verbatim copy (F-WB-01).
+2. **Abstraction:** Translate the instance to a transferable altitude (tag as principle, pattern, recipe; favor the mid "pattern" altitude).
+3. **Phase-Exit Review:** A fresh-context Critic checks if the abstraction is transferable (not too specific, not too vague; F-WB-02) AND checks for **strategic specificity** (blocks de-identified but re-identifiable or confidential strategy leaks; F-WB-06). Bounded ≤1–2 cycles.
+4. **Dedup / Merge:** Check nearest entries above a similarity threshold. If a near-duplicate exists, merge (add variation, raise confidence). If not, insert new.
+5. **Insert:** Save with low starting confidence and provenance mapped to the human verdict (C2.7).
 
-What makes it *smarter* rather than a junk drawer:
-
-- Entries are **evidence-weighted**. One project → `confidence: low` (a hypothesis). Corroboration across projects + positive human verdicts → confidence rises. Rejected/under-performing patterns are down-weighted or deleted.
-- Retrieval ranks by **similarity × confidence**, so validated knowledge surfaces and unproven guesses sink.
-- This is where **human taste accretes** into the system: every approve/reject verdict re-weights the Library. Over time it reflects *what has actually worked for us, judged by us* — the whole point of Goal B, and why the judge (taste) is the long-term bottleneck (`09`).
-- **Altitude is reviewed before an entry is stored.** The hardest part of distillation is picking the right *altitude* — too specific and the entry never transfers, too vague and it never helps (F-WB-02). So after de-identification and abstraction, each candidate entry passes a **Phase-Exit Review** ([11 §2.3](./11-guardrails-and-invariants.md)): a fresh-context Critic judges whether the lesson is at a transferable altitude (a reusable *pattern*, not a one-off instance and not an empty generality) and returns a mis-abstracted entry for bounded re-distillation before it can pollute retrieval.
+**Confidence weighting, decay, & curation (C2.6):**
+- Entries are **evidence-weighted**. Confidence rises with corroboration and positive verdicts.
+- Confidence **decays** with age/disuse.
+- Diversity-aware retrieval resists monoculture (F-WB-05).
+- A **periodic curation pass** re-evaluates older high-confidence entries against current human verdicts, down-weighting or retiring patterns that no longer meet rising taste standards (F-WB-07).
 
 ---
 
@@ -191,6 +192,7 @@ When inputs disagree, resolve in this fixed order:
 - **Hard always beats soft.** A reference suggesting a teal accent loses to a brand whose accent is warm-neutral.
 - **Among hard inputs**, the floor and brand are inviolable; the project system *specializes* the brand (e.g., a denser type scale for the product) but can never contradict it.
 - **Among soft inputs**, the AI synthesizes freely; nothing is stitched part-by-part (no Frankenstein merges).
+- **Injection Safety (C2.4):** References and retrieved entries are **untrusted data** wrapped in clear delimiters. A poisoned Library entry or red-team reference can never override a hard rule; the deterministic post-checks always hold (F-SEC-02).
 
 ---
 
@@ -205,4 +207,4 @@ A repeated trap (and the failure of the old `synthesis_map` thinking): combining
    → 3 design languages colliding           → may resemble none of them; that's success
 ```
 
-References inform *direction*; the business context *decides*. Output that diverges from every reference **to better serve the client** is success, not error.
+References inform *direction*; the business context *decides*. References pass through an optional **relevance screen** before use. Output that diverges from every reference **to better serve the client** is success, not error. The Critic scores **brief_fit, never resemblance**; ablating references must still yield good output (C2.4).

@@ -58,7 +58,7 @@ The ordering is also a **dependency order**: H1 must hold before H2–H8 are wor
 ### H6 — Library compounding (the "gets smarter" claim)
 - **Statement:** With the Library on, project N+1 is better and/or faster than with it off.
 - **Why:** Without compounding, there is no "library," only a photocopier.
-- **Test:** Matched pairs of similar briefs, Library-on vs Library-off (ablation). Measure final human rating and iterations-to-pass.
+- **Test:** Matched pairs of similar briefs, Library-on vs Library-off (ablation). **Must use a real local embedding model**, not the Phase-0 hash-embedding, or the ablation is meaningless. Measure final human rating and iterations-to-pass.
 - **Pass metric:** Library-on shows **higher quality** and/or **fewer iterations** at significance across a batch.
 - **Fail looks like:** no difference → retrieval isn't adding signal (revisit embed/payload or entry quality).
 
@@ -81,13 +81,21 @@ The ordering is also a **dependency order**: H1 must hold before H2–H8 are wor
 Everything above is measured from artifacts the system already produces — **no separate eval harness needed at first**:
 
 ```
-trace.json (03 §6)  ──►  per-iteration scores, tokens, verdicts        → H1, H3, H7
-final outputs       ──►  human ratings (4-point)                       → H2, H4, H5, H6
-ablation runs       ──►  Library-on vs -off, pairwise vs absolute      → H3, H6
-verdict log         ──►  critic vs human agreement over time           → H3, H8
+trace.jsonl (03 §6)  →  per-iteration scores, token breakdown, verdicts    → H1, H3, H7
+final outputs         →  human ratings (4-point scale)                       → H2, H4, H5, H6
+ablation runs         →  Library-on vs -off, pairwise vs absolute            → H3, H6
+verdict log           →  critic verdict vs human verdict, per run             → H3, H8
 ```
 
-A lightweight `ade eval` reporter (later) can aggregate `trace.json` across runs into these metrics. For the MVP, reading `trace.json` by hand + a simple human-rating sheet is enough to decide H1/H2.
+**Measurement discipline rules (C0.16 — invariant I12):**
+- **Only observed numbers are reported.** Every quality metric in a report must trace to either a deterministic gate result or a human verdict — never to a Critic verdict alone. Critic metrics are always paired with the human ground-truth they will be checked against.
+- **Structured verdict capture (`ade verdict` tool):** after each run, a structured verdict is persisted alongside the artifact — `{ run_id, iter_0_path, final_path, human_pick, rating_4pt, notes }`. The human is shown iter-0 and the final candidate in **random order** (blind) so there is no anchoring bias. This verdict is the ground truth for H1 and H3 calibration.
+- No number from a validation run counts toward H1 unless it has a matching human verdict record.
+
+**Token-economy instrumentation (C0.17 — H7 substrate):**
+Every `RunRecord` in `trace.jsonl` carries a `TokenBreakdown` (see `03 §6`) that breaks input tokens into four attributable parts: `hard_brief`, `soft_refs`, `visual_context`, `loop_state`. This lets `tokens/section` be plotted against section index, ref count, and — later — Library size **with no manual reconstruction**. H7 ("context cost stays roughly flat regardless of refs/Library size") is proven or falsified from this data, not assumed. Instrumented from Phase 0; proven at scale in Phases 2–3.
+
+A `report` tool aggregates `trace.jsonl` across runs into these metrics. For the MVP, `jq` or a simple script over `trace.jsonl` + a human-rating sheet is enough to decide H1/H2.
 
 ---
 
@@ -100,5 +108,28 @@ H4 fails            → consistency mechanism is wrong → fix crystallization b
 H6 fails            → the Library isn't compounding → fix entry quality / embed-payload split
 H8 flat for long    → keep humans in the loop longer; do not over-automate the gates
 ```
-
 The spirit, carried from the team's own logs: **report observed numbers, never predicted ones.** Every percentage in this document is a *target to measure against*, not a claim.
+
+---
+
+## 5. Phase-0 exit gate — H1 (go/no-go for the whole project)
+
+> This is the gate that must be cleared before Phase 1 begins. If H1 fails, **stop and rethink** — do not build Phase 1.
+
+**What to run:** the full loop on the Burkes hero brief + ≥10 additional briefs, `--variations 2`, `--max-iters 4`, collecting `trace.jsonl` and human verdicts via `ade verdict` for every run.
+
+**What to measure (H1 pass criteria):**
+- Final Critic score **> iter-0 score** in **≥70 %** of runs.
+- Humans prefer the final over iter-0 in **≥70 %** of blind pairs (the `ade verdict` structured records).
+
+**Guardrail verification (must pass before H1 measurement counts):**
+- A deliberately injected render defect (blank render, broken import) is caught by the Render-Health Gate and **never reaches the Critic**.
+- A deliberately injected a11y/contrast failure **cannot pass** the composite gate regardless of Critic verdict.
+- A deliberately injected numeric transposition (e.g. price changed in rendered output) is caught by the Hard-Constraint Gate numeric exact-match check.
+
+**H1 viability signals to also record (inform Phase 1 priorities):**
+- H2: ≥50 % of final outputs rated "good or strong" by a human (4-point scale).
+- H3: first Critic↔human agreement signal — record raw concordance, no pass/fail threshold yet.
+- H7: plot `tokens/section` vs. iteration index — should be roughly flat within a run.
+
+**If H1 fails:** scores are flat or random across iterations AND humans cannot distinguish final from first. Diagnose: is the Critic giving informative feedback? Is the Generator ignoring it? Is the gate blocking measurement? Rethink before building further.

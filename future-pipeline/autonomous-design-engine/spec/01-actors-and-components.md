@@ -103,7 +103,7 @@ Not an agent — a structured data source. Carries:
 ### 3.3 Orchestrator
 The "design lead" agent. Owns project state and policy:
 - Decides which section to build and in what order.
-- **Assembles the input bundle** for each generation (soft + hard + visual context — see `05`).
+- **Assembles the authority-tagged input bundle** for each generation (soft + hard + visual context — see `05`), ensuring the frozen Brand Foundation is wired as a `hard` input.
 - **Enforces consistency**: after section 1 it triggers *crystallization* into the Project Design System; for later sections it injects that system as hard law plus screenshots of already-built sections.
 - Triggers **Learning Write-back** when an artifact is approved.
 

@@ -46,9 +46,9 @@ flowchart TB
 
 The immovable centre of the whole system.
 
-- **A small, multi-domain brief set.** Not one domain — Burkes real-estate *plus* SaaS, e-commerce, editorial, enterprise-dense, playful-consumer ([14](./14-research-agenda.md) N1). Anchoring on one aesthetic overfits the whole system to it.
+- **A small, multi-domain brief set.** Not one domain — Burkes real-estate *plus* SaaS, e-commerce, editorial, enterprise-dense, playful-consumer ([14](./14-research-agenda.md) N1). Crucially, this must include **non-English and mixed-language briefs** so comprehension (F-INP-08) is measured, not assumed. Anchoring on one aesthetic or language overfits the whole system to it.
 - **Multi-rater human reference ratings.** Each brief's outputs are rated by **more than one** human, on the constitution's dimensions, with **inter-rater agreement recorded** (F-HUM-02). Single-rater ground truth is not ground truth.
-- **Held-out, always.** Golden-core briefs are **never** written back to the Library and never used as generation direction. As the Library grows, evals on similar briefs get easier for reasons unrelated to real improvement — this separation prevents that contamination ([14](./14-research-agenda.md) F4).
+- **Held-out, always (Contamination Defense).** Golden-core briefs are **never** written back to the Library and never used as generation direction. As the Library grows, evals on similar briefs get easier for reasons unrelated to real improvement — this separation prevents that contamination ([14](./14-research-agenda.md) F4). The system rotates held-out cases to track actual *transfer* to fresh briefs. **Non-transferring gains are discounted, and benchmark age is tracked to prevent Goodharting against a stale core.**
 - **Human-owned and version-frozen.** The system cannot edit the golden core. Changes to it are deliberate, human, append-only, versioned events (I5-style discipline).
 
 ---
@@ -63,7 +63,7 @@ Rigor here is what separates measurement from theater (F-SPEC-05, I12).
   - **Reward-model pairwise accuracy** on held-out human preferences ([14](./14-research-agenda.md) R4).
   - **Judgment variance** (test–retest of the Critic on a fixed set — F-JDG-06).
 - **Statistics, not vibes.** Report sample sizes, confidence intervals, and significance. Two runs are not a trend. Report **observed** numbers only, never predicted (I12) — the spec's founding discipline ([08 §4](./08-hypotheses-and-validation.md)).
-- **The regression gate.** *Every* change that can shift quality — a prompt, the model id, a rubric weight, a constitution amendment — must clear the benchmark **before adoption**. This is the concrete defence against silent model-version regression (F-MOD-05), which the spec otherwise "mitigates" only by pinning an id. Nothing ships to the loop without passing the anchor.
+- **The regression gate (CI for quality).** *Every* change that can shift quality — a prompt, the model id, a rubric weight, a constitution amendment — must clear the benchmark **before adoption**, proven via a statistically significant confidence interval (CI) for quality. This is the concrete defence against silent model-version regression (F-MOD-05), which the spec otherwise "mitigates" only by pinning an id. Nothing ships to the loop without passing the anchor.
 
 ---
 

@@ -41,7 +41,7 @@ sequenceDiagram
     O->>R: retrieve brand-strategy direction (soft)
     R-->>O: top-k Library entries
     O->>G: DERIVE the rest from givens + business context (+soft direction)
-    G-->>O: derived BrandFoundation (personality, tone, motion, color-usage) grounded in the givens
+    G-->>O: 2-3 distinct BrandFoundation directions (personality, tone, motion, color-usage) with rationale
     O->>C: PHASE-EXIT REVIEW — does the derived strategy fit the business context + givens? (fresh ctx)
     C-->>O: pass · or targeted issues → bounded re-derive (≤1–2) before a human sees it
     O->>U: present reviewed foundation for approval
@@ -54,7 +54,7 @@ sequenceDiagram
     end
 ```
 
-**Burkes:** the Lead provides only the **givens** — a warm-neutral palette + humanist display / clean UI families (`brand-data.json`). From those plus the real-estate business context, the AI **derives** the personality `[trust, legacy, reliable, modern]`, an assured/editorial tone, and a restrained cinematic motion voice; the Lead approves; it freezes. Disagreement is resolved by re-deriving (adjust an input), not by hand-editing a derived field. Before the Lead is asked to approve, a **Phase-Exit Review** (a fresh-context Critic, [11 §2.3](./11-guardrails-and-invariants.md)) checks that the derived strategy actually fits the business context and the given palette/type, returning an off-brief derivation for bounded re-derivation first — so the human reviews a pre-filtered result, not a cold draft (F-BRD-01). (This same frozen brand is reused in §6 for the product.)
+**Burkes:** the Lead provides only the **givens** — a warm-neutral palette + humanist display / clean UI families (`brand-data.json`). From those plus the real-estate business context, the AI **derives 2–3 distinct directions** for the personality (e.g. `[trust, legacy, reliable, modern]`), an assured/editorial tone, and a restrained cinematic motion voice, each with rationale; the Lead approves one; it freezes. Disagreement is resolved by re-deriving (adjust an input), not by hand-editing a derived field. Before the Lead is asked to approve, a **Phase-Exit Review** (a fresh-context Critic, [11 §2.3](./11-guardrails-and-invariants.md)) checks that the derived strategy actually fits the business context and the given palette/type, returning an off-brief derivation for bounded re-derivation first — so the human reviews a pre-filtered result, not a cold draft (F-BRD-01). Additionally, a **deterministic contrast/a11y check** runs on the brand color pairings at approval time to ensure accessible primary pairings. (This same frozen brand is reused in §6 for the product.)
 
 ---
 
@@ -68,7 +68,7 @@ sequenceDiagram
     participant C as Critic (fresh ctx)
     participant PDS as Project Design System
 
-    O->>L: design section "hero" (system OPEN)
+    O->>L: design section "hero" with frozen Brand Foundation (hard) (system OPEN)
     L-->>O: approved hero (passed Critic)
     O->>U: present hero
     U-->>O: approve (taste verdict recorded)
@@ -78,7 +78,7 @@ sequenceDiagram
     O->>PDS: freeze reviewed foundation (status: open→foundation-frozen)
 ```
 
-The hero is designed with the loop; on human approval its **foundation** (tokens) is extracted, **Phase-Exit-Reviewed** (a fresh-context Critic checks the crystallized tokens against the brand + hero for over/under-specification before they become law — [11 §2.3](./11-guardrails-and-invariants.md)), then frozen into the Project Design System and the hero's components are locked. Later sections build against those frozen tokens and may *add* new components, never change them (`04` §3, `03` §4). The verdict is recorded for Library write-back and Critic calibration.
+The hero is designed with the loop, using the **frozen Brand Foundation as an authority-tagged hard input**; on human approval its **foundation** (tokens) is extracted, **Phase-Exit-Reviewed** (a fresh-context Critic checks the crystallized tokens against the brand + hero for over/under-specification before they become law — [11 §2.3](./11-guardrails-and-invariants.md)), then frozen into the Project Design System and the hero's components are locked. Later sections build against those frozen tokens and may *add* new components, never change them (`04` §3, `03` §4). The verdict is recorded for Library write-back and Critic calibration.
 
 ---
 
@@ -92,12 +92,12 @@ sequenceDiagram
 
     loop each remaining section
         O->>PDS: load frozen tokens + recipes (HARD)
-        O->>L: design section with PDS as hard law + screenshots of built sections (ctx)
+        O->>L: design section with PDS (hard) + Brand Foundation (hard) + 1-3 prior screenshots (ctx)
         L-->>O: approved section (Critic polices system_adherence)
     end
 ```
 
-Each later section is generated **against** the frozen system and **sees** the already-built sections — the two mechanisms that guarantee the About page matches the hero (`04` §3).
+Each later section is generated **against** the frozen Project Design System and Brand Foundation, and **sees** the most relevant 1–3 already-built sections as visual context — the mechanisms that guarantee the About page matches the hero (`04` §3). **Drift is never approved;** a drifting section must be regenerated to comply with the hard laws, keeping the total token count across sections bounded.
 
 ---
 
@@ -114,7 +114,7 @@ flowchart LR
     PER -->|fail| REAB["bounded re-abstraction"]
 ```
 
-- **QA** is a Critic pass over the *assembled* artifact, catching cross-section issues a per-section pass can't (inconsistent nav, rhythm breaks across sections). *(This whole-artifact QA is itself a Phase-Exit Review — the artifact-level instance of the same pattern, [11 §2.3](./11-guardrails-and-invariants.md).)*
+- **QA** is a Critic pass over the *assembled* artifact (cross-section coherence, nav consistency, rhythm, responsive seams) ∧ **deterministic responsive/overflow checks**. If it fails, the system **re-loops the offending section** rather than applying a blind patch. Shared structural elements like the nav and footer are treated as locked components. *(This whole-artifact QA is itself a Phase-Exit Review — the artifact-level instance of the same pattern, [11 §2.3](./11-guardrails-and-invariants.md).)*
 - **Write-back** runs once, post-delivery (`04` §6); each distilled entry passes a **Phase-Exit Review** of its abstraction altitude before it enters the Library, so a too-specific or too-vague lesson is re-abstracted rather than stored (F-WB-02).
 
 ---

@@ -118,6 +118,8 @@ A standing concern: "how do you fit references + memory + output in a 200K windo
 
 Net: context cost is ~**constant** regardless of how many references exist or how large the Library grows.
 
+**Instrumentation (H7 substrate):** To prove this remains true, every trace record from Phase 0 onward captures a strict per-part token breakdown (brief vs references vs visual-context vs loop-state) so token economy can be measured continuously, not just assumed.
+
 ---
 
 ## 5. Proposed tech-stack "ingredients"

@@ -18,10 +18,10 @@ purpose: >
 
 | Decision | Detail |
 |---|---|
-| Dev provider | `@anthropic-ai/claude-agent-sdk` on the **Claude Pro plan's Agent-SDK credit**, auth via `claude login` (OAuth) |
-| **Hard rule** | **Never set `ANTHROPIC_API_KEY`** in dev/local config — its mere presence forces API billing, defeating the whole point |
+| Dev provider & fallback | `ADE_PROVIDER` selects the active implementation: `agent-sdk` (default dev, Pro-credit OAuth, **no `ANTHROPIC_API_KEY`**), `api` (prod, real key), `local` (Ollama fallback). Every call records the resolved model id and active provider into the trace. |
 | Prod provider | Real Anthropic API key — **deferred to Phase 4 only** |
 | Local fallback | Ollama, for offline/degraded operation |
+| Model roles (separable in config from day one) | **Critic** = strongest model (quality ceiling; do not downgrade). **Generator** = cheaper (Sonnet-tier) is fine. **Orchestrator** = cheap/thin. Expose `criticModelId` / `genModelId` / `orchestratorModelId` as distinct fields. |
 | Why | User has a Pro plan only and will not buy a paid API key/SDK for dev/R&D. This was clarified across multiple prior sessions — don't re-suggest "just get an API key" for dev |
 | Embeddings (Phase 2) | No first-party Anthropic embeddings API; Pro credit doesn't cover paid third-party embeddings either → **extend the `local`/Ollama provider with a local embedding model** to stay key-free. A paid embeddings API is explicitly the prod-only alternative |
 
@@ -32,7 +32,7 @@ purpose: >
 | **Critic** (incl. Phase-Exit Reviews) | **Strongest available model** | It is the system's quality ceiling and weakest link (failure F-JDG-01) — do not downgrade it |
 | **Generator** | Cheaper model (e.g. Sonnet-tier) is fine | Most-called role (N variations × iterations); the loop's own critique-and-edit mechanism corrects for a weaker draft. Matches the spec's own stated preference (`02 §5`, `09 §3`) |
 | **Orchestrator** | Cheap/thin model | Mostly deterministic policy + one cheap "Brief Comprehension" call — does not need a frontier model |
-| Config requirement | Keep `criticModelId` / `genModelId` separable in config from day one, even if both point at the same model initially |
+| Config requirement | Keep `criticModelId` / `genModelId` / `orchestratorModelId` as **three separate config fields** from day one — even if all point at the same model initially. Every model call records the resolved model id and active provider into the trace. |
 | Model naming (correct as of this conversation) | **Fable 5** (`claude-fable-5`), **Opus 4.8** (`claude-opus-4-8`), **Sonnet 4.6** (`claude-sonnet-4-6`), **Haiku 4.5** (`claude-haiku-4-5`). There is no "Sonnet 5." |
 
 ## The Phase-Exit Review (a core architectural concept — spec `11 §2.3`, invariant I13)
@@ -112,5 +112,15 @@ The **single authoritative execution plan is [`spec/15-execution-roadmap.md`](..
 | Phase 3 / Phase 4 | (future) | would continue at 37 / 38 by the same rule. |
 
 **Standing conventions for these phase specs** (apply when writing or deepening one): a **revision-history footer** at the bottom (mirroring `10-failure-modes.md`'s style); **Mermaid diagrams** (sequence / state / data-flow / ER) matching the style used across `spec/`; a **failure-coverage map** tying the phase to the specific `F-*` IDs it closes; and honest grounding against the real `src/` code — where the code diverges from the design, say so in the spec (e.g. `spec/36` flags that the Phase-2 abstraction-altitude Phase-Exit Review is specified but not yet implemented, and that the default hash-embedding must not be used to evaluate H6).
+
+## `IMPLEMENTATION_PLAN.md` now exists (the failure-driven, phase-gated build plan)
+
+`AGENTS.md` has always pointed at `IMPLEMENTATION_PLAN.md` as "the canonical, phase-gated build plan," but the file did not exist until this session. It now does, at the **ADE root** (sibling of `AGENTS.md`, above `spec/`). What it is:
+
+- **Purpose:** sequences the `spec/11` solutions (Guardrail Layer, MP-1…17, invariants I1–I13, Phase-Exit Review) and the **entire** failure catalogue (`spec/10a`–`10e`, "Failures A–E") into **small, ordered, implementable chunks** grouped by phase gate (0→4). It is a *sequencer + detailer*, not a new design — spec stays canonical.
+- **Structure:** organized by ADE phase (0→4), not by failure area. Each chunk carries `Closes: F-*` / `Implements: MP/I/gate` / `Depends on` / `Spec source` / `Build` / `Done when`. Phase 0 = Eyes MVP (H1), 1 = Brand+Consistency (H4), 2 = Library (H6), 3 = Taste (H3/H8), 4 = Production hardening.
+- **Coverage is verified, not asserted:** §8 is a complete failure→chunk index; a mechanical cross-check confirmed **every** catalogue `F-*` ID maps to a chunk and the plan invents none. §7 maps each invariant I1–I13 to the chunk that introduces it. R-bets are tagged `[R]`, deferred/accepted-risk items `[D]`; only R1–R4 are threaded in, consistent with the R-series rule below.
+- **Two spec inconsistencies flagged (plan §9), not silently fixed:** (1) `spec/README.md` Step 0 still lists `ANTHROPIC_API_KEY` for the build phase — stale vs the no-key dev rule (key is Phase-4/prod-only); (2) `spec/README.md` advertises docs 15–36 as complete but only `00`–`14`(+`10a`–`e`) are on disk (`15` mid-rewrite by the owner).
+- **Relationship to `spec/15`:** distinct artifact. `spec/15` is the execution *roadmap* (weekly cadence, kill-gates, solo-hours pacing); `IMPLEMENTATION_PLAN.md` is the phase-gated *build chunking* keyed to failures. They must stay consistent; when `15` is restored, re-verify cross-links.
 
 **Critical distinction — the R-series (R1–R18) is NOT a parallel phase track and must never be treated as one.** `spec/14-research-agenda.md` (detailed in `spec/18`–`35`) is a **separate, optional menu of judgment/taste-improvement research bets**. `spec/15` only threads **four of the eighteen** into the actual plan, at specific weeks: **R1** (benchmark, Phase 1 wk17), **R2** (feedback channel, Phase 2 wk23), **R3 + R4** (constitution / reward model, Phase 3 wk28–33). **R5–R18 are explicitly LATER / DEFERRED — "may never be reached at solo scale"** (`15 §2.1`). Do **not** turn the R-series into a build checklist, and do **not** generate per-bet execution plans for R-bets unless `spec/15` actually schedules that bet at the current phase. When asked "what's next," check `spec/15`'s phase gate and problem ledger — never "which Rn is next in numeric order." (This distinction is recorded because it was previously misread — an Rn bet was treated as the next thing to build outside the phase plan; the correction is the point of this entry.)

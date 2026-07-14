@@ -6,7 +6,7 @@
 
 ## 1. The core diagnosis
 
-The system is engineered to reliably eliminate **bad** — a near production-grade *immune system* (the Guardrail Layer, render-health, token/a11y gates, best-so-far, bounded loops, 13 invariants, [11](./11-guardrails-and-invariants.md)). It has no comparably-engineered machinery to reliably recognise or produce **great**. Every quality-raising path funnels through one thin proxy — a prompted Critic scoring three frozen screenshots on four coarse dimensions — and one Generator that jumps straight to high-fidelity code. So the ceiling is set by the *least*-engineered parts of the system, and quality is *inconsistent* by construction: high-variance judgment + untested robustness + no standing benchmark.
+The system is engineered to reliably eliminate **bad** — a near production-grade *immune system* (the Guardrail Layer, render-health, token/a11y gates, best-so-far, bounded loops, 15 invariants, [11](./11-guardrails-and-invariants.md)). It has no comparably-engineered machinery to reliably recognise or produce **great**. Every quality-raising path funnels through one thin proxy — a prompted Critic scoring three frozen screenshots on four coarse dimensions — and one Generator that jumps straight to high-fidelity code. So the ceiling is set by the *least*-engineered parts of the system, and quality is *inconsistent* by construction: high-variance judgment + untested robustness + no standing benchmark.
 
 Framed against the reference the team admires (Constitutional AI): **ADE has the inner loop, and is missing the outer loop.**
 
@@ -111,14 +111,14 @@ The load-bearing bets are written in full ([08](./08-hypotheses-and-validation.m
 
 **R1 — A standing, human-anchored benchmark exposes regressions and grounds every other bet.**
 - *Why:* today's eval is "read `trace.json` by hand" ([08 §3](./08-hypotheses-and-validation.md)); nothing catches silent regressions (F-MOD-05) or measurement theater (F-SPEC-05). Full design in [13](./13-evaluation-charter.md).
-- *Experiment:* build the golden core (multi-domain briefs, multi-rater held-out ratings); inject a known prompt regression; confirm the benchmark catches it.
-- *Metric:* regression detected; inter-rater agreement on the core is statistically adequate.
+- *Experiment:* build the golden core (multi-domain briefs incl. **non-English/mixed-language** briefs, multi-rater held-out ratings); inject a known prompt regression; confirm the benchmark catches it. **Non-English restatement accuracy is tracked as a separate metric** to measure F-INP-08 comprehension, not assume it.
+- *Metric:* regression detected; inter-rater agreement on the core is statistically adequate; non-English brief restatement accuracy reported separately.
 - *Fail:* raters disagree so much there is no usable ground truth → fix rating protocol / governance (J4) before anything else.
 - *Depends on:* nothing. **Build first.**
 
 **R2 — A high-bandwidth human-feedback channel produces materially better calibration signal than CLI approve/reject/notes.**
 - *Why:* the entire outer loop is only as good as the human signal feeding it (J1–J3); a straw-width channel caps R4 no matter how good the training method.
-- *Experiment:* A/B calibration data quality from the current channel vs a rich one (pairwise choice, dimension-level ratings, annotated-screenshot marks, reasons, teach-by-example).
+- *Experiment:* A/B calibration data quality from the current channel vs a rich one (**pairwise comparison UI**, **constitution-dimension sliders**, **spatial annotations/marks**, **design-rationale surfacing**, teach-by-example). The captured verdict is **serialized into a structured form** specifically shaped for future reward-model training (Phase 3 / R4).
 - *Metric:* reward-model / Critic agreement gain per human-minute, rich vs thin channel.
 - *Fail:* no difference → the bottleneck is elsewhere; revisit.
 - *Depends on:* R1 (to measure the gain).
@@ -127,17 +127,17 @@ The load-bearing bets are written in full ([08](./08-hypotheses-and-validation.m
 
 **R3 — Grounding the Critic in a living constitution + anchored exemplars raises Critic↔human agreement and lowers judgment variance vs the current prose rubric.**
 - *Why:* the Critic judges in a vacuum (A1, A3, A4); Constitutional AI grounds judgment in explicit principles. Full design in [12](./12-design-constitution.md).
-- *Experiment:* A/B the anchored/constitution-grounded Critic vs the prose-rubric Critic on the R1 benchmark; measure agreement and test–retest variance.
+- *Experiment:* A/B the anchored/constitution-grounded Critic vs the prose-rubric Critic on the R1 benchmark; measure agreement and test–retest variance. Watch the **Critic-vs-human gap** (not just Critic scores) to catch reward hacking. The constitution must include the **ethics/dark-pattern** principle (F-LEG-03) and a **representation/bias** principle (F-LEG-05).
 - *Metric:* agreement ↑ and variance ↓ at significance.
 - *Fail:* no gain → the constitution is the wrong altitude or grounding does not help; revise or drop it (it is not exempt from measurement).
 - *Depends on:* R1.
 
 **R4 — A learned preference/reward model trained on accumulated human verdicts predicts human preference better than the prompted Critic — and can be distilled into a cheaper, calibrated judge.**
 - *Why:* the plan is to hand-tune a prompt forever (H8); Anthropic trains reward models from preference data. This is the compounding engine (A2, E2, G3).
-- *Experiment:* train a Bradley-Terry-style preference model on accumulated pairwise verdicts; evaluate held-out pairwise accuracy vs the prompted Critic.
-- *Metric:* held-out pairwise accuracy (reward model > prompted Critic) at significance; distilled-judge cost/quality.
+- *Experiment:* preference learning / **VLM distillation** on accumulated pairwise human verdicts. Evaluate held-out pairwise accuracy vs the prompted Critic. Use a **dual-judge deployment** (learned reward model augments/distills the prompted Critic). **Separate universal-craft from domain-style signals** to test cross-domain transfer.
+- *Metric:* held-out pairwise accuracy (reward model > prompted Critic) at significance; distilled-judge cost/quality; cross-domain transfer measured.
 - *Fail:* not enough / too-noisy verdict data → strengthen R2 first; or preference is too subjective to model → stay with the grounded prompt.
-- *Depends on:* R1, R2.
+- *Depends on:* R1, R2, R3.
 
 ### Tier 2 — the top quality levers
 
@@ -174,8 +174,8 @@ The load-bearing bets are written in full ([08](./08-hypotheses-and-validation.m
 | Bet | Statement | Decisive metric | Closes |
 |---|---|---|---|
 | **R9** | An upstream strategy/IA layer (audience/positioning/content-strategy → site-plan/narrative), itself Phase-Exit-Reviewed, raises brief-fit and whole-page coherence | human brief-fit + coherence, with vs without | D1, D2, G1, G2, C4, L2 |
-| **R10** | Content-robustness stress + real performance + a11y/i18n *as dimensions* reduce real-world breakage | escaped-failure rate on held-out content/locales | B2, B3, B4, K3, A3 |
-| **R11** | Deliberate cross-domain / serendipitous retrieval raises novelty without hurting brief-fit | human distinctiveness ↑, brief-fit flat | M1, E4 |
+| **R10** | Content-robustness stress matrix (2×/3× length, missing fields, long-unbroken-string) + real performance + a11y/i18n *as dimensions* reduce real-world breakage | escaped-failure rate on held-out content/locales | B2, B3, B4, K3, A3 |
+| **R11** | Deliberate cross-domain 'wildcard' retrieval slot alongside same-domain top-k raises novelty without hurting brief-fit | human distinctiveness ↑, brief-fit flat | M1, E4 |
 | **R12** | Stakes-weighted, plateau-aware effort allocation raises quality-per-token | quality at fixed budget, adaptive vs uniform | H3 |
 | **R13** | Learning from trajectories + rejections (not only approvals) compounds faster than approvals-only | H6 slope, trajectory-on vs off | E1 |
 | **R14** | Uncertainty-routed human review yields more calibration per human-minute than uniform review | agreement gain per verdict, targeted vs uniform | E3 |

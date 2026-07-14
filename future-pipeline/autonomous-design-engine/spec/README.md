@@ -106,7 +106,7 @@ Notice what you **don't** provide: brand **personality, tone, and motion** are *
 - the **content** for the section(s) you want (headline, CTA, nav, etc.),
 - any **assets** (logo, hero image) referenced by the brief,
 - *(optional)* up to **5 reference screenshots** for direction,
-- for the build phase only: an **`ANTHROPIC_API_KEY`** and the tooling in [07](./07-mvp-cli.md).
+- for the build phase only: the **tooling in [07](./07-mvp-cli.md)** and `ADE_PROVIDER=agent-sdk` (the Claude Pro-plan Agent-SDK credit via OAuth — **no `ANTHROPIC_API_KEY` in dev**; a real API key is Phase-4/production-only).
 
 ### The two files — concrete shape
 

@@ -140,6 +140,8 @@ PAYLOAD (metadata)   construction · rationale · pairs_with · avoid · recipe_
 
 **Why:** an incoming request is a *brief* (a problem statement), so you embed the **problem space** and match nearest-neighbor on that. Embedding hex codes or HTML pollutes the vector with semantically-empty tokens and ruins retrieval. You retrieve by *problem*, then read the *solution* from payload.
 
+**Key-free, local embeddings (C2.0).** ADE uses a **local embedding model** (Ollama or equivalent — no `ANTHROPIC_API_KEY`; Anthropic does not expose first-party embeddings, and paid third-party embedding APIs are the **production-only** alternative). The embedding-model id is stored with each vector. A model-version change triggers a **full re-embed of the entire Library** before any new retrieval — there is no mixing of incompatible vector spaces (F-MEM-03). The embed step takes only the natural-language synthesis of `intent + context_fit`; no construction, hex values, or HTML ever enters the vector (F-MEM-04).
+
 ### 2.2 What must NEVER enter a Library Entry
 - Exact brand tokens / hex values (identity → Brand/Project store).
 - Literal client copy (content, not design knowledge).
@@ -164,8 +166,12 @@ A tiny human-authored file: the only brand constraints you supply. Nothing strat
 ```ts
 interface BrandData {                 // the human-provided givens — one small file per client
   client_id: string;
-  palette: { role: string; value: string }[];                 // exact brand colors + roles
-  typography: { role: "display"|"ui"|"mono"; family: string; fallback: string }[];
+  export_format?: "DTCG" | "Style-Dictionary";
+  // Must include semantic/state colors (error/success/warning) and theming/dark-mode values
+  palette: { role: "primary"|"secondary"|"accent"|"neutral"|"error"|"success"|"warning"|string; value: string; theme?: "light"|"dark"|"both" }[];
+  // Must use fluid type/space scales, not just fixed-px
+  typography: { role: "display"|"ui"|"mono"; family: string; fallback: string; fluid_scale?: boolean }[];
+  spacing?: { scale: "fluid" | "fixed" };
   logo_ref?: string;                  // asset pointer, if the client maintains one
 }
 ```
@@ -177,9 +183,13 @@ interface BrandFoundation {
   client_id: string;
   version: number;                    // append-only; bumped on approval OR re-derivation (I5)
   status: "draft" | "approved" | "frozen";
+  export_format: "DTCG" | "Style-Dictionary";
   identity: {
-    palette: { role: string; value: string; usage: string }[]; // FROM BrandData (+ AI-assigned usage)
-    typography: { role: "display"|"ui"|"mono"; family: string; fallback: string }[]; // FROM BrandData
+    // FROM BrandData (+ AI-assigned usage). Includes state colors and dark-mode pairings.
+    palette: { role: "primary"|"secondary"|"accent"|"neutral"|"error"|"success"|"warning"|string; value: string; usage: string; theme?: "light"|"dark"|"both" }[];
+    // FROM BrandData (now explicit fluid scales)
+    typography: { role: "display"|"ui"|"mono"; family: string; fallback: string; fluid_scale?: boolean }[];
+    spacing: { scale: "fluid" | "fixed" };       // FROM BrandData
     motion_voice: string;        // DERIVED — "restrained, cinematic, no bounce"
     personality: string[];       // DERIVED from business context — ["trust","legacy","reliable","modern"]
     tone: string;                // DERIVED — brand voice for copy
@@ -188,6 +198,8 @@ interface BrandFoundation {
   provenance: {                       // per-element source — drives correct re-derivation
     palette: "provided";
     typography: "provided";
+    spacing: "provided";
+    export_format: "provided";
     motion_voice: "derived" | "provided";   // "provided" only if a client overrides the default
     personality: "derived" | "provided";
     tone: "derived" | "provided";
@@ -281,19 +293,44 @@ interface RunRecord {
   section_id: string;
   iteration: number;                  // 0,1,2,…
   candidate_id?: string;              // when N variations are generated
+  system_state_snapshot: {            // C1.0: versioned state per run
+    prompts: string;
+    model: string;
+    library_version: string;
+  };
   input_bundle_ref: string;           // what was fed (soft/hard/ctx)
   output_code_ref: string;
   screenshots: Record<string,string>;
   scores: DimensionScores;
-  verdict: "pass" | "fail";
+  det_result: {                       // deterministic gate results (C0.6, C0.7)
+    render_health: "pass" | "fail";
+    hard_constraint: "pass" | "fail";
+    violations: string[];             // specific violation IDs / messages
+  };
+  critic_raw: unknown;                // full structured Critic output (H8 calibration substrate)
+  verdict: "pass" | "fail" | "escalated" | "aborted"; // terminal state for last iter
   critic_feedback: string;            // targeted, actionable
-  duration_ms: number;
-  tokens: { input: number; output: number };
+  decision: "approved" | "escalated" | "aborted" | "continuing"; // this iteration
+  model_id: string;                   // resolved model id for this call (C0.12, F-MOD-05)
+  provider: string;                   // active provider: agent-sdk | api | local
+  tokens: TokenBreakdown;             // per-part breakdown (C0.17 — H7 substrate)
+  wall_clock_ms: number;              // wall time for this iteration
+}
+
+interface TokenBreakdown {            // C0.17 — enables H7 (context economy stays flat)
+  input: {
+    hard_brief: number;               // brief + brand-data + system tokens
+    soft_refs: number;                // reference screenshots / Library entries
+    visual_context: number;           // prior-section screenshots (CTX)
+    loop_state: number;               // prior feedback / violation history
+    total: number;
+  };
+  output: number;                     // generated code tokens
 }
 
 interface DimensionScores {           // the Critic rubric (see 05)
   brand_adherence: number;            // 0..100 — hard-store fit
-  system_adherence: number;           // 0..100 — design-system fit (n/a for section 1)
+  system_adherence: number | null;    // 0..100 — design-system fit (null in Phase 0: no PDS)
   brief_fit: number;                  // 0..100 — serves the business goal
   craft: number;                      // 0..100 — quality/aesthetics
   weighted_total: number;
@@ -339,13 +376,15 @@ classDiagram
 
 | Entity | MVP (R&D) | Later phase |
 |---|---|---|
-| Library Entry | — (not used in MVP) | pgvector: vector = embedded synthesis; row = payload |
+| Library Entry | — (not used in MVP) | Phase 2: flat-file cosine store + per-run Library-version snapshot; production: pgvector ANN (tuned recall) |
 | Brand Foundation | — (not in MVP) | JSON row / file per client |
 | Project Design System | — (not in MVP) | JSON row / file per surface |
 | Artifact / Section | local files `./projects/<client>/artifacts/` | object store / DB |
 | Run/Trace Record | local JSON `./projects/<client>/trace/` | runs DB |
 
 The MVP (`07`) persists only **Artifact/Section** and **Run/Trace** — enough to prove the loop and measure H1.
+
+**Phase 2 Library storage (C2.2):** the Library starts as a **flat-file cosine store** (O(n), fine for small N). The Library version is **snapshotted per run** (the run records its Library version id) so retrieval is reproducible and any regression in the store is traceable. When the store grows, the migration path is a **pgvector ANN index** with a tuned recall target (≥0.95 recall@10 on the labeled eval set) — the ANN index replaces the flat-file cosine search without changing the schema or embedding model.
 
 ### 8.1 Integrity & concurrency requirements (all stores)
 

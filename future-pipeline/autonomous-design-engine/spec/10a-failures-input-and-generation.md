@@ -225,9 +225,9 @@
 - **Root cause:** Generator drifts; no enforcement of "extend-never-contradict."
 - **Detection:** Deterministic token-allowlist check finds off-system values.
 - **Impact:** Visible inconsistency; the hard store stops being hard (H4 fails).
-- **Mitigation:** Token-allowlist checker on every section; new *components* allowed, new *tokens* rejected [MP-1, MP-6].
-- **Recovery:** Re-generate the section with the violation fed back as hard feedback; never auto-approve.
-- **Validation:** Generate multiple sections; assert zero off-allowlist tokens (the H4 hard metric).
+- **Mitigation:** Token-allowlist checker on every section (runs inside the **Hard-Constraint Gate**, [11 §2.1](./11-guardrails-and-invariants.md)); new *components* allowed, new *tokens* rejected [MP-1, MP-6].
+- **Recovery:** Re-generate the section with the specific off-allowlist violation fed back as hard feedback; never auto-approve.
+- **Validation:** Generate multiple sections; assert zero off-allowlist tokens (the H4 hard metric); violations are logged with the specific token ID in the trace.
 
 ### F-PDS-03 — Component-layer bloat / duplicates
 **Level:** impl · **Severity:** Low · **Area:** Design system

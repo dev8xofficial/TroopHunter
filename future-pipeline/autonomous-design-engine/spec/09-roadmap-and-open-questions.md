@@ -40,7 +40,9 @@ Rung 3           human approves brand only; sections auto-approved unless Critic
 Rung 4           human sets direction + final sign-off; AI runs the project
 ```
 
-You move up a rung only when, at the current rung, the Critic's "pass" and the human's verdict agree often enough that the human's review is mostly redundant. **Never skip rungs on faith.** Brand approval likely stays human for a long time — it's high-stakes, long-lived, and cheap to keep. The mechanism that makes a rung *measurable* is the **Phase-Exit Review** ([11 §2.3](./11-guardrails-and-invariants.md)): each boundary (section, brand, design system, library) already runs an automated review just inside its human gate, so the agreement between that review and the human is the exact signal that says whether the gate can be relaxed — and each boundary climbs the ladder on its own evidence.
+You move up a rung only when, at the current rung, the Critic's "pass" and the human's verdict agree often enough that the human's review is mostly redundant. **A gate is relaxed ONLY where that boundary's measured Critic↔human agreement clears an explicit threshold.** **Never skip rungs on faith.** **Dropping back a rung** on quality complaints or measured regression is a first-class, expected move.
+
+Brand approval likely stays human for a long time — it's high-stakes, long-lived, and cheap to keep. The mechanism that makes a rung *measurable* is the **Phase-Exit Review** ([11 §2.3](./11-guardrails-and-invariants.md)): each boundary (section, brand, design system, library) already runs an automated review just inside its human gate, so the agreement between that review and the human is the exact signal that says whether the gate can be relaxed — and each boundary climbs the ladder on its own evidence.
 
 ---
 

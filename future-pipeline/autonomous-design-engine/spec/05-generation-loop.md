@@ -126,10 +126,14 @@ The Critic scores the rendered section on four weighted dimensions. The weights 
 | **Craft** | hierarchy, rhythm, restraint, polish, responsiveness | 25% | 35% |
 
 Rules:
-- **Deterministic floor first (composite Pass Gate).** The *objective* parts of brand/system adherence (token-allowlist) and the entire quality floor (a11y/contrast, responsive overflow, content presence, no placeholders) are checked by the **Guardrail Layer** ([11](./11-guardrails-and-invariants.md)) **before** the Critic — not by the Critic. A Critic "pass" can never override a deterministic failure: `approved ⇔ deterministic checks pass AND Critic passes`. This shrinks the rubric below to the *subjective* remainder.
-- **Pairwise over absolute.** When ranking candidates, the Critic compares them head-to-head ("A or B, and why") — far more reliable than absolute 0–100 scores. Absolute scores are still recorded for trend tracking.
-- **Feedback must be actionable.** Each fail returns specific, addressable notes ("the CTA competes with the headline; the photo is cropped too tight at 375") — not "make it better."
-- **The Critic is a proxy, not an oracle.** It is the system's weakest link; it is calibrated over time by human verdicts (see `08` H3/H8). Until then, a human spot-checks Critic "passes."
+- **Deterministic floor first (composite Pass Gate).** The *objective* parts of brand/system adherence (token-allowlist) and the entire quality floor (a11y/contrast, responsive overflow, content presence, no placeholders) are checked by the **Guardrail Layer** ([11](./11-guardrails-and-invariants.md)) **before** the Critic — not by the Critic. A Critic “pass” can never override a deterministic failure: `approved ⇔ deterministic checks pass AND Critic passes`. This shrinks the rubric below to the *subjective* remainder.
+- **`criticTemperature = 0.2`** (stable, not divergent — the Critic must stay consistent across repeated calls on the same screenshots; the Generator uses `genTemperature = 0.7` to diverge).
+- **Phase-0 rubric (no design system yet)**: `system_adherence = null` — the token-allowlist does not exist in Phase 0 (no PDS), so this dimension is excluded. Effective weights for section 1: brand_adherence 35 %, brief_fit 30 %, craft 35 %. The full four-dimension rubric (25 % each) applies from section 2 onward, once the PDS exists.
+- **Pairwise over absolute.** When `--variations ≥ 2`, the Critic compares candidates head-to-head (“A or B, and why”) *before* assigning absolute 0–100 scores — pairwise comparison is far more reliable than absolute scoring alone. Validation runs **must** use `--variations ≥ 2` so the H1 signal is not dominated by single-candidate Critic noise.
+- **Record raw judgments.** The exact structured Critic output (scores, ranking, verdict, feedback — not just the final verdict) is persisted in every `RunRecord` in `trace.jsonl`. These raw judgments are the H8 calibration substrate — they must exist even when a run ends in escalation or abort.
+- **Fresh session enforcement (I2).** The Critic's session / context is initialized independently of the Generator's; they share no conversation history, no tool state, and no cached context. The only inputs the Critic receives are screenshots and the hard constraints — never the Generator's reasoning or intermediate steps.
+- **Feedback must be actionable.** Each fail returns specific, addressable notes (“the CTA competes with the headline; the photo is cropped too tight at 375”) — not “make it better.”
+- **The Critic is a proxy, not an oracle.** It is the system's weakest link; it is calibrated over time by human verdicts (see `08` H3/H8). Until then, a human spot-checks Critic “passes.”
 - **Beyond the section.** The same Critic capability also runs as a **Phase-Exit Review** ([11 §2.3](./11-guardrails-and-invariants.md)) on the non-section artifacts (brand, design system, library entry), each with its own rubric — the four dimensions above are the *section* rubric, not the Critic's only job.
 
 ---
@@ -139,12 +143,14 @@ Rules:
 | Condition | Action |
 |---|---|
 | **Pass Gate met** — deterministic hard checks pass **and** Critic ≥ threshold | exit → Approved |
-| Render invalid and unrepairable across K tries | Aborted + recorded |
-| Hard-constraint violation unresolved within budget | Escalated (returns best-so-far) |
+| Render invalid, unrepairable across K tries (`renderRepairTries`) | Aborted + recorded (each repair attempt is traced and counted against the run budget) |
+| Hard-constraint violation unresolved within iteration budget | Escalated (returns best-so-far) |
 | `iterations == max_iterations` (default 4) | Escalated (human reviews best-so-far) |
 | Wall-clock / token budget per section exceeded | Escalated (returns best-so-far) |
+| Model-call count budget exceeded | Escalated (returns best-so-far) |
+| A↔B ping-pong detected (same violation class flips between two states across iterations) | Escalated early — do not spin; human resolves the oscillation |
 
-Budgets are configurable. The point is **bounded** autonomy: the loop never spins forever and always ends in a recorded, inspectable state. **Best-so-far is retained throughout** — an Escalated run still returns the best candidate seen, never nothing and never a regression (invariant I4, [11 §7](./11-guardrails-and-invariants.md)).
+Budgets are configurable and enforced **centrally** by the Orchestrator, not per-call. The point is **bounded** autonomy: the loop never spins forever and always ends in a recorded, inspectable state. **Best-so-far is retained throughout** — an Escalated run still returns the best candidate seen, never nothing and never a regression (I4, [11 §3](./11-guardrails-and-invariants.md)).
 
 ---
 
@@ -177,6 +183,14 @@ OUTPUT: a complete React + TypeScript component (.tsx) for THIS section only,
         No placeholders. Use the brand/system tokens exactly. It must render
         in the preview harness with no extra wiring.
 ```
+
+**Generator output rules (Phase 0)** — these are enforced deterministically by the Guardrail Layer ([`11 §2.1`](./11-guardrails-and-invariants.md)), not by the prompt alone:
+
+- **Single file**: exactly one self-contained `.tsx`; no `supporting/*.tsx` in Phase 0.
+- **Import allowlist**: `react` only. No icon, image, or UI component libraries. Hallucinated imports break the build and are fed back as a *fix* task (never a design score).
+- **Static Tailwind class strings only**: no computed or template-literal class names — the Play CDN's JIT cannot see them.
+- **Streaming + truncation check**: call is streamed with generous `max_tokens`; on `finish_reason = max_tokens` *or* unbalanced braces/JSX, retry once at a higher budget (counted against model-call budget); on second failure, route to render-repair, not critique.
+- **`--refs` is a no-op in Phase 0**: accepted as a flag, wired for real in Phase 2 (C2.4).
 
 ### 6.2 Critic prompt (spec)
 

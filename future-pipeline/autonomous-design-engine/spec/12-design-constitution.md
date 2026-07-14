@@ -31,7 +31,7 @@ The constitution does not *score* anything — the Critic and the deterministic 
 
 ## 3. The seed principles (v0)
 
-Eight principles. Each states *what good means*, *why*, and — critically — *what it does not dictate*. They are the destination; the route is the system's.
+Ten principles. Each states *what good means*, *why*, and — critically — *what it does not dictate*. They are the destination; the route is the system's.
 
 **P1 — Serve the brief before the eye.** Beauty is in service of the business goal; a beautiful section that does not advance the goal has failed. *Why:* Goal B is design *for a brief*, not decoration ([00 §1](./00-overview.md)). *Does not dictate:* what "serving the goal" looks like — that is the design.
 
@@ -49,14 +49,18 @@ Eight principles. Each states *what good means*, *why*, and — critically — *
 
 **P8 — Excellence is spiky, not balanced.** A design that is exceptional where it matters beats one that is uniformly adequate. Do not average yourself into mediocrity. *Why:* summing dimensions into one score rewards compromise over greatness ([14](./14-research-agenda.md) R8); great work has a point of view. *Does not dictate:* which axis to spike — the brief and brand decide.
 
+**P9 — Ethical constraints / No dark patterns.** Design must respect user agency and intent; it cannot use deceit, forced continuity, or manipulative patterns to drive metrics. *Why:* reward hacking on conversion proxies creates long-term trust collapse (F-LEG-03). *Does not dictate:* how to optimize a funnel honestly — only that the optimization must be honest.
+
+**P10 — Representation and Bias.** Imagery, language, and cultural framing must reflect a pluralistic world, avoiding stereotypes or default-western/default-white anchoring unless specifically demanded by the localized brief. *Why:* unchecked generative models regress to narrow, biased cultural means (F-LEG-05). *Does not dictate:* specific demographics to include — but demands the system actively check its defaults.
+
 ---
 
 ## 4. The hard floor vs. the soft aspiration
 
 Not every clause carries the same authority, mirroring the soft/hard spine ([01 §4](./01-actors-and-components.md)):
 
-- **A small HARD floor** — inviolable, enforced by deterministic gates where possible, never traded away by the Critic: **accessibility/contrast floor** (P6), **brand & system adherence** (the hard stores), **brief truth** (never misrepresent the client), **honesty of the medium** (never fake a state, animation, or content the real build cannot deliver).
-- **The principles as SOFT aspiration** — P1–P8 ground and stabilise the Critic's taste, but they are aspirations the system applies with judgment and *may help refine over time* (§7). They are calibration, not code.
+- **A small HARD floor** — inviolable, enforced by deterministic gates where possible, never traded away by the Critic: **accessibility/contrast floor** (P6 — including deep a11y: keyboard flow, screen-reader, reduced-motion, and 200%-zoom reflow, not only axe-core contrast), **no dark patterns** (P9 — the Critic and the Provenance gate both refuse manipulative patterns regardless of the brief), **brand & system adherence** (the hard stores), **brief truth** (never misrepresent the client), **honesty of the medium** (never fake a state, animation, or content the real build cannot deliver).
+- **The principles as SOFT aspiration** — P1–P10 ground and stabilise the Critic's taste, but they are aspirations the system applies with judgment and *may help refine over time* (§7). They are calibration, not code.
 
 Anchored exemplars (§6) are **soft calibration** — reference points, never templates. "This render is roughly a 90" anchors a scale; it does not say "copy this."
 

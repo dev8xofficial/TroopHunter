@@ -98,6 +98,20 @@ Two small JSON files. The human provides only **facts and constraints**; strateg
 
 > **Why no `personality`/`feel` field?** Those are *strategic interpretation*, not facts you own — so the system **derives** them (full system: from business context + brand-data; MVP: the Generator infers them per-section). Specifying them by hand would anchor the AI's strategy, the opposite of Goal B. The only brand constraints you supply are the palette + typography in `--brand-data`. (Rationale: [04 §2.1](./04-memory-and-consistency.md).)
 
+### 3.1 Input Gate: asset fitness + injection safety — C0.1
+
+The Input Gate ([`11 §2.1`](./11-guardrails-and-invariants.md)) runs these additional checks before any model call:
+
+**Asset fitness** — a file that exists but is unfit is rejected here, not at render time:
+- **Colorspace**: must be sRGB. CMYK JPEGs are auto-converted where safe (lossless colorspace swap); if conversion is ambiguous or destructive, the file is flagged with a precise error.
+- **Minimum resolution**: checked against the display size the asset will occupy (e.g. a full-bleed hero image must meet a minimum px threshold for the 1440 px breakpoint).
+- **Logo alpha check**: `logo_ref` assets are checked for alpha-channel presence and background transparency — a white-background logo will be caught here before it fails silently against the brand palette.
+- **Aspect-ratio sanity**: a clearly wrong crop ratio (e.g. 1:100) is flagged as a likely mistake, not silently passed.
+
+**Injection safety** — all brief strings and content fields are wrapped as *data* with clear delimiters before they enter any model prompt (invariant I9). Hard constraints are re-checked deterministically by the Hard-Constraint Gate (C0.7) after generation — so adversarial text in a brief field cannot bypass the deterministic floor even if it alters the model's output.
+
+**Fail behaviour**: any gate failure emits a **precise, actionable error message** and makes **zero model calls**.
+
 ---
 
 ## 4. The loop (exact behavior)
@@ -137,12 +151,12 @@ sequenceDiagram
 
 Iteration detail (gates from [11](./11-guardrails-and-invariants.md) are part of the MVP):
 1. **Generate** — Generator prompt (`05` §6.1, reduced: **brand-data** palette+type as hard tokens; no full design system; personality/tone inferred per-section). With `--variations N`, request N candidates.
-2. **Render** — write each candidate's `Section.tsx` into the **preview harness**, refresh the Vite dev server; Playwright loads the harness URL and screenshots each breakpoint.
-3. **Render-health gate** (deterministic) — type-check/build clean, non-blank DOM, no error overlay, fonts/images loaded, layout settled. Invalid → bounded **repair** path (fix the code), **not** critique — a render bug is never judged as design (I11).
+2. **Render** (Eyes pipeline — C0.5) — each candidate gets a **fresh build directory + unique local port** (prevents stale-module bleed between candidates). Playwright loads the harness URL with a `candidateId` query parameter. Before capture, await in sequence: `document.fonts.ready` → network idle → images decoded → animation / CSS transition settle. Components with async data must set `data-ade-ready="true"` on their root element when ready; the harness awaits this attribute in addition to mount + fonts (unsignaled async fetches are forbidden in Phase-0 output). A **content fingerprint** of the DOM is checked against the current `candidateId` — a stale render from a prior candidate is detected and retried, never accepted. Screenshots captured at 1440 / 768 / 375 px.
+3. **Render-health gate** (deterministic — C0.6) — **fast syntax check** (esbuild.transform: catches parse/syntax errors; does *not* type-check — semantic errors surface via the Vite error overlay), non-blank DOM, expected root node present, no error overlay, fonts + images loaded, layout settled, `window.__ADE_READY_ID__ === candidateId` per-candidate nonce match (prevents stale-render false passes). Invalid → bounded **render-repair** sub-loop (fix the code), **not** the design Critic — a render bug is categorically distinct from a design failure (I11).
 4. **Hard-constraint gate** (deterministic) — a11y/contrast audit (axe-core), responsive-overflow, content-present / no-placeholder, and — when `--brand-data` is supplied — a **color allowlist** (only the provided palette may appear; off-palette hex fails). Violations are fed back as **hard** feedback. *(The full token-allowlist for spacing/radii/etc. is still skipped — no design system yet.)*
 5. **Critique** — Critic prompt (`05` §6.2) in a **fresh** context (I2), screenshots + brief → structured scores + ranking + feedback (validated by the **Schema gate**).
 6. **Decide — Pass Gate** = hard-gate pass **AND** Critic ≥ `--threshold`. Update **best-so-far** (never replace with worse, I4). If not passed and budget remains, carry violations + critique forward; else escalate with best-so-far.
-7. **Trace** — append the iteration record (`03` §6) to `trace.json` **immediately** (durable, atomic).
+7. **Trace** — append the iteration record (`03` §6) to `trace.jsonl` **immediately** as a new JSONL line (durable, atomic — I6). JSONL format ensures a mid-run crash leaves all completed iteration records intact and individually parseable.
 
 ---
 
@@ -161,10 +175,10 @@ runs/burkes-hero/
 │   │   ├── cand-2/{…}
 │   │   └── critique.json
 │   ├── iter-1/ …
-└── trace.json                  # array of RunRecord (03 §6) — the H1 measurement substrate
+└── trace.jsonl                 # JSONL, one RunRecord per line, atomically appended per iteration — the H1 measurement substrate
 ```
 
-`trace.json` is the deliverable that matters most for validation: it lets you see whether scores **rose across iterations** (the H1 signal).
+`trace.jsonl` is the deliverable that matters most for validation: it lets you see whether scores **rose across iterations** (the H1 signal). JSONL format (one `RunRecord` per line, not a JSON array) is required so each iteration can be appended atomically without rewriting the whole file — a JSON array cannot be atomically appended.
 
 ---
 
@@ -189,7 +203,28 @@ harness/              # thin Vite + React app: mounts the candidate Section.tsx 
 └── vite.config.ts
 ```
 
-Dependencies to add (build phase, not now): `@anthropic-ai/sdk`, `playwright`, `@axe-core/playwright` (deterministic a11y gate), a small arg parser, plus the harness stack — `react`, `react-dom`, `vite`, `@vitejs/plugin-react`, `tailwindcss`, `typescript`. Node + TS. `ANTHROPIC_API_KEY` from env. (Swap the Vite harness for a minimal Next.js app when you want production parity — the generated component is unchanged.)
+### 6.1 Generator output contract (Phase 0) — C0.3
+
+The Generator is bound by these output rules, enforced deterministically by the Guardrail Layer ([`spec/11`](./11-guardrails-and-invariants.md)):
+
+- **Single file**: exactly one self-contained `.tsx` per candidate — no `supporting/*.tsx` in Phase 0 (deferred to Phase 1).
+- **Import allowlist**: `react` only — no icon libraries, image libraries, or UI component libraries. Hallucinated imports break the build; they are caught deterministically by the Guardrail Layer and fed back as a *fix* task, never scored as a design failure.
+- **Static Tailwind class strings only**: no runtime-constructed class names (e.g. no template literals computing class values — the Tailwind Play CDN's JIT cannot discover what is not a literal string in the source).
+- **Streaming + truncation check**: the Generator call is streamed with a generous `max_tokens` budget. If the stream ends with `finish_reason = max_tokens` *or* braces / JSX are unbalanced, the loop retries once with a higher token budget (counted against the run's model-call budget); if the second attempt also fails, the candidate routes to the render-repair path — never to critique.
+- **`--refs` is a no-op in Phase 0**: the flag is accepted by the CLI but has no effect on generation. It is wired for real in Phase 2 (C2.4).
+- **No placeholders**: the Generator instruction explicitly forbids lorem ipsum, TODO comments, and placeholder copy. The Hard-Constraint Gate (C0.7) also scans for these deterministically as a downstream check.
+
+### 6.2 Harness isolation (Phase 0) — C0.4
+
+The preview harness treats generated code as **untrusted from the start**:
+
+- **Tailwind via Play CDN** — `<script src="https://cdn.tailwindcss.com">` in `index.html`, not a build-time `content` scan. The candidate `.tsx` is written at runtime, so JIT class discovery must happen in-browser. *(Gap acknowledged: CDN ≠ production build — intentional and flagged as **F-PAR-02**; Phase 4 C4.4 reconciles it.)*
+- **Network-isolated** — egress is denied by default at the Playwright browser level; a candidate that attempts `fetch()` or loads an external resource is blocked, not silently allowed.
+- **Ephemeral per candidate** — each candidate gets its own fresh build directory and unique local port; no module cache or HMR state bleeds between candidates.
+- **No secrets or credentials in scope** — the harness shell and its runtime environment must never contain `ANTHROPIC_API_KEY` or any other sensitive value.
+- **Pinned toolchain** — Playwright, Vite, and the Tailwind CDN version tag are pinned explicitly in the lockfile; a supply-chain update cannot silently alter render output (F-OPS-07).
+
+Dependencies (build phase): `@anthropic-ai/claude-agent-sdk`, `playwright`, `@axe-core/playwright` (deterministic a11y gate), a small arg parser, plus the harness stack — `react`, `react-dom`, `vite`, `@vitejs/plugin-react`, `tailwindcss`, `typescript`. Node + TS. Provider via `ADE_PROVIDER` env var — **never `ANTHROPIC_API_KEY` in dev** (see `AGENTS.md` and `knowledge/decisions-and-conventions.md`). (Swap the Vite harness for a minimal Next.js app when you want production parity — the generated component is unchanged.)
 
 ---
 
