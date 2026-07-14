@@ -8,13 +8,13 @@
 
 ```mermaid
 flowchart TB
-    NC["NEW CLIENT<br/>business context · content · assets · brand-data (palette+type) · (optional) ≤5 references"] --> B
-    B["[1] BRAND ESTABLISHMENT (once per client)<br/>human provides palette+type → AI DERIVES the rest → HUMAN approves → FROZEN (hard)"] --> S1
-    S1["[2] FIRST SECTION (e.g. hero)<br/>closed loop (05) → approved → CRYSTALLIZE → Project Design System frozen"] --> SR
-    SR["[3] REMAINING SECTIONS (about, features, footer)<br/>closed loop, constrained by frozen system + sees built sections"] --> QA
-    QA["[4] ASSEMBLE + WHOLE-ARTIFACT QA<br/>cross-section coherence pass"] --> DEL
+    NC["NEW CLIENT\nbusiness context · content · assets · brand-data (palette+type) · (optional) ≤5 references"] --> B
+    B["[1] BRAND ESTABLISHMENT (once per client)\nhuman provides palette+type → AI DERIVES the rest → HUMAN approves → FROZEN (hard)"] --> S1
+    S1["[2] FIRST SECTION (e.g. hero)\nclosed loop (05) → approved → CRYSTALLIZE → Project Design System frozen"] --> SR
+    SR["[3] REMAINING SECTIONS (about, features, footer)\nclosed loop, constrained by frozen system + sees built sections"] --> QA
+    QA["[4] ASSEMBLE + WHOLE-ARTIFACT QA\ncross-section coherence pass"] --> DEL
     DEL["[5] DELIVER artifact"] --> WB
-    WB["[6] LEARNING WRITE-BACK<br/>de-identified patterns + human verdicts → GLOBAL LIBRARY"]
+    WB["[6] LEARNING WRITE-BACK\nde-identified patterns + human verdicts → GLOBAL LIBRARY"]
     WB -. next surface (product): reuse SAME Brand Foundation .-> S1
     WB -. next client: starts smarter (Library grew) .-> NC
 ```
@@ -105,11 +105,11 @@ Each later section is generated **against** the frozen Project Design System and
 
 ```mermaid
 flowchart LR
-    A["assemble sections → full artifact"] --> Q["whole-artifact QA<br/>(Critic pass over the assembled page:<br/>cross-section coherence, nav, responsive)"]
+    A["assemble sections → full artifact"] --> Q["whole-artifact QA\n(Critic pass over the assembled page:\ncross-section coherence, nav, responsive)"]
     Q -->|pass| D["deliver"]
     Q -->|fail| FIX["re-loop the offending section"]
-    D --> WB["write-back:<br/>distill de-identified entries + verdicts"]
-    WB --> PER["Phase-Exit Review<br/>(abstraction altitude:<br/>transferable, not too specific/vague)"]
+    D --> WB["write-back:\ndistill de-identified entries + verdicts"]
+    WB --> PER["Phase-Exit Review\n(abstraction altitude:\ntransferable, not too specific/vague)"]
     PER -->|pass| LIB[("Library")]
     PER -->|fail| REAB["bounded re-abstraction"]
 ```
@@ -136,7 +136,7 @@ flowchart TB
     end
     BF --> WPDS --> W
     BF --> PPDS --> P
-    note["Same brand → recognizably one company.<br/>Different per-surface system → product adapts for density/usability."]
+    note["Same brand → recognizably one company.\nDifferent per-surface system → product adapts for density/usability."]
 ```
 
 The product's **first screen** is its section-1: it runs the loop under the (already frozen) brand, then **crystallizes a new Product Design System**. Subsequent product screens inherit that. Brand consistency across artifacts is guaranteed by the shared parent; surface-appropriate difference is enabled by the separate child systems.

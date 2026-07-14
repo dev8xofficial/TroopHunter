@@ -92,9 +92,9 @@ The constitution grows the way the Library does ([04 §6](./04-memory-and-consis
 
 ```mermaid
 flowchart LR
-    OBS["system observes a recurring pattern<br/>(a class of rejections · a repeated<br/>Critic↔human disagreement · a failure mode<br/>the current principles don't cover)"] --> PROP["PROPOSE an amendment<br/>(new/■refined principle) WITH EVIDENCE<br/>from trace + verdicts — never a vibe"]
+    OBS["system observes a recurring pattern\n(a class of rejections · a repeated\nCritic↔human disagreement · a failure mode\nthe current principles don't cover)"] --> PROP["PROPOSE an amendment\n(new/■refined principle) WITH EVIDENCE\nfrom trace + verdicts — never a vibe"]
     PROP --> RAT{human ratifies?}
-    RAT -->|yes| WRITE["append-only version bump<br/>(provenance: what evidence drove it)"]
+    RAT -->|yes| WRITE["append-only version bump\n(provenance: what evidence drove it)"]
     RAT -->|no| DISCARD["logged, not adopted"]
     WRITE --> CON[("Design Constitution v_n+1")]
     AGE["evidence shifts (trend drift, L1)"] -.retire/soften.-> CON

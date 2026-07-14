@@ -23,13 +23,13 @@ Evaluation in ADE is not one artifact but three layers, each with a different ow
 ```mermaid
 flowchart TB
     subgraph FIXED["① GOLDEN CORE — human-owned, immutable-by-machine (the anchor)"]
-        G["small multi-domain brief set +<br/>multi-rater human reference ratings ·<br/>HELD-OUT (never written back to the Library)"]
+        G["small multi-domain brief set +\nmulti-rater human reference ratings ·\nHELD-OUT (never written back to the Library)"]
     end
     subgraph GROW["② FRONTIER — system-proposed, human-ratified (grows)"]
-        F["new eval cases the system proposes —<br/>especially adversarial / edge / its own failure modes"]
+        F["new eval cases the system proposes —\nespecially adversarial / edge / its own failure modes"]
     end
     subgraph LEARN["③ REWARD MODEL — learned from ① + accumulated verdicts (operational)"]
-        R["a design-quality preference model ·<br/>the day-to-day judge, always checked against ①"]
+        R["a design-quality preference model ·\nthe day-to-day judge, always checked against ①"]
     end
     G --> R
     F -->|ratified| G

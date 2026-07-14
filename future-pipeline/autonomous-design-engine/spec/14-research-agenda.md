@@ -93,10 +93,10 @@ Chosen by **(quality leverage × feasibility)** and by dependency. **Do not buil
 
 ```mermaid
 flowchart LR
-    T0["TIER 0 — ENABLERS<br/>R1 benchmark · R2 human channel"] --> T1["TIER 1 — OUTER LOOP<br/>R3 constitution · R4 reward model"]
-    T1 --> T2["TIER 2 — TOP QUALITY LEVERS<br/>R5 eyes · R6 generation · R7 search · R8 Pareto"]
-    T2 --> T3["TIER 3 — DEPTH & ROBUSTNESS<br/>R9 strategy · R10 robustness · R11 retrieval ·<br/>R12 effort · R13 trajectory-learning · R14 routing · R15 imagery"]
-    T3 --> T4["TIER 4 — FRONTIER<br/>R16 outcomes · R17 long-horizon · R18 goal-fit"]
+    T0["TIER 0 — ENABLERS\nR1 benchmark · R2 human channel"] --> T1["TIER 1 — OUTER LOOP\nR3 constitution · R4 reward model"]
+    T1 --> T2["TIER 2 — TOP QUALITY LEVERS\nR5 eyes · R6 generation · R7 search · R8 Pareto"]
+    T2 --> T3["TIER 3 — DEPTH & ROBUSTNESS\nR9 strategy · R10 robustness · R11 retrieval ·\nR12 effort · R13 trajectory-learning · R14 routing · R15 imagery"]
+    T3 --> T4["TIER 4 — FRONTIER\nR16 outcomes · R17 long-horizon · R18 goal-fit"]
 ```
 
 Two dependencies are non-negotiable: **R1 (the benchmark) comes first** — nothing else can be validated without it; and **R2 (the human channel) precedes R4 (the reward model)** — a reward model trained on approve/reject/notes captured through a CLI is built on sand.

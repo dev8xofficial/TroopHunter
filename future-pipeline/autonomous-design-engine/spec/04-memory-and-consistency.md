@@ -8,14 +8,14 @@
 
 The single most important distinction in ADE. There are **two** design memories doing **opposite** things; merging them breaks the system.
 
-| | **Global Library** | **Brand + Design System** |
-|---|---|---|
-| Job | get *smarter* over time | stay *consistent* |
-| Scope | all clients, forever | one client / one surface |
-| Used as | retrieved inspiration | binding requirement |
-| AI may diverge? | **yes** — direction | **no** — law |
-| Soft / hard | soft | hard |
-| Written by | Write-back, after each project | Brand: human approval · System: crystallization |
+|                 | **Global Library**             | **Brand + Design System**                       |
+| -----------------| --------------------------------| -------------------------------------------------|
+| Job             | get *smarter* over time        | stay *consistent*                               |
+| Scope           | all clients, forever           | one client / one surface                        |
+| Used as         | retrieved inspiration          | binding requirement                             |
+| AI may diverge? | **yes** — direction            | **no** — law                                    |
+| Soft / hard     | soft                           | hard                                            |
+| Written by      | Write-back, after each project | Brand: human approval · System: crystallization |
 
 The Library makes project #50 better than project #1. The Brand/System makes *one* client's hero, About page, and product app feel like the same company. They pull opposite directions — one loose, one rigid — which is exactly why they are **separate stores**, never one blended "memory."
 
@@ -27,11 +27,11 @@ Consistency is **not emergent**. It is enforced by a frozen, three-level hierarc
 
 ```mermaid
 flowchart TB
-    BF["BRAND FOUNDATION — one per client<br/>logo · colors · type family · motion voice · personality · tone<br/><b>hard · approved once · frozen</b>"]
-    WS["WEBSITE design system<br/>(conversion, storytelling)"]
-    PR["PRODUCT design system<br/>(density, usability)"]
-    H["hero · about · pricing …<br/><i>sections inherit the system</i>"]
-    D["dashboard · settings · tables …<br/><i>screens inherit the system</i>"]
+    BF["BRAND FOUNDATION — one per client\nlogo · colors · type family · motion voice · personality · tone\nhard · approved once · frozen"]
+    WS["WEBSITE design system\n(conversion, storytelling)"]
+    PR["PRODUCT design system\n(density, usability)"]
+    H["hero · about · pricing …\nsections inherit the system"]
+    D["dashboard · settings · tables …\nscreens inherit the system"]
     BF -->|inherited by| WS
     BF -->|inherited by| PR
     WS --> H
@@ -137,11 +137,11 @@ The test that routes each fact:
 
 ```mermaid
 flowchart LR
-    B["Brief<br/>(business context)"] --> Q["query string<br/>(problem-space synthesis)"]
+    B["Brief\n(business context)"] --> Q["query string\n(problem-space synthesis)"]
     Q --> E["embed"]
     E --> ANN["ANN search over Library"]
     ANN --> TOPK["top-k entries"]
-    TOPK --> BUNDLE["fed into the loop as<br/><b>SOFT direction</b> (may diverge)"]
+    TOPK --> BUNDLE["fed into the loop as\nSOFT direction (may diverge)"]
 ```
 
 The query is built from the **brief**, embedded, and matched nearest-neighbor against the embedded problem-space of each entry (see `03` §2.1).

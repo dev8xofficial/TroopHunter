@@ -8,11 +8,11 @@
 
 ```mermaid
 flowchart LR
-    P0["PHASE 0 — Eyes (the MVP)<br/>closed loop · one section · CLI · no memory<br/>proves H1 (+ H2 smell-test, H7)"]
-    P1["PHASE 1 — Brand + Consistency<br/>Brand Foundation · crystallization · multi-section<br/>proves H4 (+ H5 setup)"]
-    P2["PHASE 2 — Memory / Library<br/>vector DB · retrieval · write-back<br/>proves H6 (+ H7 at scale)"]
-    P3["PHASE 3 — Taste / Judge<br/>verdict loop · pairwise · calibration<br/>proves H3, H8"]
-    P4["PHASE 4 — Scale & Autonomy<br/>whole-site/product · relax human gates<br/>autonomy ladder"]
+    P0["PHASE 0 — Eyes (the MVP)\nclosed loop · one section · CLI · no memory\nproves H1 (+ H2 smell-test, H7)"]
+    P1["PHASE 1 — Brand + Consistency\nBrand Foundation · crystallization · multi-section\nproves H4 (+ H5 setup)"]
+    P2["PHASE 2 — Memory / Library\nvector DB · retrieval · write-back\nproves H6 (+ H7 at scale)"]
+    P3["PHASE 3 — Taste / Judge\nverdict loop · pairwise · calibration\nproves H3, H8"]
+    P4["PHASE 4 — Scale & Autonomy\nwhole-site/product · relax human gates\nautonomy ladder"]
     P0 --> P1 --> P2 --> P3 --> P4
 ```
 

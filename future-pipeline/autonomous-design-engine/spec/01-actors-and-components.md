@@ -31,25 +31,25 @@
 ```mermaid
 flowchart TB
     subgraph HUMAN["Human"]
-        DL["Design Lead / R&D<br/><i>approve brand · taste verdicts · curate</i>"]
+        DL["Design Lead / R&D\napprove brand · taste verdicts · curate"]
     end
 
     subgraph INPUT["Inputs (left side)"]
-        CI["Client Input<br/><i>business context (hard)<br/>content + assets (hard)<br/>≤5 references (soft)</i>"]
+        CI["Client Input\nbusiness context (hard)\ncontent + assets (hard)\n≤5 references (soft)"]
     end
 
     subgraph WORKSPACE["Autonomous Workspace"]
-        ORCH["Orchestrator<br/><i>sequence · assemble · enforce</i>"]
-        GEN["Generator<br/><i>write section code</i>"]
-        CRIT["Critic / Judge<br/><i>score · rank · pass/fail</i>"]
-        EYES["Browser — the Eyes<br/><i>render · screenshot</i>"]
-        WB["Learning Write-back<br/><i>distill · dedup</i>"]
+        ORCH["Orchestrator\nsequence · assemble · enforce"]
+        GEN["Generator\nwrite section code"]
+        CRIT["Critic / Judge\nscore · rank · pass/fail"]
+        EYES["Browser — the Eyes\nrender · screenshot"]
+        WB["Learning Write-back\ndistill · dedup"]
     end
 
     subgraph MEMORY["Memory (right side)"]
-        LIB["Global Library<br/><b>soft</b> · cross-project"]
-        BRAND["Brand Foundation<br/><b>hard</b> · per client"]
-        PDS["Project Design System<br/><b>hard</b> · per surface"]
+        LIB["Global Library\nsoft · cross-project"]
+        BRAND["Brand Foundation\nhard · per client"]
+        PDS["Project Design System\nhard · per surface"]
     end
 
     subgraph OUT["Outputs"]

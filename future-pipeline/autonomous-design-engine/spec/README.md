@@ -57,13 +57,13 @@ The whole thing is **one prepare step + six run steps**. You do the work at the 
 
 ```mermaid
 flowchart TB
-    S0["STEP 0 · PREPARE<br/>gather business context, content, assets, brand-data (palette+type), (optional) ≤5 references"] --> S1
-    S1["STEP 1 · ESTABLISH THE BRAND (once per client)<br/>you provide palette+type → AI derives the rest → you approve → FROZEN"] --> S2
-    S2["STEP 2 · FIRST SECTION + CRYSTALLIZE<br/>gated loop → you approve → freeze the Project Design System"] --> S3
-    S3["STEP 3 · REMAINING SECTIONS<br/>gated loop, constrained by the frozen system + sees built sections"] --> S4
+    S0["STEP 0 · PREPARE\ngather business context, content, assets, brand-data (palette+type), (optional) ≤5 references"] --> S1
+    S1["STEP 1 · ESTABLISH THE BRAND (once per client)\nyou provide palette+type → AI derives the rest → you approve → FROZEN"] --> S2
+    S2["STEP 2 · FIRST SECTION + CRYSTALLIZE\ngated loop → you approve → freeze the Project Design System"] --> S3
+    S3["STEP 3 · REMAINING SECTIONS\ngated loop, constrained by the frozen system + sees built sections"] --> S4
     S4["STEP 4 · ASSEMBLE + WHOLE-ARTIFACT QA"] --> S5
     S5["STEP 5 · DELIVER"] --> S6
-    S6["STEP 6 · LEARN (write-back)<br/>de-identified patterns + your verdicts → Library"]
+    S6["STEP 6 · LEARN (write-back)\nde-identified patterns + your verdicts → Library"]
     S6 -. next surface (product): reuse the SAME brand .-> S2
     S6 -. next client: starts smarter (Library grew) .-> S0
 ```
@@ -250,19 +250,19 @@ The agent generates a design, **renders and looks at it**, a deterministic **Gua
 
 ```mermaid
 flowchart LR
-    BRIEF["brief + memory<br/>(input bundle)"] --> IG{{"1 · Input Gate"}}
-    IG -->|valid| GEN["2 · Generator (LLM)<br/>write React/TS component"]
+    BRIEF["brief + memory\n(input bundle)"] --> IG{{"1 · Input Gate"}}
+    IG -->|valid| GEN["2 · Generator (LLM)\nwrite React/TS component"]
     GEN --> REN["3 · Eyes: render in browser"]
     REN --> RHG{{"4 · Render-Health Gate"}}
     RHG -->|render bug| FIX["repair (bounded)"] --> GEN
     RHG -->|valid| SHOT["5 · screenshot @1440/768/375"]
-    SHOT --> HCG{{"6 · Hard-Constraint Gate<br/>a11y · tokens · responsive · content"}}
+    SHOT --> HCG{{"6 · Hard-Constraint Gate\na11y · tokens · responsive · content"}}
     HCG -->|violation| GEN
-    HCG -->|pass| CRIT["7 · Critic (LLM, fresh ctx)<br/>subjective quality"]
-    CRIT --> PG{{"8 · Pass Gate<br/>deterministic AND critic"}}
+    HCG -->|pass| CRIT["7 · Critic (LLM, fresh ctx)\nsubjective quality"]
+    CRIT --> PG{{"8 · Pass Gate\ndeterministic AND critic"}}
     PG -->|fail, budget left| GEN
     PG -->|pass| DONE["approved section"]
-    PG -->|budget out| ESC["escalate<br/>(best-so-far)"]
+    PG -->|budget out| ESC["escalate\n(best-so-far)"]
 ```
 
 The same eight stages, in words — **what happens at each step of the loop**:
@@ -372,11 +372,11 @@ Consistency is **enforced**, not hoped for — via a frozen three-level hierarch
 
 ```mermaid
 flowchart TB
-    BF["BRAND FOUNDATION — one per client<br/>colors · type · motion voice · personality<br/><b>hard · approved once · frozen</b>"]
-    WS["WEBSITE design system<br/>(conversion, storytelling)"]
-    PR["PRODUCT design system<br/>(density, usability)"]
-    H["hero · about · pricing<br/><i>sections inherit it</i>"]
-    D["dashboard · settings · tables<br/><i>screens inherit it</i>"]
+    BF["BRAND FOUNDATION — one per client\ncolors · type · motion voice · personality\nhard · approved once · frozen"]
+    WS["WEBSITE design system\n(conversion, storytelling)"]
+    PR["PRODUCT design system\n(density, usability)"]
+    H["hero · about · pricing\nsections inherit it"]
+    D["dashboard · settings · tables\nscreens inherit it"]
     BF -->|inherited by| WS
     BF -->|inherited by| PR
     WS --> H
@@ -566,3 +566,4 @@ The gated loop on **one section**, from a brief, no memory — the cheapest test
 - **Next action (R&D):** the improvement program is deliberately *research-first* — no change ships until it shows a measured gain on the [evaluation charter's](./13-evaluation-charter.md) benchmark. Start with **R1** (build the benchmark) since every other bet is measured against it ([14](./14-research-agenda.md)).
 
 > Guiding principle, inherited from our own logs: **report observed numbers, never predicted ones.** Every metric in this spec is a target to measure against — not a claim.
+ 

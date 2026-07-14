@@ -11,10 +11,10 @@ ADE has four layers. Higher layers depend only on the layer directly below.
 ```mermaid
 flowchart TB
     subgraph L4["Layer 4 — Interface"]
-        CLI["CLI<br/><i>design brand | design section | design site | design learn</i>"]
+        CLI["CLI\ndesign brand | design section | design site | design learn"]
     end
     subgraph L3["Layer 3 — Orchestration"]
-        ORCH["Orchestrator<br/><i>project state · input assembly · consistency · policy</i>"]
+        ORCH["Orchestrator\nproject state · input assembly · consistency · policy"]
     end
     subgraph L2["Layer 2 — Capabilities"]
         GEN["Generator (LLM)"]
@@ -25,7 +25,7 @@ flowchart TB
         WB["Write-back (distiller)"]
     end
     subgraph L1["Layer 1 — Stores"]
-        LIB[("Global Library<br/>vector + payload")]
+        LIB[("Global Library\nvector + payload")]
         BRAND[("Brand Foundation")]
         PDS[("Project Design System")]
         ART[("Artifact Store")]
