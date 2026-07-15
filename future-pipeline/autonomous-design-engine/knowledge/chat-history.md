@@ -35,6 +35,8 @@ covers_period: late June - early July 2026 (per file mtimes: spec/00 Jun 23 -> s
 13. [The execution roadmap (spec 15) — solo, 8 hrs/week](#13-the-execution-roadmap-spec-15--solo-8-hrsweek)
 14. [Cross-agent knowledge-base discussion (this document's own origin)](#14-cross-agent-knowledge-base-discussion-this-documents-own-origin)
 15. [The file-location discovery](#15-the-file-location-discovery)
+16. [Phase 3 & 4 specification hardening and plan audit](#16-phase-3--4-specification-hardening-and-plan-audit)
+17. [The Research Engine — critique, redesign, build, and area-by-area refinement](#17-the-research-engine--critique-redesign-build-and-area-by-area-refinement)
 
 ---
 
@@ -577,7 +579,7 @@ This document, its two companions ([`decisions-and-conventions.md`](./decisions-
 
 ## 16. Phase 3 & 4 Specification Hardening and Plan Audit
 
-**Request:** The user requested the implementation of Phase 3 (Chunks 3.1�3.5) and Phase 4 (Chunks 4.0�4.8) of the IMPLEMENTATION_PLAN.md into the formal specification documents. The core directive was: *"First deeply analyze the implementation plan then work and find out issues and resolve it."* and *"We are not writing code; we are only editing and updating the Spec."*
+**Request:** The user requested the implementation of Phase 3 (Chunks 3.1�3.5) and Phase 4 (Chunks 4.0�4.8) of the IMPLEMENTATION_PLAN.md into the formal specification documents. The core directive was: *"First deeply analyze the implementation plan then work and find out issues and resolve it."* and *"We are not writing code; we are only editing and updating the Spec."*
 
 **Work Completed:**
 1. **Phase 3 Specification Integration:**
@@ -600,8 +602,70 @@ This document, its two companions ([`decisions-and-conventions.md`](./decisions-
 
 4. **Final Gap Analysis & Plan Audit:**
    - A final sweep was conducted to ensure 100% parity between the IMPLEMENTATION_PLAN.md and the specification docs.
-   - **Fixed Gap 1:** Updated spec/README.md to remove a stale reference to ANTHROPIC_API_KEY for dev, enforcing the ADE_PROVIDER=agent-sdk rule. Flagged the inconsistency as ? Resolved in the implementation plan's �9.
-   - **Fixed Gap 2 & 3:** Standardized all cross-document references of "13 invariants" to **"15 invariants"**. This included updating the table in IMPLEMENTATION_PLAN.md, the hard rules in �0, the core diagnosis in spec/14, and the global rules in AGENTS.md.
+   - **Fixed Gap 1:** Updated spec/README.md to remove a stale reference to ANTHROPIC_API_KEY for dev, enforcing the ADE_PROVIDER=agent-sdk rule. Flagged the inconsistency as ? Resolved in the implementation plan's �9.
+   - **Fixed Gap 2 & 3:** Standardized all cross-document references of "13 invariants" to **"15 invariants"**. This included updating the table in IMPLEMENTATION_PLAN.md, the hard rules in �0, the core diagnosis in spec/14, and the global rules in AGENTS.md.
 
 **Outcome:**
 The system architecture is now fully hardened for production, security, legal, and operational parity. The implementation plan and the specification set (spec/11, spec/12, spec/14, spec/README.md) are now 100% consistent and completely synced with all Phase 0 through Phase 4 requirements.
+
+---
+
+## 17. The Research Engine — critique, redesign, build, and area-by-area refinement
+
+This session created a **new standalone capability** under the ADE project: the **Research Engine** at `future-pipeline/autonomous-design-engine/research-engine/`. It is not part of ADE's runtime (Generator/Critic/Eyes/etc.); it is a *meta*-capability whose job is to continuously study and improve ADE's architecture itself. This section preserves the full reasoning trail, per the owner's request that nothing from the chat be skipped.
+
+### 17.1 Starting point — "read the system and understand it"
+The session opened with the owner asking the assistant to read and understand the whole ADE system (`knowledge/`, `AGENTS.md`, `CLAUDE.md`, `spec/`), then pointing at a newly-created, **untracked** folder `research-engine/` containing seven Markdown files generated largely via ChatGPT: `research-goal.md` (the owner's own statement of intent), plus `overview.md`, `research-philosophy.md`, `research-methodology.md`, `research-process.md`, `research-integration.md`, `research-template.md`. Also newly present: a `failures/overall-system-failures/` folder (the old `spec/10a–10e` failure docs being restructured out of `spec/`).
+
+### 17.2 The request — critique and improve, with one hard constraint
+The owner asked the assistant to read `research-goal.md`, point out mistakes, and propose a **materially better** research-engine framework. **The one non-negotiable constraint**, stated emphatically: **do not restrict research to a fixed set of questions.** The owner's argument (preserved because it drove the whole design): if you cap an investigation at "the 20 questions I could think of," the system answers only those 20 — but having ingested the whole ADE spec, the model may have insight on ~1,000 questions the owner never thought to ask. A question cap throws all of that away. So the engine must have **full autonomy and no boundaries on what it may surface.**
+
+### 17.3 The critique delivered
+**What the ChatGPT drafts got right (kept):** research as a permanent capability (not a one-off review); adversarial roles (Advocate vs Skeptic) and falsification-before-validation; cross-domain import; an evidence taxonomy ("confidence is not evidence"); complexity-reduction as a first-class goal; human governance (propose, never auto-modify).
+
+**The real mistakes identified (in priority order):**
+1. **A manifesto, not an engine.** All six docs described *values* eloquently and *machinery* almost not at all — no mechanism actually *produced* "unknown unknowns" or "evidence that matters." Plus heavy redundancy: three different pipelines (goal.md's 12 steps, methodology's 10 stages, process's 11 phases) that didn't even map onto each other.
+2. **Multi-agent theater (the deepest flaw).** The drafts prescribed Architect/Advocate/Skeptic/etc., all played by *the same model*, and literally claimed this "reduces confirmation bias." It does not: personas of one model share training data, blind spots, and failure modes → correlated errors, the *choreography* of debate without its statistical value.
+3. **No ground-truth anchor.** The engine is meant to *improve* ADE, but nothing defined what counts as proof a recommendation improves anything — and it ignored that ADE already has an evaluation anchor (the Golden Core benchmark / Evaluation Charter, spec/13). Risk: infinite confident-sounding, never-validated narratives.
+4. **Empirical language for a paper system.** ADE has almost no code yet, so ~95% of what the engine can study today is the *spec on paper* — yet the drafts spoke of "10× scale," "run experiments," "measure bottlenecks" as if a live system existed.
+5. **Reinvents memory ADE already designed.** "Knowledge capture / research compounds" was aspired to but never built, while ADE's own Library (spec/36) already specifies exactly the needed mechanics (embed-vs-payload, confidence + decay, dedup, de-identification).
+6. **No economics.** An 8-agent, 10-stage investigation per question, on Pro-plan Agent-SDK credit, for a solo dev — a firehose. Biggest existential risk: the engine becomes a document-factory bureaucracy that out-costs the thing it improves.
+7. **Floats free of the existing spec.** ADE already has an R-series agenda (R1–R18) and H-series hypotheses; the drafts defined a parallel taxonomy with no stated relationship → redundancy.
+8. **Structural bias undefended.** A "find-weaknesses" engine has a standing incentive to always find weaknesses (justify itself, prefer novelty); nothing protected the null result ("this assumption held") as a first-class win.
+
+### 17.4 The improved framework — nine upgrades
+1. **Evidence Ladder that caps confidence.** Every finding names its strongest evidence on a 5-tier ladder — **T0** reasoning → **T1** external precedent → **T2** worked-example/thought-experiment on a real brief → **T3** offline empirical (ablation or **Golden Core benchmark delta**) → **T4** production A/B — and **confidence is capped by tier** (T0→Low, T1/T2→Medium, T3→High, T4→Very High). Kills confident-narrative bias; **T3 is wired to ADE's own benchmark (spec/13)** — the engine invents no private notion of "better."
+2. **Paper-mode vs empirical-mode** as an explicit switch: today the spec is the subject (paper); empirical instruments unlock per-area as code lands.
+3. **Real decorrelation, not persona theater.** Agreement among same-substrate/same-context "agents" is treated as ~zero evidence; genuine independence comes from *different models*, *different information slices*, *fresh context*, and giving the Attacker a concrete **falsification payoff** (produce the single input under which claim C fails), not a "be skeptical" tone.
+4. **Divergence → Convergence** — the operational form of "no question limits": **unbounded** generation (surface everything, cheap wide model — the "1,000 questions" all get captured) followed by **ruthless** triage via **Expected Value of Investigation** `EVI = (impact × probability × reversibility) / cost`; investigate the top-N now, **park the rest in a permanent, never-deleted Backlog.** Freedom in what's surfaced; discipline in what's spent.
+5. **Dogfood ADE's Library** for the research Knowledge Base (embed-vs-payload, confidence + decay, dedup, contradiction log) instead of reinventing storage.
+6. **One-page Decision Record** as the human interface (claim, evidence tier, confidence, blast radius, reversibility, recommendation Accept/Reject/Defer/Needs-Evidence, "what would change our mind"); the long report is an appendix.
+7. **Integrity instruments baked in:** pre-registration of expected findings (exposes rationalization), a **mandatory steelman of the status quo** before any change is recommended (counters novelty bias), and **null-result parity** (a confirmed assumption is a success).
+8. **Bind to the existing spec:** R1–R18 and the H-series become Backlog items executed *inside* the relevant investigation — not a rival taxonomy.
+9. **Self-application + a real success metric:** the engine periodically researches itself; success is measured in **validated deltas** (accepted recommendations producing a measured T3+ gain or a confirmed prevented failure) **per unit of effort — not report count.**
+
+**Blunt recommendation given:** for a solo dev with no code yet, do *not* build the full 8-agent scientific org first — build the lightweight **paper-mode core** (unbounded divergence → EV-ranked backlog → a small genuinely-decorrelated adversarial pass → Decision Record, anchored on the Evidence Ladder). 80% of the value at 20% of the ceremony; the version that won't quietly become a document factory.
+
+### 17.5 The build
+On the owner's approval ("build a detailed research engine… replace-with-archive"), the six manifesto drafts were **superseded by one coherent, implementable set**, each file with a single non-overlapping job:
+- `README.md` (front door + index), `00-charter.md` (why/mission/non-goals/principles/success metric), `01-operating-model.md` (**the engine**: modes, Evidence Ladder, the *one* unified lifecycle, divergence→convergence, proportionality budgets Light/Standard/Deep, invariants I-R1…I-R6, provenance), `02-roles-and-diversity.md` (decorrelation, adversarial protocol, lens selection), `03-areas.md` (**the Area system**), `04-instruments.md` (paper + empirical toolbox, cross-domain import protocol), `05-artifacts-and-integration.md` (Backlog, Knowledge Base, Decision Record, integration into spec/plan/failures), `06-governance-and-integrity.md` (human authority, anti-bias, self-application, kill-gates).
+- `templates/` (area-card, investigation-report, decision-record, backlog-entry) and `areas/_registry.md` (the worklist).
+- The seven originals were preserved in `research-engine/_archive/` as origin intent.
+
+### 17.6 The file-loss incident (preserved for transparency)
+During the archiving setup, a real problem occurred and was surfaced to the owner rather than hidden: after creating the `_archive/`, `templates/`, `areas/` subfolders, **six of the seven original drafts went missing from disk**, and `research-goal.md` was found relocated to the ADE root (parent of `research-engine/`). These files were **untracked**, so git had no copy. The exact mechanism was never definitively determined (the assistant's `cd` into the drive path had failed under Git Bash, and the PowerShell `Move-Item` should have moved files *into* `_archive/`, not deleted them). **Recovery:** because the assistant had read all seven files verbatim earlier in the same session, it **restored all seven into `_archive/` from that captured content** (byte counts verified; `research-goal.md` intact at 8994 bytes). Lesson logged: untracked files in `research-engine/` have no git safety net until committed.
+
+### 17.7 The area-by-area refinement (the owner's decisive steer)
+After the first build, the owner gave a load-bearing correction (Roman-Urdu, paraphrased): *"You should not list the areas and subsystems. **I** will add them and **I** will decide which area gets researched. The engine should discover whatever things/subsystems exist by itself. Right now the areas I want to research are these…"* — followed by a **14-phase program**:
+
+> P1 Architecture (highest priority) · P2 Intelligence · P3 Learning · P4 Evaluation · P5 Autonomy · P6 Generator · P7 Critic · P8 Vision ("Eyes") · P9 Knowledge · P10 Human Collaboration · P11 Robustness · P12 Scaling · P13 Production · P14 Research Agenda Meta-Layer.
+
+Plus: *the engine is not area-specific — if a new area appears in future, it must be researchable too.*
+
+**Changes made in response:**
+- The `areas/_registry.md` was rewritten: the assistant's previously-seeded ADE subsystem/cross-cutting Areas were **removed**, replaced by the **owner's 14 Phases** (single-line titles only, priority = phase number). The registry is now explicitly **human-owned** — the developer adds Areas and selects which runs next; the engine never invents or reorders them.
+- `03-areas.md`, `README.md`, `00-charter.md`, `06-governance-and-integrity.md` were edited to remove every *prescribed* ADE-subsystem list. New governing principle, stated throughout: **the engine carries no hardcoded catalogue of ADE's parts; when pointed at an Area (e.g. "Architecture Research") it discovers the relevant subsystems/components itself during the Reconstruct stage.** Sub-Areas are named after whatever the engine *discovers* inside a Phase, not from a pre-written list.
+- Extensibility unchanged and reaffirmed: adding *any* future Area = one registry row + (on activation) one Area Card, with **no engine change** — so a subsystem ADE grows years from now is researchable the moment its row is added.
+
+### 17.8 Status at end of session
+The Research Engine spec set is **v1, on disk, uncommitted**. It has **not** been run — no investigation executed, no Decision Record produced yet. Suggested first action offered: activate `P1 — Architecture Research`, write its Area Card, and run one **Light**-proportionality investigation to prove the engine end-to-end before scaling ceremony. The engine's own effectiveness is therefore itself unvalidated (a fact the engine's success metric and self-application design explicitly acknowledge).

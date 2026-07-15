@@ -44,3 +44,4 @@ If `chat-history.md` says one thing and a current spec file says another, **the 
 - **`../spec/`** — the canonical system specification (docs `00`–`15`). Do not copy its content here; link to it.
 - **`../IMPLEMENTATION_PLAN.md`** — the canonical build plan.
 - **`../AGENTS.md`** / **`../CLAUDE.md`** — thin, tool-specific pointers into this folder and into `spec/`. Keep them thin; put real content here or in `spec/`, never duplicate it into those files.
+- **`../research-engine/`** — the standalone **Research Engine** capability (how ADE researches/improves itself, area-by-area). Its own docs are canonical for *how research is done*; this knowledge base records the *decisions and reasoning* that produced it (see `decisions-and-conventions.md` → "The Research Engine", and `chat-history.md §17`). Don't duplicate the engine's mechanics here — link to it.

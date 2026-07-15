@@ -9,6 +9,7 @@
 3. **[`IMPLEMENTATION_PLAN.md`](./IMPLEMENTATION_PLAN.md)** — the canonical, phase-gated build plan.
 4. **[`knowledge/decisions-and-conventions.md`](./knowledge/decisions-and-conventions.md)** — fast-reference for load-bearing decisions before you start coding.
 5. **[`knowledge/open-questions.md`](./knowledge/open-questions.md)** — things that need a human decision; check before assuming.
+6. **[`research-engine/README.md`](./research-engine/README.md)** — the **Research Engine**: the standalone, human-owned capability for researching and improving ADE *itself*, one Area at a time. It **proposes**, never auto-modifies the architecture. Its Area registry (`research-engine/areas/_registry.md`) is owned by the developer — the engine never invents or reorders Areas, and carries no hardcoded list of ADE's subsystems (it discovers them per investigation).
 
 ## Rules that override defaults (do not skip this section)
 

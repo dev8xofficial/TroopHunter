@@ -4,4 +4,4 @@
 
 **The one rule to never violate, repeated here because it's easy to get wrong by habit:** dev/R&D runs on the Claude Pro plan's Agent-SDK credit — **never set `ANTHROPIC_API_KEY`** anywhere in this project's dev config or environment. Its presence forces API billing and breaks the entire access model. See `AGENTS.md` and `knowledge/decisions-and-conventions.md` for the full picture.
 
-Everything else — architecture, build order, conventions, open questions — is in [`AGENTS.md`](./AGENTS.md), [`spec/`](./spec/), [`IMPLEMENTATION_PLAN.md`](./IMPLEMENTATION_PLAN.md), and [`knowledge/`](./knowledge/).
+Everything else — architecture, build order, conventions, open questions — is in [`AGENTS.md`](./AGENTS.md), [`spec/`](./spec/), [`IMPLEMENTATION_PLAN.md`](./IMPLEMENTATION_PLAN.md), and [`knowledge/`](./knowledge/). How ADE researches and improves *itself* (a standalone, human-owned, area-by-area capability) lives in [`research-engine/`](./research-engine/).
