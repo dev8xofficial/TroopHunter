@@ -5,6 +5,8 @@
 > **What this is not.** It does **not** replace [`IMPLEMENTATION_PLAN.md`](./IMPLEMENTATION_PLAN.md) — that remains the canonical build plan for ADE itself (chunks C0.x–C4.x). This plan does three kinds of work around it: (R/D/S) repair the corpus and verify the substrate, (M) amend the spec and the canonical plan so the contract's fixes are *inside* them before they are built, and (E) add small build chunks that ride along the canonical phases. **House rule preserved: the spec is canonical for design; every M-chunk edits `spec/` first, then reflects the change in `IMPLEMENTATION_PLAN.md`.**
 >
 > **Status:** proposal, awaiting owner ratification (chunk D4). R-chunks are safe to execute immediately (they make the corpus match the disk; no design change). M-chunks require D4. E-chunks ride the canonical build phases.
+>
+> **Read §7 first if you want to know whether this plan achieves the End Goal.** It does not, and §7 says exactly which of EG-1…EG-11 arrive, which are conditional on an owner decision, and which are out by choice. §1–§6 are the *de-risking* plan (findings → chunks); §7 is the *capability* plan (end goals → chunks → gates). Both are needed; only together do they form the contract.
 
 ---
 
@@ -242,6 +244,32 @@ Fixes every item in the contract's drift inventory (CF-17 #1–9) plus irregular
 - **Build:** Specify **advisory craft metrics** computed deterministically from the rendered DOM at gate time: spacing-scale conformance (share of margins/paddings on the token scale — PDS-dependent, so Phase 1+), type-scale conformance, alignment/grid regularity (clustering of element-edge x-coordinates), tap-target geometry. Two rules: (1) **advisory, not gating, at introduction** — values are written to the trace and injected into the Critic's context as measurements ("87% of spacing values on-scale"), moving a slice of "craft" from the noisiest component (VLM) to the cheapest (code) without adding a brittle hard gate; (2) any metric is promoted to *gating* only on benchmark evidence that it correlates with human craft verdicts.
 - **Done when:** the spec row exists with the advisory/gating distinction stated; E1.5 registered in the plan.
 
+> **The four chunks below (M18–M21) come from the v1.2 End-Goal audit (§7), not from the contract's CF/CA series.** They exist because resolving findings removes blockers but does not build capability — these close the EG gaps that no finding named.
+
+### M18 — Comprehension-depth measurement (EG-1's only honest gate)
+- **Solves:** EG-1 (gap G13); gap D1 in `spec/14`'s map ("brief comprehension is a one-line restatement, not real strategy work", ★★★) — which had an R9 bet but no near-term measurement
+- **Files:** `spec/13` §3 (golden-core case definition); `IMPLEMENTATION_PLAN.md` C1.13, C0.2 note
+- **Build:** Every golden-core brief gains a human-authored **reference interpretation**: `{ goal, audience, constraints, audience_psychology_notes, non_obvious_implications[] }` — written *before* the system sees the brief, frozen with the case. The Brief-Comprehension step's output is scored against it on two axes: **restatement accuracy** (does it get the stated facts right — extends R1's non-English metric to all briefs) and **interpretation depth** (does it surface the non-obvious implications a competent strategist would — scored by a human, or by a cross-family judge validated against human scores per M9). This number is the *only* thing standing between "we have comprehension" and "we have a one-line paraphrase we never checked."
+- **Done when:** the benchmark reports restatement accuracy and interpretation depth per brief; a deliberately subtle brief (stated goal ≠ real goal) is measurably under-interpreted by the current one-call comprehension step — establishing the baseline ⚑M15's strategy layer must beat.
+
+### M19 — Originality as a standing metric (EG-3's named-but-unmeasured clause)
+- **Solves:** EG-3 (gap G14); pulls F-LEG-01's originality screen forward from its Phase-4 grave as a *metric*
+- **Files:** `spec/13` (extends M2's external-anchor section); `IMPLEMENTATION_PLAN.md` C1.13, C4.3 note
+- **Build:** EG-3 names originality explicitly, and today the only mechanism is C4.3 — a Phase-4 legal gate that will never inform design decisions. Add two **advisory** measures to the benchmark from Phase 1: (1) **human distinctiveness rating** on the same blind pass as the anchor comparison (M2) — "would you recognize this as one of N generic AI outputs, or as a considered piece?"; (2) **self-similarity across briefs** — an embedding-distance measure over ADE's own outputs for *different* briefs (the monoculture early-warning: F-GEN-02/F-WB-05 at the output level, measurable long before the Library exists). Both are reported, neither gates. The Phase-4 legal similarity screen (C4.3) remains separate and unchanged.
+- **Done when:** both numbers appear in the benchmark report; a deliberately generic control output scores measurably lower on distinctiveness than a considered one.
+
+### M20 — Self-weakness detection (the outer loop's eyes — EG-5's core)
+- **Solves:** EG-5 (gap G15) — the largest capability hole the contract never named
+- **Files:** `spec/14` (new §"Self-directed weakness detection"); `IMPLEMENTATION_PLAN.md` (register E3.3)
+- **Build:** Today *the owner* commissions investigations (D1) and *the owner* notices patterns. Nothing lets ADE surface its own weaknesses from its own data — yet the substrate for it (trace + verdicts + gate results, all structured) exists from Phase 0. Spec a **periodic self-audit pass**: over the accumulated `trace.jsonl` + verdict corpus, cluster (a) recurring hard-gate violation classes, (b) recurring Critic↔human disagreement patterns *by dimension and stratum*, (c) briefs/sections with systematically low scores, (d) escalation causes (M7's queue). Emit three typed proposal streams: **new failure-catalogue entries** (→ `failures/`), **constitution-amendment proposals** (→ `spec/12 §7`'s protocol, which is specified but was never given a mechanism), and **frontier eval cases** (→ `spec/13 §5`'s protocol, same problem). Every proposal is evidence-cited (the trace rows that produced it) and enters as **Tier A** (strict human ratification, per M16) — the system proposes, never adopts.
+- **Done when:** the spec section defines the three streams with their evidence requirements; E3.3 is registered; a seeded recurring failure in synthetic trace data is surfaced by the pass with its supporting rows cited.
+
+### M21 — ⚑ Expanded-scope roadmap: the missing chairs *(unlock: D2 chooses expanded scope)*
+- **Solves:** EG-3's "complete" clause and EG-9 (gap G16) — currently foreclosed by D2's default
+- **Files:** `spec/09` §1 roadmap; `IMPLEMENTATION_PLAN.md` (register the milestones)
+- **Build:** D2's default scope (composition/UI intelligence) makes EG-3's *"complete design solutions"* and EG-9's *"world-class design organization"* **permanently unreachable** — a design org that cannot write copy, art-direct imagery, or author motion is not the thing EG-9 describes. If D2 chooses the expanded scope instead, this chunk registers the named, sequenced, individually-gated milestones that path requires: **copy co-optimization** (gap C4/R9-class — copy and layout designed together rather than copy frozen as input), **imagery & art direction** (R15 — selection, cropping, treatment, with F-LEG-05's representation checks built in from day one, not retrofitted), **iconography/graphic devices** (R15's second half), **motion authoring + motion-aware Eyes** (R5 — EG-3's "usability" and `spec/12` P5's "the medium is more than a frozen frame" both quietly require this). Each gets its own hypothesis and gate; none is assumed.
+- **Done when:** either (a) D2 chose the default scope → this chunk closes as `not-funded`, and `END_GOAL.md`'s North Star records the missing chairs as EG-3/EG-9's explicit unmet preconditions; or (b) D2 chose expanded scope → the four milestones are in `spec/09 §1` with gates, and the roadmap's honest timeline is re-derived against S4's budget arithmetic.
+
 ---
 
 ## 5. Phases E0–E3 — Build ride-alongs (code; execute inside the corresponding canonical phase)
@@ -285,6 +313,7 @@ Fixes every item in the contract's drift inventory (CF-17 #1–9) plus irregular
 |---|---|---|---|---|
 | **E3.1** | RLAIF preference pipeline + uncertainty routing (M11/M16) | amended `spec/14` R4, C3.5, C3.3 | AI-preference label generation (decorrelated contexts; cross-family where possible); human golden core as validation only; R14 routing live for all human review | reward-model validation runs on held-out *human* data; routing measurably concentrates human minutes on low-confidence items |
 | **E3.2** | Succession playbook exercise + judge distillation (M12/M11b) | amended `spec/11 §4` | execute the playbook on the first real model swap; distillation experiment for the judge (prod path) | a completed succession entry (old→new, deltas, recalibration) exists; distilled-judge accuracy reported vs prompted Critic |
+| **E3.3** | Self-audit + proposal pipeline (M20) | amended `spec/14` | the periodic pass over trace+verdict data; three proposal streams (failure entries / constitution amendments / frontier cases), each evidence-cited and Tier-A gated; `ade selfaudit` emits them to the escalation queue (E1.2) for batch ratification | one real audit pass over accumulated Phase-0–2 data produces at least one ratified proposal in any stream, with its trace evidence attached |
 
 ---
 
@@ -354,9 +383,63 @@ Prompted by the owner's coverage question, the plan was re-audited against **bot
 
 Confirmed deliberately uncovered after this pass (all with reasons in §6.5): R5 promotion, the second human rater, full mid-run resume, the `spec/15` rewrite, EG-8 workflow architecture.
 
+### 6.7 Third verification pass (v1.2) — audit against the **End Goal**, not the findings
+
+The owner asked the decisive question the first two passes never tested: *if every finding is resolved, are EG-1…EG-11 achieved?* Auditing the plan against the End-Goal decomposition (rather than the CF/CA series) exposed a **structural** gap: the plan had a CA→chunk and a CF→chunk matrix but **no EG→chunk matrix**, because findings-resolution removes blockers while end goals require capabilities. Four capability gaps had no chunk anywhere in either plan:
+
+- **G13** — nothing measured whether Brief Comprehension is *deep* or merely a paraphrase (gap D1 in `spec/14` had a bet, no metric) → new **M18**.
+- **G14** — EG-3 names *originality* explicitly; the only mechanism was C4.3, a deferred Phase-4 legal gate that could never inform design → new **M19** (advisory metrics from Phase 1).
+- **G15** — **the largest hole**: nothing let the system surface its own weaknesses from its own trace/verdict data; `spec/12 §7`'s self-amendment protocol and `spec/13 §5`'s frontier-proposal protocol were *specified but had no mechanism* — only mentioned inside C3.4/C3.9 → new **M20 / E3.3**.
+- **G16** — D2's default scope silently forecloses EG-3's "complete" and EG-9's "world-class"; the "fund the missing chairs" alternative had no path → new **⚑M21**.
+
+The audit's verdict itself is now a permanent part of the document (**§7**), including the honest scoreboard: 3 EGs arrive, 4–5 partially/conditionally, 3 do not arrive under current defaults.
+
+---
+
+## 7. End-Goal decomposition — does resolving the findings achieve EG-1…EG-11?
+
+> **This section exists because the answer is no.** Everything above §7 is a **de-risking plan**: it repairs the corpus, verifies the substrate, and removes false assumptions so the build stands on measured ground. That is *necessary* and it is *not sufficient*. Findings-resolution removes blockers; end goals require **capabilities**, and a capability only exists when a chunk builds it and a gate proves it. This section is the missing third matrix: **EG → what it demands → what the plan delivers → the gate that would prove it → honest verdict.**
+>
+> Read the verdict column as a commitment, not a hope. Where it says *Out* or *Narrowed*, that is a decision you are making at D2/D3 — reversible, but only if you reverse it deliberately.
+
+### 7.1 The decomposition
+
+| EG | What it actually demands | What the plan delivers | Gate that would prove it | Verdict |
+|---|---|---|---|---|
+| **EG-1** Understand goals, intent, objectives, audience psychology, constraints | Deep interpretation — the non-obvious implication a strategist sees | C0.2 comprehension (restatement + gap/conflict detection); **M18** measures depth for the first time; M5 captures the human's interpretation as the reference corpus | M18: interpretation-depth vs. the frozen reference interpretation, per stratum | **Partial → Conditional.** Depth becomes *measurable* (M18); real understanding lives in ⚑M15's strategy layer |
+| **EG-2** Independently develop design strategies | An upstream layer that plans before it draws | M5 (the training/eval corpus, passively captured from Phase 0); **⚑M15/⚑E2.4** (the layer itself) | ⚑E2.4: strategy-layer plans match/beat human plans on brief-fit + coherence, blind | **Conditional on D3.** Unfunded, this EG does not happen at all |
+| **EG-3** Complete solutions across domains — quality, coherence, usability, originality | Composition **+ copy + imagery + motion + icons**, multi-domain, original | Composition/coherence: canonical P0/P1. Quality: M2's anchor. Originality: **M19**. Multi-domain: C1.13. Copy/imagery/motion/icons: **⚑M21 only** | M2 distance-from-anchor + M19 distinctiveness + H4 coherence — *for composition only* | **Narrowed by D2.** "Complete" is **foreclosed** under the default scope. ⚑M21 is the only path to the literal clause |
+| **EG-4** Critically evaluate own outputs | Deterministic floor + visual judgment + human alignment | The system's densest coverage: C0.7–C0.10 gates, **M17** DOM craft metrics, **M9** cross-family judging, **M3** stratified agreement, **M13** rater retest, **M11** RLAIF/reward model, **M2** external anchor | M3: per-stratum agreement incl. `hard`/`adversarial`, with standing audit miss-rate | **Path.** Best-covered EG. Ceiling caveat: F-JDG-01/F-SPEC-02 are *managed*, never closed |
+| **EG-5** Identify own weaknesses, challenge assumptions, improve | The *system* mining its own data for its own failures | D1 (human-commissioned investigations) + **M20/E3.3** (the self-audit pass + three proposal streams — new; this was the biggest hole) | E3.3: one ratified proposal traced to its own evidence rows | **Was a gap → now Path.** Note by design: the system proposes, the human ratifies (I13 / M16 Tier A) |
+| **EG-6** Accumulate knowledge without being limited by prior decisions | Compounding memory + escape from its own ruts | M10 staging, **E2.2**'s three-arm ablation, M16 expiry/revocation, M8 exploration, C2.6 decay, M19's self-similarity alarm | E2.2: does retrieval beat model priors at all? | **Test, not guarantee.** E2.2 may *falsify* the Library thesis; the fallback (verdict corpus compounds instead) is a **reframe of EG-6**, not its achievement |
+| **EG-7** Adapt to new industries, aesthetics, technologies, tools | Survive substrate change; track taste change | **M12** succession playbook + **M4** ages/survives + F-MOD-07/08 (tech/tools — the big one); C1.13 multi-domain + C3.5 transfer (industries); M4's representation revisit trigger | E3.2: a real model swap absorbed with calibration re-earned and deltas recorded | **Partial.** Succession covered. **Aesthetic drift (R17) has no chunk** — named residual, deferred |
+| **EG-8** Scale to complex design workflows | Multi-page, forms, email, dashboards, cross-artifact orchestration | **Nothing.** D2/CA-14 places it outside the architecture; C3.7's per-surface checklist is the only door | — | **Out by decision.** Not a gap — a choice. Reversing it requires a new contract, not a chunk |
+| **EG-9** World-class org; consistently exceptional | EG-2 + EG-5 + the missing chairs + sustained anchor-parity | **M2 measures the gap. Nothing closes it.** Structurally requires ⚑M15 + ⚑M21 + M20 | M2: blind anchor/competitor parity, sustained across briefs | **Measured, not achieved.** Under D2's default, structurally unreachable — and now stated as such rather than implied |
+| **EG-10** Human shifts to goals/values/signals | Earned autonomy + affordable human signal | **M3** ladder stratification + audits, **M16** two-tier adoption, R14 routing (M11d/M16), **M7** async queue, **M11** RLAIF for bulk signal | M3: rung climbs only on per-stratum agreement + audit miss-rate | **Path, resource-gated.** Gated on verdict-signal economics (CF-14/S4) — the plan makes it *reachable*, cannot manufacture the signal |
+| **EG-11** Discover better approaches, create knowledge, increase own intelligence | Genuine novelty + knowledge creation + rising capability | D3's CF-2 rewording; **M20/E3.3** (knowledge creation); M11b distillation (the only weight-level lever); M8 exploration. **R7 global search deferred** | E3.3 ratified proposals + M19 distinctiveness trend | **Reframed + Partial.** Per CF-2, "its own intelligence" rises via **data, anchors, and substrate succession** — not self-modifying weights |
+
+### 7.2 The honest scoreboard
+
+Resolving every finding **and** executing every chunk in this plan yields:
+
+- **3 real paths:** EG-4 (evaluation), EG-5 (self-weakness — *only after M20/E3.3*), EG-10 (autonomy shift, resource-gated).
+- **4 partial/conditional/hypothesis:** EG-1 (measurable, then ⚑), EG-2 (⚑ on D3), EG-6 (a test that may fail into a reframe), EG-7 (succession yes, aesthetic drift no), EG-11 (reframed).
+- **2 narrowed to unreachable-as-written:** EG-3 and EG-9 — foreclosed by D2's default scope; ⚑M21 is the named reversal.
+- **1 out:** EG-8, by decision.
+
+**So: no — 11 of 11 will not be cleared. Roughly 3 arrive, 4–5 arrive partially or conditionally, and 3 do not arrive at all under the current defaults.** Two of those three are gated on decisions only you can make (D2, D3), and the plan now forces both to be conscious rather than accidental.
+
+### 7.3 What this means for how to read the plan
+
+1. **The R/D/S/M/E chunks are the floor, not the building.** They make the H1 gate trustworthy and the corpus honest. If H1 fails, none of EG-1…11 matter — which is why nothing here delays it.
+2. **Three EGs are decision-blocked, not effort-blocked.** ⚑M15 (EG-2, and EG-1's ceiling) and ⚑M21 (EG-3/EG-9) are each one owner decision away from existing. Neither is technically blocked; both are scope-blocked.
+3. **Two EGs are reframed by evidence, and that is a feature.** EG-6 may fail its own ablation (E2.2) and EG-11's premise was already wrong (CF-2). Discovering that early *is* the plan working — the alternative is three years of building a Library that never compounded.
+4. **EG-9 is the aggregate.** It cannot be chunked directly; it arrives only if EG-2 + EG-3 + EG-5 + EG-10 all land and M2's anchor metric says so. Treat it as the scoreboard, never as a task.
+
 ---
 
 ## Revision history
 
 - **v1.0 (2026-07-16)** — Initial plan: 8 reconciliation chunks (R), 4 owner decisions (D), 5 substrate chunks (S), 16 spec/plan amendment chunks (M), 17 build ride-along chunks (E0–E3); full coverage matrices for CA-1…21, CF-1…17, drift #1–9, and the prior investigation's path items; verification pass found and folded in six gaps (G1–G6). Proposal status — no `spec/`, `knowledge/`, or canonical-plan file has been modified by this document; execution of R-chunks is safe immediately, M-chunks await D4 ratification.
 - **v1.1 (2026-07-16)** — Second verification pass (§6.6), prompted by the owner's coverage question: re-audited against the full analysis (both investigation reports, beyond the CA/CF series). Added **M17/E1.5** (deterministic DOM craft metrics — AI-F4's middle layer); folded G8–G12 into **D3** (usability bar), **D4** (meta-work moratorium), **M3** (power analysis), **M2** (eval-session hygiene), **M11(e)** (feedback-channel A/B), **D1** (evidence-tier patch); §6.5 gains the R5-promotion residual with its unlock condition. Totals now: 8 R · 4 D · 5 S · **17 M** · **18 E** chunks. Coverage matrices extended with the AI missing-capabilities row.
+- **v1.2 (2026-07-16)** — **Third verification pass (§6.7) — the End-Goal audit**, prompted by the owner asking whether resolving the findings clears EG-1…EG-11. It does not: the plan was a de-risking plan with no EG→capability→chunk→gate mapping. Added **§7 — End-Goal decomposition**, the missing third matrix, with an honest scoreboard (3 EGs arrive · 4–5 partial/conditional · 3 do not arrive under current defaults) and the note that EG-2/EG-3/EG-9 are **decision-blocked at D2/D3, not effort-blocked**. Four capability chunks added for gaps no finding named: **M18** (comprehension depth — EG-1), **M19** (originality metric — EG-3), **M20/E3.3** (self-weakness detection + the self-amendment/frontier proposal mechanisms `spec/12 §7` and `spec/13 §5` specified but never mechanized — EG-5/EG-11), **⚑M21** (the missing chairs: copy, imagery, icons, motion — the only path to EG-3's "complete" and EG-9's "world-class"). Totals now: 8 R · 4 D · 5 S · **21 M** · **19 E** = **57 chunks**.
