@@ -285,6 +285,8 @@ interface Section {
 
 ## 6. Run / Trace Record (audit + measurement)
 
+> **Note:** Until `spec/16` exists, `IMPLEMENTATION_PLAN.md` Appendix A is **normative** for `trace.jsonl` field names (it is event-based and a superset of this section); this section remains canonical for entity semantics.
+
 Every loop iteration is recorded — this is the substrate the hypotheses in `08` are measured on.
 
 ```ts
