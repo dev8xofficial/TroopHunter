@@ -1,6 +1,6 @@
 # 11 — Guardrails, Invariants & Resilience (the solutions)
 
-> The failures in [10-failure-modes.md](./10-failure-modes.md) are not 80 unrelated bugs — they cluster into a handful of root patterns. This document **implements the solutions** as system-wide design elements: a deterministic **Guardrail Layer**, a set of always-true **Invariants**, and **Resilience / Integrity** rules. Designed once here, enforced everywhere. §7 maps each solution back to the specific `F-*` failures it closes, so coverage is verifiable, not asserted.
+> The failures in [10-failure-modes.md](../failures/overall-system-failures/10-failure-modes.md) are not 80 unrelated bugs — they cluster into a handful of root patterns. This document **implements the solutions** as system-wide design elements: a deterministic **Guardrail Layer**, a set of always-true **Invariants**, and **Resilience / Integrity** rules. Designed once here, enforced everywhere. §7 maps each solution back to the specific `F-*` failures it closes, so coverage is verifiable, not asserted.
 
 This doc adds a new component to the architecture (the **Guardrail Layer**) and is wired into [01](./01-actors-and-components.md), [02](./02-architecture.md), [05](./05-generation-loop.md), [03](./03-data-model.md), and [07](./07-mvp-cli.md).
 
@@ -209,7 +209,7 @@ These are guarantees the implementation must uphold and tests must assert. They 
 
 ## 8. Coverage map (solution → failures closed)
 
-Every failure class in [10](./10-failure-modes.md) is addressed by at least one solution here:
+Every failure class in [10](../failures/overall-system-failures/10-failure-modes.md) is addressed by at least one solution here:
 
 | Solution | Failures closed / mitigated |
 |---|---|

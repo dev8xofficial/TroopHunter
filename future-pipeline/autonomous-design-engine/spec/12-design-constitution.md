@@ -10,7 +10,7 @@ Three commitments govern this document:
 
 - **Specify the destination, never the route.** By the spec's own spine ([00 §5](./00-overview.md)), autonomy lives in the *route* (how to compose, which patterns, what style) and consistency lives in the *destination* (what good means, the non-negotiables). This constitution encodes the **destination only**. Everything it is silent on is, by design, the system's to decide.
 - **Principles, not rules.** A rule ("headlines 48–72px, 8px grid, ≤2 fonts") prescribes a solution and caps the system at *our* ceiling — the system knows more design than we do. A principle ("make the hierarchy unambiguous") states *what we value* and lets the system find the method. This document contains **principles and rationale**, never prescriptions.
-- **Anchor human, extend by machine.** The system may *propose* amendments; only a human *ratifies* them (§7). This keeps the constitution from drifting into whatever the system finds convenient to satisfy — the difference between real improvement and reward hacking ([10](./10-failure-modes.md) F-JDG-02, F-SPEC-05).
+- **Anchor human, extend by machine.** The system may *propose* amendments; only a human *ratifies* them (§7). This keeps the constitution from drifting into whatever the system finds convenient to satisfy — the difference between real improvement and reward hacking ([10](../failures/overall-system-failures/10-failure-modes.md) F-JDG-02, F-SPEC-05).
 
 > **Why thin is a feature, not a gap.** A rich, prescriptive constitution would drag the system toward the mean of what we already know. A thin one leaves room for the system to discover designs *we would not have thought of* — which is the primary objective. Thinness here is a **granted freedom**, made explicit in §5.
 

@@ -160,7 +160,7 @@
 - **Root cause:** Over-stuffing inputs; not honoring the context-economy design.
 - **Detection:** Context-length error or silent truncation.
 - **Impact:** Failed calls or dropped constraints (silent quality loss).
-- **Mitigation:** Retrieval (top-k), vision over text, per-section scope, trimmed visual context ([02 §4](./02-architecture.md)) [MP-5].
+- **Mitigation:** Retrieval (top-k), vision over text, per-section scope, trimmed visual context ([02 §4](../../spec/02-architecture.md)) [MP-5].
 - **Recovery:** Trim inputs by priority (hard kept, soft trimmed); retry.
 - **Validation:** H7 — tokens/section flat vs refs & Library size; assert no overflow.
 
@@ -176,7 +176,7 @@
 - **Impact:** The entire approach is invalidated.
 - **Mitigation:** Build the MVP **first and cheap** specifically to test H1 before any larger investment [MP-5].
 - **Recovery:** Stop; rethink the premise (better critique, different signal) before building more.
-- **Validation:** H1 ([08](./08-hypotheses-and-validation.md)) — decisive go/no-go gate.
+- **Validation:** H1 ([08](../../spec/08-hypotheses-and-validation.md)) — decisive go/no-go gate.
 
 ### F-SPEC-02 — Taste ceiling caps autonomy
 **Level:** spec · **Severity:** High · **Area:** Architecture
@@ -194,7 +194,7 @@
 - **Root cause:** The soft/hard model (the spine of the spec) not carried into implementation.
 - **Detection:** References behaving as law (rigid) or brand behaving as suggestion (drift).
 - **Impact:** Loses both autonomy and consistency — the core value proposition.
-- **Mitigation:** Authority tags on every input at assembly; conflict precedence enforced; Critic scores hard-adherence ([04 §7](./04-memory-and-consistency.md)) [MP-6].
+- **Mitigation:** Authority tags on every input at assembly; conflict precedence enforced; Critic scores hard-adherence ([04 §7](../../spec/04-memory-and-consistency.md)) [MP-6].
 - **Recovery:** Re-tag inputs; fix precedence; regenerate.
 - **Validation:** Tests that hard always wins over soft; references never override brand.
 
@@ -204,7 +204,7 @@
 - **Root cause:** Skipping the capability order (eyes → memory → taste).
 - **Detection:** Large surface built before any H1 result.
 - **Impact:** Wasted effort if H1 fails; slow, expensive first result.
-- **Mitigation:** Strict phase gating; MVP = the loop only, no stores ([07](./07-mvp-cli.md), [09 §1](./09-roadmap-and-open-questions.md)) [MP-5].
+- **Mitigation:** Strict phase gating; MVP = the loop only, no stores ([07](../../spec/07-mvp-cli.md), [09 §1](../../spec/09-roadmap-and-open-questions.md)) [MP-5].
 - **Recovery:** Cut scope back to the loop; defer the rest.
 - **Validation:** Phase-gate review; MVP done-criteria met before phase 1.
 
@@ -224,6 +224,6 @@
 - **Root cause:** A fixed, small, aging benchmark optimized against directly.
 - **Detection:** Benchmark gains that do not transfer to fresh held-out briefs; benchmark age.
 - **Impact:** Measurement theater one level up (F-SPEC-05); false confidence in the whole outer loop.
-- **Mitigation:** A growing, refreshed benchmark with rotating held-out cases and system-proposed adversarial cases ([13](./13-evaluation-charter.md)); track transfer to *fresh* briefs, not just the core [MP-3, MP-12].
+- **Mitigation:** A growing, refreshed benchmark with rotating held-out cases and system-proposed adversarial cases ([13](../../spec/13-evaluation-charter.md)); track transfer to *fresh* briefs, not just the core [MP-3, MP-12].
 - **Recovery:** Refresh/expand the benchmark; discount non-transferring gains.
 - **Validation:** Monitor the fresh-held-out transfer gap alongside core scores.

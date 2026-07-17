@@ -137,7 +137,7 @@ Three stores, two kinds (full detail in `03` and `04`):
 Runs after an artifact is approved. Distills it into **de-identified** library entries (the abstracted lesson, never the client's tokens/copy), and **dedups/merges** against existing entries (raise confidence, add a variation, or create new). This is the only writer to the Global Library — and it writes **only through the de-identification gate** (§3.10).
 
 ### 3.10 Guardrail Layer (the deterministic floor)
-A non-LLM tool that runs the system's **deterministic gates** — the structural solution to the failure classes in [10](./10-failure-modes.md) (full design in [11-guardrails-and-invariants.md](./11-guardrails-and-invariants.md)). It exists because anything *objectively checkable* must be checked by code, not a model:
+A non-LLM tool that runs the system's **deterministic gates** — the structural solution to the failure classes in [10](../failures/overall-system-failures/10-failure-modes.md) (full design in [11-guardrails-and-invariants.md](./11-guardrails-and-invariants.md)). It exists because anything *objectively checkable* must be checked by code, not a model:
 - **Input gate** — brief schema, required fields, contradiction/asset checks, content sanitization.
 - **Render-health gate** — only render-valid screenshots reach the Critic (a render bug must never be judged as bad design).
 - **Hard-constraint gate** — a11y/contrast, token-allowlist, responsive overflow, required elements, no placeholders/missing content.

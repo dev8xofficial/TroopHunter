@@ -418,7 +418,7 @@ APPROVED ⇔ (deterministic checks pass)        AND   (Critic passes)
             responsive · content · render-valid
 ```
 
-Plus system **invariants** the build must uphold: the Critic never grades its own work; a render bug never reaches the Critic; the best candidate is never replaced by a worse one; hard stores are append-only + versioned; every run ends in a recorded state. (Full catalogue of failures → [10-failure-modes.md](./10-failure-modes.md); the solutions → [11-guardrails-and-invariants.md](./11-guardrails-and-invariants.md).)
+Plus system **invariants** the build must uphold: the Critic never grades its own work; a render bug never reaches the Critic; the best candidate is never replaced by a worse one; hard stores are append-only + versioned; every run ends in a recorded state. (Full catalogue of failures → [10-failure-modes.md](../failures/overall-system-failures/10-failure-modes.md); the solutions → [11-guardrails-and-invariants.md](./11-guardrails-and-invariants.md).)
 
 ---
 
@@ -491,7 +491,7 @@ The gated loop on **one section**, from a brief, no memory — the cheapest test
 | 7 | [07-mvp-cli.md](./07-mvp-cli.md) | **What we build first** — the CLI loop, build-ready |
 | 8 | [08-hypotheses-and-validation.md](./08-hypotheses-and-validation.md) | The assumptions, each falsifiable, with metrics |
 | 9 | [09-roadmap-and-open-questions.md](./09-roadmap-and-open-questions.md) | Build phases, autonomy ladder, cost, risks, open problems |
-| 10 | [10-failure-modes.md](./10-failure-modes.md) | **Single source of truth for every failure** (spec + impl) — an index; full entries split across companion files **10a–10e** by theme |
+| 10 | [10-failure-modes.md](../failures/overall-system-failures/10-failure-modes.md) | **Single source of truth for every failure** (spec + impl) — an index; full entries split across companion files **10a–10e** by theme |
 | 11 | [11-guardrails-and-invariants.md](./11-guardrails-and-invariants.md) | **The solutions** — guardrail layer, invariants, resilience, integrity |
 
 **The continuous-improvement (R&D) layer** — how the system gets *better than itself* over time (docs 00–11 describe the system; 12–14 describe how it improves):

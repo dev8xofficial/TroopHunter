@@ -207,5 +207,5 @@ Carrying the culture of [08 §4](./08-hypotheses-and-validation.md):
 
 - **[12 — Design Constitution](./12-design-constitution.md)** and **[13 — Evaluation Charter](./13-evaluation-charter.md)** are the first two artifacts this agenda calls for (R3, R1) — the outer loop's seed.
 - **[08 — Hypotheses](./08-hypotheses-and-validation.md)** (H1–H8) validates that the *current* system works; this agenda (R1–R18) is how it gets *better than itself* over time. H-series proves the floor; R-series raises the ceiling.
-- **[10 — Failure Modes](./10-failure-modes.md)** catalogues what can break; this agenda is where the *quality-ceiling* failures (F-JDG-01, F-SPEC-02, F-GEN-02) become funded research rather than acknowledged risks.
+- **[10 — Failure Modes](../failures/overall-system-failures/10-failure-modes.md)** catalogues what can break; this agenda is where the *quality-ceiling* failures (F-JDG-01, F-SPEC-02, F-GEN-02) become funded research rather than acknowledged risks.
 - This document is **living**: as the system (and its humans) discover new gaps, they are appended here with a severity, a root theme, and a falsifiable bet — the single source of truth for *how ADE gets better*.

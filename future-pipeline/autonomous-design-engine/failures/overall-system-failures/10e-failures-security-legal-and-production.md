@@ -68,7 +68,7 @@
 - **Impact:** Legal exposure; the system's core premise (novel design) is breached.
 - **Mitigation:** Originality/similarity screen against known sites; Critic rewards brief-fit not resemblance; refs are direction only [MP-17, MP-6].
 - **Recovery:** Regenerate away from the resemblance; drop the offending reference.
-- **Validation:** Ablate refs; output must remain original (the [00 §1](./00-overview.md) test).
+- **Validation:** Ablate refs; output must remain original (the [00 §1](../../spec/00-overview.md) test).
 
 ### F-LEG-02 — Unlicensed fonts or imagery
 **Level:** impl · **Severity:** High · **Area:** Legal / IP
@@ -86,7 +86,7 @@
 - **Root cause:** A conversion objective with no ethical constraint; the Library can learn and propagate dark patterns.
 - **Detection:** Dark-pattern screen; human review; anti-pattern tagging.
 - **Impact:** User harm; brand/legal risk (consumer-protection law); ethical breach.
-- **Mitigation:** An explicit ethics constraint in the constitution ([12](./12-design-constitution.md)); dark-pattern screen; never write dark patterns to the Library [MP-17, MP-12].
+- **Mitigation:** An explicit ethics constraint in the constitution ([12](../../spec/12-design-constitution.md)); dark-pattern screen; never write dark patterns to the Library [MP-17, MP-12].
 - **Recovery:** Reject; regenerate under the ethics constraint.
 - **Validation:** A brief inviting urgency; assert the system refuses manipulative execution.
 
@@ -105,8 +105,8 @@
 - **Description:** If the system ever selects, crops, or generates imagery featuring people (stock photo selection, or future image generation), it risks representation/bias issues — homogeneous or stereotyped representation across race, age, ability, or body type, unexamined by any current process.
 - **Root cause:** No representation/bias consideration exists anywhere in the current image-handling path, because imagery is currently client-provided only — this is a forward-looking gap, not yet triggered.
 - **Detection:** A human audit of imagery choices across multiple projects for representation patterns.
-- **Impact:** Reputational and ethical risk if/when the system gains any imagery-selection or generation capability (ties to research bet **R15**, [14](./14-research-agenda.md)).
-- **Mitigation:** Add an explicit representation/bias consideration to the constitution ([12](./12-design-constitution.md)) and to any future imagery-selection/generation capability *before* it ships, not after.
+- **Impact:** Reputational and ethical risk if/when the system gains any imagery-selection or generation capability (ties to research bet **R15**, [14](../../spec/14-research-agenda.md)).
+- **Mitigation:** Add an explicit representation/bias consideration to the constitution ([12](../../spec/12-design-constitution.md)) and to any future imagery-selection/generation capability *before* it ships, not after.
 - **Recovery:** N/A yet — currently out of scope since the system doesn't select/generate imagery; revisit when R15 is built.
 - **Validation:** Not yet testable; flagged here so R15's build explicitly includes this check from day one rather than retrofitting it.
 
@@ -249,7 +249,7 @@
 - **Detection:** Provider status; ToS review; deprecation notices.
 - **Impact:** Downtime; account risk; forced re-calibration.
 - **Mitigation:** Provider abstraction with a real fallback (api/local); confirm ToS for the credit path; re-baseline on model change [MP-11].
-- **Recovery:** Switch provider/model; recalibrate on the benchmark ([13](./13-evaluation-charter.md)).
+- **Recovery:** Switch provider/model; recalibrate on the benchmark ([13](../../spec/13-evaluation-charter.md)).
 - **Validation:** Kill the primary provider; assert fallback + a re-baseline gate.
 
 ### F-OPS-06 — End-to-end latency / throughput blowup
@@ -258,7 +258,7 @@
 - **Root cause:** A serial, unbounded end-to-end pipeline.
 - **Detection:** Wall-clock per artifact from the trace.
 - **Impact:** Unusable turnaround at scale; human idle time.
-- **Mitigation:** Parallelize where safe; adaptive effort ([14](./14-research-agenda.md) R12); cache prefixes; cap end-to-end wall-clock [MP-5].
+- **Mitigation:** Parallelize where safe; adaptive effort ([14](../../spec/14-research-agenda.md) R12); cache prefixes; cap end-to-end wall-clock [MP-5].
 - **Recovery:** Cap and escalate; reduce breadth.
 - **Validation:** Track wall-clock/artifact; alert on budget breach.
 

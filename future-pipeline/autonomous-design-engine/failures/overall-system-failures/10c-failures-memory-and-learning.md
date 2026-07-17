@@ -12,7 +12,7 @@
 - **Root cause:** Poor query synthesis; weak embeddings; bad index.
 - **Detection:** Known-relevant entry not in top-k; generation lacks available knowledge.
 - **Impact:** Library adds no value (undermines H6).
-- **Mitigation:** Embed the problem-space synthesis ([03 §2.1](./03-data-model.md)); tune top-k; query expansion [MP-9].
+- **Mitigation:** Embed the problem-space synthesis ([03 §2.1](../../spec/03-data-model.md)); tune top-k; query expansion [MP-9].
 - **Recovery:** Broaden the query; re-retrieve.
 - **Validation:** Retrieval recall on a labeled query→entry set.
 
@@ -42,7 +42,7 @@
 - **Root cause:** Embedding the whole entry instead of the problem-space synthesis.
 - **Detection:** Retrieval matches on values, not problems; odd nearest-neighbors.
 - **Impact:** Poor matching; the Library retrieves by the wrong signal.
-- **Mitigation:** Embed only `intent + context_fit`; keep construction/values as payload ([03 §2.1](./03-data-model.md)).
+- **Mitigation:** Embed only `intent + context_fit`; keep construction/values as payload ([03 §2.1](../../spec/03-data-model.md)).
 - **Recovery:** Re-embed with the correct field selection.
 - **Validation:** Inspect what's embedded; retrieval quality by problem similarity.
 
@@ -91,8 +91,8 @@
 - **Description:** Retrieval matches a brief's problem-space to the *most similar* entries — so a fintech brief retrieves fintech patterns, a real-estate brief retrieves real-estate patterns. This is the opposite failure from F-MEM-02 (pollution from *irrelevant* entries): here the entries are *too relevant*, converging generation toward the category mean rather than surfacing the cross-domain transfers (e.g. fintech borrowing editorial restraint from fashion) that produce genuinely differentiated work.
 - **Root cause:** Pure similarity-ranked retrieval has no mechanism for deliberate serendipity or cross-domain transfer.
 - **Detection:** Retrieved entries are always same-domain; output diversity across same-domain briefs is low; the system never surfaces a cross-domain pattern even when one would fit.
-- **Impact:** Works *against* the "distinctiveness over generic" goal (F-GEN-02, [12](./12-design-constitution.md) P4) — the Library can make output more consistently competent and simultaneously more generic.
-- **Mitigation:** A deliberate cross-domain / "wildcard" retrieval slot alongside same-domain top-k, tested as research bet **R11** ([14](./14-research-agenda.md)).
+- **Impact:** Works *against* the "distinctiveness over generic" goal (F-GEN-02, [12](../../spec/12-design-constitution.md) P4) — the Library can make output more consistently competent and simultaneously more generic.
+- **Mitigation:** A deliberate cross-domain / "wildcard" retrieval slot alongside same-domain top-k, tested as research bet **R11** ([14](../../spec/14-research-agenda.md)).
 - **Recovery:** N/A — a creativity ceiling, not a correctness failure.
 - **Validation:** The R11 experiment — human distinctiveness ratings, cross-domain-augmented retrieval vs. same-domain-only.
 
@@ -106,7 +106,7 @@
 - **Root cause:** Abstraction step fails to strip identity.
 - **Detection:** Identity scan finds client name/PII/exact hex/verbatim copy in an entry.
 - **Impact:** Privacy/confidentiality breach; one client's identity leaks into another's design.
-- **Mitigation:** A **de-identification gate** that blocks write-back on any leak; entries store abstracted lessons only ([03 §2.2](./03-data-model.md)) [MP-7].
+- **Mitigation:** A **de-identification gate** that blocks write-back on any leak; entries store abstracted lessons only ([03 §2.2](../../spec/03-data-model.md)) [MP-7].
 - **Recovery:** Reject the entry; re-abstract; purge any leaked entry + reindex.
 - **Validation:** Adversarial write-back tests; assert the gate blocks identity.
 
@@ -116,7 +116,7 @@
 - **Root cause:** Wrong altitude during distillation (open question #3).
 - **Detection:** Entries never retrieved (too specific) or always retrieved but unhelpful (too vague).
 - **Impact:** Library doesn't compound (H6).
-- **Mitigation:** A **Phase-Exit Review** of each distilled entry's abstraction altitude **before** insert — too-specific or too-vague entries are returned for bounded re-abstraction ([11 §2.3](./11-guardrails-and-invariants.md)) [MP-13]; tag by type (principle/pattern/recipe); favor the mid "pattern" altitude; let retrieval+reuse select altitude [MP-9].
+- **Mitigation:** A **Phase-Exit Review** of each distilled entry's abstraction altitude **before** insert — too-specific or too-vague entries are returned for bounded re-abstraction ([11 §2.3](../../spec/11-guardrails-and-invariants.md)) [MP-13]; tag by type (principle/pattern/recipe); favor the mid "pattern" altitude; let retrieval+reuse select altitude [MP-9].
 - **Recovery:** Re-distill at a better altitude; merge/split entries.
 - **Validation:** Track retrieval+reuse rates by altitude; measure H6.
 
@@ -126,7 +126,7 @@
 - **Root cause:** No similarity check before insert.
 - **Detection:** Many high-similarity entry pairs; library grows without diversity.
 - **Impact:** Retrieval returns redundant entries; confidence fragments across duplicates.
-- **Mitigation:** On write-back, retrieve nearest entries; merge (raise confidence/add variation) above a similarity threshold ([04 §6](./04-memory-and-consistency.md)) [MP-9].
+- **Mitigation:** On write-back, retrieve nearest entries; merge (raise confidence/add variation) above a similarity threshold ([04 §6](../../spec/04-memory-and-consistency.md)) [MP-9].
 - **Recovery:** Periodic dedup/merge pass.
 - **Validation:** Duplicate-rate metric; merge correctness checks.
 
@@ -156,7 +156,7 @@
 - **Root cause:** De-id checks identity tokens, not strategic specificity.
 - **Detection:** Specificity/abstraction review; cross-client similarity scan.
 - **Impact:** Confidentiality/contract breach; competitive-intelligence leak.
-- **Mitigation:** Abstraction-altitude review at write-back ([11 §2.3](./11-guardrails-and-invariants.md)) that also gates *strategic* specificity; per-client access controls if multi-tenant [MP-7, MP-13].
+- **Mitigation:** Abstraction-altitude review at write-back ([11 §2.3](../../spec/11-guardrails-and-invariants.md)) that also gates *strategic* specificity; per-client access controls if multi-tenant [MP-7, MP-13].
 - **Recovery:** Re-abstract or purge; notify if breached.
 - **Validation:** Adversarial write-back that preserves strategy; assert it is blocked.
 
@@ -200,7 +200,7 @@
 - **Root cause:** Section generated without the frozen system as hard input or without seeing prior sections.
 - **Detection:** Token-allowlist check + Critic system_adherence + human "doesn't feel like the same site."
 - **Impact:** Incoherent artifact (H4 fails).
-- **Mitigation:** Crystallized system as hard law + prior-section screenshots as context for every later section ([04 §3](./04-memory-and-consistency.md)) [MP-1, MP-6].
+- **Mitigation:** Crystallized system as hard law + prior-section screenshots as context for every later section ([04 §3](../../spec/04-memory-and-consistency.md)) [MP-1, MP-6].
 - **Recovery:** Regenerate the drifting section under the system; never approve drift.
 - **Validation:** Multi-section runs; zero token drift + human consistency rating (H4).
 
@@ -210,7 +210,7 @@
 - **Root cause:** Consistency mechanism locks composition, not just primitives.
 - **Detection:** Sections look identical; low craft/brief-fit for sections with distinct purposes.
 - **Impact:** Boring, ineffective pages.
-- **Mitigation:** Lock primitives, free composition ([04 §2](./04-memory-and-consistency.md)); Critic rewards purpose-appropriate variation [MP-3, MP-6].
+- **Mitigation:** Lock primitives, free composition ([04 §2](../../spec/04-memory-and-consistency.md)); Critic rewards purpose-appropriate variation [MP-3, MP-6].
 - **Recovery:** Loosen compositional constraints; regenerate.
 - **Validation:** Variation metric across sections alongside consistency.
 
@@ -220,7 +220,7 @@
 - **Root cause:** Per-section generation can't see whole-page relationships.
 - **Detection:** Whole-artifact Critic pass flags cross-section issues; human review.
 - **Impact:** Poor end-to-end experience despite good parts.
-- **Mitigation:** A whole-artifact QA pass over the assembled page ([06 §5](./06-workflows.md)); shared nav/footer as locked components.
+- **Mitigation:** A whole-artifact QA pass over the assembled page ([06 §5](../../spec/06-workflows.md)); shared nav/footer as locked components.
 - **Recovery:** Re-loop the offending section(s) with whole-page context.
 - **Validation:** Assembled-page QA scores; human whole-page rating.
 
@@ -244,7 +244,7 @@
 - **Root cause:** Marketing assumptions (one rendered state) applied to an app (open question #5).
 - **Detection:** Screen has no state handling; Critic/human note missing states.
 - **Impact:** Broken/incomplete product UI in real use.
-- **Mitigation:** For product surfaces, require explicit states per component; the Eyes drive and capture each state ([09 Q5](./09-roadmap-and-open-questions.md)); defer apps until this is built.
+- **Mitigation:** For product surfaces, require explicit states per component; the Eyes drive and capture each state ([09 Q5](../../spec/09-roadmap-and-open-questions.md)); defer apps until this is built.
 - **Recovery:** Re-generate with state requirements; capture all states.
 - **Validation:** State-coverage checklist per component; multi-state screenshots.
 
@@ -274,7 +274,7 @@
 - **Root cause:** The spec is single-artifact, section-centric, and marketing-first.
 - **Detection:** A brief requires an unsupported surface; capability gap.
 - **Impact:** The system cannot serve common real briefs; forced human fallback.
-- **Mitigation:** An explicit surface roadmap with per-surface Eyes/Critic capabilities; scope honestly until built ([09](./09-roadmap-and-open-questions.md)).
+- **Mitigation:** An explicit surface roadmap with per-surface Eyes/Critic capabilities; scope honestly until built ([09](../../spec/09-roadmap-and-open-questions.md)).
 - **Recovery:** Route unsupported surfaces to humans.
 - **Validation:** A per-surface capability checklist before claiming support.
 
@@ -308,7 +308,7 @@
 - **Root cause:** Over-trust; skipping rungs on the autonomy ladder.
 - **Detection:** Rising unreviewed "passes" that later prove wrong; quality complaints.
 - **Impact:** Bad work ships unattended; trust collapse.
-- **Mitigation:** Autonomy ladder gated strictly on measured Critic↔human agreement ([09 §2](./09-roadmap-and-open-questions.md)) [MP-12].
+- **Mitigation:** Autonomy ladder gated strictly on measured Critic↔human agreement ([09 §2](../../spec/09-roadmap-and-open-questions.md)) [MP-12].
 - **Recovery:** Drop back a rung; reinstate gates.
 - **Validation:** Agreement thresholds enforced before each rung change.
 
@@ -318,6 +318,6 @@
 - **Root cause:** Uniform, high-volume human gating on one/few reviewers.
 - **Detection:** Approval-latency and reviewer test-retest consistency; agreement variance by reviewer.
 - **Impact:** False approvals feed the Library and reward model; taste overfit; the autonomy-ladder premise strains.
-- **Mitigation:** Uncertainty-routed review (escalate only where the Critic is unsure — [14](./14-research-agenda.md) R14); multiple reviewers with inter-rater tracking; low-friction capture [MP-3, MP-12].
+- **Mitigation:** Uncertainty-routed review (escalate only where the Critic is unsure — [14](../../spec/14-research-agenda.md) R14); multiple reviewers with inter-rater tracking; low-friction capture [MP-3, MP-12].
 - **Recovery:** Re-review disputed items; broaden the reviewer pool.
 - **Validation:** Inject a subtly-bad artifact under load; assert it is not rubber-stamped.

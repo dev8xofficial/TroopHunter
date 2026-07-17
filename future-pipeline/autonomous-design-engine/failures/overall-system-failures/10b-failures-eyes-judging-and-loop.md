@@ -136,7 +136,7 @@
 - **Root cause:** Inherent LLM/vision-model biases; a single-model judge.
 - **Detection:** Randomize candidate order; test-retest; compare against humans on fine-detail and non-Western briefs.
 - **Impact:** Miscalibrated verdicts; false passes; unfair cross-domain judgment (feeds F-JDG-01/04).
-- **Mitigation:** Order-randomization + position-debiasing; ensemble/self-consistency; crop-based / higher-resolution inspection; ground in the constitution + anchored exemplars ([12](./12-design-constitution.md)); calibrate on the benchmark [MP-3].
+- **Mitigation:** Order-randomization + position-debiasing; ensemble/self-consistency; crop-based / higher-resolution inspection; ground in the constitution + anchored exemplars ([12](../../spec/12-design-constitution.md)); calibrate on the benchmark [MP-3].
 - **Recovery:** Re-judge debiased / aggregated.
 - **Validation:** Bias probes (swap order, vary verbosity); assert verdict stability.
 
@@ -144,7 +144,7 @@
 
 ## Loop dynamics & search
 
-> This area resolves a pre-existing gap: `11` (RP-3, the loop-integrity table, invariants I4/I10, and the coverage map) references `F-LOOP-01/02/04/05` five separate times, but no such entries existed anywhere in this catalogue until now. It also formalizes search-dynamics problems (greedy local optima, scalarization) that had previously been named only as research bets (R7/R8/R12 in [14](./14-research-agenda.md)) without a catalogued failure behind them.
+> This area resolves a pre-existing gap: `11` (RP-3, the loop-integrity table, invariants I4/I10, and the coverage map) references `F-LOOP-01/02/04/05` five separate times, but no such entries existed anywhere in this catalogue until now. It also formalizes search-dynamics problems (greedy local optima, scalarization) that had previously been named only as research bets (R7/R8/R12 in [14](../../spec/14-research-agenda.md)) without a catalogued failure behind them.
 
 ### F-LOOP-01 — Runaway / unbounded loop
 **Level:** impl · **Severity:** High · **Area:** Loop dynamics
@@ -202,7 +202,7 @@
 - **Root cause:** No restart, no direction-switching, no accept-worse-to-explore, no stagnation escape — the search has exactly one move (small edit to the current best).
 - **Detection:** Scores plateau well below the threshold across remaining iterations; candidates converge to visibly the same layout/direction.
 - **Impact:** The loop reliably finds *locally*-good, never *globally*-best designs — caps craft below what the same budget could achieve with real exploration.
-- **Mitigation:** Diversity injection / restart-on-plateau / an explicit "abandon this direction" move, tested as research bet **R7** ([14](./14-research-agenda.md)) before being adopted.
+- **Mitigation:** Diversity injection / restart-on-plateau / an explicit "abandon this direction" move, tested as research bet **R7** ([14](../../spec/14-research-agenda.md)) before being adopted.
 - **Recovery:** On detected stagnation, spend remaining budget on a fresh direction rather than further polishing.
 - **Validation:** A seeded local optimum (a mediocre direction with no small edit that improves it); assert plain best-so-far gets stuck and a restart-capable variant escapes it — the R7 experiment.
 
@@ -211,8 +211,8 @@
 - **Description:** Collapsing brand/system/brief/craft into one `weighted_total` is scalarization — a candidate that is exceptional on one dimension and merely good on others (e.g. 95-craft/75-brief-fit) can lose to a flat, uniformly mediocre candidate (82/82/82/82), even when the former is the better design.
 - **Root cause:** Single weighted-sum selection has no concept of a Pareto front; it structurally rewards balanced compromise over spiky excellence.
 - **Detection:** A human prefers a lower-`weighted_total` candidate over the one the sum selected.
-- **Impact:** The system is biased toward competent-but-forgettable output — directly opposed to the "excellence is spiky, not balanced" principle ([12](./12-design-constitution.md) P8).
-- **Mitigation:** Pareto-front selection with human/second-critic tie-break among non-dominated candidates instead of pure summation, tested as research bet **R8** ([14](./14-research-agenda.md)).
+- **Impact:** The system is biased toward competent-but-forgettable output — directly opposed to the "excellence is spiky, not balanced" principle ([12](../../spec/12-design-constitution.md) P8).
+- **Mitigation:** Pareto-front selection with human/second-critic tie-break among non-dominated candidates instead of pure summation, tested as research bet **R8** ([14](../../spec/14-research-agenda.md)).
 - **Recovery:** Re-rank candidates by Pareto-dominance before falling back to the sum.
 - **Validation:** A synthetic candidate pair with this exact trade-off; assert Pareto-aware selection picks the spiky one and humans agree — the R8 experiment.
 
@@ -222,6 +222,6 @@
 - **Root cause:** Budgets are configured per-run, not per-section-by-stakes or by observed marginal gain.
 - **Detection:** A high-stakes section escalates at the same budget a low-stakes one passed easily; iterations continue past the point scores stopped moving.
 - **Impact:** Wasted spend on sections that plateaued early; under-spend on the sections that would benefit most from more iterations.
-- **Mitigation:** Stakes-weighted budgets + marginal-gain/plateau detection to reallocate effort, tested as research bet **R12** ([14](./14-research-agenda.md)).
+- **Mitigation:** Stakes-weighted budgets + marginal-gain/plateau detection to reallocate effort, tested as research bet **R12** ([14](../../spec/14-research-agenda.md)).
 - **Recovery:** N/A — an efficiency gap, not a correctness failure.
 - **Validation:** Compare quality-per-token at fixed total budget, adaptive vs. uniform allocation — the R12 experiment.
