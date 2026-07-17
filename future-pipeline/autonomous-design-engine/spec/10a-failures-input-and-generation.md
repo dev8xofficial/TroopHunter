@@ -12,7 +12,7 @@
 - **Root cause:** Ambiguous brief; model over-weights surface words; no explicit goal-extraction step.
 - **Detection:** High craft but low `brief_fit`; human says "good but wrong for us"; the system's restatement of the brief diverges from the brief.
 - **Impact:** Wasted iterations; late rejection; erodes trust in autonomy.
-- **Mitigation:** Structured brief schema ([07 §3](../../spec/07-mvp-cli.md)); a "restate goal/audience/constraints" step the human confirms before generation; `brief_fit` as a first-class Critic dimension [MP-3, MP-6].
+- **Mitigation:** Structured brief schema ([07 §3](./07-mvp-cli.md)); a "restate goal/audience/constraints" step the human confirms before generation; `brief_fit` as a first-class Critic dimension [MP-3, MP-6].
 - **Recovery:** Re-run with the clarified brief; record the misread for prompt tuning.
 - **Validation:** Hold-out briefs with known intent; measure restatement accuracy; H2 ratings.
 
@@ -78,13 +78,13 @@
 
 ### F-INP-08 — Non-English / mixed-language brief comprehension gap
 **Level:** spec · **Severity:** Med · **Area:** Input
-- **Description:** The Brief Comprehension step ([11 §7](../../spec/11-guardrails-and-invariants.md)) and the Generator's understanding of tone/goal are tuned on English-language briefs; a non-English or mixed-language brief risks misread intent, lost nuance, or silently defaulting to English-centric design conventions.
+- **Description:** The Brief Comprehension step ([11 §7](./11-guardrails-and-invariants.md)) and the Generator's understanding of tone/goal are tuned on English-language briefs; a non-English or mixed-language brief risks misread intent, lost nuance, or silently defaulting to English-centric design conventions.
 - **Root cause:** No explicit multilingual handling in the comprehension step; untested outside English.
 - **Detection:** Restatement accuracy drops on non-English briefs; a native speaker flags misread nuance.
 - **Impact:** F-INP-01-style misinterpretation, specifically concentrated on non-English clients — a systematic gap, not a random one.
 - **Mitigation:** Test the comprehension step explicitly against non-English/mixed-language briefs before claiming broad applicability; flag brief language and surface confidence accordingly.
 - **Recovery:** Route low-confidence comprehension to human clarification rather than proceeding.
-- **Validation:** A held-out set of non-English briefs in the benchmark ([13](../../spec/13-evaluation-charter.md)); track restatement accuracy by brief language.
+- **Validation:** A held-out set of non-English briefs in the benchmark ([13](./13-evaluation-charter.md)); track restatement accuracy by brief language.
 
 ### F-INP-09 — Content-robustness fragility
 **Level:** spec+impl · **Severity:** Med · **Area:** Input / Generation
@@ -92,7 +92,7 @@
 - **Root cause:** No content-stress testing — the render-health and hard-constraint gates check the *given* content renders, not that the design *tolerates* plausible variation.
 - **Detection:** Re-run the same approved section with stress-test content (2x/3x length, missing optional fields, minimal content); layout breaks or looks unbalanced.
 - **Impact:** Designs that pass every gate on sample content still break in real use once real client content is substituted — a silent, deferred failure.
-- **Mitigation:** A content-stress matrix (min/max length, missing-optional-field, long-unbroken-string cases) as part of the hard-constraint gate, not just the as-given content; tested as research bet **R10** ([14](../../spec/14-research-agenda.md)).
+- **Mitigation:** A content-stress matrix (min/max length, missing-optional-field, long-unbroken-string cases) as part of the hard-constraint gate, not just the as-given content; tested as research bet **R10** ([14](./14-research-agenda.md)).
 - **Recovery:** Regenerate with the stress case fed back as a hard constraint.
 - **Validation:** The R10 experiment — escaped-failure rate on held-out content variations, before vs. after the stress matrix.
 
@@ -104,7 +104,7 @@
 **Level:** spec · **Severity:** High · **Area:** Reference
 - **Description:** The system reproduces a reference instead of designing for the brief — sliding back to Goal A.
 - **Root cause:** References fed as targets, not direction; Critic rewards resemblance.
-- **Detection:** Output strongly resembles a reference; deleting the reference would change the output drastically (the [00 §1](../../spec/00-overview.md) test fails).
+- **Detection:** Output strongly resembles a reference; deleting the reference would change the output drastically (the [00 §1](./00-overview.md) test fails).
 - **Impact:** Defeats the entire purpose (autonomy/novelty); legal/originality risk.
 - **Impact extends:** brand/brief subordinated to a stranger's design.
 - **Mitigation:** References are **soft**, capped at 5, dissolved into direction not stitched; Critic scores **brief_fit**, never resemblance [MP-6].
@@ -117,7 +117,7 @@
 - **Root cause:** Vivid reference images dominate attention over abstract brief text.
 - **Detection:** Brand/brief adherence drops when references are present vs absent.
 - **Impact:** Off-brand or off-goal results.
-- **Mitigation:** Hard inputs always outrank soft (conflict precedence, [04 §7](../../spec/04-memory-and-consistency.md)); limit reference count; phrase references explicitly as "direction only" [MP-6].
+- **Mitigation:** Hard inputs always outrank soft (conflict precedence, [04 §7](./04-memory-and-consistency.md)); limit reference count; phrase references explicitly as "direction only" [MP-6].
 - **Recovery:** Reduce/remove references; regenerate.
 - **Validation:** A/B with vs without references; brand adherence must not regress.
 
@@ -127,7 +127,7 @@
 - **Root cause:** Element-level borrowing instead of principle-level synthesis (the old `synthesis_map` trap).
 - **Detection:** Visually clashing parts; multiple competing design languages in one section.
 - **Impact:** Incoherent design; fails craft/brand.
-- **Mitigation:** "Moodboard" synthesis — abstract each reference to principles, compose one coherent design ([04 §8](../../spec/04-memory-and-consistency.md)).
+- **Mitigation:** "Moodboard" synthesis — abstract each reference to principles, compose one coherent design ([04 §8](./04-memory-and-consistency.md)).
 - **Recovery:** Re-synthesize from principles; drop the parts-bin framing.
 - **Validation:** Multi-reference briefs; human coherence rating.
 
@@ -151,7 +151,7 @@
 - **Root cause:** Weak mapping from business context to visual identity; model default style.
 - **Detection:** Human rejects at the brand approval gate; mismatch with the business context obvious.
 - **Impact:** Re-work at the foundation level; everything downstream would inherit the error.
-- **Mitigation:** A **Phase-Exit Review** of the derived brand against the business context + provided givens **before** the human sees it — catches an off-brief derivation early and returns it for bounded re-derivation ([11 §2.3](../../spec/11-guardrails-and-invariants.md)) [MP-13]; human approval gate before freeze ([06 §2](../../spec/06-workflows.md)); derive 2–3 directions with rationale tied to the business context; **re-derive (don't hand-patch)** on rejection [MP-12].
+- **Mitigation:** A **Phase-Exit Review** of the derived brand against the business context + provided givens **before** the human sees it — catches an off-brief derivation early and returns it for bounded re-derivation ([11 §2.3](./11-guardrails-and-invariants.md)) [MP-13]; human approval gate before freeze ([06 §2](./06-workflows.md)); derive 2–3 directions with rationale tied to the business context; **re-derive (don't hand-patch)** on rejection [MP-12].
 - **Recovery:** Enrich an input; re-derive and re-present.
 - **Validation:** Human approval rate; context-match rubric; Phase-Exit-Review↔human agreement at the brand boundary (feeds H8).
 
@@ -171,7 +171,7 @@
 - **Root cause:** Brand captured as adjectives, not values.
 - **Detection:** Generation varies wildly under the "same" brand; Critic can't score brand_adherence concretely.
 - **Impact:** Weak consistency; the hard store isn't actually hard.
-- **Mitigation:** Brand schema requires concrete palette/type/motion values, not just words ([03 §3](../../spec/03-data-model.md)).
+- **Mitigation:** Brand schema requires concrete palette/type/motion values, not just words ([03 §3](./03-data-model.md)).
 - **Recovery:** Enrich the brand with concrete values; re-freeze.
 - **Validation:** Schema completeness check; consistency across runs under one brand.
 
@@ -212,10 +212,10 @@
 ### F-PDS-01 — Incorrect / premature crystallization
 **Level:** spec · **Severity:** High · **Area:** Crystallization
 - **Description:** The foundation extracted from section 1 is wrong — the hero over- or under-specifies tokens, locking bad values for the whole artifact.
-- **Root cause:** One section may not represent the full system; extractor misreads the hero (open question #4, [09](../../spec/09-roadmap-and-open-questions.md)).
+- **Root cause:** One section may not represent the full system; extractor misreads the hero (open question #4, [09](./09-roadmap-and-open-questions.md)).
 - **Detection:** Later sections repeatedly fight the frozen tokens; humans note token values "feel off" system-wide.
 - **Impact:** Every later section inherits the error; expensive to undo.
-- **Mitigation:** A **Phase-Exit Review** of the crystallized system against the brand + hero **before** it is frozen — flags over- or under-specified tokens for bounded correction, catching a bad foundation before it becomes law ([11 §2.3](../../spec/11-guardrails-and-invariants.md)) [MP-13]; freeze only the **foundation** after section 1 and grow components ([04 §3](../../spec/04-memory-and-consistency.md)); the Crystallizer extracts conservatively; human reviews the crystallized system once.
+- **Mitigation:** A **Phase-Exit Review** of the crystallized system against the brand + hero **before** it is frozen — flags over- or under-specified tokens for bounded correction, catching a bad foundation before it becomes law ([11 §2.3](./11-guardrails-and-invariants.md)) [MP-13]; freeze only the **foundation** after section 1 and grow components ([04 §3](./04-memory-and-consistency.md)); the Crystallizer extracts conservatively; human reviews the crystallized system once.
 - **Recovery:** Allow a one-time foundation correction with explicit re-version (rare, audited); re-emit affected sections.
 - **Validation:** Phase-1 study: does a hero alone yield a correct foundation? (relates to H4); Phase-Exit-Review↔human agreement at the crystallization boundary.
 
@@ -225,9 +225,9 @@
 - **Root cause:** Generator drifts; no enforcement of "extend-never-contradict."
 - **Detection:** Deterministic token-allowlist check finds off-system values.
 - **Impact:** Visible inconsistency; the hard store stops being hard (H4 fails).
-- **Mitigation:** Token-allowlist checker on every section (runs inside the **Hard-Constraint Gate**, [11 §2.1](../../spec/11-guardrails-and-invariants.md)); new *components* allowed, new *tokens* rejected [MP-1, MP-6].
-- **Recovery:** Re-generate the section with the specific off-allowlist violation fed back as hard feedback; never auto-approve.
-- **Validation:** Generate multiple sections; assert zero off-allowlist tokens (the H4 hard metric); violations are logged with the specific token ID in the trace.
+- **Mitigation:** Token-allowlist checker on every section; new *components* allowed, new *tokens* rejected [MP-1, MP-6].
+- **Recovery:** Re-generate the section with the violation fed back as hard feedback; never auto-approve.
+- **Validation:** Generate multiple sections; assert zero off-allowlist tokens (the H4 hard metric).
 
 ### F-PDS-03 — Component-layer bloat / duplicates
 **Level:** impl · **Severity:** Low · **Area:** Design system
@@ -246,7 +246,7 @@
 - **Detection:** A section repeatedly fails because it needs an out-of-system value that is actually justified.
 - **Impact:** Either a forced contradiction or a poor section.
 - **Mitigation:** Allow **additive, namespaced extensions** (new tokens that don't alter existing ones) under explicit policy; escalate to human when an extension touches the foundation.
-- **Recovery:** Add the extension (versioned) or split the surface (e.g. a product system, [06 §6](../../spec/06-workflows.md)).
+- **Recovery:** Add the extension (versioned) or split the surface (e.g. a product system, [06 §6](./06-workflows.md)).
 - **Validation:** Track foundation-extension frequency; high frequency signals section 1 was the wrong anchor.
 
 ---

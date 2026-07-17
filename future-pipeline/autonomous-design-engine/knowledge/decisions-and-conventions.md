@@ -33,7 +33,7 @@ purpose: >
 | **Generator** | Cheaper model (e.g. Sonnet-tier) is fine | Most-called role (N variations × iterations); the loop's own critique-and-edit mechanism corrects for a weaker draft. Matches the spec's own stated preference (`02 §5`, `09 §3`) |
 | **Orchestrator** | Cheap/thin model | Mostly deterministic policy + one cheap "Brief Comprehension" call — does not need a frontier model |
 | Config requirement | Keep `criticModelId` / `genModelId` / `orchestratorModelId` as **three separate config fields** from day one — even if all point at the same model initially. Every model call records the resolved model id and active provider into the trace. |
-| Model naming (correct as of this conversation) | **Fable 5** (`claude-fable-5`), **Opus 4.8** (`claude-opus-4-8`), **Sonnet 4.6** (`claude-sonnet-4-6`), **Haiku 4.5** (`claude-haiku-4-5`). There is no "Sonnet 5." |
+| Model naming (correct as of this conversation) | **Fable 5** (`claude-fable-5`), **Opus 4.8** (`claude-opus-4-8`), **Sonnet 4.6** (`claude-sonnet-4-6`), **Haiku 4.5** (`claude-haiku-4-5`). There is no "Sonnet 5." **Update:** as of 2026-07, **Sonnet 5 (`claude-sonnet-5`) exists**; the "there is no Sonnet 5" note was correct only at time of writing; re-verify pinned ids at S3/C0.0. |
 
 ## The Phase-Exit Review (a core architectural concept — spec `11 §2.3`, invariant I13)
 
@@ -67,7 +67,7 @@ purpose: >
 | Temperatures | `genTemperature = 0.7` (Generator should diverge); `criticTemperature = 0.2` (Critic should stay stable) |
 | Budget caps | `maxRunTokens` / `maxRunSeconds` / `maxModelCalls` — exceeding any ends the run `ESCALATED`, never silently |
 | `--refs` in Phase 0 | Accepted as an explicit **no-op** flag; wired for real in Phase 2 |
-| Invariant count | **13** (I1–I13; I13 added for Phase-Exit Review) — if you see "12 invariants" anywhere, that's stale |
+| Invariant count | **15** (I1–I15; I14 Sandbox Isolation and I15 Delivery-Gate sequence added during Phase-4 specification) — anything citing fewer is stale |
 
 ## H-series hypotheses (what each phase must prove — spec `08`)
 
@@ -98,6 +98,8 @@ Every area in the failure catalogue (`10`) and every research bet (`14`) is assi
 
 Real Phase-0 implementation scaffolding **already exists** at `future-pipeline/autonomous-design-engine/`: `src/`, `tests/`, `harness/`, `briefs/`, `spike.ts`, `package.json` (+ installed `node_modules/`), `.env.example`, `tsconfig.json`, `vitest.config.ts`, and an `old-design-experiment/` folder. File timestamps place this **before** the planning/R&D conversation that produced specs `10`(red-team)/`12`–`15`. **This knowledge base does not describe the code's contents** — read it directly; it was never discussed in the conversation this knowledge base preserves.
 
+**Update:** the Phase-0 scaffolding was **deleted** in commit `28a951a9` (empty `src/` remains); restorable from `28484962`; restoration decision tracked in this plan's S1.
+
 ## The execution plan and the "detailed specification per phase" convention (load-bearing — read before doing any phase work)
 
 The **single authoritative execution plan is [`spec/15-execution-roadmap.md`](../spec/15-execution-roadmap.md)** — phase-gated (0 → 1 → 2 → 3 → 4), with the problem ledger (`15 §2.1`) bucketing every failure area and research bet into NOW/NEXT/LATER/DEFERRED. There is no other execution plan; when the question is "what do I do next / will this resolve the failures," the answer comes from `spec/15`, not from anywhere else.
@@ -112,6 +114,8 @@ The **single authoritative execution plan is [`spec/15-execution-roadmap.md`](..
 | Phase 3 / Phase 4 | (future) | would continue at 37 / 38 by the same rule. |
 
 **Standing conventions for these phase specs** (apply when writing or deepening one): a **revision-history footer** at the bottom (mirroring `10-failure-modes.md`'s style); **Mermaid diagrams** (sequence / state / data-flow / ER) matching the style used across `spec/`; a **failure-coverage map** tying the phase to the specific `F-*` IDs it closes; and honest grounding against the real `src/` code — where the code diverges from the design, say so in the spec (e.g. `spec/36` flags that the Phase-2 abstraction-altitude Phase-Exit Review is specified but not yet implemented, and that the default hash-embedding must not be used to evaluate H6).
+
+**Update:** `spec/15` deleted mid-rewrite; `16/17/36` not on disk; the mapping table describes the **target convention**, not current state; interim execution authority = `IMPLEMENTATION_PLAN.md` + `CONTRACT_EXECUTION_PLAN.md` (per R7).
 
 ## `IMPLEMENTATION_PLAN.md` now exists (the failure-driven, phase-gated build plan)
 
@@ -144,3 +148,5 @@ A standalone **meta-capability** built this session at `future-pipeline/autonomo
 | **Status** | v1, on disk, **uncommitted, never run.** Suggested first action: activate `P1 — Architecture Research`, write its Area Card, run one **Light** investigation to prove the engine end-to-end. |
 
 **Critical distinction — the R-series (R1–R18) is NOT a parallel phase track and must never be treated as one.** `spec/14-research-agenda.md` (detailed in `spec/18`–`35`) is a **separate, optional menu of judgment/taste-improvement research bets**. `spec/15` only threads **four of the eighteen** into the actual plan, at specific weeks: **R1** (benchmark, Phase 1 wk17), **R2** (feedback channel, Phase 2 wk23), **R3 + R4** (constitution / reward model, Phase 3 wk28–33). **R5–R18 are explicitly LATER / DEFERRED — "may never be reached at solo scale"** (`15 §2.1`). Do **not** turn the R-series into a build checklist, and do **not** generate per-bet execution plans for R-bets unless `spec/15` actually schedules that bet at the current phase. When asked "what's next," check `spec/15`'s phase gate and problem ledger — never "which Rn is next in numeric order." (This distinction is recorded because it was previously misread — an Rn bet was treated as the next thing to build outside the phase plan; the correction is the point of this entry.)
+
+**Update:** **engine deleted in `c2be66d0`** (superseded by the commissioned-investigation pattern: `prompt.md` → `ARCHITECTURE_INVESTIGATION.md`, `END_GOAL_FEASIBILITY_CONTRACT.md`); final disposition = decision D1.

@@ -106,7 +106,7 @@ That end state is years of iteration away and gated at every step by `08`. The n
 1. Stand up the Phase 0 project skeleton (`07` §6) — Node/TS + Anthropic SDK + Playwright.
 2. Implement `ade generate` exactly as `07` specifies.
 3. Run it on the Burkes hero brief (no reference) and 8–10 others.
-4. Read `trace.json` + collect human ratings → decide **H1/H2**.
+4. Read `trace.jsonl` + collect human ratings → decide **H1/H2**.
 5. Only then commit to Phase 1.
 
 > The spec is the map. Phase 0 is the first step, and it is deliberately cheap, so the most important thing — *does an agent that sees its own work actually design better?* — gets answered with evidence before anything larger is built.

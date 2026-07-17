@@ -82,7 +82,7 @@
 
 ### F-STO-04 — Trace loss (measurement substrate)
 **Level:** impl · **Severity:** High · **Area:** Storage / measurement
-- **Description:** `trace.json` (iterations/scores/tokens) is not written or is lost.
+- **Description:** `trace.jsonl` (iterations/scores/tokens) is not written or is lost.
 - **Root cause:** Trace written only at the end; crash loses it; not flushed.
 - **Detection:** Missing/empty trace after a run.
 - **Impact:** Can't validate any hypothesis (08) or debug the loop — flies blind.

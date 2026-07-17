@@ -8,18 +8,18 @@
 
 ## 0. How to use this document (for an implementing model)
 
-1. **Never work ahead of the phase gate.** Phases are strict: 0 → 1 → 2 → 3 → 4. Do not start Phase _N_ until Phase _N−1_'s exit gate (a falsifiable hypothesis, [`spec/08`](./spec/08-hypotheses-and-validation.md)) actually passes. If a gate fails, **stop and rethink** — do not push forward. ([`spec/11 §9`](./spec/11-guardrails-and-invariants.md), root pattern for F-SPEC-04.)
+1. **Never work ahead of the phase gate.** Phases are strict: 0 → 1 → 2 → 3 → 4. Do not start Phase _N_ until Phase _N−1_'s exit gate (a falsifiable hypothesis, [`spec/08`](./spec/08-hypotheses-and-validation.md)) actually passes. If a gate fails, **stop and rethink** — do not push forward. ([`spec/11 §10`](./spec/11-guardrails-and-invariants.md), root pattern for F-SPEC-04.)
 2. **Work one chunk at a time, in order within a phase.** A chunk's `Depends on` line lists the prior chunks it needs. Respect it.
 3. **Every chunk closes named failures.** When you implement or spec a chunk, you are accountable for its `Closes:` list. The [coverage index (§8)](#8-coverage-index--every-failure-to-its-chunk) maps every `F-*` ID to the chunk that owns it — use it to verify nothing is dropped.
 4. **Read the source of truth before you build a chunk.** Each chunk links the spec section that defines its design. This plan is a *sequencer and detailer*, not a replacement for the spec.
-5. **Uphold the invariants at all times.** The 13 system invariants ([`spec/11 §7`](./spec/11-guardrails-and-invariants.md), listed in [§6](#6-cross-cutting-invariants-every-chunk-must-uphold)) are cross-cutting — a chunk may *introduce* an invariant, but no later chunk may *break* one.
+5. **Uphold the invariants at all times.** The 15 system invariants ([`spec/11 §8`](./spec/11-guardrails-and-invariants.md), listed in [§7](#7-cross-cutting-invariants-every-chunk-must-uphold)) are cross-cutting — a chunk may *introduce* an invariant, but no later chunk may *break* one.
 6. **Report observed numbers only.** Acceptance criteria are falsifiable and measured, never predicted (invariant I12, failure F-SPEC-05).
 
 ### 0.1 Hard rules that override defaults (do not skip)
 
 - **This project is standalone.** Not a Turborepo workspace; never cross-import `packages/*`, `microservices/*`, `microfrontend/*`. The repo-root `CLAUDE.md`/`AGENTS.md` do **not** apply here; [`AGENTS.md`](./AGENTS.md) in this folder does.
 - **Never set `ANTHROPIC_API_KEY` in dev.** Dev/R&D runs on the Claude Pro plan's Agent-SDK credit via `claude login` (OAuth), `ADE_PROVIDER=agent-sdk`. A paid API key is a **Phase-4-only, production-only** config (`ADE_PROVIDER=api`). See chunk **C0.0** and [`knowledge/decisions-and-conventions.md`](./knowledge/decisions-and-conventions.md). *(Note: [`spec/README.md` Step 0](./spec/README.md) still lists "an `ANTHROPIC_API_KEY`" for the build phase — that line is stale against this rule and is flagged for spec reconciliation in [§9](#9-inconsistencies-flagged-for-spec-reconciliation).)*
-- **13 invariants, not 12.** I13 (Phase-Exit Review), I14 (Sandbox Isolation), and I15 (Delivery Gate sequence) are all real. Anything citing fewer than 15 invariants is stale.
+- **15 invariants.** I13 (Phase-Exit Review), I14 (Sandbox Isolation), and I15 (Delivery Gate sequence) are all real. Anything citing fewer than 15 invariants is stale.
 - **The R-series (R1–R18) is not a parallel build track.** [`spec/14`](./spec/14-research-agenda.md) is an optional menu of judgment/taste research bets. Only **R1, R2, R3, R4** are threaded into this plan (at the phases noted). R5–R18 are **DEFERRED** — do not turn them into a checklist. Chunks that carry a research bet are tagged `[R-bet]` and are explicitly gated.
 
 ### 0.2 The model behind the plan (how failures become chunks)
@@ -83,7 +83,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 
 **Goal:** the cheapest possible test that an agent which *sees its own rendered work* designs better against a brief with nothing to clone. **No brand store, no Library, no crystallization.** One section, one brief, driven by a CLI. This phase is the go/no-go for the entire endeavour (F-SPEC-01); build it *first and cheap*.
 
-**Phase-0 guardrail subset** ([`spec/11 §9`](./spec/11-guardrails-and-invariants.md)): Input Gate, Render-Health Gate, Hard-Constraint Gate (a11y + responsive + content, **no token-allowlist yet**), Schema Gate, best-so-far + bounded loop + durable trace + terminal-state, resilience, lightweight Brief Comprehension. **Excluded** (no substrate yet): token-allowlist (Phase 1), de-identification (Phase 2), Phase-Exit Review (Phase 1/2).
+**Phase-0 guardrail subset** ([`spec/11 §10`](./spec/11-guardrails-and-invariants.md)): Input Gate, Render-Health Gate, Hard-Constraint Gate (a11y + responsive + content, **no token-allowlist yet**), Schema Gate, best-so-far + bounded loop + durable trace + terminal-state, resilience, lightweight Brief Comprehension. **Excluded** (no substrate yet): token-allowlist (Phase 1), de-identification (Phase 2), Phase-Exit Review (Phase 1/2).
 
 ### C0.0 — Provider abstraction (key-free dev)
 - **Closes:** F-OPS-05 (partial — provider abstraction + fallback), F-MOD-05 (pinned model id)
@@ -103,9 +103,9 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 
 ### C0.2 — Brief Comprehension step
 - **Closes:** F-INP-01 (brief misinterpretation), F-INP-02 (under-specified → invented intent), F-INP-03 (conflicting signals)
-- **Implements:** [`spec/11 §6`](./spec/11-guardrails-and-invariants.md), MP-6
+- **Implements:** [`spec/11 §7`](./spec/11-guardrails-and-invariants.md), MP-6
 - **Depends on:** C0.1
-- **Spec source:** [`spec/11 §6`](./spec/11-guardrails-and-invariants.md)
+- **Spec source:** [`spec/11 §7`](./spec/11-guardrails-and-invariants.md)
 - **Build:** one cheap LLM call (Orchestrator-tier) that **restates** the brief as `{ goal, audience, constraints }` and surfaces `{ detected_gaps, detected_conflicts }`. On a missing **required** field or a contradiction ("ultra-luxury" + "budget-friendly"), it **asks the human — never invents**. The restatement is recorded and passed to Generator and Critic as the canonical interpretation. (Non-English handling is deferred to C1.12 / R1.)
 - **Done when:** a brief missing a required field triggers a human prompt rather than a silent assumption; a contradictory brief names the conflict *before* any generation spend; the restatement is persisted in the trace.
 
@@ -424,7 +424,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Closes:** F-WB-04 (full — enshrinement via unapproved write-back)
 - **Implements:** **I7**, MP-12
 - **Depends on:** C2.5, C0.16 (verdicts)
-- **Spec source:** [`spec/11 §7`](./spec/11-guardrails-and-invariants.md) (I7)
+- **Spec source:** [`spec/11 §8`](./spec/11-guardrails-and-invariants.md) (I7)
 - **Build:** only **human-approved** artifacts are ever written back; trace entry provenance → the human verdict that authorized it; a false-pass (F-JDG-04) must not silently feed the Library.
 - **Done when:** an unapproved artifact can never produce a Library entry; every entry's provenance resolves to a human verdict.
 
@@ -609,14 +609,14 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Done when:** killing the primary provider triggers the fallback + a re-baseline gate; the ToS question is resolved and logged before scale-up.
 
 ### ▶ Phase-4 exit gate — "significantly improved" & ship-readiness
-- **Spec source:** [`spec/15 §6`](./spec/15-execution-roadmap.md) *(currently being rewritten — treat as the authority once restored)*
+- **Spec source:** [`spec/15 §6`](./spec/15-execution-roadmap.md) *(deleted; interim authority = `IMPLEMENTATION_PLAN.md` + `CONTRACT_EXECUTION_PLAN.md`)*
 - **Do:** ADE is "significantly improved" when, unattended, it takes a brief and produces a consistent multi-section artifact that (a) passes the deterministic floor, (b) improves across iterations (H1), (c) a human rates good-or-close ≥50% (H2), (d) holds zero token drift (H4), and (e) at least one outer-loop bet shows a *measured* benchmark gain. **This is not full autonomy** — that stays the long-term north star, capped by the taste ceiling (F-JDG-01, F-SPEC-02), which the guardrails shrink but cannot eliminate.
 
 ---
 
 ## 7. Cross-cutting invariants (every chunk must uphold)
 
-These 15 invariants ([`spec/11 §7`](./spec/11-guardrails-and-invariants.md)) are always-true properties. The **Introduced by** column names the chunk that first establishes each; **no later chunk may break one.**
+These 15 invariants ([`spec/11 §8`](./spec/11-guardrails-and-invariants.md)) are always-true properties. The **Introduced by** column names the chunk that first establishes each; **no later chunk may break one.**
 
 | ID | Invariant | Introduced by | Never broken after |
 |---|---|---|---|
@@ -709,7 +709,7 @@ Every `F-*` in [`10a`](./spec/10a-failures-input-and-generation.md)–[`10e`](./
 Found while writing this plan — surface to the human; do **not** silently “fix” the spec here (spec is canonical; a change is a deliberate spec edit).
 
 1. ~~**`spec/README.md` Step 0 lists “an `ANTHROPIC_API_KEY`” for the build phase.**~~ ✅ **Resolved** — the README now correctly references `ADE_PROVIDER=agent-sdk` for dev and notes the key is Phase-4/production-only.
-2. **`spec/README.md` lists docs 15–36 as existing** (“v2.0 COMPLETE EXPANSION”), but on disk only `00`–`14` (+ `10a`–`10e`) are present; `15` is mid-rewrite (deleted in the working tree by the owner). This plan references those numbers as *targets*; when they land, re-verify the cross-links here.
+2. ~~**`spec/README.md` lists docs 15–36 as existing**~~ ✅ **Resolved** — 15 deleted, 16–36 absent; reconciliation done by R4.
 3. **Phase numbering:** this plan is 0-indexed (Phase 0 = MVP); `spec/08`/`09` use 1-indexed prose. Kept consistent with the knowledge base’s mapping note.
 
 ---

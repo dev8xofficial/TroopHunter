@@ -306,7 +306,7 @@ runs/burkes-hero/
 │   ├── Section.tsx             # the approved (or best-so-far) React/TS component
 │   └── shots/{1440,768,375}.png
 ├── iterations/                 # every candidate + critique, per iteration
-└── trace.json                  # the full decision history
+└── trace.jsonl                 # the full decision history
 ```
 
 ---
@@ -431,7 +431,7 @@ You don't build the whole six-step process first. You build the **cheapest test 
   ┌──────────────────────────────────────────────────────────────┐
   │ brief ─► generate → render → [gates] → critique → edit ─► best │
   │                    ▲________________ repeat ____________│       │
-  │ output: React/TS section + screenshots + trace.json           │
+  │ output: React/TS section + screenshots + trace.jsonl          │
   └──────────────────────────────────────────────────────────────┘
    (no library · no brand store · no crystallization — yet)
 ```
@@ -501,30 +501,15 @@ The gated loop on **one section**, from a brief, no memory — the cheapest test
 | 12 | [12-design-constitution.md](./12-design-constitution.md) | The **living** design constitution — thin principles the judge is grounded in; what is deliberately left to the AI; the self-amendment protocol |
 | 13 | [13-evaluation-charter.md](./13-evaluation-charter.md) | The **anchor** — a small, human-owned, held-out benchmark and the measurement rigor that lets autonomy be trusted |
 | 14 | [14-research-agenda.md](./14-research-agenda.md) | The **gap map** — every known weakness (A–N) as a prioritised, falsifiable research bet (R1–R18) |
-| 15 | [15-execution-roadmap.md](./15-execution-roadmap.md) | The **execution roadmap** — a realistic solo, ~8 hrs/week plan: weekly tasks, prioritisation, milestones, kill-gates, and a blunt critique of the endeavour |
-| 16 | [16-phase-0-detailed-specification.md](./16-phase-0-detailed-specification.md) | The **Phase 0 build spec** — every technical design decision for the MVP loop: provider abstraction, generator contract, harness, eyes pipeline, guardrails subset, feedback serialization, best-so-far logic, orchestrator algorithm, budget controls, trace format, report/verdict tools, sandbox, and failure coverage map |
-| 17 | [17-phase-1-detailed-specification.md](./17-phase-1-detailed-specification.md) | The **Phase 1 build spec** — execution of state and consistency: Brand derivation pipeline, Crystallization of Project Design System, Phase-Exit Reviews, hard stores (`store.ts`), Token-Allowlist gate, and multi-section orchestration |
-| 18 | [18-r1-benchmark-specification.md](./18-r1-benchmark-specification.md) | The **R1 Benchmark Spec** — concrete execution plan for the human-anchored evaluation core: multi-domain golden core, human rating protocol, core statistical metrics, the regression gate (CI for quality), and contamination defense |
-| 19 | [19-r2-human-channel-specification.md](./19-r2-human-channel-specification.md) | The **R2 Human-Feedback Channel Spec** — upgrading the human-to-system channel: pairwise UI, constitution-dimension sliders, spatial annotations, design rationale surfacing, and verdict serialization for future reward modeling |
-| 20 | [20-r3-constitution-critic-specification.md](./20-r3-constitution-critic-specification.md) | The **R3 Constitution-Grounded Critic Spec** — transitioning the AI judge: constitution prompt injection, anchored visual exemplars, self-amendment lifecycle, and validation against the Golden Core |
-| 21 | [21-r4-reward-model-specification.md](./21-r4-reward-model-specification.md) | The **R4 Reward Model Spec** — the compounding engine: training data pipelines for preference learning, VLM distillation, held-out accuracy validation, and the dual-judge deployment mechanism |
-| 22 | [22-r5-motion-eyes-specification.md](./22-r5-motion-eyes-specification.md) | The **R5 Motion-Aware Eyes Spec** — evaluating temporal experiences: Playwright scrollcasts, hover-hunting interaction boards, multi-frame prompt architecture, and budget-constrained heuristics |
-| 23 | [23-r6-divergence-convergence-specification.md](./23-r6-divergence-convergence-specification.md) | The **R6 Divergence→Convergence Spec** — exploring structural wireframes before refining high-fidelity renders to break greedy constraints |
-| 24 | [24-r7-global-search-specification.md](./24-r7-global-search-specification.md) | The **R7 Global Search Spec** — escaping local optima via plateau detection and diversity-injection restarts |
-| 25 | [25-r8-pareto-selection-specification.md](./25-r8-pareto-selection-specification.md) | The **R8 Pareto Selection Spec** — replacing weighted-sums with multi-objective selection to preserve spiky excellence |
-| 26 | [26-r9-strategy-ia-layer-specification.md](./26-r9-strategy-ia-layer-specification.md) | The **R9 Strategy & IA Spec** — injecting a dedicated upstream planning agent to ensure narrative coherence before generating pixels |
-| 27 | [27-r10-robustness-stress-specification.md](./27-r10-robustness-stress-specification.md) | The **R10 Content-Robustness Spec** — dynamic stress testing via programmatic content expansion, a11y checks, and contrast render-mapping |
-| 28 | [28-r11-cross-domain-retrieval-specification.md](./28-r11-cross-domain-retrieval-specification.md) | The **R11 Cross-Domain Retrieval Spec** — inducing serendipity by fetching highly-rated, out-of-domain structures to break monocultures |
-| 29 | [29-r12-dynamic-budgeting-specification.md](./29-r12-dynamic-budgeting-specification.md) | The **R12 Dynamic Budgeting Spec** — moving from fixed iterations to plateau-aware effort allocation across complex DOM sections |
-| 30 | [30-r13-trajectory-learning-specification.md](./30-r13-trajectory-learning-specification.md) | The **R13 Trajectory Learning Spec** — augmenting retrieval with negative-space examples and rejection logs to accelerate convergence |
-| 31 | [31-r14-uncertainty-routing-specification.md](./31-r14-uncertainty-routing-specification.md) | The **R14 Uncertainty-Routing Spec** — preserving human attention by routing approvals based on the Reward Model's internal epistemic confidence |
-| 32 | [32-r15-integrated-imagery-specification.md](./32-r15-integrated-imagery-specification.md) | The **R15 Integrated Imagery Spec** — co-generating art direction prompts and asynchronously injecting native assets to eliminate generic placeholders |
-| 33 | [33-r16-outcome-calibration-specification.md](./33-r16-outcome-calibration-specification.md) | The **R16 Outcome Calibration Spec** — fine-tuning the Reward Model directly against live A/B production analytics rather than aesthetic proxies |
-| 34 | [34-r17-monoculture-defense-specification.md](./34-r17-monoculture-defense-specification.md) | The **R17 Monoculture Defense Spec** — measuring trend-drift against external galleries and triggering human constitutional amendments |
-| 35 | [35-r18-ux-heuristics-specification.md](./35-r18-ux-heuristics-specification.md) | The **R18 UX Heuristics Spec** — evaluating designs via explicit friction-scores and cognitive load metrics over visual vibe checks |
-| 36 | [36-phase-2-detailed-specification.md](./36-phase-2-detailed-specification.md) | The **Phase 2 build spec** (sibling of 16/17, numbered after the R-series only because 18–35 were taken) — the soft Global Library: local embeddings (key-free), embed-vs-payload split, flat-file cosine store, retrieval + graceful degradation, the write-back gate sequence (de-identification → abstraction → **abstraction-altitude Phase-Exit Review**), confidence weighting/decay, and the H6 compounding experiment |
 
-**If you only read three:** `00` (why), `05` (the engine), `07` (what we build first). Before implementing, also read `10` (failure modes) and `11` (the guardrails that close them). For the improvement program, start at `14` (the gap map), then `12` and `13` (its first two artifacts). To actually *do it* under real time limits, read `15` (the roadmap).
+### Planned / not currently on disk
+
+| # | Document | Status |
+|---|---|---|
+| 15 | 15-execution-roadmap.md | Deleted mid-rewrite by owner |
+| 16–36 | Detailed phase specs and R-bets | Removed — targets only |
+
+**If you only read three:** `00` (why), `05` (the engine), `07` (what we build first). Before implementing, also read `10` (failure modes) and `11` (the guardrails that close them). For the improvement program, start at `14` (the gap map), then `12` and `13` (its first two artifacts). To actually *do it*, use `IMPLEMENTATION_PLAN.md` and `CONTRACT_EXECUTION_PLAN.md` as the interim execution authority.
 
 ---
 
@@ -560,8 +545,8 @@ The gated loop on **one section**, from a brief, no memory — the cheapest test
 
 ## Status & next step
 
-- **Spec:** v2.0 — COMPLETE EXPANSION. System docs (00–11) complete; R&D layer (12–14) seeds the outer loop; execution roadmap (15); explicit specifications for all MVP components (16-17), Outer Loop components (18-21), and every single Quality Lever Research Bet (R5 through R18 mapped in documents 22-35). The entire ADE architecture is fully specified as falsifiable blueprints.
-- **Code:** none yet (intentional).
+- **Spec:** docs 00–14 on disk; failure catalogue in `failures/`; 15 mid-rewrite; 16–36 not present.
+- **Code:** none (scaffolding deleted, restorable from git `28484962` — see `CONTRACT_EXECUTION_PLAN.md` S1).
 - **Next action (build):** when this spec is accepted, build **Phase 0** (the MVP in [07](./07-mvp-cli.md)), run it on the Burkes hero + ~10 briefs, and measure **H1** ([08](./08-hypotheses-and-validation.md)). Let that evidence decide whether to proceed.
 - **Next action (R&D):** the improvement program is deliberately *research-first* — no change ships until it shows a measured gain on the [evaluation charter's](./13-evaluation-charter.md) benchmark. Start with **R1** (build the benchmark) since every other bet is measured against it ([14](./14-research-agenda.md)).
 

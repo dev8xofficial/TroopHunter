@@ -183,7 +183,7 @@ brief ──► COMPREHEND ──► { restated goal · audience · constraints 
 
 ---
 
-## 7. System invariants (always-true properties)
+## 8. System invariants (always-true properties)
 
 These are guarantees the implementation must uphold and tests must assert. They are the compact contract of the whole system.
 
@@ -207,7 +207,7 @@ These are guarantees the implementation must uphold and tests must assert. They 
 
 ---
 
-## 8. Coverage map (solution → failures closed)
+## 9. Coverage map (solution → failures closed)
 
 Every failure class in [10](../failures/overall-system-failures/10-failure-modes.md) is addressed by at least one solution here:
 
@@ -239,7 +239,7 @@ Failures that remain **partially open by nature** (not fully closeable, only man
 
 ---
 
-## 9. What's in the MVP vs later
+## 10. What's in the MVP vs later
 
 The cheap, high-value guardrails belong in the **MVP** (Phase 0) — they cost little and protect H1's measurement:
 
@@ -275,7 +275,7 @@ The cheap, high-value guardrails belong in the **MVP** (Phase 0) — they cost l
 
 ---
 
-## 10. How this changes the architecture (summary)
+## 11. How this changes the architecture (summary)
 
 - **New component:** the **Guardrail Layer** (deterministic tool) joins Eyes / Generator / Critic in Layer 2 ([01](./01-actors-and-components.md), [02](./02-architecture.md)).
 - **The loop gains gates:** render-health before critique; hard-constraint checks as part of the pass; pass = deterministic ∧ Critic ([05](./05-generation-loop.md)).

@@ -17,7 +17,7 @@
   ┌─────────────────────────────────────────────────────────────┐
   │  brief ──► [ generate → render → screenshot → critique ]──►  │  ← loop
   │                         ▲___________edit____________│         │
-  │  ──► best section (html/css/js + screenshots + trace.json)    │
+  │  ──► best section (React/TS .tsx + screenshots + trace.jsonl)    │
   └─────────────────────────────────────────────────────────────┘
    (no library · no brand store · no crystallization · no write-back)
 ```
@@ -167,7 +167,7 @@ runs/burkes-hero/
 ├── config.json                 # the resolved run config
 ├── final/
 │   ├── Section.tsx             # the approved (or best-so-far) React/TS component
-│   ├── supporting/*.tsx        # any helper components it produced
+│   ├── supporting/*.tsx        # Phase 1+ only — Phase 0 emits exactly one self-contained Section.tsx (§6.1)
 │   └── shots/{1440,768,375}.png
 ├── iterations/
 │   ├── iter-0/
@@ -196,7 +196,7 @@ src/
 ├── guardrails.ts     # deterministic gates: render-health, a11y, content, schema (11)
 ├── prompts.ts        # generator/critic prompt builders (05 §6)
 ├── schema.ts         # Brief, RunRecord, DimensionScores (03)
-└── trace.ts          # append/read trace.json (immediate, atomic)
+├── trace.ts          # append/read trace.jsonl (immediate, atomic)
 harness/              # thin Vite + React app: mounts the candidate Section.tsx at a route
 ├── index.html        # harness shell (not the design output — just the preview host)
 ├── src/main.tsx      # imports the candidate component + renders it
@@ -245,7 +245,7 @@ Dependencies (build phase): `@anthropic-ai/claude-agent-sdk`, `playwright`, `@ax
 
 The MVP is complete when, for the Burkes hero brief (no reference):
 
-1. `ade generate` runs the full loop unattended and emits a finished section + screenshots + `trace.json`.
+1. `ade generate` runs the full loop unattended and emits a finished section + screenshots + `trace.jsonl`.
 2. The loop **demonstrably edits in response to critique** (iteration N+1 addresses iteration N's feedback) — visible in `iterations/`.
 3. Across a handful of briefs, scores **trend upward** across iterations more often than not (the H1 signal; see `08`).
 4. A human, shown the final output, judges it "good or close" for the brief on a meaningful fraction of runs (the H2 smell-test).
