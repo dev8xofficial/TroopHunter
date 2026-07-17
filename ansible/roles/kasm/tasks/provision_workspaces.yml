@@ -1,0 +1,28 @@
+---
+# Lean, browser-focused catalog. `--default-images` seeds Kasm's full catalog and the
+# agent auto-pulls every ENABLED image, so we control disk/pulls by controlling which
+# Workspaces are enabled. This sets the enabled flag to exactly `kasm_enabled_workspaces`
+# and disables the rest; the agent then stops pulling disabled images and prunes them.
+# Idempotent: re-running produces the identical enabled/disabled state.
+- name: Build SQL IN-list of browser Workspaces to keep enabled
+  set_fact:
+    kasm_enabled_sql: "'{{ kasm_enabled_workspaces | join(\"','\") }}'"
+
+- name: Enable only the browser Workspaces (disable everything else)
+  shell: >
+    docker exec kasm_db psql -U kasmapp -d kasm -tAc
+    "update images set enabled = (friendly_name in ({{ kasm_enabled_sql }}));"
+  register: kasm_trim
+  changed_when: false
+
+- name: Read back the enabled Workspaces
+  shell: >
+    docker exec kasm_db psql -U kasmapp -d kasm -tAc
+    "select friendly_name from images where enabled = true order by 1;"
+  register: kasm_enabled_after
+  changed_when: false
+  failed_when: false
+
+- name: Show enabled Workspaces (browser-only)
+  debug:
+    var: kasm_enabled_after.stdout_lines

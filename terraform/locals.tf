@@ -29,6 +29,20 @@ locals {
     }
   ]
 
+  kasm = [
+    {
+      name          = "${var.kasm_name}"
+      cores         = 8
+      memory        = 16384
+      ip            = "${var.kasm_ip}"
+      hostname      = "${var.kasm_name}"
+      startup_order = 15
+      up_delay      = 30
+      ssh_key_path  = "${var.ssh_keys_dir}id_rsa_kasm.pub"
+      disk_size     = "80G"
+    }
+  ]
+
   k8s_controller = [
     {
       name          = "${var.k8s_controller_name}"

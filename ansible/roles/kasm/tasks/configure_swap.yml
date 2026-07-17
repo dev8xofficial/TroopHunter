@@ -1,0 +1,29 @@
+---
+# Own swap explicitly. Kasm's install.sh --swap-size proved unreliable (left ~0 swap),
+# so we create a persistent swap file ourselves. Idempotent: `creates:` guards allocation,
+# mkswap/swapon only run when the file is newly created, and fstab is ensured every run.
+- name: Allocate swap file
+  command: fallocate -l {{ kasm_swap_size_gb }}G /swapfile
+  args:
+    creates: /swapfile
+  register: swap_alloc
+
+- name: Secure swap file permissions
+  file:
+    path: /swapfile
+    mode: "0600"
+
+- name: Format swap file
+  command: mkswap /swapfile
+  when: swap_alloc is changed
+
+- name: Enable swap
+  command: swapon /swapfile
+  when: swap_alloc is changed
+  failed_when: false
+
+- name: Persist swap across reboots
+  lineinfile:
+    path: /etc/fstab
+    line: "/swapfile none swap sw 0 0"
+    state: present

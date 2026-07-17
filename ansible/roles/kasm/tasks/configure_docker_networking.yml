@@ -1,0 +1,63 @@
+---
+# ============================================================================
+# Ubuntu 22.04 + Proxmox + Docker container-networking fix.  See ../../memory.md
+# ----------------------------------------------------------------------------
+# Symptom : containers reach the LAN but NOT the internet (browsers won't load
+#           pages). Packet capture shows the container's SYN leave (masqueraded)
+#           and the SYN-ACK return to the host, but the reply is never forwarded
+#           back into the container -> every connection times out.
+# Cause   : Ubuntu 22.04 points the `iptables` command at the nft backend; on
+#           kernel 5.15 Docker's nft FORWARD/conntrack rules silently drop the
+#           container return traffic. Docker 28+/29 (nft-default) make it worse.
+#           NOTE: `docker pull` still works because the daemon uses the HOST
+#           network; only traffic originating INSIDE a container is broken.
+# Fix     : use the legacy iptables backend, load bridge-netfilter + conntrack,
+#           set forwarding sysctls, and pin docker-ce to 27.x. This MUST run
+#           BEFORE Docker is installed so Docker builds its rules under legacy.
+# ============================================================================
+
+- name: Use the legacy iptables backend (nft backend breaks container egress on 22.04/5.15)
+  command: "update-alternatives --set {{ item.name }} {{ item.path }}"
+  loop:
+    - { name: iptables, path: /usr/sbin/iptables-legacy }
+    - { name: ip6tables, path: /usr/sbin/ip6tables-legacy }
+  changed_when: false
+
+- name: Load bridge-netfilter + conntrack modules on every boot
+  copy:
+    dest: /etc/modules-load.d/kasm-docker.conf
+    content: |
+      br_netfilter
+      nf_conntrack
+    mode: "0644"
+
+- name: Load the modules now (so the bridge sysctls below exist this run)
+  command: "modprobe {{ item }}"
+  loop:
+    - br_netfilter
+    - nf_conntrack
+  changed_when: false
+
+- name: Kernel forwarding / bridge-netfilter sysctls required by Docker
+  copy:
+    dest: /etc/sysctl.d/99-kasm-docker.conf
+    content: |
+      net.ipv4.ip_forward = 1
+      net.bridge.bridge-nf-call-iptables = 1
+      net.bridge.bridge-nf-call-ip6tables = 1
+    mode: "0644"
+
+- name: Apply sysctls
+  command: sysctl --system
+  changed_when: false
+
+# Pin docker-ce to the 27.x line. 28+/29 default to the nft firewall backend which
+# reintroduces the egress break even with legacy alternatives selected. 27.5.1 validated.
+- name: Pin docker-ce / docker-ce-cli to the 27.x line
+  copy:
+    dest: /etc/apt/preferences.d/docker-ce.pref
+    content: |
+      Package: docker-ce docker-ce-cli
+      Pin: version 5:27.*
+      Pin-Priority: 1001
+    mode: "0644"

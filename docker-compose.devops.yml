@@ -15,6 +15,7 @@ services:
       - ./ansible/secrets/id_rsa_tailscale:/root/.ssh/id_rsa_tailscale:ro
       - ./ansible/secrets/id_rsa_cloudflare:/root/.ssh/id_rsa_cloudflare:ro
       - ./ansible/secrets/id_rsa_connect_ops:/root/.ssh/id_rsa_connect_ops:ro
+      - ./ansible/secrets/id_rsa_kasm:/root/.ssh/id_rsa_kasm:ro
       - ./terraform:/workspace/terraform
       - ./terraform/secrets/id_rsa_k8s_ctrlr:/root/.ssh/id_rsa_k8s_ctrlr:ro
       - ./terraform/secrets/id_rsa_k8s_node:/root/.ssh/id_rsa_k8s_node:ro

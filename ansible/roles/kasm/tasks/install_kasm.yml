@@ -1,0 +1,48 @@
+---
+# Non-interactive single-server install. Without these flags the installer blocks on
+# interactive prompts (with no TTY it aborts):
+#   --accept-eula          : accept the EULA (default is a y/n prompt -> abort)
+#   --no-swap-check        : skip the installer's swap prompt (we own swap in configure_swap.yml)
+#   --public-hostname      : deterministic access address (avoids the hostname prompt)
+#   --default-images       : seed Kasm's default Workspaces (Chrome, Firefox, Chromium,
+#                            Brave, Edge, Tor, ...) into the DB via Kasm's own db_init
+#   --no-pull-images       : register them WITHOUT the ~30GB bulk pull; the agent pulls
+#                            each image on-demand at first launch (must follow --default-images)
+# Kasm auto-generates its internal db/redis passwords. `creates:` makes this idempotent.
+# The installer writes its own log to /home/{{ ansible_user }}/kasm_install_*.log, so
+# no_log (which hides the admin/user passwords from Ansible output) still leaves a trail.
+- name: Install Kasm Workspaces (single-server, non-interactive)
+  command: >
+    bash /opt/kasm_release/install.sh
+    --accept-eula
+    --no-swap-check
+    --public-hostname {{ ansible_host }}
+    --default-images
+    --no-pull-images
+    --admin-password {{ kasm_admin_password }}
+    --user-password {{ kasm_user_password }}
+  args:
+    creates: /opt/kasm/current/docker/docker-compose.yaml
+  register: kasm_install
+  no_log: true
+
+- name: Confirm Kasm services are running
+  command: docker ps --filter "name=kasm" --format "{{ '{{' }}.Names{{ '}}' }}"
+  register: kasm_ps
+  changed_when: false
+
+- name: Show running Kasm containers
+  debug:
+    var: kasm_ps.stdout_lines
+
+- name: List seeded, enabled Kasm workspace images
+  command: >
+    docker exec kasm_db psql -U kasmapp -d kasm -tAc
+    "select friendly_name from images where enabled = true order by 1;"
+  register: kasm_images
+  changed_when: false
+  failed_when: false
+
+- name: Show installed workspace images
+  debug:
+    var: kasm_images.stdout_lines
