@@ -1,0 +1,6 @@
+---
+- include_tasks: install_dependencies.yml
+- include_tasks: configure_swap.yml
+- include_tasks: download_kasm.yml
+- include_tasks: install_kasm.yml
+- include_tasks: provision_workspaces.yml

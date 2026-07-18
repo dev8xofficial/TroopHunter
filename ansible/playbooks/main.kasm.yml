@@ -1,0 +1,24 @@
+---
+- name: Provision Kasm Workspaces host
+  hosts: kasm_*
+  become: true
+  vars:
+    user: "{{ ansible_user }}"
+    deploy_env: "{{ env }}"
+    # Pinned Kasm single-server release (https://www.kasmweb.com/docs/latest/install/single_server_install.html)
+    kasm_release_url: "https://kasm-static-content.s3.amazonaws.com/kasm_release_1.17.0.7f020d.tar.gz"
+    kasm_release_sha256: "22a293ea52b2adb7f3f72a2de8e9be799f443b9da040e066df403478da77f62d"
+    kasm_swap_size_gb: 8
+    # Lean, browser-focused catalog: only these Workspaces stay enabled; the rest of Kasm's
+    # default catalog (Ubuntu desktops, office apps, etc.) is disabled so the agent doesn't
+    # pull them. Add more friendly_names here to grow the catalog.
+    kasm_enabled_workspaces:
+      - Chrome
+      - Firefox
+      - Chromium
+      - Brave
+  vars_files:
+    - ../secrets/kasm.yml
+  roles:
+    - common
+    - kasm

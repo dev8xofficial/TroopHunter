@@ -1,0 +1,10 @@
+---
+# Prepare host networking (iptables-legacy, modules, sysctls, Docker version pin)
+# BEFORE Docker is installed — see configure_docker_networking.yml / ../../memory.md.
+- include_tasks: configure_docker_networking.yml
+
+# Reuse the existing Docker install tasks WITHOUT pulling in the docker role's
+# registry/verdicco setup (that role's main.yml is registry-specific).
+- include_tasks: ../../docker/tasks/install_docker.yml
+- include_tasks: ../../docker/tasks/install_docker_compose.yml
+- include_tasks: ../../docker/tasks/add_user_to_docker_group.yml

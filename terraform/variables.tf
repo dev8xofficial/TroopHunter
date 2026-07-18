@@ -66,3 +66,21 @@ variable "base_drid" {
 variable "base_vmid" {
   type    = number
 }
+
+variable "kasm_name" {
+  type    = string
+}
+
+variable "kasm_ip" {
+  type    = string
+}
+
+variable "base_kasmid" {
+  type    = number
+}
+
+# Kasm runs on its own template (Debian 12) — Ubuntu 22.04/kernel 5.15 has a
+# Proxmox-virtio container-egress bug that no Docker/iptables tuning fixes.
+variable "kasm_template" {
+  type = string
+}

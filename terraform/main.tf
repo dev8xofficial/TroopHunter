@@ -26,3 +26,12 @@ module "k8s_vms" {
   target_node    = var.target_node
   base_vmid      = var.base_vmid
 }
+
+module "kasm" {
+  source = "./modules/proxmox_vm_workspace"
+
+  vm_definitions = local.kasm
+  vm_template    = var.kasm_template
+  target_node    = var.target_node
+  base_vmid      = var.base_kasmid
+}

@@ -1,0 +1,21 @@
+---
+- name: Check if Kasm is already installed
+  stat:
+    path: /opt/kasm/current/docker/docker-compose.yaml
+  register: kasm_installed
+
+- name: Download and extract the Kasm release
+  when: not kasm_installed.stat.exists
+  block:
+    - name: Download Kasm release tarball
+      get_url:
+        url: "{{ kasm_release_url }}"
+        dest: /tmp/kasm_release.tar.gz
+        checksum: "sha256:{{ kasm_release_sha256 }}"
+        mode: "0644"
+
+    - name: Extract Kasm release into /opt
+      unarchive:
+        src: /tmp/kasm_release.tar.gz
+        dest: /opt/
+        remote_src: true
