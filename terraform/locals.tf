@@ -71,5 +71,37 @@ locals {
     }
   ]
 
+  # backbone-db — Postgres 17 + pgvector on a dedicated VM (D-HW1/D5/B10: the DB is NOT in k8s).
+  # Uses the base proxmox_vm module (keeps prevent_destroy — this host holds data).
+  backbone_db = [
+    {
+      name          = "${var.backbone_db_name}"
+      cores         = 2
+      memory        = 4096
+      ip            = "${var.backbone_db_ip}"
+      hostname      = "${var.backbone_db_name}"
+      startup_order = 5
+      up_delay      = 15
+      ssh_key_path  = "${var.ssh_keys_dir}id_rsa_k8s_node.pub" # reuse a container-mounted key (test bench)
+      disk_size     = "40G"
+    }
+  ]
+
+  # backbone-k3s — single-node K3s running the STATELESS layer (pgbouncer + ollama-embed → the DB VM).
+  # Uses proxmox_vm_workspace (no prevent_destroy) so the cluster is rebuildable during M1 testing.
+  backbone_k3s = [
+    {
+      name          = "${var.backbone_k3s_name}"
+      cores         = 4
+      memory        = 8192
+      ip            = "${var.backbone_k3s_ip}"
+      hostname      = "${var.backbone_k3s_name}"
+      startup_order = 6
+      up_delay      = 15
+      ssh_key_path  = "${var.ssh_keys_dir}id_rsa_k8s_node.pub"
+      disk_size     = "40G"
+    }
+  ]
+
   vm_definitions_combined = concat(local.k8s_controller, local.k8s_nodes)
 }

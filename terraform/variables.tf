@@ -84,3 +84,39 @@ variable "base_kasmid" {
 variable "kasm_template" {
   type = string
 }
+
+# ── backbone (the ecosystem spine — DB VM + K3s stateless VM) ─────────────────
+# Built ONLY in the development workspace, scoped via -target=module.backbone_*.
+# Defaults are provided so prod/staging tfvars stay valid WITHOUT edits (these
+# tiers are never instantiated there — they're never targeted).
+variable "backbone_db_name" {
+  type    = string
+  default = "backbone-db"
+}
+
+variable "backbone_db_ip" {
+  type        = string
+  description = "LAN static IP for the Postgres VM (resolves as backbone-db.local)"
+  default     = "192.168.1.227" # in the dev .22x range (after node .226); confirm free
+}
+
+variable "base_backbonedbid" {
+  type    = number
+  default = 7140 # → vmid 7141 (base + index + 1); avoids the 71xx tiers above
+}
+
+variable "backbone_k3s_name" {
+  type    = string
+  default = "backbone-k3s"
+}
+
+variable "backbone_k3s_ip" {
+  type        = string
+  description = "LAN static IP for the K3s stateless VM"
+  default     = "192.168.1.228" # in the dev .22x range; confirm free
+}
+
+variable "base_backbonek3sid" {
+  type    = number
+  default = 7150 # → vmid 7151
+}
