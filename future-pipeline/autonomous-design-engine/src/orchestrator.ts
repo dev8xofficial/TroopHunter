@@ -28,6 +28,7 @@ import type {
   SectionOutput,
   Artifact,
   LibraryEntry,
+  Plan,
 } from './schema.js';
 import { getProvider, type ModelProvider } from './model.js';
 import { generate, GeneratorError } from './generator.js';
@@ -44,6 +45,7 @@ import { appendIteration, writeRunConfig } from './trace.js';
 import { serializeFeedback } from './prompts.js';
 import { crystallize } from './crystallizer.js';
 import { retrieveLibraryForBrief } from './library.js';
+import { emitEscalation } from './escalations.js';
 import {
   readBrand,
   readPDS,
@@ -71,9 +73,10 @@ import {
  *   1 = ERROR
  */
 export async function runLoop(
-  cfg: Config,
+  cfg: Config & { control_mode?: boolean },
   brief: Brief,
   brandData: BrandData | undefined,
+  plan: Plan | undefined,
   outDir: string,
   briefPath: string,
   brand?: BrandFoundation,
@@ -98,6 +101,7 @@ export async function runLoop(
     config: {
       provider: cfg.provider,
       modelId: cfg.modelId,
+      control_mode: cfg.control_mode,
       maxIters: cfg.maxIters,
       variations: cfg.variations,
       threshold: cfg.threshold,
@@ -131,6 +135,13 @@ export async function runLoop(
     for (const v of comprehensionResult.violations) {
       console.error(`  • [${v.severity}] ${v.message}`);
     }
+    emitEscalation(outDir, {
+      type: 'comprehension',
+      runId,
+      sectionId: brief.section.name,
+      question: `Brief comprehension failed with violations: ${comprehensionResult.violations.map(v => v.message).join(', ')}`,
+    });
+    console.error('Escalation emitted. Parking run until answered.');
     return makeResult('ABORTED', outDir, 0, totalTokens, startTime);
   }
   console.log('✅ Brief comprehension gate passed.');
@@ -192,24 +203,32 @@ export async function runLoop(
     }
 
     // ── Generate N candidates ────────────────────────────────────
+    // ── Generate N candidates ────────────────────────────────────
     console.log(`\n🎨 Generating ${cfg.variations} candidate(s)...`);
-    const candidates: { id: string; tsx: string }[] = [];
+    const candidates: { id: string; tsx: string; quota?: any; exploration?: boolean }[] = [];
 
     for (let v = 0; v < cfg.variations; v++) {
       const candidateId = `iter${iter}-cand${v + 1}`;
 
       try {
+        const isExploration = iter === 0 && v === 0 && !cfg.control_mode;
         const genResult = await generate(
           provider,
           bundle,
           lastFeedback,
           cfg.genTemperature,
           modelCalls,
+          isExploration
         );
         totalTokens.input += genResult.usage.input;
         totalTokens.output += genResult.usage.output;
 
-        candidates.push({ id: candidateId, tsx: genResult.tsx });
+        candidates.push({ 
+          id: candidateId, 
+          tsx: genResult.tsx, 
+          quota: genResult.quota, 
+          exploration: isExploration 
+        });
 
         // Save candidate code
         const candDir = join(iterDir, candidateId);
@@ -233,8 +252,9 @@ export async function runLoop(
     }
 
     // ── Render & gate each candidate (sequentially) ──────────────
+    // ── Render & gate each candidate (sequentially) ──────────────
     console.log(`\n👁 Rendering ${candidates.length} candidate(s)...`);
-    const renderValid: { id: string; tsx: string; shots: Record<string, string>; hardPass: boolean; hardViolations: string[] }[] = [];
+    const renderValid: { id: string; tsx: string; shots: Record<string, string>; hardPass: boolean; hardViolations: string[]; quota?: any; exploration?: boolean }[] = [];
 
     for (const candidate of candidates) {
       console.log(`  Rendering ${candidate.id}...`);
@@ -370,6 +390,8 @@ export async function runLoop(
         shots: renderResult.shots,
         hardPass,
         hardViolations,
+        quota: candidate.quota,
+        exploration: candidate.exploration
       });
 
       console.log(`  ✅ ${candidate.id} render-valid.`);
@@ -386,17 +408,23 @@ export async function runLoop(
 
     if (isBudgetExceeded(cfg, modelCalls, totalTokens, startTime)) {
       terminalState = 'ESCALATED';
+      emitEscalation(outDir, {
+        type: 'budget',
+        runId,
+        sectionId,
+        question: `Cost/Time budget exceeded before passing gates.`,
+      });
       break;
     }
 
-    const allShots: Record<string, Record<string, string>> = {};
+    const candidatesInfo: Record<string, { shots: Record<string, string>, domInfo?: any }> = {};
     for (const c of renderValid) {
-      allShots[c.id] = c.shots;
+      candidatesInfo[c.id] = { shots: c.shots, domInfo: c.domInfo };
     }
 
     let criticOutput;
     try {
-      criticOutput = await critique(allShots, bundle, provider, cfg.criticTemperature, cfg.threshold, modelCalls);
+      criticOutput = await critique(candidatesInfo, bundle, provider, cfg.criticTemperature, cfg.threshold, modelCalls);
       // Track tokens from critique (approximate — provider tracks internally)
     } catch (err) {
       console.error('❌ Critique failed:', err instanceof Error ? err.message : err);
@@ -461,6 +489,8 @@ export async function runLoop(
         hard_violations: candidate.hardViolations,
         duration_ms: Date.now() - startTime,
         tokens: { ...totalTokens },
+        quota: candidate.quota,
+        exploration: candidate.exploration,
         model_id: provider.id,
         timestamp: new Date().toISOString(),
       };
@@ -496,6 +526,12 @@ export async function runLoop(
     // End of iteration — check if this was the last one
     if (iter === cfg.maxIters - 1) {
       terminalState = 'ESCALATED';
+      emitEscalation(outDir, {
+        type: 'oscillation',
+        runId,
+        sectionId,
+        question: `Max iterations (${cfg.maxIters}) reached without passing gates.`,
+      });
     }
   }
 
@@ -660,7 +696,7 @@ export async function runSectionLoop(
   // from the bundle. We just need to pass them through.
   // The token-allowlist gate integration happens inside the loop
   // when we detect a frozen PDS.
-  return runLoop(cfg, brief, brandData, outDir, briefPath, brand, pds, ctxShots);
+  return runLoop(cfg, brief, brandData, undefined, outDir, briefPath, brand, pds, ctxShots);
 }
 
 /**

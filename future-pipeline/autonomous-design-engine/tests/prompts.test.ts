@@ -71,7 +71,7 @@ describe('Prompts', () => {
 
   describe('buildCriticPrompt', () => {
     it('produces system + user prompts for single candidate', () => {
-      const { system, user } = buildCriticPrompt(minimalBundle, ['iter0-cand1']);
+      const { system, user } = buildCriticPrompt(minimalBundle, { 'iter0-cand1': { shots: {} } });
       expect(system).toContain('You did NOT build this');
       expect(system).toContain('candidate_id');
       expect(user).toContain('iter0-cand1');
@@ -79,13 +79,13 @@ describe('Prompts', () => {
     });
 
     it('uses pairwise language for multiple candidates', () => {
-      const { user } = buildCriticPrompt(minimalBundle, ['cand-a', 'cand-b']);
+      const { user } = buildCriticPrompt(minimalBundle, { 'cand-a': { shots: {} }, 'cand-b': { shots: {} } });
       expect(user).toContain('comparing 2 candidates');
       expect(user).toContain('Rank them pairwise');
     });
 
     it('includes brand reference when brand-data provided', () => {
-      const { user } = buildCriticPrompt(bundleWithBrand, ['cand-a']);
+      const { user } = buildCriticPrompt(bundleWithBrand, { 'cand-a': { shots: {} } });
       expect(user).toContain('#1C1917');
       expect(user).toContain('BRAND CONSTRAINTS');
     });

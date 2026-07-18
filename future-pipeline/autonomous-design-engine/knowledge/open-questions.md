@@ -23,7 +23,7 @@ purpose: >
 
 **Why it matters:** prioritization in `spec/15` is currently generic because this hasn't been answered. Resolving it should trigger a re-tuning of the roadmap's priorities (this was explicitly offered at the end of the session that produced `spec/15` — see `chat-history.md §13`).
 
-**Status:** asked directly at the end of the roadmap-building conversation. **No answer given yet as of this writing.** **Update:** partially answered by the committed End-Goal statement; formalized in D3.
+**Status:** **Answered in part.** See [`END_GOAL.md`](../END_GOAL.md).
 
 ## 2. Build vs. buy — is building ADE from scratch the right bet?
 
@@ -46,11 +46,11 @@ H6 ("project N+1 beats N via the Library") likely needs *many* completed project
 
 ## 5. Pro-credit Terms of Service — is automated/near-production use actually permitted?
 
-The entire dev access model depends on the Claude Pro plan's Agent-SDK credit sustaining an **automated, repeated, potentially high-volume** workload (the generation loop calling the model many times per section, across many briefs). This has not been confirmed against the actual ToS. **Action needed:** check the current Anthropic Claude Pro / Agent SDK terms for automated-use restrictions before scaling up run volume, and before treating this as a viable path all the way to "significantly improved" (~12–18 months of usage). **Update:** scheduled: S2, Week 0.
+The entire dev access model depends on the Claude Pro plan's Agent-SDK credit sustaining an **automated, repeated, potentially high-volume** workload (the generation loop calling the model many times per section, across many briefs). This has not been confirmed against the actual ToS. **Action needed:** check the current Anthropic Claude Pro / Agent SDK terms for automated-use restrictions before scaling up run volume, and before treating this as a viable path all the way to "significantly improved" (~12-18 months of usage). **Status: Resolved** (S2 verified; unattended automated use is explicitly permitted via the official Agent SDK, which draws from a dedicated monthly SDK credit budget).
 
 ## 6. What is "good enough to actually use for real work" — separate from the H-series gates?
 
-`spec/15 §6` defines "significantly improved" as a hypothesis-gate bar (H1+H2+H4+one R-bet, ~12–18 months out). But there may be a **narrower, earlier bar** — "good enough that I'd actually use this instead of hand-building a section" — that's worth defining separately, since an ever-improving system has no natural finish line (`15 §9.5`, the "never done" problem). **Not yet defined.** Consider defining this explicitly, likely well before month 12.
+`spec/15 §6` defines "significantly improved" as a hypothesis-gate bar (H1+H2+H4+one R-bet, ~12–18 months out). But there may be a **narrower, earlier bar** — "good enough that I'd actually use this instead of hand-building a section" — that's worth defining separately, since an ever-improving system has no natural finish line (`15 §9.5`, the "never done" problem). **Status:** **Answered.** See the "Good Enough" Threshold in [`END_GOAL.md`](../END_GOAL.md).
 
 ## 7. Antigravity's actual cross-tool-instruction convention — unconfirmed
 

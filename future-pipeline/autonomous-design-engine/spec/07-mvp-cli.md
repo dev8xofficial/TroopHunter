@@ -44,8 +44,10 @@ ade generate \
   --variations 2                          # optional: N candidates per iteration (default 1)
   --max-iters 4                           # optional: loop budget (default 4)
   --threshold 80                          # optional: pass score 0–100 (default 80)
-  --refs     ./refs/*.png                 # optional: ≤5 reference screenshots (soft)
-  --model    claude-opus-4-8              # optional (default)
+  --refs               ./refs/*.png       # optional: ≤5 reference screenshots (soft)
+  --gen-model          claude-sonnet-4-6  # optional (default: from Appendix B)
+  --critic-model       claude-opus-4-8    # optional (default)
+  --orchestrator-model claude-haiku-4-5   # optional (default)
   --headed                                # optional: show the browser while rendering
 ```
 
@@ -98,7 +100,33 @@ Two small JSON files. The human provides only **facts and constraints**; strateg
 
 > **Why no `personality`/`feel` field?** Those are *strategic interpretation*, not facts you own — so the system **derives** them (full system: from business context + brand-data; MVP: the Generator infers them per-section). Specifying them by hand would anchor the AI's strategy, the opposite of Goal B. The only brand constraints you supply are the palette + typography in `--brand-data`. (Rationale: [04 §2.1](./04-memory-and-consistency.md).)
 
-### 3.1 Input Gate: asset fitness + injection safety — C0.1
+### 3.1 `plan.json` (Strategy-decision capture)
+
+Whenever the human makes an IA, copy, or structure choice that shapes a run, it is captured in `plan.json` (per run, human-authored). This is optional in Phase 0 (single-section mode) but **must be recorded when present**. This corpus forms the training data for the future autonomous strategy layer (EG-2).
+
+**Capture rule:** The capture is explicitly **passive** — supplying `plan.json` does not alter the Generator's system prompt or behavior in Phase 0; it merely attaches the human's strategy rationale to the run's trace for future modeling.
+
+**Schema:**
+```json
+{
+  "sections": [{ "name": "hero", "order": 1, "purpose": "Clear value prop + email capture" }],
+  "narrative_rationale": "Leading with the pain point before showing the UI builds more trust.",
+  "copy_decisions": [{
+    "element": "hero_headline",
+    "choice": "Don't just track time. Own it.",
+    "rationale": "Aspirational rather than functional; matches the new brand voice."
+  }],
+  "audience_notes": "SaaS founders, high urgency, low patience.",
+  "decisions": [{
+    "decision": "Skipped the social proof section",
+    "alternatives_considered": "Adding a 3-logo strip under the hero",
+    "rationale": "Burkes has no recognizable customers yet; a weak logo strip hurts credibility.",
+    "author": "human"
+  }]
+}
+```
+
+### 3.2 Input Gate: asset fitness + injection safety — C0.1
 
 The Input Gate ([`11 §2.1`](./11-guardrails-and-invariants.md)) runs these additional checks before any model call:
 
@@ -218,9 +246,10 @@ The Generator is bound by these output rules, enforced deterministically by the 
 
 The preview harness treats generated code as **untrusted from the start**:
 
-- **Tailwind via Play CDN** — `<script src="https://cdn.tailwindcss.com">` in `index.html`, not a build-time `content` scan. The candidate `.tsx` is written at runtime, so JIT class discovery must happen in-browser. *(Gap acknowledged: CDN ≠ production build — intentional and flagged as **F-PAR-02**; Phase 4 C4.4 reconciles it.)*
-- **Network-isolated** — egress is denied by default at the Playwright browser level; a candidate that attempts `fetch()` or loads an external resource is blocked, not silently allowed.
+- **Vendored Tailwind runtime** — the Tailwind Play CDN script is downloaded once at setup, pinned by version + checksum, and served from `harness/vendor/`. All fonts are self-hosted in `harness/public/fonts/` (Google-Fonts files fetched at setup; commercial faces mapped to nearest local fallback with the substitution recorded per run).
+- **Network-isolated (zero egress)** — egress is denied by default at the Playwright browser level. **Zero allowlist exceptions hold**: a candidate render that triggers any network request (even for an asset) fails the render-health check instantly. This forces the system to rely strictly on self-hosted/vendored assets.
 - **Ephemeral per candidate** — each candidate gets its own fresh build directory and unique local port; no module cache or HMR state bleeds between candidates.
+- **Images mapped locally** — the Generator output may `import` or src a brand logo; the harness serves dummy placeholders or local `public/` assets so the render completes without network fetches.
 - **No secrets or credentials in scope** — the harness shell and its runtime environment must never contain `ANTHROPIC_API_KEY` or any other sensitive value.
 - **Pinned toolchain** — Playwright, Vite, and the Tailwind CDN version tag are pinned explicitly in the lockfile; a supply-chain update cannot silently alter render output (F-OPS-07).
 
@@ -232,7 +261,9 @@ Dependencies (build phase): `@anthropic-ai/claude-agent-sdk`, `playwright`, `@ax
 
 | Setting | Default | Notes |
 |---|---|---|
-| model | `claude-opus-4-8` | adaptive thinking; vision for the Critic |
+| gen-model | `claude-sonnet-4-6` | default; fast, good enough for drafted generation (note that pinned ids are re-verified at S3 against the current lineup) |
+| critic-model | `claude-opus-4-8` | default; strongest reasoning, vision for the Critic |
+| orchestrator-model | `claude-haiku-4-5` | default; fast, cheap routing |
 | breakpoints | 1440 / 768 / 375 | screenshot widths |
 | variations | 1 | raise to 2–3 to enable pairwise selection |
 | max-iters | 4 | loop budget |
@@ -247,7 +278,7 @@ The MVP is complete when, for the Burkes hero brief (no reference):
 
 1. `ade generate` runs the full loop unattended and emits a finished section + screenshots + `trace.jsonl`.
 2. The loop **demonstrably edits in response to critique** (iteration N+1 addresses iteration N's feedback) — visible in `iterations/`.
-3. Across a handful of briefs, scores **trend upward** across iterations more often than not (the H1 signal; see `08`).
+3. The loop-vs-control comparison is measured: Humans blind-prefer the loop's final output over the matched-compute control's best output at statistical significance (pre-registered α=0.05, n≥20 briefs). See `08 §2` H1 for details on the control arm.
 4. A human, shown the final output, judges it "good or close" for the brief on a meaningful fraction of runs (the H2 smell-test).
 5. **The guardrails work:** an injected render bug is caught by the **render-health gate** and routed to repair (never scored as bad design), and an a11y/contrast failure **cannot** pass the Pass Gate. This proves the deterministic floor protects the H1 measurement.
 

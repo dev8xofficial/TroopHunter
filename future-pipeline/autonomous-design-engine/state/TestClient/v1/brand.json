@@ -1,0 +1,1 @@
+{"client_id":"TestClient","version":1,"rationale":"Test","identity":{"vibe":"Test","voice":"Test","do_and_dont":{"do":[],"dont":[]}},"tokens":{"palette":{"base":"#000000","surface":"#ffffff","roles":{}},"typography":{"fonts":{"body":"Arial","heading":"Arial"},"scales":{}},"spacing":{"rules":{}}}}

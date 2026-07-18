@@ -152,6 +152,8 @@ Rules:
 
 Budgets are configurable and enforced **centrally** by the Orchestrator, not per-call. The point is **bounded** autonomy: the loop never spins forever and always ends in a recorded, inspectable state. **Best-so-far is retained throughout** — an Escalated run still returns the best candidate seen, never nothing and never a regression (I4, [11 §3](./11-guardrails-and-invariants.md)).
 
+> **Note (Escalation queue):** Any condition that triggers an "Escalated" or "Aborted" state does not just print to stdout; it emits a structured record to the `escalations.jsonl` queue. Escalation is a designed, asynchronous human touchpoint, not merely a failed terminal state ([see 06 §9](./06-workflows.md)).
+
 ---
 
 ## 6. Prompt specifications
@@ -202,6 +204,9 @@ INPUTS:
   - The same hard constraints (brand, system, brief, floor)
   - (if ranking) multiple candidates' screenshots
 
+CAVEATS (if applicable):
+  - "The brand font '<family>' is rendered via fallback '<fallback>' due to licensing. Judge type scale/weight/hierarchy, not letterforms."
+
 TASK:
   1. Score each candidate on: brand_adherence, system_adherence, brief_fit, craft (0–100).
   2. If multiple: rank pairwise and justify the ordering.
@@ -239,6 +244,12 @@ The loop must produce sections that are **consistent** (same tokens) without bei
 - **Free for the Generator:** layout, composition, section structure, which patterns to draw on.
 
 So the Critic's `system_adherence` dimension polices the *primitives*, while `craft` and `brief_fit` reward *appropriate variation*. A section that merely clones the hero's layout should score well on adherence but poorly on craft/brief-fit for its own purpose.
+
+### 7.1 Protected exploration (M8)
+
+In explore iterations (typically early in the loop), **one candidate is flagged `exploration: true`**. This candidate is generated at a higher temperature or with an explicit "take a defensible risk" instruction, and is exempt from the strict scoped-feedback constraints of the other candidates. 
+
+Its purpose is to preserve discontinuous options and provide the human review queue with interesting rejects. It is logged in full and is eligible for selection **only** through the normal Pass Gate — the `exploration` flag is never a bypass for quality or constraints. To support trajectory learning from these candidates, human verdicts in the R2 channel must support a **`rejected_with_interest`** label (feeding R13).
 
 ---
 

@@ -74,6 +74,31 @@ export const BrandDataSchema = z.object({
 
 export type BrandData = z.infer<typeof BrandDataSchema>;
 
+// ─── Plan (spec 07 §3.1) ───────────────────────────────────────────────
+
+export const PlanSchema = z.object({
+  sections: z.array(z.object({
+    name: z.string(),
+    order: z.number(),
+    purpose: z.string()
+  })),
+  narrative_rationale: z.string().optional(),
+  copy_decisions: z.array(z.object({
+    element: z.string(),
+    choice: z.string(),
+    rationale: z.string()
+  })).optional(),
+  audience_notes: z.string().optional(),
+  decisions: z.array(z.object({
+    decision: z.string(),
+    alternatives_considered: z.boolean().optional(),
+    rationale: z.string(),
+    author: z.string()
+  })).optional()
+});
+
+export type Plan = z.infer<typeof PlanSchema>;
+
 // ─── Shared enums ─────────────────────────────────────────────────
 
 export const SurfaceSchema = z.enum(['website', 'product']);
@@ -137,6 +162,14 @@ export const RunRecordSchema = z.object({
     input: z.number().int(),
     output: z.number().int(),
   }),
+  quota: z.object({
+    tokens_today: z.number().int(),
+    calls_today: z.number().int(),
+    tokens_this_week: z.number().int(),
+    calls_this_week: z.number().int()
+  }).optional(),
+  exploration: z.boolean().optional(),
+  engine_mode: z.enum(['zero-to-one', 'refactoring']).optional(),
   model_id: z.string(),
   timestamp: z.string(), // ISO 8601
 });
@@ -175,6 +208,12 @@ export const RenderResultSchema = z.object({
     hasText: z.boolean(),
     fontsLoaded: z.boolean(),
     imagesLoaded: z.boolean(),
+    craftMetrics: z.object({
+      spacingConformance: z.number(),
+      alignmentRegularity: z.number(),
+      tapTargetGeometry: z.number(),
+      typeScaleConformance: z.number(),
+    }).optional(),
   }).optional(),
 });
 
@@ -222,6 +261,7 @@ export const LibraryEntrySchema = z.object({
   id: z.string().min(1),
   type: LibraryEntryTypeSchema,
   title: z.string().min(1),
+  client_id: z.string().optional(),
 
   // Embedded problem-space fields.
   intent: z.string().min(1),
@@ -236,6 +276,11 @@ export const LibraryEntrySchema = z.object({
   provenance: z.array(z.string()).default([]),
   outcome: LibraryOutcomeSchema,
   tags: z.array(z.string()).default([]),
+  
+  // Two-tier adoption enforcement (E2.3)
+  provisional: z.boolean().default(true),
+  expires_at: z.string().optional(),
+
   created_at: z.string(),
   updated_at: z.string(),
 
@@ -411,7 +456,7 @@ export type RunResult = z.infer<typeof RunResultSchema>;
 export const VerdictEntrySchema = z.object({
   run_id: z.string(),
   section: z.string(),
-  preferred: z.enum(['iter0', 'final']),
+  preferred: z.enum(['iter0', 'final', 'control_best']),
   rating: z.enum(['bad', 'weak', 'good', 'strong']),
   human_verdict: z.enum(['approve', 'reject']).optional(),
   candidate_id: z.string().optional(),
@@ -422,6 +467,14 @@ export const VerdictEntrySchema = z.object({
   source: z.enum(['blind-pair', 'approval', 'calibration']).optional(),
   notes: z.string().optional(),
   timestamp: z.string(),
+  positions_log: z.array(z.string()).optional(),
+  dist_tags: z.object({
+    gen_model_id: z.string(),
+    critic_model_id: z.string(),
+    config_version: z.string(),
+    system_snapshot: z.string()
+  }).optional(),
+  rejected_with_interest: z.boolean().optional(),
 });
 
 export type VerdictEntry = z.infer<typeof VerdictEntrySchema>;

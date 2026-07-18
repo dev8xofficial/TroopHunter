@@ -3,7 +3,8 @@
  *
  * ade report: reads trace.jsonl and prints H-metrics.
  * Per-iteration score deltas, tokens/section (H7), pass rates,
- * iter-0→final gain per run (H1 signal A).
+ * iter-0→final gain per run (H1 signal A),
+ * and quota burn-rate vs S2 limits (E0.4/S5).
  *
  * @module report
  */
@@ -62,6 +63,7 @@ export function generateReport(dir: string, scanAll = false, threshold = 80): vo
     }
 
     printCost(allRecords);
+    printQuota(allRecords);
     printCalibration(allRecords, allVerdicts, threshold);
   } else {
     // Single run
@@ -77,6 +79,7 @@ export function generateReport(dir: string, scanAll = false, threshold = 80): vo
 
     printRunReport(dir, records);
     printCost(records);
+    printQuota(records);
     printCalibration(records, readVerdicts(dir), threshold);
   }
 }
@@ -86,6 +89,45 @@ function printCost(records: RunRecord[]): void {
   console.log('  Phase 4 Scale Metrics');
   console.log(`${'='.repeat(60)}`);
   console.log(formatCostSummary(summarizeTraceCost(records)));
+  console.log('');
+}
+
+/**
+ * Print quota burn-rate vs S2-documented limits (E0.4/S5 requirement).
+ * S2 verdict: No-Go on consumer Pro; API Tier-1 limits apply:
+ *   ~50 RPM / 1,000,000 TPM per minute, daily varies.
+ */
+function printQuota(records: RunRecord[]): void {
+  let totalCallsToday = 0;
+  let totalTokensToday = 0;
+  let totalCallsWeek = 0;
+  let totalTokensWeek = 0;
+
+  for (const r of records) {
+    if (r.quota) {
+      totalCallsToday = Math.max(totalCallsToday, r.quota.calls_today ?? 0);
+      totalTokensToday = Math.max(totalTokensToday, r.quota.tokens_today ?? 0);
+      totalCallsWeek = Math.max(totalCallsWeek, r.quota.calls_this_week ?? 0);
+      totalTokensWeek = Math.max(totalTokensWeek, r.quota.tokens_this_week ?? 0);
+    }
+  }
+
+  if (totalCallsToday === 0 && totalTokensToday === 0) return; // no quota data
+
+  // S2 reference limits (Anthropic API Tier-1):
+  const S2_DAILY_CALL_LIMIT = 10_000;
+  const S2_DAILY_TOKEN_LIMIT = 5_000_000;
+
+  console.log(`${'='.repeat(60)}`);
+  console.log('  Quota Burn-Rate (E0.4 / S5)');
+  console.log(`${'='.repeat(60)}`);
+  console.log(`  Calls today:    ${totalCallsToday.toLocaleString()} / ${S2_DAILY_CALL_LIMIT.toLocaleString()} (${((totalCallsToday / S2_DAILY_CALL_LIMIT) * 100).toFixed(1)}%)`);
+  console.log(`  Tokens today:   ${totalTokensToday.toLocaleString()} / ${S2_DAILY_TOKEN_LIMIT.toLocaleString()} (${((totalTokensToday / S2_DAILY_TOKEN_LIMIT) * 100).toFixed(1)}%)`);
+  console.log(`  Calls this wk:  ${totalCallsWeek.toLocaleString()}`);
+  console.log(`  Tokens this wk: ${totalTokensWeek.toLocaleString()}`);
+  if (totalCallsToday > S2_DAILY_CALL_LIMIT * 0.8 || totalTokensToday > S2_DAILY_TOKEN_LIMIT * 0.8) {
+    console.log('  ⚠️  Approaching daily limit — consider pausing runs.');
+  }
   console.log('');
 }
 

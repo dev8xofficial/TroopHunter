@@ -215,3 +215,39 @@ export async function captureVerdict(
 
   return entry;
 }
+
+
+// ─── Queryable Verdict-Corpus Store (E2.1) ────────────────────────
+
+const globalVerdictsDir = process.env.ADE_VERDICTS_DIR ?? './verdicts';
+
+export function getGlobalVerdictsPath(): string {
+  return join(globalVerdictsDir, 'corpus.jsonl');
+}
+
+/**
+ * Persist verdict to global queryable corpus (E2.1)
+ */
+export function appendToGlobalCorpus(entry: VerdictEntry): void {
+  const outPath = getGlobalVerdictsPath();
+  const dir = dirname(outPath);
+  if (!existsSync(dir)) {
+    mkdirSync(dir, { recursive: true });
+  }
+  appendFileSync(outPath, JSON.stringify(entry) + '\n', { flush: true });
+}
+
+/**
+ * Backup discipline for the crown-jewel verdict corpus (E2.1)
+ */
+export function backupGlobalCorpus(): void {
+  const outPath = getGlobalVerdictsPath();
+  if (existsSync(outPath)) {
+    const backupPath = join(globalVerdictsDir, `corpus.backup.${new Date().toISOString().replace(/[:.]/g, '-')}.jsonl`);
+    try {
+      appendFileSync(backupPath, readFileSync(outPath, 'utf-8'));
+    } catch (e) {
+      console.error('Failed to backup global verdict corpus:', e);
+    }
+  }
+}

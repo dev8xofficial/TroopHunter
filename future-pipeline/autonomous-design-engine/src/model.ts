@@ -38,6 +38,12 @@ export interface CompletionResult {
   text: string;
   usage: { input: number; output: number };
   stopReason?: string;
+  quota?: {
+    tokens_today: number;
+    calls_today: number;
+    tokens_this_week: number;
+    calls_this_week: number;
+  };
 }
 
 export interface ModelProvider {

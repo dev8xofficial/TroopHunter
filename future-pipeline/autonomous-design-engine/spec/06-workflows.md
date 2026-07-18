@@ -170,3 +170,29 @@ HUMAN gates (destination):                 AI runs unattended (route):
 ```
 
 Over successive projects, as the Critic calibrates to human verdicts (`08` H8), the human gates can be relaxed — the **autonomy ladder** in `09`. Early on, every Critic "pass" is human-spot-checked; later, only exceptions are. The **Phase-Exit Review** ([11 §2.3](./11-guardrails-and-invariants.md)) sits just *inside* each human gate: it never replaces the human, but it pre-filters what reaches them, and its per-boundary agreement with the human is exactly what the ladder measures before a gate is relaxed.
+
+---
+
+## 9. Escalations & asynchronous answers
+
+When the system cannot proceed safely (e.g., brief comprehension ambiguity, out-of-budget, render repair loop exhausted, or Phase-Exit Review disagreement), it emits a record to a persistent escalation queue rather than failing silently or hanging.
+
+**Schema (`escalations.jsonl`):**
+```jsonc
+{
+  "id": "esc-2026-07-18-001",
+  "ts": "2026-07-18T10:05:33Z",
+  "run_id": "burkes-hero-001",
+  "type": "question", // "question" | "budget" | "oscillation" | "render_abort" | "gate_disagreement"
+  "context_ref": "brief.json#audience",
+  "question": "Is the audience 'founders' or 'managers'? Brief contradicts itself.",
+  "options": ["founders", "managers"],
+  "status": "open", // "open" | "answered" | "expired"
+  "answer": null,
+  "answered_at": null
+}
+```
+
+**Semantics by Phase:**
+- **Phase 0 (MVP):** Uses a **park-and-rerun** semantic. An escalation halts the run. When the human answers the question (e.g. by modifying the brief or providing an explicit answer file), it re-enters as input to a *fresh* run. There is no mid-run resume state. (This is consistent with the MVP's accepted no-resume gap).
+- **Phase 1+:** The queue becomes the standard surface for *all* human touchpoints (comprehension questions, budget escalations, Phase-Exit disagreements). Humans can batch-answer items asynchronously, and the orchestration layer resumes blocked workflows.

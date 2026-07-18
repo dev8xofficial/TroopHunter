@@ -164,6 +164,26 @@
 - **Recovery:** Trim inputs by priority (hard kept, soft trimmed); retry.
 - **Validation:** H7 — tokens/section flat vs refs & Library size; assert no overflow.
 
+### F-MOD-07 — Verdict-distribution staleness
+**Level:** spec · **Severity:** High · **Area:** Model / Learning
+- **Description:** Verdicts collected while the Generator was model-M1 are used to train or calibrate a judge of model-M2's output distribution — even though the two distributions may differ materially. The reward model (or rubric calibration) silently learns to judge a distribution that no longer exists.
+- **Root cause:** Untagged verdict corpus; no distribution-shift detection; implicit assumption that verdicts are distribution-agnostic.
+- **Detection:** Reward-model or Critic accuracy drops after a model-id change when measured on fresh human verdicts; a retrospective audit finds that the training corpus spans multiple `gen_model_id` values without adjustment.
+- **Impact:** Miscalibrated judge; reward-hacking on the old distribution; autonomy gates relax (or tighten) for wrong reasons. Compounds F-SPEC-05 (measurement theater) at the reward-model level.
+- **Mitigation:** Every verdict must carry `dist_tags` (`gen_model_id`, `critic_model_id`, `config_version`, `system_snapshot`) written at capture time — never inferred retroactively. Cross-distribution training sets are flagged; reward-model retraining is triggered on meaningful distribution shift. See `spec/13 §9` (What ages and what survives) [M4, C0.16].
+- **Recovery:** Re-tag historical verdicts where `gen_model_id` is inferable from run logs; exclude untagged verdicts from cross-distribution training until re-tagged.
+- **Validation:** Every verdict record in the corpus carries non-null `dist_tags`; reports flag and exclude cross-distribution comparisons; a deliberate model-id bump triggers the re-baselining flow.
+
+### F-MOD-08 — Calibration non-transfer across model swap
+**Level:** spec · **Severity:** High · **Area:** Model / Learning
+- **Description:** Prompt-level Critic calibration (system prompt tuning, rubric weight adjustment, few-shot examples) is bound to the specific model id it was calibrated on. After a Generator or Critic model swap, the previously earned Critic↔human agreement degrades — but the autonomy-ladder rungs that were unlocked based on that agreement are not automatically re-locked. Distinct from F-LRN-02 (domain non-transfer), which is about *brief-domain* generalization, not *model-version* succession.
+- **Root cause:** Calibration treated as a durable, substrate-independent artifact; no explicit re-earning protocol on model change.
+- **Detection:** Post-swap Critic↔human agreement drops measurably when re-measured on the golden core; human spot-audit miss-rate rises above the pre-registered drop-back threshold (see `spec/09 §2`).
+- **Impact:** Autonomy-ladder rungs relaxed under model-M1 calibration now over-approve or under-approve model-M2 outputs. Silent quality regression or false rejection — both undermine the measurement discipline invariant (I12).
+- **Mitigation:** Treat any `gen_model_id` or `critic_model_id` change as requiring re-earned calibration per boundary × stratum before existing rung privileges hold. Agreement thresholds and prompt calibration are listed as *ages* artifacts in `spec/13 §9`. Pin model ids per the F-MOD-05 discipline and re-baseline on change [M4, C0.16, C3.2].
+- **Recovery:** Re-run the calibration set for affected boundaries; drop rungs provisionally until the new agreement threshold is met; restore only on measured evidence.
+- **Validation:** A deliberate model-id bump triggers a full calibration re-run and rung-hold; no autonomy-rung promotion proceeds without citing post-swap agreement evidence.
+
 ---
 
 ## Architecture & hypothesis-level failures

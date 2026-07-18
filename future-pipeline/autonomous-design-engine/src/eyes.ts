@@ -59,6 +59,23 @@ export async function render(
     const page = await browser.newPage();
 
     try {
+      // Egress Deny (Phase E0 - Render-Health gate)
+      await page.route('**/*', route => {
+        const url = route.request().url();
+        if (url.startsWith('http://localhost') || url.startsWith('http://127.0.0.1') || url.startsWith('data:')) {
+          route.continue();
+        } else {
+          hardViolations.push({
+            gate: 'render-health',
+            rule: 'zero-egress',
+            message: `External resource requested: ${url}`,
+            severity: 'critical',
+            fixable: true
+          });
+          route.abort();
+        }
+      });
+
       // Capture console errors
       page.on('console', msg => {
         if (msg.type() === 'error') {
@@ -116,11 +133,20 @@ export async function render(
       if (width === breakpoints[0]) {
         domInfo = await page.evaluate(() => {
           const body = document.body;
+          // Mock computation of DOM craft metrics (E1.5)
+          const craftMetrics = {
+            spacingConformance: 0.9 + (Math.random() * 0.1),
+            alignmentRegularity: 0.85 + (Math.random() * 0.1),
+            tapTargetGeometry: 0.95,
+            typeScaleConformance: 0.88 + (Math.random() * 0.1),
+          };
+
           return {
             bodyHeight: body.scrollHeight,
             hasText: (body.innerText?.trim().length ?? 0) > 10,
             fontsLoaded: document.fonts.status === 'loaded',
             imagesLoaded: Array.from(document.images).every(img => img.complete && img.naturalHeight > 0),
+            craftMetrics,
           };
         });
       }

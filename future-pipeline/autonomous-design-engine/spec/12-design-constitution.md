@@ -103,7 +103,7 @@ flowchart LR
 Rules that keep amendment safe:
 
 - **Evidence-gated.** A proposed amendment must cite trace/verdict evidence (a pattern of rejections or Critic↔human disagreement), not a preference. This ties the constitution to observed reality, not to what the system finds easy to satisfy.
-- **Human-ratified, append-only, versioned.** Amendments are written only by human approval, as a new immutable version with provenance — the same discipline as the hard stores (I5). The system proposes; the human holds the pen on *what good means*.
+- **Human-ratified, append-only, versioned (Tier A write).** Amendments are strictly **Tier A knowledge writes** (M16) — they are written only by explicit human approval, as a new immutable version with provenance (I5). Provisional adoption is never permitted for the constitution. The system proposes; the human holds the pen on *what good means*.
 - **Retirable.** A principle can be softened or retired when evidence shifts (aesthetic aging, [14](./14-research-agenda.md) L1) — the constitution is not a ratchet.
 - **Governance is explicit.** *Who* ratifies, and how reviewer disagreement resolves, is an open governance question ([14](./14-research-agenda.md) J4) that must be answered before the loop is trusted at higher autonomy rungs.
 

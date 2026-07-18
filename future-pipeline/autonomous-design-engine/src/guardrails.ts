@@ -28,6 +28,7 @@ import type {
 } from './schema.js';
 import { BriefSchema, BrandDataSchema, validate } from './schema.js';
 import type { ModelProvider } from './model.js';
+import { parseImageMetadata } from './imageutils.js';
 import { buildBriefComprehensionPrompt } from './prompts.js';
 
 export interface BriefComprehensionGateResult extends GateResult {
@@ -88,7 +89,7 @@ export function inputGate(brief: unknown, brandData?: unknown, briefPath?: strin
     });
   }
 
-  // 4. Assets exist on disk (F-INP-05)
+  // 4. Assets exist on disk and meet fitness criteria (F-INP-05)
   if (validBrief.section.assets && briefPath) {
     const briefDir = dirname(resolve(briefPath));
     for (const [key, assetPath] of Object.entries(validBrief.section.assets)) {
@@ -99,6 +100,58 @@ export function inputGate(brief: unknown, brandData?: unknown, briefPath?: strin
           rule: 'asset-exists',
           message: `Asset "${key}" not found: ${fullPath}`,
           severity: 'serious',
+          fixable: true,
+        });
+        continue;
+      }
+
+      try {
+        const meta = parseImageMetadata(fullPath);
+        
+        // C0.1 Colorspace check
+        if (meta.isCmyk) {
+          violations.push({
+            gate: 'input',
+            rule: 'asset-fitness',
+            message: `Asset "${key}" is CMYK. Auto-convert to sRGB before generation.`,
+            severity: 'serious', // Serious: standard web environments don't render CMYK reliably
+            fixable: true,
+          });
+        }
+
+        // C0.1 Resolution check
+        // We expect at least something barely recognizable. Tiny sizes usually mean corrupted/placeholder exports
+        if (meta.width > 0 && meta.height > 0) {
+          if (meta.width < 50 || meta.height < 50) {
+            violations.push({
+              gate: 'input',
+              rule: 'asset-fitness',
+              message: `Asset "${key}" is under-resolution (${meta.width}x${meta.height}). Must be at least 50x50.`,
+              severity: 'serious',
+              fixable: true,
+            });
+          }
+        }
+
+        // C0.1 Logo transparency check
+        if (key.toLowerCase().includes('logo') && meta.format === 'jpeg') {
+          violations.push({
+            gate: 'input',
+            rule: 'asset-fitness',
+            message: `Asset "${key}" is a JPEG but named as a logo. Logos require alpha transparency (PNG or WebP).`,
+            severity: 'serious',
+            fixable: true,
+          });
+        }
+
+      } catch (err) {
+        // Not a standard parseable image, could be SVG or corrupt
+        // We will issue a moderate warning for unknown formats but not fail
+        violations.push({
+          gate: 'input',
+          rule: 'asset-fitness',
+          message: `Asset "${key}" failed metadata parsing: ${err instanceof Error ? err.message : String(err)}. Make sure it is a valid image.`,
+          severity: 'moderate',
           fixable: true,
         });
       }

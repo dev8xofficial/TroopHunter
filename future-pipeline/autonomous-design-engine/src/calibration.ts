@@ -19,7 +19,7 @@ export interface CalibrationExample {
   criticPassed: boolean;
   humanPositive: boolean;
   ratingScore: number;
-  preferred: 'iter0' | 'final';
+  preferred: 'iter0' | 'final' | 'control_best';
   timestamp: string;
   notes?: string;
   scoreGain?: number;

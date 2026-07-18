@@ -56,8 +56,9 @@ const ConfigSchema = z.object({
   maxTokensPerSection: z.number().int().positive().default(200_000),
   maxSecondsPerSection: z.number().positive().default(300),
   maxUsdPerSection: z.number().positive().default(50),
-  generatorModelId: z.string().optional(),
+  genModelId: z.string().optional(),
   criticModelId: z.string().optional(),
+  orchestratorModelId: z.string().optional(),
 
   // Anthropic API key (only for provider=api)
   anthropicApiKey: z.string().optional(),
@@ -86,6 +87,9 @@ export interface CLIOverrides {
   maxTokensPerSection?: number;
   maxSecondsPerSection?: number;
   maxUsdPerSection?: number;
+  genModelId?: string;
+  criticModelId?: string;
+  orchestratorModelId?: string;
 }
 
 /**
@@ -118,8 +122,9 @@ export function buildConfig(overrides: CLIOverrides = {}): Config {
     maxTokensPerSection: overrides.maxTokensPerSection ?? parseIntEnv('ADE_MAX_TOKENS_PER_SECTION'),
     maxSecondsPerSection: overrides.maxSecondsPerSection ?? parseFloatEnv('ADE_MAX_SECONDS_PER_SECTION'),
     maxUsdPerSection: overrides.maxUsdPerSection ?? parseFloatEnv('ADE_MAX_USD_PER_SECTION'),
-    generatorModelId: process.env.ADE_GENERATOR_MODEL,
-    criticModelId: process.env.ADE_CRITIC_MODEL,
+    genModelId: overrides.genModelId ?? process.env.ADE_GEN_MODEL,
+    criticModelId: overrides.criticModelId ?? process.env.ADE_CRITIC_MODEL,
+    orchestratorModelId: overrides.orchestratorModelId ?? process.env.ADE_ORCHESTRATOR_MODEL,
     anthropicApiKey: process.env.ANTHROPIC_API_KEY || undefined,
     headed: overrides.headed ?? parseBoolEnv('ADE_HEADED'),
     harnessPort: parseIntEnv('ADE_HARNESS_PORT'),

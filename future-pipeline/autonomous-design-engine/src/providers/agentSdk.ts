@@ -10,6 +10,8 @@
 
 import { query, type SDKMessage, type SDKResultMessage, type SDKUserMessage } from '@anthropic-ai/claude-agent-sdk';
 import type { MessageParam } from '@anthropic-ai/sdk/resources';
+import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { join } from 'path';
 import type { Config } from '../config.js';
 import type { ModelProvider, CompletionRequest, CompletionResult, ImageRef, Msg } from '../model.js';
 import { withRetry } from '../model.js';
@@ -83,10 +85,66 @@ async function runAgentSdkCompletion(
     throw new Error(`Agent SDK completion failed (${resultMessage.subtype}): ${errors}`);
   }
 
+  const quota = trackTelemetry(usage);
+
   return {
     text: resultMessage.result || assistantText,
     usage,
     stopReason: normalizeStopReason(resultMessage.stop_reason),
+    quota,
+  };
+}
+
+// ─── Telemetry (Phase E0 - S5) ─────────────────────────────────────────
+
+function getISOWeek(d: Date) {
+  const date = new Date(d.getTime());
+  date.setHours(0, 0, 0, 0);
+  date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+  const week1 = new Date(date.getFullYear(), 0, 4);
+  return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
+}
+
+function trackTelemetry(usage: Usage) {
+  const TELEMETRY_FILE = join(process.cwd(), '.ade_telemetry.json');
+  let data = {
+    tokens_today: 0, calls_today: 0, last_day: '',
+    tokens_this_week: 0, calls_this_week: 0, last_week: ''
+  };
+
+  if (existsSync(TELEMETRY_FILE)) {
+    try {
+      data = JSON.parse(readFileSync(TELEMETRY_FILE, 'utf-8'));
+    } catch (e) {}
+  }
+
+  const now = new Date();
+  const today = now.toISOString().split('T')[0];
+  const thisWeek = `${now.getFullYear()}-W${getISOWeek(now)}`;
+
+  if (data.last_day !== today) {
+    data.tokens_today = 0;
+    data.calls_today = 0;
+    data.last_day = today;
+  }
+  if (data.last_week !== thisWeek) {
+    data.tokens_this_week = 0;
+    data.calls_this_week = 0;
+    data.last_week = thisWeek;
+  }
+
+  data.calls_today += 1;
+  data.calls_this_week += 1;
+  data.tokens_today += (usage.input + usage.output);
+  data.tokens_this_week += (usage.input + usage.output);
+
+  writeFileSync(TELEMETRY_FILE, JSON.stringify(data, null, 2), 'utf-8');
+
+  return {
+    tokens_today: data.tokens_today,
+    calls_today: data.calls_today,
+    tokens_this_week: data.tokens_this_week,
+    calls_this_week: data.calls_this_week,
   };
 }
 

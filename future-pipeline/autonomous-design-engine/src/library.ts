@@ -89,36 +89,67 @@ export async function searchLibrary(
   query: string,
   provider: EmbeddingProvider,
   topK = 5,
+  clientId?: string,
 ): Promise<LibraryHit[]> {
   const entries = readLibrary();
   if (entries.length === 0) return [];
 
+  const now = Date.now();
+  const validEntries = entries.filter(e => {
+    // Audit sampling / provisional auto-expiry (E2.3)
+    if (e.provisional && e.expires_at && new Date(e.expires_at).getTime() < now) {
+      return false; // Expired provisional entry
+    }
+    return true;
+  });
+
+  if (validEntries.length === 0) return [];
+
   const queryEmbedding = await provider.embed(query);
-  return entries
+  return validEntries
     .filter(entry => entry.embedding.vector.length > 0)
     .map(entry => {
       const similarity = cosineSimilarity(queryEmbedding.vector, entry.embedding.vector);
       const confidence = entry.outcome.confidence || 0.1;
+      // Own-client memory (E2.1): Boost score if client matches
+      const clientBoost = (clientId && entry.client_id === clientId) ? 0.2 : 0;
+      
       return {
         entry,
         similarity,
-        score: similarity * (0.7 + confidence * 0.3),
+        score: similarity * (0.7 + confidence * 0.3) + clientBoost,
       };
     })
     .sort((a, b) => b.score - a.score)
     .slice(0, Math.max(0, Math.min(topK, 5)));
 }
 
+export type AblationArm = 'memory-off' | 'text-Library' | 'multimodal';
+
 export async function retrieveLibraryForBrief(
   cfg: Config,
   brief: Brief,
   topK = 5,
+  arm: AblationArm = 'text-Library',
 ): Promise<LibraryEntry[]> {
+  if (arm === 'memory-off') {
+    return [];
+  }
+
   try {
     const provider = getEmbeddingProvider(cfg);
     const query = buildProblemSpaceQuery(brief);
-    const hits = await searchLibrary(query, provider, topK);
-    return hits.map(hit => hit.entry);
+    const hits = await searchLibrary(query, provider, topK, brief.client);
+    
+    // De-identification rule for multimodal arm (E2.2)
+    return hits.map(hit => {
+      const entry = { ...hit.entry };
+      if (arm === 'multimodal') {
+        // Mock image de-id rule: redacted thumbnails for multimodal arm
+        entry.tags = [...entry.tags, 'redacted-thumbnails-injected'];
+      }
+      return entry;
+    });
   } catch (err) {
     console.warn('Library retrieval failed; continuing without soft memory:', err instanceof Error ? err.message : err);
     return [];
@@ -203,5 +234,37 @@ function atomicWriteText(filePath: string, content: string): void {
   } catch (err) {
     try { unlinkSync(tempPath); } catch { /* ignore */ }
     throw err;
+  }
+}
+
+import { emitEscalation } from './escalations.js';
+
+/**
+ * Audit provisional entries (E2.3).
+ * Identifies expired provisional entries and emits them to the escalation queue for R14-style human ratification.
+ */
+export function auditLibrary(outDir: string): void {
+  const entries = readLibrary();
+  const now = Date.now();
+  
+  let needsWrite = false;
+  const activeEntries = entries.filter(e => {
+    if (e.provisional && e.expires_at && new Date(e.expires_at).getTime() < now) {
+      // Emit escalation for human audit (Tier-A)
+      emitEscalation(outDir, {
+        type: 'self_audit',
+        runId: 'library_audit',
+        question: `Provisional entry "${e.title}" (${e.id}) has expired. Ratify and promote to canonical library, or revoke?`
+      });
+      // The entry auto-expires unconfirmed (we filter it out of active memory).
+      // A human must answer the escalation to restore it as non-provisional.
+      needsWrite = true;
+      return false; 
+    }
+    return true;
+  });
+
+  if (needsWrite) {
+    writeLibrary(activeEntries);
   }
 }

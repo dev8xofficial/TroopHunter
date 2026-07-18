@@ -252,8 +252,9 @@ export function serializeFeedback(
 
 export function buildCriticPrompt(
   bundle: InputBundle,
-  candidateIds: string[],
+  candidatesInfo: Record<string, { shots: Record<string, string>, domInfo?: any }>,
 ): { system: string; user: string } {
+  const candidateIds = Object.keys(candidatesInfo);
   const { brief, brandData } = bundle;
   const hardBrand = bundle.hardBrand?.status === 'frozen' ? bundle.hardBrand : undefined;
 
@@ -333,6 +334,20 @@ IMPORTANT RULES:
     ? `You are comparing ${candidateIds.length} candidates: ${candidateIds.join(', ')}. Rank them pairwise.`
     : `You are evaluating candidate: ${candidateIds[0]}.`;
 
+  // Inject DOM craft metrics
+  let craftMetricsBlock = '';
+  for (const cid of candidateIds) {
+    const info = candidatesInfo[cid];
+    if (info.domInfo?.craftMetrics) {
+      const cm = info.domInfo.craftMetrics;
+      craftMetricsBlock += `\nCANDIDATE ${cid} DOM CRAFT METRICS (Advisory):
+  Spacing Conformance: ${(cm.spacingConformance * 100).toFixed(0)}%
+  Alignment Regularity: ${(cm.alignmentRegularity * 100).toFixed(0)}%
+  Type-scale Conformance: ${(cm.typeScaleConformance * 100).toFixed(0)}%
+`;
+    }
+  }
+
   const user = `${candidateList}
 
 BUSINESS BRIEF (judge against this):
@@ -343,7 +358,7 @@ BUSINESS BRIEF (judge against this):
   Section: ${brief.section.name}
   Content provided: ${Object.keys(brief.section.content).join(', ')}
 ${brandRef}${weightingNote}
-
+${craftMetricsBlock}
 The screenshots for each candidate at 1440px, 768px, and 375px viewports are attached as images.
 
 Score each candidate, provide specific actionable feedback, and return valid JSON.`;

@@ -49,9 +49,9 @@ flowchart LR
 
 | Gate | When it runs | Checks (deterministic) | On fail |
 |---|---|---|---|
-| **Input Gate** | before generation | brief schema valid; required fields present; no unresolved contradictions; **asset fitness** (colorspace = sRGB — auto-convert CMYK where safe, else flag; minimum resolution for display size; logo alpha/background check; aspect-ratio sanity); all content strings wrapped as *data* with clear delimiters (injection-safe — I9) | reject with a **precise, actionable error message** and **zero model calls**; ask human on contradiction or ambiguous required field (F-INP-01..07) |
+| **Input Gate** | before generation | brief schema valid; required fields present; no unresolved contradictions; **asset fitness** (colorspace = sRGB — auto-convert CMYK where safe, else flag; minimum resolution for display size; logo alpha/background check; aspect-ratio sanity); all content strings **and fetched external research** wrapped as *data* with clear delimiters (injection-safe — I9); external research must be provenance-logged and never treated as a hard input | reject with a **precise, actionable error message** and **zero model calls**; ask human on contradiction or ambiguous required field (F-INP-01..07, F-SEC-02) |
 | **Render-Health Gate** | after render, **before** critique | **fast syntax check** (esbuild.transform — catches parse/syntax errors; does *not* type-check; semantic errors surface via Vite error overlay); non-blank DOM; expected root node present; no error overlay; fonts + images loaded; layout settled; `window.__ADE_READY_ID__ === candidateId` **per-candidate nonce match** (never a boolean — prevents stale-render false passes; F-EYE-02); screenshot↔candidate content fingerprint match | route to **render-repair** sub-loop (bounded), **not** the Critic — a render bug is categorically distinct from a design failure (F-EYE-01..06, F-GEN-03) |
-| **Hard-Constraint Gate** | after a healthy render, before/with critique | **a11y audit** (axe-core baseline + **deep a11y**: keyboard flow, screen-reader validation, reduced-motion, 200%-zoom reflow — calibrate rule subset to serious/critical severity only against 1–2 known-good sections first); **responsive overflow**; **content-presence** (every required brief string appears in the DOM); **numeric exact-match** (every numeric/structured brief field is diffed against the rendered value); **placeholder scan** (no lorem ipsum, TODO, or placeholder copy); **token-allowlist checker** (rejects off-system colors/type/space; new components allowed, new tokens rejected) | feed the **specific violation** back as hard feedback; Critic can **never** override a deterministic failure; never approve (F-PDS-02, F-CON-01, F-GEN-01/05/07, F-QF-01/02/03) |
+| **Hard-Constraint Gate** | after a healthy render, before/with critique | **a11y audit** (axe-core baseline + **deep a11y**: keyboard flow, screen-reader validation, reduced-motion, 200%-zoom reflow — calibrate rule subset to serious/critical severity only against 1–2 known-good sections first); **responsive overflow**; **content-presence** (every required brief string appears in the DOM); **numeric exact-match** (every numeric/structured brief field is diffed against the rendered value); **placeholder scan** (no lorem ipsum, TODO, or placeholder copy); **token-allowlist checker** (rejects off-system colors/type/space; new components allowed, new tokens rejected).<br><br>**Advisory Craft Metrics (M17):** computed deterministically from the rendered DOM (spacing-scale conformance, type-scale conformance, alignment/grid regularity, tap-target geometry). These are written to the trace and injected into the Critic context as measurements (moving craft assessment from VLM to code). *Rule:* Advisory only at introduction; promoted to gating only on benchmark evidence that they correlate with human craft verdicts. | feed the **specific violation** back as hard feedback; Critic can **never** override a deterministic failure; never approve (F-PDS-02, F-CON-01, F-GEN-01/05/07, F-QF-01/02/03). *Advisory metrics are injected into Critic context, not used to hard-reject.* |
 | **Schema Gate** | on every LLM structured output (critic verdict now; crystallizer / write-back entry in later phases) | output matches the expected JSON schema | **one re-ask**; on second failure, fall back to a **safe conservative verdict** (fail verdict, neutral scores, parse failure logged) — never crash on bad JSON, never silently pass (F-MOD-03) |
 | **Output-Quality Gate** | after approval, before delivery | **semantic HTML** (nav/main/button present where divs were used); **prop-driven** (no hard-coded content); keys present; **security lint** (no `dangerouslySetInnerHTML`); **resource allowlist** (self-host only) | reject; route back as a refactor fix task (F-COD-01..04) |
 | **Provenance & Compliance Gate** | pre-delivery / pre-write-back | **licensing check** (fonts/assets); **originality screen** (similarity to known sites); **dark-pattern screen**; **regulatory checklist** (financial/medical disclaimers) | block delivery or write-back; alert human / drop asset (F-LEG-01..05) |
@@ -104,6 +104,7 @@ Key properties:
 
 - **Bounded, not iterative.** Unlike the section Eyes-loop (up to `max_iters`), a phase-exit review is a *gate*, not the engine: **≤1–2 review→fix→re-check** cycles, then escalate to the human. A single review that hands back fixes and lets them through **unverified** is forbidden — that is the open-loop "final exam" the loop replaced (`05` §8); the fix is always re-checked.
 - **It catches bad; it does not certify good.** The Critic is a proxy, not an oracle (`05` §4, §8 below). The Phase-Exit Review is a **pre-human filter + hard floor**. It is precisely the surface on which Critic↔human agreement is *measured* per boundary. **The human gate is removed ONLY when that boundary's measured agreement clears an explicit threshold and is recorded** (H8, autonomy ladder `09` §2).
+- **Cross-family second judge at high-stakes exits (M9).** At critical Phase-Exit boundaries (Brand freeze, PDS freeze, and whenever collecting rung-promotion evidence), the artifact undergoes a **second independent review by a different model family** (e.g. `local`/Ollama in dev, a second vendor in prod). Disagreement between the two judges is **never** silently averaged; it immediately **escalates to the human** via the `escalations.jsonl` queue (M7), and both verdicts are recorded.
 
 ---
 
@@ -133,6 +134,26 @@ The Orchestrator must treat every external call as fallible:
 - **Per-run budgets** (token / wall-clock / model-call count) enforced centrally by the Orchestrator — a run exceeding any budget ends `escalated` and writes best-so-far; never silent. "**Explore early (≈3 candidates), polish late (1)**" as a default strategy to bound cost across iterations.
 - **Graceful degradation:** retrieval/vector-store failure is non-blocking — proceed on brand+brief, log the degradation. (F-MEM-07, F-MEM-05)
 - **Embedding-model versioning:** store the embedding model id with each vector; re-embed the whole store on change. (F-MEM-03)
+- **Model succession playbook (M12):** Model upgrades are the system's capability escalator (CF-2); the subsystem's job is absorbing them without losing calibration. On any model swap (deprecation or upgrade): 
+  1. Freeze current benchmark scores as the old baseline.
+  2. Re-run the golden core on the new model (regression gate).
+  3. Re-verify gate calibrations (a11y thresholds are unaffected; Critic thresholds must be re-earned).
+  4. Retrain/refresh the reward model per M4's triggers.
+  5. Re-embed if the embedding model changed (F-MEM-03).
+  6. Record a succession entry (`old_id` → `new_id` + deltas) in knowledge. (Closes F-MOD-07/08)
+
+### 4.1 Model succession playbook (M12)
+
+> Model upgrades are the system's capability escalator (CF-2); the subsystem's job is absorbing them without losing calibration. This playbook is executed via the `ade succession run` tool on any model swap (deprecation or upgrade).
+
+1. **Freeze current baseline:** Freeze current benchmark scores as the old baseline.
+2. **Regression gate:** Re-run the golden core on the new model to measure impact on `restatementAccuracy` and `interpretationDepth`.
+3. **Re-verify gate calibrations:** Re-run the Critic on a calibration set. (Note: deterministic a11y thresholds are unaffected, but Critic thresholds must be re-earned).
+4. **Retrain the reward model:** Retrain or refresh the reward model based on the triggers defined in the charter (M4).
+5. **Re-embed vectors:** If the embedding model changed, regenerate the entire library vector store (F-MEM-03).
+6. **Record entry:** Append a succession entry (`old_id` → `new_id` + deltas) in `knowledge/decisions-and-conventions.md`.
+
+This discipline formally closes F-MOD-07 (verdict-distribution staleness) and F-MOD-08 (calibration non-transfer across model swap).
 
 ---
 

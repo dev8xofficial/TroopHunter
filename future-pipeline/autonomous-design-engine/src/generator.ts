@@ -23,6 +23,7 @@ export class GeneratorError extends Error {
 interface GenerateResult {
   tsx: string;
   usage: { input: number; output: number };
+  quota?: any;
 }
 
 /**
@@ -34,14 +35,19 @@ export async function generate(
   feedback: string | undefined,
   temperature: number,
   maxModelCalls: { current: number; max: number },
+  exploration: boolean = false
 ): Promise<GenerateResult> {
   const { system, user } = buildGeneratorPrompt(bundle, feedback);
+  
+  const finalUser = exploration
+    ? user + '\n\nIMPORTANT (M8 Exploration): This is an exploration candidate. Take a defensible structural or aesthetic risk that diverges from the standard safe approach while still respecting the hard constraints.'
+    : user;
 
   // First attempt
   maxModelCalls.current++;
   let result = await provider.complete({
     system,
-    messages: [{ role: 'user', content: user }],
+    messages: [{ role: 'user', content: finalUser }],
     maxTokens: 16_000,
     temperature,
     stream: true,
@@ -102,6 +108,7 @@ export async function generate(
   return {
     tsx,
     usage: result.usage,
+    quota: result.quota,
   };
 }
 

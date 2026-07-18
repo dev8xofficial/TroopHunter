@@ -33,6 +33,12 @@ export interface CostSummary {
   secondsPerSection: number;
   estimatedUsd: number;
   estimatedUsdPerSection: number;
+  quota?: {
+    tokens_today: number;
+    calls_today: number;
+    tokens_this_week: number;
+    calls_this_week: number;
+  };
 }
 
 const DEFAULT_PRICE = {
@@ -138,6 +144,7 @@ export function summarizeTraceCost(
     secondsPerSection: (durationMs / 1000) / safeSections,
     estimatedUsd,
     estimatedUsdPerSection: estimatedUsd / safeSections,
+    quota: finalRecords[finalRecords.length - 1]?.quota,
   };
 }
 
@@ -205,11 +212,15 @@ export function budgetFromConfig(cfg: Config): CostBudget {
 }
 
 export function formatCostSummary(summary: CostSummary): string {
-  return [
+  const lines = [
     `Cost/latency (H7): ${summary.sections} section(s), ${Math.round(summary.tokensPerSection).toLocaleString()} tokens/section`,
     `Latency: ${summary.secondsPerSection.toFixed(1)}s/section`,
     `Estimated spend: $${summary.estimatedUsdPerSection.toFixed(2)}/section`,
-  ].join('\n');
+  ];
+  if (summary.quota) {
+    lines.push(`Quota Burn: ${summary.quota.tokens_today.toLocaleString()} tokens today | ${summary.quota.calls_today.toLocaleString()} calls today`);
+  }
+  return lines.join('\n');
 }
 
 function violation(
@@ -225,4 +236,40 @@ function violation(
     severity,
     fixable: true,
   };
+}
+
+// --- Design-to-code strict parity (E3.1) -------------------------
+
+export function validateDesignToCodeParity(tsx: string): Violation[] {
+  const violations: Violation[] = [];
+
+  // 1. No inline styles
+  if (/style=\{\{.*\}\}/.test(tsx)) {
+    violations.push({
+      gate: 'ast-parity',
+      rule: 'no-inline-styles',
+      message: 'TSX contains inline styles. Use Tailwind classes only.',
+      severity: 'critical',
+      fixable: true,
+    });
+  }
+
+  // 2. No un-exported top-level functions (naive regex for mock)
+  const lines = tsx.split('\n');
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    // Match 'function Foo' at the start of a line (or with spaces) but NOT preceded by 'export'
+    if (/^\s*function\s+[A-Za-z0-9_]+/.test(line) && !/^\s*export\s+(default\s+)?function/.test(line)) {
+      violations.push({
+        gate: 'ast-parity',
+        rule: 'no-unexported-functions',
+        message: 'TSX contains an unexported top-level function. All component functions must be exported.',
+        severity: 'critical',
+        fixable: true,
+      });
+      break; // One violation per rule is enough
+    }
+  }
+
+  return violations;
 }

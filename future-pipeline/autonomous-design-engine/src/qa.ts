@@ -19,6 +19,8 @@ import type {
   Violation,
 } from './schema.js';
 import { tokenAllowlistGate } from './guardrails.js';
+import { getProvider } from './model.js';
+import { emitEscalation } from './escalations.js';
 
 export interface ArtifactQAOptions {
   threshold?: number;
@@ -260,4 +262,43 @@ function violation(
     severity,
     fixable: true,
   };
+}
+
+/**
+ * Phase-Exit Review (E1.3)
+ * Calls Judge #2 via the local provider. If Judge #2 disagrees, emits a gate_disagreement escalation.
+ */
+export async function phaseExitReview(
+  outDir: string,
+  runId: string,
+  subject: string,
+  content: string,
+  primaryJudgeVerdict: 'pass' | 'fail',
+): Promise<void> {
+  console.log(`\n⚖️ Initiating Phase-Exit Review via Judge #2 (local) for ${subject}...`);
+  try {
+    const localProvider = await getProvider({ provider: 'local', modelId: 'judge-v2' });
+    const result = await localProvider.complete({
+      system: 'You are Judge #2, a strict design quality assessor. Reply with only "pass" or "fail".',
+      messages: [{ role: 'user', content: `Assess this ${subject} for quality:\n\n${content}\n\nVerdict (pass/fail):` }],
+      maxTokens: 10,
+      temperature: 0,
+    });
+
+    const judge2Verdict = result.text.trim().toLowerCase().includes('pass') ? 'pass' : 'fail';
+    console.log(`  Judge #2 verdict: ${judge2Verdict} (Primary was: ${primaryJudgeVerdict})`);
+
+    if (judge2Verdict !== primaryJudgeVerdict) {
+      console.warn(`⚠ Gate disagreement detected! Escalating.`);
+      emitEscalation(outDir, {
+        type: 'gate_disagreement',
+        runId,
+        question: `Judge disagreement on ${subject}. Primary: ${primaryJudgeVerdict}, Judge #2: ${judge2Verdict}. Resolve manually.`,
+      });
+    } else {
+      console.log(`  ✅ Judges agree.`);
+    }
+  } catch (err) {
+    console.warn(`  ⚠ Phase-Exit Review skipped (local judge unavailable or failed): ${err}`);
+  }
 }

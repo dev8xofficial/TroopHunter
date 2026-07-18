@@ -112,21 +112,21 @@ export function computeWeightedTotal(
  * Uses vision (screenshots as images), fresh context (I2).
  */
 export async function critique(
-  shots: Record<string, Record<string, string>>, // candidateId → { breakpoint → path }
+  candidatesInfo: Record<string, { shots: Record<string, string>, domInfo?: any }>, // candidateId → { shots, domInfo }
   bundle: InputBundle,
   provider: ModelProvider,
   temperature: number,
   threshold: number,
   maxModelCalls: { current: number; max: number },
 ): Promise<CriticOutput> {
-  const candidateIds = Object.keys(shots);
-  const { system, user } = buildCriticPrompt(bundle, candidateIds);
+  const candidateIds = Object.keys(candidatesInfo);
+  const { system, user } = buildCriticPrompt(bundle, candidatesInfo);
   const hasSystem = bundle.hardSystem?.status === 'foundation-frozen';
 
   // Build image refs from screenshots (vision)
   const images: ImageRef[] = [];
   for (const candidateId of candidateIds) {
-    const candidateShots = shots[candidateId];
+    const candidateShots = candidatesInfo[candidateId].shots;
     for (const [breakpoint, shotPath] of Object.entries(candidateShots)) {
       try {
         const imageData = readFileSync(shotPath);
