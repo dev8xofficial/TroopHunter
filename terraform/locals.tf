@@ -92,7 +92,7 @@ locals {
   backbone_k3s = [
     {
       name          = "${var.backbone_k3s_name}"
-      cores         = 4
+      cores         = 18
       memory        = 8192
       ip            = "${var.backbone_k3s_ip}"
       hostname      = "${var.backbone_k3s_name}"
