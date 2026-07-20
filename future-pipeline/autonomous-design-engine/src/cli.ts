@@ -29,9 +29,9 @@ import type {
   ProjectDesignSystem,
   ArtifactQAReport,
 } from './schema.js';
-import { deriveBrand, saveBrandDraft, approveBrand, reDeriveBrand } from './brand.js';
+import { deriveBrand, saveBrandDraft, approveBrand, reDeriveBrand, reviewAndReDeriveBrand } from './brand.js';
 import { crystallize } from './crystallizer.js';
-import { getProvider } from './model.js';
+import { getProvider, getProviderForRole } from './model.js';
 import {
   getSectionRunDir,
   readArtifact,
@@ -40,6 +40,7 @@ import {
   readPDS,
   writeArtifact,
   writeArtifactQA,
+  writeBrand,
 } from './store.js';
 import { readLibrary, getLibraryDir } from './library.js';
 import { writeBackArtifact } from './writeback.js';
@@ -120,7 +121,13 @@ program
           console.error(`❌ Plan file not found: ${planPath}`);
           process.exit(1);
         }
-        plan = JSON.parse(readFileSync(planPath, 'utf-8'));
+        const rawPlan = JSON.parse(readFileSync(planPath, 'utf-8'));
+        const planValidation = PlanSchema.safeParse(rawPlan);
+        if (!planValidation.success) {
+          console.error(`❌ Invalid plan.json: ${planValidation.error.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
+          process.exit(1);
+        }
+        plan = planValidation.data;
       }
 
       // Output directory
@@ -216,7 +223,13 @@ program
 
       let plan: Plan | undefined;
       if (opts.plan) {
-        plan = JSON.parse(readFileSync(resolve(opts.plan), 'utf-8'));
+        const rawPlan = JSON.parse(readFileSync(resolve(opts.plan), 'utf-8'));
+        const planValidation = PlanSchema.safeParse(rawPlan);
+        if (!planValidation.success) {
+          console.error(`❌ Invalid plan.json: ${planValidation.error.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
+          process.exit(1);
+        }
+        plan = planValidation.data;
       }
 
       const outDir = resolve(opts.out);
@@ -280,35 +293,18 @@ program
       const section = opts.section ?? traceRecord?.section_id;
 
       if (opts.retest) {
-        const retestDir = resolve(opts.retest);
-        console.log(`\n?? Retest mode: evaluating blind set at ${retestDir} ...`);
-        
-        // Find all cases to retest
-        const cases = existsSync(retestDir) ? [retestDir] : []; // A real implementation would scan subdirectories
-        if (cases.length === 0) {
-          console.log(`No valid artifacts found in ${retestDir}`);
-          process.exit(0);
-        }
-        
-        let matchCount = 0;
-        let totalCount = 0;
-        
-        for (const caseDir of cases) {
-          // Mocking the retest loop: a full implementation would read iter0/final from caseDir,
-          // run captureVerdict() blind, and compare the human's new verdict against the frozen baseline
-          console.log(`\nCase: ${caseDir}`);
-          console.log(`(Retest loop placeholder - M13/E0.7)`);
-          
-          // Simulated result
-          totalCount++;
-          matchCount++; 
-        }
-        
-        const agreement = (matchCount / totalCount) * 100;
-        console.log(`\n=== Retest Complete ===`);
-        console.log(`Artifacts evaluated: ${totalCount}`);
-        console.log(`Self-agreement:      ${agreement.toFixed(1)}%`);
-        console.log(`(Result appended to benchmark log)\n`);
+        // ⚠ NOT YET IMPLEMENTED (M13/E0.7). The quarterly human test-retest
+        // ritual needs: a frozen baseline rating per case (captured once,
+        // held out), a genuinely blind re-presentation via the existing
+        // captureVerdict() flow, and a real comparison against that baseline.
+        // captureVerdict() exists and works (verdicts.ts) but this command
+        // does not yet define the frozen-baseline file convention or wire
+        // the interactive flow to it. Do NOT report the number below as a
+        // real self-agreement measurement — it does not exist yet.
+        console.error('\n❌ --retest is not yet implemented (M13/E0.7 stub).');
+        console.error('   No baseline exists, no artifacts were re-rated, no agreement was computed.');
+        console.error('   See src/cli.ts verdict command for the exact gap.\n');
+        process.exit(1);
         
         process.exit(0);
       }
@@ -318,12 +314,15 @@ program
         process.exit(1);
       }
 
-      // Auto-derive dist_tags from trace if omitted (GAP-3/E0.6)
-      const dist_tags = opts.distTags ? JSON.parse(opts.distTags) : (traceRecord ? {
-        gen_model_id: traceRecord.model_id,
-        critic_model_id: 'claude-opus-4-8', // default fallback if not in trace
-        config_version: '1.2.0',
-        system_snapshot: 'HEAD',
+      // Auto-derive distTags from trace if omitted (E0.6 — the corpus is only
+      // future-proof if tagged from the first verdict, F-MOD-07/08). Uses the
+      // real per-role ids the orchestrator now records (C0.16 fix) instead of
+      // guessing criticModelId from the shared model_id field.
+      const distTags = opts.distTags ? JSON.parse(opts.distTags) : (traceRecord ? {
+        genModelId: traceRecord.gen_model_id ?? traceRecord.model_id,
+        criticModelId: traceRecord.critic_model_id ?? traceRecord.model_id,
+        configVersion: '1.2.0',
+        systemSnapshot: 'HEAD',
       } : undefined);
 
       const entry = recordHumanVerdict(outDir, {
@@ -339,8 +338,8 @@ program
         threshold,
         reviewer: opts.reviewer,
         source: 'approval',
-        rejected_with_interest: opts.rejectedWithInterest,
-        dist_tags,
+        rejectedWithInterest: opts.rejectedWithInterest,
+        distTags,
       });
 
       console.log(`Recorded ${entry.human_verdict} verdict for ${entry.run_id}/${entry.section}.`);
@@ -387,23 +386,34 @@ design
         process.exit(1);
       }
 
-      const provider = await getProvider(cfg);
+      const genProvider = await getProviderForRole(cfg, 'generator');
+      const criticProvider = await getProviderForRole(cfg, 'critic');
       const existing = readBrand(opts.client);
       if (existing && !opts.rederive) {
         console.error(`Error: brand for "${opts.client}" already exists. Use --rederive to create a new draft version or --approve to freeze it.`);
         process.exit(1);
       }
 
-      const foundation = opts.rederive
-        ? await reDeriveBrand(opts.client, brandData, brief, provider)
-        : await deriveBrand(brandData, brief, provider);
+      // C1.3: Phase-Exit Review (fresh-context Critic + cross-family second
+      // judge, bounded ≤2 tries, re-derive on failure — never hand-patch)
+      // BEFORE the human ever sees the derived brand.
+      const outDir = join('.', 'projects', opts.client, 'brand-review');
+      const { foundation, tries, finalVerdict } = await reviewAndReDeriveBrand(
+        opts.client, brandData, brief, criticProvider, genProvider, outDir,
+      );
 
-      if (!opts.rederive) {
+      if (opts.rederive) {
+        const newVersion = existing ? existing.version + 1 : 1;
+        foundation.version = newVersion;
+        foundation.provenance.derived_from = `brand-data v${newVersion} + brief (${brief.client} / ${brief.industry})`;
+        writeBrand(opts.client, foundation, existing ? existing.version : null);
+        console.log(JSON.stringify(foundation, null, 2));
+        console.log(`Brand re-derived for "${opts.client}" -> v${newVersion} (draft). Reviewed ${tries} time(s), final verdict: ${finalVerdict.verdict}.`);
+      } else {
         saveBrandDraft(opts.client, foundation);
+        console.log(JSON.stringify(foundation, null, 2));
+        console.log(`Brand draft saved for "${opts.client}" (v${foundation.version}). Reviewed ${tries} time(s), final verdict: ${finalVerdict.verdict}. Run design brand --client ${opts.client} --approve when ready.`);
       }
-
-      console.log(JSON.stringify(foundation, null, 2));
-      console.log(`Brand draft saved for "${opts.client}" (v${foundation.version}). Run design brand --client ${opts.client} --approve when ready.`);
     } catch (err) {
       console.error('Error:', err instanceof Error ? err.message : err);
       process.exit(1);
@@ -704,7 +714,7 @@ program
     try {
       const result = await runBenchmark(resolve(opts.cases), opts.model, opts.compare);
       console.log('\n============================================================');
-      console.log(' Benchmark Results');
+      console.log(' Benchmark Results — ⚠ PLACEHOLDER, NOT REAL MEASUREMENTS ⚠');
       console.log('============================================================');
       console.log(`Refresh Date: ${result.refreshDate}`);
       console.log(`Distance from Anchor: ${result.distanceFromAnchor.toFixed(2)}`);
@@ -792,7 +802,7 @@ successionCmd
   .requiredOption('--new-model <id>', 'New model ID')
   .action(async (opts) => {
     try {
-      const provider = getProvider(buildConfig({ model: opts.newModel }));
+      const provider = await getProvider(buildConfig({ model: opts.newModel }));
       await executeSuccessionPlaybook(opts.oldModel, opts.newModel, provider, []);
     } catch (err) {
       console.error('Error:', err instanceof Error ? err.message : err);

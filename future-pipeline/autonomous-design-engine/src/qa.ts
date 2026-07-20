@@ -20,6 +20,7 @@ import type {
 } from './schema.js';
 import { tokenAllowlistGate } from './guardrails.js';
 import { getProvider } from './model.js';
+import { buildConfig } from './config.js';
 import { emitEscalation } from './escalations.js';
 
 export interface ArtifactQAOptions {
@@ -277,7 +278,7 @@ export async function phaseExitReview(
 ): Promise<void> {
   console.log(`\n⚖️ Initiating Phase-Exit Review via Judge #2 (local) for ${subject}...`);
   try {
-    const localProvider = await getProvider({ provider: 'local', modelId: 'judge-v2' });
+    const localProvider = await getProvider(buildConfig({ provider: 'local', model: 'judge-v2' }));
     const result = await localProvider.complete({
       system: 'You are Judge #2, a strict design quality assessor. Reply with only "pass" or "fail".',
       messages: [{ role: 'user', content: `Assess this ${subject} for quality:\n\n${content}\n\nVerdict (pass/fail):` }],

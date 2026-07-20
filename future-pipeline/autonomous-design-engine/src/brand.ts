@@ -24,6 +24,8 @@ import {
   lockClient,
   unlockClient,
 } from './store.js';
+import { phaseExitReview } from './qa.js';
+import { randomUUID } from 'crypto';
 
 export class BrandError extends Error {
   constructor(message: string, public readonly code: string) {
@@ -109,6 +111,101 @@ export async function deriveBrand(
   };
 
   return foundation;
+}
+
+// ─── Brand Phase-Exit Review (C1.3) ────────────────────────────────
+
+export interface BrandReviewResult {
+  verdict: 'pass' | 'fail';
+  reasoning: string;
+}
+
+/**
+ * Fresh-context Critic review of a derived Brand Foundation against a
+ * brand-specific rubric, per spec/11 §2.3 / plan C1.3: "does the derived
+ * personality/tone/motion fit the business context + provided palette/type?
+ * are the directions distinct and justified?"
+ */
+export async function reviewBrandFit(
+  foundation: BrandFoundation,
+  brief: Brief,
+  criticProvider: ModelProvider,
+): Promise<BrandReviewResult> {
+  const result = await criticProvider.complete({
+    system: 'You are a senior brand strategist reviewing a DERIVED brand identity before it is shown to a human for approval. ' +
+      'You did not create this brand. Judge only whether the derived personality/tone/motion-voice genuinely fit the business context and the provided (fixed) palette/typography. ' +
+      'Reply with ONLY valid JSON: {"verdict": "pass"|"fail", "reasoning": "specific, actionable reason"}.',
+    messages: [{
+      role: 'user',
+      content: `BUSINESS CONTEXT:\n  Client: ${brief.client}\n  Industry: ${brief.industry}\n  Audience: ${brief.audience}\n  Goal: ${brief.goal}\n\n` +
+        `DERIVED BRAND (palette/typography are FIXED givens; personality/tone/motion_voice are what you are judging):\n` +
+        `  Personality: ${foundation.identity.personality.join(', ')}\n` +
+        `  Tone: ${foundation.identity.tone}\n` +
+        `  Motion voice: ${foundation.identity.motion_voice}\n\n` +
+        `Does this derived strategy genuinely fit the business context above, or does it read as generic/off-brief? Verdict + reasoning as JSON.`,
+    }],
+    maxTokens: 500,
+    temperature: 0.2,
+  });
+
+  try {
+    let text = result.text.trim();
+    const fence = text.match(/```(?:json)?\s*\n?([\s\S]*?)\n?\s*```/);
+    if (fence) text = fence[1].trim();
+    const parsed = JSON.parse(text);
+    if (parsed.verdict === 'pass' || parsed.verdict === 'fail') {
+      return { verdict: parsed.verdict, reasoning: String(parsed.reasoning ?? '') };
+    }
+  } catch {
+    // fall through to fail-closed default below
+  }
+  return { verdict: 'fail', reasoning: `Brand review output could not be parsed: ${result.text.slice(0, 200)}` };
+}
+
+const BRAND_REVIEW_MAX_TRIES = 2;
+
+/**
+ * Bounded Phase-Exit Review before a human ever sees a derived brand
+ * (C1.3): fresh-context Critic review (rubric above) + a cross-family
+ * second-judge review (qa.ts phaseExitReview, local provider — disagreement
+ * escalates), each cycle re-deriving on failure. Bounded to
+ * BRAND_REVIEW_MAX_TRIES — never loops unbounded; the last attempt is
+ * returned to the human regardless of verdict (a review that never certifies
+ * "good enough" would just replace one human gate with an unremovable
+ * machine one).
+ */
+export async function reviewAndReDeriveBrand(
+  clientId: string,
+  brandData: BrandData,
+  brief: Brief,
+  criticProvider: ModelProvider,
+  genProvider: ModelProvider,
+  outDir: string,
+): Promise<{ foundation: BrandFoundation; tries: number; finalVerdict: BrandReviewResult }> {
+  const runId = randomUUID().slice(0, 8);
+  let currentBrandData = brandData;
+  let foundation = await deriveBrand(currentBrandData, brief, genProvider);
+  let review = await reviewBrandFit(foundation, brief, criticProvider);
+
+  await phaseExitReview(outDir, runId, `brand foundation for "${clientId}"`, JSON.stringify(foundation.identity), review.verdict);
+
+  let tries = 1;
+  while (review.verdict === 'fail' && tries < BRAND_REVIEW_MAX_TRIES) {
+    console.warn(`⚠ Brand review failed (try ${tries}/${BRAND_REVIEW_MAX_TRIES}): ${review.reasoning}`);
+    console.warn('  Re-deriving (never hand-patching a derived field)...');
+    foundation = await deriveBrand(currentBrandData, brief, genProvider);
+    review = await reviewBrandFit(foundation, brief, criticProvider);
+    await phaseExitReview(outDir, runId, `brand foundation for "${clientId}" (retry ${tries + 1})`, JSON.stringify(foundation.identity), review.verdict);
+    tries++;
+  }
+
+  if (review.verdict === 'fail') {
+    console.warn(`⚠ Brand review still failing after ${tries} tries — escalating to human as-is (bounded, per C1.3).`);
+  } else {
+    console.log(`✅ Brand review passed after ${tries} attempt(s).`);
+  }
+
+  return { foundation, tries, finalVerdict: review };
 }
 
 // ─── Brand Approval ────────────────────────────────────────────────

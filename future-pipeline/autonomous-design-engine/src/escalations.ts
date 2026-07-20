@@ -6,8 +6,8 @@
  * @module escalations
  */
 
-import { appendFileSync, existsSync, readFileSync, writeFileSync } from 'fs';
-import { join } from 'path';
+import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { join, dirname } from 'path';
 
 export interface EscalationRecord {
   id: string;
@@ -33,7 +33,12 @@ export function emitEscalation(outDir: string, input: Omit<EscalationRecord, 'id
     ...input,
   };
 
-  appendFileSync(getEscalationsPath(outDir), JSON.stringify(record) + '\n', 'utf-8');
+  const path = getEscalationsPath(outDir);
+  const dir = dirname(path);
+  if (!existsSync(dir)) {
+    mkdirSync(dir, { recursive: true });
+  }
+  appendFileSync(path, JSON.stringify(record) + '\n', 'utf-8');
   return record;
 }
 

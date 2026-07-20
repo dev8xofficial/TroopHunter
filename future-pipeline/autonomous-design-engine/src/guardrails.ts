@@ -336,7 +336,22 @@ export async function renderHealthGate(
     });
   }
 
-  // 4. Non-blank DOM (body height + text)
+  // 3b. Nonce-fingerprint mismatch (F-EYE-02) — a dedicated CRITICAL check,
+  // not the generic moderate console-errors bucket below. If the per-candidate
+  // ready nonce never matched before the capture timeout, the screenshot may
+  // be stale/blank and must never reach the Critic as this candidate's work.
+  const nonceFailures = renderResult.consoleErrors.filter(e => e.includes('Ready nonce not set'));
+  if (nonceFailures.length > 0) {
+    violations.push({
+      gate: 'render-health',
+      rule: 'nonce-mismatch',
+      message: `Screenshot↔candidate fingerprint check failed: ${nonceFailures.join('; ')}`,
+      severity: 'critical',
+      fixable: true,
+    });
+  }
+
+  // 4. Non-blank DOM (body height + text) + fonts/images loaded (F-EYE-03)
   if (renderResult.domInfo) {
     if (renderResult.domInfo.bodyHeight < 50) {
       violations.push({
@@ -356,11 +371,30 @@ export async function renderHealthGate(
         fixable: true,
       });
     }
+    if (!renderResult.domInfo.fontsLoaded) {
+      violations.push({
+        gate: 'render-health',
+        rule: 'fonts-not-loaded',
+        message: 'document.fonts.status was not "loaded" at capture time — screenshot may show a fallback font (F-EYE-03)',
+        severity: 'critical',
+        fixable: true,
+      });
+    }
+    if (!renderResult.domInfo.imagesLoaded) {
+      violations.push({
+        gate: 'render-health',
+        rule: 'images-not-loaded',
+        message: 'One or more <img> elements were not complete/decoded at capture time — screenshot may show broken images (F-EYE-03)',
+        severity: 'critical',
+        fixable: true,
+      });
+    }
   }
 
-  // 5. Console errors (non-critical but recorded)
+  // 5. Console errors (non-critical but recorded) — excludes the nonce
+  // failure already promoted to its own critical check above.
   const seriousErrors = renderResult.consoleErrors.filter(
-    e => !e.includes('favicon') && !e.includes('HMR') && !e.includes('WebSocket'),
+    e => !e.includes('favicon') && !e.includes('HMR') && !e.includes('WebSocket') && !e.includes('Ready nonce not set'),
   );
   if (seriousErrors.length > 0 && !renderResult.hasErrorOverlay) {
     violations.push({
@@ -449,6 +483,29 @@ export async function hardConstraintGate(
         rule: 'content-present',
         message: `Brief content missing from rendered output: "${content.slice(0, 80)}"`,
         severity: 'serious',
+        fixable: true,
+      });
+    }
+  }
+
+  // 3b. Numeric exact-match (F-GEN-07 — High severity): every numeric token
+  // in the brief's content (prices, stats, percentages, dates, counts) must
+  // survive VERBATIM into the rendered output. Unlike the substring check
+  // above, this is case-/format-sensitive on purpose — a transposed digit
+  // ("$4,900" rendered as "$9,400") is exactly the class of error this
+  // exists to catch, and it must never be scored as merely "present."
+  // (Phase 0's Brief schema has no first-class structured numeric fields —
+  // see spec/03 — so tokens are extracted from the same free-text content
+  // fields extractContentStrings() already reads.)
+  const pageTextRaw = await page.evaluate(() => document.body.innerText ?? '');
+  const numericTokens = extractNumericTokens(contentStrings);
+  for (const token of numericTokens) {
+    if (!pageTextRaw.includes(token)) {
+      violations.push({
+        gate: 'hard-constraint',
+        rule: 'numeric-exact-match',
+        message: `Numeric value from brief content not found verbatim in rendered output: "${token}" — possible transposition or rounding error (F-GEN-07)`,
+        severity: 'critical',
         fixable: true,
       });
     }
@@ -612,6 +669,41 @@ function extractContentStrings(brief: Brief): string[] {
   }
 
   return strings;
+}
+
+/**
+ * Extract numeric tokens (prices, percentages, decorated numbers, dates)
+ * from a set of content strings — the substrings a numeric transposition
+ * (F-GEN-07) would corrupt. Deliberately conservative: bare single digits
+ * are skipped (too noisy — "step 1", "#1" produce false positives with no
+ * real transposition risk) in favor of numbers with currency/percent/comma/
+ * decimal decoration, multi-digit numbers, and date-shaped tokens, which are
+ * exactly the class of value a client notices immediately if wrong.
+ */
+function extractNumericTokens(contentStrings: string[]): string[] {
+  const tokens = new Set<string>();
+
+  // $1,234.56 / $1234 / 1,234 / 12.5% / 45% / 1234 (2+ digits) / dates like 12/25 or 2024-01-15
+  const patterns = [
+    /\$\s?\d[\d,]*(?:\.\d+)?/g,       // currency
+    /\d[\d,]*(?:\.\d+)?\s?%/g,        // percentages
+    /\d{1,3}(?:,\d{3})+(?:\.\d+)?/g,  // comma-grouped numbers
+    /\d+\.\d+/g,                      // decimals
+    /\d{2,}/g,                        // any multi-digit run (2+ digits)
+    /\d{1,2}\/\d{1,2}(?:\/\d{2,4})?/g,      // dates: 12/25 or 12/25/2024
+    /\d{4}-\d{2}-\d{2}/g,                    // ISO dates
+  ];
+
+  for (const content of contentStrings) {
+    for (const pattern of patterns) {
+      const matches = content.match(pattern);
+      if (matches) {
+        for (const m of matches) tokens.add(m.trim());
+      }
+    }
+  }
+
+  return [...tokens];
 }
 
 /**

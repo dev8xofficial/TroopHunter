@@ -161,6 +161,15 @@ export const RunRecordSchema = z.object({
   tokens: z.object({
     input: z.number().int(),
     output: z.number().int(),
+    // C0.17 — per-part input attribution (plan Appendix A / H7 substrate).
+    // Optional: populated where the caller can attribute the bundle; total
+    // `input` above remains authoritative and is never derived from these.
+    input_by_part: z.object({
+      hard_brief: z.number().int(),
+      soft_refs: z.number().int(),
+      visual_context: z.number().int(),
+      loop_state: z.number().int(),
+    }).optional(),
   }),
   quota: z.object({
     tokens_today: z.number().int(),
@@ -170,7 +179,15 @@ export const RunRecordSchema = z.object({
   }).optional(),
   exploration: z.boolean().optional(),
   engine_mode: z.enum(['zero-to-one', 'refactoring']).optional(),
+  // C0.16 — kept for back-compat with existing readers; equals critic_model_id
+  // (the record's scores/verdict/feedback are the Critic's output).
   model_id: z.string(),
+  // C0.16 — per-role ids so distTags/verdict tooling never has to guess one
+  // role's id from another's (F-MOD-07/08). gen_model_id is best-effort: the
+  // generator call(s) that produced this candidate may span a retry/repair,
+  // so this records the id of the provider used, not a specific call.
+  gen_model_id: z.string().optional(),
+  critic_model_id: z.string().optional(),
   timestamp: z.string(), // ISO 8601
 });
 
@@ -214,6 +231,8 @@ export const RenderResultSchema = z.object({
       tapTargetGeometry: z.number(),
       typeScaleConformance: z.number(),
     }).optional(),
+    /** Actually-rendered computed font-family stacks (C0.8 CAVEATS — font-substitution disclosure). */
+    renderedFontFamilies: z.array(z.string()).optional(),
   }).optional(),
 });
 

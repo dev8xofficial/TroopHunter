@@ -21,6 +21,9 @@ const ProviderSchema = z.enum(['agent-sdk', 'api', 'local']).default('agent-sdk'
 const ConfigSchema = z.object({
   // Provider
   provider: ProviderSchema,
+  // Legacy single-model field. Retained only as the fallback default for the
+  // three role-scoped ids below (C0.0 §1: Critic must never silently share
+  // the Generator's model — see genModelId/criticModelId/orchestratorModelId).
   modelId: z.string().default('claude-sonnet-4-6'),
 
   // Render breakpoints
@@ -56,9 +59,14 @@ const ConfigSchema = z.object({
   maxTokensPerSection: z.number().int().positive().default(200_000),
   maxSecondsPerSection: z.number().positive().default(300),
   maxUsdPerSection: z.number().positive().default(50),
-  genModelId: z.string().optional(),
-  criticModelId: z.string().optional(),
-  orchestratorModelId: z.string().optional(),
+  // Role-separated model ids (plan §1 "Global conventions"): Critic = strongest
+  // available (quality ceiling — never downgrade, F-JDG-01); Generator = cheaper
+  // is fine (the loop corrects it); Orchestrator = cheap/thin (deterministic
+  // policy + one comprehension call). Defaults differ from cfg.modelId on
+  // purpose — plan Appendix B.
+  genModelId: z.string().default('claude-sonnet-4-6'),
+  criticModelId: z.string().default('claude-opus-4-8'),
+  orchestratorModelId: z.string().default('claude-haiku-4-5'),
 
   // Anthropic API key (only for provider=api)
   anthropicApiKey: z.string().optional(),

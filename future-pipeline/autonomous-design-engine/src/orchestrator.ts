@@ -30,7 +30,7 @@ import type {
   LibraryEntry,
   Plan,
 } from './schema.js';
-import { getProvider, type ModelProvider } from './model.js';
+import { getProviderForRole, type ModelProvider } from './model.js';
 import { generate, GeneratorError } from './generator.js';
 import { render, copyAssetsToHarness, cleanup } from './eyes.js';
 import {
@@ -45,7 +45,7 @@ import { appendIteration, writeRunConfig } from './trace.js';
 import { serializeFeedback } from './prompts.js';
 import { crystallize } from './crystallizer.js';
 import { retrieveLibraryForBrief } from './library.js';
-import { emitEscalation } from './escalations.js';
+import { emitEscalation, listEscalations } from './escalations.js';
 import {
   readBrand,
   readPDS,
@@ -97,6 +97,7 @@ export async function runLoop(
     runId,
     brief: briefPath,
     brandData: brandData ? true : false,
+    plan: plan ? 'plan.json' : undefined,
     section: brief.section.name,
     config: {
       provider: cfg.provider,
@@ -109,6 +110,13 @@ export async function runLoop(
     },
     startedAt: new Date().toISOString(),
   });
+
+  // C0.15/M5: persist the strategy-capture plan when supplied (passive —
+  // no behavior change; a corpus for a future strategy layer to train
+  // against). Referenced in config.json above so the trace can find it.
+  if (plan) {
+    writeFileSync(join(outDir, 'plan.json'), JSON.stringify(plan, null, 2));
+  }
 
   // ── Input Gate ───────────────────────────────────────────────────
   console.log('\n🔍 Running input gate...');
@@ -123,28 +131,49 @@ export async function runLoop(
   console.log('✅ Input gate passed.');
 
   // ── Provider + brief comprehension preflight ────────────────────
-  console.log(`\n🤖 Initializing ${cfg.provider} provider (${cfg.modelId})...`);
-  const provider = await getProvider(cfg);
+  // Three role-scoped providers (never one shared instance — plan §1:
+  // "keep criticModelId/genModelId distinct even if initially equal").
+  console.log(`\n🤖 Initializing ${cfg.provider} provider — gen=${cfg.genModelId} critic=${cfg.criticModelId} orch=${cfg.orchestratorModelId}...`);
+  const genProvider = await getProviderForRole(cfg, 'generator');
+  const criticProvider = await getProviderForRole(cfg, 'critic');
+  const orchProvider = await getProviderForRole(cfg, 'orchestrator');
 
-  console.log('\n🧭 Running brief comprehension gate...');
-  const comprehensionResult = await briefComprehensionGate(provider, brief, modelCalls);
-  totalTokens.input += comprehensionResult.usage.input;
-  totalTokens.output += comprehensionResult.usage.output;
-  if (!comprehensionResult.pass) {
-    console.error('❌ Brief comprehension gate failed:');
-    for (const v of comprehensionResult.violations) {
-      console.error(`  • [${v.severity}] ${v.message}`);
+  // E1.2 resume check: if a prior invocation on this SAME outDir parked on a
+  // comprehension escalation that has since been answered, skip re-running
+  // the gate (which could re-fail identically on the same brief) and resume
+  // with the human's answer folded in as an additional fact. Without this,
+  // `answerEscalation()` updates the JSONL record but nothing ever reads it
+  // back — the "park-and-rerun" contract was answer-only, never resume.
+  const priorEscalations = listEscalations(outDir);
+  const resolvedComprehension = priorEscalations.find(
+    e => e.type === 'comprehension' && e.sectionId === brief.section.name && e.status === 'resolved' && e.answer,
+  );
+
+  let comprehensionAnswerNote: string | undefined;
+  if (resolvedComprehension) {
+    console.log(`\n🧭 Resuming from resolved comprehension escalation (${resolvedComprehension.id}): "${resolvedComprehension.answer}"`);
+    comprehensionAnswerNote = resolvedComprehension.answer;
+  } else {
+    console.log('\n🧭 Running brief comprehension gate...');
+    const comprehensionResult = await briefComprehensionGate(orchProvider, brief, modelCalls);
+    totalTokens.input += comprehensionResult.usage.input;
+    totalTokens.output += comprehensionResult.usage.output;
+    if (!comprehensionResult.pass) {
+      console.error('❌ Brief comprehension gate failed:');
+      for (const v of comprehensionResult.violations) {
+        console.error(`  • [${v.severity}] ${v.message}`);
+      }
+      emitEscalation(outDir, {
+        type: 'comprehension',
+        runId,
+        sectionId: brief.section.name,
+        question: `Brief comprehension failed with violations: ${comprehensionResult.violations.map(v => v.message).join(', ')}`,
+      });
+      console.error('Escalation emitted. Parking run until answered. Answer it with `ade escalation answer` and re-run the same --out to resume.');
+      return makeResult('ABORTED', outDir, 0, totalTokens, startTime);
     }
-    emitEscalation(outDir, {
-      type: 'comprehension',
-      runId,
-      sectionId: brief.section.name,
-      question: `Brief comprehension failed with violations: ${comprehensionResult.violations.map(v => v.message).join(', ')}`,
-    });
-    console.error('Escalation emitted. Parking run until answered.');
-    return makeResult('ABORTED', outDir, 0, totalTokens, startTime);
+    console.log('✅ Brief comprehension gate passed.');
   }
-  console.log('✅ Brief comprehension gate passed.');
 
   // ── Copy assets to harness ───────────────────────────────────────
   let rewrittenAssets: Record<string, string> = {};
@@ -158,6 +187,10 @@ export async function runLoop(
   const bundle: InputBundle = {
     brief: {
       ...brief,
+      // E1.2 resume: fold the human's comprehension-escalation answer into
+      // the hard brief as a clarifying note, so it actually reaches the
+      // Generator rather than existing only in escalations.jsonl.
+      goal: comprehensionAnswerNote ? `${brief.goal}\n\n(Human clarification: ${comprehensionAnswerNote})` : brief.goal,
       section: {
         ...brief.section,
         assets: rewrittenAssets,
@@ -199,13 +232,19 @@ export async function runLoop(
     if (isBudgetExceeded(cfg, modelCalls, totalTokens, startTime)) {
       console.log('⚠ Budget exceeded — ESCALATED');
       terminalState = 'ESCALATED';
+      emitEscalation(outDir, {
+        type: 'budget',
+        runId,
+        sectionId,
+        question: `Model-call/token/time budget exceeded at start of iteration ${iter}.`,
+      });
       break;
     }
 
     // ── Generate N candidates ────────────────────────────────────
     // ── Generate N candidates ────────────────────────────────────
     console.log(`\n🎨 Generating ${cfg.variations} candidate(s)...`);
-    const candidates: { id: string; tsx: string; quota?: any; exploration?: boolean }[] = [];
+    const candidates: { id: string; tsx: string; quota?: any; exploration?: boolean; tokenBreakdown?: import('./prompts.js').PromptTokenBreakdown }[] = [];
 
     for (let v = 0; v < cfg.variations; v++) {
       const candidateId = `iter${iter}-cand${v + 1}`;
@@ -213,7 +252,7 @@ export async function runLoop(
       try {
         const isExploration = iter === 0 && v === 0 && !cfg.control_mode;
         const genResult = await generate(
-          provider,
+          genProvider,
           bundle,
           lastFeedback,
           cfg.genTemperature,
@@ -223,11 +262,12 @@ export async function runLoop(
         totalTokens.input += genResult.usage.input;
         totalTokens.output += genResult.usage.output;
 
-        candidates.push({ 
-          id: candidateId, 
-          tsx: genResult.tsx, 
-          quota: genResult.quota, 
-          exploration: isExploration 
+        candidates.push({
+          id: candidateId,
+          tsx: genResult.tsx,
+          quota: genResult.quota,
+          exploration: isExploration,
+          tokenBreakdown: genResult.tokenBreakdown,
         });
 
         // Save candidate code
@@ -254,7 +294,7 @@ export async function runLoop(
     // ── Render & gate each candidate (sequentially) ──────────────
     // ── Render & gate each candidate (sequentially) ──────────────
     console.log(`\n👁 Rendering ${candidates.length} candidate(s)...`);
-    const renderValid: { id: string; tsx: string; shots: Record<string, string>; hardPass: boolean; hardViolations: string[]; quota?: any; exploration?: boolean }[] = [];
+    const renderValid: { id: string; tsx: string; shots: Record<string, string>; hardPass: boolean; hardViolations: string[]; quota?: any; exploration?: boolean; tokenBreakdown?: import('./prompts.js').PromptTokenBreakdown }[] = [];
 
     for (const candidate of candidates) {
       console.log(`  Rendering ${candidate.id}...`);
@@ -306,7 +346,7 @@ export async function runLoop(
 
           try {
             const repairResult = await generate(
-              provider,
+              genProvider,
               bundle,
               repairFeedback,
               cfg.genTemperature,
@@ -391,7 +431,8 @@ export async function runLoop(
         hardPass,
         hardViolations,
         quota: candidate.quota,
-        exploration: candidate.exploration
+        exploration: candidate.exploration,
+        tokenBreakdown: candidate.tokenBreakdown
       });
 
       console.log(`  ✅ ${candidate.id} render-valid.`);
@@ -419,12 +460,12 @@ export async function runLoop(
 
     const candidatesInfo: Record<string, { shots: Record<string, string>, domInfo?: any }> = {};
     for (const c of renderValid) {
-      candidatesInfo[c.id] = { shots: c.shots, domInfo: c.domInfo };
+      candidatesInfo[c.id] = { shots: c.shots };
     }
 
     let criticOutput;
     try {
-      criticOutput = await critique(candidatesInfo, bundle, provider, cfg.criticTemperature, cfg.threshold, modelCalls);
+      criticOutput = await critique(candidatesInfo, bundle, criticProvider, cfg.criticTemperature, cfg.threshold, modelCalls);
       // Track tokens from critique (approximate — provider tracks internally)
     } catch (err) {
       console.error('❌ Critique failed:', err instanceof Error ? err.message : err);
@@ -488,10 +529,19 @@ export async function runLoop(
         critic_feedback: candidateScore.feedback,
         hard_violations: candidate.hardViolations,
         duration_ms: Date.now() - startTime,
-        tokens: { ...totalTokens },
+        tokens: {
+          ...totalTokens,
+          input_by_part: candidate.tokenBreakdown,
+        },
         quota: candidate.quota,
         exploration: candidate.exploration,
-        model_id: provider.id,
+        // The Critic produced scores/verdict/feedback for this record — its
+        // model id is what a reader needs to interpret them (F-MOD-05).
+        model_id: criticProvider.id,
+        // C0.16 — real per-role ids, not a guess (distTags no longer has to
+        // fall back to assuming gen==critic when deriving from the trace).
+        gen_model_id: genProvider.id,
+        critic_model_id: criticProvider.id,
         timestamp: new Date().toISOString(),
       };
 
@@ -586,6 +636,26 @@ export async function runLoop(
 }
 
 // ─── Helpers ───────────────────────────────────────────────────────
+
+/**
+ * C1.9: bound visual context to the most recent MAX_CONTEXT_SECTIONS
+ * sections' screenshots, not every section built so far. The plan requires
+ * "screenshots of the most relevant 1-3 prior sections" specifically to
+ * keep tokens/section flat as an artifact grows (H7/C0.17) — without this,
+ * runSiteLoop accumulated every prior section's shots unboundedly, so a
+ * 10-section site would pass 10x the visual-context tokens of a 1-section
+ * one into every subsequent generation call.
+ */
+const MAX_CONTEXT_SECTIONS = 3;
+
+export function boundedContextShots(
+  contextShots: { sectionName: string; breakpoint: string; path: string }[],
+): { sectionName: string; breakpoint: string; path: string }[] | undefined {
+  if (contextShots.length === 0) return undefined;
+  const recentSectionNames = [...new Set(contextShots.map(s => s.sectionName))].slice(-MAX_CONTEXT_SECTIONS);
+  const bounded = contextShots.filter(s => recentSectionNames.includes(s.sectionName));
+  return bounded.length > 0 ? bounded : undefined;
+}
 
 function isBudgetExceeded(
   cfg: Config,
@@ -748,7 +818,8 @@ export async function runSiteLoop(
     sections: [],
   };
 
-  const provider = await getProvider(cfg);
+  // Crystallization is a judgment call over the approved hero (spec/04 §3) — critic-tier, not generator-tier.
+  const criticProvider = await getProviderForRole(cfg, 'critic');
 
   for (let i = 0; i < sections.length; i++) {
     const sec = sections[i];
@@ -765,7 +836,7 @@ export async function runSiteLoop(
     // Run the section loop
     const result = await runSectionLoop(
       cfg, sec.brief, sec.brandData, outDir, sec.briefPath,
-      brand, pds ?? undefined, contextShots.length > 0 ? contextShots : undefined,
+      brand, pds ?? undefined, boundedContextShots(contextShots),
     );
     results.push(result);
 
@@ -798,7 +869,8 @@ export async function runSiteLoop(
       console.log('\n🔮 Crystallizing design system from first section...');
       try {
         await crystallize(
-          result.finalTsx, sec.name, brand, clientId, surface, provider,
+          result.finalTsx, sec.name, brand, clientId, surface, criticProvider,
+          getSectionRunDir(clientId, surface, `${sec.name}-crystallize-review`),
         );
       } catch (err) {
         console.error('\n⚠ Crystallization failed:', err instanceof Error ? err.message : err);

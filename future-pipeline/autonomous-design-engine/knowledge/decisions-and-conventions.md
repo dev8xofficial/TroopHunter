@@ -350,7 +350,14 @@ Restored Phase-0 scaffolding from commit `28484962`. Diffed config/trace/schema 
 
 ## S2 - Pro-credit ToS & Quota Verification (Decision)
 
-**Verdict:** **GO (Permitted via official Agent SDK)**.
+**Verdict:** **GO (Permitted via official Agent SDK)** — this is the
+authoritative verdict. A contradictory NO-GO entry existed further down this
+file under "### S2: Pro-Credit ToS & Quota Verification"; it has been marked
+superseded with the reasoning for why GO is correct (see that section).
+
+**⚠ Still not independently re-verified against live Anthropic ToS text as
+part of this reconciliation pass** — do a fresh read of the current Consumer
+Terms + Agent SDK docs before committing to a large-scale paid run.
 
 **Findings & Limits:**
 - **Automated Use:** Anthropic's Consumer Terms (Section 3) prohibit accessing services through *"automated or non-human means"* (e.g., third-party scrapers/harnesses). Furthermore, the Acceptable Use Policy prohibits using services to *"utilize prompts and results to train an AI model"*.
@@ -377,9 +384,36 @@ Restored Phase-0 scaffolding from commit `28484962`. Diffed config/trace/schema 
 | .env.example | Rewrite | Stripped \ANTHROPIC_API_KEY\ to respect hard constraints; added \ADE_PROVIDER\ and local embedding variables. |
 
 ### S2: Pro-Credit ToS & Quota Verification
-- **ToS Extract**: Anthropic's Consumer Terms prohibit using Claude Pro/Consumer accounts via automated headless bots or scraping.
-- **Limits**: Claude Pro has strict per-day rolling limits (approx 50-100 msgs/5h depending on capacity), which are unreliable for bulk headless iteration. 
-- **Decision**: **NO-GO** on consumer automation. ADE must use standard Console API keys (Tier 1/2) for its provider layer, or local mock/Google Agent SDK variants.
+
+**⚠ SUPERSEDED — kept for audit history, do not follow.** This entry and the
+"S2 - Pro-credit ToS & Quota Verification (Decision)" section above it
+(GO verdict) directly contradicted each other on the same question, both
+dated 2026-07-18, neither marked superseded — a real drift found and
+reconciled during the Phase-0 chunk-by-chunk reconciliation pass.
+
+**Why this block is wrong, not the GO block:** this entry's own "ToS Extract"
+line cites the Consumer Terms' prohibition on *"automated headless bots or
+scraping"* — a real prohibition, but one that targets exactly what the
+project does **not** do. ADE's entire access model (`AGENTS.md`, this file's
+top-level access-model rows) is `ADE_PROVIDER=agent-sdk`: the **official,
+first-party Claude Agent SDK**, not a scraped/reverse-engineered client. The
+GO block above correctly draws that distinction (citing the Agent SDK
+exception); this block conflates the two. This block's own recommendation —
+*"use standard Console API keys... for its provider layer"* — also directly
+contradicts the project's single hardest rule, repeated in `AGENTS.md`,
+`CLAUDE.md`, and `IMPLEMENTATION_PLAN.md §0.1`: **never `ANTHROPIC_API_KEY`
+in dev.** A finding that contradicts the project's own foundational
+constraint should have been flagged as a conflict requiring resolution, not
+silently coexisted with the opposite verdict two sections up.
+
+**Action before any large-scale paid run:** neither block in this file is a
+substitute for reading Anthropic's *current* Consumer Terms + Agent SDK
+documentation directly — do that live re-check before committing to the S4
+budget/cadence plan below, since ToS text can change after this was written.
+
+~~- **ToS Extract**: Anthropic's Consumer Terms prohibit using Claude Pro/Consumer accounts via automated headless bots or scraping.~~
+~~- **Limits**: Claude Pro has strict per-day rolling limits (approx 50-100 msgs/5h depending on capacity), which are unreliable for bulk headless iteration.~~
+~~- **Decision**: **NO-GO** on consumer automation. ADE must use standard Console API keys (Tier 1/2) for its provider layer, or local mock/Google Agent SDK variants.~~
 
 ### S4: H1 Budget Arithmetic
 - **Target**: H1 requires 20-25 briefs * 6 iterations = 120-150 primary generations. Plus matched-compute Control Arm (another 120-150). Total ~300 generations.

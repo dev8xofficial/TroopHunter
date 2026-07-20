@@ -29,6 +29,9 @@ const cfg: Config = {
   maxRunTokens: 100_000,
   maxRunSeconds: 60,
   maxModelCalls: 10,
+  genModelId: 'mock',
+  criticModelId: 'mock',
+  orchestratorModelId: 'mock',
   ollamaBaseUrl: 'http://localhost:11434',
   ollamaModel: 'llava',
   embeddingProvider: 'local-hash',
@@ -131,7 +134,10 @@ function pds(): ProjectDesignSystem {
   };
 }
 
-async function makeEntry(partial: Partial<Omit<LibraryEntry, 'embedding'>>): Promise<LibraryEntry> {
+async function makeEntry(
+  partial: Partial<Omit<LibraryEntry, 'embedding'>>,
+  embeddingProvider = createLocalHashEmbeddingProvider(),
+): Promise<LibraryEntry> {
   const now = new Date().toISOString();
   return embedLibraryEntry({
     id: partial.id ?? 'pat_trust_editorial_hero',
@@ -156,10 +162,12 @@ async function makeEntry(partial: Partial<Omit<LibraryEntry, 'embedding'>>): Pro
       times_used: 3,
     },
     tags: partial.tags ?? ['hero', 'trust', 'b2b'],
+    provisional: partial.provisional ?? true,
+    expires_at: partial.expires_at,
     created_at: partial.created_at ?? now,
     updated_at: partial.updated_at ?? now,
     recipe_values: partial.recipe_values,
-  }, createLocalHashEmbeddingProvider());
+  }, embeddingProvider);
 }
 
 describe('Phase 2 Library memory', () => {
@@ -199,6 +207,31 @@ describe('Phase 2 Library memory', () => {
     expect(hits.length).toBeLessThanOrEqual(5);
   });
 
+  it('C2.3: excludes entries below the similarity floor rather than always returning top-k regardless of relevance', async () => {
+    const provider = createLocalHashEmbeddingProvider();
+    // A single entry, on a totally unrelated topic to the query — with no
+    // floor, this would still be returned as "the best of 1" every time.
+    const unrelated = await makeEntry({
+      id: 'pat_totally_unrelated',
+      title: 'Recipe blog footer',
+      intent: 'A footer for a home cooking recipe blog with newsletter signup.',
+      context_fit: { domain: 'home cooking blog', audience: 'hobbyist cooks', personality: ['warm'], goal: 'grow newsletter list', feel: ['cozy'] },
+    });
+    writeLibrary([unrelated]);
+
+    const hits = await searchLibrary('enterprise fintech API documentation for backend engineers', provider, 5);
+    expect(hits).toHaveLength(0);
+  });
+
+  it('C2.0: excludes entries embedded with a different model than the current query embedding (never silently mixes vector spaces)', async () => {
+    const currentProvider = createLocalHashEmbeddingProvider('ade-local-hash-v2');
+    const entryFromOldModel = await makeEntry({}, createLocalHashEmbeddingProvider('ade-local-hash-v1'));
+    writeLibrary([entryFromOldModel]);
+
+    const hits = await searchLibrary('premium b2b advisory trust consultation leads executive buyers', currentProvider, 5);
+    expect(hits).toHaveLength(0); // excluded, not silently compared across spaces
+  });
+
   it('de-identification gate blocks client names, copy, and exact tokens', async () => {
     const leaking = await makeEntry({
       title: 'Acme Advisors exact hero',
@@ -236,6 +269,53 @@ describe('Phase 2 Library memory', () => {
       pds: pds(),
     });
     expect(skipped).toHaveLength(0);
+  });
+
+  it('E2.1: write-back sets client_id on the entry (own-client memory boost is no longer dead code) without triggering a de-id self-block', async () => {
+    const a = artifact('approved');
+    const learned = await writeBackArtifact(cfg, {
+      artifact: a, briefs: [brief], brand: brand(), pds: pds(), humanVerdict: 'approved, strong',
+    });
+
+    expect(learned).toHaveLength(1);
+    expect(learned[0].client_id).toBe(a.client_id); // was always undefined before the fix
+  });
+
+  it('C2.5: write-back still succeeds with NO criticProvider (altitude review is skipped, not faked)', async () => {
+    const learned = await writeBackArtifact(cfg, {
+      artifact: artifact('approved'), briefs: [brief], brand: brand(), pds: pds(), humanVerdict: 'approved, strong',
+      // no criticProvider — same as every pre-existing caller.
+    });
+    expect(learned).toHaveLength(1);
+  });
+
+  it('C2.5: write-back is BLOCKED when the abstraction-altitude review fails (too specific/too vague)', async () => {
+    const failingCritic = {
+      id: 'mock:altitude-fail',
+      async complete() {
+        return { text: JSON.stringify({ verdict: 'fail', reasoning: 'Too specific — reads as one exact section, not a transferable pattern.' }), usage: { input: 10, output: 20 } };
+      },
+    };
+    await expect(writeBackArtifact(cfg, {
+      artifact: artifact('approved'), briefs: [brief], brand: brand(), pds: pds(), humanVerdict: 'approved, strong',
+      criticProvider: failingCritic,
+    })).rejects.toThrow('Abstraction-altitude review blocked write-back');
+
+    expect(readLibrary()).toHaveLength(0); // never inserted
+  });
+
+  it('C2.5: write-back succeeds when the abstraction-altitude review passes', async () => {
+    const passingCritic = {
+      id: 'mock:altitude-pass',
+      async complete() {
+        return { text: JSON.stringify({ verdict: 'pass', reasoning: 'Good transferable altitude.' }), usage: { input: 10, output: 20 } };
+      },
+    };
+    const learned = await writeBackArtifact(cfg, {
+      artifact: artifact('approved'), briefs: [brief], brand: brand(), pds: pds(), humanVerdict: 'approved, strong',
+      criticProvider: passingCritic,
+    });
+    expect(learned).toHaveLength(1);
   });
 
   it('retrieval gracefully degrades when the embedding provider fails', async () => {

@@ -6,6 +6,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
+import { join } from 'path';
 import {
   briefComprehensionGate,
   hardConstraintGate,
@@ -16,6 +17,8 @@ import {
 import type { ModelProvider } from '../src/model.js';
 import type { Brief, RenderResult } from '../src/schema.js';
 import type { Page } from 'playwright';
+
+const TEST_ASSETS_DIR = join(import.meta.dirname, '..', 'test_assets');
 
 describe('Guardrails', () => {
   // ─── Input Gate ──────────────────────────────────────────────────
@@ -72,6 +75,68 @@ describe('Guardrails', () => {
       };
       const result = inputGate(injectedBrief);
       expect(result.violations.some(v => v.rule === 'injection-safety')).toBe(true);
+    });
+
+    // ── Asset fitness (C0.1 done-when: "a CMYK JPEG and an under-resolution
+    // logo are both flagged before generation") ─────────────────────────
+    describe('asset fitness', () => {
+      const briefPath = join(TEST_ASSETS_DIR, 'brief.json');
+      const briefWithAssets = {
+        client: 'TestClient',
+        industry: 'Testing',
+        audience: 'testers',
+        goal: 'test asset fitness',
+        section: {
+          name: 'hero',
+          content: { tag: 'hero' },
+          assets: {
+            tinyImage: 'tiny.png',
+            myLogo: 'logo.jpg',
+            badCmyk: 'cmyk.jpg',
+          },
+        },
+      };
+
+      it('flags a CMYK JPEG asset', () => {
+        const result = inputGate(briefWithAssets, undefined, briefPath);
+        expect(
+          result.violations.some(v => v.rule === 'asset-fitness' && /CMYK/i.test(v.message) && v.message.includes('badCmyk')),
+        ).toBe(true);
+      });
+
+      it('flags an under-resolution asset (below the 50x50 floor)', () => {
+        const result = inputGate(briefWithAssets, undefined, briefPath);
+        expect(
+          result.violations.some(v => v.rule === 'asset-fitness' && /under-resolution/i.test(v.message) && v.message.includes('tinyImage')),
+        ).toBe(true);
+      });
+
+      it('flags a JPEG asset named as a logo (no alpha transparency)', () => {
+        const result = inputGate(briefWithAssets, undefined, briefPath);
+        expect(
+          result.violations.some(v => v.rule === 'asset-fitness' && /alpha transparency/i.test(v.message) && v.message.includes('myLogo')),
+        ).toBe(true);
+      });
+
+      it('fails the gate overall when any asset-fitness violation is serious', () => {
+        const result = inputGate(briefWithAssets, undefined, briefPath);
+        expect(result.pass).toBe(false);
+      });
+
+      it('rejects a missing asset with zero model calls implied (no exception thrown, precise error)', () => {
+        const briefWithMissingAsset = {
+          ...validBrief,
+          section: { ...validBrief.section, assets: { hero_image: 'does-not-exist.png' } },
+        };
+        const result = inputGate(briefWithMissingAsset, undefined, briefPath);
+        expect(result.pass).toBe(false);
+        expect(result.violations.some(v => v.rule === 'asset-exists' && v.message.includes('hero_image'))).toBe(true);
+      });
+
+      it('passes a brief with no assets and no briefPath (asset checks are skippable, not required)', () => {
+        const result = inputGate(validBrief);
+        expect(result.pass).toBe(true);
+      });
     });
   });
 
@@ -215,6 +280,40 @@ export default function Section() {
       };
       const result = await renderHealthGate(validTsx, blankRender);
       expect(result.pass).toBe(false);
+    });
+
+    it('fails when fonts were not loaded at capture (F-EYE-03)', async () => {
+      const fontsPending: RenderResult = {
+        ...healthyRender,
+        domInfo: { ...healthyRender.domInfo!, fontsLoaded: false },
+      };
+      const result = await renderHealthGate(validTsx, fontsPending);
+      expect(result.pass).toBe(false);
+      expect(result.violations.some(v => v.rule === 'fonts-not-loaded' && v.severity === 'critical')).toBe(true);
+    });
+
+    it('fails when images were not loaded/decoded at capture (F-EYE-03)', async () => {
+      const imagesPending: RenderResult = {
+        ...healthyRender,
+        domInfo: { ...healthyRender.domInfo!, imagesLoaded: false },
+      };
+      const result = await renderHealthGate(validTsx, imagesPending);
+      expect(result.pass).toBe(false);
+      expect(result.violations.some(v => v.rule === 'images-not-loaded' && v.severity === 'critical')).toBe(true);
+    });
+
+    it('fails as CRITICAL (not just a moderate console error) when the ready nonce never matched (F-EYE-02)', async () => {
+      const staleRender: RenderResult = {
+        ...healthyRender,
+        consoleErrors: ['Ready nonce not set for candidate cand-1 at 1440px'],
+      };
+      const result = await renderHealthGate(validTsx, staleRender);
+      expect(result.pass).toBe(false);
+      const nonceViolation = result.violations.find(v => v.rule === 'nonce-mismatch');
+      expect(nonceViolation).toBeDefined();
+      expect(nonceViolation!.severity).toBe('critical');
+      // Must not ALSO be double-counted as a generic moderate console-error violation.
+      expect(result.violations.some(v => v.rule === 'console-errors')).toBe(false);
     });
 
     it('allows react imports', async () => {

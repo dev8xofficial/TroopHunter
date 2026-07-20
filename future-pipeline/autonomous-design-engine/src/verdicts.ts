@@ -13,6 +13,7 @@ import { join, dirname } from 'path';
 import { createInterface } from 'readline';
 import type { VerdictEntry } from './schema.js';
 import { VerdictEntrySchema } from './schema.js';
+import { redactDeep } from './redact.js';
 
 export type HumanDecision = 'approve' | 'reject';
 export type HumanRating = 'bad' | 'weak' | 'good' | 'strong';
@@ -22,7 +23,7 @@ export interface RecordHumanVerdictInput {
   section: string;
   decision: HumanDecision;
   rating?: HumanRating;
-  preferred?: 'iter0' | 'final';
+  preferred?: 'iter0' | 'final' | 'control_best';
   notes?: string;
   candidateId?: string;
   criticScore?: number;
@@ -31,6 +32,17 @@ export interface RecordHumanVerdictInput {
   reviewer?: string;
   source?: 'blind-pair' | 'approval' | 'calibration';
   timestamp?: string;
+  /** Three-way blind (C0.16 / M1 / E0.1): randomized presentation order actually shown to the rater. */
+  positionsLog?: string[];
+  /** Distribution tags (M4 / E0.6, F-MOD-07/08): the corpus is only future-proof if tagged from the first verdict. */
+  distTags?: {
+    genModelId: string;
+    criticModelId: string;
+    configVersion: string;
+    systemSnapshot: string;
+  };
+  /** M8: a rejected-but-interesting candidate, feeding R13 trajectory learning. */
+  rejectedWithInterest?: boolean;
 }
 
 const RATING_SCORE: Record<HumanRating, number> = {
@@ -64,8 +76,10 @@ export function appendVerdict(outDirOrFile: string, entry: VerdictEntry): Verdic
     mkdirSync(dir, { recursive: true });
   }
 
-  appendFileSync(outPath, JSON.stringify(validation.data) + '\n', { flush: true });
-  return validation.data;
+  // C0.14: redact obvious secrets/PII (e.g. leaked into free-text `notes`) before persisting.
+  const redacted = redactDeep(validation.data);
+  appendFileSync(outPath, JSON.stringify(redacted) + '\n', { flush: true });
+  return redacted;
 }
 
 /**
@@ -118,6 +132,14 @@ export function recordHumanVerdict(
     source: input.source ?? 'approval',
     notes: input.notes,
     timestamp: input.timestamp ?? new Date().toISOString(),
+    positions_log: input.positionsLog,
+    dist_tags: input.distTags && {
+      gen_model_id: input.distTags.genModelId,
+      critic_model_id: input.distTags.criticModelId,
+      config_version: input.distTags.configVersion,
+      system_snapshot: input.distTags.systemSnapshot,
+    },
+    rejected_with_interest: input.rejectedWithInterest,
   });
 }
 
@@ -234,7 +256,8 @@ export function appendToGlobalCorpus(entry: VerdictEntry): void {
   if (!existsSync(dir)) {
     mkdirSync(dir, { recursive: true });
   }
-  appendFileSync(outPath, JSON.stringify(entry) + '\n', { flush: true });
+  // C0.14: redact before this crown-jewel corpus (E2.1) persists anything.
+  appendFileSync(outPath, JSON.stringify(redactDeep(entry)) + '\n', { flush: true });
 }
 
 /**

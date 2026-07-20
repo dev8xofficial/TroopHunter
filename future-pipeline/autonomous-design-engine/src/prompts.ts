@@ -51,10 +51,22 @@ ${brief.section.assets ? JSON.stringify(brief.section.assets, null, 2) : '  (non
 
 // ─── Generator Prompt (spec 05 §6.1) ──────────────────────────────
 
+/** C0.17 — H7 substrate: per-part char-count proxy for token attribution (÷4 ≈ tokens). Real numbers from real block content, not estimated post-hoc. */
+export interface PromptTokenBreakdown {
+  hard_brief: number;
+  soft_refs: number;
+  visual_context: number;
+  loop_state: number;
+}
+
+function charsToTokens(chars: number): number {
+  return Math.ceil(chars / 4);
+}
+
 export function buildGeneratorPrompt(
   bundle: InputBundle,
   feedback?: string,
-): { system: string; user: string } {
+): { system: string; user: string; tokenBreakdown: PromptTokenBreakdown } {
   const { brief, brandData } = bundle;
   const hardBrand = bundle.hardBrand?.status === 'frozen' ? bundle.hardBrand : undefined;
   const section = brief.section;
@@ -218,7 +230,18 @@ ${contentEntries}
 ${assetsBlock}${pdsBlock}${ctxBlock}${libraryBlock}${feedbackBlock}
 Produce a complete, polished, production-quality React + TypeScript component. Default export the component. Use Tailwind CSS for all styling. Make it visually stunning — this should look like a premium, professionally designed section.`;
 
-  return { system, user };
+  // hard_brief = business context + brand + PDS + section content + assets (all hard inputs);
+  // soft_refs = Library entries; visual_context = prior-section screenshots note; loop_state = carried feedback.
+  const hardBriefChars = system.length + brandBlock.length + pdsBlock.length + assetsBlock.length + contentEntries.length
+    + brief.client.length + brief.industry.length + (brief.location?.length ?? 0) + brief.audience.length + brief.goal.length + section.name.length;
+  const tokenBreakdown: PromptTokenBreakdown = {
+    hard_brief: charsToTokens(hardBriefChars),
+    soft_refs: charsToTokens(libraryBlock.length),
+    visual_context: charsToTokens(ctxBlock.length),
+    loop_state: charsToTokens(feedbackBlock.length),
+  };
+
+  return { system, user, tokenBreakdown };
 }
 
 // ─── Feedback Serialization (the H1 mechanism) ────────────────────
@@ -348,6 +371,36 @@ IMPORTANT RULES:
     }
   }
 
+  // CAVEATS (M6 / C0.8): the harness does not self-host brand fonts yet, so
+  // a declared family (e.g. "Canela") falls through the CSS stack to a
+  // system fallback. Detect this per candidate by diffing the declared
+  // families against what actually rendered, and tell the Critic explicitly
+  // — it must judge type SCALE/WEIGHT/HIERARCHY, never letterforms it never saw.
+  //
+  // Note: a section typically only exercises a subset of the brand's
+  // declared roles (a hero has no code block, so "mono" never renders) —
+  // that is expected and NOT a substitution. We only flag when NONE of the
+  // declared families appear anywhere in what actually rendered, which is
+  // the honest signal that fonts are being substituted, not merely unused.
+  const declaredFamilies = (hardBrand?.identity.typography ?? brandData?.typography ?? [])
+    .map(t => t.family.toLowerCase());
+  let caveatsBlock = '';
+  if (declaredFamilies.length > 0) {
+    for (const cid of candidateIds) {
+      const rendered = candidatesInfo[cid].domInfo?.renderedFontFamilies ?? [];
+      if (rendered.length === 0) continue; // no data — say nothing rather than false-flag
+      const renderedLower = rendered.join(' | ').toLowerCase();
+      const anyDeclaredFamilyRendered = declaredFamilies.some(f => renderedLower.includes(f));
+      if (!anyDeclaredFamilyRendered) {
+        caveatsBlock += `\nCAVEATS for CANDIDATE ${cid}:
+  Declared brand typeface(s) not found in the actual render: ${declaredFamilies.join(', ')}.
+  Actually-rendered font stack(s): ${rendered.join('; ')}.
+  This candidate is being shown to you in a FALLBACK font, not the true brand typeface — judge type scale, weight, and hierarchy only. Do NOT penalize or praise letterforms/character shapes you are not actually seeing.
+`;
+      }
+    }
+  }
+
   const user = `${candidateList}
 
 BUSINESS BRIEF (judge against this):
@@ -358,7 +411,7 @@ BUSINESS BRIEF (judge against this):
   Section: ${brief.section.name}
   Content provided: ${Object.keys(brief.section.content).join(', ')}
 ${brandRef}${weightingNote}
-${craftMetricsBlock}
+${craftMetricsBlock}${caveatsBlock}
 The screenshots for each candidate at 1440px, 768px, and 375px viewports are attached as images.
 
 Score each candidate, provide specific actionable feedback, and return valid JSON.`;

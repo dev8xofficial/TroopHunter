@@ -11,7 +11,7 @@
 
 import type { ModelProvider } from './model.js';
 import type { InputBundle } from './schema.js';
-import { buildGeneratorPrompt } from './prompts.js';
+import { buildGeneratorPrompt, type PromptTokenBreakdown } from './prompts.js';
 
 export class GeneratorError extends Error {
   constructor(message: string, public readonly cause?: string) {
@@ -24,6 +24,8 @@ interface GenerateResult {
   tsx: string;
   usage: { input: number; output: number };
   quota?: any;
+  /** C0.17 — per-part attribution of THIS call's input tokens (H7 substrate). */
+  tokenBreakdown: PromptTokenBreakdown;
 }
 
 /**
@@ -37,7 +39,7 @@ export async function generate(
   maxModelCalls: { current: number; max: number },
   exploration: boolean = false
 ): Promise<GenerateResult> {
-  const { system, user } = buildGeneratorPrompt(bundle, feedback);
+  const { system, user, tokenBreakdown } = buildGeneratorPrompt(bundle, feedback);
   
   const finalUser = exploration
     ? user + '\n\nIMPORTANT (M8 Exploration): This is an exploration candidate. Take a defensible structural or aesthetic risk that diverges from the standard safe approach while still respecting the hard constraints.'
@@ -109,6 +111,7 @@ export async function generate(
     tsx,
     usage: result.usage,
     quota: result.quota,
+    tokenBreakdown,
   };
 }
 

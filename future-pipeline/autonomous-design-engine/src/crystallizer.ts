@@ -22,6 +22,8 @@ import type {
 import { DesignTokensSchema, ComponentRecipeSchema } from './schema.js';
 import { schemaGate } from './guardrails.js';
 import { readPDS, writePDS, lockClient, unlockClient } from './store.js';
+import { phaseExitReview } from './qa.js';
+import { randomUUID } from 'crypto';
 
 export class CrystallizerError extends Error {
   constructor(message: string, public readonly code: string) {
@@ -37,6 +39,57 @@ export class CrystallizerError extends Error {
  * Tokens + component recipes are extracted by AI from the TSX,
  * then validated against the brand foundation.
  */
+const PDS_REVIEW_MAX_TRIES = 2;
+
+export interface PdsReviewResult {
+  verdict: 'pass' | 'fail';
+  reasoning: string;
+}
+
+/**
+ * Fresh-context Critic review of extracted tokens against brand+hero, per
+ * spec/11 §2.3 / plan C1.6: "do the extracted tokens faithfully capture the
+ * hero without over- or under-specifying? is the foundation complete for
+ * later sections, not over-fitted to one?"
+ */
+export async function reviewCrystallizedTokens(
+  tokens: DesignTokens,
+  brand: BrandFoundation,
+  sectionName: string,
+  provider: ModelProvider,
+): Promise<PdsReviewResult> {
+  const result = await provider.complete({
+    system: 'You are a design-systems reviewer checking a CANDIDATE token extraction before it is frozen as hard law for every future section. ' +
+      'You did not extract these tokens. Judge only: do they faithfully capture the approved section without over-specifying (too many one-off values) or under-specifying (missing categories later sections will need)? ' +
+      'Reply with ONLY valid JSON: {"verdict": "pass"|"fail", "reasoning": "specific, actionable reason"}.',
+    messages: [{
+      role: 'user',
+      content: `Extracted from section "${sectionName}", brand "${brand.client_id}" (frozen):\n\n` +
+        `Color tokens: ${JSON.stringify(tokens.color)}\n` +
+        `Type tokens: ${JSON.stringify(tokens.type)}\n` +
+        `Space tokens: ${JSON.stringify(tokens.space)}\n` +
+        `Radius tokens: ${JSON.stringify(tokens.radius)}\n` +
+        `Motion tokens: ${JSON.stringify(tokens.motion)}\n\n` +
+        `Is this a correct, complete-enough, non-overfitted foundation for later sections to build on? Verdict + reasoning as JSON.`,
+    }],
+    maxTokens: 500,
+    temperature: 0.2,
+  });
+
+  try {
+    let text = result.text.trim();
+    const fence = text.match(/```(?:json)?\s*\n?([\s\S]*?)\n?\s*```/);
+    if (fence) text = fence[1].trim();
+    const parsed = JSON.parse(text);
+    if (parsed.verdict === 'pass' || parsed.verdict === 'fail') {
+      return { verdict: parsed.verdict, reasoning: String(parsed.reasoning ?? '') };
+    }
+  } catch {
+    // fall through to fail-closed default
+  }
+  return { verdict: 'fail', reasoning: `PDS review output could not be parsed: ${result.text.slice(0, 200)}` };
+}
+
 export async function crystallize(
   approvedTsx: string,
   sectionName: string,
@@ -44,6 +97,7 @@ export async function crystallize(
   clientId: string,
   surface: 'website' | 'product',
   provider: ModelProvider,
+  reviewOutDir?: string,
 ): Promise<ProjectDesignSystem> {
   // Verify brand is frozen
   if (brand.status !== 'frozen') {
@@ -132,6 +186,31 @@ export async function crystallize(
       const tokenKey = p.role.toLowerCase().replace(/\s+/g, '-');
       tokensResult.data.color[tokenKey] = p.value;
     }
+  }
+
+  // C1.6: Phase-Exit Review of the candidate tokens (fresh-context Critic +
+  // cross-family second judge) BEFORE freeze — bounded ≤2 tries. Unlike
+  // brand review (C1.3), there is no re-derivation path here (re-running
+  // the crystallizer prompt against the SAME approved TSX would very likely
+  // reproduce the same extraction) — a review that still fails after
+  // PDS_REVIEW_MAX_TRIES logs a warning and freezes anyway (bounded, not
+  // unbounded — matches the plan's "escalate to human" intent, since Phase 1
+  // has no human-approval CLI step for PDS beyond this call itself).
+  const reviewRunId = randomUUID().slice(0, 8);
+  let pdsReview = await reviewCrystallizedTokens(tokensResult.data, brand, sectionName, provider);
+  let pdsReviewTries = 1;
+  if (reviewOutDir) {
+    await phaseExitReview(reviewOutDir, reviewRunId, `PDS tokens for ${clientId}/${surface}`, JSON.stringify(tokensResult.data), pdsReview.verdict);
+  }
+  while (pdsReview.verdict === 'fail' && pdsReviewTries < PDS_REVIEW_MAX_TRIES) {
+    console.warn(`⚠ PDS review failed (try ${pdsReviewTries}/${PDS_REVIEW_MAX_TRIES}): ${pdsReview.reasoning}`);
+    pdsReview = await reviewCrystallizedTokens(tokensResult.data, brand, sectionName, provider);
+    pdsReviewTries++;
+  }
+  if (pdsReview.verdict === 'fail') {
+    console.warn(`⚠ PDS review still failing after ${pdsReviewTries} tries — freezing anyway (bounded, per C1.6; no human PDS-approval step exists yet in Phase 1 CLI).`);
+  } else {
+    console.log(`✅ PDS review passed after ${pdsReviewTries} attempt(s).`);
   }
 
   // Write to store

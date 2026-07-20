@@ -85,6 +85,12 @@ export function upsertLibraryEntry(entry: LibraryEntry): LibraryEntry {
   return existingIndex === -1 ? entry : entries[existingIndex];
 }
 
+// C2.3: similarity floor — without this, an entry with near-zero relevance
+// still gets returned whenever the Library has fewer than topK entries (a
+// sparse/early Library, which is the common case), polluting the Generator's
+// context with noise instead of direction (F-MEM-02).
+const MIN_SIMILARITY = 0.35;
+
 export async function searchLibrary(
   query: string,
   provider: EmbeddingProvider,
@@ -106,20 +112,36 @@ export async function searchLibrary(
   if (validEntries.length === 0) return [];
 
   const queryEmbedding = await provider.embed(query);
-  return validEntries
+
+  // C2.0: refuse to cosine-compare vectors from incompatible embedding
+  // spaces. Changing embeddingModel/embeddingProvider silently produced
+  // meaningless similarity scores before this check existed — a vector
+  // embedded by one model has no defined distance to a vector embedded by
+  // a different one, but nothing ever verified they matched.
+  const mismatched = validEntries.filter(e => e.embedding.model_id !== queryEmbedding.modelId);
+  if (mismatched.length > 0) {
+    console.warn(
+      `⚠ Library has ${mismatched.length} entr${mismatched.length === 1 ? 'y' : 'ies'} embedded with a different model ` +
+      `(query uses "${queryEmbedding.modelId}") — excluding from this search (F-MEM-03). Re-embed the Library after an embedding-model change.`,
+    );
+  }
+  const compatibleEntries = validEntries.filter(e => e.embedding.model_id === queryEmbedding.modelId);
+
+  return compatibleEntries
     .filter(entry => entry.embedding.vector.length > 0)
     .map(entry => {
       const similarity = cosineSimilarity(queryEmbedding.vector, entry.embedding.vector);
       const confidence = entry.outcome.confidence || 0.1;
       // Own-client memory (E2.1): Boost score if client matches
       const clientBoost = (clientId && entry.client_id === clientId) ? 0.2 : 0;
-      
+
       return {
         entry,
         similarity,
         score: similarity * (0.7 + confidence * 0.3) + clientBoost,
       };
     })
+    .filter(hit => hit.similarity >= MIN_SIMILARITY)
     .sort((a, b) => b.score - a.score)
     .slice(0, Math.max(0, Math.min(topK, 5)));
 }

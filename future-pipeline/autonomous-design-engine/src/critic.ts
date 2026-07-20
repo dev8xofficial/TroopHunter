@@ -164,8 +164,15 @@ export async function critique(
 
     parsed = JSON.parse(jsonText);
   } catch {
-    // Schema Gate: one re-ask (spec 11 §2.1)
-    console.error('⚠ Critic returned invalid JSON, re-asking...');
+    // C0.13/F-MOD-02: a refusal isn't valid JSON either, so it enters this
+    // same path — distinguish it in the log (still correctly fail-closed
+    // below either way; this is a diagnostic improvement, not a behavior
+    // change, since a mis-scored refusal must never become a false pass).
+    if (isCriticRefusal(result.text)) {
+      console.error('⚠ Critic appears to have refused (not just malformed JSON); re-asking...');
+    } else {
+      console.error('⚠ Critic returned invalid JSON, re-asking...');
+    }
 
     if (maxModelCalls.current < maxModelCalls.max) {
       maxModelCalls.current++;
@@ -210,6 +217,18 @@ export async function critique(
   // Schema validation failed — one more try with re-ask
   console.error('⚠ Critic output schema validation failed:', gateResult.violations);
   return makeFailClosedDefault(candidateIds, result.text);
+}
+
+/**
+ * Detect a refusal-shaped Critic response (F-MOD-02) for logging purposes
+ * only — the caller's fail-closed handling is identical either way.
+ */
+function isCriticRefusal(text: string): boolean {
+  const lower = text.toLowerCase();
+  const hasJson = text.includes('{') && text.includes('candidates');
+  if (hasJson) return false;
+  return ['i cannot', "i'm unable", 'i am unable', "i'm sorry", 'i apologize', 'as an ai']
+    .some(phrase => lower.includes(phrase));
 }
 
 /**

@@ -105,7 +105,7 @@ export async function withRetry<T>(
 
 // ─── Factory ───────────────────────────────────────────────────────
 
-export async function getProvider(cfg: Config): Promise<ModelProvider> {
+async function createRawProvider(cfg: Config): Promise<ModelProvider> {
   switch (cfg.provider) {
     case 'agent-sdk': {
       const { createAgentSdkProvider } = await import('./providers/agentSdk.js');
@@ -122,4 +122,57 @@ export async function getProvider(cfg: Config): Promise<ModelProvider> {
     default:
       throw new Error(`Unknown provider: ${cfg.provider}`);
   }
+}
+
+/**
+ * C4.8: resolve the configured provider, wrapped with a fallback to `local`
+ * (Ollama) on PERMANENT failure — i.e. after withRetry has already exhausted
+ * transient retries inside the primary provider's own complete(). Without
+ * this, a dead/unreachable primary provider throws and the whole run dies;
+ * a degraded local fallback keeps the run alive (matches the C0.13/F-MOD-01
+ * resilience posture applied at the process level, not just per-call).
+ * The `api` and `local` providers are never wrapped in a further fallback
+ * (api is prod-only; local IS the fallback — no fallback-of-fallback).
+ */
+export async function getProvider(cfg: Config): Promise<ModelProvider> {
+  const primary = await createRawProvider(cfg);
+  if (cfg.provider !== 'agent-sdk') {
+    return primary;
+  }
+
+  let fallback: ModelProvider | null = null;
+  return {
+    id: primary.id,
+    async complete(req) {
+      try {
+        return await primary.complete(req);
+      } catch (err) {
+        console.error(
+          `⚠ Primary provider (${primary.id}) failed permanently: ${err instanceof Error ? err.message : err}. ` +
+          `Falling back to local provider — this run is now DEGRADED and should be re-baselined before its results are trusted (F-MOD-05/C4.8).`,
+        );
+        if (!fallback) {
+          fallback = await createRawProvider({ ...cfg, provider: 'local' });
+        }
+        return fallback.complete(req);
+      }
+    },
+  };
+}
+
+export type ModelRole = 'generator' | 'critic' | 'orchestrator';
+
+/**
+ * Resolve a role-scoped ModelProvider (plan §1: Critic must never silently
+ * share the Generator's model — keep genModelId/criticModelId/
+ * orchestratorModelId distinct even when they happen to point at the same
+ * model). Reuses getProvider's provider-selection logic; only the pinned
+ * model id changes per role.
+ */
+export async function getProviderForRole(cfg: Config, role: ModelRole): Promise<ModelProvider> {
+  const modelId =
+    role === 'generator' ? cfg.genModelId :
+    role === 'critic' ? cfg.criticModelId :
+    cfg.orchestratorModelId;
+  return getProvider({ ...cfg, modelId });
 }

@@ -19,6 +19,10 @@ import type {
 import { LibraryEntrySchema } from './schema.js';
 import { getEmbeddingProvider } from './embeddings.js';
 import { embedLibraryEntry, upsertLibraryEntry } from './library.js';
+import { redactString } from './redact.js';
+import { phaseExitReview } from './qa.js';
+import type { ModelProvider } from './model.js';
+import { randomUUID } from 'crypto';
 
 export interface WriteBackInput {
   artifact: Artifact;
@@ -26,6 +30,52 @@ export interface WriteBackInput {
   brand?: BrandFoundation | null;
   pds?: ProjectDesignSystem | null;
   humanVerdict?: string;
+  /** C2.5: enables the abstraction-altitude Phase-Exit Review before insert. Optional so existing tests/callers without a critic provider keep working (review is skipped, not silently faked, if omitted). */
+  criticProvider?: ModelProvider;
+  reviewOutDir?: string;
+}
+
+export interface AltitudeReviewResult {
+  verdict: 'pass' | 'fail';
+  reasoning: string;
+}
+
+/**
+ * C2.5: fresh-context Critic review of a distilled Library entry's
+ * abstraction ALTITUDE before it enters the Library — "is this too
+ * specific (non-transferable) or too vague (useless)?" per spec/04 §6 /
+ * plan C2.5. Distinct from deidentificationGate (which checks for identity
+ * LEAKAGE, not abstraction quality).
+ */
+export async function reviewAbstractionAltitude(
+  draft: Omit<LibraryEntry, 'embedding'>,
+  criticProvider: ModelProvider,
+): Promise<AltitudeReviewResult> {
+  const result = await criticProvider.complete({
+    system: 'You are reviewing a distilled design-pattern entry before it enters a cross-project Library. ' +
+      'Judge ONLY its abstraction altitude: is it too SPECIFIC (baked to one client/section, won\'t transfer) or too VAGUE (generic enough to be useless direction)? ' +
+      'A good entry is a transferable PATTERN — general enough to apply elsewhere, specific enough to be actionable. ' +
+      'Reply with ONLY valid JSON: {"verdict": "pass"|"fail", "reasoning": "specific, actionable reason"}.',
+    messages: [{
+      role: 'user',
+      content: `Title: ${draft.title}\nIntent: ${draft.intent}\nConstruction: ${draft.construction.join('; ')}\nRationale: ${draft.rationale.join('; ')}\nContext fit: ${JSON.stringify(draft.context_fit)}\n\nVerdict + reasoning as JSON.`,
+    }],
+    maxTokens: 500,
+    temperature: 0.2,
+  });
+
+  try {
+    let text = result.text.trim();
+    const fence = text.match(/```(?:json)?\s*\n?([\s\S]*?)\n?\s*```/);
+    if (fence) text = fence[1].trim();
+    const parsed = JSON.parse(text);
+    if (parsed.verdict === 'pass' || parsed.verdict === 'fail') {
+      return { verdict: parsed.verdict, reasoning: String(parsed.reasoning ?? '') };
+    }
+  } catch {
+    // fall through to fail-closed default
+  }
+  return { verdict: 'fail', reasoning: `Altitude review output could not be parsed: ${result.text.slice(0, 200)}` };
 }
 
 export interface DeidentificationResult {
@@ -56,6 +106,24 @@ export async function writeBackArtifact(
       );
     }
 
+    // C2.5: abstraction-altitude Phase-Exit Review before insert (fresh-
+    // context Critic + cross-family second judge). Optional — skipped
+    // (not faked) when the caller doesn't supply a criticProvider, so
+    // existing embedding-only callers/tests are unaffected.
+    if (input.criticProvider) {
+      const altitude = await reviewAbstractionAltitude(draft, input.criticProvider);
+      const runId = randomUUID().slice(0, 8);
+      if (input.reviewOutDir) {
+        await phaseExitReview(input.reviewOutDir, runId, `Library entry "${draft.id}"`, JSON.stringify(draft), altitude.verdict);
+      }
+      if (altitude.verdict === 'fail') {
+        throw new Error(
+          `Abstraction-altitude review blocked write-back for "${section.name}": ${altitude.reasoning} ` +
+          `(bounded — re-abstract and retry; this entry was not inserted)`,
+        );
+      }
+    }
+
     const parsed = LibraryEntrySchema.omit({ embedding: true }).safeParse(draft);
     if (!parsed.success) {
       throw new Error(`Library entry draft failed schema validation: ${parsed.error.message}`);
@@ -74,7 +142,15 @@ export function deidentificationGate(
   input: Pick<WriteBackInput, 'artifact' | 'briefs' | 'brand' | 'pds'>,
 ): DeidentificationResult {
   const violations: Violation[] = [];
-  const text = JSON.stringify(candidate).toLowerCase();
+
+  // E2.1: client_id is now a legitimate structural field (own-client memory
+  // scoping — library.ts's retrieval boost) rather than a leak. Scan
+  // everything else for the client's identity in PROSE (title/intent/
+  // construction/etc.) but exclude this one field itself, or write-back
+  // would unconditionally self-block on the very field it just added.
+  const { client_id: _scopingId, ...candidateWithoutClientIdField } = (candidate ?? {}) as Record<string, unknown>;
+  const rawText = JSON.stringify(candidateWithoutClientIdField);
+  const text = rawText.toLowerCase();
 
   const forbidden = new Set<string>();
   addForbidden(forbidden, input.artifact.client_id);
@@ -105,6 +181,23 @@ export function deidentificationGate(
     }
   }
 
+  // C4.1: the identity-token check above only catches THIS client's known
+  // values (name, id, palette). A secret/PII value with no relation to the
+  // client (e.g. a stray API key pasted into a brief's body copy) would slip
+  // through untouched — reuse the same regex-based baseline that already
+  // protects trace.jsonl/verdicts.jsonl (C0.14) so the Library gets the same
+  // floor, not a weaker one.
+  const redacted = redactString(rawText);
+  if (redacted !== rawText) {
+    violations.push({
+      gate: 'de-identification',
+      rule: 'secret-pii-leak',
+      message: 'Library entry contains a secret/PII pattern (API key, email, etc.) unrelated to client-identity matching — see C0.14 redaction rules.',
+      severity: 'critical',
+      fixable: true,
+    });
+  }
+
   return {
     pass: violations.length === 0,
     violations,
@@ -126,6 +219,14 @@ function makeLibraryEntryDraft(
 
   return {
     id,
+    // E2.1 fix: own-client memory's retrieval boost (library.ts searchLibrary)
+    // reads entry.client_id, but write-back never set it — the boost was
+    // unreachable dead code for every entry the real write-back path ever
+    // produced. artifact.client_id is a structural reference (like
+    // provenance's proj_ hash below), not client-identifying PROSE — the
+    // deidentificationGate scans entry TEXT content for the client's name/
+    // copy/tokens, which this field is not.
+    client_id: artifact.client_id,
     type: sectionName.includes('nav') || sectionName.includes('button') ? 'component-recipe' : 'pattern',
     title: `${titleCase(sectionName)} pattern for ${domain}`,
     intent: `Solve a ${sectionName} design problem for ${domain} where the goal is ${goal}.`,
@@ -157,6 +258,10 @@ function makeLibraryEntryDraft(
       times_used: 1,
     },
     tags: unique([sectionName, artifact.surface, domain, goal]),
+    // Two-tier adoption (M16/E2.3): every new write-back starts provisional —
+    // adopted immediately but subject to audit sampling and auto-expiry
+    // unless a human confirms it within the review window.
+    provisional: true,
     created_at: now,
     updated_at: now,
   };

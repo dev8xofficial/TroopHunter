@@ -11,6 +11,7 @@ import { writeFileSync, appendFileSync, readFileSync, existsSync, mkdirSync } fr
 import { join, dirname } from 'path';
 import type { RunRecord } from './schema.js';
 import { RunRecordSchema } from './schema.js';
+import { redactDeep } from './redact.js';
 
 /**
  * Append a single RunRecord to trace.jsonl immediately (I6).
@@ -31,8 +32,11 @@ export function appendIteration(outDir: string, record: RunRecord): void {
     console.error('⚠ Invalid RunRecord, writing anyway for debugging:', validation.error.message);
   }
 
+  // C0.14: redact obvious secrets/PII before persisting (baseline — see redact.ts).
+  const redacted = redactDeep(record);
+
   // Append as JSONL (one JSON object per line)
-  const line = JSON.stringify(record) + '\n';
+  const line = JSON.stringify(redacted) + '\n';
   appendFileSync(tracePath, line, { flush: true });
 }
 

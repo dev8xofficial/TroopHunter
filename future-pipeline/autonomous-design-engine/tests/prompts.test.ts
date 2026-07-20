@@ -89,6 +89,60 @@ describe('Prompts', () => {
       expect(user).toContain('#1C1917');
       expect(user).toContain('BRAND CONSTRAINTS');
     });
+
+    // ── CAVEATS: font-substitution disclosure (M6 / C0.8) ────────────
+    it('emits a CAVEATS block when the rendered font does not match the declared brand family', () => {
+      const { user } = buildCriticPrompt(bundleWithBrand, {
+        'cand-a': {
+          shots: {},
+          domInfo: { bodyHeight: 800, hasText: true, fontsLoaded: true, imagesLoaded: true, renderedFontFamilies: ['Georgia, serif'] },
+        },
+      });
+      expect(user).toContain('CAVEATS for CANDIDATE cand-a');
+      expect(user).toContain('Playfair Display');
+      expect(user).toContain('FALLBACK font');
+      expect(user).toContain('Do NOT penalize or praise letterforms');
+    });
+
+    it('does NOT emit a CAVEATS block when the declared family actually rendered', () => {
+      const { user } = buildCriticPrompt(bundleWithBrand, {
+        'cand-a': {
+          shots: {},
+          domInfo: { bodyHeight: 800, hasText: true, fontsLoaded: true, imagesLoaded: true, renderedFontFamilies: ['"Playfair Display", serif'] },
+        },
+      });
+      expect(user).not.toContain('CAVEATS for CANDIDATE');
+    });
+
+    it('does NOT emit a CAVEATS block when no domInfo is present (no false positives from missing data)', () => {
+      const { user } = buildCriticPrompt(bundleWithBrand, { 'cand-a': { shots: {} } });
+      expect(user).not.toContain('CAVEATS for CANDIDATE');
+    });
+
+    it('does NOT emit a CAVEATS block when no brand typography is declared at all', () => {
+      const { user } = buildCriticPrompt(minimalBundle, {
+        'cand-a': {
+          shots: {},
+          domInfo: { bodyHeight: 800, hasText: true, fontsLoaded: true, imagesLoaded: true, renderedFontFamilies: ['Arial, sans-serif'] },
+        },
+      });
+      expect(user).not.toContain('CAVEATS for CANDIDATE');
+    });
+
+    it('scopes CAVEATS per-candidate — a substituted candidate does not contaminate a clean one', () => {
+      const { user } = buildCriticPrompt(bundleWithBrand, {
+        'cand-clean': {
+          shots: {},
+          domInfo: { bodyHeight: 800, hasText: true, fontsLoaded: true, imagesLoaded: true, renderedFontFamilies: ['"Playfair Display", serif'] },
+        },
+        'cand-substituted': {
+          shots: {},
+          domInfo: { bodyHeight: 800, hasText: true, fontsLoaded: true, imagesLoaded: true, renderedFontFamilies: ['Georgia, serif'] },
+        },
+      });
+      expect(user).not.toContain('CAVEATS for CANDIDATE cand-clean');
+      expect(user).toContain('CAVEATS for CANDIDATE cand-substituted');
+    });
   });
 
   describe('serializeFeedback', () => {
