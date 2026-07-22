@@ -1,0 +1,20 @@
+{
+  "client": "ThreadCraft",
+  "industry": "e-commerce / fashion",
+  "location": "Los Angeles",
+  "audience": "Fashion-forward millennials and Gen Z shoppers aged 18-35 interested in sustainable, ethically-sourced clothing",
+  "goal": "Highlight the key product differentiators (sustainability, quality materials, ethical manufacturing) to reduce bounce rate on the product landing page",
+  "section": {
+    "name": "features",
+    "content": {
+      "headline": "Crafted with Purpose",
+      "subheadline": "Every thread tells a story of quality and sustainability.",
+      "items": [
+        { "feature": "100% Organic Cotton", "description": "GOTS-certified organic materials sourced from family farms." },
+        { "feature": "Zero-Waste Manufacturing", "description": "Our closed-loop process eliminates textile waste entirely." },
+        { "feature": "Fair Trade Certified", "description": "Living wages and safe working conditions for every maker." }
+      ],
+      "cta": { "text": "Shop the Collection", "href": "/shop" }
+    }
+  }
+}

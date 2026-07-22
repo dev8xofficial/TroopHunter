@@ -6,7 +6,10 @@
  */
 
 import { emitEscalation } from './escalations.js';
-import type { CriticOutput } from './schema.js';
+import type { CriticOutput, VerdictEntry } from './schema.js';
+import { readVerdicts } from './verdicts.js';
+import { readFileSync, writeFileSync } from 'fs';
+import { join } from 'path';
 
 export interface PreferenceLabel {
   winner_id: string;
@@ -20,12 +23,7 @@ export interface PreferenceLabel {
  * Route to human tier if the AI judge's confidence is low.
  * Emits an escalation into the queue.
  */
-export function routeToHumanIfUncertain(
-  outDir: string,
-  runId: string,
-  label: PreferenceLabel,
-  threshold = 0.8
-): void {
+export function routeToHumanIfUncertain(outDir: string, runId: string, label: PreferenceLabel, threshold = 0.8): void {
   if (label.confidence < threshold) {
     label.human_review_required = true;
     emitEscalation(outDir, {
@@ -41,12 +39,7 @@ export function routeToHumanIfUncertain(
  * In a real implementation, this would invoke a reward model or a different LLM.
  * For E3.1 ride-along, we simulate this using the existing critic scores/variance.
  */
-export async function generatePreferenceLabels(
-  outDir: string,
-  runId: string,
-  primaryCritic: CriticOutput,
-  secondaryCritic?: CriticOutput
-): Promise<PreferenceLabel[]> {
+export async function generatePreferenceLabels(outDir: string, runId: string, primaryCritic: CriticOutput, secondaryCritic?: CriticOutput): Promise<PreferenceLabel[]> {
   const labels: PreferenceLabel[] = [];
 
   // Simulate label generation based on candidate pairwise rankings
@@ -57,7 +50,7 @@ export async function generatePreferenceLabels(
       const loser = ranking[i + 1];
 
       // Simulate confidence. If secondary critic disagrees, confidence drops.
-      let confidence = 0.9; 
+      let confidence = 0.9;
       if (secondaryCritic?.ranking && secondaryCritic.ranking[0] !== ranking[0]) {
         confidence = 0.6; // High uncertainty if judges disagree
       }
@@ -77,4 +70,54 @@ export async function generatePreferenceLabels(
   }
 
   return labels;
+}
+
+/**
+ * C3.5 — RLAIF Bulk Training Export
+ * Budgets and formats accumulated human verdicts into a pairwise JSONL dataset
+ * (chosen/rejected) suitable for DPO (Direct Preference Optimization) training
+ * of a VLM Reward Model.
+ */
+export function exportRLAIFDataset(verdictsDir: string, outFilePath: string, budgetTokens: number): number {
+  const verdicts = readVerdicts(verdictsDir);
+  const dataset: any[] = [];
+  let tokenCount = 0;
+
+  // We group verdicts by run_id + section
+  const grouped = new Map<string, VerdictEntry[]>();
+  for (const v of verdicts) {
+    const key = `${v.run_id}:${v.section}`;
+    if (!grouped.has(key)) grouped.set(key, []);
+    grouped.get(key)!.push(v);
+  }
+
+  for (const [key, entries] of grouped.entries()) {
+    if (tokenCount + 50 > budgetTokens) break;
+
+    // Find the preferred final (chosen) and any rejected/abandoned (loser)
+    const chosen = entries.find((e) => e.preferred === 'final' || e.human_verdict === 'approve');
+    const rejected = entries.find((e) => e.preferred !== 'final' && e.human_verdict === 'reject');
+
+    if (chosen && rejected) {
+      // Create a DPO pair row
+      const row = {
+        prompt: `Which design is better for ${chosen.section}?`,
+        chosen: chosen.candidate_id,
+        rejected: rejected.candidate_id,
+        chosen_rating: chosen.rating,
+        rejected_rating: rejected.rating,
+        domain: 'simulated_industry', // would pull from run_id's brief
+        reasoning: chosen.notes || 'Human preferred',
+      };
+
+      dataset.push(row);
+      // Rough token estimation: 50 tokens per pair
+      tokenCount += 50;
+    }
+  }
+
+  const jsonl = dataset.map((row) => JSON.stringify(row)).join('\n');
+  writeFileSync(outFilePath, jsonl, 'utf-8');
+
+  return dataset.length;
 }

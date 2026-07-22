@@ -9,56 +9,37 @@
 
 import { Command } from 'commander';
 import { dirname, join, resolve } from 'path';
-import { readFileSync, existsSync, readdirSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs';
 import { randomUUID } from 'crypto';
 import { buildConfig } from './config.js';
 import { runLoop, runSectionLoop, runSiteLoop } from './orchestrator.js';
 import { generateReport } from './report.js';
 import { readTrace } from './trace.js';
 import { BriefSchema, BrandDataSchema, PlanSchema } from './schema.js';
-import type {
-  Brief,
-  BrandData,
-  Plan,
-  Artifact,
-  SectionOutput,
-  Surface,
-  AutonomyRung,
-  RunRecord,
-  VerdictEntry,
-  ProjectDesignSystem,
-  ArtifactQAReport,
-} from './schema.js';
-import { deriveBrand, saveBrandDraft, approveBrand, reDeriveBrand, reviewAndReDeriveBrand } from './brand.js';
+import type { Brief, BrandData, BrandFoundation, Plan, Artifact, SectionOutput, Surface, AutonomyRung, RunRecord, VerdictEntry, ProjectDesignSystem, ArtifactQAReport, RetestCase } from './schema.js';
+import { deriveBrand, saveBrandDraft, approveBrand, reDeriveBrand, reviewAndReDeriveBrand, reviewAndSelectBrandDirection } from './brand.js';
 import { crystallize } from './crystallizer.js';
 import { getProvider, getProviderForRole } from './model.js';
-import {
-  getSectionRunDir,
-  readArtifact,
-  readArtifactQA,
-  readBrand,
-  readPDS,
-  writeArtifact,
-  writeArtifactQA,
-  writeBrand,
-} from './store.js';
-import { readLibrary, getLibraryDir } from './library.js';
+import { getSectionRunDir, integrityScan, readArtifact, readArtifactQA, readBrand, readPDS, writeArtifact, writeArtifactQA, writeBrand } from './store.js';
+import { readLibrary, getLibraryDir, detectEmbeddingModelDrift, reEmbedLibrary } from './library.js';
 import { writeBackArtifact } from './writeback.js';
-import { readVerdicts, recordHumanVerdict } from './verdicts.js';
+import { readVerdicts, recordHumanVerdict, captureVerdict } from './verdicts.js';
+import { freezeRetestBaseline, retestSetPath, runRetest } from './retest.js';
 import { runCrossSurfaceBrandQA, runWholeArtifactQA } from './qa.js';
 import { calibrateFromRecords } from './calibration.js';
 import { formatAutonomyPolicy, recommendAutonomyPolicy } from './autonomy.js';
+import { computeInterRaterAgreement, detectRubberStamps, formatInterRaterReport } from './reviewers.js';
 import { runBenchmark } from './benchmark.js';
 import { listEscalations, answerEscalation } from './escalations.js';
-import { generatePreferenceLabels } from './rlaif.js';
+import { generatePreferenceLabels, exportRLAIFDataset } from './rlaif.js';
 import { executeSuccessionPlaybook } from './distillation.js';
 import { runSelfAudit } from './selfaudit.js';
+import { loadReferences } from './refs.js';
+import { generateStrategyPlan, readSitePlan, writeSitePlan, applyStrategyToSections } from './strategy.js';
+import { runThreeArmAblation, summarizeAblation, formatH6Summary } from './ablation.js';
 const program = new Command();
 
-program
-  .name('ade')
-  .description('Autonomous Design Engine — AI that designs from a brief')
-  .version('0.1.0');
+program.name('ade').description('Autonomous Design Engine — AI that designs from a brief').version('0.1.0');
 
 // ─── generate ──────────────────────────────────────────────────────
 
@@ -97,9 +78,7 @@ program
 
       // Validate section name matches
       if (brief.section.name !== opts.section) {
-        console.warn(
-          `⚠ Section name in brief ("${brief.section.name}") differs from --section ("${opts.section}"). Using brief's name.`,
-        );
+        console.warn(`⚠ Section name in brief ("${brief.section.name}") differs from --section ("${opts.section}"). Using brief's name.`);
       }
 
       // Load brand-data (optional)
@@ -124,7 +103,7 @@ program
         const rawPlan = JSON.parse(readFileSync(planPath, 'utf-8'));
         const planValidation = PlanSchema.safeParse(rawPlan);
         if (!planValidation.success) {
-          console.error(`❌ Invalid plan.json: ${planValidation.error.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
+          console.error(`❌ Invalid plan.json: ${planValidation.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
           process.exit(1);
         }
         plan = planValidation.data;
@@ -132,6 +111,11 @@ program
 
       // Output directory
       const outDir = resolve(opts.out);
+
+      // C2.4: references are soft, capped-at-5 inputs — wired for real
+      // (was a no-op in Phase 0). loadReferences validates paths/formats;
+      // the injection-safety screen runs unconditionally inside runLoop.
+      const refs = opts.refs ? loadReferences(opts.refs as string[]) : undefined;
 
       console.log('\n🚀 ADE Generate');
       console.log(`   Brief: ${briefPath}`);
@@ -141,10 +125,13 @@ program
       console.log(`   Variations: ${cfg.variations}`);
       console.log(`   Max iters: ${cfg.maxIters}`);
       console.log(`   Threshold: ${cfg.threshold}`);
+      if (refs && refs.length > 0) {
+        console.log(`   References: ${refs.length}`);
+      }
       console.log('');
 
       // Run the loop
-      const result = await runLoop(cfg, brief, brandData, plan, outDir, briefPath);
+      const result = await runLoop(cfg, brief, brandData, plan, outDir, briefPath, undefined, undefined, undefined, refs);
 
       // Exit code per spec
       switch (result.state) {
@@ -226,7 +213,7 @@ program
         const rawPlan = JSON.parse(readFileSync(resolve(opts.plan), 'utf-8'));
         const planValidation = PlanSchema.safeParse(rawPlan);
         if (!planValidation.success) {
-          console.error(`❌ Invalid plan.json: ${planValidation.error.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
+          console.error(`❌ Invalid plan.json: ${planValidation.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
           process.exit(1);
         }
         plan = planValidation.data;
@@ -257,7 +244,7 @@ program
   .command('verdict')
   .description('Record a human approve/reject verdict for Critic calibration')
   .requiredOption('--out <dir>', 'Run output directory')
-  .requiredOption('--decision <decision>', 'Human decision: approve or reject')
+  .option('--decision <decision>', 'Human decision: approve or reject (required unless --retest/--retest-freeze)')
   .option('--rating <rating>', 'Human rating: bad, weak, good, or strong')
   .option('--notes <text>', 'Human notes for rubric calibration')
   .option('--run-id <id>', 'Run id (defaults to trace.jsonl)')
@@ -268,46 +255,76 @@ program
   .option('--threshold <n>', 'Threshold used by the Critic')
   .option('--reviewer <name>', 'Reviewer name')
   .option('--preferred <pick>', 'iter0, final, or control_best')
-  .option('--retest <dir>', 'Retest mode: run the retest script against a set directory')
+  .option('--retest', 'Quarterly retest ritual (E0.7/M13): re-present the frozen case set blind and report self-agreement against the baseline')
+  .option('--retest-freeze <manifest>', 'Freeze a NEW retest baseline from a case manifest JSON ([{case_id, run_id, section, iter0_shots_dir, final_shots_dir}]) — captured blind, refuses to run if a baseline already exists at --out')
   .option('--rejected-with-interest', 'Flag as rejected with interest')
   .option('--dist-tags <json>', 'JSON string of dist_tags')
-  .action((opts) => {
+  .action(async (opts) => {
     try {
       const outDir = resolve(opts.out);
-      const records = readTrace(outDir);
-      const traceRecord = opts.candidateId
-        ? records.find(record => record.candidate_id === opts.candidateId)
-        : records[records.length - 1];
-      const decision = parseDecision(opts.decision);
-      const rating = opts.rating ? parseRating(opts.rating) : undefined;
-      const criticVerdict = opts.criticVerdict
-        ? parseCriticVerdict(opts.criticVerdict)
-        : traceRecord?.verdict;
-      const criticScore = opts.criticScore !== undefined
-        ? parseNumberOption(opts.criticScore, 'critic-score')
-        : traceRecord?.scores.weighted_total;
-      const threshold = opts.threshold !== undefined
-        ? parseNumberOption(opts.threshold, 'threshold')
-        : undefined;
-      const runId = opts.runId ?? traceRecord?.run_id;
-      const section = opts.section ?? traceRecord?.section_id;
+
+      if (opts.retestFreeze) {
+        const manifestPath = resolve(opts.retestFreeze);
+        if (!existsSync(manifestPath)) {
+          console.error(`Error: retest manifest not found: ${manifestPath}`);
+          process.exit(1);
+        }
+        const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8')) as {
+          case_id: string;
+          run_id: string;
+          section: string;
+          iter0_shots_dir: string;
+          final_shots_dir: string;
+        }[];
+        const cases: RetestCase[] = [];
+        for (const m of manifest) {
+          console.log(`\n📋 Capturing BASELINE for case "${m.case_id}" (this rating is frozen — it will be compared against later, not shown again until retest time)`);
+          const baselineEntry = await captureVerdict(m.run_id, m.section, m.iter0_shots_dir, m.final_shots_dir, join(outDir, 'retest-baseline-verdicts.jsonl'));
+          cases.push({
+            case_id: m.case_id,
+            run_id: m.run_id,
+            section: m.section,
+            iter0_shots_dir: m.iter0_shots_dir,
+            final_shots_dir: m.final_shots_dir,
+            baseline_rating: baselineEntry.rating,
+            baseline_preferred: baselineEntry.preferred === 'iter0' ? 'iter0' : 'final',
+            baseline_reviewer: opts.reviewer,
+            baseline_captured_at: baselineEntry.timestamp,
+          });
+        }
+        const set = freezeRetestBaseline(outDir, cases);
+        console.log(`\n✅ Retest baseline frozen: ${set.cases.length} case(s) at ${retestSetPath(outDir)} (${set.frozen_at}).`);
+        console.log(`   Run \`ade verdict --out ${opts.out} --retest\` later (e.g. quarterly) to measure self-agreement.`);
+        return;
+      }
 
       if (opts.retest) {
-        // ⚠ NOT YET IMPLEMENTED (M13/E0.7). The quarterly human test-retest
-        // ritual needs: a frozen baseline rating per case (captured once,
-        // held out), a genuinely blind re-presentation via the existing
-        // captureVerdict() flow, and a real comparison against that baseline.
-        // captureVerdict() exists and works (verdicts.ts) but this command
-        // does not yet define the frozen-baseline file convention or wire
-        // the interactive flow to it. Do NOT report the number below as a
-        // real self-agreement measurement — it does not exist yet.
-        console.error('\n❌ --retest is not yet implemented (M13/E0.7 stub).');
-        console.error('   No baseline exists, no artifacts were re-rated, no agreement was computed.');
-        console.error('   See src/cli.ts verdict command for the exact gap.\n');
-        process.exit(1);
-        
-        process.exit(0);
+        const result = await runRetest(outDir, join(outDir, `retest-verdicts-${new Date().toISOString().replace(/[:.]/g, '-')}.jsonl`));
+        console.log(`\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+        console.log(`  RETEST SELF-AGREEMENT — ${result.total} case(s)`);
+        console.log(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
+        for (const c of result.perCase) {
+          console.log(`  ${c.ratingAgreed ? '✅' : '❌'} ${c.caseId}: baseline=${c.baselineRating} retest=${c.retestRating}${c.ratingAgreed ? '' : ' (DISAGREEMENT)'}`);
+        }
+        console.log(`\n  Rating agreement:    ${result.ratingAgreement}/${result.total} (${(result.agreementRate * 100).toFixed(0)}%)`);
+        console.log(`  Preferred agreement: ${result.preferredAgreement}/${result.total}`);
+        console.log(`\n  This is an OBSERVED, human-recollected measurement (I12) — not predicted or estimated.\n`);
+        return;
       }
+
+      const records = readTrace(outDir);
+      const traceRecord = opts.candidateId ? records.find((record) => record.candidate_id === opts.candidateId) : records[records.length - 1];
+      if (!opts.decision) {
+        console.error('Error: --decision is required unless --retest or --retest-freeze is used.');
+        process.exit(1);
+      }
+      const decision = parseDecision(opts.decision);
+      const rating = opts.rating ? parseRating(opts.rating) : undefined;
+      const criticVerdict = opts.criticVerdict ? parseCriticVerdict(opts.criticVerdict) : traceRecord?.verdict;
+      const criticScore = opts.criticScore !== undefined ? parseNumberOption(opts.criticScore, 'critic-score') : traceRecord?.scores.weighted_total;
+      const threshold = opts.threshold !== undefined ? parseNumberOption(opts.threshold, 'threshold') : undefined;
+      const runId = opts.runId ?? traceRecord?.run_id;
+      const section = opts.section ?? traceRecord?.section_id;
 
       if (!runId || !section) {
         console.error('Error: could not infer --run-id and --section from trace.jsonl. Provide them explicitly.');
@@ -318,12 +335,16 @@ program
       // future-proof if tagged from the first verdict, F-MOD-07/08). Uses the
       // real per-role ids the orchestrator now records (C0.16 fix) instead of
       // guessing criticModelId from the shared model_id field.
-      const distTags = opts.distTags ? JSON.parse(opts.distTags) : (traceRecord ? {
-        genModelId: traceRecord.gen_model_id ?? traceRecord.model_id,
-        criticModelId: traceRecord.critic_model_id ?? traceRecord.model_id,
-        configVersion: '1.2.0',
-        systemSnapshot: 'HEAD',
-      } : undefined);
+      const distTags = opts.distTags
+        ? JSON.parse(opts.distTags)
+        : traceRecord
+          ? {
+              genModelId: traceRecord.gen_model_id ?? traceRecord.model_id,
+              criticModelId: traceRecord.critic_model_id ?? traceRecord.model_id,
+              configVersion: '1.2.0',
+              systemSnapshot: 'HEAD',
+            }
+          : undefined;
 
       const entry = recordHumanVerdict(outDir, {
         runId,
@@ -350,9 +371,7 @@ program
     }
   });
 
-const design = program
-  .command('design')
-  .description('Design workflows: brand foundation, sections, sites, and Library learning');
+const design = program.command('design').description('Design workflows: brand foundation, sections, sites, and Library learning');
 
 design
   .command('brand')
@@ -363,6 +382,7 @@ design
   .option('--approve', 'Approve and freeze the current brand draft')
   .option('--approved-by <name>', 'Approver name for --approve', 'human')
   .option('--rederive', 'Re-derive from changed brand-data/context')
+  .option('--directions', 'Derive 2-3 distinct, justified brand directions and select the best-reviewed one (C1.2)')
   .option('--model <id>', 'Model ID')
   .action(async (opts) => {
     try {
@@ -398,9 +418,26 @@ design
       // judge, bounded ≤2 tries, re-derive on failure — never hand-patch)
       // BEFORE the human ever sees the derived brand.
       const outDir = join('.', 'projects', opts.client, 'brand-review');
-      const { foundation, tries, finalVerdict } = await reviewAndReDeriveBrand(
-        opts.client, brandData, brief, criticProvider, genProvider, outDir,
-      );
+      let foundation: BrandFoundation, tries: number, finalVerdict: { verdict: 'pass' | 'fail'; reasoning: string };
+      if (opts.directions) {
+        // C1.2: 2-3 distinct directions, each independently reviewed; the
+        // best-passing one is selected (full-set re-derivation on total
+        // rejection, never a hand-patch of one).
+        const result = await reviewAndSelectBrandDirection(opts.client, brandData, brief, criticProvider, genProvider, outDir);
+        foundation = result.foundation;
+        tries = result.tries;
+        finalVerdict = result.finalVerdict;
+        console.log(`\nDirections considered (${result.allDirections.length}):`);
+        for (const { direction, review } of result.allDirections) {
+          const marker = direction.label === result.direction.label ? '→ SELECTED' : '  ';
+          console.log(`  ${marker} "${direction.label}" [${review.verdict}]: ${direction.rationale}`);
+        }
+      } else {
+        const result = await reviewAndReDeriveBrand(opts.client, brandData, brief, criticProvider, genProvider, outDir);
+        foundation = result.foundation;
+        tries = result.tries;
+        finalVerdict = result.finalVerdict;
+      }
 
       if (opts.rederive) {
         const newVersion = existing ? existing.version + 1 : 1;
@@ -471,7 +508,7 @@ design
       const brandData = opts.brandData ? loadBrandData(opts.brandData) : undefined;
       const pds = readPDS(opts.client, surface) ?? undefined;
       const artifact = readArtifact(opts.client, surface);
-      const ctxShots = artifact?.sections.flatMap(section =>
+      const ctxShots = artifact?.sections.flatMap((section) =>
         Object.entries(section.screenshots).map(([breakpoint, path]) => ({
           sectionName: section.name,
           breakpoint,
@@ -480,16 +517,7 @@ design
       );
       const outDir = getSectionRunDir(opts.client, surface, brief.section.name);
 
-      const result = await runSectionLoop(
-        cfg,
-        brief,
-        brandData,
-        outDir,
-        briefPath,
-        brand,
-        pds,
-        ctxShots && ctxShots.length > 0 ? ctxShots : undefined,
-      );
+      const result = await runSectionLoop(cfg, brief, brandData, outDir, briefPath, brand, pds, ctxShots && ctxShots.length > 0 ? ctxShots : undefined);
 
       upsertSectionArtifact(opts.client, surface, brief.section.name, result);
 
@@ -506,11 +534,38 @@ design
   });
 
 design
+  .command('strategy')
+  .description('E2.4: generate a Strategy/IA site plan (narrative + per-section goals) upstream of section generation, Phase-Exit-Reviewed')
+  .requiredOption('--brief <path>', 'Brief JSON (client/industry/audience/goal — any one section brief works)')
+  .requiredOption('--out <path>', 'Where to write the resulting site-strategy JSON')
+  .option('--model <id>', 'Model ID')
+  .action(async (opts) => {
+    try {
+      const cfg = buildConfig({ model: opts.model });
+      const brief = loadBrief(opts.brief);
+      const genProvider = await getProviderForRole(cfg, 'generator');
+      const criticProvider = await getProviderForRole(cfg, 'critic');
+      const runId = randomUUID().slice(0, 8);
+      const reviewOutDir = join(dirname(resolve(opts.out)), 'strategy-review');
+
+      const { plan, tries, finalVerdict } = await generateStrategyPlan(brief, genProvider, criticProvider, reviewOutDir, runId);
+      writeSitePlan(resolve(opts.out), plan);
+
+      console.log(JSON.stringify(plan, null, 2));
+      console.log(`Strategy plan for "${brief.client}" written to ${resolve(opts.out)} (status: ${plan.status}). Reviewed ${tries} time(s), final verdict: ${finalVerdict.verdict}.`);
+    } catch (err) {
+      console.error('Error:', err instanceof Error ? err.message : err);
+      process.exit(1);
+    }
+  });
+
+design
   .command('site')
   .description('Sequence multiple sections from a site plan')
   .requiredOption('--client <id>', 'Client id')
   .option('--surface <surface>', 'Surface: website or product', 'website')
-  .requiredOption('--plan <path>', 'Site plan JSON')
+  .requiredOption('--plan <path>', 'Site plan JSON (section-brief manifest)')
+  .option('--strategy <path>', 'E2.4: Strategy/IA site plan JSON (from `design strategy`) — per-section goals folded into each section brief as guidance')
   .option('--variations <n>', 'Candidates per iteration')
   .option('--max-iters <n>', 'Max loop iterations')
   .option('--threshold <n>', 'Pass score (0-100)')
@@ -539,11 +594,22 @@ design
         headed: opts.headed,
       });
 
-      const sections = loadSitePlan(opts.plan);
+      let sections = loadSitePlan(opts.plan);
+
+      if (opts.strategy) {
+        const strategyPlan = readSitePlan(resolve(opts.strategy));
+        if (!strategyPlan) {
+          console.error(`Error: strategy plan not found: ${resolve(opts.strategy)}`);
+          process.exit(1);
+        }
+        sections = applyStrategyToSections(sections, strategyPlan);
+        console.log(`Applied Strategy/IA guidance from ${resolve(opts.strategy)} to ${sections.length} section(s).`);
+      }
+
       const { artifact, results } = await runSiteLoop(cfg, opts.client, surface, sections);
       console.log(`Site run complete for ${opts.client}/${surface}: ${artifact.status}`);
-      console.log(`Sections: ${artifact.sections.length}; states: ${results.map(r => r.state).join(', ')}`);
-      process.exit(results.every(r => r.state === 'APPROVED') ? 0 : 2);
+      console.log(`Sections: ${artifact.sections.length}; states: ${results.map((r) => r.state).join(', ')}`);
+      process.exit(results.every((r) => r.state === 'APPROVED') ? 0 : 2);
     } catch (err) {
       console.error('Error:', err instanceof Error ? err.message : err);
       process.exit(1);
@@ -579,12 +645,8 @@ design
           console.error(`Error: frozen brand not found for ${opts.client}.`);
           process.exit(1);
         }
-        const artifacts = (['website', 'product'] as const)
-          .map(s => readArtifact(opts.client, s))
-          .filter((value): value is Artifact => value !== null);
-        const systems = (['website', 'product'] as const)
-          .map(s => readPDS(opts.client, s))
-          .filter((value): value is ProjectDesignSystem => value !== null);
+        const artifacts = (['website', 'product'] as const).map((s) => readArtifact(opts.client, s)).filter((value): value is Artifact => value !== null);
+        const systems = (['website', 'product'] as const).map((s) => readPDS(opts.client, s)).filter((value): value is ProjectDesignSystem => value !== null);
         const cross = runCrossSurfaceBrandQA(brand, artifacts, systems);
         console.log(`Cross-surface QA: ${cross.pass ? 'pass' : 'fail'} (${cross.violations.length} issue(s))`);
         for (const violation of cross.violations) {
@@ -634,6 +696,27 @@ design
       console.log(formatAutonomyPolicy(policy));
       console.log(`Calibration verdicts: ${summary.total}`);
       console.log(`Agreement: ${(summary.recommendedAccuracy * 100).toFixed(0)}%; false-pass rate: ${(summary.falsePassRate * 100).toFixed(0)}%`);
+
+      // C3.2: audit miss-rate
+      if (summary.auditMissRate > 0) {
+        console.log(`Standing audit miss-rate: ${(summary.auditMissRate * 100).toFixed(0)}%`);
+      }
+
+      // C3.3: inter-rater agreement
+      if (verdicts.some((v) => v.reviewer)) {
+        const irr = computeInterRaterAgreement(verdicts);
+        console.log('');
+        console.log(formatInterRaterReport(irr));
+
+        const stamps = detectRubberStamps(verdicts);
+        if (stamps.length > 0) {
+          console.log('');
+          console.log('⚠ Rubber-stamp alerts:');
+          for (const alert of stamps) {
+            console.log(`  ${alert.reviewer}: ${alert.reasons.join('; ')}`);
+          }
+        }
+      }
     } catch (err) {
       console.error('Error:', err instanceof Error ? err.message : err);
       process.exit(1);
@@ -647,25 +730,36 @@ design
   .option('--surface <surface>', 'Surface: website or product', 'website')
   .option('--brief <path...>', 'Brief JSON files for approved sections')
   .option('--human-verdict <text>', 'Human verdict summary', 'approved')
+  .option('--skip-review', 'Skip the C2.5 abstraction-altitude / strategic-specificity Phase-Exit Review (NOT recommended — every entry inserted without it is unreviewed)')
+  .option('--model <id>', 'Model ID')
   .action(async (opts) => {
     try {
       const surface = parseSurface(opts.surface);
-      const cfg = buildConfig();
+      const cfg = buildConfig({ model: opts.model });
       const artifact = readArtifact(opts.client, surface);
       if (!artifact) {
         console.error(`Error: artifact not found for ${opts.client}/${surface}.`);
         process.exit(1);
       }
 
-      const briefs = Array.isArray(opts.brief)
-        ? opts.brief.map((briefPath: string) => loadBrief(briefPath))
-        : undefined;
+      const briefs = Array.isArray(opts.brief) ? opts.brief.map((briefPath: string) => loadBrief(briefPath)) : undefined;
+
+      // C2.5: wired by DEFAULT — the review was previously reachable in code
+      // but never invoked from the actual write-back command, so every
+      // real Library entry ever inserted skipped it. --skip-review is an
+      // explicit, named opt-out for when it's genuinely wanted, not a
+      // silent default.
+      const criticProvider = opts.skipReview ? undefined : await getProviderForRole(cfg, 'critic');
+      const reviewOutDir = opts.skipReview ? undefined : join('.', 'projects', opts.client, 'writeback-review');
+
       const entries = await writeBackArtifact(cfg, {
         artifact,
         briefs,
         brand: readBrand(opts.client),
         pds: readPDS(opts.client, surface),
         humanVerdict: opts.humanVerdict,
+        criticProvider,
+        reviewOutDir,
       });
 
       console.log(`Learned ${entries.length} Library entr${entries.length === 1 ? 'y' : 'ies'} into ${getLibraryDir()}.`);
@@ -704,6 +798,86 @@ design
     }
   });
 
+design
+  .command('reembed')
+  .description('C2.0: detect embedding-model drift in the Library, and re-embed all entries under the current model')
+  .option('--check', 'Only report drift — do not re-embed')
+  .action(async (opts) => {
+    try {
+      const cfg = buildConfig();
+      const drift = detectEmbeddingModelDrift(cfg);
+      console.log(`Library: ${drift.total} entries. Current embedding model: ${drift.currentModelId}.`);
+      if (drift.stale === 0) {
+        console.log('✅ No embedding-model drift — every entry matches the current model.');
+        return;
+      }
+      console.log(`⚠ ${drift.stale} entr${drift.stale === 1 ? 'y is' : 'ies are'} stale (embedded with: ${drift.staleModelIds.join(', ')}).`);
+
+      if (opts.check) {
+        console.log('(--check: reporting only, no re-embed performed.)');
+        return;
+      }
+
+      console.log(`Re-embedding all ${drift.total} entries under "${drift.currentModelId}"...`);
+      const report = await reEmbedLibrary(cfg);
+      console.log(`✅ Re-embedded ${report.reEmbedded}/${report.total} entries under "${report.newModelId}".`);
+    } catch (err) {
+      console.error('Error:', err instanceof Error ? err.message : err);
+      process.exit(1);
+    }
+  });
+
+design
+  .command('curate-library')
+  .description('C2.6: Run a periodic curation pass to evaluate older high-confidence entries in the Library')
+  .action(async () => {
+    try {
+      const { buildConfig } = await import('./config.js');
+      const { getProviderForRole } = await import('./model.js');
+      const { runPeriodicCuration } = await import('./curation.js');
+
+      const cfg = buildConfig();
+      const provider = await getProviderForRole(cfg, 'critic');
+      await runPeriodicCuration(provider);
+    } catch (err) {
+      console.error('Error:', err instanceof Error ? err.message : err);
+      process.exit(1);
+    }
+  });
+
+design
+  .command('library-entropy')
+  .description('C2.6: Report Library retrieval entropy (diversity metric based on times_used)')
+  .action(async () => {
+    try {
+      const { readLibrary } = await import('./library.js');
+      const entries = readLibrary().filter((e) => !e.retired);
+      const totalUses = entries.reduce((sum, e) => sum + e.outcome.times_used, 0);
+
+      if (totalUses === 0) {
+        console.log(`Library entropy: 0.0 (No entries have been used yet).`);
+        return;
+      }
+
+      let entropy = 0;
+      for (const entry of entries) {
+        if (entry.outcome.times_used > 0) {
+          const p = entry.outcome.times_used / totalUses;
+          entropy -= p * Math.log2(p);
+        }
+      }
+
+      const maxEntropy = Math.log2(entries.length);
+      console.log(`Library diversity entropy: ${entropy.toFixed(3)} bits (Max possible for ${entries.length} entries: ${maxEntropy.toFixed(3)} bits).`);
+      if (maxEntropy > 0) {
+        console.log(`Diversity score: ${((entropy / maxEntropy) * 100).toFixed(1)}%`);
+      }
+    } catch (err) {
+      console.error('Error:', err instanceof Error ? err.message : err);
+      process.exit(1);
+    }
+  });
+
 program
   .command('benchmark')
   .description('Run benchmark suite (anchor-set assembly, bias-probes)')
@@ -717,7 +891,22 @@ program
       console.log(' Benchmark Results — ⚠ PLACEHOLDER, NOT REAL MEASUREMENTS ⚠');
       console.log('============================================================');
       console.log(`Refresh Date: ${result.refreshDate}`);
-      console.log(`Distance from Anchor: ${result.distanceFromAnchor.toFixed(2)}`);
+
+      if (result.benchmarkAgeDays !== undefined) {
+        console.log(`Benchmark Age: ${result.benchmarkAgeDays.toFixed(0)} days`);
+        if (result.benchmarkAgeDays > 90) {
+          console.log('\x1b[1m\x1b[31m⚠ BENCHMARK STALE (Goodhart Risk) — Rotate held-out cases\x1b[0m');
+        }
+      }
+
+      if (result.coreScore !== undefined && result.heldOutScore !== undefined) {
+        console.log(`\nCore Score:       ${result.coreScore.toFixed(1)}`);
+        console.log(`Held-out Score:   ${result.heldOutScore.toFixed(1)}`);
+        console.log(`Transfer Gap:     ${result.transferGap?.toFixed(1)}`);
+        console.log(`Discounted Score: ${result.discountedScore?.toFixed(1)}`);
+      }
+
+      console.log(`\nDistance from Anchor: ${result.distanceFromAnchor.toFixed(2)}`);
       console.log('Per-Stratum Agreement:');
       for (const [s, val] of Object.entries(result.perStratumAgreement)) {
         console.log(`  - ${s}: ${(val * 100).toFixed(0)}%`);
@@ -736,9 +925,43 @@ program
     }
   });
 
-const escalationsCmd = program
-  .command('escalations')
-  .description('Manage the Phase 1 escalation queue');
+program
+  .command('ablation')
+  .description('E2.2/H6: run the three-arm Library ablation (No Library vs. Own-Client vs. Cross-Client) across matched briefs')
+  .requiredOption('--briefs <path>', 'Manifest JSON: [{"brief": "path/to/brief.json"}, ...] — matched briefs to run under all three arms')
+  .requiredOption('--out <dir>', 'Output directory for all ablation run artifacts')
+  .option('--model <id>', 'Model ID')
+  .action(async (opts) => {
+    try {
+      const cfg = buildConfig({ model: opts.model });
+      const manifestPath = resolve(opts.briefs);
+      if (!existsSync(manifestPath)) {
+        console.error(`Error: ablation briefs manifest not found: ${manifestPath}`);
+        process.exit(1);
+      }
+      const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8')) as { brief: string }[];
+      if (!Array.isArray(manifest) || manifest.length === 0) {
+        console.error('Error: ablation briefs manifest must be a non-empty array of {"brief": "path"}.');
+        process.exit(1);
+      }
+      const baseDir = dirname(manifestPath);
+      const matchedBriefs = manifest.map((m) => {
+        const briefPath = resolve(baseDir, m.brief);
+        return { brief: loadBrief(briefPath), briefPath };
+      });
+
+      const samples = await runThreeArmAblation(cfg, matchedBriefs, resolve(opts.out));
+      const summary = summarizeAblation(samples);
+      console.log('\n' + formatH6Summary(summary));
+      writeFileSync(join(resolve(opts.out), 'h6-summary.json'), JSON.stringify(summary, null, 2));
+      process.exit(0);
+    } catch (err) {
+      console.error('Error:', err instanceof Error ? err.message : err);
+      process.exit(1);
+    }
+  });
+
+const escalationsCmd = program.command('escalations').description('Manage the Phase 1 escalation queue');
 
 escalationsCmd
   .command('list')
@@ -746,7 +969,7 @@ escalationsCmd
   .requiredOption('--out <dir>', 'Output directory containing escalations.jsonl')
   .action((opts) => {
     try {
-      const records = listEscalations(resolve(opts.out)).filter(r => r.status === 'open');
+      const records = listEscalations(resolve(opts.out)).filter((r) => r.status === 'open');
       console.log(`Found ${records.length} open escalations in ${opts.out}:\n`);
       for (const r of records) {
         console.log(`[${r.id}] (${r.type}) Run: ${r.runId}`);
@@ -793,6 +1016,23 @@ program
     }
   });
 
+program
+  .command('rlaif:export')
+  .description('Export accumulated verdicts as a pairwise JSONL dataset for DPO reward model training')
+  .requiredOption('--verdicts-dir <dir>', 'Directory containing human verdicts.json files')
+  .requiredOption('--out <file>', 'Output JSONL file path')
+  .option('--budget <tokens>', 'Maximum tokens to budget for the dataset', '50000')
+  .action((opts) => {
+    try {
+      const budget = parseInt(opts.budget, 10);
+      const count = exportRLAIFDataset(resolve(opts.verdictsDir), resolve(opts.out), budget);
+      console.log(`Successfully exported ${count} pairs for reward model distillation (budget: ${budget} tokens).`);
+    } catch (err) {
+      console.error('Error:', err instanceof Error ? err.message : err);
+      process.exit(1);
+    }
+  });
+
 const successionCmd = program.command('succession').description('Succession playbook commands');
 
 successionCmd
@@ -823,6 +1063,69 @@ program
     }
   });
 
+program
+  .command('integrity')
+  .description('Scan all hard stores for dangling references (C1.0 — brand/PDS/artifact referential integrity)')
+  .action(() => {
+    const issues = integrityScan();
+    if (issues.length === 0) {
+      console.log('✅ Integrity scan: no dangling references found.');
+      return;
+    }
+    console.error(`\n❌ Integrity scan found ${issues.length} issue(s):\n`);
+    for (const issue of issues) {
+      console.error(`  [${issue.rule}] ${issue.clientId}${issue.surface ? `/${issue.surface}` : ''}: ${issue.message}`);
+    }
+    process.exit(1);
+  });
+
+import { runPhase3ExitGate } from './exitgate-phase3.js';
+
+program
+  .command('prove-taste-calibration')
+  .description('Phase 3 Exit Gate (H3/H8): Prove pairwise > absolute and upward agreement trend')
+  .action(async () => {
+    try {
+      const report = await runPhase3ExitGate();
+      console.log('\n========================================');
+      console.log(' Phase 3 Exit Gate Report ');
+      console.log('========================================');
+      console.log(`H8 (Pairwise Beats Absolute):   ${report.h8_pairwise_beats_absolute ? '✅ PASS' : '❌ FAIL'} (${(report.metrics.pairwise_accuracy * 100).toFixed(1)}% vs ${(report.metrics.absolute_accuracy * 100).toFixed(1)}%)`);
+      console.log(`H3 (Upward Agreement Trend):    ${report.h3_agreement_trending_up ? '✅ PASS' : '❌ FAIL'} (Final: ${(report.metrics.agreement_trend[report.metrics.agreement_trend.length - 1] * 100).toFixed(1)}%)`);
+      console.log(`Overall Pass:                   ${report.pass ? '✅ YES' : '❌ NO'}`);
+      console.log('========================================\n');
+      process.exit(report.pass ? 0 : 2);
+    } catch (err: any) {
+      console.error('\n❌ Exit gate check failed:', err.message);
+      process.exit(1);
+    }
+  });
+
+import { runPhase4ExitGate } from './exitgate.js';
+
+program
+  .command('prove-ship-readiness')
+  .description('Phase 4 Exit Gate: Prove unattended system readiness (H1, H2, H4, benchmark gain)')
+  .action(async () => {
+    try {
+      const report = await runPhase4ExitGate();
+      console.log('\n========================================');
+      console.log(' Phase 4 Exit Gate Report ');
+      console.log('========================================');
+      console.log(`(a) Deterministic Floor:        ${report.deterministic_floor_passed ? '✅ PASS' : '❌ FAIL'}`);
+      console.log(`(b) H1 Improves via Critic:     ${report.h1_improves_across_iterations ? '✅ PASS' : '❌ FAIL'}`);
+      console.log(`(c) H2 Human Agrees (≥50%):     ${report.h2_human_rates_good_or_close ? '✅ PASS' : '❌ FAIL'}`);
+      console.log(`(d) H4 Zero Token Drift:        ${report.h4_zero_token_drift ? '✅ PASS' : '❌ FAIL'}`);
+      console.log(`(e) Measured Benchmark Gain:    ${report.measured_benchmark_gain ? '✅ PASS' : '❌ FAIL'}`);
+      console.log(`\nOverall Readiness:              ${report.pass ? '✅ READY TO SHIP' : '❌ NOT READY'}`);
+      console.log('========================================\n');
+      process.exit(report.pass ? 0 : 2);
+    } catch (err: any) {
+      console.error('\n❌ Ship readiness check failed:', err.message);
+      process.exit(1);
+    }
+  });
+
 program.parse();
 
 function loadBrief(path: string): Brief {
@@ -833,7 +1136,7 @@ function loadBrief(path: string): Brief {
   const parsed = JSON.parse(readFileSync(filePath, 'utf-8'));
   const result = BriefSchema.safeParse(parsed);
   if (!result.success) {
-    throw new Error(`Invalid brief: ${result.error.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
+    throw new Error(`Invalid brief: ${result.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
   }
   return result.data;
 }
@@ -846,7 +1149,7 @@ function loadBrandData(path: string): BrandData {
   const parsed = JSON.parse(readFileSync(filePath, 'utf-8'));
   const result = BrandDataSchema.safeParse(parsed);
   if (!result.success) {
-    throw new Error(`Invalid brand-data: ${result.error.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
+    throw new Error(`Invalid brand-data: ${result.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
   }
   return result.data;
 }
@@ -948,9 +1251,9 @@ function collectTraceDirs(rootDir: string): string[] {
   }
 
   return readdirSync(rootDir, { withFileTypes: true })
-    .filter(entry => entry.isDirectory())
-    .map(entry => join(rootDir, entry.name))
-    .filter(dir => existsSync(join(dir, 'trace.jsonl')));
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => join(rootDir, entry.name))
+    .filter((dir) => existsSync(join(dir, 'trace.jsonl')));
 }
 
 function printQAReport(report: ArtifactQAReport): void {
@@ -962,12 +1265,7 @@ function printQAReport(report: ArtifactQAReport): void {
   }
 }
 
-function upsertSectionArtifact(
-  clientId: string,
-  surface: 'website' | 'product',
-  sectionName: string,
-  result: Awaited<ReturnType<typeof runSectionLoop>>,
-): Artifact {
+function upsertSectionArtifact(clientId: string, surface: 'website' | 'product', sectionName: string, result: Awaited<ReturnType<typeof runSectionLoop>>): Artifact {
   const artifact = readArtifact(clientId, surface) ?? {
     artifact_id: `${clientId}-${surface}-${randomUUID().slice(0, 8)}`,
     client_id: clientId,
@@ -991,13 +1289,8 @@ function upsertSectionArtifact(
     status: result.state === 'APPROVED' ? 'approved' : 'draft',
   };
 
-  artifact.sections = [
-    ...artifact.sections.filter(existing => existing.name !== sectionName),
-    section,
-  ];
-  artifact.status = artifact.sections.length > 0 && artifact.sections.every(existing => existing.status === 'approved')
-    ? 'approved'
-    : 'in-progress';
+  artifact.sections = [...artifact.sections.filter((existing) => existing.name !== sectionName), section];
+  artifact.status = artifact.sections.length > 0 && artifact.sections.every((existing) => existing.status === 'approved') ? 'approved' : 'in-progress';
   writeArtifact(clientId, surface, artifact);
   return artifact;
 }

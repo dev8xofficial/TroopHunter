@@ -102,7 +102,7 @@ export function createAnthropicApiProvider(cfg: Config): ModelProvider {
 
           const text = response.content
             .filter((block): block is Anthropic.TextBlock => block.type === 'text')
-            .map(block => block.text)
+            .map((block) => block.text)
             .join('');
 
           return {

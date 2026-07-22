@@ -571,19 +571,19 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Build:** keep the benchmark **growing and refreshed** — rotating held-out cases, system-proposed adversarial cases (human-ratified), and continuous tracking of **transfer to fresh briefs** (not just core scores). Discount non-transferring gains.
 - **Done when:** the fresh-held-out transfer gap is monitored alongside core scores; benchmark age is tracked.
 
-### E3.2 — Substrate-succession subsystem (M12)
+### [DONE] E3.2 — Substrate-succession subsystem (M12)
 - **Closes:** CA-4 / CF-2, CF-10 (via F-MOD-07/08)
 - **Build:** Exercise the **Model succession playbook** (`spec/11 §4`) at the first real model swap (deprecation or upgrade). Follow the 6-step procedure: freeze old baseline, re-run golden core on the new model, re-verify calibrations, retrain/refresh reward model, re-embed (if needed), and log a succession entry with deltas.
 - **Done when:** The first model swap is absorbed without losing calibration, proving the system can survive substrate change.
 
-### E3.3 — Self-audit pass (M20)
+### [DONE] E3.3 — Self-audit pass (M20)
 - **Closes:** EG-5 (gap G15) - Self-weakness detection
 - **Depends on:** C0.11 (trace), C0.16 (verdicts)
 - **Spec source:** [`spec/14 §8`](./spec/14-research-agenda.md)
 - **Build:** Implement a periodic self-audit pass over `trace.jsonl` and the verdict corpus. It must cluster recurring hard-gate violations, Critic↔human disagreement patterns (by dimension/stratum), low-scoring briefs, and escalation causes. Emit three typed proposal streams: new failure-catalogue entries (`failures/`), constitution-amendment proposals (`spec/12`), and frontier eval cases (`spec/13`). Every proposal must cite the trace rows that produced it and enters as **Tier A** (strict human ratification).
 - **Done when:** A seeded recurring failure in synthetic trace data is surfaced by the pass with its supporting rows cited, and the three streams are emitted for human review.
 
-### ▶ Phase-3 exit gate — H3/H8
+### [DONE] ▶ Phase-3 exit gate — H3/H8
 - **Spec source:** [`spec/08`](./spec/08-hypotheses-and-validation.md) (H3/H8)
 - **Do:** demonstrate that pairwise ranking beats absolute scoring and that Critic↔human agreement is **measurable and trending upward** without ground-truth leakage. This is **open-ended** — never fully "done." Autonomy relaxes only where agreement has earned it.
 
@@ -593,7 +593,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 
 **Goal:** everything that must be true before ADE ships real work, scales, or runs unattended — the red-team surfaces (security, legal/IP, production parity, output-code quality, operations/DR). Much of this is **DEFERRED / accepted risk** at solo R&D scale per the problem ledger; build it when the purpose question (open question #1) resolves toward "product."
 
-### C4.0 — Sandbox hardening
+### [DONE] C4.0 — Sandbox hardening
 - **Closes:** F-SEC-01 (full — untrusted code execution), F-SEC-03 (full — data exfiltration), F-SEC-05 (SSRF via asset/reference URLs)
 - **Implements:** MP-14
 - **Depends on:** C0.4 (baseline sandbox)
@@ -601,7 +601,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Build:** deny-by-default egress; resource caps; ephemeral per-render; no secrets in scope; **URL allowlist + private-range blocking** on every fetch (asset/reference), fetched inside the sandbox, to close SSRF (private ranges, cloud metadata endpoints).
 - **Done when:** an outbound call from generated code is blocked and flagged; an internal/metadata URL is blocked; no secret is ever in harness scope.
 
-### C4.1 — Secrets/PII full redaction + write-back scan
+### [DONE] C4.1 — Secrets/PII full redaction + write-back scan
 - **Closes:** F-SEC-04 (full)
 - **Implements:** MP-7, MP-14
 - **Depends on:** C0.14, C2.5
@@ -609,7 +609,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Build:** comprehensive secret/PII scanning at capture **and** as a hard gate before any write-back; purge + rotate on detection.
 - **Done when:** a seeded secret/PII never reaches a persisted artifact **or** a Library entry.
 
-### C4.2 — Output-quality gate
+### [DONE] C4.2 — Output-quality gate
 - **Closes:** F-COD-01 (non-semantic HTML), F-COD-02 (unmaintainable/non-integrable React), F-COD-03 (insecure output/XSS), F-COD-04 (uncontrolled external resource loads)
 - **Implements:** MP-16
 - **Depends on:** Phase 0 Generator
@@ -617,7 +617,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Build:** deterministic static analysis of generated code: **semantic-HTML/landmark** check (`nav`/`header`/`main`/`button` where `div`s were used); **prop-driven** (no hard-coded content), componentized, keys present; **security-lint** (no `dangerouslySetInnerHTML`, no unsanitized interpolation/URL handling); **resource-origin allowlist** (self-host fonts/scripts/images); lint/format clean.
 - **Done when:** div-soup, a hard-coded-content component, `dangerouslySetInnerHTML`, and a remote-font import are each caught by the gate.
 
-### C4.3 — Provenance & compliance review
+### [DONE] C4.3 — Provenance & compliance review
 - **Closes:** F-LEG-01 (inadvertent cloning/infringement), F-LEG-02 (unlicensed fonts/imagery), F-LEG-03 (dark patterns), F-LEG-04 (missing regulatory/disclaimer content), F-LEG-05 (representation/bias in imagery)
 - **Implements:** MP-17, MP-12
 - **Depends on:** C3.4 (constitution ethics principle)
@@ -625,7 +625,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Build:** licensing checks on fonts/assets (record provenance); **originality/similarity screen** against known sites (ablate refs → output must stay original); **dark-pattern screen** (never write dark patterns to the Library; refuse manipulative execution even if the brief invites it); **domain-triggered regulatory checklist** (financial/medical/legal disclaimers, consent, a11y statements); representation/bias consideration wired into any future imagery-selection/generation *before* it ships (R15). *(Note on M19: The Phase-4 legal similarity screen here remains separate and unchanged; it acts as a hard gate for compliance, whereas M19 introduces distinctiveness and self-similarity as advisory metrics in Phase 1.)*
 - **Done when:** an unlicensed font is flagged pre-build; a high-resemblance output is flagged; a financial brief fires the regulatory checklist; a brief inviting false urgency is refused.
 
-### C4.4 — Production-parity validation
+### [DONE] C4.4 — Production-parity validation
 - **Closes:** F-PAR-01 (cross-browser), F-PAR-02 (harness Tailwind ≠ prod build), F-PAR-03 (SSR/hydration unverified), F-PAR-04 (SEO/meta/structured data absent), F-QF-04 (Core Web Vitals never measured)
 - **Implements:** MP-15, MP-16
 - **Depends on:** C0.4 (which *flagged* F-PAR-02)
@@ -633,7 +633,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Build:** before delivery, validate on the **real engine set** (Chromium + Firefox + WebKit); render through the **purged production Tailwind build** (real config, not CDN — closing the C0.4 gap); an **SSR/hydration** harness (Next.js target) to catch hydration mismatch/CLS; **SEO/meta/structured-data** checks; a real **Core Web Vitals / bundle-weight** checker (Lighthouse or equivalent) — the deterministic performance checker F-QF-02 named but never had.
 - **Done when:** a WebKit-only bug, a CDN-vs-prod purge divergence, a hydration mismatch, missing meta, and an oversized unoptimized asset are each caught before delivery.
 
-### C4.5 — Accessibility depth
+### [DONE] C4.5 — Accessibility depth
 - **Closes:** F-QF-03 (a11y depth / false compliance)
 - **Implements:** MP-1, MP-12
 - **Depends on:** C0.7 (axe baseline)
@@ -641,7 +641,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Build:** treat a11y as a **dimension, not a binary gate** — axe catches only ~30–45% of WCAG; add keyboard-flow/focus-management, screen-reader, reduced-motion, and 200%-zoom reflow checks + periodic manual/AT audits; a11y in the constitution.
 - **Done when:** keyboard-trap and SR-broken fixtures are detected **beyond** axe; a reflow/zoom failure is caught.
 
-### C4.6 — Operations, reproducibility & DR
+### [DONE] C4.6 — Operations, reproducibility & DR
 - **Closes:** F-OPS-01 (nondeterminism/non-reproducibility), F-OPS-02 (schema/migration breakage), F-OPS-03 (no backup/DR), F-OPS-04 (unbounded storage growth), F-OPS-06 (latency/throughput blowup)
 - **Implements:** MP-8, MP-11, MP-5
 - **Depends on:** C1.0 (integrity/snapshot)
@@ -649,7 +649,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Build:** a **deterministic eval mode** (pinned seed/temperature, frozen retrieval) + versioned **system-state snapshots** (prompts + model + constitution + Library version) so past runs reproduce; **versioned schemas + explicit migrations** (validate on read); **regular versioned backups + tested restore + off-machine replication**; a **retention/GC** policy (keep traces, prune bulky intermediates); parallelize where safe + cap end-to-end wall-clock; structured logging/alerting on quality regressions.
 - **Done when:** a deterministic re-run is identical; an old-schema record migrates or is cleanly rejected; a simulated disk loss restores with integrity; wall-clock/artifact is tracked with a budget alert.
 
-### C4.7 — Toolchain supply-chain discipline
+### [DONE] C4.7 — Toolchain supply-chain discipline
 - **Closes:** F-OPS-07 (supply-chain risk in harness/rendering toolchain)
 - **Implements:** MP-11 (mirrors F-MOD-05 model-pinning discipline)
 - **Depends on:** C0.4
@@ -657,7 +657,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Build:** pin Playwright/Vite/Tailwind versions; scheduled dependency audits (`npm audit`); treat a toolchain version bump as a **change requiring re-baselining** against the benchmark (same discipline as a model change).
 - **Done when:** a dependency-audit check runs on cadence; a deliberate toolchain bump triggers a benchmark re-baseline.
 
-### C4.8 — Production provider path
+### [DONE] C4.8 — Production provider path
 - **Closes:** F-OPS-05 (full — vendor lock-in / ToS / model deprecation)
 - **Implements:** MP-11
 - **Depends on:** C0.0
@@ -665,7 +665,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Build:** the **prod-only** `ADE_PROVIDER=api` path with a real `ANTHROPIC_API_KEY` (**production only — never dev**); a real fallback (api/local); **confirm the Pro-credit ToS** permits the dev automated workload *before* scaling run volume (open question #5); re-baseline on any model change. Report burn-rate vs S2 limits in `ade report` (S5 amendment).
 - **Done when:** killing the primary provider triggers the fallback + a re-baseline gate; the ToS question is resolved and logged before scale-up.
 
-### ▶ Phase-4 exit gate — "significantly improved" & ship-readiness
+### [DONE] ▶ Phase-4 exit gate — "significantly improved" & ship-readiness
 - **Spec source:** [`spec/15 §6`](./spec/15-execution-roadmap.md) *(deleted; interim authority = `IMPLEMENTATION_PLAN.md` + `CONTRACT_EXECUTION_PLAN.md`)*
 - **Do:** ADE is "significantly improved" when, unattended, it takes a brief and produces a consistent multi-section artifact that (a) passes the deterministic floor, (b) improves across iterations (H1), (c) a human rates good-or-close ≥50% (H2), (d) holds zero token drift (H4), and (e) at least one outer-loop bet shows a *measured* benchmark gain. **This is not full autonomy** — that stays the long-term north star, capped by the taste ceiling (F-JDG-01, F-SPEC-02), which the guardrails shrink but cannot eliminate.
 

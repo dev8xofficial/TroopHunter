@@ -1,0 +1,15 @@
+{
+  "id": "a0a62cef-1506-4f85-9e9e-f78df915ba92",
+  "proposedAt": "2026-07-22T10:37:28.776Z",
+  "failureReason": "Severe gate failure",
+  "brief": {
+    "client": "A",
+    "industry": "B",
+    "audience": "C",
+    "goal": "D",
+    "section": {
+      "name": "E",
+      "content": {}
+    }
+  }
+}

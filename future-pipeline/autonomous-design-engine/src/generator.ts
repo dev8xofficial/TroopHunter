@@ -12,9 +12,13 @@
 import type { ModelProvider } from './model.js';
 import type { InputBundle } from './schema.js';
 import { buildGeneratorPrompt, type PromptTokenBreakdown } from './prompts.js';
+import { loadReferenceImages } from './refs.js';
 
 export class GeneratorError extends Error {
-  constructor(message: string, public readonly cause?: string) {
+  constructor(
+    message: string,
+    public readonly cause?: string,
+  ) {
     super(message);
     this.name = 'GeneratorError';
   }
@@ -31,25 +35,24 @@ interface GenerateResult {
 /**
  * Generate a candidate section .tsx from the input bundle.
  */
-export async function generate(
-  provider: ModelProvider,
-  bundle: InputBundle,
-  feedback: string | undefined,
-  temperature: number,
-  maxModelCalls: { current: number; max: number },
-  exploration: boolean = false
-): Promise<GenerateResult> {
+export async function generate(provider: ModelProvider, bundle: InputBundle, feedback: string | undefined, temperature: number, maxModelCalls: { current: number; max: number }, exploration: boolean = false): Promise<GenerateResult> {
   const { system, user, tokenBreakdown } = buildGeneratorPrompt(bundle, feedback);
-  
-  const finalUser = exploration
-    ? user + '\n\nIMPORTANT (M8 Exploration): This is an exploration candidate. Take a defensible structural or aesthetic risk that diverges from the standard safe approach while still respecting the hard constraints.'
-    : user;
+
+  // C2.4: reference images are read at call time (same convention critic.ts
+  // uses for candidate screenshots) and attached to EVERY completion call
+  // below — the moodboard framing in the prompt text (prompts.ts) is what
+  // dissolves them into principles; this is what actually shows the model
+  // the images at all.
+  const refImages = bundle.refs && bundle.refs.length > 0 ? loadReferenceImages(bundle.refs) : undefined;
+
+  const finalUser = exploration ? user + '\n\nIMPORTANT (M8 Exploration): This is an exploration candidate. Take a defensible structural or aesthetic risk that diverges from the standard safe approach while still respecting the hard constraints.' : user;
 
   // First attempt
   maxModelCalls.current++;
   let result = await provider.complete({
     system,
     messages: [{ role: 'user', content: finalUser }],
+    images: refImages,
     maxTokens: 16_000,
     temperature,
     stream: true,
@@ -66,6 +69,7 @@ export async function generate(
       result = await provider.complete({
         system,
         messages: [{ role: 'user', content: user }],
+        images: refImages,
         maxTokens: 32_000, // Double the budget
         temperature,
         stream: true,
@@ -89,6 +93,7 @@ export async function generate(
       result = await provider.complete({
         system,
         messages: [{ role: 'user', content: reframeUser }],
+        images: refImages,
         maxTokens: 16_000,
         temperature,
         stream: true,
@@ -196,19 +201,10 @@ function isUnbalanced(code: string): boolean {
  */
 function isRefusal(text: string): boolean {
   const lower = text.toLowerCase();
-  const refusalPhrases = [
-    'i cannot',
-    'i\'m unable',
-    'i am unable',
-    'i apologize',
-    'i\'m sorry',
-    'i can\'t create',
-    'i won\'t be able',
-    'as an ai',
-  ];
+  const refusalPhrases = ['i cannot', "i'm unable", 'i am unable', 'i apologize', "i'm sorry", "i can't create", "i won't be able", 'as an ai'];
   // Only count as refusal if there's no JSX/code present
   const hasCode = text.includes('export') || text.includes('return') || text.includes('<div');
   if (hasCode) return false;
 
-  return refusalPhrases.some(phrase => lower.includes(phrase));
+  return refusalPhrases.some((phrase) => lower.includes(phrase));
 }

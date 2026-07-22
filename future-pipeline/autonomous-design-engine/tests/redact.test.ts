@@ -70,8 +70,12 @@ describe('end-to-end: a seeded secret never appears verbatim in a persisted trac
   it('trace.jsonl does not contain a seeded API key placed in critic_feedback', () => {
     const seededSecret = 'sk-ant-api03-thisIsASeededTestSecretValue123456';
     const record: RunRecord = {
-      run_id: 'r1', section_id: 's1', iteration: 0, candidate_id: 'c1',
-      input_bundle_ref: 'x', output_code_ref: 'x',
+      run_id: 'r1',
+      section_id: 's1',
+      iteration: 0,
+      candidate_id: 'c1',
+      input_bundle_ref: 'x',
+      output_code_ref: 'x',
       screenshots: {},
       scores: { brand_adherence: 80, system_adherence: null, brief_fit: 80, craft: 80, weighted_total: 80 },
       verdict: 'pass',
@@ -91,7 +95,9 @@ describe('end-to-end: a seeded secret never appears verbatim in a persisted verd
   it('verdicts.jsonl does not contain a seeded secret placed in human notes', () => {
     const seededSecret = 'AKIAIOSFODNN7SEEDEDTEST';
     recordHumanVerdict(TEST_DIR, {
-      runId: 'r1', section: 's1', decision: 'approve',
+      runId: 'r1',
+      section: 's1',
+      decision: 'approve',
       notes: `Approved. Also here's an AWS key I found: ${seededSecret}`,
     });
     const raw = readFileSync(join(TEST_DIR, 'verdicts.jsonl'), 'utf-8');

@@ -25,12 +25,9 @@ export interface SuccessionEntry {
 /**
  * Execute a distillation experiment on the judge (M12/M11b).
  */
-export async function runJudgeDistillation(
-  newModelProvider: ModelProvider,
-  historicalRecords: RunRecord[],
-): Promise<DistillationReport> {
+export async function runJudgeDistillation(newModelProvider: ModelProvider, historicalRecords: RunRecord[]): Promise<DistillationReport> {
   console.log(`\n🧪 Running Judge Distillation Experiment...`);
-  
+
   let matches = 0;
   const deltas: string[] = [];
 
@@ -38,8 +35,8 @@ export async function runJudgeDistillation(
     // In a real implementation, we would re-prompt the newModelProvider
     // with the screenshots and bundle to get its verdict.
     // For this canonical simulation, we mock the result with a high accuracy expectation.
-    const simulatedMatch = Math.random() < 0.9; 
-    
+    const simulatedMatch = Math.random() < 0.9;
+
     if (simulatedMatch) {
       matches++;
     } else {
@@ -60,12 +57,7 @@ export async function runJudgeDistillation(
 /**
  * Execute the succession playbook for a model swap (E3.2).
  */
-export async function executeSuccessionPlaybook(
-  oldModel: string,
-  newModel: string,
-  newModelProvider: ModelProvider,
-  historicalRecords: RunRecord[]
-): Promise<SuccessionEntry> {
+export async function executeSuccessionPlaybook(oldModel: string, newModel: string, newModelProvider: ModelProvider, historicalRecords: RunRecord[]): Promise<SuccessionEntry> {
   console.log(`\n🔄 Executing Succession Playbook: ${oldModel} ➔ ${newModel}`);
 
   const report = await runJudgeDistillation(newModelProvider, historicalRecords);

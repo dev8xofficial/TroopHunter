@@ -1,10 +1,16 @@
 
-export default function Section() {
-  return (
-    <div style={{ padding: '24px' }}>
-      <h1 style={{ fontSize: '32px' }}>Hello ADE</h1>
-      <p style={{ fontSize: '16px', marginTop: '8px' }}>A real render.</p>
-      <a href="#" style={{ display: 'inline-block', width: '48px', height: '48px' }}>Go</a>
-    </div>
-  );
-}
+      export default function TestComponent() {
+        return (
+          <div className="p-8">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Hover Me
+            </button>
+            <input 
+              type="text" 
+              className="mt-4 p-2 border focus:outline-none focus:ring-2 focus:ring-blue-500" 
+              placeholder="Focus Me"
+            />
+          </div>
+        );
+      }
+    

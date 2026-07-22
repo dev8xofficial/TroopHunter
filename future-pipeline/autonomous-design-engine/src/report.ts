@@ -30,9 +30,9 @@ export function generateReport(dir: string, scanAll = false, threshold = 80): vo
 
     const entries = readdirSync(dir, { withFileTypes: true });
     const runDirs = entries
-      .filter(e => e.isDirectory())
-      .map(e => join(dir, e.name))
-      .filter(d => existsSync(join(d, 'trace.jsonl')));
+      .filter((e) => e.isDirectory())
+      .map((e) => join(dir, e.name))
+      .filter((d) => existsSync(join(d, 'trace.jsonl')));
 
     if (runDirs.length === 0) {
       console.log('No runs with trace.jsonl found.');
@@ -167,20 +167,14 @@ function printRunReport(dir: string, records: RunRecord[]): number | null {
 
   for (const iter of iterations) {
     const iterRecords = byIteration.get(iter)!;
-    const best = iterRecords.reduce((a, b) =>
-      a.scores.weighted_total >= b.scores.weighted_total ? a : b,
-    );
+    const best = iterRecords.reduce((a, b) => (a.scores.weighted_total >= b.scores.weighted_total ? a : b));
 
     const score = best.scores.weighted_total;
     const delta = prevScore !== null ? score - prevScore : 0;
-    const deltaStr = prevScore !== null
-      ? (delta >= 0 ? `+${delta.toFixed(0)}` : `${delta.toFixed(0)}`)
-      : '  —';
+    const deltaStr = prevScore !== null ? (delta >= 0 ? `+${delta.toFixed(0)}` : `${delta.toFixed(0)}`) : '  —';
     const tokens = best.tokens.input + best.tokens.output;
 
-    console.log(
-      `  ${String(iter).padStart(4)}  | ${String(score.toFixed(0)).padStart(9)} | ${deltaStr.padStart(6)} | ${best.verdict.padStart(7)} | ${tokens.toLocaleString()}`,
-    );
+    console.log(`  ${String(iter).padStart(4)}  | ${String(score.toFixed(0)).padStart(9)} | ${deltaStr.padStart(6)} | ${best.verdict.padStart(7)} | ${tokens.toLocaleString()}`);
 
     if (iter0Score === null) iter0Score = score;
     finalScore = score;
@@ -188,7 +182,7 @@ function printRunReport(dir: string, records: RunRecord[]): number | null {
   }
 
   // H1 Signal A: iter-0 → final gain
-  const gain = (iter0Score !== null && finalScore !== null) ? finalScore - iter0Score : null;
+  const gain = iter0Score !== null && finalScore !== null ? finalScore - iter0Score : null;
 
   console.log(`\n  iter-0 → final gain: ${gain !== null ? (gain >= 0 ? '+' : '') + gain.toFixed(0) : 'N/A'}`);
   console.log(`  Total iterations: ${iterations.length}`);
@@ -203,7 +197,7 @@ function printRunReport(dir: string, records: RunRecord[]): number | null {
 }
 
 function printSummary(gains: number[]): void {
-  const positive = gains.filter(g => g > 0).length;
+  const positive = gains.filter((g) => g > 0).length;
   const total = gains.length;
   const pct = (positive / total) * 100;
 

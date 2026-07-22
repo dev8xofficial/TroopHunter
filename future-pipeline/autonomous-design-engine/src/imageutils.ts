@@ -26,7 +26,7 @@ export function parseImageMetadata(filePath: string): ImageMetadata {
   }
 
   // Check for PNG: 89 50 4E 47 0D 0A 1A 0A
-  if (buffer[0] === 0x89 && buffer[1] === 0x50 && buffer[2] === 0x4E && buffer[3] === 0x47) {
+  if (buffer[0] === 0x89 && buffer[1] === 0x50 && buffer[2] === 0x4e && buffer[3] === 0x47) {
     // PNG IHDR chunk is usually right after the 8-byte signature
     // Length (4 bytes), Type (4 bytes "IHDR"), Width (4), Height (4)
     if (buffer.toString('ascii', 12, 16) === 'IHDR') {
@@ -38,7 +38,7 @@ export function parseImageMetadata(filePath: string): ImageMetadata {
   }
 
   // Check for JPEG: FF D8
-  if (buffer[0] === 0xFF && buffer[1] === 0xD8) {
+  if (buffer[0] === 0xff && buffer[1] === 0xd8) {
     let offset = 2;
     let width = 0;
     let height = 0;
@@ -46,23 +46,23 @@ export function parseImageMetadata(filePath: string): ImageMetadata {
 
     while (offset < buffer.length - 1) {
       // Find next marker
-      while (offset < buffer.length && buffer[offset] !== 0xFF) offset++;
-      while (offset < buffer.length && buffer[offset] === 0xFF) offset++;
+      while (offset < buffer.length && buffer[offset] !== 0xff) offset++;
+      while (offset < buffer.length && buffer[offset] === 0xff) offset++;
       if (offset >= buffer.length) break;
 
       const marker = buffer[offset];
       offset++;
 
       // EOI or SOS marker means end of headers
-      if (marker === 0xD9 || marker === 0xDA) break;
+      if (marker === 0xd9 || marker === 0xda) break;
 
       // Standalone markers without length
-      if (marker === 0x00 || marker === 0x01 || (marker >= 0xD0 && marker <= 0xD7)) continue;
+      if (marker === 0x00 || marker === 0x01 || (marker >= 0xd0 && marker <= 0xd7)) continue;
 
       const length = buffer.readUInt16BE(offset);
 
       // Check APP14 (Adobe) for CMYK detection
-      if (marker === 0xEE && length >= 14 && offset + 13 < buffer.length) {
+      if (marker === 0xee && length >= 14 && offset + 13 < buffer.length) {
         const identifier = buffer.toString('ascii', offset + 2, offset + 7);
         if (identifier === 'Adobe') {
           const colorTransform = buffer[offset + 13];
@@ -74,7 +74,7 @@ export function parseImageMetadata(filePath: string): ImageMetadata {
       }
 
       // SOF markers (Start of Frame) containing dimensions
-      if ((marker >= 0xC0 && marker <= 0xC3) || (marker >= 0xC5 && marker <= 0xC7) || (marker >= 0xC9 && marker <= 0xCB) || (marker >= 0xCD && marker <= 0xCF)) {
+      if ((marker >= 0xc0 && marker <= 0xc3) || (marker >= 0xc5 && marker <= 0xc7) || (marker >= 0xc9 && marker <= 0xcb) || (marker >= 0xcd && marker <= 0xcf)) {
         if (offset + 6 < buffer.length) {
           height = buffer.readUInt16BE(offset + 3);
           width = buffer.readUInt16BE(offset + 5);
@@ -96,8 +96,8 @@ export function parseImageMetadata(filePath: string): ImageMetadata {
 
     if (chunkType === 'VP8 ') {
       if (29 < buffer.length) {
-        width = buffer.readUInt16LE(26) & 0x3FFF;
-        height = buffer.readUInt16LE(28) & 0x3FFF;
+        width = buffer.readUInt16LE(26) & 0x3fff;
+        height = buffer.readUInt16LE(28) & 0x3fff;
       }
     } else if (chunkType === 'VP8L') {
       if (24 < buffer.length) {
@@ -105,16 +105,16 @@ export function parseImageMetadata(filePath: string): ImageMetadata {
         const b1 = buffer[22];
         const b2 = buffer[23];
         const b3 = buffer[24];
-        width = 1 + (((b1 & 0x3F) << 8) | b0);
-        height = 1 + (((b3 & 0xF) << 10) | (b2 << 2) | ((b1 & 0xC0) >> 6));
+        width = 1 + (((b1 & 0x3f) << 8) | b0);
+        height = 1 + (((b3 & 0xf) << 10) | (b2 << 2) | ((b1 & 0xc0) >> 6));
       }
     } else if (chunkType === 'VP8X') {
       if (29 < buffer.length) {
-        width = 1 + (buffer.readUInt32LE(24) & 0xFFFFFF);
-        height = 1 + (buffer.readUInt32LE(27) & 0xFFFFFF);
+        width = 1 + (buffer.readUInt32LE(24) & 0xffffff);
+        height = 1 + (buffer.readUInt32LE(27) & 0xffffff);
       }
     }
-    
+
     return { format: 'webp', width, height, isCmyk: false };
   }
 

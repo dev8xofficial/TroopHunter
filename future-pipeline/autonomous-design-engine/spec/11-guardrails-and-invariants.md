@@ -106,6 +106,12 @@ Key properties:
 - **It catches bad; it does not certify good.** The Critic is a proxy, not an oracle (`05` §4, §8 below). The Phase-Exit Review is a **pre-human filter + hard floor**. It is precisely the surface on which Critic↔human agreement is *measured* per boundary. **The human gate is removed ONLY when that boundary's measured agreement clears an explicit threshold and is recorded** (H8, autonomy ladder `09` §2).
 - **Cross-family second judge at high-stakes exits (M9).** At critical Phase-Exit boundaries (Brand freeze, PDS freeze, and whenever collecting rung-promotion evidence), the artifact undergoes a **second independent review by a different model family** (e.g. `local`/Ollama in dev, a second vendor in prod). Disagreement between the two judges is **never** silently averaged; it immediately **escalates to the human** via the `escalations.jsonl` queue (M7), and both verdicts are recorded.
 
+### 2.4 Guardrail Implementation Mechanics (Phase 4 Additions)
+
+To maintain a strict deterministic floor, specific Phase 4 guardrails are implemented via the following explicit code mechanics:
+- **`validateReducedMotion` (C4.5):** Scans the generated React AST / compiled HTML for any Tailwind animation classes (e.g., `animate-spin`, `animate-bounce`, `transition-*`). If found, it enforces that a corresponding `motion-reduce:` utility (e.g., `motion-reduce:transition-none`, `motion-reduce:animate-none`) is explicitly present on the same element or handled globally at the root component. A missing `motion-reduce:` fallback triggers a hard failure.
+- **`validateImageryBias` (C4.3):** Prior to imagery selection, generation, or write-back, a strict regex/keyword screen runs over all generated alt-text and prompt requests to block exclusionary terms (e.g., explicitly specifying "normal people", "standard family", etc.). If flagged, the artifact is rejected at the Provenance & Compliance Gate and fed back for revision.
+
 ---
 
 ## 3. Loop-integrity solutions (bounded, non-regressing, recorded)
@@ -170,6 +176,8 @@ All stores obey these rules (specified into [03](./03-data-model.md) §8.x):
 - **System-State Snapshots**: A deterministic eval mode stores pinned seed/temperature/retrieval state so past runs reproduce reliably (F-OPS-01).
 - **Disaster Recovery**: Regular versioned backups, tested restores, and off-machine replication safeguard the Library and hard stores (F-OPS-03).
 - **Retention & GC**: A retention policy compresses/prunes old runs and bulky intermediates to bound storage growth, while retaining traces for evaluation (F-OPS-04).
+- **Parallelization & Throughput**: End-to-end wall-clock time per artifact is capped via a strict budget; section generations are parallelized where safe (e.g., rendering independent candidates, decoupled retrieval tasks) without breaking loop sequentiality (F-OPS-06).
+- **Structured Logging & Alerting**: Quality regressions (e.g., dropped benchmark scores, spikes in hard-constraint violations) and latency blowups emit structured alerts, separating operational noise from true systemic degradation.
 
 ---
 

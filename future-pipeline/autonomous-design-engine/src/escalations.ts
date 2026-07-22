@@ -2,7 +2,7 @@
  * ADE - Escalation Queue (Phase E1)
  *
  * Park-and-rerun mechanics for human intervention.
- * 
+ *
  * @module escalations
  */
 
@@ -49,13 +49,13 @@ export function listEscalations(outDir: string): EscalationRecord[] {
   const content = readFileSync(path, 'utf-8');
   return content
     .split('\n')
-    .filter(line => line.trim())
-    .map(line => JSON.parse(line));
+    .filter((line) => line.trim())
+    .map((line) => JSON.parse(line));
 }
 
 export function answerEscalation(outDir: string, id: string, answer: string): void {
   const records = listEscalations(outDir);
-  const index = records.findIndex(r => r.id === id);
+  const index = records.findIndex((r) => r.id === id);
   if (index === -1) {
     throw new Error(`Escalation not found: ${id}`);
   }
@@ -65,5 +65,5 @@ export function answerEscalation(outDir: string, id: string, answer: string): vo
   records[index].resolvedAt = new Date().toISOString();
 
   const path = getEscalationsPath(outDir);
-  writeFileSync(path, records.map(r => JSON.stringify(r)).join('\n') + '\n', 'utf-8');
+  writeFileSync(path, records.map((r) => JSON.stringify(r)).join('\n') + '\n', 'utf-8');
 }

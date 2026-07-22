@@ -51,7 +51,75 @@ ade generate \
   --headed                                # optional: show the browser while rendering
 ```
 
+### 2.1 Provider environment configuration (`ADE_PROVIDER`) — C0.0
+
+The system abstracts provider calls behind the `Provider` interface (`src/provider.ts` / `src/model.ts`). Selection is governed by `ADE_PROVIDER`:
+- **`agent-sdk`** (default for dev): Uses the Claude Agent-SDK via Pro-credit OAuth credentials. **Must not require `ANTHROPIC_API_KEY` in the environment.**
+- **`api`** (prod-only): Uses direct Anthropic API calls with `ANTHROPIC_API_KEY`.
+- **`local`** (fallback): Uses local Ollama model instances for offline or degraded operations.
+
+Every model invocation records the provider mode and pinned `model_id` into `trace.jsonl`.
+
+### 2.2 Phase 0 Measurement tools (`verdict` & `report`) — C0.16
+
+- **`ade verdict`**: Persists structured human feedback (`iter_0_path`, `final_path`, `control_best_path`, `human_pick`, `rating_4pt`, `notes`, `dist_tags`). Supports a **three-way blind comparison** to prevent presentation bias and `--retest` mode for quarterly human re-test rituals.
+- **`ade report`**: Emits **observed** operational and quality metrics from trace and verdict data (never predicted Critic scores), including burn-rate vs S2 quota limits.
+
+### 2.3 Phase 1 Brand & Review Management (`design brand` & `review`) — C1.2, C1.3, C1.6
+
+- **`ade design brand`**: Manages the Brand Foundation lifecycle.
+  ```
+  ade design brand --client burkes --context ./briefs/burkes-hero.json --brand-data ./briefs/burkes-brand.json
+  ade design brand --client burkes --approve [--approved-by human]
+  ```
+  Derives 2–3 distinct brand directions (personality, tone, motion voice, color-usage rules). Resolves approval status and freezes approved Brand Foundations with immutable versioning (`store.ts`).
+- **`ade review`**: Manages review routing and human approval workflows for Phase-Exit boundaries (Brand & Project Design System). Interacts with `escalations.jsonl` queue to pause/resume blocked runs.
+
 Exit codes: `0` approved (passed), `2` escalated (budget exhausted, best-so-far emitted), `3` aborted (unrepairable), `1` error.
+
+### 2.4 Phase 2 Memory & Strategy (Library, Embeddings, Ablation) — C2.0-C2.8, E2.2, E2.4
+
+- **Embedding Configuration**: Handled by `ADE_EMBEDDING_PROVIDER` (defaults to a `local` embedding model to satisfy C2.0 key-free constraint). Changing the embedding model version triggers a full re-embed of the store.
+- **`ade memory write-back`** (alias: `ade design learn`): Executes the C2.5 Stage B pipeline (De-identification Gate → Abstraction → Altitude Phase-Exit Review → Dedup/Merge → Provisional Tier B Insert). Use `--skip-review` only as an explicit opt-out; review is wired **on by default** so every real Library entry is reviewed before insertion.
+- **`ade design reembed [--check]`** (C2.0): Detects embedding-model drift in the Library by comparing each entry's stored embedding model id against the current active model. `--check` reports drift count without re-embedding. Without `--check`, regenerates all embeddings under the current model. A toolchain version bump treats a drift report as a hard gate before any new retrieval run.
+- **`ade design curate-library`** (C2.6 / M20): Runs a periodic curation pass over the Library. Evaluates all high-confidence entries older than 30 days using the Critic (fresh-context). Entries rejected by the curation gate are **retired** (confidence set to 0.1, `retired: true`) rather than deleted. A curation pass is recommended after each major model succession event (M12).
+- **`ade design library-entropy`** (C2.6): Reports the Shannon diversity entropy of the Library's retrieval distribution, computed from `times_used` across active entries. A low entropy score (close to 0) signals that the Library is collapsing to a small set of overused patterns — a retrieval echo-chamber signal. A high score (approaching `log2(N)`) indicates uniform usage. Track over time to detect progressive echo-chamber drift.
+- **`ade design strategy`** (E2.4): Generates an upstream Strategy/IA site plan (audience/positioning → site narrative → per-section goals) from a brief JSON, upstream of section generation. The plan itself is Phase-Exit-Reviewed (fresh-context Critic + cross-family second judge, bounded ≤2 tries). Use `--out` to write the resulting `SitePlan` JSON for injection into `ade design site --strategy`.
+  ```
+  ade design strategy --brief ./briefs/burkes-hero.json --out ./plans/burkes-site-plan.json
+  ade design site --client burkes --plan ./plans/sections.json --strategy ./plans/burkes-site-plan.json
+  ```
+  The `--strategy` flag on `design site` folds each section's per-section goal and key message from the site plan into that section's brief as soft guidance.
+- **`ade design qa [--cross-surface]`** (C1.11): Runs a whole-artifact QA pass against a frozen brand and design system. Reports per-section scores, identifies coherence violations (nav inconsistency, visual rhythm breaks, responsive seams), and issues a pass/fail verdict. With `--cross-surface`, also checks website/product brand reuse — verifying that both surfaces share the same frozen brand tokens and that no surface-local token divergence has crept in.
+- **`ade verdict --pairwise`**: Extends Phase 0 verdicts with a pairwise comparison UI, constitution-dimension sliders, and spatial annotations (R2 feedback channel, C2.8), including the `rejected_with_interest` label to feed exploration candidates.
+- **`ade eval ablate`** / **`ade ablation`**: Runs the E2.2 three-arm ablation test (No Library vs. Stage A Own-Client vs. Stage B Cross-Client) to measure H6 compounding effects. Requires a `--briefs` manifest of matched briefs and produces an `h6-summary.json`.
+- **`ade rlaif`**: Generates RLAIF preference labels for a completed run (pairwise preferred/rejected pairs from Critic output).
+- **`ade rlaif:export`**: Exports the accumulated pairwise verdict corpus into a standard Direct Preference Optimization (DPO) dataset format for downstream reward model training.
+
+### 2.5 Phase 3 Taste Calibration & Scale — C3.2-C3.9
+
+- **`ade eval prove-taste-calibration`** / **`ade prove-taste-calibration`**: The Phase 3 Exit Gate. Quantitatively checks if Critic↔human agreement exceeds the required threshold (>85%) across all difficulty strata, and validates that pairwise ranking outperforms absolute scoring (H8). Reports per-stratum agreement and trend (H3).
+- **`ade succession run --old-model <id> --new-model <id>`**: Executes the M12 Substrate Succession playbook (6-step). Runs judge distillation — re-runs the new model on historical records and reports verdict accuracy vs the old baseline. Produces a `SuccessionEntry` (old_model, new_model, distillation accuracy, deltas, timestamp) appended to `knowledge/decisions-and-conventions.md`.
+- **`ade selfaudit --out <dir>`** (M20): Runs the M20 periodic self-audit pass over `trace.jsonl` and verdicts. Emits **three typed proposal streams** into `<dir>/proposals/`:
+  1. `failure-catalogue-proposals.md` — recurring hard-gate violations (clusters of the same violation class across ≥2 runs) and persistent generation failures.
+  2. `constitution-amendment-proposals.md` — Critic↔Human misalignment cases (human approves what Critic fails, or vice versa), proposing constitution principle reviews.
+  3. `frontier-eval-cases.md` — `strong`-rated patterns (propose for Library or benchmark) and domain blind spots (systematically low-scoring briefs).
+  All proposals require human ratification before any change is applied (Tier A gating).
+
+### 2.6 Phase 4 Production Hardening — C4.0-C4.8, E3.1-E3.3
+
+- **`ade prove-ship-readiness`**: Phase 4 Exit Gate. Checks all 5 criteria: (a) deterministic floor, (b) H1 improvement, (c) H2 ≥50% human good-or-close, (d) H4 zero token drift, (e) measured benchmark gain.
+- **`ade integrity`**: Scans all hard stores for dangling references — brand/PDS/artifact referential integrity check (C1.0). Exits non-zero if any dangling artifact→system or entry→provenance link is found.
+- **`ade escalations list / answer`**: Manages the structured `escalations.jsonl` queue. `list` shows open escalations with their question payloads; `answer` records a human resolution and unblocks the run.
+- **`ade benchmark`**: Runs the anchor-set benchmark suite (bias-probes, stratum agreement, core vs. held-out score, benchmark age/staleness warning). `--compare <id>` measures cross-model agreement gap.
+- **Production Cost Controls (E3.1 — Design-to-Code Strict Parity):** `design section` and `design site` accept production-scope flags enforced at delivery:
+  - `--production` — enables the full Production-Parity Gate (cross-browser, hydration, Web Vitals) and the Design-to-Code Strict Parity check (`validateDesignToCodeParity`: no inline `style={{}}`, all top-level functions exported).
+  - `--harness next` — switches the render harness from Vite CDN to Next.js (production parity, C4.4).
+  - `--max-tokens-per-section`, `--max-seconds-per-section`, `--max-usd-per-section` — per-section spend/latency hard caps; violation emits a `production-budget` gate failure.
+- **Telemetry (E3.3):** All scaling events are written to `telemetry/events.jsonl` via `src/telemetry.ts`. Three event types are tracked:
+  - `brand_reuse` — each time a frozen Brand Foundation is used on a new surface (H5 substrate).
+  - `library_recall` — retrieval query length and hit count per run (H9 substrate).
+  - `engine_mode_efficiency` — whether the run is `zero-to-one` or `refactoring`, iteration count, success, and duration (H10/E3.2 substrate).
 
 ---
 
@@ -130,15 +198,35 @@ Whenever the human makes an IA, copy, or structure choice that shapes a run, it 
 
 The Input Gate ([`11 §2.1`](./11-guardrails-and-invariants.md)) runs these additional checks before any model call:
 
-**Asset fitness** — a file that exists but is unfit is rejected here, not at render time:
-- **Colorspace**: must be sRGB. CMYK JPEGs are auto-converted where safe (lossless colorspace swap); if conversion is ambiguous or destructive, the file is flagged with a precise error.
-- **Minimum resolution**: checked against the display size the asset will occupy (e.g. a full-bleed hero image must meet a minimum px threshold for the 1440 px breakpoint).
-- **Logo alpha check**: `logo_ref` assets are checked for alpha-channel presence and background transparency — a white-background logo will be caught here before it fails silently against the brand palette.
+**Asset fitness** — a file that exists but is unfit is rejected here, not at render time (driven by `sharp` / `src/imageutils.ts`):
+- **Colorspace**: must be sRGB. CMYK JPEGs are auto-converted via `sharp` where safe; if conversion is ambiguous or destructive, the file is flagged with a precise error.
+- **Minimum resolution**: metadata dimensions are read via `sharp` and checked against the display size the asset will occupy (e.g., a full-bleed hero image must meet a minimum px threshold for the 1440 px breakpoint).
+- **Logo alpha check**: `logo_ref` assets are checked via `sharp` channel stats for alpha-channel presence and background transparency — a white-background logo will be caught here before it fails silently against the brand palette.
 - **Aspect-ratio sanity**: a clearly wrong crop ratio (e.g. 1:100) is flagged as a likely mistake, not silently passed.
 
 **Injection safety** — all brief strings and content fields are wrapped as *data* with clear delimiters before they enter any model prompt (invariant I9). Hard constraints are re-checked deterministically by the Hard-Constraint Gate (C0.7) after generation — so adversarial text in a brief field cannot bypass the deterministic floor even if it alters the model's output.
 
+**Token-Economy Instrumentation (C0.17 / H7 substrate)** — the input bundle's token breakdown is measured and recorded in every `RunRecord` across bundle parts: `hard` (brief/brand/system), `soft` (refs/Library), `visual_context` (prior-section screenshots), and `loop_state`, alongside output tokens and wall-clock.
+
 **Fail behaviour**: any gate failure emits a **precise, actionable error message** and makes **zero model calls**.
+
+### 3.3 Brief Comprehension step — C0.2
+
+Before generation begins, an Orchestrator-tier call restates the brief as `{ goal, audience, constraints }` and detects `{ detected_gaps, detected_conflicts }`.
+- **Missing required fields or contradictions**: triggers a human prompt to resolve the ambiguity rather than making a silent assumption.
+- **Reference Interpretation scoring (M18)**: brief comprehension outputs are evaluated against a frozen, human-authored reference interpretation on restatement accuracy and interpretation depth.
+- **Trace persistence**: the canonical restatement is recorded in the trace and passed to Generator and Critic.
+
+### 3.4 Bounded Loop Control & Escalation Queue — C0.11 / M7
+
+- **Render-Repair Sub-loop (`renderRepairTries` / C0.6)**:Syntax/parse errors and blank renders route to a dedicated render-repair sub-loop bounded by `renderRepairTries`. Render repair attempts are counted against the run budget and never passed to the design Critic (invariant I11).
+- **Escalation Queue (`escalations.jsonl` / M7)**: On terminal budget exhaustion, unrepairable render failures, or unresolved judge disagreements, the loop writes `best-so-far` and emits a structured entry to `escalations.jsonl` (exit code `2` ESCALATED), ensuring no run vanishes silently.
+
+### 3.5 Phase 1 Multi-Section & Craft Metrics Extensions — C1.9, C1.11, E1.5 / M17
+
+- **DOM Craft Metrics (M17 / E1.5)**: Deterministic measurements computed from the rendered DOM at gate time (spacing-scale conformance, type-scale conformance, grid regularity, tap-target geometry). Injected as **advisory context into the Critic prompt** and logged to `trace.jsonl` (never hard-gated unless benchmark evidence correlates with human verdicts).
+- **Multi-Section Visual Context Window (C1.9)**: When generating subsequent sections, screenshots of 1–3 prior approved sections are injected as soft visual context to enforce cross-section harmony while bounding token consumption per section.
+- **Whole-Artifact Assembly & QA Pass (C1.11)**: Individual sections are assembled into full pages to run a whole-page Critic pass (nav consistency, visual rhythm, responsive seams). Incoherencies trigger a section re-loop rather than an ad-hoc code patch.
 
 ---
 
@@ -216,18 +304,36 @@ A thin TypeScript program; no framework needed.
 
 ```
 src/
-├── cli.ts            # arg parsing → calls orchestrator (no logic here)
+├── cli.ts            # arg parsing → calls orchestrator / verdict / report / brand / review
 ├── orchestrator.ts   # runLoop(): the 05 loop; owns budget, selection, trace
-├── generator.ts      # generate(bundle, feedback?) → candidate Section.tsx (Anthropic SDK)
-├── critic.ts         # critique(shots, brief) → scores+ranking+feedback   (Anthropic SDK, vision)
-├── eyes.ts           # mount .tsx in harness → render → screenshots        (Playwright)
-├── guardrails.ts     # deterministic gates: render-health, a11y, content, schema (11)
+├── generator.ts      # generate(bundle, feedback?) → candidate Section.tsx
+├── critic.ts         # critique(shots, brief) → scores+ranking+feedback (vision)
+├── eyes.ts           # mount .tsx in harness → render → screenshots (Playwright)
+├── guardrails.ts     # deterministic gates: render-health, a11y, content, schema, token-allowlist (11)
 ├── prompts.ts        # generator/critic prompt builders (05 §6)
-├── schema.ts         # Brief, RunRecord, DimensionScores (03)
+├── schema.ts         # Brief, RunRecord, DimensionScores, VerdictEntry, BrandFoundation, PDS (03)
 ├── trace.ts          # append/read trace.jsonl (immediate, atomic)
-harness/              # thin Vite + React app: mounts the candidate Section.tsx at a route
-├── index.html        # harness shell (not the design output — just the preview host)
-├── src/main.tsx      # imports the candidate component + renders it
+├── provider.ts       # ADE_PROVIDER selection (agent-sdk, api, local)
+├── model.ts          # LLM call dispatch with quota tracking
+├── config.ts         # environment and run configuration builder
+├── imageutils.ts     # sRGB conversion & image fitness checks via sharp
+├── verdicts.ts       # 3-way blind verdict capture and --retest handler
+├── report.ts         # observed metric reporting & S2 burn-rate validation
+├── store.ts          # append-only atomic versioned hard store (C1.0)
+├── brand.ts          # brand derivation pipeline & frozen foundation management (C1.1-C1.4)
+├── crystallizer.ts   # conservative hero token extraction & PDS crystallization (C1.5)
+├── escalations.ts    # asynchronous human escalation queue management (M7 / E1.2)
+├── reviewers.ts      # cross-family second judge & Phase-Exit Review rules (C1.3, C1.6)
+├── reviewRouting.ts  # review boundary routing & escalation dispatch (C1.3, C1.6)
+├── constitution.ts   # design constitution principles & ethics rules (C1.13, 12)
+├── benchmark.ts      # R1 golden core benchmark runner & statistical evaluator (C1.13)
+├── embeddings.ts     # local/API embedding provider integration (C2.0)
+├── library.ts        # vector store ops, Stage A/B scoping (C2.2)
+├── retrieval.ts      # confidence-weighted matching, cold-start fallback (C2.3)
+├── writeback.ts      # de-id, abstraction, dedup pipelines for Stage B (C2.5-C2.7)
+harness/              # thin Vite + React app: mounts candidate Section.tsx at a route
+├── index.html        # harness shell (preview host)
+├── src/main.tsx      # imports candidate component + renders it
 └── vite.config.ts
 ```
 

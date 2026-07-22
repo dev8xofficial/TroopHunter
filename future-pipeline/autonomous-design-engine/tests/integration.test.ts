@@ -109,9 +109,7 @@ describe('Integration Tests', () => {
       const result = await renderHealthGate(brokenTsx, healthyRender);
       // Must FAIL because of lucide-react import
       expect(result.pass).toBe(false);
-      expect(result.violations.some(v =>
-        v.rule === 'import-allowlist' && v.message.includes('lucide-react'),
-      )).toBe(true);
+      expect(result.violations.some((v) => v.rule === 'import-allowlist' && v.message.includes('lucide-react'))).toBe(true);
     });
 
     it('render-health gate catches syntax errors', async () => {
@@ -126,7 +124,7 @@ describe('Integration Tests', () => {
 
       const result = await renderHealthGate(syntaxError, healthyRender);
       expect(result.pass).toBe(false);
-      expect(result.violations.some(v => v.rule === 'syntax')).toBe(true);
+      expect(result.violations.some((v) => v.rule === 'syntax')).toBe(true);
     });
   });
 
@@ -141,18 +139,20 @@ describe('Integration Tests', () => {
 
     it('returns data for valid critic output', () => {
       const valid = {
-        candidates: [{
-          candidate_id: 'test',
-          scores: {
-            brand_adherence: 80,
-            system_adherence: null,
-            brief_fit: 75,
-            craft: 85,
-            weighted_total: 80,
+        candidates: [
+          {
+            candidate_id: 'test',
+            scores: {
+              brand_adherence: 80,
+              system_adherence: null,
+              brief_fit: 75,
+              craft: 85,
+              weighted_total: 80,
+            },
+            verdict: 'pass',
+            feedback: 'Good work.',
           },
-          verdict: 'pass',
-          feedback: 'Good work.',
-        }],
+        ],
       };
 
       const result = schemaGate('criticOutput', valid);
@@ -170,10 +170,7 @@ describe('Integration Tests', () => {
       const startTime = Date.now();
 
       // Simulate the budget check from orchestrator
-      const exceeded =
-        modelCalls.current >= modelCalls.max ||
-        (totalTokens.input + totalTokens.output) >= cfg.maxRunTokens ||
-        (Date.now() - startTime) / 1000 >= cfg.maxRunSeconds;
+      const exceeded = modelCalls.current >= modelCalls.max || totalTokens.input + totalTokens.output >= cfg.maxRunTokens || (Date.now() - startTime) / 1000 >= cfg.maxRunSeconds;
 
       expect(exceeded).toBe(true);
     });
@@ -184,10 +181,7 @@ describe('Integration Tests', () => {
       const totalTokens = { input: 800, output: 300 };
       const startTime = Date.now();
 
-      const exceeded =
-        modelCalls.current >= modelCalls.max ||
-        (totalTokens.input + totalTokens.output) >= cfg.maxRunTokens ||
-        (Date.now() - startTime) / 1000 >= cfg.maxRunSeconds;
+      const exceeded = modelCalls.current >= modelCalls.max || totalTokens.input + totalTokens.output >= cfg.maxRunTokens || (Date.now() - startTime) / 1000 >= cfg.maxRunSeconds;
 
       expect(exceeded).toBe(true);
     });
@@ -198,10 +192,7 @@ describe('Integration Tests', () => {
       const totalTokens = { input: 100, output: 200 };
       const startTime = Date.now();
 
-      const exceeded =
-        modelCalls.current >= modelCalls.max ||
-        (totalTokens.input + totalTokens.output) >= cfg.maxRunTokens ||
-        (Date.now() - startTime) / 1000 >= cfg.maxRunSeconds;
+      const exceeded = modelCalls.current >= modelCalls.max || totalTokens.input + totalTokens.output >= cfg.maxRunTokens || (Date.now() - startTime) / 1000 >= cfg.maxRunSeconds;
 
       expect(exceeded).toBe(false);
     });

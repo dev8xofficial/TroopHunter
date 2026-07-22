@@ -11,15 +11,17 @@ ADE has four layers. Higher layers depend only on the layer directly below.
 ```mermaid
 flowchart TB
     subgraph L4["Layer 4 — Interface"]
-        CLI["CLI\ndesign brand | design section | design site | design learn"]
+        CLI["CLI\ndesign brand | design strategy | design section | design site | design qa | design learn"]
     end
     subgraph L3["Layer 3 — Orchestration"]
-        ORCH["Orchestrator\nproject state · input assembly · consistency · policy"]
+        ORCH["Orchestrator\nproject state · input assembly · consistency · policy · review routing"]
     end
     subgraph L2["Layer 2 — Capabilities"]
+        STRAT["Strategy/IA Generator (E2.4)"]
         GEN["Generator (LLM)"]
         CRIT["Critic / Judge (LLM, fresh context)"]
-        EYES["Eyes (headless browser)"]
+        RM["Dual-Judge Reward Model (C3.5)"]
+        EYES["Eyes (headless browser + Playwright DOM driver)"]
         GUARD["Guardrail Layer (deterministic gates)"]
         RET["Retriever (embeddings + ANN search)"]
         WB["Write-back (distiller)"]
@@ -30,10 +32,12 @@ flowchart TB
         PDS[("Project Design System")]
         ART[("Artifact Store")]
         TRACE[("Run / Trace Store")]
+        TEL[("Telemetry Store (E3.3)")]
     end
 
     CLI --> ORCH
-    ORCH --> GEN --> EYES --> GUARD --> CRIT --> ORCH
+    ORCH --> STRAT
+    ORCH --> GEN --> EYES --> GUARD --> CRIT --> RM --> ORCH
     ORCH --> RET --> LIB
     ORCH --> WB --> LIB
     ORCH <--> BRAND
@@ -41,6 +45,7 @@ flowchart TB
     ORCH --> ART
     GEN -.-> TRACE
     CRIT -.-> TRACE
+    ORCH -.-> TEL
 ```
 
 - **Layer 4 (Interface):** a CLI is the only entry point (chosen in planning). Subcommands map to workflows in `06`.
@@ -92,12 +97,14 @@ flowchart LR
     ORCH -->|input bundle| GEN["Generator"]
     GEN -->|React/TS .tsx| EYES["Eyes"]
     EYES -->|PNG per breakpoint| CRIT["Critic"]
-    CRIT -->|scores + feedback| ORCH
+    CRIT -->|raw scores + feedback| RM["Reward Model (C3.5)"]
+    RM -->|adjusted total & verdict| ORCH
     ORCH -->|approved code + tokens| ART[("Artifact")]
     ORCH -->|crystallized tokens| PDS
     ART -->|approved artifact| WB["Write-back"]
     WB -->|de-identified entries| LIB
     ORCH & GEN & CRIT -->|iteration records| TRACE[("Trace")]
+    ORCH -.->|events| TEL[("Telemetry")]
 ```
 
 Key property: **screenshots, not prose, cross the Eyes→Critic edge.** The system judges rendered pixels (vision), which is both more faithful and cheaper than re-encoding a design as text.

@@ -15,28 +15,12 @@
  * @module store
  */
 
-import {
-  existsSync,
-  mkdirSync,
-  readFileSync,
-  writeFileSync,
-  unlinkSync,
-  renameSync,
-  readdirSync,
-} from 'fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync, unlinkSync, renameSync, readdirSync } from 'fs';
 import { join, dirname } from 'path';
+import { redactDeep } from './redact.js';
 import { randomUUID } from 'crypto';
 import type { z } from 'zod';
-import {
-  BrandFoundationSchema,
-  ProjectDesignSystemSchema,
-  ArtifactSchema,
-  ArtifactQAReportSchema,
-  type BrandFoundation,
-  type ProjectDesignSystem,
-  type Artifact,
-  type ArtifactQAReport,
-} from './schema.js';
+import { BrandFoundationSchema, ProjectDesignSystemSchema, ArtifactSchema, ArtifactQAReportSchema, type BrandFoundation, type ProjectDesignSystem, type Artifact, type ArtifactQAReport } from './schema.js';
 
 // ─── Configuration ─────────────────────────────────────────────────
 
@@ -75,7 +59,11 @@ export function atomicWrite(filePath: string, data: unknown): void {
     renameSync(tempPath, filePath);
   } catch (err) {
     // Clean up temp file on failure
-    try { unlinkSync(tempPath); } catch { /* ignore */ }
+    try {
+      unlinkSync(tempPath);
+    } catch {
+      /* ignore */
+    }
     throw err;
   }
 }
@@ -83,10 +71,7 @@ export function atomicWrite(filePath: string, data: unknown): void {
 /**
  * Read + schema-validate. Corrupt/incompatible data caught at load (F-STO-05).
  */
-export function atomicRead<T>(
-  filePath: string,
-  schema: z.ZodType<T>,
-): T | null {
+export function atomicRead<T>(filePath: string, schema: z.ZodType<T>): T | null {
   if (!existsSync(filePath)) {
     return null;
   }
@@ -102,8 +87,7 @@ export function atomicRead<T>(
 
   const result = schema.safeParse(parsed);
   if (!result.success) {
-    console.error(`⚠ Schema validation failed for ${filePath}:`,
-      result.error.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('; '));
+    console.error(`⚠ Schema validation failed for ${filePath}:`, result.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; '));
     return null;
   }
 
@@ -136,9 +120,9 @@ export function listVersions(basePath: string): number[] {
   if (!existsSync(versionsDir)) return [];
 
   return readdirSync(versionsDir)
-    .filter(f => f.startsWith('v') && f.endsWith('.json'))
-    .map(f => parseInt(f.slice(1, -5)))
-    .filter(n => !isNaN(n))
+    .filter((f) => f.startsWith('v') && f.endsWith('.json'))
+    .map((f) => parseInt(f.slice(1, -5)))
+    .filter((n) => !isNaN(n))
     .sort((a, b) => a - b);
 }
 
@@ -156,10 +140,7 @@ export function lockClient(clientId: string): string {
   if (existing) {
     const age = Date.now() - existing.timestamp;
     if (age < LOCK_TIMEOUT_MS) {
-      throw new Error(
-        `Client "${clientId}" is locked (lock: ${existing.lockId}, age: ${Math.round(age / 1000)}s). ` +
-        `Another operation may be in progress.`
-      );
+      throw new Error(`Client "${clientId}" is locked (lock: ${existing.lockId}, age: ${Math.round(age / 1000)}s). ` + `Another operation may be in progress.`);
     }
     // Expired lock — reclaim
     console.warn(`⚠ Reclaiming expired lock for client "${clientId}"`);
@@ -170,26 +151,15 @@ export function lockClient(clientId: string): string {
   mkdirSync(projectDir(clientId), { recursive: true });
 
   try {
-    writeFileSync(
-      lockPath,
-      JSON.stringify({ lockId, timestamp: Date.now() }, null, 2),
-      { flag: 'wx', flush: true },
-    );
+    writeFileSync(lockPath, JSON.stringify({ lockId, timestamp: Date.now() }, null, 2), { flag: 'wx', flush: true });
   } catch (err) {
     const stale = readLockFile(lockPath);
     if (!stale || Date.now() - stale.timestamp < LOCK_TIMEOUT_MS) {
-      throw new Error(
-        `Client "${clientId}" is locked` +
-        (stale ? ` (lock: ${stale.lockId}, age: ${Math.round((Date.now() - stale.timestamp) / 1000)}s).` : '.'),
-      );
+      throw new Error(`Client "${clientId}" is locked` + (stale ? ` (lock: ${stale.lockId}, age: ${Math.round((Date.now() - stale.timestamp) / 1000)}s).` : '.'));
     }
 
     unlinkSync(lockPath);
-    writeFileSync(
-      lockPath,
-      JSON.stringify({ lockId, timestamp: Date.now() }, null, 2),
-      { flag: 'wx', flush: true },
-    );
+    writeFileSync(lockPath, JSON.stringify({ lockId, timestamp: Date.now() }, null, 2), { flag: 'wx', flush: true });
   }
 
   activeLocks.set(clientId, { lockId, timestamp: Date.now() });
@@ -212,7 +182,9 @@ export function unlockClient(clientId: string, lockId: string): void {
     if (fileLock?.lockId === lockId) {
       unlinkSync(lockPath);
     }
-  } catch { /* best effort */ }
+  } catch {
+    /* best effort */
+  }
 }
 
 function readLockFile(lockPath: string): { lockId: string; timestamp: number } | null {
@@ -248,26 +220,17 @@ export function readBrand(clientId: string): BrandFoundation | null {
  * Optimistic version precondition: if an existing file has a different version
  * than expected, the write is rejected (I5).
  */
-export function writeBrand(
-  clientId: string,
-  foundation: BrandFoundation,
-  expectedVersion?: number | null,
-): void {
+export function writeBrand(clientId: string, foundation: BrandFoundation, expectedVersion?: number | null): void {
   const filePath = join(projectDir(clientId), 'brand.json');
   const existing = readBrand(clientId);
 
   // Optimistic version check
   if (expectedVersion !== undefined) {
     if (expectedVersion === null && existing) {
-      throw new Error(
-        `Version conflict: expected no existing brand but found v${existing.version}.`,
-      );
+      throw new Error(`Version conflict: expected no existing brand but found v${existing.version}.`);
     }
     if (expectedVersion !== null && existing && existing.version !== expectedVersion) {
-      throw new Error(
-        `Version conflict: expected v${expectedVersion} but found v${existing.version}. ` +
-        `Another operation may have modified the brand.`
-      );
+      throw new Error(`Version conflict: expected v${expectedVersion} but found v${existing.version}. ` + `Another operation may have modified the brand.`);
     }
   }
 
@@ -276,9 +239,7 @@ export function writeBrand(
   }
 
   if (existing && foundation.version <= existing.version) {
-    throw new Error(
-      `Version conflict: new brand version v${foundation.version} must be greater than existing v${existing.version}.`,
-    );
+    throw new Error(`Version conflict: new brand version v${foundation.version} must be greater than existing v${existing.version}.`);
   }
 
   // Write current + version snapshot
@@ -300,25 +261,16 @@ export function readPDS(clientId: string, surface: string): ProjectDesignSystem 
  * Write the Project Design System for a client + surface.
  * Optimistic version precondition.
  */
-export function writePDS(
-  clientId: string,
-  surface: string,
-  pds: ProjectDesignSystem,
-  expectedVersion?: number | null,
-): void {
+export function writePDS(clientId: string, surface: string, pds: ProjectDesignSystem, expectedVersion?: number | null): void {
   const filePath = join(surfaceDir(clientId, surface), 'pds.json');
   const existing = readPDS(clientId, surface);
 
   if (expectedVersion !== undefined) {
     if (expectedVersion === null && existing) {
-      throw new Error(
-        `PDS version conflict: expected no existing PDS but found v${existing.version}.`,
-      );
+      throw new Error(`PDS version conflict: expected no existing PDS but found v${existing.version}.`);
     }
     if (expectedVersion !== null && existing && existing.version !== expectedVersion) {
-      throw new Error(
-        `PDS version conflict: expected v${expectedVersion} but found v${existing.version}.`
-      );
+      throw new Error(`PDS version conflict: expected v${expectedVersion} but found v${existing.version}.`);
     }
   }
 
@@ -327,9 +279,7 @@ export function writePDS(
   }
 
   if (existing && pds.version <= existing.version) {
-    throw new Error(
-      `PDS version conflict: new version v${pds.version} must be greater than existing v${existing.version}.`,
-    );
+    throw new Error(`PDS version conflict: new version v${pds.version} must be greater than existing v${existing.version}.`);
   }
 
   atomicWrite(filePath, pds);
@@ -349,13 +299,11 @@ export function readArtifact(clientId: string, surface: string): Artifact | null
 /**
  * Write the Artifact for a client + surface.
  */
-export function writeArtifact(
-  clientId: string,
-  surface: string,
-  artifact: Artifact,
-): void {
+export function writeArtifact(clientId: string, surface: string, artifact: Artifact): void {
   const filePath = join(surfaceDir(clientId, surface), 'artifact.json');
-  atomicWrite(filePath, artifact);
+  // C4.1: Ensure no seeded secret/PII reaches a persisted artifact.
+  const redacted = redactDeep(artifact);
+  atomicWrite(filePath, redacted);
 }
 
 /**
@@ -369,11 +317,7 @@ export function readArtifactQA(clientId: string, surface: string): ArtifactQARep
 /**
  * Write the latest whole-artifact QA report for a client + surface.
  */
-export function writeArtifactQA(
-  clientId: string,
-  surface: string,
-  report: ArtifactQAReport,
-): void {
+export function writeArtifactQA(clientId: string, surface: string, report: ArtifactQAReport): void {
   if (report.client_id !== clientId || report.surface !== surface) {
     throw new Error(`QA report identity mismatch: cannot write ${report.client_id}/${report.surface} under ${clientId}/${surface}.`);
   }
@@ -399,4 +343,94 @@ export function getSectionRunDir(clientId: string, surface: string, sectionName:
 export function setProjectsDirForTest(dir: string): void {
   projectsDir = dir;
   activeLocks.clear();
+}
+
+// ─── Integrity scan (C1.0 — F-STO-05 dangling references) ──────────
+
+export interface IntegrityIssue {
+  clientId: string;
+  surface?: string;
+  rule: 'pds-without-brand' | 'pds-inherits-mismatch' | 'brand-not-frozen-but-pds-exists' | 'artifact-without-pds' | 'artifact-surface-mismatch';
+  message: string;
+}
+
+/**
+ * Walk every client/surface directory under the projects root and check the
+ * referential chain brand -> PDS -> artifact is intact — the "referential
+ * integrity... integrity scan for dangling artifact->system links" the plan
+ * requires. Deliberately does NOT check LibraryEntry.provenance: that field
+ * is a free-text string[] with no formal reference format defined anywhere
+ * in the schema (unlike client_id/surface, which are concrete, checkable
+ * identifiers) — silently "validating" it would be pretending to check
+ * something that isn't actually specified.
+ */
+export function integrityScan(): IntegrityIssue[] {
+  const issues: IntegrityIssue[] = [];
+  if (!existsSync(projectsDir)) return issues;
+
+  const clientIds = readdirSync(projectsDir, { withFileTypes: true })
+    .filter((e) => e.isDirectory())
+    .map((e) => e.name);
+
+  for (const clientId of clientIds) {
+    const brand = readBrand(clientId);
+    const clientPath = projectDir(clientId);
+
+    const surfaceNames = readdirSync(clientPath, { withFileTypes: true })
+      .filter((e) => e.isDirectory())
+      .map((e) => e.name);
+
+    for (const surface of surfaceNames) {
+      const pds = readPDS(clientId, surface);
+      if (pds) {
+        if (!brand) {
+          issues.push({
+            clientId,
+            surface,
+            rule: 'pds-without-brand',
+            message: `PDS ${clientId}/${surface} exists but no brand.json exists for "${clientId}" — dangling reference.`,
+          });
+        } else {
+          if (pds.inherits !== brand.client_id) {
+            issues.push({
+              clientId,
+              surface,
+              rule: 'pds-inherits-mismatch',
+              message: `PDS ${clientId}/${surface} inherits "${pds.inherits}" but the brand on disk for this client is "${brand.client_id}".`,
+            });
+          }
+          if (brand.status !== 'frozen') {
+            issues.push({
+              clientId,
+              surface,
+              rule: 'brand-not-frozen-but-pds-exists',
+              message: `PDS ${clientId}/${surface} exists (foundation-frozen) but brand.json for "${clientId}" is status "${brand.status}", not frozen — the PDS should not have been able to crystallize.`,
+            });
+          }
+        }
+      }
+
+      const artifact = readArtifact(clientId, surface);
+      if (artifact) {
+        if (artifact.client_id !== clientId || artifact.surface !== surface) {
+          issues.push({
+            clientId,
+            surface,
+            rule: 'artifact-surface-mismatch',
+            message: `Artifact at ${clientId}/${surface} claims identity ${artifact.client_id}/${artifact.surface} — dangling/misplaced reference.`,
+          });
+        }
+        if (artifact.sections.length > 0 && !pds) {
+          issues.push({
+            clientId,
+            surface,
+            rule: 'artifact-without-pds',
+            message: `Artifact ${clientId}/${surface} has ${artifact.sections.length} section(s) but no PDS exists for this client/surface — dangling artifact->system link.`,
+          });
+        }
+      }
+    }
+  }
+
+  return issues;
 }

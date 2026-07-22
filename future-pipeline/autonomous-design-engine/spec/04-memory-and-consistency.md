@@ -196,7 +196,7 @@ When inputs disagree, resolve in this fixed order:
 4. Business brief                  (hard)
 ─────────────────────────────────────────────
 5. Global Library entries          (soft — synthesized)
-6. ≤5 references                   (soft — direction only)
+6. ≤5 references                   (soft — direction only; dissolved into principles via optional relevance screen)
 ```
 
 - **Hard always beats soft.** A reference suggesting a teal accent loses to a brand whose accent is warm-neutral.

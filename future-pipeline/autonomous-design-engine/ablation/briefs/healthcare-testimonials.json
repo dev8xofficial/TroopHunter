@@ -1,0 +1,19 @@
+{
+  "client": "Meridian Health Partners",
+  "industry": "healthcare",
+  "location": "Chicago",
+  "audience": "Patients aged 25-55 researching telehealth options and comparing healthcare providers online",
+  "goal": "Build trust through real patient stories and establish credibility for the telehealth platform",
+  "section": {
+    "name": "testimonials",
+    "content": {
+      "headline": "Trusted by Thousands of Patients",
+      "subheadline": "Hear from real people who transformed their healthcare experience.",
+      "body": "Our patients consistently rate us 4.9 out of 5 stars across all review platforms.",
+      "items": [
+        { "quote": "The virtual visit was seamless — I got my prescription in 20 minutes.", "author": "Sarah M., Austin TX" },
+        { "quote": "Finally, a healthcare provider that fits my schedule.", "author": "James K., Denver CO" }
+      ]
+    }
+  }
+}

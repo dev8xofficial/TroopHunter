@@ -20,7 +20,10 @@ afterEach(() => {
 describe('Escalations (E1.2)', () => {
   it('emits an open escalation and it appears in listEscalations', () => {
     const record = emitEscalation(TEST_DIR, {
-      type: 'comprehension', runId: 'r1', sectionId: 'hero', question: 'Is the audience B2B or B2C?',
+      type: 'comprehension',
+      runId: 'r1',
+      sectionId: 'hero',
+      question: 'Is the audience B2B or B2C?',
     });
     expect(record.status).toBe('open');
     const listed = listEscalations(TEST_DIR);
@@ -30,7 +33,10 @@ describe('Escalations (E1.2)', () => {
 
   it('answerEscalation marks it resolved and records the answer + timestamp', () => {
     const record = emitEscalation(TEST_DIR, {
-      type: 'comprehension', runId: 'r1', sectionId: 'hero', question: 'Is the audience B2B or B2C?',
+      type: 'comprehension',
+      runId: 'r1',
+      sectionId: 'hero',
+      question: 'Is the audience B2B or B2C?',
     });
     answerEscalation(TEST_DIR, record.id, 'B2B — enterprise buyers only.');
 
@@ -46,15 +52,16 @@ describe('Escalations (E1.2)', () => {
 
   it('the E1.2 resume predicate (orchestrator.ts) correctly finds a resolved comprehension escalation for a section', () => {
     const record = emitEscalation(TEST_DIR, {
-      type: 'comprehension', runId: 'r1', sectionId: 'hero', question: 'Missing audience.',
+      type: 'comprehension',
+      runId: 'r1',
+      sectionId: 'hero',
+      question: 'Missing audience.',
     });
     answerEscalation(TEST_DIR, record.id, 'Home buyers and sellers.');
 
     // Exact predicate used in orchestrator.ts's resume check.
     const priorEscalations = listEscalations(TEST_DIR);
-    const resolved = priorEscalations.find(
-      e => e.type === 'comprehension' && e.sectionId === 'hero' && e.status === 'resolved' && e.answer,
-    );
+    const resolved = priorEscalations.find((e) => e.type === 'comprehension' && e.sectionId === 'hero' && e.status === 'resolved' && e.answer);
     expect(resolved).toBeDefined();
     expect(resolved!.answer).toBe('Home buyers and sellers.');
   });
@@ -63,9 +70,7 @@ describe('Escalations (E1.2)', () => {
     emitEscalation(TEST_DIR, { type: 'comprehension', runId: 'r1', sectionId: 'hero', question: 'Missing audience.' });
 
     const priorEscalations = listEscalations(TEST_DIR);
-    const resolved = priorEscalations.find(
-      e => e.type === 'comprehension' && e.sectionId === 'hero' && e.status === 'resolved' && e.answer,
-    );
+    const resolved = priorEscalations.find((e) => e.type === 'comprehension' && e.sectionId === 'hero' && e.status === 'resolved' && e.answer);
     expect(resolved).toBeUndefined();
   });
 
@@ -74,9 +79,7 @@ describe('Escalations (E1.2)', () => {
     answerEscalation(TEST_DIR, record.id, 'answer');
 
     const priorEscalations = listEscalations(TEST_DIR);
-    const resolved = priorEscalations.find(
-      e => e.type === 'comprehension' && e.sectionId === 'hero' && e.status === 'resolved' && e.answer,
-    );
+    const resolved = priorEscalations.find((e) => e.type === 'comprehension' && e.sectionId === 'hero' && e.status === 'resolved' && e.answer);
     expect(resolved).toBeUndefined();
   });
 
@@ -85,9 +88,7 @@ describe('Escalations (E1.2)', () => {
     answerEscalation(TEST_DIR, record.id, 'increase budget');
 
     const priorEscalations = listEscalations(TEST_DIR);
-    const resolved = priorEscalations.find(
-      e => e.type === 'comprehension' && e.sectionId === 'hero' && e.status === 'resolved' && e.answer,
-    );
+    const resolved = priorEscalations.find((e) => e.type === 'comprehension' && e.sectionId === 'hero' && e.status === 'resolved' && e.answer);
     expect(resolved).toBeUndefined();
   });
 });

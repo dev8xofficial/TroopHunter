@@ -5,7 +5,9 @@
  * refusal reframe retry, empty-output rejection, markdown-fence stripping.
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { existsSync, mkdirSync, rmSync, writeFileSync } from 'fs';
+import { join } from 'path';
 import { generate, GeneratorError } from '../src/generator.js';
 import type { ModelProvider, CompletionRequest, CompletionResult } from '../src/model.js';
 import type { InputBundle, Brief } from '../src/schema.js';
@@ -140,7 +142,7 @@ describe('Generator (C0.3)', () => {
   it('throws GeneratorError(cause=refusal) if the reframe also refuses', async () => {
     const provider = scriptedProvider([
       { text: "I'm sorry, I cannot help with that.", usage: { input: 10, output: 20 } },
-      { text: "I apologize, I cannot generate this.", usage: { input: 10, output: 20 } },
+      { text: 'I apologize, I cannot generate this.', usage: { input: 10, output: 20 } },
     ]);
     await expect(generate(provider, bundle, undefined, 0.7, budget())).rejects.toThrow(GeneratorError);
     await expect(generate(provider, bundle, undefined, 0.7, budget())).rejects.toMatchObject({ cause: 'refusal' });
@@ -192,5 +194,70 @@ describe('Generator (C0.3)', () => {
     const calls = budget();
     await generate(provider, bundle, undefined, 0.7, calls);
     expect(calls.current).toBe(1);
+  });
+
+  // ── References (C2.4) ────────────────────────────────────────────
+  describe('reference images', () => {
+    const TEST_DIR = join(import.meta.dirname, '..', '.test-runs', 'generator-refs-test');
+    const TINY_PNG_BASE64 = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=';
+    let refPath: string;
+
+    beforeAll(() => {
+      if (!existsSync(TEST_DIR)) mkdirSync(TEST_DIR, { recursive: true });
+      refPath = join(TEST_DIR, 'ref.png');
+      writeFileSync(refPath, Buffer.from(TINY_PNG_BASE64, 'base64'));
+    });
+
+    afterAll(() => {
+      if (existsSync(TEST_DIR)) rmSync(TEST_DIR, { recursive: true, force: true });
+    });
+
+    it('attaches reference images to the completion request when bundle.refs is set', async () => {
+      let capturedImages: CompletionRequest['images'];
+      const provider: ModelProvider = {
+        id: 'mock:refs',
+        async complete(req) {
+          capturedImages = req.images;
+          return { text: validTsx, usage: { input: 10, output: 20 } };
+        },
+      };
+      const bundleWithRefs: InputBundle = { ...bundle, refs: [{ path: refPath }] };
+      await generate(provider, bundleWithRefs, undefined, 0.7, budget());
+
+      expect(capturedImages).toBeDefined();
+      expect(capturedImages).toHaveLength(1);
+      expect(capturedImages![0].mediaType).toBe('image/png');
+    });
+
+    it('sends no images when bundle.refs is absent (unchanged behavior for the common case)', async () => {
+      let capturedImages: CompletionRequest['images'];
+      const provider: ModelProvider = {
+        id: 'mock:no-refs',
+        async complete(req) {
+          capturedImages = req.images;
+          return { text: validTsx, usage: { input: 10, output: 20 } };
+        },
+      };
+      await generate(provider, bundle, undefined, 0.7, budget());
+      expect(capturedImages).toBeUndefined();
+    });
+
+    it('re-attaches reference images on the truncation-retry call too', async () => {
+      const unbalanced = 'export default function Section() { return <div>{unclosed';
+      const capturedImageCounts: number[] = [];
+      const provider: ModelProvider = {
+        id: 'mock:refs-retry',
+        async complete(req) {
+          capturedImageCounts.push(req.images?.length ?? 0);
+          if (capturedImageCounts.length === 1) {
+            return { text: unbalanced, usage: { input: 10, output: 20 }, stopReason: 'max_tokens' };
+          }
+          return { text: validTsx, usage: { input: 10, output: 20 } };
+        },
+      };
+      const bundleWithRefs: InputBundle = { ...bundle, refs: [{ path: refPath }] };
+      await generate(provider, bundleWithRefs, undefined, 0.7, budget());
+      expect(capturedImageCounts).toEqual([1, 1]);
+    });
   });
 });

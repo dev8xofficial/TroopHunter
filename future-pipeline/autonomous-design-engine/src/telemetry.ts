@@ -1,6 +1,6 @@
 /**
  * ADE — Telemetry & Scaling Metrics (E3.3)
- * 
+ *
  * Tracks brand foundation reuse, library recall size over time,
  * and H10 iteration efficiency (zero-to-one vs refactoring).
  */
@@ -64,13 +64,7 @@ export function trackLibraryRecall(briefId: string, query: string, hitCount: num
 /**
  * Track H10 Iteration Efficiency (zero-to-one vs refactoring) (E3.2)
  */
-export function trackEngineModeEfficiency(
-  runId: string,
-  mode: 'zero-to-one' | 'refactoring',
-  iterations: number,
-  success: boolean,
-  durationMs: number
-): void {
+export function trackEngineModeEfficiency(runId: string, mode: 'zero-to-one' | 'refactoring', iterations: number, success: boolean, durationMs: number): void {
   logTelemetryEvent('engine_mode_efficiency', {
     run_id: runId,
     engine_mode: mode,

@@ -1,0 +1,16 @@
+{
+  "artifact_id": "phase-four-website",
+  "client_id": "phase-four",
+  "surface": "website",
+  "status": "in-progress",
+  "sections": [
+    {
+      "section_id": "s1",
+      "name": "hero",
+      "status": "draft",
+      "code": {
+        "component": "export default function Section() { return <div>[REDACTED:anthropic-api-key]</div> }"
+      }
+    }
+  ]
+}

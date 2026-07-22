@@ -3,16 +3,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import {
-  BriefSchema,
-  BrandDataSchema,
-  RunRecordSchema,
-  CriticOutputSchema,
-  DimensionScoresSchema,
-  RenderResultSchema,
-  VerdictEntrySchema,
-  validate,
-} from '../src/schema.js';
+import { BriefSchema, BrandDataSchema, RunRecordSchema, CriticOutputSchema, DimensionScoresSchema, RenderResultSchema, VerdictEntrySchema, validate } from '../src/schema.js';
 
 describe('Schema Validation', () => {
   // ─── Brief ───────────────────────────────────────────────────────

@@ -17,19 +17,12 @@ import { existsSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { transform } from 'esbuild';
 import type { Page } from 'playwright';
-import type {
-  Brief,
-  BrandData,
-  BriefComprehension,
-  RenderResult,
-  GateResult,
-  Violation,
-  ProjectDesignSystem,
-} from './schema.js';
+import type { Brief, BrandData, BriefComprehension, RenderResult, GateResult, Violation, ProjectDesignSystem } from './schema.js';
 import { BriefSchema, BrandDataSchema, validate } from './schema.js';
 import type { ModelProvider } from './model.js';
 import { parseImageMetadata } from './imageutils.js';
 import { buildBriefComprehensionPrompt } from './prompts.js';
+import { checkSurfaceCapability } from './surfaceCapabilities.js';
 
 export interface BriefComprehensionGateResult extends GateResult {
   usage: { input: number; output: number };
@@ -60,6 +53,21 @@ export function inputGate(brief: unknown, brandData?: unknown, briefPath?: strin
   }
 
   const validBrief = briefResult.data;
+
+  // C3.7: Product-Surface Capability
+  const capabilityCheck = checkSurfaceCapability(validBrief);
+  if (!capabilityCheck.pass) {
+    for (const msg of capabilityCheck.violations) {
+      violations.push({
+        gate: 'input',
+        rule: 'surface-unsupported',
+        message: msg,
+        severity: 'critical',
+        fixable: false, // Cannot be auto-fixed; the user must change the brief or the engine must be upgraded.
+      });
+    }
+    return { pass: false, violations };
+  }
 
   // 2. Brand-data validation (if provided)
   if (brandData !== undefined) {
@@ -107,7 +115,7 @@ export function inputGate(brief: unknown, brandData?: unknown, briefPath?: strin
 
       try {
         const meta = parseImageMetadata(fullPath);
-        
+
         // C0.1 Colorspace check
         if (meta.isCmyk) {
           violations.push({
@@ -143,7 +151,6 @@ export function inputGate(brief: unknown, brandData?: unknown, briefPath?: strin
             fixable: true,
           });
         }
-
       } catch (err) {
         // Not a standard parseable image, could be SVG or corrupt
         // We will issue a moderate warning for unknown formats but not fail
@@ -159,13 +166,7 @@ export function inputGate(brief: unknown, brandData?: unknown, briefPath?: strin
   }
 
   // 5. Content sanitization check (I9 — brief-as-data, not instructions)
-  const injectionPatterns = [
-    /ignore\s+(all\s+)?previous/i,
-    /disregard\s+(all\s+)?instructions/i,
-    /you\s+are\s+now/i,
-    /system\s*:\s*/i,
-    /\<\s*script/i,
-  ];
+  const injectionPatterns = [/ignore\s+(all\s+)?previous/i, /disregard\s+(all\s+)?instructions/i, /you\s+are\s+now/i, /system\s*:\s*/i, /\<\s*script/i];
 
   const allContent = JSON.stringify(validBrief);
   for (const pattern of injectionPatterns) {
@@ -181,27 +182,25 @@ export function inputGate(brief: unknown, brandData?: unknown, briefPath?: strin
   }
 
   return {
-    pass: violations.filter(v => v.severity === 'critical' || v.severity === 'serious').length === 0,
+    pass: violations.filter((v) => v.severity === 'critical' || v.severity === 'serious').length === 0,
     violations,
   };
 }
 
-export async function briefComprehensionGate(
-  provider: ModelProvider,
-  brief: Brief,
-  maxModelCalls: { current: number; max: number },
-): Promise<BriefComprehensionGateResult> {
+export async function briefComprehensionGate(provider: ModelProvider, brief: Brief, maxModelCalls: { current: number; max: number }): Promise<BriefComprehensionGateResult> {
   if (maxModelCalls.current >= maxModelCalls.max) {
     return {
       pass: false,
       usage: { input: 0, output: 0 },
-      violations: [{
-        gate: 'brief-comprehension',
-        rule: 'model-call-budget',
-        message: 'No model-call budget remains for the required brief comprehension preflight.',
-        severity: 'serious',
-        fixable: true,
-      }],
+      violations: [
+        {
+          gate: 'brief-comprehension',
+          rule: 'model-call-budget',
+          message: 'No model-call budget remains for the required brief comprehension preflight.',
+          severity: 'serious',
+          fixable: true,
+        },
+      ],
     };
   }
 
@@ -221,13 +220,15 @@ export async function briefComprehensionGate(
     return {
       pass: false,
       usage: { input: 0, output: 0 },
-      violations: [{
-        gate: 'brief-comprehension',
-        rule: 'model-call-failed',
-        message: `Brief comprehension preflight failed: ${err instanceof Error ? err.message : String(err)}`,
-        severity: 'serious',
-        fixable: true,
-      }],
+      violations: [
+        {
+          gate: 'brief-comprehension',
+          rule: 'model-call-failed',
+          message: `Brief comprehension preflight failed: ${err instanceof Error ? err.message : String(err)}`,
+          severity: 'serious',
+          fixable: true,
+        },
+      ],
     };
   }
 
@@ -236,13 +237,15 @@ export async function briefComprehensionGate(
     return {
       pass: false,
       usage: result.usage,
-      violations: [{
-        gate: 'brief-comprehension',
-        rule: 'invalid-json',
-        message: `Brief comprehension returned invalid JSON: ${parsed.error}`,
-        severity: 'serious',
-        fixable: true,
-      }],
+      violations: [
+        {
+          gate: 'brief-comprehension',
+          rule: 'invalid-json',
+          message: `Brief comprehension returned invalid JSON: ${parsed.error}`,
+          severity: 'serious',
+          fixable: true,
+        },
+      ],
     };
   }
 
@@ -251,7 +254,7 @@ export async function briefComprehensionGate(
     return {
       pass: false,
       usage: result.usage,
-      violations: schemaResult.violations.map(violation => ({
+      violations: schemaResult.violations.map((violation) => ({
         ...violation,
         gate: 'brief-comprehension',
       })),
@@ -293,10 +296,7 @@ export async function briefComprehensionGate(
  * Pre-render: esbuild syntax check + import allowlist.
  * Post-render: non-blank DOM, no error overlay, fonts/images loaded.
  */
-export async function renderHealthGate(
-  tsx: string,
-  renderResult: RenderResult,
-): Promise<GateResult> {
+export async function renderHealthGate(tsx: string, renderResult: RenderResult): Promise<GateResult> {
   const violations: Violation[] = [];
 
   // --- Pre-render checks ---
@@ -340,7 +340,7 @@ export async function renderHealthGate(
   // not the generic moderate console-errors bucket below. If the per-candidate
   // ready nonce never matched before the capture timeout, the screenshot may
   // be stale/blank and must never reach the Critic as this candidate's work.
-  const nonceFailures = renderResult.consoleErrors.filter(e => e.includes('Ready nonce not set'));
+  const nonceFailures = renderResult.consoleErrors.filter((e) => e.includes('Ready nonce not set'));
   if (nonceFailures.length > 0) {
     violations.push({
       gate: 'render-health',
@@ -393,9 +393,7 @@ export async function renderHealthGate(
 
   // 5. Console errors (non-critical but recorded) — excludes the nonce
   // failure already promoted to its own critical check above.
-  const seriousErrors = renderResult.consoleErrors.filter(
-    e => !e.includes('favicon') && !e.includes('HMR') && !e.includes('WebSocket') && !e.includes('Ready nonce not set'),
-  );
+  const seriousErrors = renderResult.consoleErrors.filter((e) => !e.includes('favicon') && !e.includes('HMR') && !e.includes('WebSocket') && !e.includes('Ready nonce not set'));
   if (seriousErrors.length > 0 && !renderResult.hasErrorOverlay) {
     violations.push({
       gate: 'render-health',
@@ -407,7 +405,7 @@ export async function renderHealthGate(
   }
 
   return {
-    pass: violations.filter(v => v.severity === 'critical').length === 0,
+    pass: violations.filter((v) => v.severity === 'critical').length === 0,
     violations,
   };
 }
@@ -418,23 +416,15 @@ export async function renderHealthGate(
  * Hard-constraint checks on a healthy render.
  * a11y, responsive, content-present, no-placeholder, color-allowlist.
  */
-export async function hardConstraintGate(
-  page: Page,
-  brief: Brief,
-  brandData?: BrandData,
-): Promise<GateResult> {
+export async function hardConstraintGate(page: Page, brief: Brief, brandData?: BrandData): Promise<GateResult> {
   const violations: Violation[] = [];
 
   // 1. a11y audit (@axe-core/playwright) — serious/critical only
   try {
     const { AxeBuilder } = await import('@axe-core/playwright');
-    const axeResults = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa'])
-      .analyze();
+    const axeResults = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
 
-    const seriousViolations = axeResults.violations.filter(
-      v => v.impact === 'critical' || v.impact === 'serious',
-    );
+    const seriousViolations = axeResults.violations.filter((v) => v.impact === 'critical' || v.impact === 'serious');
 
     for (const v of seriousViolations) {
       violations.push({
@@ -465,6 +455,98 @@ export async function hardConstraintGate(
       gate: 'hard-constraint',
       rule: 'responsive-overflow',
       message: `Horizontal overflow: scrollWidth=${overflowResult.scrollWidth}px > clientWidth=${overflowResult.clientWidth}px`,
+      severity: 'serious',
+      fixable: true,
+    });
+  }
+
+  // 2b. R10 Content-Stress Matrix
+  // Inject 3x length text, long unbroken strings, and test missing optional fields
+  const optionalStrings: string[] = [];
+  if (brief.section.content.subheadline) optionalStrings.push(brief.section.content.subheadline);
+  if (brief.section.content.body) optionalStrings.push(brief.section.content.body);
+  if (brief.section.content.tags && brief.section.content.tags.length > 0) optionalStrings.push(brief.section.content.tags[0]);
+
+  const stressOverflowResult = await page.evaluate(
+    (opts) => {
+      const textNodes: Text[] = [];
+      const walk = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+      let n;
+      while ((n = walk.nextNode())) {
+        if (n.nodeValue && n.nodeValue.trim().length > 0) {
+          textNodes.push(n as Text);
+        }
+      }
+
+      // Save original
+      const originals = textNodes.map((node) => ({ node, text: node.nodeValue }));
+
+      // Stress 1: 3x length
+      textNodes.forEach((node) => {
+        if (node.nodeValue) {
+          node.nodeValue = node.nodeValue + ' ' + node.nodeValue + ' ' + node.nodeValue;
+        }
+      });
+      const overflow3x = document.body.scrollWidth > document.documentElement.clientWidth + 5;
+
+      // Stress 2: long unbroken string
+      textNodes.forEach((node) => {
+        node.nodeValue = 'Supercalifragilisticexpialidocious_Supercalifragilisticexpialidocious';
+      });
+      const overflowLong = document.body.scrollWidth > document.documentElement.clientWidth + 5;
+
+      // Restore
+      originals.forEach((o) => {
+        if (o.node) o.node.nodeValue = o.text;
+      });
+
+      // Stress 3: Missing optional field
+      let missingFieldCollapse = false;
+      if (opts.optionalStrings.length > 0) {
+        const hiddenElements: HTMLElement[] = [];
+        textNodes.forEach((node) => {
+          if (node.nodeValue && opts.optionalStrings.includes(node.nodeValue.trim())) {
+            if (node.parentElement) {
+              hiddenElements.push(node.parentElement);
+              node.parentElement.style.display = 'none';
+            }
+          }
+        });
+        // Detect layout collapse (e.g., height shrinking drastically)
+        missingFieldCollapse = document.body.scrollHeight < 50;
+        hiddenElements.forEach((el) => {
+          el.style.display = '';
+        });
+      }
+
+      return { overflow3x, overflowLong, missingFieldCollapse };
+    },
+    { optionalStrings },
+  );
+
+  if (stressOverflowResult.overflow3x) {
+    violations.push({
+      gate: 'hard-constraint',
+      rule: 'content-stress-3x-overflow',
+      message: `Horizontal overflow detected when content length is tripled (R10). Use fluid typography or better wrapping.`,
+      severity: 'serious',
+      fixable: true,
+    });
+  }
+  if (stressOverflowResult.overflowLong) {
+    violations.push({
+      gate: 'hard-constraint',
+      rule: 'content-stress-long-string-overflow',
+      message: `Horizontal overflow detected with long unbroken strings (R10). Missing word-wrap or overflow-wrap properties.`,
+      severity: 'serious',
+      fixable: true,
+    });
+  }
+  if (stressOverflowResult.missingFieldCollapse) {
+    violations.push({
+      gate: 'hard-constraint',
+      rule: 'content-stress-missing-field-collapse',
+      message: `Layout drastically collapsed when optional fields were omitted (R10). Ensure containers have min-heights or proper structural spacing.`,
       severity: 'serious',
       fixable: true,
     });
@@ -512,16 +594,7 @@ export async function hardConstraintGate(
   }
 
   // 4. No-placeholder check
-  const placeholderPatterns = [
-    /lorem\s+ipsum/i,
-    /\bTODO\b/,
-    /\bFIXME\b/,
-    /coming\s+soon/i,
-    /placeholder/i,
-    /\{\{[^}]+\}\}/,
-    /\[insert/i,
-    /sample\s+text/i,
-  ];
+  const placeholderPatterns = [/lorem\s+ipsum/i, /\bTODO\b/, /\bFIXME\b/, /coming\s+soon/i, /placeholder/i, /\{\{[^}]+\}\}/, /\[insert/i, /sample\s+text/i];
 
   for (const pattern of placeholderPatterns) {
     if (pattern.test(pageText)) {
@@ -542,7 +615,7 @@ export async function hardConstraintGate(
   }
 
   return {
-    pass: violations.filter(v => v.severity === 'critical' || v.severity === 'serious').length === 0,
+    pass: violations.filter((v) => v.severity === 'critical' || v.severity === 'serious').length === 0,
     violations,
   };
 }
@@ -561,13 +634,15 @@ export function schemaGate<T>(schemaName: string, raw: unknown): { data: T | nul
 
   return {
     data: null,
-    violations: [{
-      gate: 'schema',
-      rule: schemaName,
-      message: `Schema validation failed: ${result.error}`,
-      severity: 'serious',
-      fixable: true,
-    }],
+    violations: [
+      {
+        gate: 'schema',
+        rule: schemaName,
+        message: `Schema validation failed: ${result.error}`,
+        severity: 'serious',
+        fixable: true,
+      },
+    ],
   };
 }
 
@@ -685,13 +760,13 @@ function extractNumericTokens(contentStrings: string[]): string[] {
 
   // $1,234.56 / $1234 / 1,234 / 12.5% / 45% / 1234 (2+ digits) / dates like 12/25 or 2024-01-15
   const patterns = [
-    /\$\s?\d[\d,]*(?:\.\d+)?/g,       // currency
-    /\d[\d,]*(?:\.\d+)?\s?%/g,        // percentages
-    /\d{1,3}(?:,\d{3})+(?:\.\d+)?/g,  // comma-grouped numbers
-    /\d+\.\d+/g,                      // decimals
-    /\d{2,}/g,                        // any multi-digit run (2+ digits)
-    /\d{1,2}\/\d{1,2}(?:\/\d{2,4})?/g,      // dates: 12/25 or 12/25/2024
-    /\d{4}-\d{2}-\d{2}/g,                    // ISO dates
+    /\$\s?\d[\d,]*(?:\.\d+)?/g, // currency
+    /\d[\d,]*(?:\.\d+)?\s?%/g, // percentages
+    /\d{1,3}(?:,\d{3})+(?:\.\d+)?/g, // comma-grouped numbers
+    /\d+\.\d+/g, // decimals
+    /\d{2,}/g, // any multi-digit run (2+ digits)
+    /\d{1,2}\/\d{1,2}(?:\/\d{2,4})?/g, // dates: 12/25 or 12/25/2024
+    /\d{4}-\d{2}-\d{2}/g, // ISO dates
   ];
 
   for (const content of contentStrings) {
@@ -713,15 +788,10 @@ function extractNumericTokens(contentStrings: string[]): string[] {
  */
 async function checkColorAllowlist(page: Page, brandData: BrandData): Promise<Violation[]> {
   const violations: Violation[] = [];
-  const allowedHexes = new Set(brandData.palette.map(p => p.value.toLowerCase()));
+  const allowedHexes = new Set(brandData.palette.map((p) => p.value.toLowerCase()));
 
   // Add neutral ramp (always allowed)
-  const neutrals = [
-    '#ffffff', '#fff', '#000000', '#000',
-    '#f9fafb', '#f3f4f6', '#e5e7eb', '#d1d5db',
-    '#9ca3af', '#6b7280', '#4b5563', '#374151',
-    '#1f2937', '#111827', '#030712',
-  ];
+  const neutrals = ['#ffffff', '#fff', '#000000', '#000', '#f9fafb', '#f3f4f6', '#e5e7eb', '#d1d5db', '#9ca3af', '#6b7280', '#4b5563', '#374151', '#1f2937', '#111827', '#030712'];
   for (const n of neutrals) {
     allowedHexes.add(n);
   }
@@ -738,12 +808,8 @@ async function checkColorAllowlist(page: Page, brandData: BrandData): Promise<Vi
         const style = window.getComputedStyle(el);
         const props = ['color', 'backgroundColor', 'borderColor'];
         for (const prop of props) {
-          const value = style.getPropertyValue(
-            prop.replace(/([A-Z])/g, '-$1').toLowerCase(),
-          );
-          if (value && value !== 'transparent' && value !== 'inherit' &&
-              value !== 'currentcolor' && value !== 'currentColor' &&
-              !value.startsWith('rgba(0, 0, 0, 0)')) {
+          const value = style.getPropertyValue(prop.replace(/([A-Z])/g, '-$1').toLowerCase());
+          if (value && value !== 'transparent' && value !== 'inherit' && value !== 'currentcolor' && value !== 'currentColor' && !value.startsWith('rgba(0, 0, 0, 0)')) {
             colors.add(value);
           }
         }
@@ -776,7 +842,7 @@ function rgbToHex(rgb: string): string | null {
   const match = rgb.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
   if (!match) return null;
   const [, r, g, b] = match;
-  return '#' + [r, g, b].map(c => parseInt(c).toString(16).padStart(2, '0')).join('');
+  return '#' + [r, g, b].map((c) => parseInt(c).toString(16).padStart(2, '0')).join('');
 }
 
 function isColorAllowed(hex: string, allowedHexes: Set<string>): boolean {
@@ -817,10 +883,7 @@ function hexDistance(a: string, b: string): number {
  * Enforce frozen PDS tokens: off-system color/type/space/radius → hard fail.
  * This is the gate that keeps crystallized tokens enforced across sections.
  */
-export function tokenAllowlistGate(
-  tsx: string,
-  pds: ProjectDesignSystem,
-): GateResult {
+export function tokenAllowlistGate(tsx: string, pds: ProjectDesignSystem): GateResult {
   const violations: Violation[] = [];
 
   // 1. Color check — hex values in code must be in the PDS color tokens
@@ -838,14 +901,33 @@ export function tokenAllowlistGate(
 
   // Always allow neutral ramp + transparent
   const neutrals = [
-    '#ffffff', '#fff', '#000000', '#000',
-    '#f9fafb', '#f3f4f6', '#e5e7eb', '#d1d5db',
-    '#9ca3af', '#6b7280', '#4b5563', '#374151',
-    '#1f2937', '#111827', '#030712',
+    '#ffffff',
+    '#fff',
+    '#000000',
+    '#000',
+    '#f9fafb',
+    '#f3f4f6',
+    '#e5e7eb',
+    '#d1d5db',
+    '#9ca3af',
+    '#6b7280',
+    '#4b5563',
+    '#374151',
+    '#1f2937',
+    '#111827',
+    '#030712',
     // Tailwind gray ramp extras
-    '#fafafa', '#f5f5f5', '#e5e5e5', '#d4d4d4',
-    '#a3a3a3', '#737373', '#525252', '#404040',
-    '#262626', '#171717', '#0a0a0a',
+    '#fafafa',
+    '#f5f5f5',
+    '#e5e5e5',
+    '#d4d4d4',
+    '#a3a3a3',
+    '#737373',
+    '#525252',
+    '#404040',
+    '#262626',
+    '#171717',
+    '#0a0a0a',
   ];
   for (const n of neutrals) {
     allowedColors.add(n);
@@ -853,7 +935,7 @@ export function tokenAllowlistGate(
 
   // Extract hex colors from code (not from comments)
   const codeWithoutComments = tsx
-    .replace(/\/\/.*$/gm, '')        // single-line comments
+    .replace(/\/\/.*$/gm, '') // single-line comments
     .replace(/\/\*[\s\S]*?\*\//g, ''); // block comments
 
   const hexPattern = /#[0-9a-fA-F]{3,8}\b/g;
@@ -861,9 +943,7 @@ export function tokenAllowlistGate(
   while ((match = hexPattern.exec(codeWithoutComments)) !== null) {
     const hex = match[0].toLowerCase();
     // Normalize 3-char hex to 6-char
-    const normalized = hex.length === 4
-      ? `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`
-      : hex;
+    const normalized = hex.length === 4 ? `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}` : hex;
 
     if (!allowedColors.has(normalized) && !allowedColors.has(hex)) {
       // Check with tolerance (ε = 15 in each channel — tighter than brand-data check)
@@ -893,9 +973,7 @@ export function tokenAllowlistGate(
   const twArbitraryColor = /\[#[0-9a-fA-F]{3,8}\]/g;
   while ((match = twArbitraryColor.exec(codeWithoutComments)) !== null) {
     const hex = match[0].slice(1, -1).toLowerCase(); // strip [ ]
-    const normalized = hex.length === 4
-      ? `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`
-      : hex;
+    const normalized = hex.length === 4 ? `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}` : hex;
 
     if (!allowedColors.has(normalized) && !allowedColors.has(hex)) {
       violations.push({
@@ -910,16 +988,9 @@ export function tokenAllowlistGate(
 
   // 3. Tailwind named color classes. Neutral ramps are allowed; chromatic
   // named colors drift from the frozen PDS unless they are token keys.
-  const tokenColorKeys = new Set(Object.keys(pds.tokens.color).map(k => k.toLowerCase()));
-  const neutralNames = new Set([
-    'white', 'black', 'transparent', 'current',
-    'slate', 'gray', 'zinc', 'neutral', 'stone',
-  ]);
-  const chromaticNames = new Set([
-    'red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald',
-    'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple',
-    'fuchsia', 'pink', 'rose',
-  ]);
+  const tokenColorKeys = new Set(Object.keys(pds.tokens.color).map((k) => k.toLowerCase()));
+  const neutralNames = new Set(['white', 'black', 'transparent', 'current', 'slate', 'gray', 'zinc', 'neutral', 'stone']);
+  const chromaticNames = new Set(['red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose']);
   const namedColorClass = /\b(?:bg|text|border|from|via|to|fill|stroke)-([a-z]+)(?:-\d{2,3})?\b/g;
   while ((match = namedColorClass.exec(codeWithoutComments)) !== null) {
     const name = match[1].toLowerCase();
@@ -978,7 +1049,7 @@ export function tokenAllowlistGate(
   }
 
   return {
-    pass: violations.filter(v => v.severity === 'critical' || v.severity === 'serious').length === 0,
+    pass: violations.filter((v) => v.severity === 'critical' || v.severity === 'serious').length === 0,
     violations,
   };
 }
@@ -1038,15 +1109,7 @@ function isColorPrefix(prefix: string): boolean {
 
 function looksLikeColorValue(value: string): boolean {
   const normalized = value.trim().toLowerCase();
-  return (
-    normalized.startsWith('#') ||
-    normalized.startsWith('rgb(') ||
-    normalized.startsWith('rgba(') ||
-    normalized.startsWith('hsl(') ||
-    normalized.startsWith('hsla(') ||
-    normalized.startsWith('color:') ||
-    normalized.startsWith('var(--color')
-  );
+  return normalized.startsWith('#') || normalized.startsWith('rgb(') || normalized.startsWith('rgba(') || normalized.startsWith('hsl(') || normalized.startsWith('hsla(') || normalized.startsWith('color:') || normalized.startsWith('var(--color');
 }
 
 function classifyTokenPrefix(prefix: string): TokenCategory | null {
@@ -1055,12 +1118,7 @@ function classifyTokenPrefix(prefix: string): TokenCategory | null {
   if (prefix === 'shadow') return 'shadow';
   if (['duration', 'delay', 'ease', 'animate'].includes(prefix)) return 'motion';
 
-  const spacePrefixes = [
-    'p', 'px', 'py', 'pt', 'pr', 'pb', 'pl',
-    'm', 'mx', 'my', 'mt', 'mr', 'mb', 'ml',
-    'gap', 'gap-x', 'gap-y', 'space-x', 'space-y',
-    'inset', 'inset-x', 'inset-y', 'top', 'right', 'bottom', 'left',
-  ];
+  const spacePrefixes = ['p', 'px', 'py', 'pt', 'pr', 'pb', 'pl', 'm', 'mx', 'my', 'mt', 'mr', 'mb', 'ml', 'gap', 'gap-x', 'gap-y', 'space-x', 'space-y', 'inset', 'inset-x', 'inset-y', 'top', 'right', 'bottom', 'left'];
   if (spacePrefixes.includes(prefix)) return 'space';
 
   return null;

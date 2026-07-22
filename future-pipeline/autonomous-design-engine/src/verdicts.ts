@@ -43,6 +43,17 @@ export interface RecordHumanVerdictInput {
   };
   /** M8: a rejected-but-interesting candidate, feeding R13 trajectory learning. */
   rejectedWithInterest?: boolean;
+
+  // C2.8 Phase 3 Reward Modeling fields
+  dimensions?: Record<string, number>;
+  annotations?: { x: number; y: number; text: string; target: 'iter0' | 'final' }[];
+  rationale?: string;
+  r16LiteOutcome?: 'shipped' | 'abandoned' | 'reworked';
+  abTestVariant?: 'text_only' | 'visual_annotated';
+
+  // C3.3 Phase 3 Multi-reviewer + uncertainty-routed review fields
+  reviewDurationMs?: number;
+  reviewRoute?: 'full-review' | 'spot-check' | 'audit-only';
 }
 
 const RATING_SCORE: Record<HumanRating, number> = {
@@ -56,9 +67,7 @@ const RATING_SCORE: Record<HumanRating, number> = {
  * Return the canonical verdicts.jsonl path for a run directory or JSONL file.
  */
 export function verdictsPath(outDirOrFile: string): string {
-  return outDirOrFile.endsWith('.jsonl')
-    ? outDirOrFile
-    : join(outDirOrFile, 'verdicts.jsonl');
+  return outDirOrFile.endsWith('.jsonl') ? outDirOrFile : join(outDirOrFile, 'verdicts.jsonl');
 }
 
 /**
@@ -67,7 +76,7 @@ export function verdictsPath(outDirOrFile: string): string {
 export function appendVerdict(outDirOrFile: string, entry: VerdictEntry): VerdictEntry {
   const validation = VerdictEntrySchema.safeParse(entry);
   if (!validation.success) {
-    throw new Error(`Invalid verdict entry: ${validation.error.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
+    throw new Error(`Invalid verdict entry: ${validation.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ')}`);
   }
 
   const outPath = verdictsPath(outDirOrFile);
@@ -92,7 +101,9 @@ export function readVerdicts(outDirOrFile: string): VerdictEntry[] {
     return [];
   }
 
-  const lines = readFileSync(outPath, 'utf-8').split('\n').filter(line => line.trim());
+  const lines = readFileSync(outPath, 'utf-8')
+    .split('\n')
+    .filter((line) => line.trim());
   const entries: VerdictEntry[] = [];
   for (let i = 0; i < lines.length; i++) {
     try {
@@ -113,10 +124,7 @@ export function readVerdicts(outDirOrFile: string): VerdictEntry[] {
 /**
  * Record an explicit approve/reject decision for calibration.
  */
-export function recordHumanVerdict(
-  outDirOrFile: string,
-  input: RecordHumanVerdictInput,
-): VerdictEntry {
+export function recordHumanVerdict(outDirOrFile: string, input: RecordHumanVerdictInput): VerdictEntry {
   const rating = input.rating ?? (input.decision === 'approve' ? 'good' : 'weak');
   return appendVerdict(outDirOrFile, {
     run_id: input.runId,
@@ -140,6 +148,13 @@ export function recordHumanVerdict(
       system_snapshot: input.distTags.systemSnapshot,
     },
     rejected_with_interest: input.rejectedWithInterest,
+    dimensions: input.dimensions,
+    annotations: input.annotations,
+    rationale: input.rationale,
+    r16_lite_outcome: input.r16LiteOutcome,
+    ab_test_variant: input.abTestVariant,
+    review_duration_ms: input.reviewDurationMs,
+    review_route: input.reviewRoute,
   });
 }
 
@@ -158,86 +173,12 @@ export function isPositiveHumanVerdict(entry: VerdictEntry): boolean {
 }
 
 /**
- * Run an interactive blind verdict session for a run.
+ * Run an interactive blind verdict session for a run using the C2.8 web UI.
  */
-export async function captureVerdict(
-  runId: string,
-  section: string,
-  iter0ShotsDir: string,
-  finalShotsDir: string,
-  outPath: string,
-): Promise<VerdictEntry> {
-  const rl = createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-
-  const ask = (question: string): Promise<string> =>
-    new Promise(resolve => rl.question(question, resolve));
-
-  // Randomize presentation order
-  const showFinalFirst = Math.random() > 0.5;
-  const labelA = showFinalFirst ? 'final' : 'iter0';
-  const labelB = showFinalFirst ? 'iter0' : 'final';
-  const dirA = showFinalFirst ? finalShotsDir : iter0ShotsDir;
-  const dirB = showFinalFirst ? iter0ShotsDir : finalShotsDir;
-
-  console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-  console.log('  BLIND VERDICT — compare two designs');
-  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
-  console.log(`  Run: ${runId}`);
-  console.log(`  Section: ${section}`);
-  console.log(`\n  Design A: ${dirA}`);
-  console.log(`  Design B: ${dirB}`);
-  console.log('\n  Open the screenshot directories above and compare the designs.\n');
-
-  // Get preference
-  let preferred: 'A' | 'B' = 'A';
-  while (true) {
-    const answer = await ask('  Which is better? (A or B): ');
-    if (answer.toUpperCase() === 'A' || answer.toUpperCase() === 'B') {
-      preferred = answer.toUpperCase() as 'A' | 'B';
-      break;
-    }
-    console.log('  Please enter A or B.');
-  }
-
-  // Get rating
-  let rating: 'bad' | 'weak' | 'good' | 'strong' = 'good';
-  while (true) {
-    const answer = await ask('  Rate your preferred design (bad/weak/good/strong): ');
-    if (['bad', 'weak', 'good', 'strong'].includes(answer.toLowerCase())) {
-      rating = answer.toLowerCase() as typeof rating;
-      break;
-    }
-    console.log('  Please enter: bad, weak, good, or strong.');
-  }
-
-  // Optional notes
-  const notes = await ask('  Any notes? (press Enter to skip): ');
-
-  rl.close();
-
-  // Map back from randomized labels
-  const preferredLabel = preferred === 'A' ? labelA : labelB;
-  const entry: VerdictEntry = {
-    run_id: runId,
-    section,
-    preferred: preferredLabel === 'final' ? 'final' : 'iter0',
-    rating,
-    source: 'blind-pair',
-    notes: notes.trim() || undefined,
-    timestamp: new Date().toISOString(),
-  };
-
-  appendVerdict(outPath, entry);
-
-  console.log(`\n  ✅ Verdict recorded: preferred ${entry.preferred}, rated ${entry.rating}`);
-  console.log(`  Saved to: ${outPath}\n`);
-
-  return entry;
+export async function captureVerdict(runId: string, section: string, iter0ShotsDir: string, finalShotsDir: string, outPath: string): Promise<VerdictEntry> {
+  const { captureVerdictInteractive } = await import('./verdictUI.js');
+  return captureVerdictInteractive(runId, section, iter0ShotsDir, finalShotsDir, outPath);
 }
-
 
 // ─── Queryable Verdict-Corpus Store (E2.1) ────────────────────────
 

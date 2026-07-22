@@ -1,0 +1,20 @@
+{
+  "client": "CloudSync Pro",
+  "industry": "SaaS / B2B software",
+  "location": "San Francisco",
+  "audience": "CTOs and engineering leaders at mid-market companies (200-2000 employees) evaluating DevOps platforms",
+  "goal": "Convert visitors from the product page to the pricing page with a transparent, easy-to-compare tier structure",
+  "section": {
+    "name": "pricing",
+    "content": {
+      "headline": "Simple, Transparent Pricing",
+      "subheadline": "No hidden fees. Scale as you grow.",
+      "cta": { "text": "Compare Plans", "href": "/pricing#compare" },
+      "items": [
+        { "tier": "Starter", "price": "$49/mo", "features": "5 projects, 10 GB storage" },
+        { "tier": "Growth", "price": "$149/mo", "features": "25 projects, 100 GB, priority support" },
+        { "tier": "Enterprise", "price": "Custom", "features": "Unlimited, SSO, SLA" }
+      ]
+    }
+  }
+}

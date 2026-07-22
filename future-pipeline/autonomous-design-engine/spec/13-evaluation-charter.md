@@ -75,6 +75,40 @@ Rigor here is what separates measurement from theater (F-SPEC-05, I12).
 - **Bias-probe suite (from birth) (M9).** A standing suite of probes added to the benchmark to measure judge biases (F-JDG-07): order-swap (flipping candidate presentation), verbosity-inflation (adding correct but irrelevant tokens), and style-transfer (swapping domains). Verdict stability across these probes must be measured and reported. Furthermore, **same-model vs cross-model agreement** are reported as separate standing metrics (their gap = measured correlated-blind-spot size).
 - **Human test-retest ritual (M13).** A fixed **retest set** (~10 artifacts, frozen early in Phase 0) is re-rated by the owner **quarterly**, blind to prior ratings. Self-agreement (test-retest correlation) is logged alongside the benchmark. A drift alert (agreement below a pre-registered floor) triggers immediate review of all thresholds calibrated on that rater.
 
+### 4.1 Uncertainty-Routed Human Review (R14 / C3.3) — Implementation Mechanics
+
+To maximize calibration per human-minute, human review attention is routed dynamically via `routeForReview()` (`src/reviewRouting.ts`) based on Critic confidence, section stakes, and active autonomy rung, producing three possible route decisions: `full-review`, `spot-check`, or `audit-only`.
+
+```
+                  ┌─────────────────────────────────────┐
+                  │          Critic Output              │
+                  └──────────────────┬──────────────────┘
+                                     │
+                    Verdict == 'fail' OR margin <= ±5 
+                    OR score < 70 OR Tier A (rung < 3)?
+                                    ╱ ╲
+                                   ╱   ╲
+                              YES ╱     ╲ NO
+                                 ▼       ▼
+                        full-review    spot-check / audit-only
+```
+
+#### Routing Rules:
+
+1. **`full-review` (mandatory human review):**
+   - **Verdict Fail:** Any candidate with a Critic verdict of `fail` always routes to `full-review`.
+   - **Low Confidence Margin:** Any candidate score within `±5` points of the pass threshold (e.g. 75–85 for threshold 80) is flagged as uncertain and routes to `full-review`.
+   - **Low Absolute Score:** Any candidate score below 70 routes to `full-review` regardless of threshold.
+   - **Tier A Section at Low Rung:** High-stakes sections (`TIER_A_SECTIONS`: `hero`, `pricing`, `checkout`, `signup`, `login`, `onboarding`, `payment`, `cta`, `landing`) always route to `full-review` unless active autonomy rung is ≥ 3 and score > 92.
+
+2. **`spot-check` (light human audit):**
+   - Applied to `Tier A` sections scoring > 92 when active autonomy rung is ≥ 3.
+   - Applied to routine sections scoring > 85 when active autonomy rung is 1 or 2.
+
+3. **`audit-only` (unattended pass, subject to standing random audit):**
+   - Applied to routine sections meeting threshold with high confidence when active autonomy rung is ≥ 3.
+   - Subject to standing random audit sampling (≥10% per `spec/09 §2`).
+
 ---
 
 ## 5. The external anchor (competitor & industry parity)

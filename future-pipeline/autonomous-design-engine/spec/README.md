@@ -252,14 +252,15 @@ The agent generates a design, **renders and looks at it**, a deterministic **Gua
 flowchart LR
     BRIEF["brief + memory\n(input bundle)"] --> IG{{"1 · Input Gate"}}
     IG -->|valid| GEN["2 · Generator (LLM)\nwrite React/TS component"]
-    GEN --> REN["3 · Eyes: render in browser"]
+    GEN --> REN["3 · Eyes: render & DOM drive"]
     REN --> RHG{{"4 · Render-Health Gate"}}
     RHG -->|render bug| FIX["repair (bounded)"] --> GEN
     RHG -->|valid| SHOT["5 · screenshot @1440/768/375"]
     SHOT --> HCG{{"6 · Hard-Constraint Gate\na11y · tokens · responsive · content"}}
     HCG -->|violation| GEN
     HCG -->|pass| CRIT["7 · Critic (LLM, fresh ctx)\nsubjective quality"]
-    CRIT --> PG{{"8 · Pass Gate\ndeterministic AND critic"}}
+    CRIT --> RM["8 · Dual-Judge Reward Model\nuniversal_craft vs domain_style (C3.5)"]
+    RM --> PG{{"9 · Pass Gate\ndeterministic AND critic/RM"}}
     PG -->|fail, budget left| GEN
     PG -->|pass| DONE["approved section"]
     PG -->|budget out| ESC["escalate\n(best-so-far)"]
@@ -325,10 +326,12 @@ flowchart TB
     end
     subgraph ENGINE["The Engine (autonomous)"]
         ORCH["Orchestrator"]
+        STRAT["Strategy/IA Generator (E2.4)"]
         GEN["Generator (LLM)"]
-        EYES["Eyes (headless browser)"]
+        EYES["Eyes (headless browser + DOM driver)"]
         GUARD["Guardrail Layer (deterministic gates)"]
         CRIT["Critic / Judge (LLM, fresh ctx)"]
+        RM["Dual-Judge Reward Model (C3.5)"]
     end
     subgraph MEM["Memory (grows over time)"]
         LIB[("Global Library — soft")]
@@ -338,18 +341,21 @@ flowchart TB
     subgraph OUT["What you GET back"]
         ART["Finished React/TS section(s) + screenshots"]
         TRACE["Run trace (every decision)"]
+        TEL["Telemetry Store (events.jsonl — E3.3)"]
     end
 
     BRIEF --> ORCH
     REFS -. soft .-> ORCH
     BDATA -->|palette+type| BRAND
     APPROVE -->|derive + approve| BRAND
-    ORCH --> GEN --> EYES --> GUARD --> CRIT --> ORCH
+    ORCH --> STRAT
+    ORCH --> GEN --> EYES --> GUARD --> CRIT --> RM --> ORCH
     LIB -. soft .-> ORCH
     BRAND == hard ==> ORCH
     PDS == hard ==> ORCH
     ORCH --> ART
     ORCH --> TRACE
+    ORCH -.-> TEL
     ART -->|approved, de-identified| LIB
 ```
 

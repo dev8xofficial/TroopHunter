@@ -14,54 +14,25 @@ import { mkdirSync, existsSync, writeFileSync, copyFileSync } from 'fs';
 import { join, dirname, resolve } from 'path';
 import { randomUUID } from 'crypto';
 import type { Config } from './config.js';
-import type {
-  Brief,
-  BrandData,
-  InputBundle,
-  RunRecord,
-  RunResult,
-  TerminalState,
-  DimensionScores,
-  CandidateScore,
-  BrandFoundation,
-  ProjectDesignSystem,
-  SectionOutput,
-  Artifact,
-  LibraryEntry,
-  Plan,
-} from './schema.js';
+import type { Brief, BrandData, InputBundle, RunRecord, RunResult, TerminalState, DimensionScores, CandidateScore, BrandFoundation, ProjectDesignSystem, SectionOutput, Artifact, LibraryEntry, Plan, RenderResult, ReferenceRef } from './schema.js';
+import { screenReferenceInjection } from './refs.js';
 import { getProviderForRole, type ModelProvider } from './model.js';
 import { generate, GeneratorError } from './generator.js';
 import { render, copyAssetsToHarness, cleanup } from './eyes.js';
-import {
-  briefComprehensionGate,
-  inputGate,
-  renderHealthGate,
-  hardConstraintGate,
-  tokenAllowlistGate,
-} from './guardrails.js';
+import { briefComprehensionGate, inputGate, renderHealthGate, hardConstraintGate, tokenAllowlistGate } from './guardrails.js';
 import { critique } from './critic.js';
 import { appendIteration, writeRunConfig } from './trace.js';
 import { serializeFeedback } from './prompts.js';
+import { getEmbeddingProvider } from './embeddings.js';
 import { crystallize } from './crystallizer.js';
-import { retrieveLibraryForBrief } from './library.js';
+import { libraryFilePath, retrieveLibraryForBrief, snapshotLibraryVersionForRun, writeLibrary, deriveClientIdSlug, type AblationArm } from './library.js';
+import { proposeAdversarialCase } from './benchmark.js';
 import { emitEscalation, listEscalations } from './escalations.js';
-import {
-  readBrand,
-  readPDS,
-  readArtifact,
-  writeArtifact,
-  writeArtifactQA,
-  getSectionRunDir,
-} from './store.js';
-import { runWholeArtifactQA } from './qa.js';
-import {
-  budgetFromConfig,
-  checkCostBudget,
-  formatCostSummary,
-  summarizeRunResults,
-  validateProductionReadiness,
-} from './production.js';
+import { readBrand, readPDS, readArtifact, writeArtifact, writeArtifactQA, getSectionRunDir } from './store.js';
+import { runWholeArtifactQA, offendingSections } from './qa.js';
+import { detectPlateau, getAdaptiveK, selectBestCandidate } from './searchDynamics.js';
+import { TIER_A_SECTIONS } from './reviewRouting.js';
+import { budgetFromConfig, checkCostBudget, formatCostSummary, summarizeRunResults, validateProductionReadiness } from './production.js';
 
 /**
  * Run the full generate→render→screenshot→critique→edit loop.
@@ -72,19 +43,14 @@ import {
  *   3 = ABORTED (unrepairable)
  *   1 = ERROR
  */
-export async function runLoop(
-  cfg: Config & { control_mode?: boolean },
-  brief: Brief,
-  brandData: BrandData | undefined,
-  plan: Plan | undefined,
-  outDir: string,
-  briefPath: string,
-  brand?: BrandFoundation,
-  pds?: ProjectDesignSystem,
-  ctxShots?: { sectionName: string; breakpoint: string; path: string }[],
-): Promise<RunResult> {
+export async function runLoop(cfg: Config & { control_mode?: boolean }, brief: Brief, brandData: BrandData | undefined, plan: Plan | undefined, outDir: string, briefPath: string, brand?: BrandFoundation, pds?: ProjectDesignSystem, ctxShots?: { sectionName: string; breakpoint: string; path: string }[], refs?: ReferenceRef[], libraryArm: AblationArm = 'text-Library'): Promise<RunResult> {
   const runId = randomUUID().slice(0, 8);
-  const sectionId = `${brief.client.toLowerCase().replace(/\s+/g, '-')}_${brief.section.name}`;
+  // A frozen brand's client_id is the canonical slug when one exists;
+  // otherwise derive the SAME way Library retrieval does (library.ts's
+  // deriveClientIdSlug) so sectionId and Library client-scoping never drift
+  // apart into two different ideas of "this client's id."
+  const clientId = brand?.client_id ?? deriveClientIdSlug(brief.client);
+  const sectionId = `${clientId}_${brief.section.name}`;
   const startTime = Date.now();
   const modelCalls = { current: 0, max: cfg.maxModelCalls };
   let totalTokens = { input: 0, output: 0 };
@@ -145,9 +111,7 @@ export async function runLoop(
   // `answerEscalation()` updates the JSONL record but nothing ever reads it
   // back — the "park-and-rerun" contract was answer-only, never resume.
   const priorEscalations = listEscalations(outDir);
-  const resolvedComprehension = priorEscalations.find(
-    e => e.type === 'comprehension' && e.sectionId === brief.section.name && e.status === 'resolved' && e.answer,
-  );
+  const resolvedComprehension = priorEscalations.find((e) => e.type === 'comprehension' && e.sectionId === brief.section.name && e.status === 'resolved' && e.answer);
 
   let comprehensionAnswerNote: string | undefined;
   if (resolvedComprehension) {
@@ -167,7 +131,7 @@ export async function runLoop(
         type: 'comprehension',
         runId,
         sectionId: brief.section.name,
-        question: `Brief comprehension failed with violations: ${comprehensionResult.violations.map(v => v.message).join(', ')}`,
+        question: `Brief comprehension failed with violations: ${comprehensionResult.violations.map((v) => v.message).join(', ')}`,
       });
       console.error('Escalation emitted. Parking run until answered. Answer it with `ade escalation answer` and re-run the same --out to resume.');
       return makeResult('ABORTED', outDir, 0, totalTokens, startTime);
@@ -182,8 +146,25 @@ export async function runLoop(
     rewrittenAssets = copyAssetsToHarness(brief.section.assets, briefDir);
   }
 
+  // ── Reference activation (C2.4) ──────────────────────────────────
+  // I9/F-SEC-02: refs are untrusted data — the injection screen ALWAYS
+  // runs, unconditionally, before any reference reaches a prompt. A
+  // blocked reference is dropped and logged, never sanitized-and-kept.
+  let activeRefs: ReferenceRef[] = [];
+  if (refs && refs.length > 0) {
+    const { safe, blocked } = screenReferenceInjection(refs);
+    for (const b of blocked) {
+      console.warn(`⚠ Reference blocked (I9 injection-safety, pattern ${b.pattern}): ${b.ref.path}`);
+    }
+    activeRefs = safe;
+  }
+
   // ── Assemble input bundle (I1 precedence) ────────────────────────
-  const softLibrary = await retrieveLibraryForBrief(cfg, brief, 5);
+  const softLibrary = await retrieveLibraryForBrief(cfg, brief, 5, libraryArm, clientId);
+  // C2.2: record exactly which Library version this run retrieved against —
+  // reproducibility. A run's neighbor set can always be reconstructed later
+  // from this version's snapshot, independent of later Library writes.
+  snapshotLibraryVersionForRun(outDir);
   const bundle: InputBundle = {
     brief: {
       ...brief,
@@ -200,6 +181,7 @@ export async function runLoop(
     hardBrand: brand && brand.status === 'frozen' ? brand : undefined,
     hardSystem: pds && pds.status === 'foundation-frozen' ? pds : undefined,
     ctxShots: ctxShots && ctxShots.length > 0 ? ctxShots : undefined,
+    refs: activeRefs.length > 0 ? activeRefs : undefined,
     softLibrary: softLibrary.length > 0 ? softLibrary : undefined,
   };
   const constraintBrandData = getConstraintBrandData(brandData, brand);
@@ -218,9 +200,16 @@ export async function runLoop(
   let terminalState: TerminalState = 'ESCALATED';
   let iterationCount = 0;
 
+  // C3.6: Search Dynamics state
+  const scoreHistory: number[] = [];
+  const isTierA = TIER_A_SECTIONS.has(brief.section.name.toLowerCase());
+
   // ── Main Loop ────────────────────────────────────────────────────
   for (let iter = 0; iter < cfg.maxIters; iter++) {
     iterationCount = iter + 1;
+    const isPlateaued = detectPlateau(scoreHistory);
+    const currentK = getAdaptiveK(cfg.variations, iter, isPlateaued, isTierA);
+
     const iterDir = join(outDir, 'iterations', `iter-${iter}`);
     mkdirSync(iterDir, { recursive: true });
 
@@ -243,22 +232,15 @@ export async function runLoop(
 
     // ── Generate N candidates ────────────────────────────────────
     // ── Generate N candidates ────────────────────────────────────
-    console.log(`\n🎨 Generating ${cfg.variations} candidate(s)...`);
+    console.log(`\n🎨 Generating ${currentK} candidate(s) (C3.6 adaptive k)...`);
     const candidates: { id: string; tsx: string; quota?: any; exploration?: boolean; tokenBreakdown?: import('./prompts.js').PromptTokenBreakdown }[] = [];
 
-    for (let v = 0; v < cfg.variations; v++) {
+    for (let v = 0; v < currentK; v++) {
       const candidateId = `iter${iter}-cand${v + 1}`;
 
       try {
         const isExploration = iter === 0 && v === 0 && !cfg.control_mode;
-        const genResult = await generate(
-          genProvider,
-          bundle,
-          lastFeedback,
-          cfg.genTemperature,
-          modelCalls,
-          isExploration
-        );
+        const genResult = await generate(genProvider, bundle, lastFeedback, cfg.genTemperature, modelCalls, isExploration);
         totalTokens.input += genResult.usage.input;
         totalTokens.output += genResult.usage.output;
 
@@ -294,7 +276,7 @@ export async function runLoop(
     // ── Render & gate each candidate (sequentially) ──────────────
     // ── Render & gate each candidate (sequentially) ──────────────
     console.log(`\n👁 Rendering ${candidates.length} candidate(s)...`);
-    const renderValid: { id: string; tsx: string; shots: Record<string, string>; hardPass: boolean; hardViolations: string[]; quota?: any; exploration?: boolean; tokenBreakdown?: import('./prompts.js').PromptTokenBreakdown }[] = [];
+    const renderValid: { id: string; tsx: string; shots: Record<string, string>; hardPass: boolean; hardViolations: string[]; quota?: any; exploration?: boolean; tokenBreakdown?: import('./prompts.js').PromptTokenBreakdown; domInfo?: RenderResult['domInfo'] }[] = [];
 
     for (const candidate of candidates) {
       console.log(`  Rendering ${candidate.id}...`);
@@ -303,14 +285,7 @@ export async function runLoop(
       const candDir = join(iterDir, candidate.id);
       let renderResult;
       try {
-        renderResult = await render(
-          candidate.tsx,
-          candidate.id,
-          cfg.breakpoints,
-          cfg,
-          join(candDir, 'render'),
-          async page => (await hardConstraintGate(page, bundle.brief, constraintBrandData)).violations,
-        );
+        renderResult = await render(candidate.tsx, candidate.id, cfg.breakpoints, cfg, join(candDir, 'render'), async (page) => (await hardConstraintGate(page, bundle.brief, constraintBrandData)).violations);
       } catch (err) {
         console.error(`  ❌ Render failed for ${candidate.id}:`, err instanceof Error ? err.message : err);
         continue;
@@ -321,7 +296,11 @@ export async function runLoop(
       mkdirSync(shotsDir, { recursive: true });
       for (const [bp, path] of Object.entries(renderResult.shots)) {
         const destPath = join(shotsDir, `${bp}.png`);
-        try { copyFileSync(path, destPath); } catch { /* ignore */ }
+        try {
+          copyFileSync(path, destPath);
+        } catch {
+          /* ignore */
+        }
         renderResult.shots[bp] = destPath;
       }
 
@@ -340,29 +319,16 @@ export async function runLoop(
 
           console.log(`  🔧 Repair attempt ${repair + 1}/${cfg.renderRepairTries}...`);
           const repairFeedback = serializeFeedback(
-            healthResult.violations.map(v => `[RENDER FIX] ${v.message}`),
+            healthResult.violations.map((v) => `[RENDER FIX] ${v.message}`),
             '',
           );
 
           try {
-            const repairResult = await generate(
-              genProvider,
-              bundle,
-              repairFeedback,
-              cfg.genTemperature,
-              modelCalls,
-            );
+            const repairResult = await generate(genProvider, bundle, repairFeedback, cfg.genTemperature, modelCalls);
             totalTokens.input += repairResult.usage.input;
             totalTokens.output += repairResult.usage.output;
 
-            const repairRender = await render(
-              repairResult.tsx,
-              `${candidate.id}-repair${repair}`,
-              cfg.breakpoints,
-              cfg,
-              join(candDir, 'render'),
-              async page => (await hardConstraintGate(page, bundle.brief, constraintBrandData)).violations,
-            );
+            const repairRender = await render(repairResult.tsx, `${candidate.id}-repair${repair}`, cfg.breakpoints, cfg, join(candDir, 'render'), async (page) => (await hardConstraintGate(page, bundle.brief, constraintBrandData)).violations);
             const repairHealth = await renderHealthGate(repairResult.tsx, repairRender);
 
             if (repairHealth.pass) {
@@ -373,7 +339,11 @@ export async function runLoop(
               // Copy repaired shots
               for (const [bp, path] of Object.entries(repairRender.shots)) {
                 const destPath = join(shotsDir, `${bp}.png`);
-                try { copyFileSync(path, destPath); } catch { /* ignore */ }
+                try {
+                  copyFileSync(path, destPath);
+                } catch {
+                  /* ignore */
+                }
                 renderResult.shots[bp] = destPath;
               }
               break;
@@ -432,7 +402,8 @@ export async function runLoop(
         hardViolations,
         quota: candidate.quota,
         exploration: candidate.exploration,
-        tokenBreakdown: candidate.tokenBreakdown
+        tokenBreakdown: candidate.tokenBreakdown,
+        domInfo: renderResult.domInfo,
       });
 
       console.log(`  ✅ ${candidate.id} render-valid.`);
@@ -458,10 +429,7 @@ export async function runLoop(
       break;
     }
 
-    const candidatesInfo: Record<string, { shots: Record<string, string>, domInfo?: any }> = {};
-    for (const c of renderValid) {
-      candidatesInfo[c.id] = { shots: c.shots };
-    }
+    const candidatesInfo = buildCandidatesInfo(renderValid);
 
     let criticOutput;
     try {
@@ -478,7 +446,7 @@ export async function runLoop(
 
     // ── Update best-so-far (I4 — never regress) ─────────────────
     for (const candidateScore of criticOutput.candidates) {
-      const candidate = renderValid.find(c => c.id === candidateScore.candidate_id);
+      const candidate = renderValid.find((c) => c.id === candidateScore.candidate_id);
       if (!candidate) continue;
 
       const isEligible = candidate.hardPass && candidateScore.verdict === 'pass';
@@ -495,15 +463,8 @@ export async function runLoop(
           shots: candidate.shots,
         };
       } else {
-        // Eligible beats non-eligible; among same eligibility, higher weighted_total wins
         const currentEligible = bestSoFar.hardPass;
-        if (
-          (isEligible && !currentEligible) ||
-          (isEligible === currentEligible && score.weighted_total > bestSoFar.scores.weighted_total) ||
-          (isEligible === currentEligible &&
-            score.weighted_total === bestSoFar.scores.weighted_total &&
-            score.craft > bestSoFar.scores.craft)
-        ) {
+        if (isEligible && !currentEligible) {
           bestSoFar = {
             tsx: candidate.tsx,
             scores: score,
@@ -512,6 +473,25 @@ export async function runLoop(
             hardPass: candidate.hardPass,
             shots: candidate.shots,
           };
+        } else if (isEligible === currentEligible) {
+          // C3.6 - R8 Pareto-front selection for best-so-far
+          const mockBestSoFar: CandidateScore = {
+            candidate_id: bestSoFar.candidateId,
+            scores: bestSoFar.scores,
+            verdict: 'pass', // placeholder, eligibility is checked outside
+            feedback: '',
+          };
+          const winner = selectBestCandidate([mockBestSoFar, candidateScore], true);
+          if (winner?.candidate_id === candidateScore.candidate_id) {
+            bestSoFar = {
+              tsx: candidate.tsx,
+              scores: score,
+              candidateId: candidate.id,
+              iteration: iter,
+              hardPass: candidate.hardPass,
+              shots: candidate.shots,
+            };
+          }
         }
       }
 
@@ -549,16 +529,15 @@ export async function runLoop(
     }
 
     // ── Pass Gate check ──────────────────────────────────────────
-    // Use the best candidate from ranking (or first if no ranking)
-    const bestCandidateId = criticOutput.ranking?.[0] ?? criticOutput.candidates[0]?.candidate_id;
-    const bestCandidate = criticOutput.candidates.find(c => c.candidate_id === bestCandidateId);
-    const bestRenderCandidate = renderValid.find(c => c.id === bestCandidateId);
+    // C3.6 - R8 Pareto selection instead of pure ranking fallback
+    const bestCandidate = selectBestCandidate(criticOutput.candidates, true);
+    const bestCandidateId = bestCandidate?.candidate_id;
+    const bestRenderCandidate = renderValid.find((c) => c.id === bestCandidateId);
 
     if (bestCandidate && bestRenderCandidate) {
-      const passGate =
-        bestRenderCandidate.hardPass &&
-        bestCandidate.verdict === 'pass' &&
-        bestCandidate.scores.weighted_total >= cfg.threshold;
+      scoreHistory.push(bestCandidate.scores.weighted_total); // Record for plateau detection
+
+      const passGate = bestRenderCandidate.hardPass && bestCandidate.verdict === 'pass' && bestCandidate.scores.weighted_total >= cfg.threshold;
 
       if (passGate) {
         console.log(`\n✅ APPROVED! Score: ${bestCandidate.scores.weighted_total} (threshold: ${cfg.threshold})`);
@@ -569,6 +548,13 @@ export async function runLoop(
       // Carry feedback forward
       const hardViolationMessages = bestRenderCandidate.hardViolations;
       lastFeedback = serializeFeedback(hardViolationMessages, bestCandidate.feedback);
+
+      // C3.6 - R7 Diversity Injection (Restart on Plateau)
+      if (detectPlateau(scoreHistory)) {
+        console.log(`\n🔄 R7: Plateau detected! Max variation < 2 over recent iterations. Injecting diversity...`);
+        lastFeedback = 'ABANDON PREVIOUS DIRECTION. We are stuck in a local optimum. Discard the current layout and try a radically different structural or aesthetic approach that still fits the brief.';
+        // We do NOT clear bestSoFar (so we never regress), but we push the generator to start over.
+      }
 
       console.log(`\n📊 Score: ${bestCandidate.scores.weighted_total} (threshold: ${cfg.threshold}) — continuing...`);
     }
@@ -582,6 +568,20 @@ export async function runLoop(
         sectionId,
         question: `Max iterations (${cfg.maxIters}) reached without passing gates.`,
       });
+
+      // C3.9: Propose adversarial case if severely failed
+      let failureReason = '';
+      if (!bestSoFar) {
+        failureReason = 'All candidates failed render/health gates across all iterations.';
+      } else if (!bestSoFar.hardPass) {
+        failureReason = 'Consistently failed hard-constraint gate despite max iterations.';
+      } else if (bestSoFar.scores.weighted_total < 40) {
+        failureReason = `Critic score plateaued at severely low value (${bestSoFar.scores.weighted_total}).`;
+      }
+
+      if (failureReason) {
+        proposeAdversarialCase(bundle.brief, failureReason);
+      }
     }
   }
 
@@ -602,7 +602,11 @@ export async function runLoop(
       const finalRender = await render(bestSoFar.tsx, 'final', cfg.breakpoints, cfg, finalDir);
       for (const [bp, path] of Object.entries(finalRender.shots)) {
         const destPath = join(finalShotsDir, `${bp}.png`);
-        try { copyFileSync(path, destPath); } catch { /* ignore */ }
+        try {
+          copyFileSync(path, destPath);
+        } catch {
+          /* ignore */
+        }
         finalShots[bp] = destPath;
       }
     } catch {
@@ -648,21 +652,31 @@ export async function runLoop(
  */
 const MAX_CONTEXT_SECTIONS = 3;
 
-export function boundedContextShots(
-  contextShots: { sectionName: string; breakpoint: string; path: string }[],
-): { sectionName: string; breakpoint: string; path: string }[] | undefined {
+export function boundedContextShots(contextShots: { sectionName: string; breakpoint: string; path: string }[]): { sectionName: string; breakpoint: string; path: string }[] | undefined {
   if (contextShots.length === 0) return undefined;
-  const recentSectionNames = [...new Set(contextShots.map(s => s.sectionName))].slice(-MAX_CONTEXT_SECTIONS);
-  const bounded = contextShots.filter(s => recentSectionNames.includes(s.sectionName));
+  const recentSectionNames = [...new Set(contextShots.map((s) => s.sectionName))].slice(-MAX_CONTEXT_SECTIONS);
+  const bounded = contextShots.filter((s) => recentSectionNames.includes(s.sectionName));
   return bounded.length > 0 ? bounded : undefined;
 }
 
-function isBudgetExceeded(
-  cfg: Config,
-  modelCalls: { current: number; max: number },
-  totalTokens: { input: number; output: number },
-  startTime: number,
-): boolean {
+/**
+ * C0.8: builds the exact payload the Critic receives per candidate.
+ * Extracted to a named function (not left as an inline loop) after a real
+ * regression where the inline version silently dropped `domInfo` —
+ * craft metrics + font-substitution disclosure (prompts.ts's CAVEATS
+ * block) never reached the Critic despite being fully implemented and
+ * correct in isolation. This function is the single place that
+ * transformation happens, so it can be tested directly.
+ */
+export function buildCandidatesInfo(renderValid: { id: string; shots: Record<string, string>; domInfo?: RenderResult['domInfo'] }[]): Record<string, { shots: Record<string, string>; domInfo?: RenderResult['domInfo'] }> {
+  const candidatesInfo: Record<string, { shots: Record<string, string>; domInfo?: RenderResult['domInfo'] }> = {};
+  for (const c of renderValid) {
+    candidatesInfo[c.id] = { shots: c.shots, domInfo: c.domInfo };
+  }
+  return candidatesInfo;
+}
+
+function isBudgetExceeded(cfg: Config, modelCalls: { current: number; max: number }, totalTokens: { input: number; output: number }, startTime: number): boolean {
   if (modelCalls.current >= modelCalls.max) {
     console.warn(`⚠ Model call budget exceeded: ${modelCalls.current}/${modelCalls.max}`);
     return true;
@@ -683,15 +697,7 @@ function isBudgetExceeded(
   return false;
 }
 
-function makeResult(
-  state: TerminalState,
-  outDir: string,
-  iterations: number,
-  totalTokens: { input: number; output: number },
-  startTime: number,
-  best?: { tsx: string; scores: DimensionScores; candidateId: string } | null,
-  finalShots?: Record<string, string>,
-): RunResult {
+function makeResult(state: TerminalState, outDir: string, iterations: number, totalTokens: { input: number; output: number }, startTime: number, best?: { tsx: string; scores: DimensionScores; candidateId: string } | null, finalShots?: Record<string, string>): RunResult {
   return {
     state,
     finalTsx: best?.tsx,
@@ -705,10 +711,7 @@ function makeResult(
   };
 }
 
-function getConstraintBrandData(
-  brandData?: BrandData,
-  brand?: BrandFoundation,
-): BrandData | undefined {
+function getConstraintBrandData(brandData?: BrandData, brand?: BrandFoundation): BrandData | undefined {
   if (brandData) {
     return brandData;
   }
@@ -720,6 +723,7 @@ function getConstraintBrandData(
     client_id: brand.client_id,
     palette: brand.identity.palette.map(({ role, value }) => ({ role, value })),
     typography: brand.identity.typography,
+    darkMode: { enabled: false }, // frozen BrandFoundation doesn't carry the dark-mode axis
     logo_ref: brand.identity.logo_ref,
   };
 }
@@ -730,14 +734,7 @@ function getConstraintBrandData(
  * Assemble the input bundle with I1 precedence enforcement:
  * floor > brand > PDS > brief > library > refs.
  */
-export function assembleBundle(
-  brief: Brief,
-  brandData?: BrandData,
-  brand?: BrandFoundation,
-  pds?: ProjectDesignSystem,
-  ctxShots?: { sectionName: string; breakpoint: string; path: string }[],
-  softLibrary?: LibraryEntry[],
-): InputBundle {
+export function assembleBundle(brief: Brief, brandData?: BrandData, brand?: BrandFoundation, pds?: ProjectDesignSystem, ctxShots?: { sectionName: string; breakpoint: string; path: string }[], softLibrary?: LibraryEntry[]): InputBundle {
   return {
     brief,
     brandData,
@@ -752,16 +749,7 @@ export function assembleBundle(
  * Run a section loop with brand/PDS/ctxShots support (Phase 1).
  * This wraps the base runLoop with Phase 1 inputs.
  */
-export async function runSectionLoop(
-  cfg: Config,
-  brief: Brief,
-  brandData: BrandData | undefined,
-  outDir: string,
-  briefPath: string,
-  brand?: BrandFoundation,
-  pds?: ProjectDesignSystem,
-  ctxShots?: { sectionName: string; breakpoint: string; path: string }[],
-): Promise<RunResult> {
+export async function runSectionLoop(cfg: Config, brief: Brief, brandData: BrandData | undefined, outDir: string, briefPath: string, brand?: BrandFoundation, pds?: ProjectDesignSystem, ctxShots?: { sectionName: string; breakpoint: string; path: string }[]): Promise<RunResult> {
   // For Phase 1, the runLoop already reads hardBrand/hardSystem/ctxShots
   // from the bundle. We just need to pass them through.
   // The token-allowlist gate integration happens inside the loop
@@ -771,7 +759,7 @@ export async function runSectionLoop(
 
 /**
  * Run a full site: sequence sections with crystallization + QA (Phase 1).
- * 
+ *
  * Flow:
  * 1. Load frozen brand
  * 2. For each section in order:
@@ -780,29 +768,19 @@ export async function runSectionLoop(
  *    c. Later sections: run against frozen PDS + context shots
  * 3. Assemble + whole-artifact QA
  */
-export async function runSiteLoop(
-  cfg: Config,
-  clientId: string,
-  surface: 'website' | 'product',
-  sections: { name: string; brief: Brief; briefPath: string; brandData?: BrandData }[],
-): Promise<{ artifact: Artifact; results: RunResult[] }> {
+export async function runSiteLoop(cfg: Config, clientId: string, surface: 'website' | 'product', sections: { name: string; brief: Brief; briefPath: string; brandData?: BrandData }[]): Promise<{ artifact: Artifact; results: RunResult[] }> {
   const productionReadiness = validateProductionReadiness(cfg);
   for (const warning of productionReadiness.warnings) {
     console.warn(`Production warning [${warning.rule}]: ${warning.message}`);
   }
   if (cfg.productionMode && !productionReadiness.pass) {
-    throw new Error(
-      `Production readiness failed: ${productionReadiness.violations.map(v => v.message).join('; ')}`,
-    );
+    throw new Error(`Production readiness failed: ${productionReadiness.violations.map((v) => v.message).join('; ')}`);
   }
 
   // Load brand
   const brand = readBrand(clientId);
   if (!brand || brand.status !== 'frozen') {
-    throw new Error(
-      `Brand for "${clientId}" must be frozen before running design site. ` +
-      `Use \`ade design brand --approve\` first.`
-    );
+    throw new Error(`Brand for "${clientId}" must be frozen before running design site. ` + `Use \`ade design brand --approve\` first.`);
   }
 
   const results: RunResult[] = [];
@@ -821,7 +799,10 @@ export async function runSiteLoop(
   // Crystallization is a judgment call over the approved hero (spec/04 §3) — critic-tier, not generator-tier.
   const criticProvider = await getProviderForRole(cfg, 'critic');
 
-  for (let i = 0; i < sections.length; i++) {
+  // Builds (or rebuilds) a single section in place and returns whether it's
+  // now approved. Factored out so C1.11's re-loop pass below can re-run the
+  // exact same path a first-time build takes — never a blind patch.
+  const buildSection = async (i: number): Promise<boolean> => {
     const sec = sections[i];
     const isFirst = i === 0;
     const outDir = getSectionRunDir(clientId, surface, sec.name);
@@ -831,21 +812,22 @@ export async function runSiteLoop(
     console.log(`${'='.repeat(60)}`);
 
     // Load current PDS (null for first section)
-    let pds = readPDS(clientId, surface);
+    const pds = readPDS(clientId, surface);
+
+    // Context shots from every OTHER already-built section (never this one's
+    // own stale shots on a re-loop).
+    const priorShots = contextShots.filter((s) => s.sectionName !== sec.name);
 
     // Run the section loop
-    const result = await runSectionLoop(
-      cfg, sec.brief, sec.brandData, outDir, sec.briefPath,
-      brand, pds ?? undefined, boundedContextShots(contextShots),
-    );
+    const result = await runSectionLoop(cfg, sec.brief, sec.brandData, outDir, sec.briefPath, brand, pds ?? undefined, boundedContextShots(priorShots));
     results.push(result);
 
     if (result.state !== 'APPROVED' && result.state !== 'ESCALATED') {
       console.error(`\n❌ Section "${sec.name}" ${result.state}. Stopping site generation.`);
-      break;
+      return false;
     }
 
-    // Record the section
+    // Record (or replace) the section
     const sectionOutput: SectionOutput = {
       section_id: `${clientId}_${sec.name}`,
       name: sec.name,
@@ -862,34 +844,77 @@ export async function runSiteLoop(
       },
       status: result.state === 'APPROVED' ? 'approved' : 'draft',
     };
-    builtSections.push(sectionOutput);
+    const existingIdx = builtSections.findIndex((s) => s.name === sec.name);
+    if (existingIdx >= 0) {
+      builtSections[existingIdx] = sectionOutput;
+    } else {
+      builtSections.push(sectionOutput);
+    }
 
     // Crystallize after first approved section
     if (isFirst && result.state === 'APPROVED' && result.finalTsx) {
       console.log('\n🔮 Crystallizing design system from first section...');
       try {
-        await crystallize(
-          result.finalTsx, sec.name, brand, clientId, surface, criticProvider,
-          getSectionRunDir(clientId, surface, `${sec.name}-crystallize-review`),
-        );
+        await crystallize(result.finalTsx, sec.name, brand, clientId, surface, criticProvider, getSectionRunDir(clientId, surface, `${sec.name}-crystallize-review`));
       } catch (err) {
         console.error('\n⚠ Crystallization failed:', err instanceof Error ? err.message : err);
         console.log('Continuing without frozen PDS...');
       }
     }
 
-    // Collect context shots for next sections
+    // Collect (or replace) context shots for next sections
+    for (let j = contextShots.length - 1; j >= 0; j--) {
+      if (contextShots[j].sectionName === sec.name) contextShots.splice(j, 1);
+    }
     if (result.finalShots) {
       for (const [bp, path] of Object.entries(result.finalShots)) {
         contextShots.push({ sectionName: sec.name, breakpoint: bp, path });
       }
     }
+
+    return result.state === 'APPROVED';
+  };
+
+  for (let i = 0; i < sections.length; i++) {
+    const ok = await buildSection(i);
+    if (!ok) break;
   }
 
   // Update artifact
   artifact.sections = builtSections;
-  const finalPds = readPDS(clientId, surface);
-  const qaReport = runWholeArtifactQA(artifact, brand, finalPds, { threshold: cfg.threshold });
+  let finalPds = readPDS(clientId, surface);
+  let qaReport = runWholeArtifactQA(artifact, brand, finalPds, { threshold: cfg.threshold });
+
+  // C1.11: on a whole-artifact QA failure that names specific section(s)
+  // (nav/rhythm drift, token drift, below-threshold), re-loop exactly those
+  // sections — never hand-patch the assembled artifact — then re-check.
+  // Bounded (not unbounded): a section that still fails after retrying is
+  // left as the QA report's problem to surface, not silently looped forever.
+  const sectionNames = sections.map((s) => s.name);
+  const ARTIFACT_QA_MAX_RELOOP_TRIES = 2;
+  let qaReloopTries = 0;
+  while (!qaReport.pass && qaReloopTries < ARTIFACT_QA_MAX_RELOOP_TRIES) {
+    const offending = offendingSections(qaReport, sectionNames);
+    if (offending.size === 0) {
+      // No violation names a specific section (e.g. empty-artifact,
+      // brand-token-missing) — a section re-loop cannot fix this.
+      break;
+    }
+    console.warn(`\n⚠ Whole-artifact QA failed (try ${qaReloopTries + 1}/${ARTIFACT_QA_MAX_RELOOP_TRIES}): ` + `re-looping offending section(s): ${[...offending].join(', ')}`);
+    for (const name of offending) {
+      const idx = sections.findIndex((s) => s.name === name);
+      if (idx >= 0) await buildSection(idx);
+    }
+    artifact.sections = builtSections;
+    finalPds = readPDS(clientId, surface);
+    qaReport = runWholeArtifactQA(artifact, brand, finalPds, { threshold: cfg.threshold });
+    qaReloopTries++;
+  }
+  if (qaReport.pass && qaReloopTries > 0) {
+    console.log(`✅ Whole-artifact QA passed after ${qaReloopTries} section re-loop pass(es).`);
+  } else if (!qaReport.pass && qaReloopTries > 0) {
+    console.warn(`⚠ Whole-artifact QA still failing after ${qaReloopTries} re-loop pass(es) — leaving as-is for human review.`);
+  }
   writeArtifactQA(clientId, surface, qaReport);
 
   const costSummary = summarizeRunResults(results);
@@ -899,11 +924,7 @@ export async function runSiteLoop(
     console.warn(`Budget warning [${violation.rule}]: ${violation.message}`);
   }
 
-  artifact.status = builtSections.length > 0 &&
-    builtSections.every(s => s.status === 'approved') &&
-    qaReport.pass
-    ? 'approved'
-    : 'in-progress';
+  artifact.status = builtSections.length > 0 && builtSections.every((s) => s.status === 'approved') && qaReport.pass ? 'approved' : 'in-progress';
   writeArtifact(clientId, surface, artifact);
 
   return { artifact, results };

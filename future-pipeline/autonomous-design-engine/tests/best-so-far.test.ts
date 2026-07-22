@@ -11,9 +11,7 @@ import type { DimensionScores } from '../src/schema.js';
  * Simulates the best-so-far update logic from the orchestrator.
  * Returns the best candidate after all updates.
  */
-function simulateBestSoFar(
-  candidates: { id: string; scores: DimensionScores; hardPass: boolean }[],
-): { id: string; scores: DimensionScores } | null {
+function simulateBestSoFar(candidates: { id: string; scores: DimensionScores; hardPass: boolean }[]): { id: string; scores: DimensionScores } | null {
   let best: { id: string; scores: DimensionScores; hardPass: boolean } | null = null;
 
   for (const candidate of candidates) {
@@ -28,14 +26,7 @@ function simulateBestSoFar(
     const isEligible = candidate.hardPass;
     const currentEligible = best.hardPass;
 
-    if (
-      (isEligible && !currentEligible) ||
-      (isEligible === currentEligible &&
-        candidate.scores.weighted_total > best.scores.weighted_total) ||
-      (isEligible === currentEligible &&
-        candidate.scores.weighted_total === best.scores.weighted_total &&
-        candidate.scores.craft > best.scores.craft)
-    ) {
+    if ((isEligible && !currentEligible) || (isEligible === currentEligible && candidate.scores.weighted_total > best.scores.weighted_total) || (isEligible === currentEligible && candidate.scores.weighted_total === best.scores.weighted_total && candidate.scores.craft > best.scores.craft)) {
       best = candidate;
     }
   }

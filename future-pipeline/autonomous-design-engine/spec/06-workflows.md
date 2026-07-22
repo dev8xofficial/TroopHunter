@@ -141,16 +141,35 @@ flowchart TB
 
 The product's **first screen** is its section-1: it runs the loop under the (already frozen) brand, then **crystallizes a new Product Design System**. Subsequent product screens inherit that. Brand consistency across artifacts is guaranteed by the shared parent; surface-appropriate difference is enabled by the separate child systems.
 
+### 1.5 Phase 1.5 — Strategy / IA Planning (E2.4)
+
+Upstream of section generation, the Orchestrator can generate a **site strategy plan** (`design strategy`). This pass translates business context into an audience positioning narrative, site-level narrative flow, and per-section key goals.
+
+```mermaid
+flowchart LR
+    B["Brief (client / goal / audience)"] --> STRAT["[design strategy]\nStrategy & IA Generator"]
+    STRAT --> REV["PHASE-EXIT REVIEW\n(fresh-context Critic + second judge)"]
+    REV -->|pass| PLAN["SitePlan (narrative + per-section goals)"]
+    PLAN --> SITE["[design site --strategy]\nsection briefs enriched with goals"]
+```
+
+The resulting `SitePlan` is injected into `ade design site --strategy`, folding each section's per-section goal and key message into that section's brief as soft guidance before generation begins.
+
 ---
 
 ## 7. CLI subcommand → workflow map
 
 | CLI subcommand | Workflow stage | Notes |
 |---|---|---|
-| `design brand --client <c> --context <brief> --brand-data <f>` | Stage 1 | derives the foundation from brand-data + context, then (with `--approve`) freezes it |
+| `design brand --client <c> --context <brief> --brand-data <f>` | Stage 1 | derives the foundation from brand-data + context; `--directions` derives 2–3 options |
+| `design strategy --brief <f> --out <f>` | Stage 1.5 (E2.4) | generates Strategy/IA site plan (narrative + section goals), Phase-Exit-Reviewed |
 | `design section --client <c> --surface <s> --name <n> --content <f>` | Stages 2–3 | runs the loop; first approved section crystallizes the system |
-| `design site --client <c> --surface <s> --plan <f>` | Stages 2–4 | sequences sections + assemble/QA |
-| `design learn --artifact <id>` | Stage 6 | write-back to Library |
+| `design site --client <c> --surface <s> --plan <f> [--strategy <f>]` | Stages 2–4 | sequences sections + assemble/QA; accepts upstream `--strategy` guidance |
+| `design qa --client <c> [--surface <s>] [--cross-surface]` | Stage 4 | runs whole-artifact QA; `--cross-surface` verifies token parity between website and product |
+| `design learn --client <c> [--surface <s>]` | Stage 6 | write-back to Library (Phase-Exit Reviewed by default; `--skip-review` to opt out) |
+| `design curate-library` | Maintenance (C2.6) | periodic curation pass over active Library entries older than 30 days |
+| `design library-entropy` | Maintenance (C2.6) | computes Shannon diversity entropy of Library retrieval distribution |
+| `design reembed [--check]` | Maintenance (C2.0) | detects embedding-model drift; regenerates vector store under active model |
 | `design show --client <c>` | — | inspect brand/system/artifacts/trace |
 
 > The **MVP** (`07`) implements only a reduced `design section` — one section, no brand/library — to prove the loop. The other subcommands are the target surface this workflow doc describes.

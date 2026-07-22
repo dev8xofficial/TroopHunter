@@ -43,7 +43,7 @@ export function createLocalOllamaProvider(cfg: Config): ModelProvider {
 
         // Add images for vision
         if (req.images && req.images.length > 0) {
-          body.images = req.images.map(img => img.data);
+          body.images = req.images.map((img) => img.data);
         }
 
         const response = await fetch(`${baseUrl}/api/generate`, {
@@ -57,7 +57,7 @@ export function createLocalOllamaProvider(cfg: Config): ModelProvider {
           throw new Error(`Ollama API error: ${response.status} ${response.statusText}`);
         }
 
-        const result = await response.json() as {
+        const result = (await response.json()) as {
           response: string;
           prompt_eval_count?: number;
           eval_count?: number;

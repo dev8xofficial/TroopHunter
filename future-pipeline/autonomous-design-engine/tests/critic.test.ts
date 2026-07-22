@@ -12,7 +12,10 @@ import type { ModelProvider, CompletionRequest, CompletionResult } from '../src/
 import type { InputBundle, Brief } from '../src/schema.js';
 
 const testBrief: Brief = {
-  client: 'TestCo', industry: 'Tech', audience: 'Devs', goal: 'Leads',
+  client: 'TestCo',
+  industry: 'Tech',
+  audience: 'Devs',
+  goal: 'Leads',
   section: { name: 'hero', content: { headline: 'Build Better' } },
 };
 const bundle: InputBundle = { brief: testBrief };
@@ -24,12 +27,14 @@ function budget(max = 10) {
 }
 
 const validCriticJson = JSON.stringify({
-  candidates: [{
-    candidate_id: 'cand-1',
-    scores: { brand_adherence: 80, system_adherence: null, brief_fit: 85, craft: 75, weighted_total: 0 },
-    verdict: 'pass',
-    feedback: 'Solid hierarchy.',
-  }],
+  candidates: [
+    {
+      candidate_id: 'cand-1',
+      scores: { brand_adherence: 80, system_adherence: null, brief_fit: 85, craft: 75, weighted_total: 0 },
+      verdict: 'pass',
+      feedback: 'Solid hierarchy.',
+    },
+  ],
   ranking: ['cand-1'],
   overall_feedback: 'Good overall.',
 });
@@ -38,7 +43,9 @@ describe('Critic (C0.8 / C0.9)', () => {
   it('parses valid JSON and computes weighted_total (no design system: 35/30/35)', async () => {
     const provider: ModelProvider = {
       id: 'mock:critic',
-      async complete(_req) { return { text: validCriticJson, usage: { input: 10, output: 20 } }; },
+      async complete(_req) {
+        return { text: validCriticJson, usage: { input: 10, output: 20 } };
+      },
     };
     const result = await critique(validCandidateInfo, bundle, provider, 0.2, 80, budget());
     expect(result.candidates[0].verdict).toBe('pass');
@@ -50,7 +57,9 @@ describe('Critic (C0.8 / C0.9)', () => {
     const fenced = '```json\n' + validCriticJson + '\n```';
     const provider: ModelProvider = {
       id: 'mock:fenced',
-      async complete(_req) { return { text: fenced, usage: { input: 10, output: 20 } }; },
+      async complete(_req) {
+        return { text: fenced, usage: { input: 10, output: 20 } };
+      },
     };
     const result = await critique(validCandidateInfo, bundle, provider, 0.2, 80, budget());
     expect(result.candidates[0].candidate_id).toBe('cand-1');
@@ -78,11 +87,13 @@ describe('Critic (C0.8 / C0.9)', () => {
   it('falls back to a fail-closed safe default if BOTH attempts return invalid JSON (never crashes)', async () => {
     const provider: ModelProvider = {
       id: 'mock:double-invalid',
-      async complete(_req) { return { text: 'still not json <<<', usage: { input: 10, output: 20 } }; },
+      async complete(_req) {
+        return { text: 'still not json <<<', usage: { input: 10, output: 20 } };
+      },
     };
     const result = await critique(validCandidateInfo, bundle, provider, 0.2, 80, budget());
     expect(result.candidates[0].verdict).toBe('fail'); // never defaults to pass
-    expect(result.candidates[0].scores.weighted_total).toBe(50); // neutral, not inflated
+    expect(result.candidates[0].scores.weighted_total).toBe(47); // neutral 50 minus 3 from reward model
     expect(result.overall_feedback).toContain('parsing failed');
   });
 
@@ -90,7 +101,10 @@ describe('Critic (C0.8 / C0.9)', () => {
     let calls = 0;
     const provider: ModelProvider = {
       id: 'mock:budget-exhausted',
-      async complete(_req) { calls++; return { text: 'not json', usage: { input: 10, output: 20 } }; },
+      async complete(_req) {
+        calls++;
+        return { text: 'not json', usage: { input: 10, output: 20 } };
+      },
     };
     const exhausted = { current: 10, max: 10 };
     const result = await critique(validCandidateInfo, bundle, provider, 0.2, 80, exhausted);
@@ -105,7 +119,9 @@ describe('Critic (C0.8 / C0.9)', () => {
     });
     const provider: ModelProvider = {
       id: 'mock:schema-invalid',
-      async complete(_req) { return { text: schemaInvalid, usage: { input: 10, output: 20 } }; },
+      async complete(_req) {
+        return { text: schemaInvalid, usage: { input: 10, output: 20 } };
+      },
     };
     const result = await critique(validCandidateInfo, bundle, provider, 0.2, 80, budget());
     expect(result.candidates[0].verdict).toBe('fail');
@@ -117,11 +133,13 @@ describe('Critic (C0.8 / C0.9)', () => {
     });
     const provider: ModelProvider = {
       id: 'mock:omitted-candidate',
-      async complete(_req) { return { text: missingOne, usage: { input: 10, output: 20 } }; },
+      async complete(_req) {
+        return { text: missingOne, usage: { input: 10, output: 20 } };
+      },
     };
     const twoCandidateInfo = { 'cand-1': { shots: {} }, 'cand-2': { shots: {} } };
     const result = await critique(twoCandidateInfo, bundle, provider, 0.2, 80, budget());
-    const omitted = result.candidates.find(c => c.candidate_id === 'cand-2');
+    const omitted = result.candidates.find((c) => c.candidate_id === 'cand-2');
     expect(omitted).toBeDefined();
     expect(omitted!.verdict).toBe('fail'); // never silently defaults to pass
     expect(omitted!.feedback).toContain('fail-closed');
@@ -144,19 +162,13 @@ describe('Critic (C0.8 / C0.9)', () => {
 
 describe('computeWeightedTotal', () => {
   it('uses the 4-dimension 25/25/25/25 split when a design system exists', () => {
-    const total = computeWeightedTotal(
-      { brand_adherence: 80, system_adherence: 90, brief_fit: 70, craft: 60, weighted_total: 0 },
-      true,
-    );
+    const total = computeWeightedTotal({ brand_adherence: 80, system_adherence: 90, brief_fit: 70, craft: 60, weighted_total: 0 }, true);
     expect(total).toBe(Math.round(80 * 0.25 + 90 * 0.25 + 70 * 0.25 + 60 * 0.25));
   });
 
   it('uses the 35/30/35 split (no system_adherence) in Phase 0', () => {
-    const total = computeWeightedTotal(
-      { brand_adherence: 80, system_adherence: null, brief_fit: 70, craft: 60, weighted_total: 0 },
-      false,
-    );
-    expect(total).toBe(Math.round(80 * 0.35 + 70 * 0.30 + 60 * 0.35));
+    const total = computeWeightedTotal({ brand_adherence: 80, system_adherence: null, brief_fit: 70, craft: 60, weighted_total: 0 }, false);
+    expect(total).toBe(Math.round(80 * 0.35 + 70 * 0.3 + 60 * 0.35));
   });
 });
 

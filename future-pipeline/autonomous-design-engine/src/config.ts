@@ -108,9 +108,7 @@ export function buildConfig(overrides: CLIOverrides = {}): Config {
   const raw = {
     provider: overrides.provider ?? process.env.ADE_PROVIDER,
     modelId: overrides.model ?? process.env.ADE_MODEL,
-    breakpoints: process.env.ADE_BREAKPOINTS
-      ? process.env.ADE_BREAKPOINTS.split(',').map(Number)
-      : undefined,
+    breakpoints: process.env.ADE_BREAKPOINTS ? process.env.ADE_BREAKPOINTS.split(',').map(Number) : undefined,
     maxIters: overrides.maxIters ?? parseIntEnv('ADE_MAX_ITERS'),
     variations: overrides.variations ?? parseIntEnv('ADE_VARIATIONS'),
     threshold: overrides.threshold ?? parseIntEnv('ADE_THRESHOLD'),
@@ -139,16 +137,12 @@ export function buildConfig(overrides: CLIOverrides = {}): Config {
   };
 
   // Remove undefined keys so zod defaults apply
-  const cleaned = Object.fromEntries(
-    Object.entries(raw).filter(([, v]) => v !== undefined),
-  );
+  const cleaned = Object.fromEntries(Object.entries(raw).filter(([, v]) => v !== undefined));
 
   const result = ConfigSchema.safeParse(cleaned);
 
   if (!result.success) {
-    const errors = result.error.issues
-      .map(i => `  • ${i.path.join('.')}: ${i.message}`)
-      .join('\n');
+    const errors = result.error.issues.map((i) => `  • ${i.path.join('.')}: ${i.message}`).join('\n');
     console.error(`\n❌ ADE config error:\n${errors}\n`);
     console.error('Check your .env file or CLI flags. See .env.example for reference.\n');
     process.exit(1);
@@ -158,9 +152,7 @@ export function buildConfig(overrides: CLIOverrides = {}): Config {
 
   // Validate provider-specific requirements
   if (cfg.provider === 'api' && !cfg.anthropicApiKey) {
-    console.error(
-      '\n❌ ADE config error:\n  • ANTHROPIC_API_KEY is required when ADE_PROVIDER=api\n',
-    );
+    console.error('\n❌ ADE config error:\n  • ANTHROPIC_API_KEY is required when ADE_PROVIDER=api\n');
     process.exit(1);
   }
 

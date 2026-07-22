@@ -12,6 +12,9 @@ import { readFileSync } from 'fs';
 import type { ModelProvider } from './model.js';
 import type { InputBundle, CriticOutput } from './schema.js';
 import { buildCriticPrompt } from './prompts.js';
+import { loadConstitution } from './constitution.js';
+import { loadVisualExemplars } from './exemplars.js';
+import { applyDualJudge } from './rewardModel.js';
 import { schemaGate } from './guardrails.js';
 import type { ImageRef } from './model.js';
 
@@ -28,18 +31,11 @@ export class CriticError extends Error {
  * Pairwise ranking is a stronger signal than close absolute scores, so a
  * model-provided ranking is preserved first and completed with score fallback.
  */
-export function normalizeCriticOutput(
-  output: CriticOutput,
-  candidateIds: string[],
-  threshold: number,
-  hasSystem: boolean,
-): CriticOutput {
+export function normalizeCriticOutput(output: CriticOutput, candidateIds: string[], threshold: number, hasSystem: boolean): CriticOutput {
   const allowed = new Set(candidateIds);
-  const byId = new Map(output.candidates
-    .filter(candidate => allowed.has(candidate.candidate_id))
-    .map(candidate => [candidate.candidate_id, candidate]));
+  const byId = new Map(output.candidates.filter((candidate) => allowed.has(candidate.candidate_id)).map((candidate) => [candidate.candidate_id, candidate]));
 
-  const candidates = candidateIds.map(candidateId => {
+  const candidates = candidateIds.map((candidateId) => {
     const candidate = byId.get(candidateId) ?? {
       candidate_id: candidateId,
       scores: {
@@ -62,9 +58,9 @@ export function normalizeCriticOutput(
     return candidate;
   });
 
-  const candidateById = new Map(candidates.map(candidate => [candidate.candidate_id, candidate]));
+  const candidateById = new Map(candidates.map((candidate) => [candidate.candidate_id, candidate]));
   const seen = new Set<string>();
-  const pairwiseRanking = (output.ranking ?? []).filter(candidateId => {
+  const pairwiseRanking = (output.ranking ?? []).filter((candidateId) => {
     if (!allowed.has(candidateId) || seen.has(candidateId)) {
       return false;
     }
@@ -73,7 +69,7 @@ export function normalizeCriticOutput(
   });
 
   const scoreFallback = candidateIds
-    .filter(candidateId => !seen.has(candidateId))
+    .filter((candidateId) => !seen.has(candidateId))
     .sort((a, b) => {
       const candidateA = candidateById.get(a)!;
       const candidateB = candidateById.get(b)!;
@@ -91,132 +87,174 @@ export function normalizeCriticOutput(
   };
 }
 
-export function computeWeightedTotal(
-  scores: CriticOutput['candidates'][number]['scores'],
-  hasSystem: boolean,
-): number {
-  return hasSystem
-    ? Math.round(
-      scores.brand_adherence * 0.25 +
-      (scores.system_adherence ?? 0) * 0.25 +
-      scores.brief_fit * 0.25 +
-      scores.craft * 0.25,
-    )
-    : Math.round(
-      scores.brand_adherence * 0.35 + scores.brief_fit * 0.30 + scores.craft * 0.35,
-    );
+export function computeWeightedTotal(scores: CriticOutput['candidates'][number]['scores'], hasSystem: boolean): number {
+  return hasSystem ? Math.round(scores.brand_adherence * 0.25 + (scores.system_adherence ?? 0) * 0.25 + scores.brief_fit * 0.25 + scores.craft * 0.25) : Math.round(scores.brand_adherence * 0.35 + scores.brief_fit * 0.3 + scores.craft * 0.35);
 }
+
+import { randomizeCandidateOrder, deRandomizeScores, aggregateCriticEnsemble, extractFineDetailCrops } from './bias.js';
 
 /**
  * Critique rendered screenshots of candidates.
  * Uses vision (screenshots as images), fresh context (I2).
  */
 export async function critique(
-  candidatesInfo: Record<string, { shots: Record<string, string>, domInfo?: any }>, // candidateId → { shots, domInfo }
+  candidatesInfo: Record<string, { shots: Record<string, string>; domInfo?: any }>, // candidateId → { shots, domInfo }
   bundle: InputBundle,
   provider: ModelProvider,
   temperature: number,
   threshold: number,
   maxModelCalls: { current: number; max: number },
 ): Promise<CriticOutput> {
-  const candidateIds = Object.keys(candidatesInfo);
-  const { system, user } = buildCriticPrompt(bundle, candidatesInfo);
+  const k = Number(process.env.ADE_CRITIC_ENSEMBLE_K || '1');
+  const candidateIdsInOriginalOrder = Object.keys(candidatesInfo);
   const hasSystem = bundle.hardSystem?.status === 'foundation-frozen';
 
-  // Build image refs from screenshots (vision)
-  const images: ImageRef[] = [];
-  for (const candidateId of candidateIds) {
-    const candidateShots = candidatesInfo[candidateId].shots;
-    for (const [breakpoint, shotPath] of Object.entries(candidateShots)) {
+  const ensembleOutputs: CriticOutput[] = [];
+
+  for (let i = 0; i < k; i++) {
+    // 1. Order randomization per run
+    const { shuffled, positionMap, originalToShuffled } = randomizeCandidateOrder(candidateIdsInOriginalOrder);
+
+    // Build a shuffled candidatesInfo object
+    const shuffledInfo: typeof candidatesInfo = {};
+    for (const cid of shuffled) {
+      shuffledInfo[cid] = candidatesInfo[cid];
+    }
+
+    const constitution = loadConstitution();
+    const exemplars = loadVisualExemplars();
+    const { system, user } = buildCriticPrompt(bundle, shuffledInfo, constitution, exemplars);
+
+    // 2. Build image refs (including fine-detail crops)
+    const images: ImageRef[] = [];
+
+    // Add exemplars first (so they match the index in the prompt)
+    for (const exemplar of exemplars) {
       try {
-        const imageData = readFileSync(shotPath);
+        const imageData = readFileSync(exemplar.imagePath);
         images.push({
           data: imageData.toString('base64'),
-          mediaType: 'image/png',
+          mediaType: exemplar.imagePath.toLowerCase().endsWith('.jpg') || exemplar.imagePath.toLowerCase().endsWith('.jpeg') ? 'image/jpeg' : 'image/png',
         });
       } catch (err) {
-        console.warn(`⚠ Could not read screenshot ${shotPath}: ${err}`);
+        console.warn(`⚠ Could not read exemplar image ${exemplar.imagePath}: ${err}`);
       }
     }
-  }
 
-  // Fresh context — new message list, zero generator history (I2)
-  maxModelCalls.current++;
-  let result = await provider.complete({
-    system,
-    messages: [{ role: 'user', content: user }],
-    images,
-    maxTokens: 4_000,
-    temperature,
-  });
+    for (const candidateId of shuffled) {
+      const candidateShots = candidatesInfo[candidateId].shots;
+      for (const [breakpoint, shotPath] of Object.entries(candidateShots)) {
+        try {
+          const imageData = readFileSync(shotPath);
+          images.push({
+            data: imageData.toString('base64'),
+            mediaType: 'image/png',
+          });
 
-  // Parse structured output
-  let parsed: unknown;
-  try {
-    // Try to extract JSON from the response
-    let jsonText = result.text.trim();
-
-    // Strip markdown fences if present
-    const jsonFenceMatch = jsonText.match(/```(?:json)?\s*\n?([\s\S]*?)\n?\s*```/);
-    if (jsonFenceMatch) {
-      jsonText = jsonFenceMatch[1].trim();
-    }
-
-    parsed = JSON.parse(jsonText);
-  } catch {
-    // C0.13/F-MOD-02: a refusal isn't valid JSON either, so it enters this
-    // same path — distinguish it in the log (still correctly fail-closed
-    // below either way; this is a diagnostic improvement, not a behavior
-    // change, since a mis-scored refusal must never become a false pass).
-    if (isCriticRefusal(result.text)) {
-      console.error('⚠ Critic appears to have refused (not just malformed JSON); re-asking...');
-    } else {
-      console.error('⚠ Critic returned invalid JSON, re-asking...');
-    }
-
-    if (maxModelCalls.current < maxModelCalls.max) {
-      maxModelCalls.current++;
-      result = await provider.complete({
-        system,
-        messages: [
-          { role: 'user', content: user },
-          { role: 'assistant', content: result.text },
-          {
-            role: 'user',
-            content: 'Your response was not valid JSON. Please return ONLY valid JSON matching the required schema, with no markdown formatting or extra text.',
-          },
-        ],
-        images,
-        maxTokens: 4_000,
-        temperature,
-      });
-
-      try {
-        let jsonText = result.text.trim();
-        const jsonFenceMatch = jsonText.match(/```(?:json)?\s*\n?([\s\S]*?)\n?\s*```/);
-        if (jsonFenceMatch) {
-          jsonText = jsonFenceMatch[1].trim();
+          // Add fine-detail crops for desktop (to avoid doing it for every small mobile breakpoint)
+          if (breakpoint === 'desktop') {
+            const crops = await extractFineDetailCrops(imageData, 3);
+            images.push(...crops);
+          }
+        } catch (err) {
+          console.warn(`⚠ Could not read screenshot ${shotPath}: ${err}`);
         }
-        parsed = JSON.parse(jsonText);
-      } catch {
-        // Fail-closed safe default (spec 11 §2.1)
-        console.error('⚠ Critic JSON parse failed twice. Using fail-closed default.');
-        return makeFailClosedDefault(candidateIds, result.text);
       }
-    } else {
-      return makeFailClosedDefault(candidateIds, result.text);
     }
+
+    // 3. Provider call
+    maxModelCalls.current++;
+    let result = await provider.complete({
+      system,
+      messages: [{ role: 'user', content: user }],
+      images,
+      maxTokens: 4_000,
+      temperature,
+    });
+
+    let parsed: unknown;
+    try {
+      let jsonText = result.text.trim();
+      const jsonFenceMatch = jsonText.match(/```(?:json)?\s*\n?([\s\S]*?)\n?\s*```/);
+      if (jsonFenceMatch) {
+        jsonText = jsonFenceMatch[1].trim();
+      }
+      parsed = JSON.parse(jsonText);
+    } catch {
+      if (isCriticRefusal(result.text)) {
+        console.error('⚠ Critic appears to have refused (not just malformed JSON); re-asking...');
+      } else {
+        console.error('⚠ Critic returned invalid JSON, re-asking...');
+      }
+
+      if (maxModelCalls.current < maxModelCalls.max) {
+        maxModelCalls.current++;
+        result = await provider.complete({
+          system,
+          messages: [
+            { role: 'user', content: user },
+            { role: 'assistant', content: result.text },
+            {
+              role: 'user',
+              content: 'Your response was not valid JSON. Please return ONLY valid JSON matching the required schema, with no markdown formatting or extra text.',
+            },
+          ],
+          images,
+          maxTokens: 4_000,
+          temperature,
+        });
+
+        try {
+          let jsonText = result.text.trim();
+          const jsonFenceMatch = jsonText.match(/```(?:json)?\s*\n?([\s\S]*?)\n?\s*```/);
+          if (jsonFenceMatch) {
+            jsonText = jsonFenceMatch[1].trim();
+          }
+          parsed = JSON.parse(jsonText);
+        } catch {
+          console.error('⚠ Critic JSON parse failed twice. Using fail-closed default.');
+          ensembleOutputs.push(makeFailClosedDefault(shuffled, result.text));
+          continue;
+        }
+      } else {
+        ensembleOutputs.push(makeFailClosedDefault(shuffled, result.text));
+        continue;
+      }
+    }
+
+    const gateResult = schemaGate<CriticOutput>('criticOutput', parsed);
+    let outputToPush: CriticOutput;
+    if (gateResult.data) {
+      outputToPush = normalizeCriticOutput(gateResult.data, shuffled, threshold, hasSystem);
+    } else {
+      console.error('⚠ Critic output schema validation failed:', gateResult.violations);
+      outputToPush = makeFailClosedDefault(shuffled, result.text);
+    }
+
+    // Restore canonical order before adding to ensemble
+    const restored = deRandomizeScores(outputToPush, candidateIdsInOriginalOrder);
+
+    // Attach audit log mapping (mapping original_id -> shuffled_index)
+    const strPosMap: Record<string, number> = {};
+    for (const [origIdx, shufIdx] of Object.entries(originalToShuffled)) {
+      strPosMap[candidateIdsInOriginalOrder[Number(origIdx)]] = shufIdx;
+    }
+    restored.position_maps = [strPosMap];
+
+    ensembleOutputs.push(restored);
   }
 
-  // Schema Gate validation
-  const gateResult = schemaGate<CriticOutput>('criticOutput', parsed);
-  if (gateResult.data) {
-    return normalizeCriticOutput(gateResult.data, candidateIds, threshold, hasSystem);
-  }
+  // 4. Ensemble Aggregation
+  let finalOutput = aggregateCriticEnsemble(ensembleOutputs);
+  // Collect all position maps from the ensemble
+  finalOutput.position_maps = ensembleOutputs.flatMap((o) => o.position_maps || []);
 
-  // Schema validation failed — one more try with re-ask
-  console.error('⚠ Critic output schema validation failed:', gateResult.violations);
-  return makeFailClosedDefault(candidateIds, result.text);
+  // C3.5 — R4 Reward Model: Dual-Judge deployment harness.
+  // Pass the aggregated prompted Critic's output through the learned Reward Model,
+  // which separates signals and adjusts the final score.
+  finalOutput = applyDualJudge(finalOutput, bundle.brief.industry);
+
+  return finalOutput;
 }
 
 /**
@@ -227,8 +265,7 @@ function isCriticRefusal(text: string): boolean {
   const lower = text.toLowerCase();
   const hasJson = text.includes('{') && text.includes('candidates');
   if (hasJson) return false;
-  return ['i cannot', "i'm unable", 'i am unable', "i'm sorry", 'i apologize', 'as an ai']
-    .some(phrase => lower.includes(phrase));
+  return ['i cannot', "i'm unable", 'i am unable', "i'm sorry", 'i apologize', 'as an ai'].some((phrase) => lower.includes(phrase));
 }
 
 /**
@@ -237,7 +274,7 @@ function isCriticRefusal(text: string): boolean {
  */
 function makeFailClosedDefault(candidateIds: string[], rawText: string): CriticOutput {
   return {
-    candidates: candidateIds.map(id => ({
+    candidates: candidateIds.map((id) => ({
       candidate_id: id,
       scores: {
         brand_adherence: 50,

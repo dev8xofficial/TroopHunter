@@ -2,18 +2,9 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { existsSync, rmSync } from 'fs';
 import { join } from 'path';
 import type { CriticOutput, RunRecord, VerdictEntry } from '../src/schema.js';
-import {
-  buildCalibrationExamples,
-  calibrateFromRecords,
-  computeAgreementTrend,
-  confusionAtThreshold,
-  detectRewardHacking,
-} from '../src/calibration.js';
+import { buildCalibrationExamples, calibrateFromRecords, computeAgreementTrend, confusionAtThreshold, detectRewardHacking } from '../src/calibration.js';
 import { normalizeCriticOutput } from '../src/critic.js';
-import {
-  readVerdicts,
-  recordHumanVerdict,
-} from '../src/verdicts.js';
+import { readVerdicts, recordHumanVerdict } from '../src/verdicts.js';
 
 const TEST_DIR = join(import.meta.dirname, '..', '.test-runs', 'phase3-test');
 
@@ -50,14 +41,7 @@ describe('Phase 3 Taste / Judge calibration', () => {
   });
 
   it('tracks Critic-human agreement trend over batches', () => {
-    const records = [
-      makeRecord('run-1', 0, 90),
-      makeRecord('run-2', 0, 85),
-      makeRecord('run-3', 0, 45),
-      makeRecord('run-4', 0, 91),
-      makeRecord('run-5', 0, 88),
-      makeRecord('run-6', 0, 35),
-    ];
+    const records = [makeRecord('run-1', 0, 90), makeRecord('run-2', 0, 85), makeRecord('run-3', 0, 45), makeRecord('run-4', 0, 91), makeRecord('run-5', 0, 88), makeRecord('run-6', 0, 35)];
     const verdicts: VerdictEntry[] = [
       makeVerdict('run-1', 'approve', 'good', '2026-01-01T00:00:00.000Z'),
       makeVerdict('run-2', 'reject', 'weak', '2026-01-02T00:00:00.000Z'),
@@ -76,16 +60,8 @@ describe('Phase 3 Taste / Judge calibration', () => {
   });
 
   it('recommends a threshold that reduces false pass/fail mistakes', () => {
-    const records = [
-      makeRecord('run-a', 0, 72),
-      makeRecord('run-b', 0, 76),
-      makeRecord('run-c', 0, 88),
-    ];
-    const verdicts: VerdictEntry[] = [
-      makeVerdict('run-a', 'approve', 'good', '2026-01-01T00:00:00.000Z'),
-      makeVerdict('run-b', 'approve', 'strong', '2026-01-02T00:00:00.000Z'),
-      makeVerdict('run-c', 'reject', 'weak', '2026-01-03T00:00:00.000Z'),
-    ];
+    const records = [makeRecord('run-a', 0, 72), makeRecord('run-b', 0, 76), makeRecord('run-c', 0, 88)];
+    const verdicts: VerdictEntry[] = [makeVerdict('run-a', 'approve', 'good', '2026-01-01T00:00:00.000Z'), makeVerdict('run-b', 'approve', 'strong', '2026-01-02T00:00:00.000Z'), makeVerdict('run-c', 'reject', 'weak', '2026-01-03T00:00:00.000Z')];
 
     const summary = calibrateFromRecords(records, verdicts, 80);
     const examples = buildCalibrationExamples(records, verdicts, 80);
@@ -94,24 +70,12 @@ describe('Phase 3 Taste / Judge calibration', () => {
 
     expect(summary.recommendedThreshold).toBe(72);
     expect(recommended.accuracy).toBeGreaterThan(current.accuracy);
-    expect(recommended.falsePasses + recommended.falseFails)
-      .toBeLessThan(current.falsePasses + current.falseFails);
+    expect(recommended.falsePasses + recommended.falseFails).toBeLessThan(current.falsePasses + current.falseFails);
   });
 
   it('raises a reward-hacking alarm when Critic scores climb but humans reject', () => {
-    const records = [
-      makeRecord('run-1', 0, 50),
-      makeRecord('run-1', 1, 70),
-      makeRecord('run-2', 0, 55),
-      makeRecord('run-2', 1, 75),
-      makeRecord('run-3', 0, 60),
-      makeRecord('run-3', 1, 85),
-    ];
-    const verdicts: VerdictEntry[] = [
-      makeVerdict('run-1', 'reject', 'weak', '2026-01-01T00:00:00.000Z'),
-      makeVerdict('run-2', 'reject', 'bad', '2026-01-02T00:00:00.000Z'),
-      makeVerdict('run-3', 'reject', 'weak', '2026-01-03T00:00:00.000Z'),
-    ];
+    const records = [makeRecord('run-1', 0, 50), makeRecord('run-1', 1, 70), makeRecord('run-2', 0, 55), makeRecord('run-2', 1, 75), makeRecord('run-3', 0, 60), makeRecord('run-3', 1, 85)];
+    const verdicts: VerdictEntry[] = [makeVerdict('run-1', 'reject', 'weak', '2026-01-01T00:00:00.000Z'), makeVerdict('run-2', 'reject', 'bad', '2026-01-02T00:00:00.000Z'), makeVerdict('run-3', 'reject', 'weak', '2026-01-03T00:00:00.000Z')];
 
     const examples = buildCalibrationExamples(records, verdicts, 80);
     const alarm = detectRewardHacking(examples);
@@ -122,27 +86,18 @@ describe('Phase 3 Taste / Judge calibration', () => {
 
   it('keeps pairwise Critic ranking ahead of absolute score fallback', () => {
     const output: CriticOutput = {
-      candidates: [
-        makeCandidate('a', 92),
-        makeCandidate('b', 81),
-        makeCandidate('c', 70),
-      ],
+      candidates: [makeCandidate('a', 92), makeCandidate('b', 81), makeCandidate('c', 70)],
       ranking: ['b', 'a'],
     };
 
     const normalized = normalizeCriticOutput(output, ['a', 'b', 'c'], 80, false);
 
     expect(normalized.ranking).toEqual(['b', 'a', 'c']);
-    expect(normalized.candidates.find(candidate => candidate.candidate_id === 'b')?.verdict).toBe('pass');
+    expect(normalized.candidates.find((candidate) => candidate.candidate_id === 'b')?.verdict).toBe('pass');
   });
 });
 
-function makeRecord(
-  runId: string,
-  iteration: number,
-  score: number,
-  candidateId = `iter${iteration}-cand1`,
-): RunRecord {
+function makeRecord(runId: string, iteration: number, score: number, candidateId = `iter${iteration}-cand1`): RunRecord {
   return {
     run_id: runId,
     section_id: 'client_hero',
@@ -167,12 +122,7 @@ function makeRecord(
   };
 }
 
-function makeVerdict(
-  runId: string,
-  decision: 'approve' | 'reject',
-  rating: 'bad' | 'weak' | 'good' | 'strong',
-  timestamp: string,
-): VerdictEntry {
+function makeVerdict(runId: string, decision: 'approve' | 'reject', rating: 'bad' | 'weak' | 'good' | 'strong', timestamp: string): VerdictEntry {
   return {
     run_id: runId,
     section: 'hero',

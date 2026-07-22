@@ -55,8 +55,8 @@ function createOllamaEmbeddingProvider(cfg: Config): EmbeddingProvider {
         throw new Error(`Ollama embeddings error: ${response.status} ${response.statusText}`);
       }
 
-      const parsed = await response.json() as { embedding?: unknown };
-      if (!Array.isArray(parsed.embedding) || parsed.embedding.some(v => typeof v !== 'number')) {
+      const parsed = (await response.json()) as { embedding?: unknown };
+      if (!Array.isArray(parsed.embedding) || parsed.embedding.some((v) => typeof v !== 'number')) {
         throw new Error('Ollama embeddings response did not contain a numeric embedding array.');
       }
 
@@ -123,5 +123,5 @@ export function cosineSimilarity(a: number[], b: number[]): number {
 function normalizeVector(vector: number[]): number[] {
   const norm = Math.sqrt(vector.reduce((sum, value) => sum + value * value, 0));
   if (norm === 0) return vector;
-  return vector.map(value => value / norm);
+  return vector.map((value) => value / norm);
 }

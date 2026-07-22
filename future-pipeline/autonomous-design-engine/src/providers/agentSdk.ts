@@ -30,10 +30,7 @@ export function createAgentSdkProvider(cfg: Config): ModelProvider {
   return provider;
 }
 
-async function runAgentSdkCompletion(
-  cfg: Config,
-  req: CompletionRequest,
-): Promise<CompletionResult> {
+async function runAgentSdkCompletion(cfg: Config, req: CompletionRequest): Promise<CompletionResult> {
   const prompt = makePrompt(req.messages);
   const sdkMessages = makeSdkMessages(prompt, req.images ?? []);
   let resultMessage: SDKResultMessage | undefined;
@@ -47,16 +44,7 @@ async function runAgentSdkCompletion(
       model: cfg.modelId,
       systemPrompt: req.system,
       tools: [],
-      disallowedTools: [
-        'Bash',
-        'Edit',
-        'MultiEdit',
-        'NotebookEdit',
-        'Read',
-        'Write',
-        'WebFetch',
-        'WebSearch',
-      ],
+      disallowedTools: ['Bash', 'Edit', 'MultiEdit', 'NotebookEdit', 'Read', 'Write', 'WebFetch', 'WebSearch'],
       permissionMode: 'dontAsk',
       maxTurns: 1,
       thinking: { type: 'disabled' },
@@ -100,16 +88,20 @@ async function runAgentSdkCompletion(
 function getISOWeek(d: Date) {
   const date = new Date(d.getTime());
   date.setHours(0, 0, 0, 0);
-  date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+  date.setDate(date.getDate() + 3 - ((date.getDay() + 6) % 7));
   const week1 = new Date(date.getFullYear(), 0, 4);
-  return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
+  return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + ((week1.getDay() + 6) % 7)) / 7);
 }
 
 function trackTelemetry(usage: Usage) {
   const TELEMETRY_FILE = join(process.cwd(), '.ade_telemetry.json');
   let data = {
-    tokens_today: 0, calls_today: 0, last_day: '',
-    tokens_this_week: 0, calls_this_week: 0, last_week: ''
+    tokens_today: 0,
+    calls_today: 0,
+    last_day: '',
+    tokens_this_week: 0,
+    calls_this_week: 0,
+    last_week: '',
   };
 
   if (existsSync(TELEMETRY_FILE)) {
@@ -135,8 +127,8 @@ function trackTelemetry(usage: Usage) {
 
   data.calls_today += 1;
   data.calls_this_week += 1;
-  data.tokens_today += (usage.input + usage.output);
-  data.tokens_this_week += (usage.input + usage.output);
+  data.tokens_today += usage.input + usage.output;
+  data.tokens_this_week += usage.input + usage.output;
 
   writeFileSync(TELEMETRY_FILE, JSON.stringify(data, null, 2), 'utf-8');
 
@@ -148,13 +140,8 @@ function trackTelemetry(usage: Usage) {
   };
 }
 
-async function* makeSdkMessages(
-  prompt: string,
-  images: ImageRef[],
-): AsyncIterable<SDKUserMessage> {
-  const content: NonNullable<Extract<MessageParam['content'], unknown[]>> = [
-    { type: 'text', text: prompt },
-  ];
+async function* makeSdkMessages(prompt: string, images: ImageRef[]): AsyncIterable<SDKUserMessage> {
+  const content: NonNullable<Extract<MessageParam['content'], unknown[]>> = [{ type: 'text', text: prompt }];
 
   for (const image of images) {
     content.push({
@@ -180,7 +167,7 @@ async function* makeSdkMessages(
 
 function makePrompt(messages: Msg[]): string {
   return messages
-    .map(message => {
+    .map((message) => {
       const label = message.role === 'assistant' ? 'ASSISTANT CONTEXT' : 'USER REQUEST';
       return `${label}:\n${message.content}`;
     })
@@ -194,7 +181,7 @@ function textFromAssistantMessage(message: Extract<SDKMessage, { type: 'assistan
   }
 
   return content
-    .map(block => {
+    .map((block) => {
       if (block.type === 'text') {
         return block.text;
       }
@@ -205,10 +192,7 @@ function textFromAssistantMessage(message: Extract<SDKMessage, { type: 'assistan
 
 function usageFromResult(result: SDKResultMessage): Usage {
   const usage = result.usage as Record<string, unknown>;
-  const input =
-    numberField(usage, 'input_tokens') +
-    numberField(usage, 'cache_creation_input_tokens') +
-    numberField(usage, 'cache_read_input_tokens');
+  const input = numberField(usage, 'input_tokens') + numberField(usage, 'cache_creation_input_tokens') + numberField(usage, 'cache_read_input_tokens');
   const output = numberField(usage, 'output_tokens');
 
   if (input > 0 || output > 0) {
@@ -216,10 +200,13 @@ function usageFromResult(result: SDKResultMessage): Usage {
   }
 
   const modelUsage = result.modelUsage;
-  const totals = Object.values(modelUsage).reduce<Usage>((sum, item) => ({
-    input: sum.input + item.inputTokens + item.cacheCreationInputTokens + item.cacheReadInputTokens,
-    output: sum.output + item.outputTokens,
-  }), { input: 0, output: 0 });
+  const totals = Object.values(modelUsage).reduce<Usage>(
+    (sum, item) => ({
+      input: sum.input + item.inputTokens + item.cacheCreationInputTokens + item.cacheReadInputTokens,
+      output: sum.output + item.outputTokens,
+    }),
+    { input: 0, output: 0 },
+  );
 
   return totals;
 }
@@ -239,7 +226,7 @@ function normalizeStopReason(stopReason: string | null): string | undefined {
   return stopReason;
 }
 
-function envWithoutApiKeys(): Record<string, string | undefined> {
+export function envWithoutApiKeys(): Record<string, string | undefined> {
   const env: Record<string, string | undefined> = { ...process.env };
   delete env.ANTHROPIC_API_KEY;
   delete env.ANTHROPIC_AUTH_TOKEN;

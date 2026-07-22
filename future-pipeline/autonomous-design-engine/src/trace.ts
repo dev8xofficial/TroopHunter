@@ -52,7 +52,7 @@ export function readTrace(outDir: string): RunRecord[] {
   }
 
   const content = readFileSync(tracePath, 'utf-8');
-  const lines = content.split('\n').filter(line => line.trim());
+  const lines = content.split('\n').filter((line) => line.trim());
   const records: RunRecord[] = [];
 
   for (let i = 0; i < lines.length; i++) {

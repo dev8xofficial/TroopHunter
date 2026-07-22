@@ -11,6 +11,8 @@
 import type { DimensionScores, RunRecord, VerdictEntry } from './schema.js';
 import { isPositiveHumanVerdict, ratingToScore } from './verdicts.js';
 
+export type Stratum = 'routine' | 'hard' | 'adversarial';
+
 export interface CalibrationExample {
   runId: string;
   section: string;
@@ -24,6 +26,8 @@ export interface CalibrationExample {
   notes?: string;
   scoreGain?: number;
   scores?: DimensionScores;
+  stratum: Stratum;
+  isAudit: boolean;
 }
 
 export interface ConfusionMatrix {
@@ -81,26 +85,22 @@ export interface CalibrationSummary {
   };
   weightHints: string[];
   rubricExamples: RubricRotationExample[];
+  // C3.2: per-stratum confusion matrices
+  strata: Record<Stratum, ConfusionMatrix>;
+  // C3.2: false-pass rate among standing-audit examples only
+  auditMissRate: number;
 }
 
-export function calibrateFromRecords(
-  records: RunRecord[],
-  verdicts: VerdictEntry[],
-  currentThreshold = 80,
-): CalibrationSummary {
+export function calibrateFromRecords(records: RunRecord[], verdicts: VerdictEntry[], currentThreshold = 80): CalibrationSummary {
   const examples = buildCalibrationExamples(records, verdicts, currentThreshold);
   return summarizeCalibration(examples, currentThreshold);
 }
 
-export function buildCalibrationExamples(
-  records: RunRecord[],
-  verdicts: VerdictEntry[],
-  currentThreshold = 80,
-): CalibrationExample[] {
+export function buildCalibrationExamples(records: RunRecord[], verdicts: VerdictEntry[], currentThreshold = 80): CalibrationExample[] {
   const examples: CalibrationExample[] = [];
 
   for (const verdict of verdicts) {
-    const matched = records.filter(record => recordMatchesVerdict(record, verdict));
+    const matched = records.filter((record) => recordMatchesVerdict(record, verdict));
     const target = pickTargetRecord(matched, verdict);
     const iter0 = pickBestForIteration(matched, 0);
     const final = pickFinalRecord(matched);
@@ -111,9 +111,7 @@ export function buildCalibrationExamples(
     }
 
     const threshold = verdict.threshold ?? currentThreshold;
-    const criticPassed = verdict.critic_verdict
-      ? verdict.critic_verdict === 'pass'
-      : criticScore >= threshold;
+    const criticPassed = verdict.critic_verdict ? verdict.critic_verdict === 'pass' : criticScore >= threshold;
 
     examples.push({
       runId: verdict.run_id,
@@ -126,25 +124,35 @@ export function buildCalibrationExamples(
       preferred: verdict.preferred,
       timestamp: verdict.timestamp,
       notes: verdict.notes,
-      scoreGain: iter0 && final
-        ? final.scores.weighted_total - iter0.scores.weighted_total
-        : undefined,
+      scoreGain: iter0 && final ? final.scores.weighted_total - iter0.scores.weighted_total : undefined,
       scores: target?.scores,
+      stratum: verdict.stratum ?? 'routine',
+      isAudit: verdict.is_audit ?? false,
     });
   }
 
   return examples.sort((a, b) => a.timestamp.localeCompare(b.timestamp));
 }
 
-export function summarizeCalibration(
-  examples: CalibrationExample[],
-  currentThreshold = 80,
-): CalibrationSummary {
+export function summarizeCalibration(examples: CalibrationExample[], currentThreshold = 80): CalibrationSummary {
   const current = confusionAtThreshold(examples, currentThreshold);
   const threshold = recommendThreshold(examples, currentThreshold);
   const recommended = confusionAtThreshold(examples, threshold);
   const alarm = detectRewardHacking(examples);
   const autonomy = recommendAutonomyRung(examples.length, recommended, alarm);
+
+  // C3.2: per-stratum confusion matrices
+  const allStrata: Stratum[] = ['routine', 'hard', 'adversarial'];
+  const strata = {} as Record<Stratum, ConfusionMatrix>;
+  for (const s of allStrata) {
+    const subset = examples.filter((e) => e.stratum === s);
+    strata[s] = confusionAtThreshold(subset, currentThreshold);
+  }
+
+  // C3.2: audit miss-rate (false passes among standing-audit samples)
+  const auditExamples = examples.filter((e) => e.isAudit);
+  const auditMatrix = confusionAtThreshold(auditExamples, currentThreshold);
+  const auditMissRate = auditMatrix.total > 0 ? auditMatrix.falsePassRate : 0;
 
   return {
     total: examples.length,
@@ -163,13 +171,12 @@ export function summarizeCalibration(
     autonomy,
     weightHints: buildWeightHints(examples, currentThreshold),
     rubricExamples: selectRubricRotationExamples(examples, 3, currentThreshold),
+    strata,
+    auditMissRate,
   };
 }
 
-export function confusionAtThreshold(
-  examples: CalibrationExample[],
-  threshold: number,
-): ConfusionMatrix {
+export function confusionAtThreshold(examples: CalibrationExample[], threshold: number): ConfusionMatrix {
   let truePasses = 0;
   let trueFails = 0;
   let falsePasses = 0;
@@ -197,10 +204,7 @@ export function confusionAtThreshold(
   };
 }
 
-export function recommendThreshold(
-  examples: CalibrationExample[],
-  currentThreshold = 80,
-): number {
+export function recommendThreshold(examples: CalibrationExample[], currentThreshold = 80): number {
   if (examples.length === 0) {
     return currentThreshold;
   }
@@ -212,12 +216,7 @@ export function recommendThreshold(
   for (let threshold = 0; threshold <= 100; threshold++) {
     const matrix = confusionAtThreshold(examples, threshold);
     const errors = matrix.falsePasses + matrix.falseFails;
-    const better =
-      errors < bestErrors ||
-      (errors === bestErrors && matrix.falsePasses < bestMatrix.falsePasses) ||
-      (errors === bestErrors &&
-        matrix.falsePasses === bestMatrix.falsePasses &&
-        Math.abs(threshold - currentThreshold) < Math.abs(bestThreshold - currentThreshold));
+    const better = errors < bestErrors || (errors === bestErrors && matrix.falsePasses < bestMatrix.falsePasses) || (errors === bestErrors && matrix.falsePasses === bestMatrix.falsePasses && Math.abs(threshold - currentThreshold) < Math.abs(bestThreshold - currentThreshold));
 
     if (better) {
       bestThreshold = threshold;
@@ -229,11 +228,7 @@ export function recommendThreshold(
   return bestThreshold;
 }
 
-export function computeAgreementTrend(
-  examples: CalibrationExample[],
-  batchSize = 5,
-  threshold = 80,
-): AgreementTrendBatch[] {
+export function computeAgreementTrend(examples: CalibrationExample[], batchSize = 5, threshold = 80): AgreementTrendBatch[] {
   if (batchSize <= 0) {
     throw new Error('batchSize must be positive');
   }
@@ -263,21 +258,12 @@ export function detectRewardHacking(examples: CalibrationExample[]): RewardHacki
     return { triggered: false, suspectRuns: [], reasons: [] };
   }
 
-  const scoreGains = examples
-    .map(example => example.scoreGain)
-    .filter((gain): gain is number => gain !== undefined);
-  const averageScoreGain = scoreGains.length === 0
-    ? 0
-    : average(scoreGains);
-  const averageRating = average(examples.map(example => example.ratingScore));
-  const suspectExamples = examples.filter(example =>
-    (example.scoreGain ?? 0) > 0 &&
-    (!example.humanPositive || example.ratingScore <= 1),
-  );
+  const scoreGains = examples.map((example) => example.scoreGain).filter((gain): gain is number => gain !== undefined);
+  const averageScoreGain = scoreGains.length === 0 ? 0 : average(scoreGains);
+  const averageRating = average(examples.map((example) => example.ratingScore));
+  const suspectExamples = examples.filter((example) => (example.scoreGain ?? 0) > 0 && (!example.humanPositive || example.ratingScore <= 1));
   const suspectFloor = Math.max(2, Math.ceil(examples.length * 0.4));
-  const triggered =
-    averageScoreGain > 2 &&
-    suspectExamples.length >= suspectFloor;
+  const triggered = averageScoreGain > 2 && suspectExamples.length >= suspectFloor;
 
   const reasons: string[] = [];
   if (averageScoreGain > 2) {
@@ -290,21 +276,40 @@ export function detectRewardHacking(examples: CalibrationExample[]): RewardHacki
     reasons.push(`${suspectExamples.length} improving runs were rejected or rated weak/bad`);
   }
 
+  // C3.4: Gap-widening detection — rising Critic scores with flat/falling
+  // human ratings is the canonical reward-hacking signature (F-JDG-02).
+  let gapTriggered = false;
+  if (examples.length >= 20) {
+    const sorted = [...examples].sort((a, b) => a.timestamp.localeCompare(b.timestamp));
+    const half = Math.floor(sorted.length / 2);
+    const firstHalf = sorted.slice(0, half);
+    const secondHalf = sorted.slice(half);
+
+    const firstCriticAvg = average(firstHalf.map((e) => e.criticScore));
+    const secondCriticAvg = average(secondHalf.map((e) => e.criticScore));
+    const firstRatingAvg = average(firstHalf.map((e) => e.ratingScore));
+    const secondRatingAvg = average(secondHalf.map((e) => e.ratingScore));
+
+    const criticRise = secondCriticAvg - firstCriticAvg;
+    const ratingChange = secondRatingAvg - firstRatingAvg;
+
+    if (criticRise > 5 && ratingChange <= 0) {
+      gapTriggered = true;
+      reasons.push(`critic-vs-human gap widening: critic rose ${criticRise.toFixed(1)} pts but human rating ${ratingChange >= 0 ? 'flat' : `fell ${Math.abs(ratingChange).toFixed(1)}`}`);
+    }
+  }
+
   return {
-    triggered,
-    suspectRuns: suspectExamples.map(example => `${example.runId}:${example.section}`),
+    triggered: triggered || gapTriggered,
+    suspectRuns: suspectExamples.map((example) => `${example.runId}:${example.section}`),
     reasons,
   };
 }
 
-export function selectRubricRotationExamples(
-  examples: CalibrationExample[],
-  limit = 3,
-  threshold = 80,
-): RubricRotationExample[] {
+export function selectRubricRotationExamples(examples: CalibrationExample[], limit = 3, threshold = 80): RubricRotationExample[] {
   return examples
-    .filter(example => example.notes && example.notes.trim().length > 0)
-    .map(example => {
+    .filter((example) => example.notes && example.notes.trim().length > 0)
+    .map((example) => {
       const predictedPass = example.criticScore >= threshold;
       if (predictedPass && !example.humanPositive) {
         return { kind: 'false-pass' as const, example };
@@ -317,7 +322,7 @@ export function selectRubricRotationExamples(
     .filter((item): item is { kind: 'false-pass' | 'false-fail'; example: CalibrationExample } => item !== null)
     .sort((a, b) => b.example.timestamp.localeCompare(a.example.timestamp))
     .slice(0, limit)
-    .map(item => ({
+    .map((item) => ({
       kind: item.kind,
       runId: item.example.runId,
       section: item.example.section,
@@ -327,10 +332,7 @@ export function selectRubricRotationExamples(
 
 export function formatCalibrationSummary(summary: CalibrationSummary): string {
   if (summary.total === 0) {
-    return [
-      'Human calibration (I12): no matching verdicts yet.',
-      'Quality claims remain Critic-only until verdicts.jsonl has human decisions.',
-    ].join('\n');
+    return ['Human calibration (I12): no matching verdicts yet.', 'Quality claims remain Critic-only until verdicts.jsonl has human decisions.'].join('\n');
   }
 
   const lines = [
@@ -354,11 +356,7 @@ export function formatCalibrationSummary(summary: CalibrationSummary): string {
   return lines.join('\n');
 }
 
-function recommendAutonomyRung(
-  total: number,
-  recommended: ConfusionMatrix,
-  alarm: RewardHackingAlarm,
-): CalibrationSummary['autonomy'] {
+function recommendAutonomyRung(total: number, recommended: ConfusionMatrix, alarm: RewardHackingAlarm): CalibrationSummary['autonomy'] {
   if (total < 10) {
     return {
       currentRung: 0,
@@ -390,16 +388,9 @@ function recommendAutonomyRung(
   };
 }
 
-function buildWeightHints(
-  examples: CalibrationExample[],
-  threshold: number,
-): string[] {
-  const falsePasses = examples.filter(example =>
-    example.criticScore >= threshold && !example.humanPositive,
-  );
-  const falseFails = examples.filter(example =>
-    example.criticScore < threshold && example.humanPositive,
-  );
+function buildWeightHints(examples: CalibrationExample[], threshold: number): string[] {
+  const falsePasses = examples.filter((example) => example.criticScore >= threshold && !example.humanPositive);
+  const falseFails = examples.filter((example) => example.criticScore < threshold && example.humanPositive);
 
   const hints: string[] = [];
   if (falsePasses.length > falseFails.length) {
@@ -408,11 +399,7 @@ function buildWeightHints(
     hints.push('False fails dominate; lower the threshold or reward human-approved craft more.');
   }
 
-  const shinyMisses = falsePasses.filter(example =>
-    example.scores &&
-    example.scores.craft >= 85 &&
-    example.scores.brief_fit < example.scores.craft,
-  );
+  const shinyMisses = falsePasses.filter((example) => example.scores && example.scores.craft >= 85 && example.scores.brief_fit < example.scores.craft);
   if (shinyMisses.length > 0) {
     hints.push('False passes skew high-craft/low-brief-fit; increase brief_fit weight.');
   }
@@ -426,16 +413,12 @@ function recordMatchesVerdict(record: RunRecord, verdict: VerdictEntry): boolean
   }
   const recordSection = normalizeSection(record.section_id);
   const verdictSection = normalizeSection(verdict.section);
-  return (
-    recordSection === verdictSection ||
-    recordSection.endsWith(`_${verdictSection}`) ||
-    recordSection.endsWith(`-${verdictSection}`)
-  );
+  return recordSection === verdictSection || recordSection.endsWith(`_${verdictSection}`) || recordSection.endsWith(`-${verdictSection}`);
 }
 
 function pickTargetRecord(records: RunRecord[], verdict: VerdictEntry): RunRecord | undefined {
   if (verdict.candidate_id) {
-    const exact = records.find(record => record.candidate_id === verdict.candidate_id);
+    const exact = records.find((record) => record.candidate_id === verdict.candidate_id);
     if (exact) {
       return exact;
     }
@@ -444,15 +427,15 @@ function pickTargetRecord(records: RunRecord[], verdict: VerdictEntry): RunRecor
 }
 
 function pickBestForIteration(records: RunRecord[], iteration: number): RunRecord | undefined {
-  return pickBestRecord(records.filter(record => record.iteration === iteration));
+  return pickBestRecord(records.filter((record) => record.iteration === iteration));
 }
 
 function pickFinalRecord(records: RunRecord[]): RunRecord | undefined {
   if (records.length === 0) {
     return undefined;
   }
-  const maxIteration = Math.max(...records.map(record => record.iteration));
-  return pickBestRecord(records.filter(record => record.iteration === maxIteration));
+  const maxIteration = Math.max(...records.map((record) => record.iteration));
+  return pickBestRecord(records.filter((record) => record.iteration === maxIteration));
 }
 
 function pickBestRecord(records: RunRecord[]): RunRecord | undefined {
@@ -463,10 +446,7 @@ function pickBestRecord(records: RunRecord[]): RunRecord | undefined {
     if (record.scores.weighted_total > best.scores.weighted_total) {
       return record;
     }
-    if (
-      record.scores.weighted_total === best.scores.weighted_total &&
-      record.scores.craft > best.scores.craft
-    ) {
+    if (record.scores.weighted_total === best.scores.weighted_total && record.scores.craft > best.scores.craft) {
       return record;
     }
     return best;

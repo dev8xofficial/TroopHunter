@@ -43,6 +43,22 @@ export function redactString(input: string): string {
 }
 
 /**
+ * Scan a single string for secrets/PII without modifying it.
+ * Returns an array of matched rule names.
+ */
+export function detectSecrets(input: string): string[] {
+  const matches: string[] = [];
+  for (const rule of RULES) {
+    // Reset regex state since we use 'g' flag
+    rule.pattern.lastIndex = 0;
+    if (rule.pattern.test(input)) {
+      matches.push(rule.name);
+    }
+  }
+  return matches;
+}
+
+/**
  * Recursively redact every string value in a JSON-serializable structure.
  * Non-string primitives pass through unchanged; object keys are never
  * redacted (only values), since keys carry structure, not secrets.
@@ -52,7 +68,7 @@ export function redactDeep<T>(value: T): T {
     return redactString(value) as unknown as T;
   }
   if (Array.isArray(value)) {
-    return value.map(v => redactDeep(v)) as unknown as T;
+    return value.map((v) => redactDeep(v)) as unknown as T;
   }
   if (value !== null && typeof value === 'object') {
     const out: Record<string, unknown> = {};

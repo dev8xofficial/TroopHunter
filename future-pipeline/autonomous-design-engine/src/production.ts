@@ -51,57 +51,27 @@ export function validateProductionReadiness(cfg: Config): ProductionReadiness {
   const warnings: Violation[] = [];
 
   if (!cfg.productionMode) {
-    warnings.push(violation(
-      'production-readiness',
-      'production-mode-off',
-      'ADE_PRODUCTION is not enabled; treating this as an R&D run.',
-      'minor',
-    ));
+    warnings.push(violation('production-readiness', 'production-mode-off', 'ADE_PRODUCTION is not enabled; treating this as an R&D run.', 'minor'));
   }
 
   if (cfg.productionMode && cfg.provider !== 'api') {
-    violations.push(violation(
-      'production-readiness',
-      'provider-not-api',
-      `Production mode requires ADE_PROVIDER=api, found "${cfg.provider}".`,
-      'critical',
-    ));
+    violations.push(violation('production-readiness', 'provider-not-api', `Production mode requires ADE_PROVIDER=api, found "${cfg.provider}".`, 'critical'));
   }
 
   if (cfg.productionMode && !cfg.anthropicApiKey) {
-    violations.push(violation(
-      'production-readiness',
-      'missing-api-key',
-      'Production API mode requires ANTHROPIC_API_KEY.',
-      'critical',
-    ));
+    violations.push(violation('production-readiness', 'missing-api-key', 'Production API mode requires ANTHROPIC_API_KEY.', 'critical'));
   }
 
   if (cfg.productionMode && cfg.harness !== 'next') {
-    warnings.push(violation(
-      'production-readiness',
-      'vite-harness-in-production',
-      'Vite harness is acceptable for R&D; use ADE_HARNESS=next before external production parity checks.',
-      'moderate',
-    ));
+    warnings.push(violation('production-readiness', 'vite-harness-in-production', 'Vite harness is acceptable for R&D; use ADE_HARNESS=next before external production parity checks.', 'moderate'));
   }
 
   if (cfg.maxRunTokens > cfg.maxTokensPerSection * Math.max(1, cfg.maxIters)) {
-    warnings.push(violation(
-      'production-readiness',
-      'loose-run-token-cap',
-      'ADE_MAX_RUN_TOKENS is loose relative to ADE_MAX_TOKENS_PER_SECTION and max iterations.',
-      'moderate',
-    ));
+    warnings.push(violation('production-readiness', 'loose-run-token-cap', 'ADE_MAX_RUN_TOKENS is loose relative to ADE_MAX_TOKENS_PER_SECTION and max iterations.', 'moderate'));
   }
 
   if (cfg.maxModelCalls > cfg.maxIters * cfg.variations * 3 + 4) {
-    warnings.push(violation(
-      'production-readiness',
-      'loose-model-call-cap',
-      'ADE_MAX_MODEL_CALLS leaves broad headroom; production runs should cap runaway loops tightly.',
-      'moderate',
-    ));
+    warnings.push(violation('production-readiness', 'loose-model-call-cap', 'ADE_MAX_MODEL_CALLS leaves broad headroom; production runs should cap runaway loops tightly.', 'moderate'));
   }
 
   return {
@@ -111,10 +81,7 @@ export function validateProductionReadiness(cfg: Config): ProductionReadiness {
   };
 }
 
-export function summarizeTraceCost(
-  records: RunRecord[],
-  sectionCount?: number,
-): CostSummary {
+export function summarizeTraceCost(records: RunRecord[], sectionCount?: number): CostSummary {
   const finalByRun = new Map<string, RunRecord>();
   for (const record of records) {
     const existing = finalByRun.get(record.run_id);
@@ -127,11 +94,9 @@ export function summarizeTraceCost(
   const inputTokens = finalRecords.reduce((sum, record) => sum + record.tokens.input, 0);
   const outputTokens = finalRecords.reduce((sum, record) => sum + record.tokens.output, 0);
   const durationMs = finalRecords.reduce((sum, record) => sum + record.duration_ms, 0);
-  const sections = sectionCount ?? new Set(records.map(record => record.section_id)).size;
+  const sections = sectionCount ?? new Set(records.map((record) => record.section_id)).size;
   const safeSections = Math.max(1, sections);
-  const estimatedUsd =
-    (inputTokens / 1_000_000) * DEFAULT_PRICE.inputUsdPerMillion +
-    (outputTokens / 1_000_000) * DEFAULT_PRICE.outputUsdPerMillion;
+  const estimatedUsd = (inputTokens / 1_000_000) * DEFAULT_PRICE.inputUsdPerMillion + (outputTokens / 1_000_000) * DEFAULT_PRICE.outputUsdPerMillion;
 
   return {
     sections,
@@ -141,7 +106,7 @@ export function summarizeTraceCost(
     totalTokens: inputTokens + outputTokens,
     durationMs,
     tokensPerSection: (inputTokens + outputTokens) / safeSections,
-    secondsPerSection: (durationMs / 1000) / safeSections,
+    secondsPerSection: durationMs / 1000 / safeSections,
     estimatedUsd,
     estimatedUsdPerSection: estimatedUsd / safeSections,
     quota: finalRecords[finalRecords.length - 1]?.quota,
@@ -154,9 +119,7 @@ export function summarizeRunResults(results: RunResult[]): CostSummary {
   const durationMs = results.reduce((sum, result) => sum + result.totalDurationMs, 0);
   const sections = results.length;
   const safeSections = Math.max(1, sections);
-  const estimatedUsd =
-    (inputTokens / 1_000_000) * DEFAULT_PRICE.inputUsdPerMillion +
-    (outputTokens / 1_000_000) * DEFAULT_PRICE.outputUsdPerMillion;
+  const estimatedUsd = (inputTokens / 1_000_000) * DEFAULT_PRICE.inputUsdPerMillion + (outputTokens / 1_000_000) * DEFAULT_PRICE.outputUsdPerMillion;
 
   return {
     sections,
@@ -166,7 +129,7 @@ export function summarizeRunResults(results: RunResult[]): CostSummary {
     totalTokens: inputTokens + outputTokens,
     durationMs,
     tokensPerSection: (inputTokens + outputTokens) / safeSections,
-    secondsPerSection: (durationMs / 1000) / safeSections,
+    secondsPerSection: durationMs / 1000 / safeSections,
     estimatedUsd,
     estimatedUsdPerSection: estimatedUsd / safeSections,
   };
@@ -176,28 +139,13 @@ export function checkCostBudget(summary: CostSummary, budget: CostBudget): Viola
   const violations: Violation[] = [];
 
   if (summary.tokensPerSection > budget.maxTokensPerSection) {
-    violations.push(violation(
-      'production-budget',
-      'tokens-per-section',
-      `Tokens/section ${Math.round(summary.tokensPerSection)} exceeds cap ${budget.maxTokensPerSection}.`,
-      'serious',
-    ));
+    violations.push(violation('production-budget', 'tokens-per-section', `Tokens/section ${Math.round(summary.tokensPerSection)} exceeds cap ${budget.maxTokensPerSection}.`, 'serious'));
   }
   if (summary.secondsPerSection > budget.maxSecondsPerSection) {
-    violations.push(violation(
-      'production-budget',
-      'seconds-per-section',
-      `Seconds/section ${summary.secondsPerSection.toFixed(1)} exceeds cap ${budget.maxSecondsPerSection}.`,
-      'serious',
-    ));
+    violations.push(violation('production-budget', 'seconds-per-section', `Seconds/section ${summary.secondsPerSection.toFixed(1)} exceeds cap ${budget.maxSecondsPerSection}.`, 'serious'));
   }
   if (summary.estimatedUsdPerSection > budget.maxUsdPerSection) {
-    violations.push(violation(
-      'production-budget',
-      'usd-per-section',
-      `Estimated USD/section ${summary.estimatedUsdPerSection.toFixed(2)} exceeds cap ${budget.maxUsdPerSection}.`,
-      'serious',
-    ));
+    violations.push(violation('production-budget', 'usd-per-section', `Estimated USD/section ${summary.estimatedUsdPerSection.toFixed(2)} exceeds cap ${budget.maxUsdPerSection}.`, 'serious'));
   }
 
   return violations;
@@ -212,23 +160,14 @@ export function budgetFromConfig(cfg: Config): CostBudget {
 }
 
 export function formatCostSummary(summary: CostSummary): string {
-  const lines = [
-    `Cost/latency (H7): ${summary.sections} section(s), ${Math.round(summary.tokensPerSection).toLocaleString()} tokens/section`,
-    `Latency: ${summary.secondsPerSection.toFixed(1)}s/section`,
-    `Estimated spend: $${summary.estimatedUsdPerSection.toFixed(2)}/section`,
-  ];
+  const lines = [`Cost/latency (H7): ${summary.sections} section(s), ${Math.round(summary.tokensPerSection).toLocaleString()} tokens/section`, `Latency: ${summary.secondsPerSection.toFixed(1)}s/section`, `Estimated spend: $${summary.estimatedUsdPerSection.toFixed(2)}/section`];
   if (summary.quota) {
     lines.push(`Quota Burn: ${summary.quota.tokens_today.toLocaleString()} tokens today | ${summary.quota.calls_today.toLocaleString()} calls today`);
   }
   return lines.join('\n');
 }
 
-function violation(
-  gate: string,
-  rule: string,
-  message: string,
-  severity: Violation['severity'],
-): Violation {
+function violation(gate: string, rule: string, message: string, severity: Violation['severity']): Violation {
   return {
     gate,
     rule,
@@ -269,6 +208,98 @@ export function validateDesignToCodeParity(tsx: string): Violation[] {
       });
       break; // One violation per rule is enough
     }
+  }
+
+  return violations;
+}
+
+// --- Output-quality gate (C4.2) -----------------------------------
+
+/**
+ * Deterministic static analysis distinct from validateDesignToCodeParity
+ * (E3.1, which checks inline-styles/export shape). C4.2 closes F-COD-01..04:
+ * non-semantic HTML, insecure output/XSS, uncontrolled external resources.
+ */
+export function outputQualityGate(tsx: string): Violation[] {
+  const violations: Violation[] = [];
+
+  // F-COD-03: no dangerouslySetInnerHTML — the direct XSS vector.
+  if (/dangerouslySetInnerHTML/.test(tsx)) {
+    violations.push({
+      gate: 'output-quality',
+      rule: 'dangerously-set-inner-html',
+      message: 'TSX uses dangerouslySetInnerHTML — unsanitized HTML injection is not allowed in generated output.',
+      severity: 'critical',
+      fixable: true,
+    });
+  }
+
+  // F-COD-01: div-soup — a section with no semantic landmark at all.
+  const hasLandmark = /<(nav|header|main|footer|section|article|aside|button|h[1-6])\b/i.test(tsx);
+  if (hasLandmark === false) {
+    violations.push({
+      gate: 'output-quality',
+      rule: 'non-semantic-html',
+      message: 'TSX contains no semantic landmark elements (nav/header/main/footer/section/article/aside/button/heading) — likely div-soup.',
+      severity: 'serious',
+      fixable: true,
+    });
+  }
+
+  // F-COD-04: remote resource loads — fonts/scripts/images must be self-hosted,
+  // not pulled from an external origin at render/runtime.
+  const remoteResourcePattern = /(?:src|href)\s*=\s*["'`](https?:)?\/\/(?!localhost|127\.0\.0\.1)[^"'`]+["'`]/gi;
+  const remoteMatches = [...tsx.matchAll(remoteResourcePattern)];
+  if (remoteMatches.length > 0) {
+    violations.push({
+      gate: 'output-quality',
+      rule: 'remote-resource-origin',
+      message: `TSX loads ${remoteMatches.length} resource(s) from an external origin (fonts/scripts/images must be self-hosted): ${remoteMatches
+        .slice(0, 3)
+        .map((m) => m[0])
+        .join(', ')}`,
+      severity: 'serious',
+      fixable: true,
+    });
+  }
+
+  // F-COD-03: unsanitized URL interpolation into href/src via template
+  // literals — a template-literal `href`/`src` built from a variable, not a
+  // static string, is the injectable case worth catching deterministically.
+  if (/(?:src|href)\s*=\s*\{`[^`]*\$\{/i.test(tsx)) {
+    violations.push({
+      gate: 'output-quality',
+      rule: 'unsanitized-url-interpolation',
+      message: 'TSX interpolates a variable directly into a href/src template literal — sanitize or use a static/allowlisted value.',
+      severity: 'serious',
+      fixable: true,
+    });
+  }
+
+  // C4.2: prop-driven (no hard-coded content). Components must take props and
+  // text must be derived from variables, not hardcoded strings in JSX.
+  const hasNoProps = /(?:function\s+[A-Z]\w*\s*\(\s*\)|const\s+[A-Z]\w*\s*=\s*\(\s*\)\s*=>)/.test(tsx);
+  const hasHardcodedText = />\s*([a-zA-Z0-9][^<{]*)\s*</.test(tsx) || />\s*\{['"`][a-zA-Z0-9][^'"`]*['"`]\}\s*</.test(tsx);
+
+  if (hasNoProps || hasHardcodedText) {
+    violations.push({
+      gate: 'output-quality',
+      rule: 'hardcoded-content',
+      message: 'Component contains hard-coded text or takes no props. All content must be prop-driven.',
+      severity: 'serious',
+      fixable: true,
+    });
+  }
+
+  // C4.2: missing keys in list rendering.
+  if (/\.map\s*\(/.test(tsx) && !/\bkey\s*=\s*[{'"]/.test(tsx)) {
+    violations.push({
+      gate: 'output-quality',
+      rule: 'missing-list-keys',
+      message: 'Component uses .map() but is missing a key prop on the rendered elements.',
+      severity: 'serious',
+      fixable: true,
+    });
   }
 
   return violations;

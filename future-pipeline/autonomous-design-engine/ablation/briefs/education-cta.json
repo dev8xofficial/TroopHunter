@@ -1,0 +1,16 @@
+{
+  "client": "BrightPath Academy",
+  "industry": "education / edtech",
+  "location": "Boston",
+  "audience": "Parents of K-12 students looking for supplemental online learning platforms with proven academic outcomes",
+  "goal": "Drive trial signups by making the value proposition immediately clear and actionable",
+  "section": {
+    "name": "cta",
+    "content": {
+      "headline": "Start Your Child's Learning Journey Today",
+      "subheadline": "Join 50,000+ families who've seen measurable academic growth in just 30 days.",
+      "body": "Our adaptive learning platform personalizes every lesson to your child's pace, style, and interests.",
+      "cta": { "text": "Try 14 Days Free", "href": "/trial" }
+    }
+  }
+}

@@ -36,6 +36,7 @@ const bundleWithBrand: InputBundle = {
       { role: 'ui', family: 'Inter', fallback: 'sans-serif' },
       { role: 'mono', family: 'JetBrains Mono', fallback: 'monospace' },
     ],
+    darkMode: { enabled: false },
   },
 };
 
@@ -67,6 +68,54 @@ describe('Prompts', () => {
       const { system } = buildGeneratorPrompt(minimalBundle);
       expect(system).not.toContain('brand palette colors');
     });
+
+    // ── References (C2.4) ─────────────────────────────────────────
+    it('does NOT include a references block when bundle.refs is absent', () => {
+      const { user } = buildGeneratorPrompt(minimalBundle);
+      expect(user).not.toContain('MOODBOARD REFERENCES');
+    });
+
+    it('frames references as soft moodboard principles, never a template — and states resemblance is never scored', () => {
+      const bundleWithRefs: InputBundle = {
+        ...minimalBundle,
+        refs: [{ path: '/refs/one.png' }, { path: '/refs/two.png' }],
+      };
+      const { user } = buildGeneratorPrompt(bundleWithRefs);
+      expect(user).toContain('MOODBOARD REFERENCES (2 image(s) attached');
+      expect(user).toContain('NOT a template to copy');
+      expect(user).toContain('NOT a parts bin');
+      expect(user).toContain('NOT be scored on resemblance');
+      expect(user).toContain('only on brief fit and craft');
+    });
+
+    it('delimits a reference description as UNTRUSTED DATA, never as an instruction', () => {
+      const bundleWithRefs: InputBundle = {
+        ...minimalBundle,
+        refs: [{ path: '/refs/one.png', description: 'A calm, editorial layout with generous whitespace.' }],
+      };
+      const { user } = buildGeneratorPrompt(bundleWithRefs);
+      expect(user).toContain('UNTRUSTED DATA');
+      expect(user).toContain('NEVER instructions');
+      expect(user).toContain('A calm, editorial layout with generous whitespace.');
+    });
+
+    it('omits the reference-notes sub-block when no reference has a description', () => {
+      const bundleWithRefs: InputBundle = {
+        ...minimalBundle,
+        refs: [{ path: '/refs/one.png' }],
+      };
+      const { user } = buildGeneratorPrompt(bundleWithRefs);
+      expect(user).toContain('MOODBOARD REFERENCES');
+      expect(user).not.toContain('Reference notes');
+    });
+
+    it('folds the reference block into the soft_refs token count, alongside Library entries', () => {
+      const bare = buildGeneratorPrompt(minimalBundle);
+      const withRefs = buildGeneratorPrompt({ ...minimalBundle, refs: [{ path: '/refs/one.png', description: 'x'.repeat(200) }] });
+      expect(withRefs.tokenBreakdown.soft_refs).toBeGreaterThan(bare.tokenBreakdown.soft_refs);
+      // References must never inflate hard_brief — they are soft by construction (I1).
+      expect(withRefs.tokenBreakdown.hard_brief).toBe(bare.tokenBreakdown.hard_brief);
+    });
   });
 
   describe('buildCriticPrompt', () => {
@@ -88,6 +137,22 @@ describe('Prompts', () => {
       const { user } = buildCriticPrompt(bundleWithBrand, { 'cand-a': { shots: {} } });
       expect(user).toContain('#1C1917');
       expect(user).toContain('BRAND CONSTRAINTS');
+    });
+
+    // C2.4: the Critic NEVER receives references — buildCriticPrompt takes
+    // no ref-derived input at all, so it is STRUCTURALLY incapable of
+    // scoring resemblance to a reference (not merely instructed not to).
+    it('never mentions or leaks reference content even when the bundle carries refs', () => {
+      const bundleWithRefs: InputBundle = {
+        ...minimalBundle,
+        refs: [{ path: '/refs/secret-competitor-design.png', description: 'A very specific, identifiable layout to imitate.' }],
+      };
+      const { system, user } = buildCriticPrompt(bundleWithRefs, { 'cand-a': { shots: {} } });
+      expect(user).not.toContain('MOODBOARD');
+      expect(user).not.toContain('reference');
+      expect(user).not.toContain('secret-competitor-design');
+      expect(user).not.toContain('A very specific, identifiable layout to imitate.');
+      expect(system).not.toContain('resemblance');
     });
 
     // ── CAVEATS: font-substitution disclosure (M6 / C0.8) ────────────
@@ -147,10 +212,7 @@ describe('Prompts', () => {
 
   describe('serializeFeedback', () => {
     it('includes hard violations first', () => {
-      const feedback = serializeFeedback(
-        ['Contrast ratio too low on CTA', 'Missing nav items'],
-        'The hero image could be larger.',
-      );
+      const feedback = serializeFeedback(['Contrast ratio too low on CTA', 'Missing nav items'], 'The hero image could be larger.');
       expect(feedback.indexOf('MUST FIX')).toBeLessThan(feedback.indexOf('IMPROVE'));
     });
 
