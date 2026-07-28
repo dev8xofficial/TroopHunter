@@ -1,0 +1,126 @@
+---
+# Runs ON a Proxmox node (become: true).
+
+- name: Does this node already have the template?
+  ansible.builtin.shell: >-
+    set -o pipefail;
+    qm list | awk '$3 == "stopped" || $3 == "template" {print $2}' | grep -Fx '{{ template_name }}' || true
+  args:
+    executable: /bin/bash
+  register: local_template
+  changed_when: false
+
+- name: Skip — template already present
+  ansible.builtin.debug:
+    msg: "'{{ template_name }}' already exists on {{ inventory_hostname }} — nothing to do."
+  when: local_template.stdout | length > 0
+
+- name: Ensure the template exists
+  when: local_template.stdout | length == 0
+  block:
+
+    # --- can a cluster peer supply it? ---
+    - name: Look for the template on the source node ({{ template_source_node }})
+      ansible.builtin.shell: >-
+        set -o pipefail;
+        pvesh get /nodes/{{ template_source_node }}/qemu --output-format json 2>/dev/null
+        | python3 -c "import sys,json;
+        print(next((str(v['vmid']) for v in json.load(sys.stdin) if v.get('name')=='{{ template_name }}'), ''))"
+        || true
+      args:
+        executable: /bin/bash
+      register: source_vmid
+      changed_when: false
+      failed_when: false
+
+    # Proxmox cannot clone directly onto another node's LOCAL storage
+    # ("can't clone to non-shared storage 'local'"). The cluster-native workaround
+    # is: full-clone on the SOURCE node, then migrate that copy with its disk.
+    - name: Clone the template from {{ template_source_node }} (preferred — no download)
+      when: source_vmid.stdout | trim | length > 0
+      block:
+        - name: Full-clone the template locally on {{ template_source_node }}
+          ansible.builtin.command: >-
+            pvesh create /nodes/{{ template_source_node }}/qemu/{{ source_vmid.stdout | trim }}/clone
+            --newid {{ template_vmid }}
+            --name {{ template_name }}
+            --full 1
+            --storage {{ template_storage }}
+
+        - name: Wait for the local clone to appear
+          ansible.builtin.shell: >-
+            set -o pipefail;
+            pvesh get /nodes/{{ template_source_node }}/qemu --output-format json
+            | grep -q '"vmid":{{ template_vmid }}'
+          args:
+            executable: /bin/bash
+          register: clone_ready
+          retries: 60
+          delay: 10
+          until: clone_ready.rc == 0
+          changed_when: false
+
+        - name: Migrate the copy to {{ inventory_hostname }} (carries the local disk)
+          ansible.builtin.command: >-
+            pvesh create /nodes/{{ template_source_node }}/qemu/{{ template_vmid }}/migrate
+            --target {{ inventory_hostname }}
+            --with-local-disks 1
+
+        - name: Wait for it to land on this node
+          ansible.builtin.command: "qm status {{ template_vmid }}"
+          register: migrate_wait
+          retries: 90
+          delay: 10
+          until: migrate_wait.rc == 0
+          changed_when: false
+
+        - name: Convert it into a template
+          ansible.builtin.command: "qm template {{ template_vmid }}"
+          failed_when: false        # already a template if the source was one
+
+        - name: Report
+          ansible.builtin.debug:
+            msg: "Cloned '{{ template_name }}' from {{ template_source_node }} → {{ inventory_hostname }} as vmid {{ template_vmid }} (clone + migrate)."
+
+    # --- otherwise build it from an official cloud image ---
+    - name: Build from a cloud image (no peer has it)
+      when: source_vmid.stdout | trim | length == 0
+      block:
+        - name: Download the cloud image
+          ansible.builtin.get_url:
+            url: "{{ template_image_url }}"
+            dest: "{{ template_image_dir }}/{{ template_image_file }}"
+            mode: "0644"
+            timeout: 900
+
+        - name: Create the VM shell
+          ansible.builtin.command: >-
+            qm create {{ template_vmid }}
+            --name {{ template_name }}
+            --cores {{ template_cores }}
+            --memory {{ template_memory }}
+            --net0 virtio,bridge={{ template_net_bridge }}
+            --scsihw virtio-scsi-pci
+            --ostype l26
+            --agent enabled=1
+
+        - name: Import the cloud image as the VM's disk
+          ansible.builtin.command: >-
+            qm importdisk {{ template_vmid }}
+            {{ template_image_dir }}/{{ template_image_file }}
+            {{ template_storage }} --format {{ template_disk_format }}
+
+        - name: Attach disk, cloud-init drive, boot order and serial console
+          ansible.builtin.command: >-
+            qm set {{ template_vmid }}
+            --scsi0 {{ template_storage }}:{{ template_vmid }}/vm-{{ template_vmid }}-disk-0.{{ template_disk_format }}
+            --ide2 {{ template_storage }}:cloudinit
+            --boot order=scsi0
+            --serial0 socket --vga serial0
+
+        - name: Convert the VM into a template
+          ansible.builtin.command: "qm template {{ template_vmid }}"
+
+        - name: Report
+          ansible.builtin.debug:
+            msg: "Built '{{ template_name }}' from cloud image on {{ inventory_hostname }} as vmid {{ template_vmid }}."

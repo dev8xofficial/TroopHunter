@@ -1,0 +1,27 @@
+---
+# Ensures a cloud-init VM template exists on a Proxmox node.
+#
+# Two strategies, tried in order:
+#   1. CLONE from a node in the same cluster that already has it (fast, no download,
+#      guarantees every node runs an identical template).
+#   2. BUILD from an official cloud image (for a node with no peer that has one).
+#
+# Idempotent: does nothing if this node already has a template with the target name.
+#
+# NOTE ON VMIDs: Proxmox vmids are unique across the WHOLE CLUSTER, so a clone
+# cannot reuse the source's id (pve already holds 9000). `template_vmid` is the id
+# used on THIS node and must be free cluster-wide.
+
+template_name: ubuntu-22.04-minimal-template
+template_vmid: 9010                 # free cluster-wide (pve holds 9000/9001)
+template_source_node: pve           # peer to clone from, when it has the template
+template_storage: local
+
+# --- fallback: build from a cloud image ---
+template_image_url: https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
+template_image_file: jammy-server-cloudimg-amd64.img
+template_image_dir: /var/lib/vz/template/iso
+template_cores: 2
+template_memory: 2048
+template_net_bridge: vmbr0
+template_disk_format: qcow2

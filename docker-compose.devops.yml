@@ -20,6 +20,11 @@ services:
       - ./terraform/secrets/id_rsa_k8s_ctrlr:/root/.ssh/id_rsa_k8s_ctrlr:ro
       - ./terraform/secrets/id_rsa_k8s_node:/root/.ssh/id_rsa_k8s_node:ro
     working_dir: /workspace
+    environment:
+      # ansible.cfg is only auto-loaded from the CWD, and working_dir is /workspace
+      # (so `cd /workspace/ansible` was required before every run). Setting this
+      # makes roles_path/inventory resolve from anywhere in the container.
+      ANSIBLE_CONFIG: /workspace/ansible/ansible.cfg
     stdin_open: true
     tty: true
     command: /bin/bash

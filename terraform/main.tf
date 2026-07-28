@@ -1,7 +1,7 @@
 # ✅ Global entrypoint
 
 module "connect_ops" {
-  source         = "./modules/proxmox_vm"
+  source = "./modules/proxmox_vm"
 
   vm_definitions = local.connect_ops
   vm_template    = var.vm_template
@@ -10,7 +10,7 @@ module "connect_ops" {
 }
 
 module "docker_registry" {
-  source         = "./modules/proxmox_vm"
+  source = "./modules/proxmox_vm"
 
   vm_definitions = local.docker_registry
   vm_template    = var.vm_template
@@ -56,4 +56,18 @@ module "backbone_k3s" {
   vm_template    = var.vm_template
   target_node    = var.target_node
   base_vmid      = var.base_backbonek3sid
+}
+
+# llm-host — llama.cpp server for the local-AI layer (forge/infrastructure/reconciler).
+# Lives on the dev8x cluster, NOT the hub: use the `dev8x` workspace + secrets/dev8x.tfvars.
+# Workspace module → no prevent_destroy (models are re-downloadable).
+#   terraform workspace select dev8x || terraform workspace new dev8x
+#   terraform apply -var-file=secrets/dev8x.tfvars -target=module.llm_host
+module "llm_host" {
+  source = "./modules/proxmox_vm_workspace"
+
+  vm_definitions = local.llm_host
+  vm_template    = var.vm_template
+  target_node    = var.target_node
+  base_vmid      = var.base_llmid
 }

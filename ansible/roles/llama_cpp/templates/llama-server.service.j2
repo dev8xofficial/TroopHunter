@@ -1,0 +1,30 @@
+# {{ ansible_managed }}
+[Unit]
+Description=llama.cpp OpenAI-compatible server (Dev8X local AI layer)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User={{ llama_user }}
+WorkingDirectory={{ llama_home }}
+ExecStart={{ llama_home }}/build/bin/llama-server \
+    -m {{ llama_models_dir }}/{{ llama_model_file }} \
+    --host {{ llama_host }} --port {{ llama_port }} \
+    -c {{ llama_ctx }} \
+    -t {{ llama_threads }} -tb {{ llama_batch_threads }} \
+    --parallel {{ llama_parallel }} \
+{% if llama_flash_attn %}    -fa on \
+{% endif %}
+    -rea {{ llama_reasoning }} \
+{% if llama_reasoning == 'off' %}    --reasoning-budget 0 \
+{% endif %}
+    --cache-type-k {{ llama_cache_type_k }} --cache-type-v {{ llama_cache_type_v }} \
+    {{ llama_extra_args }}
+Restart=on-failure
+RestartSec=10
+# Model + KV cache are large; do not let the OOM killer pick this first.
+OOMScoreAdjust=-500
+
+[Install]
+WantedBy=multi-user.target
