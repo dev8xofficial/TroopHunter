@@ -1,0 +1,25 @@
+---
+# Local-AI layer: build the Proxmox template, then configure the LLM host.
+#
+#   1) template on the PVE node (once per node — dell3 has none):
+#        ansible-playbook playbooks/main.llm.yml --limit pve_nodes --tags template
+#   2) terraform apply in terraform/dev8x-llm/  (creates the VM)
+#   3) configure the VM:
+#        ansible-playbook playbooks/main.llm.yml --limit llm_hosts \
+#          -e llama_model_file=Ornith-1.0-35B-Q4_K_M.gguf
+
+- name: Build the cloud-init template on the Proxmox node
+  hosts: pve_nodes
+  become: true
+  gather_facts: true
+  tags: [template]
+  roles:
+    - proxmox_template
+
+- name: Configure the LLM host (llama.cpp + systemd service)
+  hosts: llm_hosts
+  become: true
+  gather_facts: true
+  tags: [llm]
+  roles:
+    - llama_cpp

@@ -1,5 +1,5 @@
 # Terraform SSH keys
-secrets/id_rsa*
+secrets/
 *.tfvars
 *.auto.tfvars
 .terraform/

@@ -103,5 +103,21 @@ locals {
     }
   ]
 
+  # llm-host — llama.cpp server for the local-AI layer. Workspace module (no
+  # prevent_destroy): GGUF models are re-downloadable, so destroy/recreate is cheap.
+  llm_host = [
+    {
+      name          = "${var.llm_name}"
+      cores         = var.llm_cores
+      memory        = var.llm_memory
+      ip            = "${var.llm_ip}"
+      hostname      = "${var.llm_name}"
+      startup_order = 9
+      up_delay      = 15
+      ssh_key_path  = "${var.ssh_keys_dir}id_ed25519_ubuntu.pub"
+      disk_size     = "${var.llm_disk_size}"
+    }
+  ]
+
   vm_definitions_combined = concat(local.k8s_controller, local.k8s_nodes)
 }

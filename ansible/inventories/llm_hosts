@@ -1,0 +1,23 @@
+# Dev8X local-AI layer inventory (separate from TroopHunter's `hosts`).
+#
+# pve_nodes  = the Proxmox hypervisors themselves (to build templates on)
+# llm_hosts  = the VMs that run llama.cpp (created by terraform/dev8x-llm)
+
+[pve_nodes]
+dell3 ansible_host=192.168.1.30  ansible_user=root ansible_ssh_private_key_file=~/.ssh/id_ed25519_ubuntu
+pve   ansible_host=192.168.1.125 ansible_user=root ansible_ssh_private_key_file=~/.ssh/id_ed25519_ubuntu
+
+[llm_hosts]
+# dell3: 4 cores (i5-7500) — holds big models, slow compute
+llm-host ansible_host=192.168.1.40 ansible_user=llm-host ansible_ssh_private_key_file=~/.ssh/id_ed25519_ubuntu llama_threads=4 llama_batch_threads=4
+# pve/T7500: 24 threads (2x6-core Xeon) — the fast inference engine
+llm-pve  ansible_host=192.168.1.41 ansible_user=llm-pve  ansible_ssh_private_key_file=~/.ssh/id_ed25519_ubuntu llama_threads=20 llama_batch_threads=20
+
+[llm_hosts:vars]
+# Which model this host serves. Override per-run with -e.
+llama_model_file=Ornith-1.0-35B-Q4_K_M.gguf
+llama_threads=4
+llama_batch_threads=4
+
+[all:vars]
+ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'

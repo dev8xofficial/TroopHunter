@@ -1,0 +1,46 @@
+---
+- name: Install the llama-server systemd unit
+  ansible.builtin.template:
+    src: llama-server.service.j2
+    dest: /etc/systemd/system/llama-server.service
+    mode: "0644"
+  notify: restart llama-server
+
+# Only enable once a model exists — otherwise systemd crash-loops on every boot.
+- name: Enable llama-server (only when a model is present)
+  ansible.builtin.systemd:
+    name: llama-server
+    enabled: "{{ model_stat.stat.exists or (llama_model_url | length > 0) }}"
+    daemon_reload: true
+
+- name: Start it only when the model is actually on disk
+  ansible.builtin.systemd:
+    name: llama-server
+    state: started
+  when: model_stat.stat.exists or (llama_model_url | length > 0)
+
+- name: Wait for the OpenAI-compatible endpoint
+  ansible.builtin.uri:
+    url: "http://127.0.0.1:{{ llama_port }}/v1/models"
+    status_code: 200
+  register: llama_health
+  retries: 30
+  delay: 10
+  until: llama_health.status is defined and llama_health.status == 200
+  when: model_stat.stat.exists or (llama_model_url | length > 0)
+
+- name: Report — serving
+  ansible.builtin.debug:
+    msg: "llama-server UP → http://{{ ansible_host | default(inventory_hostname) }}:{{ llama_port }}/v1"
+  when:
+    - llama_health is defined
+    - llama_health.status is defined
+    - llama_health.status == 200
+
+- name: Report — installed but idle (no model yet)
+  ansible.builtin.debug:
+    msg: >-
+      llama.cpp is installed and the systemd unit is in place, but NOT started:
+      no model at {{ llama_models_dir }}/{{ llama_model_file }}.
+      Copy one in, then re-run this play.
+  when: not (model_stat.stat.exists or (llama_model_url | length > 0))

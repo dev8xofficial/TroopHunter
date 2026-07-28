@@ -1,0 +1,50 @@
+---
+- name: Install build dependencies
+  ansible.builtin.apt:
+    name: [build-essential, cmake, git, libcurl4-openssl-dev, ccache, python3]
+    state: present
+    update_cache: true
+
+# Stat BEFORE cloning — the clone would otherwise make "is it already built?" unanswerable.
+- name: Check for an existing llama-server binary
+  ansible.builtin.stat:
+    path: "{{ llama_home }}/build/bin/llama-server"
+  register: llama_server_pre
+
+- name: Clone llama.cpp
+  ansible.builtin.git:
+    repo: "{{ llama_repo }}"
+    dest: "{{ llama_home }}"
+    version: "{{ llama_version }}"
+    depth: 1
+    force: true
+  register: llama_clone
+
+- name: Decide whether a rebuild is needed
+  ansible.builtin.set_fact:
+    llama_needs_build: "{{ llama_clone.changed or not llama_server_pre.stat.exists }}"
+
+- name: Configure the build (CPU-only; RPC enabled so the node can join a split)
+  ansible.builtin.command:
+    cmd: cmake -B build -DCMAKE_BUILD_TYPE=Release -DLLAMA_CURL=ON -DGGML_RPC=ON
+    chdir: "{{ llama_home }}"
+  when: llama_needs_build
+
+# Build BOTH targets: llama-server (serving) and rpc-server (so this node can act
+# as an RPC worker when a model is too big for one box — see llm-lab FINDINGS).
+- name: Build llama-server + rpc-server (slow — several minutes on CPU)
+  ansible.builtin.command:
+    cmd: "cmake --build build --config Release -j {{ llama_build_jobs }} --target llama-server ggml-rpc-server"   # NB: target is ggml-rpc-server
+    chdir: "{{ llama_home }}"
+  when: llama_needs_build
+  notify: restart llama-server
+
+- name: Verify the binary exists
+  ansible.builtin.stat:
+    path: "{{ llama_home }}/build/bin/llama-server"
+  register: llama_server_bin
+
+- name: Fail if the build produced no binary
+  ansible.builtin.assert:
+    that: llama_server_bin.stat.exists
+    fail_msg: "llama-server was not built at {{ llama_home }}/build/bin/llama-server"

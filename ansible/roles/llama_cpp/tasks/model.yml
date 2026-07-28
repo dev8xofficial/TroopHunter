@@ -1,0 +1,32 @@
+---
+- name: Ensure the models directory exists
+  ansible.builtin.file:
+    path: "{{ llama_models_dir }}"
+    state: directory
+    owner: "{{ llama_user }}"
+    mode: "0755"
+
+- name: Check whether the model is already present
+  ansible.builtin.stat:
+    path: "{{ llama_models_dir }}/{{ llama_model_file }}"
+  register: model_stat
+
+- name: Download the model (only if a URL was given and the file is absent)
+  ansible.builtin.get_url:
+    url: "{{ llama_model_url }}"
+    dest: "{{ llama_models_dir }}/{{ llama_model_file }}"
+    mode: "0644"
+    timeout: 3600
+  when:
+    - not model_stat.stat.exists
+    - llama_model_url | length > 0
+  notify: restart llama-server
+
+- name: Report if the model must be copied in manually
+  ansible.builtin.debug:
+    msg: >-
+      Model {{ llama_model_file }} is not present and no llama_model_url was set.
+      Copy it in:  scp {{ llama_model_file }} {{ llama_user }}@{{ ansible_host }}:{{ llama_models_dir }}/
+  when:
+    - not model_stat.stat.exists
+    - llama_model_url | length == 0
