@@ -205,3 +205,10 @@ docker builder prune --all // To remove all build cache (used and unused)
 docker volume prune // to remove docker volumes
 docker volume ls -f dangling=true // to list down docker dangling volumes
 docker system prune -af --volumes // to delete everything in docker
+
+## Operational docs
+
+| Doc | Read it when |
+|---|---|
+| [TUNNEL-ROUTES.md](TUNNEL-ROUTES.md) | Adding, changing or removing a **public hostname**. The routes live in YAML now — never edit them in the Cloudflare dashboard. |
+| [OUTAGE-2026-07-31.md](OUTAGE-2026-07-31.md) | Something is down and looks unexplained. Four latent faults, all invisible while the affected process kept running. |
