@@ -26,7 +26,7 @@ spec:
       containers:
         - name: auth-prod
           image: 192.168.1.201/auth-prod:latest
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           command: ["/bin/bash", "/app/microservices/auth/entrypoint.sh"]
           ports:
             - containerPort: 50003

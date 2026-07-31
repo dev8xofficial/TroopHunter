@@ -15,7 +15,7 @@ spec:
       containers:
         - name: burkes-prod
           image: 192.168.1.201/burkes-prod:latest
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           command: ["npm", "run", "start:production"]
           ports:
             - containerPort: 3009

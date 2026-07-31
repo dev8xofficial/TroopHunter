@@ -26,7 +26,7 @@ spec:
       containers:
         - name: users-stag
           image: 192.168.1.201/users-stag:latest
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           command: ["/bin/bash", "/app/microservices/users/entrypoint.sh"]
           ports:
             - containerPort: 50016

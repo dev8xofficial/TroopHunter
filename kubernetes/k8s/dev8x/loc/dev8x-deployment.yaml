@@ -15,7 +15,7 @@ spec:
       containers:
         - name: dev8x-loc
           image: 192.168.1.201/dev8x-loc:latest
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           command: ["npm", "run", "local"]
           ports:
             - containerPort: 3005

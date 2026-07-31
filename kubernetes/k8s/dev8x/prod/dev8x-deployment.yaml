@@ -15,7 +15,7 @@ spec:
       containers:
         - name: dev8x-prod
           image: 192.168.1.201/dev8x-prod:latest
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           command: ["npm", "run", "start:production"]
           ports:
             - containerPort: 3003

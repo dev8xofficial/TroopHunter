@@ -15,7 +15,7 @@ spec:
       containers:
         - name: troophunter-loc
           image: 192.168.1.201/troophunter-loc:latest
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           command: ["npm", "run", "local"]
           ports:
             - containerPort: 3002

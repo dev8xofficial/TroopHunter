@@ -15,7 +15,7 @@ spec:
       containers:
         - name: troophunter-dev
           image: 192.168.1.201/troophunter-dev:latest
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           command: ["npm", "run", "development"]
           ports:
             - containerPort: 3002

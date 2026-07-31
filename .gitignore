@@ -18,3 +18,6 @@ postgres_prod
 pgadmin/pgadmin
 
 .turbo
+# Claude Code session transcripts. Never tracked; they are working notes, they can run to
+# tens of thousands of lines, and they may quote credentials or output from past sessions.
+.cc-history/

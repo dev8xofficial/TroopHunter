@@ -26,7 +26,7 @@ spec:
       containers:
         - name: queues-dev
           image: 192.168.1.201/queues-dev:latest
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           command: ["/bin/bash", "/app/microservices/queues/entrypoint.sh"]
           ports:
             - containerPort: 50014

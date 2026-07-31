@@ -15,7 +15,7 @@ spec:
       containers:
         - name: dev8x-stag
           image: 192.168.1.201/dev8x-stag:latest
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           command: ["npm", "run", "start:staging"]
           ports:
             - containerPort: 3004
