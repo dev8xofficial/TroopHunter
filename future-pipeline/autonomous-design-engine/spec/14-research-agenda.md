@@ -109,6 +109,8 @@ The load-bearing bets are written in full ([08](./08-hypotheses-and-validation.m
 
 ### Tier 0 — enablers
 
+> **Verdict-economics (M11):** Maximum calibration per human-minute is arguably Tier-0. Because human signal is expensive and scarce at solo scale, R14 (uncertainty-routed review) is promoted to land with the first verdict flow (cross-ref M16), maximizing the leverage of human attention.
+
 **R1 — A standing, human-anchored benchmark exposes regressions and grounds every other bet.**
 - *Why:* today's eval is "read `trace.json` by hand" ([08 §3](./08-hypotheses-and-validation.md)); nothing catches silent regressions (F-MOD-05) or measurement theater (F-SPEC-05). Full design in [13](./13-evaluation-charter.md).
 - *Experiment:* build the golden core (multi-domain briefs incl. **non-English/mixed-language** briefs, multi-rater held-out ratings); inject a known prompt regression; confirm the benchmark catches it. **Non-English restatement accuracy is tracked as a separate metric** to measure F-INP-08 comprehension, not assume it.
@@ -118,7 +120,7 @@ The load-bearing bets are written in full ([08](./08-hypotheses-and-validation.m
 
 **R2 — A high-bandwidth human-feedback channel produces materially better calibration signal than CLI approve/reject/notes.**
 - *Why:* the entire outer loop is only as good as the human signal feeding it (J1–J3); a straw-width channel caps R4 no matter how good the training method.
-- *Experiment:* A/B calibration data quality from the current channel vs a rich one (**pairwise comparison UI**, **constitution-dimension sliders**, **spatial annotations/marks**, **design-rationale surfacing**, teach-by-example). The captured verdict is **serialized into a structured form** specifically shaped for future reward-model training (Phase 3 / R4).
+- *Experiment:* A/B calibration data quality from the current channel vs a rich one (**pairwise comparison UI**, **constitution-dimension sliders**, **spatial annotations/marks**, **design-rationale surfacing**, teach-by-example). Register a cheap **feedback-channel A/B** (identical critique delivered as text vs. annotated screenshot regions) to test whether the *channel*, not the judge, bottlenecks the loop (AI §12.3). The captured verdict is **serialized into a structured form** specifically shaped for future reward-model training (Phase 3 / R4).
 - *Metric:* reward-model / Critic agreement gain per human-minute, rich vs thin channel.
 - *Fail:* no difference → the bottleneck is elsewhere; revisit.
 - *Depends on:* R1 (to measure the gain).
@@ -132,9 +134,9 @@ The load-bearing bets are written in full ([08](./08-hypotheses-and-validation.m
 - *Fail:* no gain → the constitution is the wrong altitude or grounding does not help; revise or drop it (it is not exempt from measurement).
 - *Depends on:* R1.
 
-**R4 — A learned preference/reward model trained on accumulated human verdicts predicts human preference better than the prompted Critic — and can be distilled into a cheaper, calibrated judge.**
-- *Why:* the plan is to hand-tune a prompt forever (H8); Anthropic trains reward models from preference data. This is the compounding engine (A2, E2, G3).
-- *Experiment:* preference learning / **VLM distillation** on accumulated pairwise human verdicts. Evaluate held-out pairwise accuracy vs the prompted Critic. Use a **dual-judge deployment** (learned reward model augments/distills the prompted Critic). **Separate universal-craft from domain-style signals** to test cross-domain transfer.
+**R4 — A learned preference/reward model trained on accumulated verdicts predicts human preference better than the prompted Critic — and can be distilled into a cheaper, calibrated judge.**
+- *Why:* the plan is to hand-tune a prompt forever (H8); Anthropic trains reward models from preference data. This is the compounding engine (A2, E2, G3). **Judge-distillation framing:** a small trained reward model is the system's *only* weight-level learning lever (prod-only path acceptable).
+- *Experiment:* preference learning / **VLM distillation** on accumulated pairwise verdicts. To solve signal starvation at solo scale (M11), training bulk relies on **RLAIF (AI preference labels)** using the strongest available model, decorrelated contexts, and cross-family judging where feasible, budgeted against S2 quota findings. The human golden core + human verdicts serve as **calibration and held-out validation only**. Evaluate held-out pairwise accuracy vs the prompted Critic. Use a **dual-judge deployment** (learned reward model augments/distills the prompted Critic). **Separate universal-craft from domain-style signals** to test cross-domain transfer.
 - *Metric:* held-out pairwise accuracy (reward model > prompted Critic) at significance; distilled-judge cost/quality; cross-domain transfer measured.
 - *Fail:* not enough / too-noisy verdict data → strengthen R2 first; or preference is too subjective to model → stay with the grounded prompt.
 - *Depends on:* R1, R2, R3.
@@ -185,7 +187,7 @@ The load-bearing bets are written in full ([08](./08-hypotheses-and-validation.m
 
 | Bet | Statement | Note |
 |---|---|---|
-| **R16** | A (coarse) real-world **outcome** signal eventually calibrates taste against *results*, not just preference | The only escape from optimising a proxy forever (I1); needs deployment data |
+| **R16** | A (coarse) real-world **outcome** signal eventually calibrates taste against *results*, not just preference | The only escape from optimising a proxy forever (I1); needs deployment data. **R16-lite (M11):** pull a coarse outcome signal forward wherever free (e.g., analytics on the owner's shipped projects) and log it next to verdicts. |
 | **R17** | Aesthetic-aging signals + a long-horizon Library simulation verify the compounding claim doesn't reverse into monoculture at scale | L1, L3; guards H6 over 100s of projects |
 | **R18** | Goal-fit judged via explicit UX/conversion heuristics beats pixel-vibe brief-fit | D3; conversion isn't visible in a screenshot |
 
@@ -209,3 +211,23 @@ Carrying the culture of [08 §4](./08-hypotheses-and-validation.md):
 - **[08 — Hypotheses](./08-hypotheses-and-validation.md)** (H1–H8) validates that the *current* system works; this agenda (R1–R18) is how it gets *better than itself* over time. H-series proves the floor; R-series raises the ceiling.
 - **[10 — Failure Modes](../failures/overall-system-failures/10-failure-modes.md)** catalogues what can break; this agenda is where the *quality-ceiling* failures (F-JDG-01, F-SPEC-02, F-GEN-02) become funded research rather than acknowledged risks.
 - This document is **living**: as the system (and its humans) discover new gaps, they are appended here with a severity, a root theme, and a falsifiable bet — the single source of truth for *how ADE gets better*.
+
+---
+
+## 8. Self-directed weakness detection (M20)
+
+To close the loop on EG-5 (the system identifying its own weaknesses rather than relying on human observation), a periodic **self-audit pass** runs over the accumulated `trace.jsonl` and verdict corpus.
+
+The audit clusters and analyzes:
+1. **Recurring hard-gate violation classes** (e.g., "always fails contrast on dark buttons").
+2. **Recurring Critic↔human disagreement patterns** (stratified by dimension and difficulty).
+3. **Systematically low-scoring briefs/sections** (identifying blind spots).
+4. **Escalation causes** (from the M7 asynchronous queue).
+
+It emits three typed proposal streams:
+- **New failure-catalogue entries** (proposed additions to `failures/`).
+- **Constitution-amendment proposals** (triggering the `spec/12 §7` protocol).
+- **Frontier eval cases** (triggering the `spec/13 §6` protocol).
+
+**Evidence Requirement:** Every proposal must explicitly cite its supporting evidence (the specific `trace.jsonl` rows that produced it).
+**Governance (Tier A):** All proposals enter as **Tier A** (strict human ratification, per M16). The system proposes; the human adopts.

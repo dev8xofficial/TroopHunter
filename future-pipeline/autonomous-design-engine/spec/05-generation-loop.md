@@ -39,12 +39,13 @@ sequenceDiagram
     participant O as Orchestrator
     participant R as Retriever
     participant G as Generator (LLM)
-    participant E as Eyes (browser)
+    participant E as Eyes (browser + DOM driver)
     participant V as Guardrail (deterministic)
     participant C as Critic (LLM, fresh ctx)
+    participant RM as Reward Model (C3.5)
     participant T as Trace store
 
-    O->>V: input gate (brief schema · assets · contradictions)
+    O->>V: input gate (brief schema · assets · surface capability C3.7)
     O->>R: query Library with brief
     R-->>O: top-k soft entries
     O->>O: assemble input bundle (soft+hard+ctx)
@@ -53,7 +54,7 @@ sequenceDiagram
         O->>G: generate N candidate(s) from bundle (+ last feedback)
         G-->>O: candidate code [1..N]
         par each candidate
-            O->>E: render + screenshot @1440/768/375
+            O->>E: render + DOM drive + screenshot @1440/768/375
             E-->>O: screenshots
             O->>V: render-health gate
             alt render invalid
@@ -64,10 +65,12 @@ sequenceDiagram
             end
         end
         O->>C: score + rank pairwise (render-valid candidates only)
-        C-->>O: scores + ordering + targeted feedback
-        O->>O: update best-so-far (never replace with worse)
+        C-->>O: raw scores + ordering + targeted feedback
+        O->>RM: evaluateWithRewardModel (universal_craft vs domain_style)
+        RM-->>O: adjusted scores + final verdict
+        O->>O: compute Pareto front (R8) & update best-so-far
         O->>T: record iteration (inputs, shots, det-results, scores, verdict)
-        alt Pass Gate: hard checks pass AND Critic pass
+        alt Pass Gate: hard checks pass AND Critic/RM pass
             O->>O: select best → exit loop
         else fail
             O->>O: feed violations + critique into next iteration
@@ -134,6 +137,8 @@ Rules:
 - **Fresh session enforcement (I2).** The Critic's session / context is initialized independently of the Generator's; they share no conversation history, no tool state, and no cached context. The only inputs the Critic receives are screenshots and the hard constraints — never the Generator's reasoning or intermediate steps.
 - **Feedback must be actionable.** Each fail returns specific, addressable notes (“the CTA competes with the headline; the photo is cropped too tight at 375”) — not “make it better.”
 - **The Critic is a proxy, not an oracle.** It is the system's weakest link; it is calibrated over time by human verdicts (see `08` H3/H8). Until then, a human spot-checks Critic “passes.”
+- **Judge-bias mitigations (C3.1).** To counter systematic biases (F-JDG-07), the Critic employs **order-randomization and position-debiasing** for pairwise comparisons, uses **ensemble/self-consistency** to reduce sampling variance, and performs **crop-based / higher-resolution inspection** for fine detail (kerning, 1px misalignment).
+- **Dual-Judge deployment harness (C3.5).** In Phase 3+, a learned reward model (`src/rewardModel.ts`) augments the prompted Critic by evaluating candidates through `applyDualJudge()`. It explicitly separates **`universal_craft`** (alignment, scale, contrast, spacing — transfers universally across domains) from **`domain_style`** (industry/audience aesthetic fit — domain-bound). The reward model computes a score adjustment based on craft excellence (+3 for `universal_craft >= 90`) or poor domain fit (-3 for `domain_style < 60`), updating candidate scores and verdicts dynamically.
 - **Beyond the section.** The same Critic capability also runs as a **Phase-Exit Review** ([11 §2.3](./11-guardrails-and-invariants.md)) on the non-section artifacts (brand, design system, library entry), each with its own rubric — the four dimensions above are the *section* rubric, not the Critic's only job.
 
 ---
@@ -151,6 +156,17 @@ Rules:
 | A↔B ping-pong detected (same violation class flips between two states across iterations) | Escalated early — do not spin; human resolves the oscillation |
 
 Budgets are configurable and enforced **centrally** by the Orchestrator, not per-call. The point is **bounded** autonomy: the loop never spins forever and always ends in a recorded, inspectable state. **Best-so-far is retained throughout** — an Escalated run still returns the best candidate seen, never nothing and never a regression (I4, [11 §3](./11-guardrails-and-invariants.md)).
+
+> **Note (Escalation queue):** Any condition that triggers an "Escalated" or "Aborted" state does not just print to stdout; it emits a structured record to the `escalations.jsonl` queue. Escalation is a designed, asynchronous human touchpoint, not merely a failed terminal state ([see 06 §9](./06-workflows.md)).
+
+### 5.1 Search Dynamics & Non-Greedy Traversal (Phase 3 / C3.6) — `src/searchDynamics.ts`
+
+Rather than relying purely on greedy hill-climbing, the Orchestrator implements dynamic search controls:
+
+- **Plateau Detection (`detectPlateau` / R7):** Tracks recent iteration score history (window size 3). If `max(score) - min(score) < 2`, the loop is flagged as stagnated on a quality plateau.
+- **Direction Abandonment (`shouldAbandonDirection` / R7):** If a plateau is detected at a failing score (< 80) and the loop is deep into its iteration budget (≥ 50% max iterations), the current search direction is abandoned early to prevent wasting compute on a dead end.
+- **Pareto Front Selection (`getParetoFront` / R8):** When choosing candidates across iterations, candidate selection is not restricted to single weighted-sum totals. The Orchestrator computes the non-dominated Pareto front over `craft` and `brief_fit` dimensions, preserving spiky-excellent candidates that would be masked or discarded by a naive scalar average.
+- **Stakes-Weighted Budgets (R12):** High-stakes sections (Tier A: `hero`, `pricing`, `checkout`) are allocated higher token/iteration budgets than routine interior sections.
 
 ---
 
@@ -201,6 +217,10 @@ INPUTS:
   - Rendered screenshots @1440/768/375
   - The same hard constraints (brand, system, brief, floor)
   - (if ranking) multiple candidates' screenshots
+  - Domain / context_fit: {industry, target audience, surface constraints} (C3.1)
+
+CAVEATS (if applicable):
+  - "The brand font '<family>' is rendered via fallback '<fallback>' due to licensing. Judge type scale/weight/hierarchy, not letterforms."
 
 TASK:
   1. Score each candidate on: brand_adherence, system_adherence, brief_fit, craft (0–100).
@@ -239,6 +259,12 @@ The loop must produce sections that are **consistent** (same tokens) without bei
 - **Free for the Generator:** layout, composition, section structure, which patterns to draw on.
 
 So the Critic's `system_adherence` dimension polices the *primitives*, while `craft` and `brief_fit` reward *appropriate variation*. A section that merely clones the hero's layout should score well on adherence but poorly on craft/brief-fit for its own purpose.
+
+### 7.1 Protected exploration (M8)
+
+In explore iterations (typically early in the loop), **one candidate is flagged `exploration: true`**. This candidate is generated at a higher temperature or with an explicit "take a defensible risk" instruction, and is exempt from the strict scoped-feedback constraints of the other candidates. 
+
+Its purpose is to preserve discontinuous options and provide the human review queue with interesting rejects. It is logged in full and is eligible for selection **only** through the normal Pass Gate — the `exploration` flag is never a bypass for quality or constraints. To support trajectory learning from these candidates, human verdicts in the R2 channel must support a **`rejected_with_interest`** label (feeding R13).
 
 ---
 

@@ -171,6 +171,9 @@
 | F-MOD-04 | Cost / latency blowup | impl | High | 10d |
 | F-MOD-05 | Silent model-version regression | spec+impl | Med | 10d |
 | F-MOD-06 | Context-window overflow | impl | Med | 10d |
+| F-MOD-07 | Verdict-distribution staleness | spec | High | 10d |
+| F-MOD-08 | Calibration non-transfer across model swap | spec | High | 10d |
+
 | **Architecture / hypotheses** | | | | |
 | F-SPEC-01 | Core premise H1 false | spec | High | 10d |
 | F-SPEC-02 | Taste ceiling caps autonomy | spec | High | 10d |

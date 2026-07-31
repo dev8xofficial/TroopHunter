@@ -40,9 +40,12 @@ flowchart TB
 
     subgraph WORKSPACE["Autonomous Workspace"]
         ORCH["Orchestrator\nsequence · assemble · enforce"]
+        STRAT["Strategy/IA Generator\nsite plan · narrative flow (E2.4)"]
+        CAP["Surface Capability Check\nhonest refusal check (C3.7)"]
         GEN["Generator\nwrite section code"]
         CRIT["Critic / Judge\nscore · rank · pass/fail"]
-        EYES["Browser — the Eyes\nrender · screenshot"]
+        RM["Dual-Judge Reward Model\nuniversal_craft vs domain_style (C3.5)"]
+        EYES["Browser — the Eyes\nrender · screenshot · DOM drive"]
         WB["Learning Write-back\ndistill · dedup"]
     end
 
@@ -55,17 +58,21 @@ flowchart TB
     subgraph OUT["Outputs"]
         ART["Artifact Store"]
         TRACE["Run / Trace Store"]
+        TEL["Telemetry Store\nevents.jsonl (E3.3)"]
     end
 
     DL -->|approves| BRAND
     DL -->|verdicts| WB
     CI -->|brief| ORCH
+    ORCH -->|verify surface| CAP
+    ORCH -->|derive plan| STRAT
 
     ORCH -->|assembled inputs| GEN
     GEN -->|code| EYES
     EYES -->|screenshots| CRIT
-    CRIT -->|fail: feedback| GEN
-    CRIT -->|pass| ORCH
+    CRIT -->|verdict + raw scores| RM
+    RM -->|adjusted total & verdict| ORCH
+    ORCH -->|fail: feedback| GEN
 
     LIB -.soft direction.-> ORCH
     BRAND ==hard law==> ORCH
@@ -75,6 +82,7 @@ flowchart TB
     ORCH -->|approved| ART
     GEN -.iteration records.-> TRACE
     CRIT -.scores.-> TRACE
+    ORCH -.scaling events.-> TEL
     ART --> WB
     WB -->|de-identified entries| LIB
 ```
@@ -121,9 +129,25 @@ The same judging capability also runs as a **Phase-Exit Review** ([11 §2.3](./1
 The Critic is the system's proxy for taste; it is the weakest link and improves only as human verdicts calibrate it (see `08` H3/H8).
 
 ### 3.6 Browser — the Eyes (the Eyes capability)
-A tool, not an agent. Renders the Generator's code in a real headless browser and screenshots it at each breakpoint (1440 / 768 / 375). It reports facts; it makes no judgments. Without it, the Critic is blind and the system collapses back into the old open-loop pipeline.
+A tool, not an agent. Renders the Generator's code in a real headless browser and screenshots it at each breakpoint (1440 / 768 / 375). Beyond static rendering, **the Eyes actively interact with the DOM** via Playwright (clicking buttons, filling forms, triggering hovers) to capture multiple component states (default, empty, loading, error, filled) and multi-page flows for the Critic to judge (C3.1 / C3.7). It reports facts; it makes no judgments. Without it, the Critic is blind and the system collapses back into the old open-loop pipeline.
 
-### 3.7 Memory stores
+#### 3.6.1 Surface Capability Checklist (C3.7) — Honest Refusal
+
+The system maintains an explicit **surface capability registry** (`src/surfaceCapabilities.ts`) that records whether each surface type is `supported`, `experimental`, or `unsupported`. The Orchestrator runs a `checkSurfaceCapability(brief)` heuristic check before any generation spend is committed. If the brief requests an unsupported surface, the run is **refused with a clear error message** rather than silently producing low-quality output.
+
+| Surface | Status | Reason |
+|---|---|---|
+| **Marketing / Landing Pages** | `supported` | Standard sections (heroes, features, pricing) — the primary use case |
+| **Forms / Inputs** | `supported` | Playwright drives focus/hover states |
+| **Dashboard / Product UI** | `experimental` | Complex product UI without heavy data-viz |
+| **Data Visualization** | `unsupported` | Charts/graphs require specialized rendering the Critic cannot reliably judge |
+| **Email Templates** | `unsupported` | Table-based layouts + inline styles diverge from the React/Tailwind stack |
+| **Multi-page Flows** | `unsupported` | Connected journeys require cross-page routing the harness cannot model |
+| **Localization / RTL** | `unsupported` | Right-to-left and multi-locale rendering untested by current Eyes setup |
+
+This is **not** a static filter — it is a living table. As new capabilities are validated (e.g., R&D confirms the Critic reliably judges dashboard states), a surface moves from `experimental` → `supported`. An `unsupported` surface that leaks into a run is a spec violation, not an accepted risk.
+
+
 Three stores, two kinds (full detail in `03` and `04`):
 - **Global Library** — *soft*, cross-project, retrieved. Job: make the system smarter over time.
 - **Brand Foundation** — *hard*, per client, frozen once. Job: keep everything a client ships on-brand.

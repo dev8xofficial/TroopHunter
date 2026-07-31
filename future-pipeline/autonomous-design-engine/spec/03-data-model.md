@@ -11,10 +11,13 @@ erDiagram
     CLIENT ||--|| BRAND_DATA : "provides (palette+type)"
     BRAND_DATA ||--|| BRAND_FOUNDATION : "seeds derivation"
     CLIENT ||--|| BRAND_FOUNDATION : "has one"
+    CLIENT ||--o{ SITE_PLAN : "has strategy plan (E2.4)"
+    SITE_PLAN ||--o{ SECTION : "guides section goals"
     BRAND_FOUNDATION ||--o{ PROJECT_DESIGN_SYSTEM : "parents (per surface)"
     PROJECT_DESIGN_SYSTEM ||--o{ ARTIFACT : "governs"
     ARTIFACT ||--o{ SECTION : "contains"
     SECTION ||--o{ RUN_RECORD : "produced by"
+    RUN_RECORD ||--o{ TELEMETRY_EVENT : "emits scaling data (E3.3)"
     ARTIFACT ||--o{ LIBRARY_ENTRY : "distilled into (de-identified)"
     LIBRARY_ENTRY }o--|| LIBRARY_ENTRY : "merges/dedups"
 
@@ -283,7 +286,7 @@ interface Section {
 
 ---
 
-## 6. Run / Trace Record (audit + measurement)
+## 6. Run / Trace Record & Verdicts (audit + measurement)
 
 > **Note:** Until `spec/16` exists, `IMPLEMENTATION_PLAN.md` Appendix A is **normative** for `trace.jsonl` field names (it is event-based and a superset of this section); this section remains canonical for entity semantics.
 
@@ -337,6 +340,43 @@ interface DimensionScores {           // the Critic rubric (see 05)
   craft: number;                      // 0..100 — quality/aesthetics
   weighted_total: number;
 }
+
+```
+
+### 6.1 Verdict Entry (C2.8 / R2 Human-Feedback Channel)
+
+The `VerdictEntry` captures the human's structured judgment for a run. In Phase 2, this expands into the rich **R2 feedback channel**, capturing pairwise comparisons, spatial annotations, and downstream analytics to feed reward-model training (R4).
+
+```ts
+interface VerdictEntry {
+  run_id: string;
+  iter_0_path: string;                // baseline
+  final_path: string;                 // loop's best candidate
+  control_best_path?: string;         // matched-compute control candidate (for H1/H3)
+  
+  // Pairwise & Rating
+  human_pick: "final" | "control" | "iter_0" | "neither";
+  rating_4pt: "bad" | "weak" | "good" | "strong";
+  
+  // Rich R2 Annotations (Phase 2)
+  constitution_sliders?: Record<string, number>; // human rating per constitution dimension
+  spatial_annotations?: {
+    x: number; y: number; width: number; height: number;
+    issue: string;
+  }[];
+  
+  // Loop & Exploration Tags
+  verdict_label: "approved" | "rejected" | "rejected_with_interest"; // C2.8 (M8 exploration)
+  notes: string;
+  dist_tags: string[];                // arbitrary tagging (e.g. "complex-nav")
+  
+  // Outcome Logging (R16-lite / M11)
+  outcome_signal?: {                  // coarse real-world analytics
+    metric_name: string;              // e.g., "bounce_rate", "conversion_lift"
+    value: number;
+    measured_at: string;
+  };
+}
 ```
 
 ---
@@ -346,15 +386,18 @@ interface DimensionScores {           // the Critic rubric (see 05)
 ```mermaid
 classDiagram
     class Orchestrator {
+        +generateStrategyPlan(brief) SitePlan
         +assembleInputBundle(section) InputBundle
         +runLoop(section) Section
         +crystallize(section) ProjectDesignSystem
         +writeBack(artifact) void
+        +routeForReview(criticOutput) ReviewRoute
     }
     class InputBundle {
         +BrandFoundation hardBrand
         +ProjectDesignSystem hardSystem
         +Brief hardBrief
+        +SitePlan softStrategy
         +LibraryEntry~list~ softLibrary
         +Reference~list~ softRefs
         +Screenshot~list~ ctxShots
@@ -363,8 +406,17 @@ classDiagram
         +score(shots, bundle) DimensionScores
         +rankPairwise(candidates) Ordering
     }
+    class RewardModel {
+        +evaluateWithRewardModel(candidate) RMSignals
+        +applyDualJudge(criticOutput) CriticOutput
+    }
+    class ReviewRouter {
+        +routeForReview(criticOutput, section, threshold) ReviewRoute
+    }
     Orchestrator --> InputBundle : builds
     Orchestrator --> Critic : calls
+    Orchestrator --> RewardModel : invokes dual-judge (C3.5)
+    Orchestrator --> ReviewRouter : routes human review (C3.3)
     InputBundle --> LibraryEntry : soft
     InputBundle --> BrandFoundation : hard
     InputBundle --> ProjectDesignSystem : hard

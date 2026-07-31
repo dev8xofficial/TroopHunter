@@ -1,0 +1,20 @@
+{
+  "client": "Sterling & Associates",
+  "industry": "Legal / Professional Services",
+  "location": "Chicago, Illinois",
+  "audience": "Business owners, executives, and high-net-worth individuals needing corporate law, M&A, or estate planning",
+  "goal": "Generate consultation requests by conveying trust, expertise, and a track record of complex case wins",
+  "section": {
+    "name": "hero",
+    "content": {
+      "headline": "Strategic Counsel for Complex Matters",
+      "subheadline": "For over 35 years, Sterling & Associates has guided businesses and families through their most critical legal decisions — with discretion, depth, and results.",
+      "cta": {
+        "text": "Schedule a Consultation",
+        "href": "/contact"
+      },
+      "nav": ["Practice Areas", "Our Team", "Case Results", "Insights", "Contact"],
+      "tags": ["Corporate Law", "Mergers & Acquisitions", "Estate Planning", "Litigation"]
+    }
+  }
+}

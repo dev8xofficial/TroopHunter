@@ -1,0 +1,16 @@
+{
+  "client": "FinEdge Capital",
+  "industry": "fintech",
+  "location": "New York",
+  "audience": "High-net-worth individual investors aged 35-60 seeking modern portfolio management tools",
+  "goal": "Establish trust and communicate the platform's AI-driven investment advantage within the first 5 seconds of landing",
+  "section": {
+    "name": "hero",
+    "content": {
+      "headline": "Invest Smarter with AI-Powered Insights",
+      "subheadline": "Our machine learning models analyze 10,000+ data points daily to optimize your portfolio.",
+      "cta": { "text": "Start Free Trial", "href": "/signup" },
+      "body": "FinEdge combines decades of financial expertise with cutting-edge technology to deliver personalized investment strategies."
+    }
+  }
+}

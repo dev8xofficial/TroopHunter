@@ -1,6 +1,6 @@
 # IMPLEMENTATION_PLAN.md — Autonomous Design Engine (ADE)
 
-> **The canonical, phase-gated build plan.** It takes the failure catalogue ([`spec/10a`](./spec/10a-failures-input-and-generation.md)–[`10e`](./spec/10e-failures-security-legal-and-production.md), "Failures A–E") and the solutions already designed in [`spec/11`](./spec/11-guardrails-and-invariants.md) and turns them into an **ordered set of small, implementable chunks**, grouped by ADE's five phase gates (0→4). Each chunk names the exact `F-*` failures it closes, the mitigation primitive / invariant / gate it implements, what it depends on, what to build, and how you know it's done.
+> **The canonical, phase-gated build plan.** It takes the failure catalogue ([`spec/10a`](./failures/overall-system-failures/10a-failures-input-and-generation.md)–[`10e`](./failures/overall-system-failures/10e-failures-security-legal-and-production.md), "Failures A–E") and the solutions already designed in [`spec/11`](./spec/11-guardrails-and-invariants.md) and turns them into an **ordered set of small, implementable chunks**, grouped by ADE's five phase gates (0→4). Each chunk names the exact `F-*` failures it closes, the mitigation primitive / invariant / gate it implements, what it depends on, what to build, and how you know it's done.
 >
 > **This is R&D, not code.** Nothing here is application code. This plan exists so that any implementing agent (Sonnet 4.6, Opus 4.6, Gemini 3.1 Pro, or a human) can pick up **one chunk at a time** and fold its detail into the spec — or, once the spec is accepted, build it — without re-deriving the whole design. The **spec is canonical for design; this plan is canonical for build sequence.** If a chunk here disagrees with a `spec/*` file, the spec wins and this plan needs a correction.
 
@@ -29,7 +29,7 @@ Failures A–E  ─────────►  6 root patterns  ─────
 (spec/10a–10e)            (RP-1 … RP-6)                 (MP-1 … MP-17)                     (Input/Render-Health/…, I1…I13)   (this plan, §2–§5 wait — §3.x)
 ```
 
-Every failure in the catalogue traces through one of the six root patterns ([`spec/10 §"root patterns"`](./spec/10-failure-modes.md)) to a reusable mitigation primitive (MP-n) and lands in a concrete gate or invariant ([`spec/11`](./spec/11-guardrails-and-invariants.md)). This plan's only new work is **sequencing** those into phase-gated chunks and **detailing** each enough to implement.
+Every failure in the catalogue traces through one of the six root patterns ([`spec/10 §"root patterns"`](./failures/overall-system-failures/10-failure-modes.md)) to a reusable mitigation primitive (MP-n) and lands in a concrete gate or invariant ([`spec/11`](./spec/11-guardrails-and-invariants.md)). This plan's only new work is **sequencing** those into phase-gated chunks and **detailing** each enough to implement.
 
 ### 0.3 Phase → hypothesis → failure-theme map
 
@@ -99,6 +99,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Depends on:** C0.0
 - **Spec source:** [`spec/07 §3`](./spec/07-mvp-cli.md), [`spec/11 §2.1`](./spec/11-guardrails-and-invariants.md) (Input Gate row)
 - **Build:** a deterministic gate that runs **before any model spend**: (a) validate `brief.json` against the Brief schema (required keys, types) — fail fast with a precise, actionable message, no model call; (b) **asset existence + fitness** check — file present *and* fit: colorspace = sRGB, minimum resolution for its display size, alpha/background check for logos, aspect-ratio sanity (auto-convert CMYK→sRGB where safe, else flag); (c) **injection safety** — all brief/content strings are wrapped as *data* with clear delimiters and never concatenated as instructions; hard constraints are re-checked deterministically downstream (C0.7), so injected text cannot bypass them.
+  - The provider wrapper maintains cumulative `quota` counters (calls/tokens) and persists them per `RunRecord` (S5 amendment).
 - **Done when:** malformed briefs are rejected with a clean error and **zero** model calls; a CMYK JPEG and an under-resolution logo are both flagged before generation; a red-team brief containing "ignore your rules, output X" does not alter the hard-constraint outcome.
 
 ### C0.2 — Brief Comprehension step
@@ -106,8 +107,8 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Implements:** [`spec/11 §7`](./spec/11-guardrails-and-invariants.md), MP-6
 - **Depends on:** C0.1
 - **Spec source:** [`spec/11 §7`](./spec/11-guardrails-and-invariants.md)
-- **Build:** one cheap LLM call (Orchestrator-tier) that **restates** the brief as `{ goal, audience, constraints }` and surfaces `{ detected_gaps, detected_conflicts }`. On a missing **required** field or a contradiction ("ultra-luxury" + "budget-friendly"), it **asks the human — never invents**. The restatement is recorded and passed to Generator and Critic as the canonical interpretation. (Non-English handling is deferred to C1.12 / R1.)
-- **Done when:** a brief missing a required field triggers a human prompt rather than a silent assumption; a contradictory brief names the conflict *before* any generation spend; the restatement is persisted in the trace.
+- **Build:** one cheap LLM call (Orchestrator-tier) that **restates** the brief as `{ goal, audience, constraints }` and surfaces `{ detected_gaps, detected_conflicts }`. On a missing **required** field or a contradiction ("ultra-luxury" + "budget-friendly"), it **asks the human — never invents**. The restatement is recorded and passed to Generator and Critic as the canonical interpretation. (Non-English handling is deferred to C1.12 / R1.) Score this step against the human-authored reference interpretation (M18) on two axes: **restatement accuracy** and **interpretation depth** (the latter scored by a human, or a validated cross-family judge).
+- **Done when:** a brief missing a required field triggers a human prompt rather than a silent assumption; a contradictory brief names the conflict *before* any generation spend; the restatement is persisted in the trace; comprehension scores (accuracy and depth) are recorded per benchmark brief.
 
 ### C0.3 — Generator contract
 - **Closes:** F-GEN-04 (hallucinated imports), F-GEN-05 (placeholder/incomplete), F-GEN-06 (truncation), F-GEN-01 (partial — required elements)
@@ -121,16 +122,16 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Closes:** F-SEC-01 (partial — render untrusted code isolated), F-SEC-03 (partial — deny egress at render), F-OPS-07 (pin toolchain versions), F-PAR-02 (flagged, not yet solved)
 - **Implements:** MP-14 (baseline), MP-16 (import/resource allowlist seed)
 - **Depends on:** C0.3
-- **Spec source:** [`spec/10e`](./spec/10e-failures-security-legal-and-production.md) (F-SEC-01/03, F-OPS-07), [`spec/11 §9`](./spec/11-guardrails-and-invariants.md)
-- **Build:** a render harness (Vite SPA + Playwright) that mounts the candidate `.tsx` with **Tailwind Play CDN**. Treat generated code as **untrusted from the start**: network-isolated (deny egress by default), resource-capped, ephemeral per candidate, **no secrets/credentials in scope**. Pin Playwright / Vite / Tailwind versions explicitly. *Note the F-PAR-02 gap (CDN ≠ production build) here so Phase 4 (C4.4) reconciles it — do not silently accept CDN output as production-faithful.*
+- **Spec source:** [`spec/10e`](./failures/overall-system-failures/10e-failures-security-legal-and-production.md) (F-SEC-01/03, F-OPS-07), [`spec/11 §9`](./spec/11-guardrails-and-invariants.md)
+- **Build:** a render harness (Vite SPA + Playwright) that mounts the candidate `.tsx` with a **vendored Tailwind runtime** (served from `harness/vendor/`). Treat generated code as **untrusted from the start**: network-isolated (**zero egress allowlist**, any network request fails render-health), resource-capped, ephemeral per candidate, **no secrets/credentials in scope**. Pin Playwright / Vite / Tailwind versions explicitly. *Note the F-PAR-02 gap (CDN runtime ≠ production build) here so Phase 4 (C4.4) reconciles it — do not silently accept CDN runtime output as production-faithful.*
 - **Done when:** a candidate that attempts `fetch()`/exfiltration is blocked by the sandbox; the harness has no environment secrets in scope; toolchain versions are pinned in a lockfile.
 
 ### C0.5 — Eyes pipeline (render → settle → capture)
 - **Closes:** F-EYE-02 (harness flakiness), F-EYE-03 (fonts/images not loaded), F-EYE-04 (capture before settle), F-EYE-06 (async components never signal ready)
 - **Implements:** MP-10
 - **Depends on:** C0.4
-- **Spec source:** [`spec/05`](./spec/05-generation-loop.md), [`spec/10b`](./spec/10b-failures-eyes-judging-and-loop.md) (F-EYE-*)
-- **Build:** per-candidate isolation (fresh build dir / unique port) to prevent stale-module capture; a **content fingerprint** check that the screenshot matches the current candidate. Before capture, await: `document.fonts.ready` + network-idle + images-decoded + animation/layout settle. Require async-data components to signal their **own** readiness (`data-ade-ready`) that the harness waits on in addition to mount + fonts; forbid unsignaled async fetches in Phase-0 allowlisted output. Capture at 1440 / 768 / 375.
+- **Spec source:** [`spec/05`](./spec/05-generation-loop.md), [`spec/10b`](./failures/overall-system-failures/10b-failures-eyes-judging-and-loop.md) (F-EYE-*)
+- **Build:** per-candidate isolation (fresh build dir / unique port) to prevent stale-module capture; a **content fingerprint** check that the screenshot matches the current candidate. **All fonts are self-hosted** in `harness/public/fonts/`; commercial faces map to nearest local fallback, with the substitution recorded per run (M6). Before capture, await: `document.fonts.ready` + network-idle + images-decoded + animation/layout settle. Require async-data components to signal their **own** readiness (`data-ade-ready`) that the harness waits on in addition to mount + fonts; forbid unsignaled async fetches in Phase-0 allowlisted output. Capture at 1440 / 768 / 375.
 - **Done when:** rapid candidate swaps never produce a screenshot↔candidate mismatch; a font/image-heavy section captures fully-loaded; a component with a simulated async delay is captured only after its own readiness signal (not just mount).
 
 ### C0.6 — Render-Health Gate
@@ -154,7 +155,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Implements:** MP-2, MP-3, **I2** (Critic never shares context with Generator)
 - **Depends on:** C0.7
 - **Spec source:** [`spec/05 §4`](./spec/05-generation-loop.md)
-- **Build:** the Critic runs in a **fresh, isolated session** — it sees only screenshots + constraints, **never** the Generator's reasoning. It judges **subjective quality only** (brand/brief fit, craft); everything objective already lives in C0.7. Use `criticTemperature = 0.2`. Prefer **pairwise** comparison scaffolding over absolute scoring (more stable), and record **raw judgments** for later calibration. Output is structured JSON (validated by C0.9).
+- **Build:** the Critic runs in a **fresh, isolated session** — it sees only screenshots + constraints, **never** the Generator's reasoning. It judges **subjective quality only** (brand/brief fit, craft); everything objective already lives in C0.7. The prompt builder checks the run config for font substitutions and injects the `CAVEATS` slot if active (M6: *"judge type scale/weight, not letterforms"*). Use `criticTemperature = 0.2`. Prefer **pairwise** comparison scaffolding over absolute scoring (more stable), and record **raw judgments** for later calibration. Output is structured JSON (validated by C0.9).
 - **Done when:** the Critic call provably carries **zero** Generator history; first-pass rate is realistic (not ~100%); repeated critiques of a fixed screenshot set have measured (recorded) variance.
 
 ### C0.9 — Schema Gate
@@ -178,8 +179,8 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Implements:** MP-4, MP-5, **I4** (never worse than best-seen), **I10** (exactly one terminal state)
 - **Depends on:** C0.10
 - **Spec source:** [`spec/11 §3`](./spec/11-guardrails-and-invariants.md), [`spec/05`](./spec/05-generation-loop.md)
-- **Build:** the generate→render→gates→critique→edit loop with: **best-so-far retention** (replace current best only on a *strictly higher* score); **bounded** by `max_iters` + token/wall-clock budgets enforced **centrally** (not per-call); **feedback serialization with scope discipline** — "fix *this*, preserve *that*", cap how much one iteration may change, track violation-class history to detect A↔B ping-pong and escalate early; a **bounded render-repair sub-loop** with its own `renderRepairTries` limit, each attempt counted against the run budget and traced, unrepairable after K → `abort + record`; **terminal-state guarantee** — on exhaustion, always write best-so-far + an `escalated` record (a first-class, tested code path).
-- **Done when:** a forced non-terminating critique loop hits the budget cap and **escalates** with best-so-far; a worse-scoring later candidate is never selected; a never-rendering component aborts at the repair try-limit; forced exhaustion always writes a terminal state (no vanished run).
+- **Build:** the generate→render→gates→critique→edit loop with: **best-so-far retention** (replace current best only on a *strictly higher* score); **bounded** by `max_iters` + token/wall-clock budgets enforced **centrally** (not per-call); **feedback serialization with scope discipline** — "fix *this*, preserve *that*", cap how much one iteration may change, track violation-class history to detect A↔B ping-pong and escalate early; in explore iterations, flag one candidate as `exploration: true` (M8); a **bounded render-repair sub-loop** with its own `renderRepairTries` limit, each attempt counted against the run budget and traced, unrepairable after K → `abort + record`; **terminal-state guarantee** — on exhaustion, always write best-so-far + emit an `escalated` record to the `escalations.jsonl` queue (M7).
+- **Done when:** a forced non-terminating critique loop hits the budget cap and **escalates** with best-so-far and a queue record; a worse-scoring later candidate is never selected; an exploration candidate is traced and never bypasses gates; a never-rendering component aborts at the repair try-limit; forced exhaustion always writes a terminal state (no vanished run).
 
 ### C0.12 — Durable trace
 - **Closes:** F-STO-04 (trace loss), F-STO-01 (partial — atomic writes)
@@ -201,7 +202,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Closes:** F-SEC-04 (partial — redact at capture; full scan-before-write-back deferred to C4.1)
 - **Implements:** MP-7 (seed), MP-14
 - **Depends on:** C0.5 (screenshots), C0.12 (trace)
-- **Spec source:** [`spec/10e`](./spec/10e-failures-security-legal-and-production.md) (F-SEC-04)
+- **Spec source:** [`spec/10e`](./failures/overall-system-failures/10e-failures-security-legal-and-production.md) (F-SEC-04)
 - **Build:** redact obvious secrets/PII patterns at the point they would enter `trace.jsonl`, screenshots, or logs; never place credentials in harness scope. (A comprehensive PII scan gating write-back arrives with the Library in C4.1 / Phase 2.)
 - **Done when:** a seeded secret/PII value never appears verbatim in a persisted trace/log/screenshot.
 
@@ -209,17 +210,17 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Closes:** (enabling chunk — no direct failure; wires C0.1–C0.14 into a runnable MVP)
 - **Implements:** [`spec/07`](./spec/07-mvp-cli.md)
 - **Depends on:** C0.1–C0.14
-- **Spec source:** [`spec/07 §5`](./spec/07-mvp-cli.md)
-- **Build:** `ade generate --brief ./briefs/<x>.json --section <name> --out ./runs/<x>` writing the `runs/<out>/` layout: `config.json`, `final/Section.tsx` + `final/shots/{1440,768,375}.png`, `iterations/`, `trace.jsonl`. `--refs` accepted as a no-op.
-- **Done when:** the Burkes hero brief runs end-to-end and produces the full on-disk layout with a terminal state.
+- **Spec source:** [`spec/07 §3, §5`](./spec/07-mvp-cli.md)
+- **Build:** `ade generate --brief ./briefs/<x>.json --section <name> [--plan ./plans/<x>.json] --out ./runs/<x>` writing the `runs/<out>/` layout: `config.json`, `plan.json` (if supplied, M5), `final/Section.tsx` + `final/shots/{1440,768,375}.png`, `iterations/`, `trace.jsonl` (with `plan.json` referenced in the trace config block). `--refs` accepted as a no-op.
+- **Done when:** the Burkes hero brief runs end-to-end (with optional `plan.json` recorded) and produces the full on-disk layout with a terminal state.
 
 ### C0.16 — Measurement discipline + verdict capture
 - **Closes:** F-SPEC-05 (measurement theater), F-HUM-01 (partial — structured verdict capture)
 - **Implements:** **I12** (reported numbers are observed/human-anchored), MP-12 (seed)
 - **Depends on:** C0.15
 - **Spec source:** [`spec/08 §4`](./spec/08-hypotheses-and-validation.md), [`spec/11 §7`](./spec/11-guardrails-and-invariants.md)
-- **Build:** a `report` tool that emits **observed** numbers only (never predicted/Critic-only), and a structured `verdict` tool that persists human approve/reject/notes **with** the artifact — the substrate for H1/H3 and later calibration. Always pair any Critic metric with the human ground-truth it must be checked against.
-- **Done when:** every reported quality number traces to a human-validated measurement; each run can carry a linked structured verdict.
+- **Build:** a `report` tool that emits **observed** numbers only (never predicted/Critic-only), and a structured `verdict` tool that persists human approve/reject/notes **with** the artifact — the substrate for H1/H3 and later calibration. Always pair any Critic metric with the human ground-truth it must be checked against. The verdict tool must support a **three-way blind** comparison (iter-0 / final / control-best presented in random order, positions logged) to gather unbiased ground-truth for H1. Every verdict must carry **distribution tags** at capture (`gen_model_id`, `critic_model_id`, `config_version`, `system_snapshot`) — the corpus is only future-proof if tagged from the first verdict (F-MOD-07, F-MOD-08). **Add a `--retest` mode to the verdict tool (E0.7 / M13)** to facilitate the quarterly human test-retest ritual on a frozen artifact set.
+- **Done when:** every reported quality number traces to a human-validated measurement; each run can carry a linked structured verdict in the three-field schema (`iter_0_path`, `final_path`, `control_best_path`, `positions_log`) with `dist_tags`; the `--retest` mode is implemented.
 
 ### C0.17 — Token-economy instrumentation (H7 substrate)
 - **Closes:** (instrumentation — enables **H7**; the measurement substrate that lets F-MOD-06, F-CON-04, F-MEM-08, F-OPS-06 be *detected* rather than assumed)
@@ -229,10 +230,10 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Build:** record, in every `RunRecord`, the **input-token breakdown by bundle part** (hard: brief/brand/system; soft: refs/Library; visual-context: prior-section shots; loop-state) plus output tokens and wall-clock, so **tokens/section** can be plotted against section index, ref count, and (later) Library size. This is the substrate for H7 ("context/token cost stays roughly flat regardless of refs/Library size") — spec says instrument it **from Phase 0**, prove it at scale later. No cap logic here (that is C0.13); this chunk only guarantees the numbers exist and are attributable.
 - **Done when:** the trace exposes a per-part token breakdown for every iteration; tokens/section can be charted vs. section index and input size with **no manual reconstruction**; the number is observed, never estimated.
 
-### ▶ Phase-0 exit gate — H1 (go/no-go for the whole project)
+### 🏁 Phase-0 exit gate — H1 (go/no-go for the whole project)
 - **Closes:** F-SPEC-01 (core premise false), F-SPEC-04 (MVP over-scoping)
 - **Spec source:** [`spec/08`](./spec/08-hypotheses-and-validation.md) (H1), [`spec/09 §1`](./spec/09-roadmap-and-open-questions.md)
-- **Do:** run the loop on the Burkes hero + ~10 briefs; measure whether **seeing its own render measurably improves output across iterations** (H1) with an upward score/quality trend anchored to human verdicts (H2 viability signal, H3 first agreement signal). **If H1 fails, STOP and rethink** — do not build Phase 1. Verify the guardrails actually fire: a render bug is caught by the Render-Health Gate (not the Critic), and an a11y/contrast failure cannot pass.
+- **Do:** For each brief (n≥20), run the loop **and** a matched-compute control arm (no feedback carry-forward). Measure whether **seeing its own render measurably improves output across iterations** (H1) by proving that humans **blind-prefer the loop's final over the control's best at significance**. **If H1 fails, STOP and rethink** — do not build Phase 1. Verify the guardrails actually fire: a render bug is caught by the Render-Health Gate (not the Critic), and an a11y/contrast failure cannot pass.
 
 ---
 
@@ -269,7 +270,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Implements:** MP-13, **I13** (Phase-Exit Gate), MP-12 (human gate)
 - **Depends on:** C1.2
 - **Spec source:** [`spec/11 §2.3`](./spec/11-guardrails-and-invariants.md)
-- **Build:** before the human sees it, a **fresh-context Critic review** against a brand-specific rubric ("does the derived personality/tone/motion fit the business context + provided palette/type? are the 2–3 directions distinct and justified?") ∧ the deterministic palette-a11y check (C1.1). **Bounded: ≤1–2 review→fix→re-check, then escalate to the human.** The human approval gate stays until the autonomy ladder (Phase 3) earns its removal. This boundary is also where brand-level Critic↔human agreement is measured (feeds H8).
+- **Build:** before the human sees it, a **fresh-context Critic review** against a brand-specific rubric ("does the derived personality/tone/motion fit the business context + provided palette/type? are the 2–3 directions distinct and justified?") ∧ the deterministic palette-a11y check (C1.1) ∧ **a cross-family second judge review** (e.g., `local`/Ollama in dev; disagreement escalates to queue M7). **Bounded: ≤1–2 review→fix→re-check, then escalate to the human.** The human approval gate stays until the autonomy ladder (Phase 3) earns its removal. This boundary is also where brand-level Critic↔human agreement is measured (feeds H8).
 - **Done when:** an off-brief derived brand is returned for bounded re-derivation before reaching the human; the review never loops unbounded; brand↔human agreement is recorded per review.
 
 ### C1.4 — Brand Foundation as hard input to the loop
@@ -293,7 +294,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Implements:** MP-13, **I13**
 - **Depends on:** C1.5
 - **Spec source:** [`spec/11 §2.3`](./spec/11-guardrails-and-invariants.md)
-- **Build:** before freeze, a fresh-context Critic review against a PDS rubric ("do the extracted tokens faithfully capture the hero *without over- or under-specifying*? is the foundation complete for later sections, not over-fitted to one?") ∧ deterministic schema-valid-tokens check. Bounded ≤1–2 cycles → human. Measures crystallization-boundary agreement.
+- **Build:** before freeze, a fresh-context Critic review against a PDS rubric ("do the extracted tokens faithfully capture the hero *without over- or under-specifying*? is the foundation complete for later sections, not over-fitted to one?") ∧ deterministic schema-valid-tokens check ∧ **a cross-family second judge review** (disagreement escalates to queue M7). Bounded ≤1–2 cycles → human. Measures crystallization-boundary agreement.
 - **Done when:** an over-/under-specified crystallization is flagged for bounded correction before it becomes law; agreement is recorded.
 
 ### C1.7 — Token-Allowlist gate + additive-extension policy
@@ -303,6 +304,13 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Spec source:** [`spec/11 §2.1`](./spec/11-guardrails-and-invariants.md), [`spec/04 §3`](./spec/04-memory-and-consistency.md)
 - **Build:** the deferred token-allowlist checker (from Phase 0) now runs on **every** section — off-system colors/type/space are rejected; new **components** allowed, new **tokens** rejected. Add an **additive, namespaced extension policy**: a genuinely-needed new token that doesn't alter existing ones may be added (versioned), escalating to a human when an extension touches the foundation. Track extension frequency (high = section 1 was the wrong anchor).
 - **Done when:** generating multiple sections yields **zero off-allowlist tokens** (the H4 hard metric); a justified new need is handled by a versioned additive extension, not a contradiction.
+
+### E1.5 — Deterministic DOM craft metrics (M17)
+- **Closes:** AI-F4 (missing capability #3)
+- **Depends on:** C1.7
+- **Spec source:** [`spec/11 §2.1`](./spec/11-guardrails-and-invariants.md)
+- **Build:** Compute **advisory craft metrics** deterministically from the rendered DOM at gate time: spacing-scale conformance (share of margins/paddings on the token scale), type-scale conformance, alignment/grid regularity (clustering of element-edge x-coordinates), and tap-target geometry. **Rules:** (1) Introduce as **advisory, not gating**: write values to the trace and inject them into the Critic's context as measurements (e.g., "87% of spacing values on-scale"), shifting craft assessment from VLM to code. (2) Promote to **gating** only on benchmark evidence that a metric correlates with human craft verdicts.
+- **Done when:** The metrics are computed and injected into the Critic context; trace records the values.
 
 ### C1.8 — Component-layer dedup
 - **Closes:** F-PDS-03 (component-layer bloat / duplicates)
@@ -340,17 +348,33 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Closes:** F-BRD-06 (brand staleness with no refresh trigger)
 - **Implements:** MP-12
 - **Depends on:** C1.3
-- **Spec source:** [`spec/10a`](./spec/10a-failures-input-and-generation.md) (F-BRD-06)
+- **Spec source:** [`spec/10a`](./failures/overall-system-failures/10a-failures-input-and-generation.md) (F-BRD-06)
 - **Build:** a periodic (e.g. annual), **human-triggered** brand-freshness re-evaluation — never automatic (F-BRD-02 immutability still holds). On confirmed staleness, re-derive on the same givens with updated context and version-bump.
 - **Done when:** brand age is tracked against a human "still feels current?" spot-check; re-derivation is human-triggered and versioned.
+
+### E1.4 — Crystallization A/B experiment (M14)
+- **Closes:** AI-F7 (verification-gap G2)
+- **Depends on:** C1.7 (Token-Allowlist gate)
+- **Spec source:** [`spec/04 §3`](./spec/04-memory-and-consistency.md)
+- **Build:** Run an A/B experiment at the Phase-1 boundary. Arm 1: current hero-first crystallization. Arm 2 (design-system-first): derive a candidate token system from brand + brief *before* section 1, and the hero *validates* it. Metrics (already built by then): token-extension frequency, Phase-Exit intervention rate, H4 drift/variety, and human preference. Adopt whichever arm wins; this is an experiment, not a redesign.
+- **Done when:** The A/B is executed and metrics reported to finalize the crystallization pipeline sequence.
+
+### E1.2 — Escalation-queue component (M7)
+- **Closes:** CA-16 / CF-16 (from contract)
+- **Implements:** Asynchronous human touchpoints (Phase 1+)
+- **Depends on:** C0.11, C0.15
+- **Spec source:** [`spec/06 §9`](./spec/06-workflows.md)
+- **Build:** Implement the `escalations.jsonl` queue. In Phase 1, build the orchestration to pause runs when an escalation is emitted, allow asynchronous human answers (e.g., via CLI or Phase-Exit Review UI), and resume the blocked workflow with the provided answer.
+- **Done when:** A budget breach emits to the queue; a workflow halts; providing an answer to the queue record successfully resumes the workflow.
 
 ### C1.13 — R1 Benchmark `[R-bet — Phase 1]`
 - **Closes:** F-SPEC-06 (setup — evaluation-overfitting defense), F-INP-08 (non-English comprehension coverage)
 - **Implements:** MP-3, MP-12
 - **Depends on:** C0.16 (verdict capture)
 - **Spec source:** [`spec/13`](./spec/13-evaluation-charter.md), [`spec/14`](./spec/14-research-agenda.md) (R1)
-- **Build:** the human-anchored **golden core** benchmark: multi-domain (incl. **non-English/mixed-language** briefs so F-INP-08 is measured, not assumed), a human rating protocol, core statistical metrics, a **regression gate** (CI for quality), and contamination defense (rotating held-out cases, track transfer to *fresh* briefs). Every other R-bet is measured against this.
-- **Done when:** the benchmark runs and produces human-anchored scores with a fresh-held-out transfer measurement; non-English restatement accuracy is tracked separately.
+- **Build:** the human-anchored **golden core** benchmark: multi-domain (incl. **non-English/mixed-language** briefs so F-INP-08 is measured, not assumed), a human rating protocol, core statistical metrics, a **regression gate** (CI for quality), contamination defense (rotating held-out cases, track transfer to *fresh* briefs), and a **bias-probe suite from birth** (order-swap, verbosity-inflation, style-transfer; M9). Every other R-bet is measured against this. The benchmark build now also includes **anchor-set assembly** (10-20 world-class reference works) and the **blind side-by-side protocol** to measure distance-from-anchor and win-rate vs. competitors. Ensure every golden-core brief has a frozen, human-authored **reference interpretation** (M18) to measure comprehension depth. Finally, add two **advisory** originality measures (M19): a **human distinctiveness rating** during the blind pass, and a **self-similarity across briefs** embedding-distance measure to detect monoculture.
+- **Done when:** the benchmark runs and produces human-anchored scores with a fresh-held-out transfer measurement; non-English restatement accuracy is tracked separately; the anchor-set and side-by-side protocol are integrated; every golden-core and frontier case carries a `routine | hard | adversarial` stratum tag; the pre-registered power analysis artifact (per boundary × stratum) is produced and stored; verdict stability across the bias-probe suite is measured, and **same-model vs cross-model agreement** are reported as separate standing metrics; the benchmark reports restatement accuracy and interpretation depth per brief (M18), establishing the baseline for the strategy layer; human distinctiveness rating and self-similarity scores are reported in the benchmark without gating (M19).
+
 
 ### ▶ Phase-1 exit gate — H4 (+ H5 setup)
 - **Spec source:** [`spec/08`](./spec/08-hypotheses-and-validation.md) (H4, H5)
@@ -360,9 +384,13 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 
 ## 4. Phase 2 — Memory / Library (proves H6)
 
-**Goal:** the soft, cross-project Library that makes project N+1 better than N — key-free local embeddings, embed-vs-payload retrieval, the gated write-back sequence, confidence weighting/decay, and reference activation. **Do not start until H4 passes.**
+**Goal:** the soft, cross-project Library that makes project N+1 better than N. **Do not start until H4 passes.**
 
 > ⚠️ **H6-evaluation caveat** ([`knowledge`](./knowledge/decisions-and-conventions.md), spec/36 note): the default hash-embedding must **not** be used to evaluate H6 — use a real local embedding model (C2.0) for the compounding experiment, or the ablation is meaningless.
+> 
+> **Staging Note (M10):** The Library thesis is tested in **stages**. 
+> - **Stage A:** **own-client memory** (retrieval over the same client's approved sections/screenshots — no de-id needed, no altitude review) + the **verdict corpus** as the primary compounding asset. 
+> - **Stage B:** the cross-client de-identified Library (C2.5–C2.7) is built **only after** Stage A's ablation (E2.2) shows retrieval adds value beyond model priors.
 
 ### C2.0 — Local embeddings provider (key-free)
 - **Closes:** F-MEM-03 (embedding drift on model change)
@@ -384,7 +412,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Closes:** F-MEM-07 (store unavailable/slow), F-MEM-08 (retrieval nondeterminism / flat-file scaling)
 - **Implements:** MP-8, MP-9
 - **Depends on:** C2.1
-- **Spec source:** [`spec/03`](./spec/03-data-model.md), [`spec/10c`](./spec/10c-failures-memory-and-learning.md) (F-MEM-08)
+- **Spec source:** [`spec/03`](./spec/03-data-model.md), [`spec/10c`](./failures/overall-system-failures/10c-failures-memory-and-learning.md) (F-MEM-08)
 - **Build:** start with a flat-file cosine store; **snapshot the Library version per run** (reproducibility); define the **ANN-index migration path** (pgvector) with tuned recall for when the store grows (flat-file cosine is O(n)).
 - **Done when:** retrieval is parity-stable at a fixed Library version; the ANN migration path is specified with a recall target.
 
@@ -400,32 +428,49 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Closes:** F-REF-01 (reference-as-template/cloning), F-REF-02 (over-influence), F-REF-03 (Frankenstein stitching), F-REF-04 (irrelevant noise), F-SEC-02 (indirect prompt injection via references/memory)
 - **Implements:** **I8** (refs soft, capped 5, never scored for resemblance), MP-6, MP-1
 - **Depends on:** C2.3
-- **Spec source:** [`spec/04 §7`–`§8`](./spec/04-memory-and-consistency.md), [`spec/10e`](./spec/10e-failures-security-legal-and-production.md) (F-SEC-02)
+- **Spec source:** [`spec/04 §7`–`§8`](./spec/04-memory-and-consistency.md), [`spec/10e`](./failures/overall-system-failures/10e-failures-security-legal-and-production.md) (F-SEC-02)
 - **Build:** wire `--refs` for real (it was a no-op in Phase 0): references are **soft, capped at 5**, **dissolved into principles** ("moodboard" synthesis, not a parts bin), with an optional **relevance screen**. Hard inputs always outrank soft. The Critic scores **brief_fit, never resemblance** (ablating refs must still yield good, original output). Treat refs **and** retrieved entries as **untrusted data** with clear delimiters — embedded text in a reference or a poisoned Library entry can never override hard rules; deterministic post-checks still hold.
 - **Done when:** deleting the reference still yields a good, non-cloned design (the [`spec/00 §1`](./spec/00-overview.md) test); a red-team reference with embedded instructions cannot bypass hard constraints; multi-ref briefs produce one coherent design, not a stitched one.
 
-### C2.5 — Write-back sequence (de-id → abstract → altitude review → dedup → insert)
+### E2.1 — Stage A: Own-client memory store (M10)
+- **Closes:** AI-F2
+- **Build:** Implement retrieval scoped strictly to the *same client's* approved sections and screenshots. Because this does not cross client boundaries, it skips the de-identification gate and altitude review.
+- **Done when:** The own-client store operates successfully and retrieves prior sections for the same client without cross-client leakage.
+
+### E2.4 — Strategy/IA layer (M15)
+- **Closes:** CA-8, CA-10 / CF-5, AI-F3
+- **Depends on:** M5 corpus, C1.13 benchmark
+- **Spec source:** [`spec/09 §1`](./spec/09-roadmap-and-open-questions.md)
+- **Build:** Implement the **Strategy/IA layer** (R9-class: audience/positioning → site plan/narrative → per-section goals) as Phase 1.5. It is Phase-Exit-Reviewed itself. Evaluate whether it measurably raises brief-fit and whole-page coherence vs. a human-planned baseline, using the M5-captured corpus as its evaluation baseline.
+- **Done when:** The layer is implemented and its impact on brief-fit/coherence is measured against the M5 corpus baseline.
+
+### E2.2 — Stage A: Three-arm ablation test (M10)
+- **Closes:** CA-6
+- **Build:** Run the three-arm ablation (No Library vs. Stage A Own-Client vs. Stage B Cross-Client) using a real local embedding model (C2.0). 
+- **Done when:** H6 is evaluated based on whether retrieval measurably beats the model's priors without it.
+
+### C2.5 — Write-back sequence (de-id → abstract → altitude review → dedup → insert) `[Stage B]`
 - **Closes:** F-WB-01 (de-identification leak), F-WB-02 (over-/under-abstraction), F-WB-03 (dedup failure), F-WB-06 (confidentiality/strategy leak)
 - **Implements:** MP-7, MP-13, **I7** (Library written only from human-approved artifacts through the de-id gate), **I13**
-- **Depends on:** C2.3, C1.0 (integrity)
+- **Depends on:** C2.3, C1.0 (integrity), **Stage A ablation success (E2.2)**
 - **Spec source:** [`spec/03 §2.2`](./spec/03-data-model.md), [`spec/04 §6`](./spec/04-memory-and-consistency.md), [`spec/11 §2.3`](./spec/11-guardrails-and-invariants.md)
-- **Build:** the ordered write-back pipeline: (1) **De-identification Gate** — block on any client name/PII/exact brand token/verbatim copy; (2) **abstraction** to a transferable altitude (tag principle/pattern/recipe; favor the mid "pattern" altitude); (3) **abstraction-altitude Phase-Exit Review** (fresh-context Critic) that *also* gates **strategic specificity** (so a de-identified-but-re-identifiable entry is blocked) — bounded ≤1–2 cycles; (4) **dedup/merge** against nearest entries above a similarity threshold (raise confidence / add variation rather than duplicate); (5) insert with low starting confidence + provenance.
+- **Build:** the ordered write-back pipeline: (1) **De-identification Gate** — block on any client name/PII/exact brand token/verbatim copy; (2) **abstraction** to a transferable altitude (tag principle/pattern/recipe; favor the mid "pattern" altitude); (3) **abstraction-altitude Phase-Exit Review** (fresh-context Critic) that *also* gates **strategic specificity** (so a de-identified-but-re-identifiable entry is blocked) — bounded ≤1–2 cycles; (4) **dedup/merge** against nearest entries above a similarity threshold (raise confidence / add variation rather than duplicate); (5) insert with low starting confidence + provenance, tagged as a **Tier B provisional write (M16)** subject to audit and auto-expiry.
 - **Done when:** an adversarial write-back preserving client identity **or** strategic specificity is blocked; too-specific/too-vague entries are returned for re-abstraction; near-duplicates merge instead of accumulating.
 
-### C2.6 — Confidence weighting, decay & curation
+### C2.6 — Confidence weighting, decay & curation `[Stage B]`
 - **Closes:** F-WB-04 (bad-pattern enshrinement), F-WB-05 (poisoning/monoculture), F-WB-07 (approved-then-reconsidered entries), F-MEM-02 (partial — poisoning), F-LRN-02 (partial)
 - **Implements:** MP-9, MP-12
 - **Depends on:** C2.5
-- **Spec source:** [`spec/04 §6`](./spec/04-memory-and-consistency.md), [`spec/10c`](./spec/10c-failures-memory-and-learning.md)
+- **Spec source:** [`spec/04 §6`](./spec/04-memory-and-consistency.md), [`spec/10c`](./failures/overall-system-failures/10c-failures-memory-and-learning.md)
 - **Build:** confidence **rises** with corroboration + human verdict, **decays** with age/disuse; diversity-aware retrieval to resist monoculture; a **periodic curation pass** that re-evaluates *older high-confidence* entries against current human verdicts (not only new write-backs) and can down-weight/retire them.
 - **Done when:** output-diversity/retrieval-entropy is tracked over time and doesn't collapse; a curation pass surfaces at least one previously-approved entry for reconsideration; a down-weighted bad pattern stops being retrieved.
 
-### C2.7 — Human-approved-only write-back policy
+### C2.7 — Human-approved-only write-back policy `[Stage B]`
 - **Closes:** F-WB-04 (full — enshrinement via unapproved write-back)
 - **Implements:** **I7**, MP-12
 - **Depends on:** C2.5, C0.16 (verdicts)
 - **Spec source:** [`spec/11 §8`](./spec/11-guardrails-and-invariants.md) (I7)
-- **Build:** only **human-approved** artifacts are ever written back; trace entry provenance → the human verdict that authorized it; a false-pass (F-JDG-04) must not silently feed the Library.
+- **Build:** only **human-approved** artifacts are ever written back; trace entry provenance → the human verdict that authorized it. Entries are initially **Tier B (provisional) (M16)** and require confirmation or audit sampling; a false-pass (F-JDG-04) must not silently feed the Library permanently.
 - **Done when:** an unapproved artifact can never produce a Library entry; every entry's provenance resolves to a human verdict.
 
 ### C2.8 — R2 Human-feedback channel `[R-bet — Phase 2]`
@@ -433,13 +478,13 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Implements:** MP-3, MP-12
 - **Depends on:** C0.16
 - **Spec source:** [`spec/14`](./spec/14-research-agenda.md) (R2), [`spec/19`](./spec/README.md) (referenced)
-- **Build:** upgrade the human→system channel: **pairwise** comparison UI, constitution-dimension sliders, spatial annotations, design-rationale surfacing, and verdict **serialization** shaped for future reward-model training (Phase 3 / R4).
-- **Done when:** verdicts are captured in the richer structured form and serialized for downstream training.
+- **Build:** upgrade the human→system channel: **pairwise** comparison UI, constitution-dimension sliders, spatial annotations, design-rationale surfacing, and verdict **serialization** shaped for future reward-model training (Phase 3 / R4). Verdicts must support a `rejected_with_interest` label to feed trajectory learning from protected exploration candidates (M8). Add an **R16-lite** field (M11): pull a coarse outcome signal forward wherever free (e.g., analytics on the owner's shipped projects) and log it next to verdicts. Register a cheap **feedback-channel A/B test** (identical critique delivered as text vs. annotated screenshot regions) to determine if the channel bottlenecks the loop.
+- **Done when:** verdicts are captured in the richer structured form and serialized for downstream training; the `rejected_with_interest` label is available for exploration candidates; R16-lite outcomes are logged; the channel A/B test is executed.
 
 ### ▶ Phase-2 exit gate — H6 (compounding)
 - **Closes:** F-LRN-01 (no compounding)
 - **Spec source:** [`spec/08`](./spec/08-hypotheses-and-validation.md) (H6)
-- **Do:** run the **Library on/off ablation** across matched briefs using a **real local embedding model** (not the hash-embedding). H6 holds only if Library-on measurably beats Library-off. *Open question #4 stands: solo project volume may be too low to detect H6 — consider deliberately running many small/synthetic briefs to generate enough data points, or scope Phase 2 down until volume exists.*
+- **Do:** run the **three-arm ablation test (E2.2)** (No Library vs. Stage A Own-Client vs. Stage B Cross-Client) across matched briefs using a **real local embedding model** (not the hash-embedding). H6 holds only if retrieval measurably beats the model priors. *Open question #4 stands: solo project volume may be too low to detect H6 — consider deliberately running many small/synthetic briefs to generate enough data points, or scope Phase 2 down until volume exists.*
 
 ---
 
@@ -459,24 +504,24 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Closes:** F-JDG-05 (domain-blind judging), F-JDG-06 (full — non-determinism), F-JDG-07 (systematic judge biases)
 - **Implements:** MP-3
 - **Depends on:** C3.0
-- **Spec source:** [`spec/10b`](./spec/10b-failures-eyes-judging-and-loop.md) (F-JDG-05/06/07)
-- **Build:** **order-randomization + position-debiasing** for pairwise; **ensemble/self-consistency** to reduce sampling variance; **crop-based / higher-resolution** inspection for fine detail (kerning, 1px misalignment, small-text legibility); pass **domain/`context_fit`** to the Critic; ground in the constitution + anchored exemplars.
+- **Spec source:** [`spec/10b`](./failures/overall-system-failures/10b-failures-eyes-judging-and-loop.md) (F-JDG-05/06/07)
+- **Build:** **order-randomization + position-debiasing** for pairwise; **ensemble/self-consistency** to reduce sampling variance; **crop-based / higher-resolution** inspection for fine detail (kerning, 1px misalignment, small-text legibility); pass **domain/`context_fit`** to the Critic; ground in the constitution + anchored exemplars. (Scope note: measuring these biases via probes exists since Phase 1 / C1.13; this chunk implements the active mitigations).
 - **Done when:** bias probes (swap order, vary verbosity) show measured verdict stability; cross-domain agreement is broken out per domain; fine-detail defects are detected.
 
 ### C3.2 — Autonomy ladder
 - **Closes:** F-HUM-03 (premature autonomy relaxation)
 - **Implements:** MP-12, **I13** (human gate removed only when the boundary earns it)
 - **Depends on:** C3.0
-- **Spec source:** [`spec/09 §2`](./spec/09-roadmap-and-open-questions.md), [`spec/11 §2.3`](./spec/11-guardrails-and-invariants.md)
-- **Build:** a gate is relaxed **only** where that boundary's measured Critic↔human agreement clears an explicit threshold; dropping back a rung on quality complaints is a first-class move.
-- **Done when:** no rung change occurs without the boundary's agreement threshold being met and recorded; a regression drops the rung.
+- **Spec source:** [`spec/09 §2`](./spec/09-roadmap-and-open-questions.md), [`spec/11 §2.3`](./spec/11-guardrails-and-invariants.md), [`spec/13 §4`](./spec/13-evaluation-charter.md)
+- **Build:** a gate is relaxed **only** where that boundary's measured Critic↔human agreement clears an explicit threshold **in every stratum** (`routine | hard | adversarial`). An aggregate pass masking a stratum failure is not a pass. Once relaxed, a **≥10% standing random audit** of unattended passes runs forever; the **measured audit miss-rate** (not complaints) is the automatic drop-back trigger. Every rung-promotion decision must cite the pre-registered power analysis artifact for that boundary × stratum (see C1.13).
+- **Done when:** no rung change occurs without per-stratum agreement evidence, a cited power analysis, and an active standing audit; a miss-rate breach drops the rung automatically.
 
 ### C3.3 — Multi-reviewer + uncertainty-routed review
 - **Closes:** F-HUM-02 (reviewer-taste overfitting), F-HUM-04 (review bottleneck / rubber-stamp / taste SPOF)
 - **Implements:** MP-3, MP-12
 - **Depends on:** C3.0
-- **Spec source:** [`spec/10c`](./spec/10c-failures-memory-and-learning.md) (F-HUM-*), [`spec/14`](./spec/14-research-agenda.md) (R14)
-- **Build:** multiple reviewers with inter-rater agreement tracking (weight by consensus); **uncertainty-routed review** — escalate to a human only where the Critic/reward model is unsure (R14), preserving human attention; low-friction capture to resist rubber-stamping. *(Open question #3: whose taste is ground truth when reviewers disagree — currently "whoever runs the project"; revisit when a second reviewer joins.)*
+- **Spec source:** [`spec/10c`](./failures/overall-system-failures/10c-failures-memory-and-learning.md) (F-HUM-*), [`spec/14`](./spec/14-research-agenda.md) (R14)
+- **Build:** multiple reviewers with inter-rater agreement tracking (weight by consensus); **promote R14 (uncertainty-routed review) to land with the first verdict flow (M16):** route the human's scarce minutes to low-confidence/high-stakes items (like Tier A writes) and let Tier B audits handle the rest; low-friction capture to resist rubber-stamping. *(Open question #3: whose taste is ground truth when reviewers disagree — currently "whoever runs the project"; revisit when a second reviewer joins.)*
 - **Done when:** inter-rater reliability is tracked; a subtly-bad artifact injected under load is **not** rubber-stamped; review routes by uncertainty, not uniformly.
 
 ### C3.4 — R3 Constitution-grounded Critic `[R-bet — Phase 3]`
@@ -492,8 +537,8 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Implements:** MP-3, MP-9
 - **Depends on:** C3.4, C2.8 (verdict data)
 - **Spec source:** [`spec/14`](./spec/14-research-agenda.md) (R4), [`spec/21`](./spec/README.md) (referenced)
-- **Build:** preference learning / VLM distillation on accumulated human verdicts; held-out accuracy validation; **dual-judge deployment** (learned reward model augments/distills the prompted Critic). Separate universal-craft from domain-style signals to test cross-domain transfer.
-- **Done when:** the reward model beats the prompted Critic on held-out human-verdict accuracy; cross-domain transfer is measured.
+- **Build:** preference learning / VLM distillation on accumulated verdicts. **RLAIF bulk design (M11):** To solve signal starvation at solo scale, rely on AI preference labels for training bulk (strongest available model, decorrelated contexts, cross-family where feasible), using the human golden core + verdicts for calibration and held-out validation only; budget volume against S2 quota findings. **Judge-distillation framing:** this small trained reward model is the system's *only* weight-level learning lever (prod-only path acceptable). Use a **dual-judge deployment** (learned reward model augments/distills the prompted Critic). Separate universal-craft from domain-style signals to test cross-domain transfer.
+- **Done when:** the reward model beats the prompted Critic on held-out human-verdict accuracy; cross-domain transfer is measured; RLAIF bulk training is budgeted and executed.
 
 ### C3.6 — Search-dynamics research bets `[R-bet — DEFERRED / LATER]`
 - **Closes:** F-LOOP-06 (greedy local optimum → **R7**), F-LOOP-07 (scalarization hides Pareto → **R8**), F-LOOP-08 (no adaptive effort → **R12**)
@@ -507,7 +552,7 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Closes:** F-SUR-01 (app states unrepresented), F-SUR-02 (state explosion), F-SUR-03 (interaction states not driven), F-SUR-04 (unsupported high-value surfaces)
 - **Implements:** MP-10, MP-5
 - **Depends on:** Phase 0 Eyes
-- **Spec source:** [`spec/09 Q5`](./spec/09-roadmap-and-open-questions.md), [`spec/10c`](./spec/10c-failures-memory-and-learning.md) (F-SUR-*)
+- **Spec source:** [`spec/09 Q5`](./spec/09-roadmap-and-open-questions.md), [`spec/10c`](./failures/overall-system-failures/10c-failures-memory-and-learning.md) (F-SUR-*)
 - **Build (deferred — marketing sections first):** for product surfaces, require explicit component states; the Eyes **drive** interactions (hover/click/type via Playwright) and capture a **prioritized canonical set** (default/empty/loading/error/filled), not every combination; an explicit per-surface roadmap (forms, multi-page, email, data-viz, localization/RTL) with honest scoping until built.
 - **Done when (per surface built):** non-default and interaction states are captured and judged; a per-surface capability checklist passes before claiming support.
 
@@ -522,11 +567,23 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 - **Closes:** F-SPEC-06 (benchmark Goodhart — ongoing)
 - **Implements:** MP-3, MP-12
 - **Depends on:** C1.12
-- **Spec source:** [`spec/13`](./spec/13-evaluation-charter.md), [`spec/10d`](./spec/10d-failures-quality-and-infrastructure.md) (F-SPEC-06)
+- **Spec source:** [`spec/13`](./spec/13-evaluation-charter.md), [`spec/10d`](./failures/overall-system-failures/10d-failures-quality-and-infrastructure.md) (F-SPEC-06)
 - **Build:** keep the benchmark **growing and refreshed** — rotating held-out cases, system-proposed adversarial cases (human-ratified), and continuous tracking of **transfer to fresh briefs** (not just core scores). Discount non-transferring gains.
 - **Done when:** the fresh-held-out transfer gap is monitored alongside core scores; benchmark age is tracked.
 
-### ▶ Phase-3 exit gate — H3/H8
+### [DONE] E3.2 — Substrate-succession subsystem (M12)
+- **Closes:** CA-4 / CF-2, CF-10 (via F-MOD-07/08)
+- **Build:** Exercise the **Model succession playbook** (`spec/11 §4`) at the first real model swap (deprecation or upgrade). Follow the 6-step procedure: freeze old baseline, re-run golden core on the new model, re-verify calibrations, retrain/refresh reward model, re-embed (if needed), and log a succession entry with deltas.
+- **Done when:** The first model swap is absorbed without losing calibration, proving the system can survive substrate change.
+
+### [DONE] E3.3 — Self-audit pass (M20)
+- **Closes:** EG-5 (gap G15) - Self-weakness detection
+- **Depends on:** C0.11 (trace), C0.16 (verdicts)
+- **Spec source:** [`spec/14 §8`](./spec/14-research-agenda.md)
+- **Build:** Implement a periodic self-audit pass over `trace.jsonl` and the verdict corpus. It must cluster recurring hard-gate violations, Critic↔human disagreement patterns (by dimension/stratum), low-scoring briefs, and escalation causes. Emit three typed proposal streams: new failure-catalogue entries (`failures/`), constitution-amendment proposals (`spec/12`), and frontier eval cases (`spec/13`). Every proposal must cite the trace rows that produced it and enters as **Tier A** (strict human ratification).
+- **Done when:** A seeded recurring failure in synthetic trace data is surfaced by the pass with its supporting rows cited, and the three streams are emitted for human review.
+
+### [DONE] ▶ Phase-3 exit gate — H3/H8
 - **Spec source:** [`spec/08`](./spec/08-hypotheses-and-validation.md) (H3/H8)
 - **Do:** demonstrate that pairwise ranking beats absolute scoring and that Critic↔human agreement is **measurable and trending upward** without ground-truth leakage. This is **open-ended** — never fully "done." Autonomy relaxes only where agreement has earned it.
 
@@ -536,79 +593,79 @@ These are fixed decisions ([`knowledge/decisions-and-conventions.md`](./knowledg
 
 **Goal:** everything that must be true before ADE ships real work, scales, or runs unattended — the red-team surfaces (security, legal/IP, production parity, output-code quality, operations/DR). Much of this is **DEFERRED / accepted risk** at solo R&D scale per the problem ledger; build it when the purpose question (open question #1) resolves toward "product."
 
-### C4.0 — Sandbox hardening
+### [DONE] C4.0 — Sandbox hardening
 - **Closes:** F-SEC-01 (full — untrusted code execution), F-SEC-03 (full — data exfiltration), F-SEC-05 (SSRF via asset/reference URLs)
 - **Implements:** MP-14
 - **Depends on:** C0.4 (baseline sandbox)
-- **Spec source:** [`spec/10e`](./spec/10e-failures-security-legal-and-production.md) (F-SEC-*)
+- **Spec source:** [`spec/10e`](./failures/overall-system-failures/10e-failures-security-legal-and-production.md) (F-SEC-*)
 - **Build:** deny-by-default egress; resource caps; ephemeral per-render; no secrets in scope; **URL allowlist + private-range blocking** on every fetch (asset/reference), fetched inside the sandbox, to close SSRF (private ranges, cloud metadata endpoints).
 - **Done when:** an outbound call from generated code is blocked and flagged; an internal/metadata URL is blocked; no secret is ever in harness scope.
 
-### C4.1 — Secrets/PII full redaction + write-back scan
+### [DONE] C4.1 — Secrets/PII full redaction + write-back scan
 - **Closes:** F-SEC-04 (full)
 - **Implements:** MP-7, MP-14
 - **Depends on:** C0.14, C2.5
-- **Spec source:** [`spec/10e`](./spec/10e-failures-security-legal-and-production.md) (F-SEC-04)
+- **Spec source:** [`spec/10e`](./failures/overall-system-failures/10e-failures-security-legal-and-production.md) (F-SEC-04)
 - **Build:** comprehensive secret/PII scanning at capture **and** as a hard gate before any write-back; purge + rotate on detection.
 - **Done when:** a seeded secret/PII never reaches a persisted artifact **or** a Library entry.
 
-### C4.2 — Output-quality gate
+### [DONE] C4.2 — Output-quality gate
 - **Closes:** F-COD-01 (non-semantic HTML), F-COD-02 (unmaintainable/non-integrable React), F-COD-03 (insecure output/XSS), F-COD-04 (uncontrolled external resource loads)
 - **Implements:** MP-16
 - **Depends on:** Phase 0 Generator
-- **Spec source:** [`spec/10e`](./spec/10e-failures-security-legal-and-production.md) (F-COD-*)
+- **Spec source:** [`spec/10e`](./failures/overall-system-failures/10e-failures-security-legal-and-production.md) (F-COD-*)
 - **Build:** deterministic static analysis of generated code: **semantic-HTML/landmark** check (`nav`/`header`/`main`/`button` where `div`s were used); **prop-driven** (no hard-coded content), componentized, keys present; **security-lint** (no `dangerouslySetInnerHTML`, no unsanitized interpolation/URL handling); **resource-origin allowlist** (self-host fonts/scripts/images); lint/format clean.
 - **Done when:** div-soup, a hard-coded-content component, `dangerouslySetInnerHTML`, and a remote-font import are each caught by the gate.
 
-### C4.3 — Provenance & compliance review
+### [DONE] C4.3 — Provenance & compliance review
 - **Closes:** F-LEG-01 (inadvertent cloning/infringement), F-LEG-02 (unlicensed fonts/imagery), F-LEG-03 (dark patterns), F-LEG-04 (missing regulatory/disclaimer content), F-LEG-05 (representation/bias in imagery)
 - **Implements:** MP-17, MP-12
 - **Depends on:** C3.4 (constitution ethics principle)
-- **Spec source:** [`spec/10e`](./spec/10e-failures-security-legal-and-production.md) (F-LEG-*)
-- **Build:** licensing checks on fonts/assets (record provenance); **originality/similarity screen** against known sites (ablate refs → output must stay original); **dark-pattern screen** (never write dark patterns to the Library; refuse manipulative execution even if the brief invites it); **domain-triggered regulatory checklist** (financial/medical/legal disclaimers, consent, a11y statements); representation/bias consideration wired into any future imagery-selection/generation *before* it ships (R15).
+- **Spec source:** [`spec/10e`](./failures/overall-system-failures/10e-failures-security-legal-and-production.md) (F-LEG-*)
+- **Build:** licensing checks on fonts/assets (record provenance); **originality/similarity screen** against known sites (ablate refs → output must stay original); **dark-pattern screen** (never write dark patterns to the Library; refuse manipulative execution even if the brief invites it); **domain-triggered regulatory checklist** (financial/medical/legal disclaimers, consent, a11y statements); representation/bias consideration wired into any future imagery-selection/generation *before* it ships (R15). *(Note on M19: The Phase-4 legal similarity screen here remains separate and unchanged; it acts as a hard gate for compliance, whereas M19 introduces distinctiveness and self-similarity as advisory metrics in Phase 1.)*
 - **Done when:** an unlicensed font is flagged pre-build; a high-resemblance output is flagged; a financial brief fires the regulatory checklist; a brief inviting false urgency is refused.
 
-### C4.4 — Production-parity validation
+### [DONE] C4.4 — Production-parity validation
 - **Closes:** F-PAR-01 (cross-browser), F-PAR-02 (harness Tailwind ≠ prod build), F-PAR-03 (SSR/hydration unverified), F-PAR-04 (SEO/meta/structured data absent), F-QF-04 (Core Web Vitals never measured)
 - **Implements:** MP-15, MP-16
 - **Depends on:** C0.4 (which *flagged* F-PAR-02)
-- **Spec source:** [`spec/10e`](./spec/10e-failures-security-legal-and-production.md) (F-PAR-*), [`spec/10d`](./spec/10d-failures-quality-and-infrastructure.md) (F-QF-04)
+- **Spec source:** [`spec/10e`](./failures/overall-system-failures/10e-failures-security-legal-and-production.md) (F-PAR-*), [`spec/10d`](./failures/overall-system-failures/10d-failures-quality-and-infrastructure.md) (F-QF-04)
 - **Build:** before delivery, validate on the **real engine set** (Chromium + Firefox + WebKit); render through the **purged production Tailwind build** (real config, not CDN — closing the C0.4 gap); an **SSR/hydration** harness (Next.js target) to catch hydration mismatch/CLS; **SEO/meta/structured-data** checks; a real **Core Web Vitals / bundle-weight** checker (Lighthouse or equivalent) — the deterministic performance checker F-QF-02 named but never had.
 - **Done when:** a WebKit-only bug, a CDN-vs-prod purge divergence, a hydration mismatch, missing meta, and an oversized unoptimized asset are each caught before delivery.
 
-### C4.5 — Accessibility depth
+### [DONE] C4.5 — Accessibility depth
 - **Closes:** F-QF-03 (a11y depth / false compliance)
 - **Implements:** MP-1, MP-12
 - **Depends on:** C0.7 (axe baseline)
-- **Spec source:** [`spec/10d`](./spec/10d-failures-quality-and-infrastructure.md) (F-QF-03)
+- **Spec source:** [`spec/10d`](./failures/overall-system-failures/10d-failures-quality-and-infrastructure.md) (F-QF-03)
 - **Build:** treat a11y as a **dimension, not a binary gate** — axe catches only ~30–45% of WCAG; add keyboard-flow/focus-management, screen-reader, reduced-motion, and 200%-zoom reflow checks + periodic manual/AT audits; a11y in the constitution.
 - **Done when:** keyboard-trap and SR-broken fixtures are detected **beyond** axe; a reflow/zoom failure is caught.
 
-### C4.6 — Operations, reproducibility & DR
+### [DONE] C4.6 — Operations, reproducibility & DR
 - **Closes:** F-OPS-01 (nondeterminism/non-reproducibility), F-OPS-02 (schema/migration breakage), F-OPS-03 (no backup/DR), F-OPS-04 (unbounded storage growth), F-OPS-06 (latency/throughput blowup)
 - **Implements:** MP-8, MP-11, MP-5
 - **Depends on:** C1.0 (integrity/snapshot)
-- **Spec source:** [`spec/10e`](./spec/10e-failures-security-legal-and-production.md) (F-OPS-*)
+- **Spec source:** [`spec/10e`](./failures/overall-system-failures/10e-failures-security-legal-and-production.md) (F-OPS-*)
 - **Build:** a **deterministic eval mode** (pinned seed/temperature, frozen retrieval) + versioned **system-state snapshots** (prompts + model + constitution + Library version) so past runs reproduce; **versioned schemas + explicit migrations** (validate on read); **regular versioned backups + tested restore + off-machine replication**; a **retention/GC** policy (keep traces, prune bulky intermediates); parallelize where safe + cap end-to-end wall-clock; structured logging/alerting on quality regressions.
 - **Done when:** a deterministic re-run is identical; an old-schema record migrates or is cleanly rejected; a simulated disk loss restores with integrity; wall-clock/artifact is tracked with a budget alert.
 
-### C4.7 — Toolchain supply-chain discipline
+### [DONE] C4.7 — Toolchain supply-chain discipline
 - **Closes:** F-OPS-07 (supply-chain risk in harness/rendering toolchain)
 - **Implements:** MP-11 (mirrors F-MOD-05 model-pinning discipline)
 - **Depends on:** C0.4
-- **Spec source:** [`spec/10e`](./spec/10e-failures-security-legal-and-production.md) (F-OPS-07)
+- **Spec source:** [`spec/10e`](./failures/overall-system-failures/10e-failures-security-legal-and-production.md) (F-OPS-07)
 - **Build:** pin Playwright/Vite/Tailwind versions; scheduled dependency audits (`npm audit`); treat a toolchain version bump as a **change requiring re-baselining** against the benchmark (same discipline as a model change).
 - **Done when:** a dependency-audit check runs on cadence; a deliberate toolchain bump triggers a benchmark re-baseline.
 
-### C4.8 — Production provider path
+### [DONE] C4.8 — Production provider path
 - **Closes:** F-OPS-05 (full — vendor lock-in / ToS / model deprecation)
 - **Implements:** MP-11
 - **Depends on:** C0.0
-- **Spec source:** [`spec/10e`](./spec/10e-failures-security-legal-and-production.md) (F-OPS-05), open question #5 (ToS)
-- **Build:** the **prod-only** `ADE_PROVIDER=api` path with a real `ANTHROPIC_API_KEY` (**production only — never dev**); a real fallback (api/local); **confirm the Pro-credit ToS** permits the dev automated workload *before* scaling run volume (open question #5); re-baseline on any model change.
+- **Spec source:** [`spec/10e`](./failures/overall-system-failures/10e-failures-security-legal-and-production.md) (F-OPS-05), open question #5 (ToS)
+- **Build:** the **prod-only** `ADE_PROVIDER=api` path with a real `ANTHROPIC_API_KEY` (**production only — never dev**); a real fallback (api/local); **confirm the Pro-credit ToS** permits the dev automated workload *before* scaling run volume (open question #5); re-baseline on any model change. Report burn-rate vs S2 limits in `ade report` (S5 amendment).
 - **Done when:** killing the primary provider triggers the fallback + a re-baseline gate; the ToS question is resolved and logged before scale-up.
 
-### ▶ Phase-4 exit gate — "significantly improved" & ship-readiness
+### [DONE] ▶ Phase-4 exit gate — "significantly improved" & ship-readiness
 - **Spec source:** [`spec/15 §6`](./spec/15-execution-roadmap.md) *(deleted; interim authority = `IMPLEMENTATION_PLAN.md` + `CONTRACT_EXECUTION_PLAN.md`)*
 - **Do:** ADE is "significantly improved" when, unattended, it takes a brief and produces a consistent multi-section artifact that (a) passes the deterministic floor, (b) improves across iterations (H1), (c) a human rates good-or-close ≥50% (H2), (d) holds zero token drift (H4), and (e) at least one outer-loop bet shows a *measured* benchmark gain. **This is not full autonomy** — that stays the long-term north star, capped by the taste ceiling (F-JDG-01, F-SPEC-02), which the guardrails shrink but cannot eliminate.
 
@@ -640,7 +697,7 @@ These 15 invariants ([`spec/11 §8`](./spec/11-guardrails-and-invariants.md)) ar
 
 ## 8. Coverage index — every failure → its chunk
 
-Every `F-*` in [`10a`](./spec/10a-failures-input-and-generation.md)–[`10e`](./spec/10e-failures-security-legal-and-production.md) maps to the chunk(s) that close it. Use this to verify no failure is dropped. `[R]` = carries a research bet; `[D]` = deferred/accepted-risk at solo scale.
+Every `F-*` in [`10a`](./failures/overall-system-failures/10a-failures-input-and-generation.md)–[`10e`](./failures/overall-system-failures/10e-failures-security-legal-and-production.md) maps to the chunk(s) that close it. Use this to verify no failure is dropped. `[R]` = carries a research bet; `[D]` = deferred/accepted-risk at solo scale.
 
 | Failure | Chunk(s) | Failure | Chunk(s) |
 |---|---|---|---|
@@ -686,15 +743,16 @@ Every `F-*` in [`10a`](./spec/10a-failures-input-and-generation.md)–[`10e`](./
 | F-JDG-04 | C0.10, C3.0 | F-MOD-04 | C0.13 |
 | F-JDG-05 | C3.1 | F-MOD-05 | C0.0 |
 | F-JDG-06 | C0.8, C3.1 | F-MOD-06 | C0.13, C2.3 |
-| F-JDG-07 | C3.1 | F-SPEC-01 | Phase-0 gate |
-| F-LOOP-01 | C0.11 | F-SPEC-02 `[D]` | C3.4 (managed) |
-| F-LOOP-02 | C0.11 | F-SPEC-03 | C0.3, C1.4 (I1), all |
-| F-LOOP-03 | C0.11 | F-SPEC-04 | Phase gating (§0) |
-| F-LOOP-04 | C0.11 | F-SPEC-05 | C0.16 |
-| F-LOOP-05 | C0.11 | F-SPEC-06 | C1.13, C3.9 |
-| F-LOOP-06 `[R][D]` | C3.6 (R7) | F-SEC-01 | C0.4, C4.0 |
-| F-LOOP-07 `[R][D]` | C3.6 (R8) | F-SEC-02 | C2.4 |
-| F-LOOP-08 `[R][D]` | C3.6 (R12) | F-SEC-03 | C0.4, C4.0 |
+| F-JDG-07 | C3.1 | F-MOD-07 | C0.16 (M4) |
+| F-LOOP-01 | C0.11 | F-MOD-08 | C0.16, C3.2 (M4) |
+| F-LOOP-02 | C0.11 | F-SPEC-01 | Phase-0 gate |
+| F-LOOP-03 | C0.11 | F-SPEC-02 `[D]` | C3.4 (managed) |
+| F-LOOP-04 | C0.11 | F-SPEC-03 | C0.3, C1.4 (I1), all |
+| F-LOOP-05 | C0.11 | F-SPEC-04 | Phase gating (§0) |
+| F-LOOP-06 `[R][D]` | C3.6 (R7) | F-SPEC-05 | C0.16 |
+| F-LOOP-07 `[R][D]` | C3.6 (R8) | F-SPEC-06 | C1.13, C3.9 |
+| F-LOOP-08 `[R][D]` | C3.6 (R12) | F-SEC-01 | C0.4, C4.0 |
+| F-SEC-02 | C2.4 | F-SEC-03 | C0.4, C4.0 |
 | F-SEC-04 | C0.14, C4.1 | F-SEC-05 | C4.0 |
 | F-LEG-01..05 `[D]` | C4.3 (+C3.4) | F-PAR-01..04 `[D]` | C4.4 |
 | F-COD-01..04 `[D]` | C4.2 | F-OPS-01 | C1.0, C4.6 |
@@ -756,11 +814,17 @@ One JSON object per line, **appended immediately after each event** (never buffe
   "best_so_far": { "candidate_id": "c2-a", "score": 74 },  // I4 — never replaced by a lower score
   "budget": { "tokens_used": 41220, "seconds_used": 512, "calls_used": 11,
               "caps": { "maxRunTokens": 400000, "maxRunSeconds": 3600, "maxModelCalls": 60 } },
-  "terminal_state": null                             // approved|escalated|aborted on the final record (I10)
+  "terminal_state": null,                            // approved|escalated|aborted on the final record (I10)
+  "dist_tags": {                                     // distribution provenance — written from config at run start (M4/C0.16)
+    "gen_model_id":    "claude-sonnet-5",            // exact Generator model id (F-MOD-07/08)
+    "critic_model_id": "claude-opus-4-8",            // exact Critic model id
+    "config_version":  "1.2.0",                      // ADE config version
+    "system_snapshot": "git:abc1234"                 // source snapshot ref; never inferred retroactively
+  }
 }
 ```
 
-Rules: exactly one record has a non-null `terminal_state` per run (I10). `in_by_part` is the H7 substrate (C0.17). Secrets/PII are redacted **before** a record is written (C0.14).
+Rules: exactly one record has a non-null `terminal_state` per run (I10). `in_by_part` is the H7 substrate (C0.17). Secrets/PII are redacted **before** a record is written (C0.14). `dist_tags` are propagated to every `ade verdict` record so the verdict corpus is future-proof for reward-model retraining (F-MOD-07) and calibration succession (F-MOD-08).
 
 ### Appendix B — Config keys & default values
 
@@ -769,7 +833,7 @@ Resolved config is written to `runs/<out>/config.json` at run start. Model roles
 | Key | Default | Phase | Notes |
 |---|---|---|---|
 | `ADE_PROVIDER` | `agent-sdk` | 0 | `agent-sdk`(dev) \| `api`(prod-only) \| `local`(fallback). **No `ANTHROPIC_API_KEY` in dev.** |
-| `genModelId` | `claude-sonnet-4-6` | 0 | Generator — cheaper is fine (loop corrects). |
+| `genModelId` | `claude-sonnet-5` | 0 | Generator - cheaper is fine (loop corrects). Note: Updated from 4-6 in S3 spike. |
 | `criticModelId` | `claude-opus-4-8` | 0 | Critic — **strongest available; never downgrade** (F-JDG-01). |
 | `orchestratorModelId` | `claude-haiku-4-5` | 0 | Thin/cheap; comprehension + policy. |
 | `genTemperature` | `0.7` | 0 | Generator should diverge. |
@@ -835,7 +899,7 @@ run_section(brief, section, bundle, cfg):
      last_feedback = scoped(pick.verdict.notes)   # F-LOOP-03
      if oscillation_detected(): break             # escalate early
      iter += 1
-  return terminal(escalated, best)                # budget out → escalate with best-so-far, never silent
+  return terminal(escalated, best)                # budget out → emit queue record (M7), escalate with best-so-far
 ```
 
 ### Appendix E — Gate contracts (deterministic, no model calls except the Critic)
@@ -868,5 +932,5 @@ Forbidden: a single review that hands back fixes and lets them through **unverif
 ## Revision history
 
 - **v0.2** — cross-check pass. **Resolved skips/issues:** added **C0.17** (token-economy instrumentation — the H7 substrate the spec requires "from Phase 0," previously missing); inserted **C1.4 Brand-as-hard-input** (the frozen brand must enter the generation bundle before crystallization — a logical gap; Phase 1 chunks renumbered C1.5–C1.13 with §7/§8 updated in lockstep); fixed **C0.14** dependency (now C0.5 + C0.12). **Added micro-detail:** Appendices A–F pin the normative `RunRecord`/`trace.jsonl` schema, config keys + defaults, the Critic verdict schema & rubric, the orchestrator loop algorithm (explore-early/polish-late, best-so-far, terminal states), the deterministic gate contracts, and the Phase-Exit Review contract. Coverage re-verified: every `F-*` still maps to a chunk; no orphans introduced.
-- **v0.1** — initial failure-driven implementation plan. Sequences the [`spec/11`](./spec/11-guardrails-and-invariants.md) solutions and the full [`10a`](./spec/10a-failures-input-and-generation.md)–[`10e`](./spec/10e-failures-security-legal-and-production.md) catalogue into phase-gated chunks (0→4), each tagged with the `F-*` IDs it closes, the MP/invariant/gate it implements, dependencies, build detail, and falsifiable acceptance criteria. Adds the cross-cutting-invariant map (§7), the complete failure→chunk coverage index (§8), and flagged spec inconsistencies (§9). Grounded against the current on-disk spec (`00`–`14`, `10a`–`10e`); references to `15`–`36` are forward links to not-yet-present docs. **No application code — R&D/spec artifact only.**
+- **v0.1** — initial failure-driven implementation plan. Sequences the [`spec/11`](./spec/11-guardrails-and-invariants.md) solutions and the full [`10a`](./failures/overall-system-failures/10a-failures-input-and-generation.md)–[`10e`](./failures/overall-system-failures/10e-failures-security-legal-and-production.md) catalogue into phase-gated chunks (0→4), each tagged with the `F-*` IDs it closes, the MP/invariant/gate it implements, dependencies, build detail, and falsifiable acceptance criteria. Adds the cross-cutting-invariant map (§7), the complete failure→chunk coverage index (§8), and flagged spec inconsistencies (§9). Grounded against the current on-disk spec (`00`–`14`, `10a`–`10e`); references to `15`–`36` are forward links to not-yet-present docs. **No application code — R&D/spec artifact only.**
  

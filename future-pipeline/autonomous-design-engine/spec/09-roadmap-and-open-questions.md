@@ -10,19 +10,23 @@
 flowchart LR
     P0["PHASE 0 — Eyes (the MVP)\nclosed loop · one section · CLI · no memory\nproves H1 (+ H2 smell-test, H7)"]
     P1["PHASE 1 — Brand + Consistency\nBrand Foundation · crystallization · multi-section\nproves H4 (+ H5 setup)"]
+    P1_5["PHASE 1.5 — Strategy/IA\naudience/positioning · site plan\nproves R9 (M15)"]
     P2["PHASE 2 — Memory / Library\nvector DB · retrieval · write-back\nproves H6 (+ H7 at scale)"]
     P3["PHASE 3 — Taste / Judge\nverdict loop · pairwise · calibration\nproves H3, H8"]
     P4["PHASE 4 — Scale & Autonomy\nwhole-site/product · relax human gates\nautonomy ladder"]
-    P0 --> P1 --> P2 --> P3 --> P4
+    P0 --> P1 --> P1_5 --> P2 --> P3 --> P4
 ```
 
 | Phase | Builds | Gate to advance |
 |---|---|---|
 | **0 — Eyes (MVP)** | the loop (`07`) | **H1 passes** (else stop & rethink) |
 | **1 — Brand + Consistency** | Brand store, crystallization, section sequencing | **H4 passes** (zero token drift, variety kept) |
+| **1.5 — Strategy/IA (M15)** | Strategy/IA layer (audience/positioning → site plan/narrative → per-section goals). Phase-Exit-Reviewed itself. | **Raises brief-fit + coherence** vs human baseline (eval against M5-captured corpus) |
 | **2 — Memory** | pgvector Library, retriever, write-back | **H6 passes** (Library-on beats Library-off) |
 | **3 — Taste** | human-verdict capture, pairwise calibration | **H3/H8 trending up** |
 | **4 — Scale & Autonomy** | whole-artifact runs; relax gates per the ladder | sustained quality at lower human touch |
+
+> **Unmet Preconditions (M21 - The Missing Chairs):** By ratified D2 decision, ADE's scope is strictly composition/UI. The "missing chairs" (copy co-optimization, imagery & art direction, iconography, and motion authoring) are NOT FUNDED. Consequently, EG-3 ("complete solutions") and EG-9 ("world-class design org") are structurally unreachable under this roadmap.
 
 Each phase is **independently valuable and independently abandonable**: if a gate fails, you stop having spent only that phase's effort — the whole point of sequencing by capability and gating by measurement.
 
@@ -40,9 +44,19 @@ Rung 3           human approves brand only; sections auto-approved unless Critic
 Rung 4           human sets direction + final sign-off; AI runs the project
 ```
 
-You move up a rung only when, at the current rung, the Critic's "pass" and the human's verdict agree often enough that the human's review is mostly redundant. **A gate is relaxed ONLY where that boundary's measured Critic↔human agreement clears an explicit threshold.** **Never skip rungs on faith.** **Dropping back a rung** on quality complaints or measured regression is a first-class, expected move.
+You move up a rung only when, at the current rung, the Critic's "pass" and the human's verdict agree often enough that the human's review is mostly redundant. **A gate is relaxed ONLY where that boundary's measured Critic↔human agreement clears an explicit threshold — and only when that threshold is met in EVERY difficulty stratum (`routine`, `hard`, `adversarial`).** An aggregate agreement score that masks a stratum failure is not a pass. **Never skip rungs on faith.**
+
+**Stratification rules for rung promotion:**
+- Before any rung-promotion decision, a **pre-registered power analysis** must be cited (see `spec/13 §4`): the required sample size per boundary × stratum at the chosen α. If the sample is too small, the boundary's agreement cannot be declared statistically meaningful and promotion is blocked.
+- System-proposed adversarial cases default to the `adversarial` stratum until a human re-tags them; they must be included in the promotion evidence.
+
+**Standing random audits (every relaxed gate, forever):**
+- Once a gate is relaxed, at least **≥10% of all unattended passes** are randomly selected for human re-review on an ongoing basis. This is not a one-time check.
+- The **measured audit miss-rate** (the fraction of randomly audited passes that a human would have rejected) is the **automatic drop-back trigger** — not complaints, not intuition, and not a scheduled review.
+- If the measured miss-rate breaches the pre-registered threshold for that boundary's rung, the rung drops immediately. Dropping back is a **first-class, expected move**, not a failure.
 
 Brand approval likely stays human for a long time — it's high-stakes, long-lived, and cheap to keep. The mechanism that makes a rung *measurable* is the **Phase-Exit Review** ([11 §2.3](./11-guardrails-and-invariants.md)): each boundary (section, brand, design system, library) already runs an automated review just inside its human gate, so the agreement between that review and the human is the exact signal that says whether the gate can be relaxed — and each boundary climbs the ladder on its own evidence.
+
 
 ---
 
@@ -82,7 +96,7 @@ For R&D this is acceptable; at production scale it must be budgeted. Track token
 2. **Calibration transfer.** Do human verdicts on one domain (real estate) improve the Critic on another (SaaS)? Or is taste domain-specific?
 3. **Library granularity.** What's the right altitude for entries — broad principles, mid patterns, specific recipes? Too broad = vague; too specific = non-transferable. Likely a mix; the ratio is unknown. The **Phase-Exit Review** on write-back ([11 §2.3](./11-guardrails-and-invariants.md)) is the runtime check that *catches* bad-altitude entries, but it does not settle the underlying question of the ideal distribution.
 4. **Crystallization fidelity.** *Largely resolved in spec (`04` §3, `03` §4):* freeze the **foundation** (tokens) after section 1 and **extend** the component layer as later sections introduce new components — do not wait for 2–3 sections. The remaining unknown is how reliably the AI extracts a *correct* foundation from a single section (does a hero alone over- or under-specify tokens?). A **Phase-Exit Review** of the crystallized foundation before it freezes ([11 §2.3](./11-guardrails-and-invariants.md)) is the guardrail against a bad extraction; how often it must intervene is itself a phase-1 measurement. Validate in phase 1 (relates to H4).
-5. **Surface representation.** *Narrowed by the stack choice:* the Generator already outputs **React + TypeScript components** — the representation product apps need — so the marketing→app gap is smaller than first assumed. The open part is **state & interaction**: apps have empty/loading/error states and clicks a single screenshot cannot capture. The same loop works, but for apps the **Eyes must drive the component through its states** (Playwright can) and the Critic must judge multiple states. Marketing sections first (one rendered state); app state-driving is a later phase.
+5. **Surface representation.** *Resolved in Phase 3 (C3.7):* The initial unknown was how to judge interaction states (empty/loading/error). This is now solved: the **Eyes drive the component through its states** via Playwright (clicking, hovering, typing) and capture a prioritized canonical set of state screenshots for the Critic to judge, rather than relying on a single static frame.
 6. **Variation vs. cost.** How many candidates per iteration actually move quality enough to justify the spend? (Tunes `--variations`.)
 
 These are flagged so they are **researched, not assumed**. None blocks the MVP; several are the substance of phases 2–4.

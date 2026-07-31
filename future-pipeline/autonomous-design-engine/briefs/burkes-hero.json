@@ -1,0 +1,20 @@
+{
+  "client": "Burke's Steakhouse",
+  "industry": "Restaurant / Hospitality",
+  "location": "Bengaluru, Karnataka",
+  "audience": "Affluent professionals and couples aged 28-55 seeking premium dining experiences",
+  "goal": "Drive table reservations by showcasing the premium dining atmosphere and signature cuts",
+  "section": {
+    "name": "hero",
+    "content": {
+      "headline": "Where Every Cut Tells a Story",
+      "subheadline": "Premium dry-aged steaks, curated wines, and an atmosphere crafted for those who appreciate the finer things.",
+      "cta": {
+        "text": "Reserve Your Table",
+        "href": "/reservations"
+      },
+      "nav": ["Menu", "Reservations", "Events", "About", "Contact"],
+      "tags": ["Dry-Aged Steaks", "Private Dining", "Wine Cellar", "Live Jazz Fridays"]
+    }
+  }
+}

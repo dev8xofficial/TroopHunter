@@ -8,7 +8,7 @@
 
 | ID | Hypothesis (one line) | Tested in | Decisive metric |
 |---|---|---|---|
-| **H1** | An agent that **sees** its render can improve a section vs a brief, no reference | MVP (`07`) | score trends up across iterations |
+| **H1** | An agent that **sees** its render can improve a section vs a brief, no reference | MVP (`07`) | humans blind-prefer loop final over matched-compute control (exact binomial, α=0.05) |
 | **H2** | Brief-only design reaches a human "good" bar | MVP + phase 2 | human "good/close" rate |
 | **H3** | A Critic with **no source to diff** still drives improvement; pairwise > absolute | MVP + phase 4 | critic↔human agreement; iter-on-iter gain |
 | **H4** | Crystallization keeps later sections **consistent** without monotony | phase 2 | token-drift ≈ 0; variation present |
@@ -26,9 +26,12 @@ The ordering is also a **dependency order**: H1 must hold before H2–H8 are wor
 ### H1 — Eyes (the load-bearing one)
 - **Statement:** An agent that renders and sees its own output produces a measurably better section on iteration N+1 than N, judged against a brief, with no reference to clone.
 - **Why it matters:** It is the entire premise. If sight doesn't improve output, ADE collapses to the old open-loop pipeline.
-- **Test:** Run the MVP loop on ≥10 briefs with `--max-iters 4`. For each, record the Critic's weighted score per iteration (and have a human rank iter-0 vs final blind).
-- **Pass metric:** Final score > iter-0 score in **≥70%** of runs, AND humans prefer the final over iter-0 in **≥70%** of blind pairs.
-- **Fail looks like:** scores flat or random across iterations; humans can't tell final from first.
+- **Test:** Run the MVP loop on ≥20 briefs with `--max-iters 6`. For each brief, run the loop **and** a **matched-compute control** (same brief, same total candidate count, same config, **no feedback carry-forward** — fresh independent generations at `genTemperature`, best selected by the same Critic).
+- **Pass metric:**
+  - *Primary:* H1 passes iff **humans blind-prefer the loop's final over the control's best at significance** (exact binomial test, pre-registered α=0.05, n≥20 briefs; n=10 = pilot only, report CI, no gate decision).
+  - *Secondary (descriptive, not gating):* Final score > iter-0 score; humans prefer final over iter-0; per-iteration **loop-gain** (best-score delta per iteration) and plateau shape.
+- **Optional in-iteration interleave variant:** Generate one fresh no-feedback candidate inside each loop iteration, flag it `control_inline`, and report its win-rate against feedback-conditioned siblings.
+- **Fail looks like:** scores flat or random across iterations; humans can't distinguish final from control's best.
 
 ### H2 — Brief-only design is viable
 - **Statement:** Given only business context (+ optional soft refs), output reaches a human "good or close" bar.
@@ -89,7 +92,7 @@ verdict log           →  critic verdict vs human verdict, per run             
 
 **Measurement discipline rules (C0.16 — invariant I12):**
 - **Only observed numbers are reported.** Every quality metric in a report must trace to either a deterministic gate result or a human verdict — never to a Critic verdict alone. Critic metrics are always paired with the human ground-truth they will be checked against.
-- **Structured verdict capture (`ade verdict` tool):** after each run, a structured verdict is persisted alongside the artifact — `{ run_id, iter_0_path, final_path, human_pick, rating_4pt, notes }`. The human is shown iter-0 and the final candidate in **random order** (blind) so there is no anchoring bias. This verdict is the ground truth for H1 and H3 calibration.
+- **Structured verdict capture (`ade verdict` tool):** after each run, a structured verdict is persisted alongside the artifact — `{ run_id, iter_0_path, final_path, control_best_path, positions_log, human_pick, rating_4pt, notes }`. The human is shown iter-0, the loop's final, and the control's best in **random order** (positions logged so presentation bias can be detected); this three-way blind is the ground truth for H1 and H3 calibration. The old two-field schema (`iter_0_path` + `final_path` only) is insufficient for H1 with a matched-compute control.
 - No number from a validation run counts toward H1 unless it has a matching human verdict record.
 
 **Token-economy instrumentation (C0.17 — H7 substrate):**
@@ -116,11 +119,14 @@ The spirit, carried from the team's own logs: **report observed numbers, never p
 
 > This is the gate that must be cleared before Phase 1 begins. If H1 fails, **stop and rethink** — do not build Phase 1.
 
-**What to run:** the full loop on the Burkes hero brief + ≥10 additional briefs, `--variations 2`, `--max-iters 4`, collecting `trace.jsonl` and human verdicts via `ade verdict` for every run.
+**What to run:** For each brief (n≥20), run two independent passes using `ade run` and `ade verdict`:
+1. **The Loop:** The full ADE feedback loop (`--max-iters 6`).
+2. **The Control:** A matched-compute control arm (same total candidate count, same temperature, **no feedback carry-forward**), best selected by the same Critic.
 
 **What to measure (H1 pass criteria):**
-- Final Critic score **> iter-0 score** in **≥70 %** of runs.
-- Humans prefer the final over iter-0 in **≥70 %** of blind pairs (the `ade verdict` structured records).
+- **Primary:** H1 passes iff humans **blind-prefer the loop's final over the control's best at significance** (exact binomial test, pre-registered α=0.05, n≥20).
+  - *Why this changed:* The original "final > iter-0" metric suffered from a selection confound. Under a no-learning null hypothesis, taking the best of N independent random samples will beat the first sample ≈(N-1)/N of the time simply by having more draws. A matched-compute control isolates the true signal of *feedback-driven learning*.
+- **Secondary (descriptive only):** Final Critic score > iter-0 score; loop-gain plateau shape.
 
 **Guardrail verification (must pass before H1 measurement counts):**
 - A deliberately injected render defect (blank render, broken import) is caught by the Render-Health Gate and **never reaches the Critic**.

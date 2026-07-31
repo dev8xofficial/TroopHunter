@@ -16,13 +16,13 @@
 - **Recovery:** Kill the sandbox; discard the candidate; rotate any exposed secret.
 - **Validation:** Inject a component that attempts `fetch`/exfiltration; assert the sandbox blocks it.
 
-### F-SEC-02 — Indirect prompt injection via references or retrieved memory
+### F-SEC-02 — Indirect prompt injection via references, retrieved memory, or external research (M15)
 **Level:** spec+impl · **Severity:** High · **Area:** Security
-- **Description:** Injected instructions arrive not in the brief (F-INP-06) but inside a **reference image** (embedded text) or a **retrieved Library entry**, and the Generator/Critic obey them.
-- **Root cause:** Soft inputs (refs, memory) are trusted as data but can carry adversarial instructions; only the brief is sanitized.
-- **Detection:** Output deviates from constraints traceable to a specific ref/entry; anomalous behavior on particular retrievals.
+- **Description:** Injected instructions arrive not in the brief (F-INP-06) but inside a **reference image** (embedded text), a **retrieved Library entry**, or **any fetched external content, including research material**, and the Generator/Critic obey them.
+- **Root cause:** Soft inputs (refs, memory, research) are trusted as data but can carry adversarial instructions; only the brief is sanitized.
+- **Detection:** Output deviates from constraints traceable to a specific ref/entry/research source; anomalous behavior on particular retrievals.
 - **Impact:** Constraint bypass; brand/quality-floor violation; memory-mediated attack propagation across projects.
-- **Mitigation:** Treat *all* soft inputs as untrusted data with clear delimiters; retrieved/reference content can never override hard rules; screen entries at write-back; deterministic post-checks [MP-1, MP-6, MP-7].
+- **Mitigation:** Treat *all* soft inputs (including research) as untrusted data with clear delimiters; retrieved/reference/research content can never override hard rules; screen entries at write-back; deterministic post-checks [MP-1, MP-6, MP-7].
 - **Recovery:** Quarantine the offending ref/entry; re-run; purge poisoned entries + reindex.
 - **Validation:** Red-team refs and seeded poisoned entries; assert hard constraints hold.
 

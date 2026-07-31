@@ -19,6 +19,10 @@ The single most important distinction in ADE. There are **two** design memories 
 
 The Library makes project #50 better than project #1. The Brand/System makes *one* client's hero, About page, and product app feel like the same company. They pull opposite directions — one loose, one rigid — which is exactly why they are **separate stores**, never one blended "memory."
 
+> **Staging note (M10):** The Library thesis is tested in **stages**. 
+> - **Stage A:** **own-client memory** (retrieval over the same client's approved sections/screenshots — no de-identification needed, no altitude review) + the **verdict corpus** as the primary compounding asset. 
+> - **Stage B:** the cross-client de-identified Library (write-back machinery) is built **only after** Stage A's ablation shows that retrieval adds value beyond the model's priors.
+
 ---
 
 ## 2. The consistency hierarchy (three levels)
@@ -88,6 +92,8 @@ sequenceDiagram
 ```
 
 Before crystallization the AI is choosing the system; after, it is obeying it. This is the mechanism that answers *"will the About section match the hero?"* — **yes, because the hero's decisions were frozen into law the About section must follow**, and the About generation is additionally shown the hero's screenshots as visual context.
+
+> **Experiment Note (M14 / E1.4):** At the Phase-1 boundary, run an A/B experiment to test this "hero-first" sequence. Arm 1: the current hero-first crystallization. Arm 2 (design-system-first): derive a candidate token system from the brand + brief *before* section 1, and the hero *validates* it. Metrics: token-extension frequency, Phase-Exit intervention rate, H4 drift/variety, and human preference. Adopt whichever arm wins.
 
 ### Freeze the foundation, grow the components
 
@@ -159,7 +165,11 @@ The query is built from the **brief**, embedded, and matched nearest-neighbor ag
 
 ## 6. Write-back — how the Library gets smarter (not just bigger)
 
-After a **human-approved** artifact is finalized (an unapproved artifact can never produce a Library entry, preventing F-WB-04), **Learning Write-back** distills it into the Library through a strict pipeline (C2.5, C2.7):
+> **Staging note (M10):** The write-back machinery below belongs entirely to **Stage B** (the cross-client Library) and is built **only after** Stage A proves that retrieval beats model priors. Stage A (own-client memory) skips de-identification and altitude reviews.
+
+After a **human-approved** artifact is finalized (an unapproved artifact can never produce a Library entry, preventing F-WB-04), **Learning Write-back** distills it into the Library through a strict pipeline (C2.5, C2.7).
+
+> **Two-Tier Knowledge Adoption Note (M16):** Library and own-client memory entries are **Tier B knowledge writes**. They may be adopted immediately with `provisional: true` to enable fast compounding without blocking on a second human review of the abstraction. However, they are subject to mandatory random audit sampling, auto-expiry unless human-confirmed within a set window, and instant revocation on audit failure.
 
 1. **De-identification Gate:** Block on any client name, PII, exact brand token, or verbatim copy (F-WB-01).
 2. **Abstraction:** Translate the instance to a transferable altitude (tag as principle, pattern, recipe; favor the mid "pattern" altitude).
@@ -186,7 +196,7 @@ When inputs disagree, resolve in this fixed order:
 4. Business brief                  (hard)
 ─────────────────────────────────────────────
 5. Global Library entries          (soft — synthesized)
-6. ≤5 references                   (soft — direction only)
+6. ≤5 references                   (soft — direction only; dissolved into principles via optional relevance screen)
 ```
 
 - **Hard always beats soft.** A reference suggesting a teal accent loses to a brand whose accent is warm-neutral.
