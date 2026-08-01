@@ -13,10 +13,33 @@ JWT signing key and mail credentials and stops working. So the order is:
 | Step | What | Safe? |
 |---|---|---|
 | 1 | (done) measure what each image actually carries | read-only |
-| **2** | **apply these manifests** — the pods gain the variables in their environment | ✅ **provably safe: the app still reads the baked file, nothing changes behaviour** |
+| **2a** | fill in the real values from the current images | read-only |
+| **2b** | **apply these manifests** | ⚠ **safe ONLY once 2a is done — see the warning below** |
 | 3 | verify every pod's env holds all 12/17 | read-only |
 | 4 | remove the `!` lines from `.dockerignore`, rebuild, redeploy | the first risky step |
 | 5 | **rotate `JWT_SECRET` across all five together** | needs a chosen window |
+
+## ⚠⚠ CORRECTION — step 2 is NOT safe with placeholders in place
+
+An earlier version of this file called step 2 "provably safe: the app still reads the baked
+file, nothing changes behaviour". **That is wrong, and applying it as written would take all
+five services down.**
+
+`microservices/*/entrypoint.sh` was changed earlier this week so the baked `.env` is a
+**default, not an override** — `load_defaults()`, "existing environment variables win". That
+fix was correct and necessary (before it, no Kubernetes Secret could change anything). But it
+means the environment now **beats** the file:
+
+    ConfigMap says ASSET_HOST=REPLACE_FROM_IMAGE  ->  the app uses REPLACE_FROM_IMAGE
+
+So these manifests must be **populated before they are applied**, not after. Read the real
+values out of a running image first:
+
+    docker run --rm --entrypoint sh <image> -c 'cat /app/microservices/<svc>/.env.production'
+
+⚠ The general shape of this mistake is worth more than the fix: **a safety claim written
+without re-checking a change made earlier the same week.** The entrypoint fix and this README
+were both correct in isolation and contradicted each other. Verify the claim, not the memory.
 
 ## ⚠ Why step 5 is not optional and not routine
 
