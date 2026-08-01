@@ -91,7 +91,7 @@ needs changing when those clusters appear.
 |---|---|
 | the routes (edit this) | `dev8x/forge/infrastructure/desired-state/network/cloudflare-tunnel.yaml` |
 | the Terraform that applies them | `dev8x/forge/infrastructure/implementation/terraform/cloudflare/` |
-| the API token | `~/.dev8x-cloudflare-api-token` (outside the repo, never committed) |
+| the API token | `dev8x/forge/infrastructure/secrets/cloudflare-api-token` — a directory that ignores itself, so it is never committed |
 | the box running the tunnel | `connect-ops-prod`, VM 5001 on the hub — `desired-state/services/connect-ops.yaml` |
 | why that box fell over once | [`OUTAGE-2026-07-31.md`](OUTAGE-2026-07-31.md) |
 

@@ -6,7 +6,7 @@ WORKDIR /app
 # Copy package files for better caching
 COPY package.json ./
 COPY package-lock.json ./
-# # COPY .npmrc ./
+COPY .npmrc ./
 # Commented out 2026-07-31. The .npmrc pointed at a private npm registry (Verdaccio) whose
 # VM was retired because it performed badly — so the file no longer exists anywhere in the
 # repo and this line failed every build with:

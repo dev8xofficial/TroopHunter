@@ -15,7 +15,31 @@ spec:
       initContainers:
         - name: wait-for-db
           image: busybox
-          command: ['sh', '-c', 'until nc -z auth-db 5432; do echo waiting for db; sleep 2; done;']
+          # ⚠ WAITS ON THE REAL DATABASE, FROM THE SAME SECRET THE APP USES.
+          # This said `nc -z auth-db 5432` until 2026-08-01c — the in-cluster StatefulSet
+          # service that was DELETED when Postgres moved out of Kubernetes. The app was
+          # repointed and this was not, so the init container waited forever for a name that
+          # no longer resolves: `nc: bad address 'auth-db'`.
+          #
+          # ⚠ IT STAYED INVISIBLE FOR A DAY because the running pods never re-initialised.
+          # The fault only appeared when the hub was rebooted and every pod restarted — five
+          # production backends then could not start at all. A latent failure is one that has
+          # already happened; it just has not been observed yet.
+          #
+          # Reading the SAME secret the app reads means there is one source of truth for
+          # where the database is. A second hardcoded copy is what created this.
+          command: ['sh', '-c', 'until nc -z "$POSTGRES_HOST" "$POSTGRES_PORT"; do echo "waiting for $POSTGRES_HOST:$POSTGRES_PORT"; sleep 2; done;']
+          env:
+            - name: POSTGRES_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: auth-db-secret
+                  key: host
+            - name: POSTGRES_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: auth-db-secret
+                  key: port
           resources:
             requests:
               cpu: "25m"
@@ -25,35 +49,54 @@ spec:
               memory: "64Mi"
       containers:
         - name: auth-prod
-          image: 192.168.1.201/auth-prod:latest
+          # ⚠ A DATED TAG, NOT `:latest`.
+          # These deployments use imagePullPolicy: IfNotPresent (set on 2026-07-31 after
+          # `Always` on `:latest` caused disk-pressure that tainted the worker and blocked
+          # every pod in the cluster). With IfNotPresent, pushing a NEW `:latest` changes
+          # nothing — the node already has one cached and will never fetch it. A new tag is
+          # the only thing that reliably deploys, and it also makes rollback exact: put the
+          # previous tag back rather than hoping `:latest` still means what it did.
+          image: 192.168.1.201/auth-prod:2026-07-31-envfix2
           imagePullPolicy: IfNotPresent
           command: ["/bin/bash", "/app/microservices/auth/entrypoint.sh"]
           ports:
             - containerPort: 50003
+          # ⚠ THESE NAMES MUST BE POSTGRES_*, NOT DB_*.
+          # The service reads process.env.POSTGRES_HOST / _PORT / _DB / _USER / _PASSWORD
+          # (microservices/<name>/src/config/database.ts). It has never read DB_*, so the
+          # DB_* variables these manifests used to set were dead config: the Secret could be
+          # changed to anything and the app would carry on using the values baked into
+          # .env.production inside the image.
+          #
+          # That is how the 2026-07-31 database migration first "succeeded" while changing
+          # nothing — every pod reported the new DB_HOST and connected to the old database.
+          #
+          # dotenv does NOT overwrite a variable that is already set, so a value supplied
+          # here wins over .env.production. That is what makes the connection declarative.
           env:
             - name: NODE_ENV
               value: production
-            - name: DB_HOST
+            - name: POSTGRES_HOST
               valueFrom:
                 secretKeyRef:
                   name: auth-db-secret
                   key: host
-            - name: DB_PORT
+            - name: POSTGRES_PORT
               valueFrom:
                 secretKeyRef:
                   name: auth-db-secret
                   key: port
-            - name: DB_USER
+            - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
                   name: auth-db-secret
                   key: username
-            - name: DB_PASSWORD
+            - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: auth-db-secret
                   key: password
-            - name: DB_NAME
+            - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
                   name: auth-db-secret

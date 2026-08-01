@@ -1,0 +1,60 @@
+---
+# Every image the prod cluster runs, and where it comes from.
+#
+# ⚠ THIS FILE IS THE LIST. `build-images.sh` reads it; nothing is hardcoded in the script.
+# Adding a service means one line here, not an edit to a script somewhere else.
+#
+# ⚠ WHY THIS EXISTS (Abdul, 2026-07-31): the registry holds 25 GB of images with no backup,
+# and the hub it lives on is due to be wiped for Proxmox 9. His call was not to back the
+# images up but to make rebuilding them repeatable:
+#
+#   "We can rebuild them in mac and push them again. Rebuilding them must be more and more
+#    automatic. We probably think more advance options later like git actions, automatic
+#    building of these images, ci/cd etc."
+#
+# That is the right trade. Images are derived artefacts — the source is the real asset, and
+# a build you can run on demand is worth more than a backup of an output. This file is the
+# first step; CI/CD is the eventual one.
+
+registry:
+  # ⚠ TWO ADDRESSES, ONE REGISTRY. You push to :5000; the cluster pulls without a port.
+  # They reach the same repositories because containerd maps one onto the other (declared in
+  # dev8x/forge/infrastructure/desired-state/services/kubernetes.yaml → registry_access).
+  # Pushing to the pull address fails with "connection refused on 443" — wrong port, not a
+  # broken registry.
+  push: "192.168.1.201:5000"
+  pull: "192.168.1.201"
+
+# ⚠ TAGS ARE DATED, NEVER `:latest`. NOT A STYLE CHOICE.
+# The cluster runs imagePullPolicy IfNotPresent — set on 2026-07-31 after `Always` on
+# `:latest` filled the worker's disk, tainted it NoSchedule, blocked istiod, and through that
+# blocked every pod in the cluster. With IfNotPresent, pushing a new `:latest` deploys
+# NOTHING: the node already has one cached and never fetches it again. A new tag is the only
+# thing that reliably reaches a node, and it makes rollback exact.
+tagging:
+  default: "date"          # build-images.sh generates YYYY-MM-DD-<n> unless -t is given
+
+# The build stage to use. `production` is the slim final stage in every Dockerfile here.
+target: production
+
+services:
+  - name: businesses
+    dockerfile: microservices/businesses/Dockerfile
+  - name: auth
+    dockerfile: microservices/auth/Dockerfile
+  - name: countries
+    dockerfile: microservices/countries/Dockerfile
+  - name: queues
+    dockerfile: microservices/queues/Dockerfile
+  - name: users
+    dockerfile: microservices/users/Dockerfile
+  - name: main
+    dockerfile: microservices/main/Dockerfile
+  - name: troophunter
+    dockerfile: microfrontend/troophunter/Dockerfile
+  - name: dev8x
+    dockerfile: microfrontend/dev8x/Dockerfile
+  - name: helloabdul
+    dockerfile: microfrontend/helloabdul/Dockerfile
+  - name: burkes
+    dockerfile: microfrontend/burkes/Dockerfile
