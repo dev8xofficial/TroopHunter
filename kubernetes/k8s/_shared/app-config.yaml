@@ -1,0 +1,35 @@
+---
+# Non-secret configuration shared by all five services.
+#
+# ⚠ THESE ARE NOT SECRETS, AND SEPARATING THEM MATTERS. Nine of the twelve baked variables are
+# URLs, ports and hostnames. Keeping them in a ConfigMap means they are readable, reviewable
+# and changeable without touching anything sensitive — and it leaves the Secret small enough
+# that its handling can be strict.
+#
+# ⚠ SEVERAL OF THESE ARE THE HARDCODED-ADDRESS PROBLEM IN A DIFFERENT COSTUME.
+# ASSET_HOST / MAIN_MICROSERVICE_URL / TROOPHUNTER_PUBLIC_URL are addresses that belong in a
+# declaration. Once local DNS exists they become names — see forge desired-state/network/dns.yaml.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: default
+data:
+  NODE_ENV: "production"
+  JWT_EXPIRES_IN: "REPLACE_FROM_IMAGE"      # read from the current .env.production, do not invent
+  ASSET_HOST: "REPLACE_FROM_IMAGE"
+  MAIN_MICROSERVICE_URL: "REPLACE_FROM_IMAGE"
+  TROOPHUNTER_PUBLIC_URL: "REPLACE_FROM_IMAGE"
+  # ⚠ PORT is per-service (auth 50003, others differ) — it stays in each Deployment, not here.
+---
+# auth only — the mail settings no other service carries.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: auth-mail-config
+  namespace: default
+data:
+  MAIL_HOST: "REPLACE_FROM_IMAGE"
+  MAIL_PORT: "REPLACE_FROM_IMAGE"
+  MAIL_USER: "REPLACE_FROM_IMAGE"
+  EMAIL_SENDER: "REPLACE_FROM_IMAGE"
