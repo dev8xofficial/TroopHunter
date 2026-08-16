@@ -1,4 +1,8 @@
 ---
+# ⚠ forge is authoritative for this role (Abdul, 2026-08-14).
+# The maintained copy is `forge/infrastructure/implementation/ansible/roles/llama_cpp`.
+# This copy is kept ONLY for work driven from the TroopHunter repo. Improve it here if you must,
+# but the fleet is built from forge — and forge's version is already ahead of this one.
 # Builds llama.cpp from source and runs llama-server as a systemd service.
 # Settings here encode what we MEASURED (forge/infrastructure/reconciler/inference-economics.md):
 #   - 64K context: Hermes refuses to start below 64,000

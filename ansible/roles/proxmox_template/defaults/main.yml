@@ -1,4 +1,8 @@
 ---
+# ⚠ forge is authoritative for this role (Abdul, 2026-08-14).
+# The maintained copy is `forge/infrastructure/implementation/ansible/roles/proxmox_template`.
+# This copy is kept ONLY for work driven from the TroopHunter repo. Improve it here if you must,
+# but the fleet is built from forge — and forge's version is already ahead of this one.
 # Ensures a cloud-init VM template exists on a Proxmox node.
 #
 # Two strategies, tried in order:

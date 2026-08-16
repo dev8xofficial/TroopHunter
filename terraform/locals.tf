@@ -103,8 +103,22 @@ locals {
     }
   ]
 
+  # ⚠ SUPERSEDED 2026-08-09 — DO NOT APPLY. The declarative home for the LLM guests is now
+  # forge/infrastructure/implementation/terraform/dev8x-llm, driven by
+  # forge/infrastructure/desired-state/services/llm-hosts.yaml. setup-llm.yml's own header always
+  # said TroopHunter's copy stays "until this is proven, then goes"; forge's copy now exists and
+  # validates, so this block is kept only until that apply has run once.
+  #
+  # ⚠ AND THE SENTENCE BELOW IS NO LONGER TRUE, WHICH IS WHY THIS MATTERS RATHER THAN BEING
+  # TIDINESS. It read: "GGUF models are re-downloadable, so destroy/recreate is cheap" — and that
+  # belief is encoded in the CHOICE of the workspace module, which deliberately has no
+  # prevent_destroy. The models on this fleet are NOT practically re-fetchable: 8.2 GB that exist
+  # only here, on a link where a 65 MB pull truncated twice on 2026-08-08. Applying this would
+  # destroy them. They are now staged on both hypervisors at /var/lib/vz/models and forge's module
+  # sets prevent_destroy on the guest that holds them.
+  #
   # llm-host — llama.cpp server for the local-AI layer. Workspace module (no
-  # prevent_destroy): GGUF models are re-downloadable, so destroy/recreate is cheap.
+  # prevent_destroy): GGUF models are re-downloadable, so destroy/recreate is cheap.  [FALSE — see above]
   llm_host = [
     {
       name          = "${var.llm_name}"
