@@ -1,0 +1,21 @@
+{
+  "useMarkdownLinks": false,
+  "newLinkFormat": "shortest",
+  "alwaysUpdateLinks": true,
+  "showUnsupportedFiles": false,
+  "attachmentFolderPath": "./",
+  "userIgnoreFilters": [
+    ".claude-code-history/",
+    ".git/",
+    ".terraform/",
+    ".venv/",
+    "__pycache__/",
+    "cc-history/",
+    "codex-history/",
+    "gl-recon/probe/venv/",
+    "infrastructure/implementation/local/backups/",
+    "infrastructure/implementation/local/extension/",
+    "node_modules/",
+    "site/"
+  ]
+}

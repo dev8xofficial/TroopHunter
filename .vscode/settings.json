@@ -1,4 +1,13 @@
 {
+  // ⚠ THE FOAM BLOCK BELOW ONCE REPLACED THIS FILE INSTEAD OF BEING ADDED TO IT.
+  // Adding the vault settings overwrote five working settings — the eslint working directories,
+  // the Python formatter, format-on-save, the tree-generator excludes and the wrangler.json
+  // association. Nothing failed and nothing warned; eslint simply stopped looking at
+  // microfrontend, microservices and packages/validator. Caught on 2026-08-16 by reading the diff
+  // before committing it, which is the only reason it was caught at all.
+  // Both halves are kept below. If you add a tool's settings here, MERGE them.
+
+  // ── the project's own settings ────────────────────────────────────────────────────────────
   "tree-generator.exclude": {
     "**/node_modules": true,
     "**/public": true,
@@ -12,5 +21,21 @@
   "eslint.workingDirectories": ["../microfrontend", "../microservices", "../packages/validator"],
   "files.associations": {
     "wrangler.json": "jsonc"
+  },
+
+  // ── Foam — the VS Code half of the same vault ─────────────────────────────────────────────
+  // Kept deliberately in step with .obsidian/app.json so a link written in one tool resolves
+  // identically in the other.
+  "foam.edit.linkReferenceDefinitions": "off",
+  "foam.files.ignore": [
+    "**/.git/**", "**/node_modules/**", "**/.venv/**", "**/__pycache__/**",
+    "**/.terraform/**", "**/site/**",
+    "**/cc-history/**", "**/.claude-code-history/**", "**/codex-history/**"
+  ],
+  "markdown.validate.enabled": true,
+  "markdown.validate.fileLinks.enabled": "error",
+  "search.exclude": {
+    "**/node_modules": true, "**/.venv": true, "**/.terraform": true,
+    "**/cc-history": true, "**/.claude-code-history": true
   }
 }

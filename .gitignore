@@ -21,3 +21,8 @@ pgadmin/pgadmin
 # Claude Code session transcripts. Never tracked; they are working notes, they can run to
 # tens of thousands of lines, and they may quote credentials or output from past sessions.
 .cc-history/
+
+# Obsidian per-user pane layout (shared settings in .obsidian/app.json ARE committed)
+.obsidian/workspace
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
